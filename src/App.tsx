@@ -1,5 +1,5 @@
 import { motion } from "motion/react";
-import { Github, Linkedin, Instagram, ExternalLink, Leaf, Brain, Shield, Info, GraduationCap, MapPin } from "lucide-react";
+import { Github, Linkedin, Instagram, ExternalLink, Brain, Shield, Info, GraduationCap, MapPin } from "lucide-react";
 
 const NAV_ITEMS = ["Home", "About", "Research", "Projects", "Writing", "Contact"];
 
@@ -47,14 +47,13 @@ export default function App() {
             >
               <div className="flex items-center gap-2 mb-4">
                 <span className="w-8 h-px bg-warm-accent" />
-                
               </div>
               <h1 className="serif text-7xl md:text-8xl leading-none mb-6">
                 Disha <br /> Singha
               </h1>
               <p className="text-base text-warm-ink/70 max-w-sm leading-relaxed mb-8">
                 B.Tech Student in CSE (AIML). <br />
-                Researcher investigating AI Safety, Agency, and the alignment of complex optimization systems.
+                Independent AI safety researcher focused on RLHF robustness, reward hacking, and the structural limits of honest optimization.
               </p>
               <div className="flex space-x-3">
                 {SOCIAL_LINKS.map((link) => (
@@ -79,7 +78,6 @@ export default function App() {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="relative aspect-[4/5] rounded-[3rem] overflow-hidden bg-warm-ink/5 border border-warm-ink/10 max-w-sm mx-auto md:ml-auto shadow-2xl shadow-warm-accent/5"
             >
-              {/* Using the user's provided photo */}
               <img 
                 src="/regenerated_image_1777361976700.png" 
                 alt="Disha Singha"
@@ -116,12 +114,12 @@ export default function App() {
 
                 <div className="pt-6 border-t border-warm-ink/5 space-y-4">
                   <p className="text-lg leading-relaxed text-warm-ink/90 italic">
-                    "Bridging the delta between technical optimization and philosophical safety constraint."
+                    "Uncertainty is not noise — it's underused information."
                   </p>
                   <p className="text-sm leading-relaxed text-warm-ink/70">
-                    My background in AIML is complemented by an active pursuit of AI alignment and governance concepts. 
-                    I'm particularly interested in how behavioral shifts in complex agents mirror human socio-technical 
-                    rebellion when optimized for specific validation metrics.
+                    Independent AI safety researcher working on RLHF robustness and reward hacking. 
+                    My work is driven by a single thread: uncertainty is systematically underused in safety-critical ML pipelines. 
+                    This runs across my preprint, my ongoing benchmark work, and my theoretical writing on observer-relative hardness.
                   </p>
                 </div>
               </div>
@@ -130,16 +128,17 @@ export default function App() {
                 <div className="space-y-4 p-6 rounded-2xl bg-warm-ink/2 border border-warm-ink/5">
                   <div className="flex items-center gap-2 text-warm-accent">
                     <MapPin size={16} />
-                    <h4 className="text-[10px] uppercase tracking-widest font-bold">Experience</h4>
+                    <h4 className="text-[10px] uppercase tracking-widest font-bold">Engagement</h4>
                   </div>
                   <div>
-                    <p className="text-sm font-semibold mb-1">EA Global 2025 Delhi</p>
+                    <p className="text-sm font-semibold mb-1">EAG Global & EAGxIndia · 2025</p>
                     <p className="text-xs text-warm-ink/60 leading-relaxed mb-2">
                       Participated in discussions on AI safety, long-term risks, and global priorities 
                       with researchers in the alignment community.
                     </p>
+                    <p className="text-sm font-semibold mb-1 mt-3">BlueDot Impact AI Safety · 2026</p>
                     <p className="text-xs text-warm-ink/60 leading-relaxed">
-                      Explored real-world approaches to solving high-impact global problems.
+                      Selective technical curriculum covering alignment engineering, mechanistic interpretability, and inner alignment failures.
                     </p>
                   </div>
                 </div>
@@ -147,16 +146,15 @@ export default function App() {
                 <div className="space-y-4 p-6 rounded-2xl bg-warm-ink/2 border border-warm-ink/5">
                   <div className="flex items-center gap-2 text-warm-accent">
                     <Brain size={16} />
-                    <h4 className="text-[10px] uppercase tracking-widest font-bold">Research Study</h4>
+                    <h4 className="text-[10px] uppercase tracking-widest font-bold">Research Focus</h4>
                   </div>
-                  <div>
-                    <p className="text-sm font-semibold mb-1">Independent Study</p>
-                    <p className="text-xs text-warm-ink/60 leading-relaxed">
-                      Actively studying AI safety, alignment, and governance concepts.
-                    </p>
-                    <p className="text-xs text-warm-ink/60 leading-relaxed mt-1">
-                      Exploring interdisciplinary approaches combining philosophy and machine learning.
-                    </p>
+                  <div className="space-y-2">
+                    {["RLHF robustness & reward hacking", "Uncertainty estimation in ML", "Mechanistic interpretability", "Observer-relative hardness & complexity theory"].map(item => (
+                      <div key={item} className="flex items-start gap-2">
+                        <div className="w-1.5 h-1.5 rounded-full bg-warm-accent mt-1.5 flex-shrink-0" />
+                        <p className="text-xs text-warm-ink/60 leading-relaxed">{item}</p>
+                      </div>
+                    ))}
                   </div>
                 </div>
               </div>
@@ -164,26 +162,67 @@ export default function App() {
           </div>
         </section>
 
-        {/* Research Pillars */}
+        {/* Research Section */}
         <section id="research" className="mb-24 scroll-mt-20">
-          <h2 className="serif text-4xl mb-12 text-center">Core Inquiry</h2>
+          <div className="flex justify-between items-end mb-12">
+            <h2 className="serif text-5xl">Research</h2>
+            <a
+              href="https://arxiv.org/abs/2604.26360"
+              target="_blank"
+              rel="noreferrer"
+              className="text-[10px] uppercase tracking-widest font-bold p-3 border border-warm-ink/10 rounded-full hover:bg-warm-accent hover:text-white transition-all"
+            >
+              <ExternalLink size={14} />
+            </a>
+          </div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="p-10 rounded-[3rem] bg-warm-ink text-white shadow-2xl mb-10"
+          >
+            <div className="flex flex-col md:flex-row md:items-start justify-between mb-8 gap-6">
+              <div>
+                <p className="text-warm-accent text-[10px] uppercase tracking-widest font-bold mb-4">arXiv Preprint · Sole Author · v2 June 2026</p>
+                <h3 className="serif text-3xl leading-tight max-w-2xl">
+                  Uncertainty-Aware Reward Discounting for Mitigating Reward Hacking
+                </h3>
+              </div>
+              <a
+                href="https://arxiv.org/abs/2604.26360v2"
+                target="_blank"
+                rel="noreferrer"
+                className="w-14 h-14 rounded-full bg-white/10 hover:bg-white text-white hover:text-warm-ink flex items-center justify-center transition-all flex-shrink-0"
+              >
+                <ExternalLink size={24} />
+              </a>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 text-white/70">
+              <p className="text-base leading-relaxed">
+                Introduced UARD — a framework that jointly models epistemic and aleatoric uncertainty in RLHF via a confidence-adjusted Reliability Filter. Reduces reward hacking by up to 93.6% across MuJoCo benchmarks vs. nine baselines, with near-zero safety violations under 10–30% annotation noise.
+              </p>
+              <div className="space-y-3">
+                {[
+                  "Bellman contraction proof guaranteeing convergence",
+                  "Information Bottleneck theoretical grounding",
+                  "46 pages · 16 figures · 6 tables",
+                ].map(item => (
+                  <div key={item} className="flex items-start gap-3">
+                    <div className="w-1.5 h-1.5 rounded-full bg-warm-accent mt-2 flex-shrink-0" />
+                    <p className="text-sm">{item}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </motion.div>
+
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
-              { 
-                icon: Shield, 
-                title: "AI Safety", 
-                desc: "Exploring technical alignment, robustness, and the containment of high-stakes systems." 
-              },
-              { 
-                icon: Brain, 
-                title: "Philosophy", 
-                desc: "Investigating questions of agency, identity, and intent in digital architectures." 
-              },
-              { 
-                icon: Info, 
-                title: "Incentives", 
-                desc: "Analyzing how feedback loops and validation mechanisms shape agent behavior." 
-              }
+              { icon: Shield, title: "Reward Robustness", desc: "Building RLHF systems that don't collapse under distributional shift or annotation noise." },
+              { icon: Brain, title: "Structural Limits", desc: "Understanding when honest behavior from optimization-based systems is theoretically impossible." },
+              { icon: Info, title: "Observer-Relative Hardness", desc: "Exploring how computational hardness is a relationship between structure and a bounded observer, not an intrinsic property." }
             ].map((item, i) => (
               <motion.div
                 key={item.title}
@@ -204,39 +243,38 @@ export default function App() {
         {/* Projects */}
         <section id="projects" className="mb-24 scroll-mt-20">
           <div className="flex justify-between items-end mb-12">
-            <h2 className="serif text-5xl">Feature Projects</h2>
+            <h2 className="serif text-5xl">Projects</h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-            {/* Flora AI */}
+            {/* CodeHack-Eval */}
             <motion.div 
               initial={{ opacity: 0, y: 15 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               className="bg-white/40 p-2 rounded-[3rem] border border-warm-ink/5 group"
             >
-              <div className="aspect-[1.5/1] mb-6 rounded-[2.8rem] overflow-hidden bg-emerald-900/5 relative">
-                <div className="absolute inset-0 flex items-center justify-center text-emerald-900/10">
-                  <Leaf size={100} strokeWidth={0.5} />
+              <div className="aspect-[1.5/1] mb-6 rounded-[2.8rem] overflow-hidden bg-indigo-900/5 relative">
+                <div className="absolute inset-0 flex items-center justify-center text-indigo-900/10">
+                  <Shield size={100} strokeWidth={0.5} />
                 </div>
               </div>
               <div className="px-8 pb-10">
-                <span className="text-[10px] uppercase tracking-widest font-bold text-emerald-700/60 mb-2 block">CV • NLP • Botany</span>
-                <h3 className="serif text-3xl mb-4">Flora AI</h3>
+                <span className="text-[10px] uppercase tracking-widest font-bold text-indigo-700/60 mb-2 block">Alignment · Benchmarking · RLHF</span>
+                <h3 className="serif text-3xl mb-4">CodeHack-Eval</h3>
                 <p className="text-sm text-warm-ink/70 leading-relaxed max-w-sm mb-6">
-                  An "AI Doctor" for plants. Uses computer vision to diagnose foliar diseases 
-                  and provides personalized care advice via natural language processing.
+                  A benchmark probing whether LLM-based coding agents exploit reward signal vulnerabilities rather than solving the underlying task. Extends the UARD uncertainty framework to agentic code generation settings.
                 </p>
                 <div className="flex items-center gap-3">
-                  <span className="px-3 py-1 bg-emerald-500/10 text-emerald-600 text-[10px] uppercase font-bold rounded-full animate-pulse flex items-center gap-1.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
-                    In Development
+                  <span className="px-3 py-1 bg-indigo-500/10 text-indigo-600 text-[10px] uppercase font-bold rounded-full animate-pulse flex items-center gap-1.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-indigo-500" />
+                    Ongoing
                   </span>
                 </div>
               </div>
             </motion.div>
 
-            {/* Placeholder Project */}
+            {/* UmbraGraph */}
             <motion.div 
               initial={{ opacity: 0, y: 15 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -250,14 +288,13 @@ export default function App() {
                 </div>
               </div>
               <div className="px-8 pb-10">
-                <span className="text-[10px] uppercase tracking-widest font-bold text-warm-ink/30 mb-2 block">Alignment Research</span>
-                <h3 className="serif text-3xl mb-4">Agency Loops</h3>
+                <span className="text-[10px] uppercase tracking-widest font-bold text-warm-ink/30 mb-2 block">Uncertainty · Graph Theory · Infrastructure</span>
+                <h3 className="serif text-3xl mb-4">UmbraGraph</h3>
                 <p className="text-sm text-warm-ink/70 leading-relaxed max-w-sm mb-6">
-                  Studying the structural parallels between social validation behaviors and reward 
-                  hacking in autonomous reinforcement learning systems.
+                  Probabilistic road-network resilience model using uncertainty-weighted betweenness centrality, producing a two-dimensional resilience index for infrastructure robustness under failure scenarios.
                 </p>
                 <div className="flex items-center gap-3">
-                  <span className="px-3 py-1 bg-warm-ink/5 text-warm-ink/40 text-[10px] uppercase font-bold rounded-full">Case Study</span>
+                  <span className="px-3 py-1 bg-warm-ink/5 text-warm-ink/40 text-[10px] uppercase font-bold rounded-full">Completed</span>
                 </div>
               </div>
             </motion.div>
@@ -278,49 +315,86 @@ export default function App() {
             </a>
           </div>
 
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="group"
-          >
-            <div className="p-10 rounded-[3rem] bg-warm-ink text-white shadow-2xl transition-all">
-              <div className="flex flex-col md:flex-row md:items-start justify-between mb-8 gap-6">
-                <div>
-                  <p className="text-warm-accent text-[10px] uppercase tracking-widest font-bold mb-4">Featured Essay on Substack</p>
-                  <h3 className="serif text-4xl leading-tight max-w-2xl">
-                    “The Spectacle of Rebellion: Validation in Modern Expression”
-                  </h3>
+          <div className="space-y-6">
+            {/* Featured: Observer piece */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="group"
+            >
+              <div className="p-10 rounded-[3rem] bg-warm-ink text-white shadow-2xl transition-all">
+                <div className="flex flex-col md:flex-row md:items-start justify-between mb-8 gap-6">
+                  <div>
+                    <p className="text-warm-accent text-[10px] uppercase tracking-widest font-bold mb-4">Position Paper · Substack · June 2026</p>
+                    <h3 className="serif text-4xl leading-tight max-w-2xl">
+                      "The Field That Forgot To Name The Observer"
+                    </h3>
+                  </div>
+                  <a
+                    href="https://open.substack.com/pub/klovasdiary/p/the-field-that-forgot-to-name-the"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="w-14 h-14 rounded-full bg-white/10 hover:bg-white text-white hover:text-warm-ink flex items-center justify-center transition-all flex-shrink-0"
+                  >
+                    <ExternalLink size={24} />
+                  </a>
                 </div>
-                <a 
-                  href="https://open.substack.com/pub/klovasdiary/p/the-spectacle-of-rebellion-validation"
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-12 text-white/70">
+                  <p className="text-base leading-relaxed">
+                    Argues that hardness is observer-relative rather than intrinsic — a relationship between structure and a bounded observer. Synthesizes this claim across LLM arithmetic, mechanistic interpretability, ELK, Kolmogorov complexity, cryptographic hardness, and Impagliazzo's five worlds.
+                  </p>
+                  <div className="space-y-4">
+                    <div className="flex items-start gap-3">
+                      <div className="w-1.5 h-1.5 rounded-full bg-warm-accent mt-2" />
+                      <p className="text-sm">Observer-relative hardness as a unifying primitive across complexity theory.</p>
+                    </div>
+                    <div className="flex items-start gap-3">
+                      <div className="w-1.5 h-1.5 rounded-full bg-warm-accent mt-2" />
+                      <p className="text-sm">Connects Liu-Pass (2021) and Impagliazzo's five worlds as expected corollaries.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Two smaller cards */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {[
+                {
+                  tag: "Technical Essay · Substack · 2026",
+                  title: "ELK as an Ill-Posed Inverse Problem",
+                  desc: "Argues that ELK failure is a structural consequence of inverting a non-injective, informationally lossy mapping — not an engineering flaw. Deceptive alignment emerges when systems model their overseers during optimization.",
+                  href: "https://open.substack.com/pub/klovasdiary/p/what-if-elk-failure-is-a-structural"
+                },
+                {
+                  tag: "Essay · Substack",
+                  title: "The Spectacle of Rebellion: Validation in Modern Expression",
+                  desc: "How incentive structures (visibility, validation) transform behavioral patterns in feedback-driven environments — directly relevant to reward shaping and alignment.",
+                  href: "https://open.substack.com/pub/klovasdiary/p/the-spectacle-of-rebellion-validation"
+                }
+              ].map((piece, i) => (
+                <motion.a
+                  key={piece.title}
+                  href={piece.href}
                   target="_blank"
                   rel="noreferrer"
-                  className="w-14 h-14 rounded-full bg-white/10 hover:bg-white text-white hover:text-warm-ink flex items-center justify-center transition-all flex-shrink-0"
+                  initial={{ opacity: 0, y: 15 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.1 }}
+                  className="p-8 rounded-[2rem] bg-white/50 border border-warm-ink/5 hover:border-warm-accent shadow-sm transition-all group block"
                 >
-                  <ExternalLink size={24} />
-                </a>
-              </div>
-              
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-12 text-white/70">
-                <p className="text-base leading-relaxed mb-4">
-                  Analyzed how behaviors in complex systems transform into performances when incentivized 
-                  by visibility. This inquiry directly informs my interest in AI alignment—understanding 
-                  how reward structures inadvertently shape behavior.
-                </p>
-                <div className="space-y-4">
-                  <div className="flex items-start gap-3">
-                    <div className="w-1.5 h-1.5 rounded-full bg-warm-accent mt-2" />
-                    <p className="text-sm">Exploration of behavioral shifts under validation incentives.</p>
+                  <div className="flex items-start justify-between mb-4">
+                    <p className="text-[10px] uppercase tracking-widest font-bold text-warm-ink/30">{piece.tag}</p>
+                    <ExternalLink size={14} className="text-warm-ink/20 group-hover:text-warm-accent transition-colors flex-shrink-0 mt-0.5" />
                   </div>
-                  <div className="flex items-start gap-3">
-                    <div className="w-1.5 h-1.5 rounded-full bg-warm-accent mt-2" />
-                    <p className="text-sm">Analysis of rebellion as a performance in feedback-driven systems.</p>
-                  </div>
-                </div>
-              </div>
+                  <h3 className="serif text-xl mb-3 leading-snug">{piece.title}</h3>
+                  <p className="text-sm text-warm-ink/60 leading-relaxed">{piece.desc}</p>
+                </motion.a>
+              ))}
             </div>
-          </motion.div>
+          </div>
         </section>
 
         {/* Footer */}
@@ -356,7 +430,7 @@ export default function App() {
               </div>
               <div className="text-left md:text-right">
                 <p className="text-[10px] uppercase tracking-[0.2em] text-warm-ink/20 font-bold mb-2">
-                  Portfolio 2024 • Disha Singha
+                  Portfolio 2026 • Disha Singha
                 </p>
                 <p className="text-[10px] uppercase tracking-[0.2em] text-warm-ink/20 font-bold">
                   Narula Institute of Tech, India
