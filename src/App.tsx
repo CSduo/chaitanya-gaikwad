@@ -1,17 +1,146 @@
+import { useState } from "react";
 import { motion } from "motion/react";
-import { Github, Linkedin, Instagram, ExternalLink, Brain, Shield, Info, GraduationCap, MapPin } from "lucide-react";
+import { 
+  Instagram, 
+  ExternalLink, 
+  Brain, 
+  Shield, 
+  Info, 
+  MapPin, 
+  Menu, 
+  X, 
+  Image, 
+  Video, 
+  Megaphone, 
+  Users, 
+  Search, 
+  Send, 
+  Globe, 
+  Cpu, 
+  Sparkles,
+  Briefcase
+} from "lucide-react";
 
-const NAV_ITEMS = ["Home", "About", "Research", "Projects", "Writing", "Contact"];
+const NAV_ITEMS = ["Home", "About", "Services", "Projects", "Writing", "Contact"];
+
+const WhatsAppIcon = (props: React.SVGProps<SVGSVGElement>) => (
+  <svg
+    viewBox="0 0 24 24"
+    width="100%"
+    height="100%"
+    fill="currentColor"
+    {...props}
+  >
+    <path d="M12.004 2C6.48 2 2 6.48 2 12.004c0 1.762.455 3.486 1.32 5.012L2 22l5.128-1.327c1.474.808 3.128 1.233 4.876 1.233 5.524 0 10.004-4.48 10.004-10.004C22.008 6.48 17.528 2 12.004 2zm0 18.294c-1.574 0-3.118-.42-4.47-1.218l-.32-.19-3.32.86.874-3.2-.21-.334c-.876-1.396-1.34-3.018-1.34-4.708 0-4.838 3.934-8.772 8.772-8.772 4.838 0 8.772 3.934 8.772 8.772 0 4.838-3.934 8.772-8.772 8.772zm4.81-6.57c-.264-.132-1.564-.77-1.806-.858-.242-.088-.418-.132-.594.132-.176.264-.682.858-.836 1.034-.154.176-.308.198-.572.066-1.078-.538-1.884-.962-2.634-2.25-.198-.338.198-.314.568-.14.132.06.264.132.396.264.132.132.176.264.088.44-.088.176-.44.88-.538 1.1-.098.22-.198.242-.462.11-1.3-.642-1.93-1.21-2.434-2.146-.15-.262-.016-.402.106-.524.11-.11.242-.264.364-.396.12-.132.164-.22.242-.374.078-.154.038-.286-.018-.396-.056-.11-.538-1.298-.738-1.782-.194-.472-.39-.408-.538-.416-.14-.008-.3-.008-.462-.008-.162 0-.426.06-.648.304-.22.242-.84.82-.84 2.002s.862 2.32.982 2.482c.12.162 1.696 2.584 4.108 3.624.574.248 1.022.396 1.37.506.578.184 1.104.158 1.514.098.458-.066 1.408-.576 1.606-1.134.198-.558.198-1.038.138-1.138-.06-.1-.22-.198-.484-.33z" />
+  </svg>
+);
 
 const SOCIAL_LINKS = [
-  { icon: Github, href: "https://github.com/dishasinghaa/Portfolio/blob/main/README.md", label: "GitHub" },
-  { icon: Linkedin, href: "https://www.linkedin.com/in/dishasingha?utm_source=share_via&utm_content=profile&utm_medium=member_android", label: "LinkedIn" },
-  { icon: Instagram, href: "https://www.instagram.com/alooopostoooo?igsh=Z2hldm84aXNmdG1r", label: "Instagram" },
+  { 
+    icon: Instagram, 
+    href: "https://www.instagram.com/xiyato22", 
+    label: "Instagram",
+    ariaLabel: "Visit Xiyàto Sāanvī on Instagram"
+  },
+  { 
+    icon: WhatsAppIcon, 
+    href: "https://wa.me/447882746212", 
+    label: "WhatsApp",
+    ariaLabel: "Message Xiyàto Sāanvī on WhatsApp"
+  },
+];
+
+const SERVICES = [
+  {
+    icon: Image,
+    title: "AI Visual Content",
+    desc: "AI-generated images, cinematic product visuals, website hero images, mockups, brand visuals, and creative visual direction."
+  },
+  {
+    icon: Video,
+    title: "AI Video & Short-Form Content",
+    desc: "Short-form videos, reels, product explainers, promotional content, AI-assisted video production, and visual storytelling."
+  },
+  {
+    icon: Megaphone,
+    title: "Digital Marketing Support",
+    desc: "Content planning, campaign assistance, brand presentation, social media support, marketing execution, and digital growth strategy."
+  },
+  {
+    icon: Users,
+    title: "B2B Lead Generation",
+    desc: "Researching relevant companies, identifying decision-makers, preparing organized lead lists, and finding potential business opportunities."
+  },
+  {
+    icon: Search,
+    title: "Business Research",
+    desc: "Company research, market research, competitor research, supplier research, export-business research, and opportunity identification."
+  },
+  {
+    icon: Send,
+    title: "Outreach & Follow-Up",
+    desc: "Email outreach, WhatsApp outreach, personalized messaging, follow-up systems, CRM-style tracking, and international communication support."
+  },
+  {
+    icon: Globe,
+    title: "Website Content & Support",
+    desc: "Website visuals, written content, landing-page presentation, content improvements, portfolio pages, and digital experience support."
+  },
+  {
+    icon: Cpu,
+    title: "Automation & Workflow Systems",
+    desc: "Email automation, outreach workflows, lead-management systems, content workflows, repetitive-task automation, and practical AI-assisted systems."
+  }
+];
+
+const PROJECTS = [
+  {
+    category: "AI Visuals · Creative Direction · Product Mockups",
+    title: "AI Visual Campaigns & Creatives",
+    desc: "High-fidelity, cinematic AI product visuals and marketing campaigns created using Midjourney and Stable Diffusion, providing custom visual solutions for premium brands.",
+    status: "Ongoing",
+    icon: Image
+  },
+  {
+    category: "Lead Gen · CRM Automation · Cold Outreach",
+    title: "B2B Outreach & Lead Automation",
+    desc: "End-to-end automated pipeline identifying high-value decision-makers, validating B2B contact lists, and automating personalized outreach sequences with integrated CRM status tracking.",
+    status: "Completed",
+    icon: Cpu
+  }
+];
+
+const WRITING_FEATURED = {
+  tag: "Strategic Essay · Substack · 2026",
+  title: '"Incentives, AI, and the Modern B2B Landscape"',
+  desc: "Exploring how visual presentation, content loops, and emerging AI tools are reshaping buyer trust and client engagement in modern B2B markets. A deep dive into workflow automation and positioning.",
+  href: "https://open.substack.com/pub/klovasdiary/p/the-field-that-forgot-to-name-the",
+  points: [
+    "The transition from standard email spam to hyper-personalized, context-aware B2B outreach.",
+    "How cinematic AI visuals and short-form content redefine modern brand prestige."
+  ]
+};
+
+const WRITING_ITEMS = [
+  {
+    tag: "Marketing & AI · Substack",
+    title: "The Art of the B2B Follow-Up",
+    desc: "Lessons on constructing automated follow-up sequences that feel human, respectful, and drive conversion without causing spam filters to trigger.",
+    href: "https://open.substack.com/pub/klovasdiary/p/what-if-elk-failure-is-a-structural"
+  },
+  {
+    tag: "Productivity & Automation · Substack",
+    title: "Building Your First Personal CRM System",
+    desc: "A practical guide to designing simple, custom database structures in Notion or Airtable to track business opportunities, client feedback, and outreach campaigns.",
+    href: "https://open.substack.com/pub/klovasdiary/p/the-spectacle-of-rebellion-validation"
+  }
 ];
 
 export default function App() {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
   return (
-    <div className="min-h-screen font-sans">
+    <div className="min-h-screen bg-warm-bg text-warm-ink antialiased font-sans">
       {/* Navigation */}
       <nav className="fixed top-0 w-full z-50 bg-warm-bg/80 backdrop-blur-sm border-b border-warm-ink/10">
         <div className="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
@@ -20,7 +149,7 @@ export default function App() {
             animate={{ opacity: 1 }}
             className="serif text-xl font-semibold tracking-tight"
           >
-            DS.
+            CG.
           </motion.span>
           <div className="hidden md:flex space-x-8">
             {NAV_ITEMS.map((item) => (
@@ -33,7 +162,34 @@ export default function App() {
               </a>
             ))}
           </div>
+          {/* Mobile Menu Button */}
+          <button 
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="md:hidden p-2 text-warm-ink hover:text-warm-accent transition-colors focus:outline-none"
+            aria-label="Toggle navigation menu"
+          >
+            {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
+          </button>
         </div>
+        {/* Mobile Navigation Dropdown */}
+        {mobileMenuOpen && (
+          <motion.div 
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="md:hidden absolute top-16 left-0 w-full bg-warm-bg border-b border-warm-ink/10 flex flex-col p-6 space-y-4 shadow-lg z-40"
+          >
+            {NAV_ITEMS.map((item) => (
+              <a 
+                key={item} 
+                href={`#${item.toLowerCase()}`}
+                onClick={() => setMobileMenuOpen(false)}
+                className="text-xs uppercase tracking-widest hover:text-warm-accent transition-colors font-semibold py-2"
+              >
+                {item}
+              </a>
+            ))}
+          </motion.div>
+        )}
       </nav>
 
       <main className="max-w-5xl mx-auto px-6 pt-24 pb-16">
@@ -48,30 +204,56 @@ export default function App() {
               <div className="flex items-center gap-2 mb-4">
                 <span className="w-8 h-px bg-warm-accent" />
               </div>
-              <h1 className="serif text-7xl md:text-8xl leading-none mb-6">
-                Disha <br /> Singha
+              
+              {/* Responsive Name Header */}
+              <h1 className="serif text-4xl sm:text-5xl md:text-4xl lg:text-5xl xl:text-6xl leading-tight mb-6">
+                {/* Desktop layout: side by side with vertical separator */}
+                <span className="hidden md:flex md:items-center md:flex-wrap gap-3">
+                  <span>Xiyàto Sāanvī</span>
+                  <span className="text-warm-ink/30 font-light select-none text-2xl lg:text-4xl">│</span>
+                  <span>Chaitanya Gaikwad</span>
+                </span>
+                
+                {/* Mobile layout: stacked with a horizontal divider */}
+                <span className="flex md:hidden flex-col items-start gap-1">
+                  <span>Xiyàto Sāanvī</span>
+                  <span className="w-16 h-px bg-warm-ink/20 my-2" />
+                  <span>Chaitanya Gaikwad</span>
+                </span>
               </h1>
-              <p className="text-base text-warm-ink/70 max-w-sm leading-relaxed mb-8">
-                B.Tech Student in CSE (AIML). <br />
-                Independent AI safety researcher focused on RLHF robustness, reward hacking, and the structural limits of honest optimization.
-              </p>
+
+              {/* Professional Introduction */}
+              <div className="space-y-4 max-w-xl mb-8">
+                <p className="text-lg font-semibold text-warm-ink leading-snug">
+                  AI Tools Expert, Visual Content Creator, and Marketing & B2B Specialist.
+                </p>
+                <p className="text-sm text-warm-ink/70 leading-relaxed">
+                  I help brands and businesses improve how they present themselves, market their services, connect with potential clients, and grow through modern digital systems. My work includes AI-powered visuals, short-form videos, website content and support, creative direction, B2B lead generation, business research, outreach campaigns, CRM-style tracking, automation, and digital marketing execution. I combine visual storytelling, emerging AI tools, marketing strategy, and practical business support to turn ideas into professional content and measurable growth opportunities.
+                </p>
+              </div>
+
+              {/* Social links */}
               <div className="flex space-x-3">
                 {SOCIAL_LINKS.map((link) => (
                   <motion.a
                     key={link.label}
                     href={link.href}
                     target="_blank"
-                    rel="noreferrer"
+                    rel="noopener noreferrer"
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
-                    className="p-3 rounded-full border border-warm-ink/15 hover:border-warm-accent hover:text-warm-accent transition-all bg-white/40 shadow-sm"
+                    aria-label={link.ariaLabel}
+                    className="w-11 h-11 flex items-center justify-center rounded-full border border-warm-ink/15 hover:border-warm-accent hover:text-warm-accent transition-all bg-white/40 shadow-sm"
                   >
-                    <link.icon size={18} />
+                    <div className="w-5 h-5 flex items-center justify-center">
+                      <link.icon className="w-full h-full" />
+                    </div>
                   </motion.a>
                 ))}
               </div>
             </motion.div>
             
+            {/* Profile image */}
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -79,9 +261,9 @@ export default function App() {
               className="relative aspect-[4/5] rounded-[3rem] overflow-hidden bg-warm-ink/5 border border-warm-ink/10 max-w-sm mx-auto md:ml-auto shadow-2xl shadow-warm-accent/5"
             >
               <img 
-                src="/regenerated_image_1777361976700.png" 
-                alt="Disha Singha"
-                className="w-full h-full object-cover grayscale-[20%] hover:grayscale-0 transition-all duration-700"
+                src="/portrait.jpg" 
+                alt="Portrait of Xiyàto Sāanvī, Chaitanya Gaikwad"
+                className="w-full h-full object-cover hover:grayscale-0 transition-all duration-700"
                 referrerPolicy="no-referrer"
               />
             </motion.div>
@@ -92,7 +274,7 @@ export default function App() {
         <section id="about" className="mb-24 scroll-mt-20">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
             <div className="md:col-span-1">
-              <h2 className="serif text-4xl mb-4">Academic & Research</h2>
+              <h2 className="serif text-4xl mb-4">About Me</h2>
               <div className="h-px w-20 bg-warm-accent" />
             </div>
             <div className="md:col-span-2 space-y-8">
@@ -100,26 +282,24 @@ export default function App() {
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                   <div className="flex items-center gap-4">
                     <div className="p-3 bg-warm-accent/10 rounded-2xl">
-                      <GraduationCap className="text-warm-accent" size={24} />
+                      <Briefcase className="text-warm-accent" size={24} />
                     </div>
                     <div>
-                      <h3 className="font-semibold text-lg">B.Tech in CSE (AIML)</h3>
-                      <p className="text-sm text-warm-ink/60">Narula Institute of Technology, India</p>
+                      <h3 className="font-semibold text-lg">AI Tools & Digital Strategy</h3>
+                      <p className="text-sm text-warm-ink/60">Creative Professional & Marketing Specialist</p>
                     </div>
                   </div>
                   <span className="text-[10px] uppercase tracking-widest font-bold text-warm-accent bg-warm-accent/5 px-3 py-1.5 rounded-full self-start sm:self-center">
-                    2025 — 2029 Expected
+                    Present
                   </span>
                 </div>
 
                 <div className="pt-6 border-t border-warm-ink/5 space-y-4">
                   <p className="text-lg leading-relaxed text-warm-ink/90 italic">
-                    "Uncertainty is not noise — it's underused information."
+                    "Bridging the gap between cutting-edge AI capability and practical business growth."
                   </p>
                   <p className="text-sm leading-relaxed text-warm-ink/70">
-                    Independent AI safety researcher working on RLHF robustness and reward hacking. 
-                    My work is driven by a single thread: uncertainty is systematically underused in safety-critical ML pipelines. 
-                    This runs across my preprint, my ongoing benchmark work, and my theoretical writing on observer-relative hardness.
+                    I work closely with brands, companies, startups, manufacturers, and growing businesses to elevate their digital presence. By leveraging advanced AI visual tools, short-form video creation, and targeted B2B outreach strategies, I help companies modernise how they connect with clients, showcase products, and automate growth pipelines.
                   </p>
                 </div>
               </div>
@@ -128,28 +308,34 @@ export default function App() {
                 <div className="space-y-4 p-6 rounded-2xl bg-warm-ink/2 border border-warm-ink/5">
                   <div className="flex items-center gap-2 text-warm-accent">
                     <MapPin size={16} />
-                    <h4 className="text-[10px] uppercase tracking-widest font-bold">Engagement</h4>
+                    <h4 className="text-[10px] uppercase tracking-widest font-bold">Approach</h4>
                   </div>
                   <div>
-                    <p className="text-sm font-semibold mb-1">EAG Global & EAGxIndia · 2025</p>
-                    <p className="text-xs text-warm-ink/60 leading-relaxed mb-2">
-                      Participated in discussions on AI safety, long-term risks, and global priorities 
-                      with researchers in the alignment community.
+                    <p className="text-sm font-semibold mb-1">Visual Storytelling</p>
+                    <p className="text-xs text-warm-ink/60 leading-relaxed mb-3">
+                      Using state-of-the-art AI generation tools to create custom product mockups, cinematic video content, and high-impact visual campaigns.
                     </p>
-                    <p className="text-sm font-semibold mb-1 mt-3">BlueDot Impact AI Safety · 2026</p>
+                    <p className="text-sm font-semibold mb-1">Systems & Outreach</p>
                     <p className="text-xs text-warm-ink/60 leading-relaxed">
-                      Selective technical curriculum covering alignment engineering, mechanistic interpretability, and inner alignment failures.
+                      Building solid B2B lead pipelines, managing CRM trackers, automating follow-up campaigns, and executing cold outreach that converts.
                     </p>
                   </div>
                 </div>
 
                 <div className="space-y-4 p-6 rounded-2xl bg-warm-ink/2 border border-warm-ink/5">
                   <div className="flex items-center gap-2 text-warm-accent">
-                    <Brain size={16} />
-                    <h4 className="text-[10px] uppercase tracking-widest font-bold">Research Focus</h4>
+                    <Sparkles size={16} />
+                    <h4 className="text-[10px] uppercase tracking-widest font-bold">Key Strengths</h4>
                   </div>
                   <div className="space-y-2">
-                    {["RLHF robustness & reward hacking", "Uncertainty estimation in ML", "Mechanistic interpretability", "Observer-relative hardness & complexity theory"].map(item => (
+                    {[
+                      "AI image & video generation",
+                      "Short-form video content & reels",
+                      "B2B lead generation & business research",
+                      "Email & WhatsApp outreach automation",
+                      "CRM tracking & follow-up systems",
+                      "Website visual & content support"
+                    ].map(item => (
                       <div key={item} className="flex items-start gap-2">
                         <div className="w-1.5 h-1.5 rounded-full bg-warm-accent mt-1.5 flex-shrink-0" />
                         <p className="text-xs text-warm-ink/60 leading-relaxed">{item}</p>
@@ -162,142 +348,74 @@ export default function App() {
           </div>
         </section>
 
-        {/* Research Section */}
-        <section id="research" className="mb-24 scroll-mt-20">
+        {/* Services Section */}
+        <section id="services" className="mb-24 scroll-mt-20">
           <div className="flex justify-between items-end mb-12">
-            <h2 className="serif text-5xl">Research</h2>
-            <a
-              href="https://arxiv.org/abs/2604.26360"
-              target="_blank"
-              rel="noreferrer"
-              className="text-[10px] uppercase tracking-widest font-bold p-3 border border-warm-ink/10 rounded-full hover:bg-warm-accent hover:text-white transition-all"
-            >
-              <ExternalLink size={14} />
-            </a>
+            <h2 className="serif text-5xl">Services</h2>
           </div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="p-10 rounded-[3rem] bg-warm-ink text-white shadow-2xl mb-10"
-          >
-            <div className="flex flex-col md:flex-row md:items-start justify-between mb-8 gap-6">
-              <div>
-                <p className="text-warm-accent text-[10px] uppercase tracking-widest font-bold mb-4">arXiv Preprint · Sole Author · v2 June 2026</p>
-                <h3 className="serif text-3xl leading-tight max-w-2xl">
-                  Uncertainty-Aware Reward Discounting for Mitigating Reward Hacking
-                </h3>
-              </div>
-              <a
-                href="https://arxiv.org/abs/2604.26360v2"
-                target="_blank"
-                rel="noreferrer"
-                className="w-14 h-14 rounded-full bg-white/10 hover:bg-white text-white hover:text-warm-ink flex items-center justify-center transition-all flex-shrink-0"
-              >
-                <ExternalLink size={24} />
-              </a>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 text-white/70">
-              <p className="text-base leading-relaxed">
-                Introduced UARD — a framework that jointly models epistemic and aleatoric uncertainty in RLHF via a confidence-adjusted Reliability Filter. Reduces reward hacking by up to 93.6% across MuJoCo benchmarks vs. nine baselines, with near-zero safety violations under 10–30% annotation noise.
-              </p>
-              <div className="space-y-3">
-                {[
-                  "Bellman contraction proof guaranteeing convergence",
-                  "Information Bottleneck theoretical grounding",
-                  "46 pages · 16 figures · 6 tables",
-                ].map(item => (
-                  <div key={item} className="flex items-start gap-3">
-                    <div className="w-1.5 h-1.5 rounded-full bg-warm-accent mt-2 flex-shrink-0" />
-                    <p className="text-sm">{item}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {[
-              { icon: Shield, title: "Reward Robustness", desc: "Building RLHF systems that don't collapse under distributional shift or annotation noise." },
-              { icon: Brain, title: "Structural Limits", desc: "Understanding when honest behavior from optimization-based systems is theoretically impossible." },
-              { icon: Info, title: "Observer-Relative Hardness", desc: "Exploring how computational hardness is a relationship between structure and a bounded observer, not an intrinsic property." }
-            ].map((item, i) => (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {SERVICES.map((item, i) => (
               <motion.div
                 key={item.title}
                 initial={{ opacity: 0, y: 15 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                className="p-8 rounded-[2rem] bg-white border border-warm-ink/5 hover:border-warm-accent shadow-sm transition-all"
+                transition={{ delay: i * 0.05 }}
+                className="p-8 rounded-[2rem] bg-white border border-warm-ink/5 hover:border-warm-accent shadow-sm transition-all flex flex-col justify-between"
               >
-                <item.icon className="mb-6 text-warm-accent" size={32} strokeWidth={1} />
-                <h3 className="serif text-2xl mb-3">{item.title}</h3>
-                <p className="text-sm text-warm-ink/70 leading-relaxed">{item.desc}</p>
+                <div>
+                  <div className="w-12 h-12 rounded-2xl bg-warm-accent/5 flex items-center justify-center mb-6 text-warm-accent">
+                    <item.icon size={24} strokeWidth={1.5} />
+                  </div>
+                  <h3 className="serif text-2xl mb-3 leading-snug">{item.title}</h3>
+                  <p className="text-xs text-warm-ink/70 leading-relaxed">{item.desc}</p>
+                </div>
               </motion.div>
             ))}
           </div>
         </section>
 
-        {/* Projects */}
+        {/* Projects Section */}
         <section id="projects" className="mb-24 scroll-mt-20">
           <div className="flex justify-between items-end mb-12">
             <h2 className="serif text-5xl">Projects</h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-            {/* CodeHack-Eval */}
-            <motion.div 
-              initial={{ opacity: 0, y: 15 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="bg-white/40 p-2 rounded-[3rem] border border-warm-ink/5 group"
-            >
-              <div className="aspect-[1.5/1] mb-6 rounded-[2.8rem] overflow-hidden bg-indigo-900/5 relative">
-                <div className="absolute inset-0 flex items-center justify-center text-indigo-900/10">
-                  <Shield size={100} strokeWidth={0.5} />
+            {PROJECTS.map((project, i) => (
+              <motion.div 
+                key={project.title}
+                initial={{ opacity: 0, y: 15 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                className="bg-white/40 p-2 rounded-[3rem] border border-warm-ink/5 group"
+              >
+                <div className="aspect-[1.5/1] mb-6 rounded-[2.8rem] overflow-hidden bg-warm-ink/5 relative">
+                  <div className="absolute inset-0 flex items-center justify-center text-warm-ink/5">
+                    <project.icon size={100} strokeWidth={0.5} />
+                  </div>
                 </div>
-              </div>
-              <div className="px-8 pb-10">
-                <span className="text-[10px] uppercase tracking-widest font-bold text-indigo-700/60 mb-2 block">Alignment · Benchmarking · RLHF</span>
-                <h3 className="serif text-3xl mb-4">CodeHack-Eval</h3>
-                <p className="text-sm text-warm-ink/70 leading-relaxed max-w-sm mb-6">
-                  A benchmark probing whether LLM-based coding agents exploit reward signal vulnerabilities rather than solving the underlying task. Extends the UARD uncertainty framework to agentic code generation settings.
-                </p>
-                <div className="flex items-center gap-3">
-                  <span className="px-3 py-1 bg-indigo-500/10 text-indigo-600 text-[10px] uppercase font-bold rounded-full animate-pulse flex items-center gap-1.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-indigo-500" />
-                    Ongoing
-                  </span>
+                <div className="px-8 pb-10">
+                  <span className="text-[10px] uppercase tracking-widest font-bold text-warm-ink/40 mb-2 block">{project.category}</span>
+                  <h3 className="serif text-3xl mb-4">{project.title}</h3>
+                  <p className="text-sm text-warm-ink/70 leading-relaxed max-w-sm mb-6">
+                    {project.desc}
+                  </p>
+                  <div className="flex items-center gap-3">
+                    <span className={`px-3 py-1 text-[10px] uppercase font-bold rounded-full flex items-center gap-1.5 ${
+                      project.status === "Ongoing" 
+                        ? "bg-warm-accent/10 text-warm-accent animate-pulse" 
+                        : "bg-warm-ink/5 text-warm-ink/40"
+                    }`}>
+                      {project.status === "Ongoing" && <span className="w-1.5 h-1.5 rounded-full bg-warm-accent" />}
+                      {project.status}
+                    </span>
+                  </div>
                 </div>
-              </div>
-            </motion.div>
-
-            {/* UmbraGraph */}
-            <motion.div 
-              initial={{ opacity: 0, y: 15 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1 }}
-              className="bg-white/40 p-2 rounded-[3rem] border border-warm-ink/5 group"
-            >
-              <div className="aspect-[1.5/1] mb-6 rounded-[2.8rem] overflow-hidden bg-warm-ink/5 relative">
-                <div className="absolute inset-0 flex items-center justify-center text-warm-ink/5">
-                  <Brain size={100} strokeWidth={0.5} />
-                </div>
-              </div>
-              <div className="px-8 pb-10">
-                <span className="text-[10px] uppercase tracking-widest font-bold text-warm-ink/30 mb-2 block">Uncertainty · Graph Theory · Infrastructure</span>
-                <h3 className="serif text-3xl mb-4">UmbraGraph</h3>
-                <p className="text-sm text-warm-ink/70 leading-relaxed max-w-sm mb-6">
-                  Probabilistic road-network resilience model using uncertainty-weighted betweenness centrality, producing a two-dimensional resilience index for infrastructure robustness under failure scenarios.
-                </p>
-                <div className="flex items-center gap-3">
-                  <span className="px-3 py-1 bg-warm-ink/5 text-warm-ink/40 text-[10px] uppercase font-bold rounded-full">Completed</span>
-                </div>
-              </div>
-            </motion.div>
+              </motion.div>
+            ))}
           </div>
         </section>
 
@@ -308,7 +426,7 @@ export default function App() {
             <a 
               href="https://open.substack.com/pub/klovasdiary" 
               target="_blank" 
-              rel="noreferrer"
+              rel="noopener noreferrer"
               className="text-[10px] uppercase tracking-widest font-bold p-3 border border-warm-ink/10 rounded-full hover:bg-warm-accent hover:text-white transition-all"
             >
               <ExternalLink size={14} />
@@ -316,7 +434,7 @@ export default function App() {
           </div>
 
           <div className="space-y-6">
-            {/* Featured: Observer piece */}
+            {/* Featured */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -326,15 +444,15 @@ export default function App() {
               <div className="p-10 rounded-[3rem] bg-warm-ink text-white shadow-2xl transition-all">
                 <div className="flex flex-col md:flex-row md:items-start justify-between mb-8 gap-6">
                   <div>
-                    <p className="text-warm-accent text-[10px] uppercase tracking-widest font-bold mb-4">Position Paper · Substack · June 2026</p>
+                    <p className="text-warm-accent text-[10px] uppercase tracking-widest font-bold mb-4">{WRITING_FEATURED.tag}</p>
                     <h3 className="serif text-4xl leading-tight max-w-2xl">
-                      "The Field That Forgot To Name The Observer"
+                      {WRITING_FEATURED.title}
                     </h3>
                   </div>
                   <a
-                    href="https://open.substack.com/pub/klovasdiary/p/the-field-that-forgot-to-name-the"
+                    href={WRITING_FEATURED.href}
                     target="_blank"
-                    rel="noreferrer"
+                    rel="noopener noreferrer"
                     className="w-14 h-14 rounded-full bg-white/10 hover:bg-white text-white hover:text-warm-ink flex items-center justify-center transition-all flex-shrink-0"
                   >
                     <ExternalLink size={24} />
@@ -342,43 +460,28 @@ export default function App() {
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-12 text-white/70">
                   <p className="text-base leading-relaxed">
-                    Argues that hardness is observer-relative rather than intrinsic — a relationship between structure and a bounded observer. Synthesizes this claim across LLM arithmetic, mechanistic interpretability, ELK, Kolmogorov complexity, cryptographic hardness, and Impagliazzo's five worlds.
+                    {WRITING_FEATURED.desc}
                   </p>
                   <div className="space-y-4">
-                    <div className="flex items-start gap-3">
-                      <div className="w-1.5 h-1.5 rounded-full bg-warm-accent mt-2" />
-                      <p className="text-sm">Observer-relative hardness as a unifying primitive across complexity theory.</p>
-                    </div>
-                    <div className="flex items-start gap-3">
-                      <div className="w-1.5 h-1.5 rounded-full bg-warm-accent mt-2" />
-                      <p className="text-sm">Connects Liu-Pass (2021) and Impagliazzo's five worlds as expected corollaries.</p>
-                    </div>
+                    {WRITING_FEATURED.points.map((point, idx) => (
+                      <div key={idx} className="flex items-start gap-3">
+                        <div className="w-1.5 h-1.5 rounded-full bg-warm-accent mt-2 flex-shrink-0" />
+                        <p className="text-sm">{point}</p>
+                      </div>
+                    ))}
                   </div>
                 </div>
               </div>
             </motion.div>
 
-            {/* Two smaller cards */}
+            {/* Smaller writing items */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {[
-                {
-                  tag: "Technical Essay · Substack · 2026",
-                  title: "ELK as an Ill-Posed Inverse Problem",
-                  desc: "Argues that ELK failure is a structural consequence of inverting a non-injective, informationally lossy mapping — not an engineering flaw. Deceptive alignment emerges when systems model their overseers during optimization.",
-                  href: "https://open.substack.com/pub/klovasdiary/p/what-if-elk-failure-is-a-structural"
-                },
-                {
-                  tag: "Essay · Substack",
-                  title: "The Spectacle of Rebellion: Validation in Modern Expression",
-                  desc: "How incentive structures (visibility, validation) transform behavioral patterns in feedback-driven environments — directly relevant to reward shaping and alignment.",
-                  href: "https://open.substack.com/pub/klovasdiary/p/the-spectacle-of-rebellion-validation"
-                }
-              ].map((piece, i) => (
+              {WRITING_ITEMS.map((piece, i) => (
                 <motion.a
                   key={piece.title}
                   href={piece.href}
                   target="_blank"
-                  rel="noreferrer"
+                  rel="noopener noreferrer"
                   initial={{ opacity: 0, y: 15 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
@@ -397,20 +500,32 @@ export default function App() {
           </div>
         </section>
 
-        {/* Footer */}
+        {/* Footer / Contact */}
         <footer id="contact" className="py-24 border-t border-warm-ink/10">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
             <div>
-              <h2 className="serif text-6xl mb-8 leading-none">Let's build <br /> Safely.</h2>
+              <h2 className="serif text-5xl mb-8 leading-none">Let's connect.</h2>
               <p className="text-lg text-warm-ink/50 mb-10 max-w-sm">
-                Open to academic dialogue, research internships, or discussing the mechanics of agency.
+                Open to creative direction, B2B campaigns, or website support opportunities.
               </p>
-              <a 
-                href="mailto:dishasingha0@gmail.com"
-                className="serif text-3xl hover:text-warm-accent transition-colors underline underline-offset-8 decoration-warm-ink/10"
-              >
-                dishasingha0@gmail.com
-              </a>
+              <div className="flex flex-col space-y-4">
+                <a 
+                  href="https://wa.me/447882746212"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="serif text-3xl hover:text-warm-accent transition-colors underline underline-offset-8 decoration-warm-ink/10"
+                >
+                  +44 7882 746212
+                </a>
+                <a 
+                  href="https://www.instagram.com/xiyato22"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="serif text-2xl hover:text-warm-accent transition-colors text-warm-ink/70"
+                >
+                  @xiyato22
+                </a>
+              </div>
             </div>
             
             <div className="flex flex-col items-start md:items-end space-y-12">
@@ -420,20 +535,23 @@ export default function App() {
                     key={link.label} 
                     href={link.href}
                     target="_blank"
-                    rel="noreferrer"
+                    rel="noopener noreferrer"
+                    aria-label={link.ariaLabel}
                     className="text-warm-ink/30 hover:text-warm-accent transition-all group flex flex-col items-center gap-2"
                   >
-                    <link.icon size={28} strokeWidth={1} />
+                    <div className="w-7 h-7">
+                      <link.icon className="w-full h-full" strokeWidth={1} />
+                    </div>
                     <span className="text-[9px] uppercase tracking-widest font-bold opacity-0 group-hover:opacity-100 transition-opacity">{link.label}</span>
                   </a>
                 ))}
               </div>
               <div className="text-left md:text-right">
                 <p className="text-[10px] uppercase tracking-[0.2em] text-warm-ink/20 font-bold mb-2">
-                  Portfolio 2026 • Disha Singha
+                  Portfolio 2026 • Xiyàto Sāanvī │ Chaitanya Gaikwad
                 </p>
                 <p className="text-[10px] uppercase tracking-[0.2em] text-warm-ink/20 font-bold">
-                  Narula Institute of Tech, India
+                  Creative & B2B Strategy
                 </p>
               </div>
             </div>
