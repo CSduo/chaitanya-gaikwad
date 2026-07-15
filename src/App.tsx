@@ -21,7 +21,7 @@ import {
   Briefcase
 } from "lucide-react";
 
-const NAV_ITEMS = ["Home", "About", "Services", "Projects", "Writing", "Contact"];
+const NAV_ITEMS = ["Home", "About", "Services", "Projects", "Contact"];
 
 const WhatsAppIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg
@@ -40,13 +40,13 @@ const SOCIAL_LINKS = [
     icon: Instagram, 
     href: "https://www.instagram.com/xiyato22", 
     label: "Instagram",
-    ariaLabel: "Visit Xiyàto Sāanvī on Instagram"
+    ariaLabel: "Visit on Instagram"
   },
   { 
     icon: WhatsAppIcon, 
     href: "https://wa.me/447882746212", 
     label: "WhatsApp",
-    ariaLabel: "Message Xiyàto Sāanvī on WhatsApp"
+    ariaLabel: "Message on WhatsApp"
   },
 ];
 
@@ -107,32 +107,6 @@ const PROJECTS = [
     desc: "End-to-end automated pipeline identifying high-value decision-makers, validating B2B contact lists, and automating personalized outreach sequences with integrated CRM status tracking.",
     status: "Completed",
     icon: Cpu
-  }
-];
-
-const WRITING_FEATURED = {
-  tag: "Strategic Essay · Substack · 2026",
-  title: '"Incentives, AI, and the Modern B2B Landscape"',
-  desc: "Exploring how visual presentation, content loops, and emerging AI tools are reshaping buyer trust and client engagement in modern B2B markets. A deep dive into workflow automation and positioning.",
-  href: "https://open.substack.com/pub/klovasdiary/p/the-field-that-forgot-to-name-the",
-  points: [
-    "The transition from standard email spam to hyper-personalized, context-aware B2B outreach.",
-    "How cinematic AI visuals and short-form content redefine modern brand prestige."
-  ]
-};
-
-const WRITING_ITEMS = [
-  {
-    tag: "Marketing & AI · Substack",
-    title: "The Art of the B2B Follow-Up",
-    desc: "Lessons on constructing automated follow-up sequences that feel human, respectful, and drive conversion without causing spam filters to trigger.",
-    href: "https://open.substack.com/pub/klovasdiary/p/what-if-elk-failure-is-a-structural"
-  },
-  {
-    tag: "Productivity & Automation · Substack",
-    title: "Building Your First Personal CRM System",
-    desc: "A practical guide to designing simple, custom database structures in Notion or Airtable to track business opportunities, client feedback, and outreach campaigns.",
-    href: "https://open.substack.com/pub/klovasdiary/p/the-spectacle-of-rebellion-validation"
   }
 ];
 
@@ -205,21 +179,9 @@ export default function App() {
                 <span className="w-8 h-px bg-warm-accent" />
               </div>
               
-              {/* Responsive Name Header */}
-              <h1 className="serif text-4xl sm:text-5xl md:text-4xl lg:text-5xl xl:text-6xl leading-tight mb-6">
-                {/* Desktop layout: side by side with vertical separator */}
-                <span className="hidden md:flex md:items-center md:flex-wrap gap-3">
-                  <span>Xiyàto Sāanvī</span>
-                  <span className="text-warm-ink/30 font-light select-none text-2xl lg:text-4xl">│</span>
-                  <span>Chaitanya Gaikwad</span>
-                </span>
-                
-                {/* Mobile layout: stacked with a horizontal divider */}
-                <span className="flex md:hidden flex-col items-start gap-1">
-                  <span>Xiyàto Sāanvī</span>
-                  <span className="w-16 h-px bg-warm-ink/20 my-2" />
-                  <span>Chaitanya Gaikwad</span>
-                </span>
+              {/* Single Name Header */}
+              <h1 className="serif text-5xl sm:text-6xl md:text-5xl lg:text-6xl leading-none mb-6">
+                Chaitanya Gaikwad
               </h1>
 
               {/* Professional Introduction */}
@@ -232,38 +194,49 @@ export default function App() {
                 </p>
               </div>
 
-              {/* Social links */}
-              <div className="flex space-x-3">
-                {SOCIAL_LINKS.map((link) => (
-                  <motion.a
-                    key={link.label}
-                    href={link.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    aria-label={link.ariaLabel}
-                    className="w-11 h-11 flex items-center justify-center rounded-full border border-warm-ink/15 hover:border-warm-accent hover:text-warm-accent transition-all bg-white/40 shadow-sm"
-                  >
-                    <div className="w-5 h-5 flex items-center justify-center">
-                      <link.icon className="w-full h-full" />
-                    </div>
-                  </motion.a>
-                ))}
+              {/* Expanded Clickable Social buttons */}
+              <div className="flex flex-wrap gap-4">
+                <motion.a
+                  href="https://www.instagram.com/xiyato22"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  aria-label="Visit on Instagram"
+                  className="flex items-center gap-3 px-5 py-3 rounded-full border border-warm-ink/15 hover:border-warm-accent hover:text-warm-accent transition-all bg-white/40 shadow-sm text-sm font-semibold"
+                >
+                  <Instagram size={18} />
+                  <span>@xiyato22</span>
+                </motion.a>
+
+                <motion.a
+                  href="https://wa.me/447882746212"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  aria-label="Message on WhatsApp"
+                  className="flex items-center gap-3 px-5 py-3 rounded-full border border-warm-ink/15 hover:border-warm-accent hover:text-warm-accent transition-all bg-white/40 shadow-sm text-sm font-semibold"
+                >
+                  <div className="w-4.5 h-4.5 flex items-center justify-center">
+                    <WhatsAppIcon className="w-full h-full" />
+                  </div>
+                  <span className="font-sans tracking-wide">+44 7882 746212</span>
+                </motion.a>
               </div>
             </motion.div>
             
-            {/* Profile image */}
+            {/* Profile image (Complete 9:16 Aspect Ratio) */}
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="relative aspect-[4/5] rounded-[3rem] overflow-hidden bg-warm-ink/5 border border-warm-ink/10 max-w-sm mx-auto md:ml-auto shadow-2xl shadow-warm-accent/5"
+              className="relative aspect-[9/16] rounded-[2.5rem] overflow-hidden bg-warm-ink/5 border border-warm-ink/10 max-w-[320px] mx-auto md:ml-auto shadow-2xl shadow-warm-accent/5"
             >
               <img 
                 src="/portrait.jpg" 
-                alt="Portrait of Xiyàto Sāanvī, Chaitanya Gaikwad"
-                className="w-full h-full object-cover hover:grayscale-0 transition-all duration-700"
+                alt="Portrait of Chaitanya Gaikwad"
+                className="w-full h-full object-cover transition-all duration-700"
                 referrerPolicy="no-referrer"
               />
             </motion.div>
@@ -419,93 +392,12 @@ export default function App() {
           </div>
         </section>
 
-        {/* Writing Section */}
-        <section id="writing" className="mb-24 scroll-mt-20">
-          <div className="flex justify-between items-end mb-12">
-            <h2 className="serif text-5xl">Writing & Analysis</h2>
-            <a 
-              href="https://open.substack.com/pub/klovasdiary" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="text-[10px] uppercase tracking-widest font-bold p-3 border border-warm-ink/10 rounded-full hover:bg-warm-accent hover:text-white transition-all"
-            >
-              <ExternalLink size={14} />
-            </a>
-          </div>
-
-          <div className="space-y-6">
-            {/* Featured */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="group"
-            >
-              <div className="p-10 rounded-[3rem] bg-warm-ink text-white shadow-2xl transition-all">
-                <div className="flex flex-col md:flex-row md:items-start justify-between mb-8 gap-6">
-                  <div>
-                    <p className="text-warm-accent text-[10px] uppercase tracking-widest font-bold mb-4">{WRITING_FEATURED.tag}</p>
-                    <h3 className="serif text-4xl leading-tight max-w-2xl">
-                      {WRITING_FEATURED.title}
-                    </h3>
-                  </div>
-                  <a
-                    href={WRITING_FEATURED.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-14 h-14 rounded-full bg-white/10 hover:bg-white text-white hover:text-warm-ink flex items-center justify-center transition-all flex-shrink-0"
-                  >
-                    <ExternalLink size={24} />
-                  </a>
-                </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-12 text-white/70">
-                  <p className="text-base leading-relaxed">
-                    {WRITING_FEATURED.desc}
-                  </p>
-                  <div className="space-y-4">
-                    {WRITING_FEATURED.points.map((point, idx) => (
-                      <div key={idx} className="flex items-start gap-3">
-                        <div className="w-1.5 h-1.5 rounded-full bg-warm-accent mt-2 flex-shrink-0" />
-                        <p className="text-sm">{point}</p>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-
-            {/* Smaller writing items */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {WRITING_ITEMS.map((piece, i) => (
-                <motion.a
-                  key={piece.title}
-                  href={piece.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  initial={{ opacity: 0, y: 15 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.1 }}
-                  className="p-8 rounded-[2rem] bg-white/50 border border-warm-ink/5 hover:border-warm-accent shadow-sm transition-all group block"
-                >
-                  <div className="flex items-start justify-between mb-4">
-                    <p className="text-[10px] uppercase tracking-widest font-bold text-warm-ink/30">{piece.tag}</p>
-                    <ExternalLink size={14} className="text-warm-ink/20 group-hover:text-warm-accent transition-colors flex-shrink-0 mt-0.5" />
-                  </div>
-                  <h3 className="serif text-xl mb-3 leading-snug">{piece.title}</h3>
-                  <p className="text-sm text-warm-ink/60 leading-relaxed">{piece.desc}</p>
-                </motion.a>
-              ))}
-            </div>
-          </div>
-        </section>
-
         {/* Footer / Contact */}
         <footer id="contact" className="py-24 border-t border-warm-ink/10">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center font-sans">
             <div>
               <h2 className="serif text-5xl mb-8 leading-none">Let's connect.</h2>
-              <p className="text-lg text-warm-ink/50 mb-10 max-w-sm">
+              <p className="text-base text-warm-ink/60 mb-10 max-w-sm leading-relaxed">
                 Open to creative direction, B2B campaigns, or website support opportunities.
               </p>
               <div className="flex flex-col space-y-4">
@@ -513,7 +405,7 @@ export default function App() {
                   href="https://wa.me/447882746212"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="serif text-3xl hover:text-warm-accent transition-colors underline underline-offset-8 decoration-warm-ink/10"
+                  className="font-sans text-2xl font-semibold tracking-wide text-warm-ink hover:text-warm-accent transition-colors underline underline-offset-8 decoration-warm-ink/20 self-start"
                 >
                   +44 7882 746212
                 </a>
@@ -521,7 +413,7 @@ export default function App() {
                   href="https://www.instagram.com/xiyato22"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="serif text-2xl hover:text-warm-accent transition-colors text-warm-ink/70"
+                  className="font-sans text-xl text-warm-ink/70 hover:text-warm-accent transition-colors self-start"
                 >
                   @xiyato22
                 </a>
@@ -529,7 +421,7 @@ export default function App() {
             </div>
             
             <div className="flex flex-col items-start md:items-end space-y-12">
-              <div className="flex space-x-12">
+              <div className="flex space-x-10">
                 {SOCIAL_LINKS.map((link) => (
                   <a 
                     key={link.label} 
@@ -537,20 +429,20 @@ export default function App() {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={link.ariaLabel}
-                    className="text-warm-ink/30 hover:text-warm-accent transition-all group flex flex-col items-center gap-2"
+                    className="text-warm-ink/50 hover:text-warm-accent transition-all group flex flex-col items-center gap-2"
                   >
-                    <div className="w-7 h-7">
-                      <link.icon className="w-full h-full" strokeWidth={1} />
+                    <div className="w-6 h-6">
+                      <link.icon className="w-full h-full" strokeWidth={1.5} />
                     </div>
-                    <span className="text-[9px] uppercase tracking-widest font-bold opacity-0 group-hover:opacity-100 transition-opacity">{link.label}</span>
+                    <span className="text-[9px] uppercase tracking-widest font-semibold opacity-0 group-hover:opacity-100 transition-opacity">{link.label}</span>
                   </a>
                 ))}
               </div>
               <div className="text-left md:text-right">
-                <p className="text-[10px] uppercase tracking-[0.2em] text-warm-ink/20 font-bold mb-2">
-                  Portfolio 2026 • Xiyàto Sāanvī │ Chaitanya Gaikwad
+                <p className="text-[10px] uppercase tracking-[0.2em] text-warm-ink/50 font-bold mb-2">
+                  Portfolio 2026 • Chaitanya Gaikwad
                 </p>
-                <p className="text-[10px] uppercase tracking-[0.2em] text-warm-ink/20 font-bold">
+                <p className="text-[10px] uppercase tracking-[0.2em] text-warm-ink/40 font-bold">
                   Creative & B2B Strategy
                 </p>
               </div>
