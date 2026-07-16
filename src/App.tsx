@@ -83,8 +83,8 @@ const SERVICES = [
   },
   {
     icon: Globe,
-    title: "Website Content & Support",
-    desc: "Website visuals, written content, landing-page presentation, content improvements, portfolio pages, and digital experience support."
+    title: "Website Creation & Development",
+    desc: "Complete responsive websites for portfolios, brands, and businesses—from page structure, visual direction, and content placement to front-end development, mobile optimisation, integrations, and deployment."
   },
   {
     icon: Cpu,
@@ -107,6 +107,54 @@ const PROJECTS = [
     desc: "End-to-end automated pipeline identifying high-value decision-makers, validating B2B contact lists, and automating personalized outreach sequences with integrated CRM status tracking.",
     status: "Completed",
     icon: Cpu
+  }
+];
+
+const EXPERIENCE = [
+  {
+    company: "Sultanah & Co. Interiors",
+    period: "Mar 2025 – Present",
+    role: "Freelance Cinematic Content Creator",
+    desc: "Directed the “Moon Chair” cinematic campaign and created premium factory-to-showroom reel concepts, visual sequences, transitions, and social content designed to strengthen luxury product storytelling.",
+    instagram: "@sultanahco",
+    instagramUrl: "https://www.instagram.com/sultanahco/",
+    ariaLabel: "View Sultanah & Co. Interiors on Instagram"
+  },
+  {
+    company: "Red Chandelier Studio",
+    period: "Mar 2026 – Present",
+    role: "Creative Visual Strategist & AI Content Producer",
+    desc: "Created luxury interior visuals, cinematic reels, showroom walkthroughs, campaign assets, advanced architectural prompts, and presentation content for residential, hospitality, and commercial projects.",
+    instagram: "@redchandelier.studio",
+    instagramUrl: "https://www.instagram.com/redchandelier.studio/",
+    ariaLabel: "View Red Chandelier Studio on Instagram"
+  },
+  {
+    company: "Chinese Company",
+    descriptor: "Hotel Linen & Premium Bedding Export Client",
+    period: "Mar 2025 – Present",
+    role: "Marketing, Lead Generation & Website Specialist",
+    desc: "Built structured buyer databases, cross-border outreach workflows, buyer qualification systems, and sample-evaluation tracking while supporting export communication and a complete brand website project valued at approximately $3,000.",
+    private: true,
+    privateText: "Instagram account not publicly available"
+  },
+  {
+    company: "Ereno Design Studio",
+    period: "Mar 2026 – Jun 2026",
+    role: "Freelance AI Visual Designer",
+    desc: "Produced high-end interior concept visuals, showroom-style mockups, realistic short-form video concepts, and structured vendor and material research for design proposals and client presentations."
+  },
+  {
+    company: "Fitout 360 Interiors",
+    period: "Apr 2026 – May 2026",
+    role: "Freelance AI Visualizer & Video Creator",
+    desc: "Delivered more than nine high-fidelity commercial office renders and developed ultra-realistic AI video concepts, transforming raw layout references into polished visual options for client presentations."
+  },
+  {
+    company: "Jovial Decor",
+    period: "Feb 2026 – May 2026",
+    role: "AI Design Specialist",
+    desc: "Created interior visuals, product mockups, curtain catalogue layouts, point-of-sale signage, invitation concepts, and social media assets for a home décor showroom covering approximately 10,000 square feet."
   }
 ];
 
@@ -188,7 +236,7 @@ export default function App() {
               {/* Professional Introduction */}
               <div className="space-y-4 max-w-[480px] mb-8">
                 <p className="text-lg font-semibold text-warm-ink leading-snug">
-                  AI Tools Expert, Visual Content Creator, and Marketing & B2B Specialist.
+                  AI Visual Designer, Front-End Website Developer, Visual Content Producer, and Marketing & B2B Specialist.
                 </p>
                 <p className="text-sm text-warm-ink/70 leading-relaxed">
                   I help brands and businesses improve how they present themselves, market their services, connect with potential clients, and grow through modern digital systems. My work includes AI-powered visuals, short-form videos, website content and support, creative direction, B2B lead generation, business research, outreach campaigns, CRM-style tracking, automation, and digital marketing execution. I combine visual storytelling, emerging AI tools, marketing strategy, and practical business support to turn ideas into professional content and measurable growth opportunities.
@@ -246,12 +294,89 @@ export default function App() {
 
         {/* About Section */}
         <section id="about" className="mb-24 scroll-mt-20">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
-            <div className="md:col-span-1">
-              <h2 className="serif text-4xl mb-4">About Me</h2>
-              <div className="h-px w-20 bg-warm-accent" />
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-10">
+            <div className="md:col-span-5 space-y-8">
+              <div>
+                <h2 className="serif text-4xl mb-4">About Me</h2>
+                <div className="h-px w-20 bg-warm-accent mb-8" />
+              </div>
+
+              {/* Experience Panel */}
+              <div className="space-y-6">
+                <div className="space-y-2">
+                  <span className="text-[10px] uppercase tracking-widest font-bold text-warm-accent">
+                    SELECTED EXPERIENCE
+                  </span>
+                  <h3 className="serif text-2xl font-semibold text-warm-ink">
+                    Studios & Brands I’ve Worked With
+                  </h3>
+                  <p className="text-xs text-warm-ink/60 leading-relaxed max-w-sm">
+                    A selection of interior studios, retail brands, and international businesses I have supported through visual content, marketing, research, outreach, and website development.
+                  </p>
+                </div>
+
+                <div className="space-y-4">
+                  {EXPERIENCE.map((exp, i) => (
+                    <motion.div 
+                      key={exp.company}
+                      initial={{ opacity: 0, y: 10 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: i * 0.05 }}
+                      className="p-5 rounded-2xl bg-white/20 border border-warm-ink/5 hover:border-warm-ink/20 hover:bg-white/50 transition-all duration-200 shadow-sm hover:-translate-y-0.5 space-y-3"
+                    >
+                      <div className="flex justify-between items-start gap-2">
+                        <div>
+                          <h4 className="font-semibold text-sm text-warm-ink leading-tight">{exp.company}</h4>
+                          {exp.descriptor && (
+                            <p className="text-[10px] text-warm-ink/60 mt-0.5 leading-snug">{exp.descriptor}</p>
+                          )}
+                        </div>
+                        <span className="text-[9px] uppercase tracking-wider font-bold text-warm-ink/40 whitespace-nowrap self-start">
+                          {exp.period}
+                        </span>
+                      </div>
+
+                      <div className="space-y-2">
+                        <p className="text-[10px] font-semibold text-warm-accent uppercase tracking-wider leading-none">
+                          {exp.role}
+                        </p>
+                        <p className="text-xs text-warm-ink/70 leading-relaxed">
+                          {exp.desc}
+                        </p>
+                      </div>
+
+                      {/* Instagram Link or Private Indicator */}
+                      {exp.instagramUrl ? (
+                        <a
+                          href={exp.instagramUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          aria-label={exp.ariaLabel}
+                          className="inline-flex items-center gap-2 text-xs font-semibold text-warm-ink/80 hover:text-warm-accent transition-colors group/link mt-1"
+                        >
+                          <span 
+                            className="w-5 h-5 rounded-full flex items-center justify-center text-white"
+                            style={{
+                              background: "linear-gradient(135deg, #F9CE34 0%, #EE2A7B 45%, #D62976 65%, #962FBF 82%, #4F5BD5 100%)"
+                            }}
+                          >
+                            <Instagram size={11} strokeWidth={2.5} />
+                          </span>
+                          <span className="group-hover/link:underline">{exp.instagram}</span>
+                        </a>
+                      ) : exp.private ? (
+                        <div className="flex items-center gap-2 text-[10px] text-warm-ink/50 mt-1">
+                          <Globe size={12} className="flex-shrink-0" />
+                          <span className="italic">{exp.privateText}</span>
+                        </div>
+                      ) : null}
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
             </div>
-            <div className="md:col-span-2 space-y-8">
+            <div className="md:col-span-7 space-y-8">
               <div className="bg-white/50 p-8 rounded-3xl border border-warm-ink/5 shadow-sm space-y-6">
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                   <div className="flex items-center gap-4">
@@ -273,7 +398,7 @@ export default function App() {
                     "Bridging the gap between cutting-edge AI capability and practical business growth."
                   </p>
                   <p className="text-sm leading-relaxed text-warm-ink/70">
-                    I work closely with brands, companies, startups, manufacturers, and growing businesses to elevate their digital presence. By leveraging advanced AI visual tools, short-form video creation, and targeted B2B outreach strategies, I help companies modernise how they connect with clients, showcase products, and automate growth pipelines.
+                    I work closely with brands, companies, startups, manufacturers, and growing businesses to elevate their digital presence. By leveraging advanced AI visual tools, short-form video creation, and targeted B2B outreach strategies, I help companies modernise how they connect with clients, showcase products, and automate growth pipelines. I also create complete responsive websites for portfolios, brands, and businesses, covering structure, visual direction, front-end implementation, contact integrations, mobile optimisation, and deployment.
                   </p>
                 </div>
               </div>
