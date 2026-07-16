@@ -964,9 +964,11 @@ export default function App() {
               <h1 className="serif text-5xl lg:text-7xl leading-none">
                 Chaitanya Gaikwad
               </h1>
-              <p className="text-[10px] uppercase tracking-[0.3em] font-bold text-warm-accent">
-                AI Tools Expert • Visual Content Creator • Marketing & B2B Specialist
-              </p>
+              <div className="flex flex-col gap-1.5 text-[10px] uppercase tracking-[0.3em] font-bold text-warm-accent">
+                <span>AI Tools Expert</span>
+                <span>Marketing & B2B Specialist</span>
+                <span>Visual Content Creator</span>
+              </div>
               
               <div className="space-y-4 text-warm-ink/75 leading-relaxed">
                 <p className="text-lg font-semibold text-warm-ink leading-snug">
@@ -977,33 +979,35 @@ export default function App() {
                 </p>
               </div>
               
-              <div className="space-y-4 pt-4">
-                <div className="flex flex-wrap gap-4">
-                  <a 
-                    href="#projects" 
-                    className="bg-warm-accent text-white px-6 py-3 rounded-full text-xs uppercase tracking-wider font-semibold hover:bg-warm-accent/90 transition-colors"
-                  >
-                    View Portfolio
-                  </a>
-                  <a 
-                    href="#contact" 
-                    className="border border-warm-ink/20 text-warm-ink px-6 py-3 rounded-full text-xs uppercase tracking-wider font-semibold hover:bg-warm-ink/5 transition-colors"
-                  >
-                    Let's Connect
-                  </a>
-                </div>
-                <div className="pt-2">
-                  <a 
-                    href="https://wa.me/447882746212"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2.5 bg-[#25D366]/10 text-green-800 border border-[#25D366]/20 px-6 py-3 rounded-full text-xs font-semibold hover:bg-[#25D366]/15 transition-all shadow-sm group/wa"
-                  >
-                    <span className="w-5 h-5 rounded-full bg-[#25D366] text-white flex items-center justify-center shadow-sm group-hover/wa:scale-105 transition-transform duration-300">
-                      <WhatsAppIcon className="w-3 h-3" />
-                    </span>
-                    <span className="font-mono tracking-wide underline underline-offset-4 decoration-green-800/20 group-hover/wa:decoration-green-800">+44 7882 746212</span>
-                  </a>
+              <div className="pt-4 flex flex-col items-center md:items-start">
+                <div className="flex flex-col items-center gap-3">
+                  <div className="flex flex-wrap gap-4 justify-center">
+                    <a 
+                      href="#projects" 
+                      className="bg-warm-accent text-white px-6 py-3 rounded-full text-xs uppercase tracking-wider font-semibold hover:bg-warm-accent/90 transition-colors"
+                    >
+                      View Portfolio
+                    </a>
+                    <a 
+                      href="#contact" 
+                      className="border border-warm-ink/20 text-warm-ink px-6 py-3 rounded-full text-xs uppercase tracking-wider font-semibold hover:bg-warm-ink/5 transition-colors"
+                    >
+                      Let's Connect
+                    </a>
+                  </div>
+                  <div className="pt-2">
+                    <a 
+                      href="https://wa.me/447882746212"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2.5 bg-[#25D366]/10 text-green-800 border border-[#25D366]/20 px-6 py-3 rounded-full text-xs font-semibold hover:bg-[#25D366]/15 transition-all shadow-sm group/wa"
+                    >
+                      <span className="w-5 h-5 rounded-full bg-[#25D366] text-white flex items-center justify-center shadow-sm group-hover/wa:scale-105 transition-transform duration-300">
+                        <WhatsAppIcon className="w-3 h-3" />
+                      </span>
+                      <span className="font-mono tracking-wide underline underline-offset-4 decoration-green-800/20 group-hover/wa:decoration-green-800">+44 7882 746212</span>
+                    </a>
+                  </div>
                 </div>
               </div>
             </motion.div>
