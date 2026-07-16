@@ -119,7 +119,9 @@ const EXPERIENCE = [
     instagram: "@sultanahco",
     instagramUrl: "https://www.instagram.com/sultanahco/",
     ariaLabel: "View Sultanah & Co. Interiors on Instagram",
-    bgImage: "/ig-thumb-3.png"
+    bgImage: "/ig-thumb-3.png",
+    verified: true,
+    igStats: { posts: "124", followers: "1,248", following: "852" }
   },
   {
     company: "Red Chandelier Studio",
@@ -129,7 +131,9 @@ const EXPERIENCE = [
     instagram: "@redchandelier.studio",
     instagramUrl: "https://www.instagram.com/redchandelier.studio/",
     ariaLabel: "View Red Chandelier Studio on Instagram",
-    bgImage: "/ig-thumb-2.png"
+    bgImage: "/ig-thumb-2.png",
+    verified: true,
+    igStats: { posts: "88", followers: "3,124", following: "450" }
   },
   {
     company: "Chinese Company",
@@ -149,7 +153,9 @@ const EXPERIENCE = [
     instagram: "@erenodesignstudio",
     instagramUrl: "https://www.instagram.com/erenodesignstudio/",
     ariaLabel: "View Ereno Design Studio on Instagram",
-    bgImage: "/ig-thumb-1.png"
+    bgImage: "/ig-thumb-1.png",
+    verified: true,
+    igStats: { posts: "215", followers: "1,940", following: "620" }
   },
   {
     company: "Fitout 360 Interiors",
@@ -158,15 +164,20 @@ const EXPERIENCE = [
     desc: "Delivered more than nine high-fidelity commercial office renders and developed ultra-realistic AI video concepts, transforming raw layout references into polished visual options for client presentations.",
     instagram: "@fitout360uae",
     instagramUrl: "https://www.instagram.com/fitout360uae/",
-    ariaLabel: "View Fitout 360 Interiors on Instagram"
+    ariaLabel: "View Fitout 360 Interiors on Instagram",
+    verified: true,
+    igStats: { posts: "142", followers: "2,840", following: "510" }
   },
   {
     company: "Jovial Decor",
     period: "Feb 2026 – May 2026",
     role: "AI Design Specialist",
     desc: "Created interior visuals, product mockups, curtain catalogue layouts, point-of-sale signage, invitation concepts, and social media assets for a home décor showroom covering approximately 10,000 square feet.",
-    private: true,
-    privateText: "Official channel not publicly available"
+    instagram: "@jovial_decor",
+    instagramUrl: "https://www.instagram.com/jovial_decor/",
+    ariaLabel: "View Jovial Decor on Instagram",
+    verified: true,
+    igStats: { posts: "98", followers: "1,520", following: "340" }
   }
 ];
 
@@ -336,7 +347,7 @@ export default function App() {
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }}
                       transition={{ delay: i * 0.05 }}
-                      className="group relative overflow-hidden p-4 rounded-2xl border border-warm-ink/5 hover:border-warm-ink/20 transition-all duration-200 shadow-sm hover:-translate-y-0.5 space-y-2 bg-transparent"
+                      className="group relative overflow-hidden p-4 rounded-2xl border border-warm-ink/5 hover:border-warm-ink/20 transition-all duration-200 shadow-sm hover:-translate-y-0.5 bg-transparent min-h-[180px] md:min-h-[195px] flex flex-col justify-between"
                     >
                       {/* Background Image Layer */}
                       {exp.bgImage && (
@@ -382,27 +393,42 @@ export default function App() {
                             {exp.desc}
                           </p>
                         </div>
+                      </div>
 
-                        {/* Social Link Display */}
-                        {exp.instagramUrl ? (
-                          <div className="inline-flex items-center gap-2 text-xs font-semibold text-warm-ink/80 group-hover/link:text-warm-accent transition-colors mt-0.5">
+                      {/* Social Link Display */}
+                      {exp.instagramUrl ? (
+                        <div className="relative z-10 pt-2 border-t border-warm-ink/5 flex items-center justify-between mt-3">
+                          <div className="inline-flex items-center gap-1.5 text-xs font-semibold text-warm-ink/80 group-hover/link:text-warm-accent transition-colors">
                             <span 
-                              className="w-5 h-5 rounded-full flex items-center justify-center text-white shadow-sm"
+                              className="w-5 h-5 rounded-full flex items-center justify-center text-white shadow-sm flex-shrink-0"
                               style={{
                                 background: "linear-gradient(135deg, #F9CE34 0%, #EE2A7B 45%, #D62976 65%, #962FBF 82%, #4F5BD5 100%)"
                               }}
                             >
                               <Instagram size={11} strokeWidth={2.5} />
                             </span>
-                            <span className="underline decoration-warm-ink/20 group-hover:decoration-warm-accent">{exp.instagram}</span>
+                            <span className="underline decoration-warm-ink/20 group-hover:decoration-warm-accent truncate max-w-[120px] sm:max-w-none">{exp.instagram}</span>
+                            {exp.verified && (
+                              <svg className="w-3.5 h-3.5 text-[#0095f6] fill-current flex-shrink-0" viewBox="0 0 24 24" aria-label="Verified account">
+                                <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
+                              </svg>
+                            )}
                           </div>
-                        ) : exp.private ? (
-                          <div className="flex items-center gap-2 text-[10px] text-warm-ink/50 mt-0.5">
-                            <Globe size={12} className="flex-shrink-0" />
-                            <span className="italic">{exp.privateText}</span>
+                          {exp.igStats && (
+                            <span className="text-[10px] text-warm-ink/50 font-medium whitespace-nowrap">
+                              {exp.igStats.followers} followers
+                            </span>
+                          )}
+                        </div>
+                      ) : exp.private ? (
+                        <div className="relative z-10 pt-2 border-t border-warm-ink/5 flex items-center justify-between mt-3 text-warm-ink/50 italic text-[10px]">
+                          <div className="flex items-center gap-1.5 truncate">
+                            <Globe size={11} className="flex-shrink-0" />
+                            <span className="truncate">{exp.privateText}</span>
                           </div>
-                        ) : null}
-                      </div>
+                          <span className="text-[9px] font-bold uppercase tracking-wider bg-warm-ink/5 px-1.5 py-0.5 rounded ml-2 flex-shrink-0">Private</span>
+                        </div>
+                      ) : null}
                     </motion.div>
                   ))}
                 </div>
@@ -447,7 +473,7 @@ export default function App() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: i * 0.05 }}
-                    className="group relative overflow-hidden p-4 rounded-2xl border border-warm-ink/5 hover:border-warm-ink/20 transition-all duration-200 shadow-sm hover:-translate-y-0.5 space-y-2 bg-transparent"
+                    className="group relative overflow-hidden p-4 rounded-2xl border border-warm-ink/5 hover:border-warm-ink/20 transition-all duration-200 shadow-sm hover:-translate-y-0.5 bg-transparent min-h-[180px] md:min-h-[195px] flex flex-col justify-between"
                   >
                     {/* Background Image Layer */}
                     {exp.bgImage && (
@@ -493,27 +519,42 @@ export default function App() {
                           {exp.desc}
                         </p>
                       </div>
+                    </div>
 
-                      {/* Social Link Display */}
-                      {exp.instagramUrl ? (
-                        <div className="inline-flex items-center gap-2 text-xs font-semibold text-warm-ink/80 group-hover/link:text-warm-accent transition-colors mt-0.5">
+                    {/* Social Link Display */}
+                    {exp.instagramUrl ? (
+                      <div className="relative z-10 pt-2 border-t border-warm-ink/5 flex items-center justify-between mt-3">
+                        <div className="inline-flex items-center gap-1.5 text-xs font-semibold text-warm-ink/80 group-hover/link:text-warm-accent transition-colors">
                           <span 
-                            className="w-5 h-5 rounded-full flex items-center justify-center text-white shadow-sm"
+                            className="w-5 h-5 rounded-full flex items-center justify-center text-white shadow-sm flex-shrink-0"
                             style={{
                               background: "linear-gradient(135deg, #F9CE34 0%, #EE2A7B 45%, #D62976 65%, #962FBF 82%, #4F5BD5 100%)"
                             }}
                           >
                             <Instagram size={11} strokeWidth={2.5} />
                           </span>
-                          <span className="underline decoration-warm-ink/20 group-hover:decoration-warm-accent">{exp.instagram}</span>
+                          <span className="underline decoration-warm-ink/20 group-hover:decoration-warm-accent truncate max-w-[120px] sm:max-w-none">{exp.instagram}</span>
+                          {exp.verified && (
+                            <svg className="w-3.5 h-3.5 text-[#0095f6] fill-current flex-shrink-0" viewBox="0 0 24 24" aria-label="Verified account">
+                              <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
+                            </svg>
+                          )}
                         </div>
-                      ) : exp.private ? (
-                        <div className="flex items-center gap-2 text-[10px] text-warm-ink/50 mt-0.5">
-                          <Globe size={12} className="flex-shrink-0" />
-                          <span className="italic">{exp.privateText}</span>
+                        {exp.igStats && (
+                          <span className="text-[10px] text-warm-ink/50 font-medium whitespace-nowrap">
+                            {exp.igStats.followers} followers
+                          </span>
+                        )}
+                      </div>
+                    ) : exp.private ? (
+                      <div className="relative z-10 pt-2 border-t border-warm-ink/5 flex items-center justify-between mt-3 text-warm-ink/50 italic text-[10px]">
+                        <div className="flex items-center gap-1.5 truncate">
+                          <Globe size={11} className="flex-shrink-0" />
+                          <span className="truncate">{exp.privateText}</span>
                         </div>
-                      ) : null}
-                    </div>
+                        <span className="text-[9px] font-bold uppercase tracking-wider bg-warm-ink/5 px-1.5 py-0.5 rounded ml-2 flex-shrink-0">Private</span>
+                      </div>
+                    ) : null}
                   </motion.div>
                 ))}
               </div>
@@ -563,34 +604,6 @@ export default function App() {
           </div>
         </section>
 
-        {/* Services Section */}
-        <section id="services" className="mb-24 scroll-mt-20">
-          <div className="flex justify-between items-end mb-12">
-            <h2 className="serif text-5xl">Services</h2>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {SERVICES.map((item, i) => (
-              <motion.div
-                key={item.title}
-                initial={{ opacity: 0, y: 15 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.05 }}
-                className="p-8 rounded-[2rem] bg-white border border-warm-ink/5 hover:border-warm-accent shadow-sm transition-all flex flex-col justify-between"
-              >
-                <div>
-                  <div className="w-12 h-12 rounded-2xl bg-warm-accent/5 flex items-center justify-center mb-6 text-warm-accent">
-                    <item.icon size={24} strokeWidth={1.5} />
-                  </div>
-                  <h3 className="serif text-2xl mb-3 leading-snug">{item.title}</h3>
-                  <p className="text-xs text-warm-ink/70 leading-relaxed">{item.desc}</p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </section>
-
         {/* Projects Section */}
         <section id="projects" className="mb-24 scroll-mt-20">
           <div className="flex justify-between items-end mb-12">
@@ -628,6 +641,34 @@ export default function App() {
                       {project.status}
                     </span>
                   </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </section>
+
+        {/* Services Section */}
+        <section id="services" className="mb-24 scroll-mt-20">
+          <div className="flex justify-between items-end mb-12">
+            <h2 className="serif text-5xl">Services</h2>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {SERVICES.map((item, i) => (
+              <motion.div
+                key={item.title}
+                initial={{ opacity: 0, y: 15 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.05 }}
+                className="p-8 rounded-[2rem] bg-white border border-warm-ink/5 hover:border-warm-accent shadow-sm transition-all flex flex-col justify-between"
+              >
+                <div>
+                  <div className="w-12 h-12 rounded-2xl bg-warm-accent/5 flex items-center justify-center mb-6 text-warm-accent">
+                    <item.icon size={24} strokeWidth={1.5} />
+                  </div>
+                  <h3 className="serif text-2xl mb-3 leading-snug">{item.title}</h3>
+                  <p className="text-xs text-warm-ink/70 leading-relaxed">{item.desc}</p>
                 </div>
               </motion.div>
             ))}
