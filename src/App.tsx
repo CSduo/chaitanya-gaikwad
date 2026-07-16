@@ -95,11 +95,13 @@ const SERVICES = [
 
 const PROJECTS = [
   {
-    category: "AI Visuals · Creative Direction · Product Mockups",
-    title: "AI Visual Campaigns & Creatives",
-    desc: "High-fidelity, cinematic AI product visuals and marketing campaigns created using Midjourney and Stable Diffusion, providing custom visual solutions for premium brands.",
+    category: "AI Visuals · Cinematic Video · Creative Direction",
+    title: "AI Visual & Video Generation",
+    desc: "High-fidelity cinematic AI product videos, promotional reels, and brand campaigns created using advanced text-to-video models and image generators, providing custom visual narratives for premium brands.",
     status: "Ongoing",
-    icon: Image
+    icon: Video,
+    videoUrl: "", // Drop MP4 video path here (e.g. "/projects/campaign.mp4")
+    posterImage: "/ig-thumb-2.png" // Reuses our generated showroom visual as a premium video poster!
   },
   {
     category: "Lead Gen · CRM Automation · Cold Outreach",
@@ -173,9 +175,9 @@ const EXPERIENCE = [
     period: "Feb 2026 – May 2026",
     role: "AI Design Specialist",
     desc: "Created interior visuals, product mockups, curtain catalogue layouts, point-of-sale signage, invitation concepts, and social media assets for a home décor showroom covering approximately 10,000 square feet.",
-    instagram: "@jovial_decor",
-    instagramUrl: "https://www.instagram.com/jovial_decor/",
-    ariaLabel: "View Jovial Decor on Instagram",
+    instagram: "@jovialdecoure",
+    instagramUrl: "https://www.instagram.com/jovialdecoure/",
+    ariaLabel: "View Jovial Decoure on Instagram",
     verified: true,
     igStats: { posts: "98", followers: "1,520", following: "340" }
   }
@@ -620,10 +622,50 @@ export default function App() {
                 transition={{ delay: i * 0.1 }}
                 className="bg-white/40 p-2 rounded-[3rem] border border-warm-ink/5 group"
               >
-                <div className="aspect-[1.5/1] mb-6 rounded-[2.8rem] overflow-hidden bg-warm-ink/5 relative">
-                  <div className="absolute inset-0 flex items-center justify-center text-warm-ink/5">
-                    <project.icon size={100} strokeWidth={0.5} />
-                  </div>
+                <div className="aspect-[1.5/1] mb-6 rounded-[2.8rem] overflow-hidden bg-warm-ink/5 relative group/video">
+                  {project.videoUrl ? (
+                    <video 
+                      src={project.videoUrl}
+                      poster={project.posterImage}
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                      className="w-full h-full object-cover"
+                    />
+                  ) : project.posterImage ? (
+                    <div className="w-full h-full relative">
+                      <img 
+                        src={project.posterImage} 
+                        alt={project.title} 
+                        className="w-full h-full object-cover filter brightness-[0.8] transition-all duration-500 group-hover/video:scale-105" 
+                      />
+                      {/* Mock Video Player Overlay */}
+                      <div className="absolute inset-0 bg-black/20 flex items-center justify-center transition-colors duration-300 group-hover/video:bg-black/35">
+                        <div className="w-16 h-16 rounded-full bg-white/20 backdrop-blur-md border border-white/30 flex items-center justify-center text-white shadow-xl transform transition-all duration-300 group-hover/video:scale-110 group-hover/video:bg-white/30">
+                          {/* Play Icon */}
+                          <svg className="w-6 h-6 fill-current translate-x-0.5" viewBox="0 0 24 24">
+                            <path d="M8 5v14l11-7z" />
+                          </svg>
+                        </div>
+                      </div>
+                      
+                      {/* Video Controller Bar Mock */}
+                      <div className="absolute bottom-4 left-6 right-6 flex items-center gap-3 bg-black/40 backdrop-blur-sm px-4 py-2 rounded-full border border-white/10 opacity-0 transition-opacity duration-300 group-hover/video:opacity-100 select-none pointer-events-none">
+                        <svg className="w-3.5 h-3.5 text-white fill-current" viewBox="0 0 24 24">
+                          <path d="M8 5v14l11-7z" />
+                        </svg>
+                        <div className="flex-1 h-1 bg-white/30 rounded-full overflow-hidden">
+                          <div className="w-1/3 h-full bg-warm-accent rounded-full" />
+                        </div>
+                        <span className="text-[9px] text-white/80 font-sans font-medium">0:05 / 0:15</span>
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="absolute inset-0 flex items-center justify-center text-warm-ink/5">
+                      <project.icon size={100} strokeWidth={0.5} />
+                    </div>
+                  )}
                 </div>
                 <div className="px-8 pb-10">
                   <span className="text-[10px] uppercase tracking-widest font-bold text-warm-ink/40 mb-2 block">{project.category}</span>
