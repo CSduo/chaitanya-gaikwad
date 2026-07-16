@@ -237,7 +237,7 @@ export default function App() {
               <img 
                 src="/portrait.jpg" 
                 alt="Portrait of Chaitanya Gaikwad"
-                className="w-full h-full object-contain transition-all duration-700"
+                className="w-full h-full object-contain scale-[1.18] transition-all duration-700"
                 referrerPolicy="no-referrer"
               />
             </motion.div>
