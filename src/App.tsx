@@ -1082,6 +1082,51 @@ export default function App() {
           </div>
         </section>
 
+        {/* Startup Preview Section */}
+        <section id="startup-preview" className="py-24 border-b border-warm-ink/10 scroll-mt-20">
+          <div className="p-8 md:p-12 rounded-[3rem] bg-white border border-warm-ink/5 shadow-sm">
+            <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+              <div className="md:col-span-7 space-y-6">
+                <div className="flex items-center gap-4">
+                  <img 
+                    src="/projects/startup/logo.webp" 
+                    alt="Ciyato Logo" 
+                    className="w-14 h-14 rounded-[1.1rem] border border-warm-ink/10 shadow-sm"
+                  />
+                  <div>
+                    <span className="text-[10px] uppercase tracking-[0.2em] text-warm-accent font-bold block mb-0.5">My Startup</span>
+                    <span className="inline-block text-[8px] uppercase tracking-wider bg-amber-500/10 text-amber-800 font-bold px-2 py-0.5 rounded-full border border-amber-500/10">
+                      Currently in Development
+                    </span>
+                  </div>
+                </div>
+
+                <h2 className="serif text-4xl">Ciyato — Android Launcher & AI Organiser</h2>
+                <p className="text-sm text-warm-ink/70 leading-relaxed">
+                  Ciyato is an AI-powered Android launcher and phone organisation system designed to transform a cluttered device into a clean, searchable, intelligently organised digital space. It combines a home-screen replacement with an internal dashboard to manage apps, files, screenshots, and notes.
+                </p>
+
+                <div className="pt-2">
+                  <a 
+                    href="#/startup" 
+                    className="inline-flex items-center gap-2 bg-warm-accent text-white px-6 py-3 rounded-full text-xs uppercase tracking-wider font-semibold hover:bg-warm-accent/90 transition-colors shadow-sm"
+                  >
+                    Explore Ciyato Launcher <ChevronRight size={12} />
+                  </a>
+                </div>
+              </div>
+              
+              <div className="md:col-span-5 relative aspect-[4/5] rounded-[2rem] overflow-hidden bg-warm-bg border border-warm-ink/10 max-w-xs mx-auto md:ml-auto shadow-md">
+                <img 
+                  src="/projects/startup/hero.webp" 
+                  alt="Ciyato Android Launcher Interface Preview" 
+                  className="w-full h-full object-cover hover:scale-[1.02] transition-transform duration-700"
+                />
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* Services Section */}
         <section id="services" className="py-24 border-b border-warm-ink/10 scroll-mt-20">
           <div className="mb-12">
