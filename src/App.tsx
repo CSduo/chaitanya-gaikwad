@@ -1321,9 +1321,17 @@ export default function App() {
                   href="https://www.instagram.com/xiyato22"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="font-sans text-xl text-warm-ink/70 hover:text-warm-accent transition-colors self-start pl-11"
+                  className="inline-flex items-center gap-3 font-sans text-xl text-warm-ink/70 hover:text-warm-accent transition-colors self-start group/ig"
                 >
-                  @xiyato22
+                  <span 
+                    className="w-8 h-8 rounded-full text-white flex items-center justify-center shadow-md flex-shrink-0 group-hover/ig:scale-105 transition-transform duration-300"
+                    style={{ background: "linear-gradient(135deg, #F9CE34 0%, #EE2A7B 45%, #D62976 65%, #962FBF 82%, #4F5BD5 100%)" }}
+                  >
+                    <Instagram className="w-5 h-5" strokeWidth={2} />
+                  </span>
+                  <span className="underline underline-offset-8 decoration-warm-ink/20 group-hover/ig:decoration-warm-accent">
+                    @xiyato22
+                  </span>
                 </a>
               </div>
             </div>
