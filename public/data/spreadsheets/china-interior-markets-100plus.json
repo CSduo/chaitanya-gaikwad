@@ -1,0 +1,1344 @@
+{
+  "sheets": [
+    {
+      "name": "MASTER",
+      "data": [
+        [
+          "Tier",
+          "Market / Hub",
+          "City",
+          "Primary focus"
+        ],
+        [
+          "1",
+          "Aosheng Furniture City",
+          "Foshan (Lecong/Shunde), Guangdong",
+          "Furniture & interiors mall/center in Lecong ecosystem"
+        ],
+        [
+          "1",
+          "Dongheng Furniture Group",
+          "Foshan (Lecong/Shunde), Guangdong",
+          "Furniture & interiors mall/center in Lecong ecosystem"
+        ],
+        [
+          "1",
+          "Eastern Furniture City",
+          "Foshan (Lecong/Shunde), Guangdong",
+          "Furniture & interiors mall/center in Lecong ecosystem"
+        ],
+        [
+          "1",
+          "Empire International Furniture City / Shunde Empire Furniture Wholesale Center",
+          "Foshan (Lecong/Shunde), Guangdong",
+          "Furniture & interiors mall/center in Lecong ecosystem"
+        ],
+        [
+          "1",
+          "Foshan International Furniture Expo Center (Easyhome furniture market)",
+          "Foshan (Lecong/Shunde), Guangdong",
+          "Furniture & interiors mall/center in Lecong ecosystem"
+        ],
+        [
+          "1",
+          "Foshan International Furniture Expo Center (Lesso home furniture market)",
+          "Foshan (Lecong/Shunde), Guangdong",
+          "Furniture & interiors mall/center in Lecong ecosystem"
+        ],
+        [
+          "1",
+          "Jinming Furniture Mall",
+          "Foshan (Lecong/Shunde), Guangdong",
+          "Furniture & interiors mall/center in Lecong ecosystem"
+        ],
+        [
+          "1",
+          "Julong Furniture City",
+          "Foshan (Lecong/Shunde), Guangdong",
+          "Furniture & interiors mall/center in Lecong ecosystem"
+        ],
+        [
+          "1",
+          "Lecong Eastment International Furniture Center",
+          "Foshan (Lecong/Shunde), Guangdong",
+          "Furniture & interiors mall/center in Lecong ecosystem"
+        ],
+        [
+          "1",
+          "Lecong Furniture City / Lecong International Furnishing City",
+          "Foshan (Lecong/Shunde), Guangdong",
+          "Furniture & whole-home interiors mega hub"
+        ],
+        [
+          "1",
+          "Lecong International Exhibition Center (IFEC)",
+          "Foshan (Lecong/Shunde), Guangdong",
+          "Furniture & interiors mall/center in Lecong ecosystem"
+        ],
+        [
+          "1",
+          "Lecong Tuanyi International Office Furniture City",
+          "Foshan (Lecong/Shunde), Guangdong",
+          "Furniture & interiors mall/center in Lecong ecosystem"
+        ],
+        [
+          "1",
+          "Lok Sun East United Furniture Expo",
+          "Foshan (Lecong/Shunde), Guangdong",
+          "Furniture & interiors mall/center in Lecong ecosystem"
+        ],
+        [
+          "1",
+          "Longwei Furniture City",
+          "Foshan (Lecong/Shunde), Guangdong",
+          "Furniture & interiors mall/center in Lecong ecosystem"
+        ],
+        [
+          "1",
+          "Louvre Furniture Mall",
+          "Foshan (Lecong/Shunde), Guangdong",
+          "Furniture & interiors mall/center in Lecong ecosystem"
+        ],
+        [
+          "1",
+          "Nanfang Furniture City",
+          "Foshan (Lecong/Shunde), Guangdong",
+          "Furniture & interiors mall/center in Lecong ecosystem"
+        ],
+        [
+          "1",
+          "Nanhua Furniture Town",
+          "Foshan (Lecong/Shunde), Guangdong",
+          "Furniture & interiors mall/center in Lecong ecosystem"
+        ],
+        [
+          "1",
+          "Red Star Macalline Foshan Lecong Mall",
+          "Foshan (Lecong/Shunde), Guangdong",
+          "Furniture & interiors mall/center in Lecong ecosystem"
+        ],
+        [
+          "1",
+          "Sunlink Furniture City (South Section)",
+          "Foshan (Lecong/Shunde), Guangdong",
+          "Furniture & interiors mall/center in Lecong ecosystem"
+        ],
+        [
+          "1",
+          "Sunlink Furniture Market North Area / Sunlink Furniture City (North Section)",
+          "Foshan (Lecong/Shunde), Guangdong",
+          "Furniture & interiors mall/center in Lecong ecosystem"
+        ],
+        [
+          "1",
+          "Tuanyi International Furniture City",
+          "Foshan (Lecong/Shunde), Guangdong",
+          "Furniture & interiors mall/center in Lecong ecosystem"
+        ],
+        [
+          "1",
+          "Yuanbai Furniture Mall",
+          "Foshan (Lecong/Shunde), Guangdong",
+          "Furniture & interiors mall/center in Lecong ecosystem"
+        ],
+        [
+          "1",
+          "Zhongming Furniture City",
+          "Foshan (Lecong/Shunde), Guangdong",
+          "Furniture & interiors mall/center in Lecong ecosystem"
+        ],
+        [
+          "1",
+          "Zhuolong Furniture City",
+          "Foshan (Lecong/Shunde), Guangdong",
+          "Furniture & interiors mall/center in Lecong ecosystem"
+        ],
+        [
+          "1",
+          "CASA Ceramics and Sanitary Wares Mall",
+          "Foshan, Guangdong",
+          "Ceramics & sanitary ware"
+        ],
+        [
+          "1",
+          "Ceramics International Trading Center",
+          "Foshan, Guangdong",
+          "Ceramics trading & logistics"
+        ],
+        [
+          "1",
+          "China Ceramics Industrial Headquarters Base (CCIH)",
+          "Foshan, Guangdong",
+          "High-end ceramics & tiles"
+        ],
+        [
+          "1",
+          "China Ceramics Market",
+          "Foshan, Guangdong",
+          "Ceramic products & bathroom equipment"
+        ],
+        [
+          "1",
+          "Foshan International Ceramics Exhibition Center",
+          "Foshan, Guangdong",
+          "Ceramics exhibition/trade center"
+        ],
+        [
+          "1",
+          "Foshan International Plumbing and Sanitary Ware City",
+          "Foshan, Guangdong",
+          "Plumbing products & sanitary ware"
+        ],
+        [
+          "1",
+          "Huaxin Aluminum Market",
+          "Foshan, Guangdong",
+          "Aluminum doors/windows accessories"
+        ],
+        [
+          "1",
+          "Huayi Decoration Materials Market",
+          "Foshan, Guangdong",
+          "Decorative building materials (doors/windows/flooring/wallpaper/lighting/etc.)"
+        ],
+        [
+          "1",
+          "Meiju International",
+          "Foshan, Guangdong",
+          "Decor materials + sanitary + lighting + accessories"
+        ],
+        [
+          "1",
+          "Shiwan Property Ceramics Wholesale Market",
+          "Foshan, Guangdong",
+          "Ceramics wholesale"
+        ],
+        [
+          "1",
+          "Guangzhou Ouyada Home Furnishings Baiyun Mall",
+          "Guangzhou, Guangdong",
+          "Integrated home furnishing mall (tiles/flooring/doors/lighting/fabrics/furniture)"
+        ],
+        [
+          "1",
+          "China Dearshiqiao / Dieshiqiao International Home Textiles Market",
+          "Nantong (Haimen), Jiangsu",
+          "Home textiles mega market (bedding, curtains, home fabrics)"
+        ],
+        [
+          "1",
+          "China Plumbing Park",
+          "Quanzhou (Nan'an), Fujian",
+          "Plumbing valves & sanitary ware"
+        ],
+        [
+          "1",
+          "Minnan Building Material No. 1 Market (Shuitou / China Stone City)",
+          "Quanzhou (Nan'an/Shuitou), Fujian",
+          "Stone slabs/blocks/processing"
+        ],
+        [
+          "1",
+          "Evergrande Ceramic Building Materials Market",
+          "Shanghai",
+          "Ceramics & building materials (major Shanghai)"
+        ],
+        [
+          "1",
+          "Jiuxing Market",
+          "Shanghai",
+          "Building materials & home furnishing materials"
+        ],
+        [
+          "1",
+          "Beilian Market (China Textile City Curtain & Cloth Art Market)",
+          "Shaoxing (Keqiao), Zhejiang",
+          "Textiles & home fabrics (curtains/home textiles/industrial)"
+        ],
+        [
+          "1",
+          "China Textile City (Keqiao Textile Market cluster)",
+          "Shaoxing (Keqiao), Zhejiang",
+          "Textiles & home fabrics (curtains/home textiles/industrial)"
+        ],
+        [
+          "1",
+          "Dongsheng Road Market",
+          "Shaoxing (Keqiao), Zhejiang",
+          "Textiles & home fabrics (curtains/home textiles/industrial)"
+        ],
+        [
+          "1",
+          "Dongsheng Road Market – Zone A",
+          "Shaoxing (Keqiao), Zhejiang",
+          "Textiles & home fabrics (curtains/home textiles/industrial)"
+        ],
+        [
+          "1",
+          "Dongsheng Road Market – Zone B",
+          "Shaoxing (Keqiao), Zhejiang",
+          "Textiles & home fabrics (curtains/home textiles/industrial)"
+        ],
+        [
+          "1",
+          "Dongsheng Road Market – Zone C",
+          "Shaoxing (Keqiao), Zhejiang",
+          "Textiles & home fabrics (curtains/home textiles/industrial)"
+        ],
+        [
+          "1",
+          "East Market",
+          "Shaoxing (Keqiao), Zhejiang",
+          "Textiles & home fabrics (curtains/home textiles/industrial)"
+        ],
+        [
+          "1",
+          "Grey Fabric Market",
+          "Shaoxing (Keqiao), Zhejiang",
+          "Textiles & home fabrics (curtains/home textiles/industrial)"
+        ],
+        [
+          "1",
+          "JingGong Plaza",
+          "Shaoxing (Keqiao), Zhejiang",
+          "Textiles & home fabrics (curtains/home textiles/industrial)"
+        ],
+        [
+          "1",
+          "Jingpin Plaza",
+          "Shaoxing (Keqiao), Zhejiang",
+          "Textiles & home fabrics (curtains/home textiles/industrial)"
+        ],
+        [
+          "1",
+          "North Market",
+          "Shaoxing (Keqiao), Zhejiang",
+          "Textiles & home fabrics (curtains/home textiles/industrial)"
+        ],
+        [
+          "1",
+          "North Market Zone 6",
+          "Shaoxing (Keqiao), Zhejiang",
+          "Textiles & home fabrics (curtains/home textiles/industrial)"
+        ],
+        [
+          "1",
+          "North Market Zone 7",
+          "Shaoxing (Keqiao), Zhejiang",
+          "Textiles & home fabrics (curtains/home textiles/industrial)"
+        ],
+        [
+          "1",
+          "North Market Zones 1–5",
+          "Shaoxing (Keqiao), Zhejiang",
+          "Textiles & home fabrics (curtains/home textiles/industrial)"
+        ],
+        [
+          "1",
+          "Old Market (Dongsheng Road Market Zone D)",
+          "Shaoxing (Keqiao), Zhejiang",
+          "Textiles & home fabrics (curtains/home textiles/industrial)"
+        ],
+        [
+          "1",
+          "South Market",
+          "Shaoxing (Keqiao), Zhejiang",
+          "Textiles & home fabrics (curtains/home textiles/industrial)"
+        ],
+        [
+          "1",
+          "Tianhui Market",
+          "Shaoxing (Keqiao), Zhejiang",
+          "Textiles & home fabrics (curtains/home textiles/industrial)"
+        ],
+        [
+          "1",
+          "Union Market",
+          "Shaoxing (Keqiao), Zhejiang",
+          "Textiles & home fabrics (curtains/home textiles/industrial)"
+        ],
+        [
+          "1",
+          "West Market (China Textile City International Fabric Purchasing Center)",
+          "Shaoxing (Keqiao), Zhejiang",
+          "Textiles & home fabrics (curtains/home textiles/industrial)"
+        ],
+        [
+          "1",
+          "Futian Market (Yiwu) – District 1",
+          "Yiwu, Zhejiang",
+          "Home decor crafts, vases, frames, ornaments"
+        ],
+        [
+          "1",
+          "Futian Market (Yiwu) – District 2",
+          "Yiwu, Zhejiang",
+          "Lighting & lamps"
+        ],
+        [
+          "1",
+          "Futian Market (Yiwu) – District 3",
+          "Yiwu, Zhejiang",
+          "Pictures/frames; decor categories"
+        ],
+        [
+          "1",
+          "Futian Market (Yiwu) – District 4",
+          "Yiwu, Zhejiang",
+          "Hardware/DIY-related product mix (district-level)"
+        ],
+        [
+          "1",
+          "Futian Market (Yiwu) – District 5",
+          "Yiwu, Zhejiang",
+          "Import pavilion / mixed categories (district-level)"
+        ],
+        [
+          "1",
+          "Yiwu International Trade City (Yiwu Market / China Commodity City)",
+          "Yiwu, Zhejiang",
+          "Home decor, lighting, hardware, crafts (small commodities)"
+        ],
+        [
+          "1",
+          "Yunfu International Stones Town",
+          "Yunfu, Guangdong",
+          "Stone slabs & finished products"
+        ],
+        [
+          "1",
+          "Baisheng Lighting Plaza",
+          "Zhongshan (Guzhen), Guangdong",
+          "Lighting wholesale plaza"
+        ],
+        [
+          "1",
+          "Caosan International Lighting Parts City",
+          "Zhongshan (Guzhen), Guangdong",
+          "Lighting parts"
+        ],
+        [
+          "1",
+          "Guyi Qingfeng LED Lighting Trading City",
+          "Zhongshan (Guzhen), Guangdong",
+          "LED lighting trading"
+        ],
+        [
+          "1",
+          "Guyi Ruifeng International Lighting Fittings City",
+          "Zhongshan (Guzhen), Guangdong",
+          "Lighting fittings"
+        ],
+        [
+          "1",
+          "Guzhen Chang'an Lighting Parts & Electronic City",
+          "Zhongshan (Guzhen), Guangdong",
+          "Lighting parts & electronics"
+        ],
+        [
+          "1",
+          "Huayi International Lighting Plaza",
+          "Zhongshan (Guzhen), Guangdong",
+          "Decorative lighting brands"
+        ],
+        [
+          "1",
+          "Lighting Era Center",
+          "Zhongshan (Guzhen), Guangdong",
+          "Lighting center"
+        ],
+        [
+          "1",
+          "Lihe Lighting Expo Center",
+          "Zhongshan (Guzhen), Guangdong",
+          "Lighting expo center"
+        ],
+        [
+          "1",
+          "Star Alliance Global Brand Lighting Center",
+          "Zhongshan (Guzhen), Guangdong",
+          "High-end lighting brands"
+        ],
+        [
+          "2",
+          "Bayi Furniture Mall (八益家具城)",
+          "Chengdu, Sichuan",
+          "Furniture + decor materials + lighting"
+        ],
+        [
+          "2",
+          "Chengdu Wuhou District Furniture Mall cluster",
+          "Chengdu, Sichuan",
+          "Furniture wholesale cluster (West China)"
+        ],
+        [
+          "2",
+          "South China (International) Electro-opticalsource Lighting Market",
+          "Foshan (Nanhai), Guangdong",
+          "Lighting wholesale market"
+        ],
+        [
+          "2",
+          "Sunlink Lighting and Kitchen Cabinet City",
+          "Foshan, Guangdong",
+          "Lighting + kitchen cabinets market city"
+        ],
+        [
+          "2",
+          "Hangzhou Oriental Furniture Market",
+          "Hangzhou, Zhejiang",
+          "Furniture market"
+        ],
+        [
+          "2",
+          "Huadong Furniture Market (chain markets referenced)",
+          "Hangzhou, Zhejiang",
+          "Furniture market group (multiple chain markets)"
+        ],
+        [
+          "2",
+          "Anji Furniture Market",
+          "Huzhou (Anji), Zhejiang",
+          "Chairs & office seating"
+        ],
+        [
+          "2",
+          "Asian Kitchen & Bath Mall",
+          "Jiangmen (Heshan), Guangdong",
+          "Kitchen/bath hardware & sanitary"
+        ],
+        [
+          "2",
+          "Xianghe Furniture Exhibition Hall (香河家具展厅)",
+          "Langfang (Xianghe), Hebei",
+          "Furniture exhibition hall"
+        ],
+        [
+          "2",
+          "Xianghe Furniture Mall / Xianghe International Furniture City",
+          "Langfang (Xianghe), Hebei",
+          "Furniture wholesale hub (North China)"
+        ],
+        [
+          "2",
+          "Shanghai Gansu Road Lighting Market",
+          "Shanghai",
+          "Lighting market"
+        ],
+        [
+          "2",
+          "Shanghai Gansu Road Lighting Market",
+          "Shanghai",
+          "Lighting market (central Shanghai)"
+        ],
+        [
+          "2",
+          "Dongsheng Road Market Trading Area B",
+          "Shaoxing (Keqiao), Zhejiang",
+          "Textile trading area (Keqiao)"
+        ],
+        [
+          "2",
+          "8H Furniture Center (Likou)",
+          "Suzhou, Jiangsu",
+          "Furniture center (Likou)"
+        ],
+        [
+          "2",
+          "Likou Furniture Store – Civil Furniture Wholesale Market",
+          "Suzhou, Jiangsu",
+          "Furniture wholesale market (Likou)"
+        ],
+        [
+          "2",
+          "Likou International Furniture City (蠡口国际家具城)",
+          "Suzhou, Jiangsu",
+          "Furniture wholesale hub (East China)"
+        ],
+        [
+          "2",
+          "Suzhou Likou Furniture Wholesale Center Milan Gold Square",
+          "Suzhou, Jiangsu",
+          "Furniture wholesale center (Likou)"
+        ],
+        [
+          "2",
+          "Dongfang Lighting Great Market",
+          "Wenzhou, Zhejiang",
+          "Lighting market"
+        ],
+        [
+          "2",
+          "Yiwu Market – Big pictures/frames (District 3, 5F)",
+          "Yiwu, Zhejiang",
+          "Big pictures, paintings, frames"
+        ],
+        [
+          "2",
+          "Yiwu Market – Home Decor areas (District 1 floors 1/3/4)",
+          "Yiwu, Zhejiang",
+          "Home decor: vases, wall art, frames, ornaments"
+        ],
+        [
+          "2",
+          "Yiwu Market – Lighting area (District 2)",
+          "Yiwu, Zhejiang",
+          "Lights & lamps"
+        ],
+        [
+          "2",
+          "Huayi International Lighting Plaza",
+          "Zhongshan (Guzhen), Guangdong",
+          "Lighting brands plaza"
+        ],
+        [
+          "2",
+          "Huayi International Lighting Plaza (Huayi Plaza)",
+          "Zhongshan (Guzhen), Guangdong",
+          "Lighting plaza / sub-venue"
+        ],
+        [
+          "2",
+          "Star Alliance Global Brand Lighting Center",
+          "Zhongshan (Guzhen), Guangdong",
+          "Lighting brands center"
+        ],
+        [
+          "3",
+          "Shunde Longjiang Furniture Manufacturing Base (showrooms & materials parks)",
+          "Foshan (Longjiang/Shunde), Guangdong",
+          "Furniture production base + showrooms"
+        ],
+        [
+          "3",
+          "Guangzhou International Textile City",
+          "Guangzhou, Guangdong",
+          "Textile trading complex"
+        ],
+        [
+          "3",
+          "Guangzhou Zhongda Fabric Market (Zhongda Textile City)",
+          "Guangzhou, Guangdong",
+          "Fabrics incl. home textiles"
+        ],
+        [
+          "3",
+          "Easyhome (居然之家) (chain)",
+          "Multiple cities (China)",
+          "Home furnishing malls"
+        ],
+        [
+          "3",
+          "Ouyada (欧亚达) Home Furnishings Mall (chain)",
+          "Multiple cities (China)",
+          "Home furnishing malls"
+        ],
+        [
+          "3",
+          "Red Star Macalline (chain)",
+          "Multiple cities (China)",
+          "Home furnishing malls"
+        ],
+        [
+          "3",
+          "Shenzhen Hua Nan City Textile Market",
+          "Shenzhen, Guangdong",
+          "Textiles wholesale"
+        ],
+        [
+          "3",
+          "Suzhou China Oriental Silk Market",
+          "Suzhou, Jiangsu",
+          "Silk & textiles"
+        ],
+        [
+          "3",
+          "Yiwu Fabric Market",
+          "Yiwu, Zhejiang",
+          "Fabric wholesale"
+        ]
+      ]
+    },
+    {
+      "name": "Tier_1",
+      "data": [
+        [
+          "Tier",
+          "Market / Hub",
+          "City",
+          "Primary focus"
+        ],
+        [
+          "1",
+          "Aosheng Furniture City",
+          "Foshan (Lecong/Shunde), Guangdong",
+          "Furniture & interiors mall/center in Lecong ecosystem"
+        ],
+        [
+          "1",
+          "Dongheng Furniture Group",
+          "Foshan (Lecong/Shunde), Guangdong",
+          "Furniture & interiors mall/center in Lecong ecosystem"
+        ],
+        [
+          "1",
+          "Eastern Furniture City",
+          "Foshan (Lecong/Shunde), Guangdong",
+          "Furniture & interiors mall/center in Lecong ecosystem"
+        ],
+        [
+          "1",
+          "Empire International Furniture City / Shunde Empire Furniture Wholesale Center",
+          "Foshan (Lecong/Shunde), Guangdong",
+          "Furniture & interiors mall/center in Lecong ecosystem"
+        ],
+        [
+          "1",
+          "Foshan International Furniture Expo Center (Easyhome furniture market)",
+          "Foshan (Lecong/Shunde), Guangdong",
+          "Furniture & interiors mall/center in Lecong ecosystem"
+        ],
+        [
+          "1",
+          "Foshan International Furniture Expo Center (Lesso home furniture market)",
+          "Foshan (Lecong/Shunde), Guangdong",
+          "Furniture & interiors mall/center in Lecong ecosystem"
+        ],
+        [
+          "1",
+          "Jinming Furniture Mall",
+          "Foshan (Lecong/Shunde), Guangdong",
+          "Furniture & interiors mall/center in Lecong ecosystem"
+        ],
+        [
+          "1",
+          "Julong Furniture City",
+          "Foshan (Lecong/Shunde), Guangdong",
+          "Furniture & interiors mall/center in Lecong ecosystem"
+        ],
+        [
+          "1",
+          "Lecong Eastment International Furniture Center",
+          "Foshan (Lecong/Shunde), Guangdong",
+          "Furniture & interiors mall/center in Lecong ecosystem"
+        ],
+        [
+          "1",
+          "Lecong Furniture City / Lecong International Furnishing City",
+          "Foshan (Lecong/Shunde), Guangdong",
+          "Furniture & whole-home interiors mega hub"
+        ],
+        [
+          "1",
+          "Lecong International Exhibition Center (IFEC)",
+          "Foshan (Lecong/Shunde), Guangdong",
+          "Furniture & interiors mall/center in Lecong ecosystem"
+        ],
+        [
+          "1",
+          "Lecong Tuanyi International Office Furniture City",
+          "Foshan (Lecong/Shunde), Guangdong",
+          "Furniture & interiors mall/center in Lecong ecosystem"
+        ],
+        [
+          "1",
+          "Lok Sun East United Furniture Expo",
+          "Foshan (Lecong/Shunde), Guangdong",
+          "Furniture & interiors mall/center in Lecong ecosystem"
+        ],
+        [
+          "1",
+          "Longwei Furniture City",
+          "Foshan (Lecong/Shunde), Guangdong",
+          "Furniture & interiors mall/center in Lecong ecosystem"
+        ],
+        [
+          "1",
+          "Louvre Furniture Mall",
+          "Foshan (Lecong/Shunde), Guangdong",
+          "Furniture & interiors mall/center in Lecong ecosystem"
+        ],
+        [
+          "1",
+          "Nanfang Furniture City",
+          "Foshan (Lecong/Shunde), Guangdong",
+          "Furniture & interiors mall/center in Lecong ecosystem"
+        ],
+        [
+          "1",
+          "Nanhua Furniture Town",
+          "Foshan (Lecong/Shunde), Guangdong",
+          "Furniture & interiors mall/center in Lecong ecosystem"
+        ],
+        [
+          "1",
+          "Red Star Macalline Foshan Lecong Mall",
+          "Foshan (Lecong/Shunde), Guangdong",
+          "Furniture & interiors mall/center in Lecong ecosystem"
+        ],
+        [
+          "1",
+          "Sunlink Furniture City (South Section)",
+          "Foshan (Lecong/Shunde), Guangdong",
+          "Furniture & interiors mall/center in Lecong ecosystem"
+        ],
+        [
+          "1",
+          "Sunlink Furniture Market North Area / Sunlink Furniture City (North Section)",
+          "Foshan (Lecong/Shunde), Guangdong",
+          "Furniture & interiors mall/center in Lecong ecosystem"
+        ],
+        [
+          "1",
+          "Tuanyi International Furniture City",
+          "Foshan (Lecong/Shunde), Guangdong",
+          "Furniture & interiors mall/center in Lecong ecosystem"
+        ],
+        [
+          "1",
+          "Yuanbai Furniture Mall",
+          "Foshan (Lecong/Shunde), Guangdong",
+          "Furniture & interiors mall/center in Lecong ecosystem"
+        ],
+        [
+          "1",
+          "Zhongming Furniture City",
+          "Foshan (Lecong/Shunde), Guangdong",
+          "Furniture & interiors mall/center in Lecong ecosystem"
+        ],
+        [
+          "1",
+          "Zhuolong Furniture City",
+          "Foshan (Lecong/Shunde), Guangdong",
+          "Furniture & interiors mall/center in Lecong ecosystem"
+        ],
+        [
+          "1",
+          "CASA Ceramics and Sanitary Wares Mall",
+          "Foshan, Guangdong",
+          "Ceramics & sanitary ware"
+        ],
+        [
+          "1",
+          "Ceramics International Trading Center",
+          "Foshan, Guangdong",
+          "Ceramics trading & logistics"
+        ],
+        [
+          "1",
+          "China Ceramics Industrial Headquarters Base (CCIH)",
+          "Foshan, Guangdong",
+          "High-end ceramics & tiles"
+        ],
+        [
+          "1",
+          "China Ceramics Market",
+          "Foshan, Guangdong",
+          "Ceramic products & bathroom equipment"
+        ],
+        [
+          "1",
+          "Foshan International Ceramics Exhibition Center",
+          "Foshan, Guangdong",
+          "Ceramics exhibition/trade center"
+        ],
+        [
+          "1",
+          "Foshan International Plumbing and Sanitary Ware City",
+          "Foshan, Guangdong",
+          "Plumbing products & sanitary ware"
+        ],
+        [
+          "1",
+          "Huaxin Aluminum Market",
+          "Foshan, Guangdong",
+          "Aluminum doors/windows accessories"
+        ],
+        [
+          "1",
+          "Huayi Decoration Materials Market",
+          "Foshan, Guangdong",
+          "Decorative building materials (doors/windows/flooring/wallpaper/lighting/etc.)"
+        ],
+        [
+          "1",
+          "Meiju International",
+          "Foshan, Guangdong",
+          "Decor materials + sanitary + lighting + accessories"
+        ],
+        [
+          "1",
+          "Shiwan Property Ceramics Wholesale Market",
+          "Foshan, Guangdong",
+          "Ceramics wholesale"
+        ],
+        [
+          "1",
+          "Guangzhou Ouyada Home Furnishings Baiyun Mall",
+          "Guangzhou, Guangdong",
+          "Integrated home furnishing mall (tiles/flooring/doors/lighting/fabrics/furniture)"
+        ],
+        [
+          "1",
+          "China Dearshiqiao / Dieshiqiao International Home Textiles Market",
+          "Nantong (Haimen), Jiangsu",
+          "Home textiles mega market (bedding, curtains, home fabrics)"
+        ],
+        [
+          "1",
+          "China Plumbing Park",
+          "Quanzhou (Nan'an), Fujian",
+          "Plumbing valves & sanitary ware"
+        ],
+        [
+          "1",
+          "Minnan Building Material No. 1 Market (Shuitou / China Stone City)",
+          "Quanzhou (Nan'an/Shuitou), Fujian",
+          "Stone slabs/blocks/processing"
+        ],
+        [
+          "1",
+          "Evergrande Ceramic Building Materials Market",
+          "Shanghai",
+          "Ceramics & building materials (major Shanghai)"
+        ],
+        [
+          "1",
+          "Jiuxing Market",
+          "Shanghai",
+          "Building materials & home furnishing materials"
+        ],
+        [
+          "1",
+          "Beilian Market (China Textile City Curtain & Cloth Art Market)",
+          "Shaoxing (Keqiao), Zhejiang",
+          "Textiles & home fabrics (curtains/home textiles/industrial)"
+        ],
+        [
+          "1",
+          "China Textile City (Keqiao Textile Market cluster)",
+          "Shaoxing (Keqiao), Zhejiang",
+          "Textiles & home fabrics (curtains/home textiles/industrial)"
+        ],
+        [
+          "1",
+          "Dongsheng Road Market",
+          "Shaoxing (Keqiao), Zhejiang",
+          "Textiles & home fabrics (curtains/home textiles/industrial)"
+        ],
+        [
+          "1",
+          "Dongsheng Road Market – Zone A",
+          "Shaoxing (Keqiao), Zhejiang",
+          "Textiles & home fabrics (curtains/home textiles/industrial)"
+        ],
+        [
+          "1",
+          "Dongsheng Road Market – Zone B",
+          "Shaoxing (Keqiao), Zhejiang",
+          "Textiles & home fabrics (curtains/home textiles/industrial)"
+        ],
+        [
+          "1",
+          "Dongsheng Road Market – Zone C",
+          "Shaoxing (Keqiao), Zhejiang",
+          "Textiles & home fabrics (curtains/home textiles/industrial)"
+        ],
+        [
+          "1",
+          "East Market",
+          "Shaoxing (Keqiao), Zhejiang",
+          "Textiles & home fabrics (curtains/home textiles/industrial)"
+        ],
+        [
+          "1",
+          "Grey Fabric Market",
+          "Shaoxing (Keqiao), Zhejiang",
+          "Textiles & home fabrics (curtains/home textiles/industrial)"
+        ],
+        [
+          "1",
+          "JingGong Plaza",
+          "Shaoxing (Keqiao), Zhejiang",
+          "Textiles & home fabrics (curtains/home textiles/industrial)"
+        ],
+        [
+          "1",
+          "Jingpin Plaza",
+          "Shaoxing (Keqiao), Zhejiang",
+          "Textiles & home fabrics (curtains/home textiles/industrial)"
+        ],
+        [
+          "1",
+          "North Market",
+          "Shaoxing (Keqiao), Zhejiang",
+          "Textiles & home fabrics (curtains/home textiles/industrial)"
+        ],
+        [
+          "1",
+          "North Market Zone 6",
+          "Shaoxing (Keqiao), Zhejiang",
+          "Textiles & home fabrics (curtains/home textiles/industrial)"
+        ],
+        [
+          "1",
+          "North Market Zone 7",
+          "Shaoxing (Keqiao), Zhejiang",
+          "Textiles & home fabrics (curtains/home textiles/industrial)"
+        ],
+        [
+          "1",
+          "North Market Zones 1–5",
+          "Shaoxing (Keqiao), Zhejiang",
+          "Textiles & home fabrics (curtains/home textiles/industrial)"
+        ],
+        [
+          "1",
+          "Old Market (Dongsheng Road Market Zone D)",
+          "Shaoxing (Keqiao), Zhejiang",
+          "Textiles & home fabrics (curtains/home textiles/industrial)"
+        ],
+        [
+          "1",
+          "South Market",
+          "Shaoxing (Keqiao), Zhejiang",
+          "Textiles & home fabrics (curtains/home textiles/industrial)"
+        ],
+        [
+          "1",
+          "Tianhui Market",
+          "Shaoxing (Keqiao), Zhejiang",
+          "Textiles & home fabrics (curtains/home textiles/industrial)"
+        ],
+        [
+          "1",
+          "Union Market",
+          "Shaoxing (Keqiao), Zhejiang",
+          "Textiles & home fabrics (curtains/home textiles/industrial)"
+        ],
+        [
+          "1",
+          "West Market (China Textile City International Fabric Purchasing Center)",
+          "Shaoxing (Keqiao), Zhejiang",
+          "Textiles & home fabrics (curtains/home textiles/industrial)"
+        ],
+        [
+          "1",
+          "Futian Market (Yiwu) – District 1",
+          "Yiwu, Zhejiang",
+          "Home decor crafts, vases, frames, ornaments"
+        ],
+        [
+          "1",
+          "Futian Market (Yiwu) – District 2",
+          "Yiwu, Zhejiang",
+          "Lighting & lamps"
+        ],
+        [
+          "1",
+          "Futian Market (Yiwu) – District 3",
+          "Yiwu, Zhejiang",
+          "Pictures/frames; decor categories"
+        ],
+        [
+          "1",
+          "Futian Market (Yiwu) – District 4",
+          "Yiwu, Zhejiang",
+          "Hardware/DIY-related product mix (district-level)"
+        ],
+        [
+          "1",
+          "Futian Market (Yiwu) – District 5",
+          "Yiwu, Zhejiang",
+          "Import pavilion / mixed categories (district-level)"
+        ],
+        [
+          "1",
+          "Yiwu International Trade City (Yiwu Market / China Commodity City)",
+          "Yiwu, Zhejiang",
+          "Home decor, lighting, hardware, crafts (small commodities)"
+        ],
+        [
+          "1",
+          "Yunfu International Stones Town",
+          "Yunfu, Guangdong",
+          "Stone slabs & finished products"
+        ],
+        [
+          "1",
+          "Baisheng Lighting Plaza",
+          "Zhongshan (Guzhen), Guangdong",
+          "Lighting wholesale plaza"
+        ],
+        [
+          "1",
+          "Caosan International Lighting Parts City",
+          "Zhongshan (Guzhen), Guangdong",
+          "Lighting parts"
+        ],
+        [
+          "1",
+          "Guyi Qingfeng LED Lighting Trading City",
+          "Zhongshan (Guzhen), Guangdong",
+          "LED lighting trading"
+        ],
+        [
+          "1",
+          "Guyi Ruifeng International Lighting Fittings City",
+          "Zhongshan (Guzhen), Guangdong",
+          "Lighting fittings"
+        ],
+        [
+          "1",
+          "Guzhen Chang'an Lighting Parts & Electronic City",
+          "Zhongshan (Guzhen), Guangdong",
+          "Lighting parts & electronics"
+        ],
+        [
+          "1",
+          "Huayi International Lighting Plaza",
+          "Zhongshan (Guzhen), Guangdong",
+          "Decorative lighting brands"
+        ],
+        [
+          "1",
+          "Lighting Era Center",
+          "Zhongshan (Guzhen), Guangdong",
+          "Lighting center"
+        ],
+        [
+          "1",
+          "Lihe Lighting Expo Center",
+          "Zhongshan (Guzhen), Guangdong",
+          "Lighting expo center"
+        ],
+        [
+          "1",
+          "Star Alliance Global Brand Lighting Center",
+          "Zhongshan (Guzhen), Guangdong",
+          "High-end lighting brands"
+        ]
+      ]
+    },
+    {
+      "name": "Tier_2",
+      "data": [
+        [
+          "Tier",
+          "Market / Hub",
+          "City",
+          "Primary focus"
+        ],
+        [
+          "2",
+          "Bayi Furniture Mall (八益家具城)",
+          "Chengdu, Sichuan",
+          "Furniture + decor materials + lighting"
+        ],
+        [
+          "2",
+          "Chengdu Wuhou District Furniture Mall cluster",
+          "Chengdu, Sichuan",
+          "Furniture wholesale cluster (West China)"
+        ],
+        [
+          "2",
+          "South China (International) Electro-opticalsource Lighting Market",
+          "Foshan (Nanhai), Guangdong",
+          "Lighting wholesale market"
+        ],
+        [
+          "2",
+          "Sunlink Lighting and Kitchen Cabinet City",
+          "Foshan, Guangdong",
+          "Lighting + kitchen cabinets market city"
+        ],
+        [
+          "2",
+          "Hangzhou Oriental Furniture Market",
+          "Hangzhou, Zhejiang",
+          "Furniture market"
+        ],
+        [
+          "2",
+          "Huadong Furniture Market (chain markets referenced)",
+          "Hangzhou, Zhejiang",
+          "Furniture market group (multiple chain markets)"
+        ],
+        [
+          "2",
+          "Anji Furniture Market",
+          "Huzhou (Anji), Zhejiang",
+          "Chairs & office seating"
+        ],
+        [
+          "2",
+          "Asian Kitchen & Bath Mall",
+          "Jiangmen (Heshan), Guangdong",
+          "Kitchen/bath hardware & sanitary"
+        ],
+        [
+          "2",
+          "Xianghe Furniture Exhibition Hall (香河家具展厅)",
+          "Langfang (Xianghe), Hebei",
+          "Furniture exhibition hall"
+        ],
+        [
+          "2",
+          "Xianghe Furniture Mall / Xianghe International Furniture City",
+          "Langfang (Xianghe), Hebei",
+          "Furniture wholesale hub (North China)"
+        ],
+        [
+          "2",
+          "Shanghai Gansu Road Lighting Market",
+          "Shanghai",
+          "Lighting market"
+        ],
+        [
+          "2",
+          "Shanghai Gansu Road Lighting Market",
+          "Shanghai",
+          "Lighting market (central Shanghai)"
+        ],
+        [
+          "2",
+          "Dongsheng Road Market Trading Area B",
+          "Shaoxing (Keqiao), Zhejiang",
+          "Textile trading area (Keqiao)"
+        ],
+        [
+          "2",
+          "8H Furniture Center (Likou)",
+          "Suzhou, Jiangsu",
+          "Furniture center (Likou)"
+        ],
+        [
+          "2",
+          "Likou Furniture Store – Civil Furniture Wholesale Market",
+          "Suzhou, Jiangsu",
+          "Furniture wholesale market (Likou)"
+        ],
+        [
+          "2",
+          "Likou International Furniture City (蠡口国际家具城)",
+          "Suzhou, Jiangsu",
+          "Furniture wholesale hub (East China)"
+        ],
+        [
+          "2",
+          "Suzhou Likou Furniture Wholesale Center Milan Gold Square",
+          "Suzhou, Jiangsu",
+          "Furniture wholesale center (Likou)"
+        ],
+        [
+          "2",
+          "Dongfang Lighting Great Market",
+          "Wenzhou, Zhejiang",
+          "Lighting market"
+        ],
+        [
+          "2",
+          "Yiwu Market – Big pictures/frames (District 3, 5F)",
+          "Yiwu, Zhejiang",
+          "Big pictures, paintings, frames"
+        ],
+        [
+          "2",
+          "Yiwu Market – Home Decor areas (District 1 floors 1/3/4)",
+          "Yiwu, Zhejiang",
+          "Home decor: vases, wall art, frames, ornaments"
+        ],
+        [
+          "2",
+          "Yiwu Market – Lighting area (District 2)",
+          "Yiwu, Zhejiang",
+          "Lights & lamps"
+        ],
+        [
+          "2",
+          "Huayi International Lighting Plaza",
+          "Zhongshan (Guzhen), Guangdong",
+          "Lighting brands plaza"
+        ],
+        [
+          "2",
+          "Huayi International Lighting Plaza (Huayi Plaza)",
+          "Zhongshan (Guzhen), Guangdong",
+          "Lighting plaza / sub-venue"
+        ],
+        [
+          "2",
+          "Star Alliance Global Brand Lighting Center",
+          "Zhongshan (Guzhen), Guangdong",
+          "Lighting brands center"
+        ]
+      ]
+    },
+    {
+      "name": "Tier_3",
+      "data": [
+        [
+          "Tier",
+          "Market / Hub",
+          "City",
+          "Primary focus"
+        ],
+        [
+          "3",
+          "Shunde Longjiang Furniture Manufacturing Base (showrooms & materials parks)",
+          "Foshan (Longjiang/Shunde), Guangdong",
+          "Furniture production base + showrooms"
+        ],
+        [
+          "3",
+          "Guangzhou International Textile City",
+          "Guangzhou, Guangdong",
+          "Textile trading complex"
+        ],
+        [
+          "3",
+          "Guangzhou Zhongda Fabric Market (Zhongda Textile City)",
+          "Guangzhou, Guangdong",
+          "Fabrics incl. home textiles"
+        ],
+        [
+          "3",
+          "Easyhome (居然之家) (chain)",
+          "Multiple cities (China)",
+          "Home furnishing malls"
+        ],
+        [
+          "3",
+          "Ouyada (欧亚达) Home Furnishings Mall (chain)",
+          "Multiple cities (China)",
+          "Home furnishing malls"
+        ],
+        [
+          "3",
+          "Red Star Macalline (chain)",
+          "Multiple cities (China)",
+          "Home furnishing malls"
+        ],
+        [
+          "3",
+          "Shenzhen Hua Nan City Textile Market",
+          "Shenzhen, Guangdong",
+          "Textiles wholesale"
+        ],
+        [
+          "3",
+          "Suzhou China Oriental Silk Market",
+          "Suzhou, Jiangsu",
+          "Silk & textiles"
+        ],
+        [
+          "3",
+          "Yiwu Fabric Market",
+          "Yiwu, Zhejiang",
+          "Fabric wholesale"
+        ]
+      ]
+    }
+  ]
+}

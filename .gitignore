@@ -7,3 +7,5 @@ coverage/
 .env*
 !.env.example
 .vercel
+project-media-staging/
+test_out.txt
