@@ -172,3 +172,67 @@ export const getProjectsByCategory = (category: string) => {
   }
   return [];
 };
+
+export interface CiyatoScreenshot {
+  id: string;
+  src: string;
+  thumb: string;
+  title: string;
+}
+
+export const CIYATO_SCREENSHOTS: CiyatoScreenshot[] = [
+  {
+    id: "ciyato-screen-1",
+    src: "/projects/startup/screen-1.webp",
+    thumb: "/projects/startup/thumbs/screen-1-thumb.webp",
+    title: "Ciyato Home Experience"
+  },
+  {
+    id: "ciyato-screen-2",
+    src: "/projects/startup/screen-2.webp",
+    thumb: "/projects/startup/thumbs/screen-2-thumb.webp",
+    title: "Smart App Library"
+  },
+  {
+    id: "ciyato-screen-3",
+    src: "/projects/startup/screen-3.webp",
+    thumb: "/projects/startup/thumbs/screen-3-thumb.webp",
+    title: "Application Organisation"
+  },
+  {
+    id: "ciyato-screen-4",
+    src: "/projects/startup/screen-4.webp",
+    thumb: "/projects/startup/thumbs/screen-4-thumb.webp",
+    title: "Unified Search Panel"
+  },
+  {
+    id: "ciyato-screen-5",
+    src: "/projects/startup/screen-5.webp",
+    thumb: "/projects/startup/thumbs/screen-5-thumb.webp",
+    title: "Files and Storage"
+  },
+  {
+    id: "ciyato-screen-6",
+    src: "/projects/startup/screen-6.webp",
+    thumb: "/projects/startup/thumbs/screen-6-thumb.webp",
+    title: "Personalisation Controls"
+  },
+  {
+    id: "ciyato-screen-7",
+    src: "/projects/startup/screen-7.webp",
+    thumb: "/projects/startup/thumbs/screen-7-thumb.webp",
+    title: "Settings & Preferences"
+  },
+  {
+    id: "ciyato-screen-8",
+    src: "/projects/startup/screen-8.webp",
+    thumb: "/projects/startup/thumbs/screen-8-thumb.webp",
+    title: "Privacy & User Controls"
+  },
+  {
+    id: "ciyato-screen-9",
+    src: "/projects/startup/screen-9.webp",
+    thumb: "/projects/startup/thumbs/screen-9-thumb.webp",
+    title: "Product Development Preview"
+  }
+];

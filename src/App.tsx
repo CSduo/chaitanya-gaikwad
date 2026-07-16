@@ -29,9 +29,9 @@ import {
   ChevronLeft,
   ChevronRight
 } from "lucide-react";
-import { CATEGORIES, getProjectsByCategory, Project } from "./data/projects";
+import { CATEGORIES, getProjectsByCategory, Project, CIYATO_SCREENSHOTS } from "./data/projects";
 
-const NAV_ITEMS = ["Home", "Projects", "Services", "Experience", "Contact"];
+const NAV_ITEMS = ["Home", "About", "Services", "Projects", "Startup", "Contact"];
 
 const WhatsAppIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg
@@ -282,6 +282,7 @@ export default function App() {
   // Media Modals & Lightbox states
   const [activeVideoUrl, setActiveVideoUrl] = useState<string | null>(null);
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+  const [startupLightboxIndex, setStartupLightboxIndex] = useState<number | null>(null);
   
   // Spreadsheet Previewer states
   const [spreadsheetData, setSpreadsheetData] = useState<any>(null);
@@ -295,7 +296,7 @@ export default function App() {
       setCurrentHash(hash);
       
       // Auto scroll to top if accessing sub-routes
-      if (hash.startsWith("#/projects")) {
+      if (hash.startsWith("#/projects") || hash === "#/startup" || hash === "#startup") {
         window.scrollTo({ top: 0 });
       }
     };
@@ -344,8 +345,24 @@ export default function App() {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [lightboxIndex]);
 
-  // Check if we are on a project detail page or category page
-  const isSubRoute = currentHash.startsWith("#/projects/");
+  // Keyboard navigation for startup lightbox
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (startupLightboxIndex === null) return;
+      if (e.key === "ArrowRight") {
+        setStartupLightboxIndex((startupLightboxIndex + 1) % CIYATO_SCREENSHOTS.length);
+      } else if (e.key === "ArrowLeft") {
+        setStartupLightboxIndex((startupLightboxIndex - 1 + CIYATO_SCREENSHOTS.length) % CIYATO_SCREENSHOTS.length);
+      } else if (e.key === "Escape") {
+        setStartupLightboxIndex(null);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [startupLightboxIndex]);
+
+  // Check if we are on a project detail page, category page, or startup page
+  const isSubRoute = currentHash.startsWith("#/projects/") || currentHash === "#/startup" || currentHash === "#startup";
 
   const handleNavLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, item: string) => {
     setMobileMenuOpen(false);
@@ -731,6 +748,205 @@ export default function App() {
     );
   };
 
+  const renderStartupPage = () => {
+    return (
+      <div className="max-w-5xl mx-auto px-6 py-24 font-sans space-y-24">
+        {/* Back to Home Link */}
+        <div>
+          <a 
+            href="#home" 
+            className="inline-flex items-center gap-2 text-[10px] uppercase tracking-widest font-semibold hover:text-warm-accent transition-colors"
+          >
+            <ArrowLeft size={12} /> Back to Home
+          </a>
+        </div>
+
+        {/* Hero Section */}
+        <section className="grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
+          <div className="md:col-span-7 space-y-6">
+            <div className="flex items-center gap-4">
+              <img 
+                src="/projects/startup/logo.webp" 
+                alt="Ciyato Logo" 
+                className="w-16 h-16 rounded-[1.25rem] border border-warm-ink/10 shadow-sm"
+              />
+              <div>
+                <span className="text-[10px] uppercase tracking-[0.2em] text-warm-accent font-bold block mb-1">My Startup</span>
+                <span className="inline-block text-[9px] uppercase tracking-wider bg-amber-500/10 text-amber-800 font-bold px-2 py-0.5 rounded-full border border-amber-500/10">
+                  Currently in Development
+                </span>
+              </div>
+            </div>
+
+            <h1 className="serif text-5xl lg:text-7xl leading-none">Ciyato</h1>
+            <p className="text-lg font-semibold text-warm-ink leading-snug">
+              An AI-Powered Android Launcher & Phone Organiser
+            </p>
+            <p className="text-sm text-warm-ink/75 leading-relaxed">
+              A cleaner and more intelligent way to organise apps, files, screenshots, notes, and everyday phone content from one connected Android experience.
+            </p>
+          </div>
+          
+          <div className="md:col-span-5 relative aspect-[4/5] rounded-[2.5rem] overflow-hidden bg-warm-ink/5 border border-warm-ink/10 max-w-sm mx-auto md:ml-auto shadow-xl">
+            <img 
+              src="/projects/startup/hero.webp" 
+              alt="Ciyato Android Interface Preview"
+              className="w-full h-full object-cover"
+            />
+          </div>
+        </section>
+
+        {/* Product Vision */}
+        <section className="grid grid-cols-1 md:grid-cols-2 gap-12 border-t border-warm-ink/10 pt-16">
+          <div className="space-y-4">
+            <h2 className="serif text-3xl text-warm-accent">The Vision</h2>
+            <p className="text-sm text-warm-ink/75 leading-relaxed">
+              Modern phones contain hundreds of apps, files, screenshots, notifications, and pieces of information, but the systems used to organise them have changed very little. Ciyato is being created to make Android devices feel cleaner, easier to navigate, and more personally organised without taking control away from the user.
+            </p>
+          </div>
+          <div className="space-y-4">
+            <h2 className="serif text-3xl text-warm-accent">What Ciyato Is</h2>
+            <p className="text-sm text-warm-ink/75 leading-relaxed">
+              Ciyato is both a real Android launcher and an internal phone-organisation application. The launcher reorganises the home screen and app library, while the internal application provides access to search, files, shared content, settings, privacy controls, and future AI-assisted organisation tools.
+            </p>
+          </div>
+        </section>
+
+        {/* Key Capabilities Grid */}
+        <section className="space-y-12 border-t border-warm-ink/10 pt-16">
+          <div>
+            <span className="text-[10px] uppercase tracking-[0.2em] text-warm-accent font-bold block mb-2">Capabilities</span>
+            <h2 className="serif text-4xl">Key Features & Intent</h2>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[
+              {
+                title: "Smart App Organisation",
+                desc: "Organises real installed applications into useful categories while allowing users to edit, move, hide, remove, and personalise their layouts."
+              },
+              {
+                title: "Unified Search",
+                desc: "Helps users find apps, files, screenshots, notes, and phone content from one searchable experience."
+              },
+              {
+                title: "Customisable Home Screen",
+                desc: "Supports flexible pages, movable applications and categories, removable widgets, and personalised layouts."
+              },
+              {
+                title: "Files and Content Organisation",
+                desc: "Provides a dedicated space for browsing and managing files and other device content."
+              },
+              {
+                title: "Privacy and User Control",
+                desc: "Designed around local organisation, clear permissions, transparent behaviour, and the ability to return to the previous Android launcher."
+              },
+              {
+                title: "AI-Assisted Phone Management",
+                desc: "Future intelligent tools are planned to help users organise content, simplify repetitive actions, and manage their phone more efficiently."
+              }
+            ].map((cap, i) => (
+              <div 
+                key={i} 
+                className="p-8 rounded-[2rem] bg-white border border-warm-ink/5 shadow-sm space-y-4 hover:border-warm-accent transition-colors"
+              >
+                <h3 className="serif text-xl font-semibold leading-tight">{cap.title}</h3>
+                <p className="text-xs text-warm-ink/60 leading-relaxed">{cap.desc}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* Application Interface Gallery */}
+        <section className="space-y-12 border-t border-warm-ink/10 pt-16">
+          <div>
+            <span className="text-[10px] uppercase tracking-[0.2em] text-warm-accent font-bold block mb-2">Screenshots</span>
+            <h2 className="serif text-4xl">Application Interface Gallery</h2>
+            <p className="text-xs text-warm-ink/50 mt-2">
+              Preview shots illustrating app library categorisation, layouts, and search configurations. Click to expand.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+            {CIYATO_SCREENSHOTS.map((screen, idx) => (
+              <motion.div
+                key={screen.id}
+                whileHover={{ y: -4 }}
+                onClick={() => setStartupLightboxIndex(idx)}
+                className="group cursor-pointer bg-white border border-warm-ink/5 rounded-2xl overflow-hidden p-2.5 shadow-sm hover:border-warm-accent transition-all duration-300"
+              >
+                <div className="aspect-[9/16] rounded-xl overflow-hidden bg-warm-ink/5 border border-warm-ink/5">
+                  <img 
+                    src={screen.thumb} 
+                    alt={screen.title}
+                    loading="lazy"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                </div>
+                <div className="mt-3">
+                  <p className="text-[9px] uppercase tracking-wider font-semibold text-warm-ink/40 line-clamp-1">{screen.title}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </section>
+
+        {/* Development Status */}
+        <section className="grid grid-cols-1 md:grid-cols-12 gap-12 border-t border-warm-ink/10 pt-16">
+          <div className="md:col-span-6 space-y-4">
+            <h2 className="serif text-3xl text-warm-accent">Building Ciyato</h2>
+            <p className="text-sm text-warm-ink/75 leading-relaxed">
+              Ciyato has progressed through multiple interface and product-development versions and is currently being refined into a functional Android application. The focus is on real installed-app support, reliable launcher behaviour, practical organisation tools, privacy, performance, and a premium but simple user experience.
+            </p>
+          </div>
+          
+          <div className="md:col-span-6 flex flex-col justify-center space-y-3 bg-white p-8 rounded-[2rem] border border-warm-ink/5 shadow-sm">
+            <span className="text-[10px] uppercase tracking-wider text-warm-accent font-bold mb-1">Development Milestones</span>
+            {[
+              "Product concept established",
+              "Interface system in development",
+              "Android launcher functionality in progress",
+              "Organisation and search features being refined",
+              "Preparing for future testing and launch"
+            ].map((status, i) => (
+              <div key={i} className="flex items-center gap-3">
+                <div className="w-1.5 h-1.5 rounded-full bg-warm-accent flex-shrink-0" />
+                <p className="text-xs text-warm-ink/70 font-semibold">{status}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* WhatsApp Enquiry CTA */}
+        <section className="bg-white border border-warm-ink/5 p-12 md:p-16 rounded-[3rem] shadow-sm text-center max-w-3xl mx-auto space-y-8">
+          <div className="space-y-3">
+            <h2 className="serif text-4xl">Interested in Ciyato?</h2>
+            <p className="text-sm text-warm-ink/60 leading-relaxed max-w-xl mx-auto">
+              For product discussions, early collaboration, development opportunities, partnerships, or enquiries relating to Ciyato, contact me directly on WhatsApp.
+            </p>
+          </div>
+          
+          <div>
+            <a 
+              href="https://wa.me/447882746212?text=Hello%2C%20I%20am%20interested%20in%20Ciyato%20and%20would%20like%20to%20learn%20more%20about%20the%20startup."
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Enquire about Ciyato on WhatsApp"
+              className="inline-flex items-center gap-2.5 bg-[#25D366]/10 text-green-800 border border-[#25D366]/20 px-8 py-4 rounded-full text-xs font-semibold hover:bg-[#25D366]/15 transition-all shadow-sm group/wa"
+            >
+              <span className="w-6 h-6 rounded-full bg-[#25D366] text-white flex items-center justify-center shadow-sm group-hover/wa:scale-105 transition-transform duration-300">
+                <WhatsAppIcon className="w-3.5 h-3.5" />
+              </span>
+              <span className="font-mono tracking-wide underline underline-offset-4 decoration-green-800/20 group-hover/wa:decoration-green-800">
+                Enquire About Ciyato
+              </span>
+            </a>
+          </div>
+        </section>
+      </div>
+    );
+  };
+
   // MAIN HOMEPAGE RENDERING
   const renderMainPage = () => {
     return (
@@ -891,8 +1107,8 @@ export default function App() {
           </div>
         </section>
 
-        {/* Experience Section */}
-        <section id="experience" className="py-24 scroll-mt-20">
+        {/* Experience / About Section */}
+        <section id="about" className="py-24 scroll-mt-20">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
             {/* Left side: Bio */}
             <div className="lg:col-span-5 space-y-6">
@@ -1150,7 +1366,9 @@ export default function App() {
 
       {/* Main Content Router */}
       <div className="flex-1 bg-warm-bg">
-        {currentHash === "#/" || !isSubRoute ? (
+        {currentHash === "#/startup" || currentHash === "#startup" ? (
+          renderStartupPage()
+        ) : currentHash === "#/" || !isSubRoute ? (
           renderMainPage()
         ) : currentHash === "#/projects/videos" ? (
           renderVideosPage()
@@ -1267,6 +1485,83 @@ export default function App() {
                 >
                   <h3 className="serif text-2xl font-semibold mb-2">{currentRender.title}</h3>
                   <p className="text-xs text-white/60 leading-relaxed">{currentRender.fullDescription}</p>
+                </div>
+              </motion.div>
+            );
+          })()
+        )}
+      </AnimatePresence>
+
+      {/* STARTUP LIGHTBOX */}
+      <AnimatePresence>
+        {startupLightboxIndex !== null && (
+          (() => {
+            const currentScreen = CIYATO_SCREENSHOTS[startupLightboxIndex];
+            if (!currentScreen) return null;
+            return (
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                onClick={() => setStartupLightboxIndex(null)}
+                className="fixed inset-0 z-50 bg-black/95 backdrop-blur-md flex flex-col items-center justify-between p-6 cursor-pointer"
+              >
+                {/* Header Controls */}
+                <div className="w-full flex justify-between items-center text-white z-10">
+                  <span className="text-[10px] uppercase tracking-widest font-bold text-white/50">
+                    Screenshot {startupLightboxIndex + 1} of {CIYATO_SCREENSHOTS.length}
+                  </span>
+                  <button
+                    onClick={() => setStartupLightboxIndex(null)}
+                    className="p-2 text-white/60 hover:text-white transition-colors"
+                  >
+                    <X size={28} />
+                  </button>
+                </div>
+
+                {/* Center Image with Navigation arrows */}
+                <div className="flex-1 w-full max-w-5xl flex items-center justify-between gap-4 relative">
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setStartupLightboxIndex((startupLightboxIndex - 1 + CIYATO_SCREENSHOTS.length) % CIYATO_SCREENSHOTS.length);
+                    }}
+                    className="p-3 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 text-white/80 transition-all flex-shrink-0 z-10"
+                    aria-label="Previous screenshot"
+                  >
+                    <ChevronLeft size={20} />
+                  </button>
+
+                  <div
+                    onClick={(e) => e.stopPropagation()}
+                    className="flex-1 flex items-center justify-center max-h-[70vh] relative"
+                  >
+                    <img
+                      src={currentScreen.src}
+                      alt={currentScreen.title}
+                      className="max-w-full max-h-[70vh] object-contain rounded-2xl shadow-2xl"
+                    />
+                  </div>
+
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setStartupLightboxIndex((startupLightboxIndex + 1) % CIYATO_SCREENSHOTS.length);
+                    }}
+                    className="p-3 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 text-white/80 transition-all flex-shrink-0 z-10"
+                    aria-label="Next screenshot"
+                  >
+                    <ChevronRight size={20} />
+                  </button>
+                </div>
+
+                {/* Caption Details Footer */}
+                <div 
+                  onClick={(e) => e.stopPropagation()}
+                  className="w-full max-w-2xl text-center text-white z-10 pb-6"
+                >
+                  <h3 className="serif text-2xl font-semibold mb-2">{currentScreen.title}</h3>
+                  <p className="text-xs text-white/60 leading-relaxed">Ciyato Android Interface Preview</p>
                 </div>
               </motion.div>
             );
