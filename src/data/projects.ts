@@ -86,7 +86,34 @@ export const WEBSITES: Project[] = [
     status: "Available for Acquisition",
     featured: true,
     order: 2,
-    liveUrl: "https://chaitanya-gaikwad.vercel.app/" // Will link back or let the user configure.
+    liveUrl: "https://xiyora.vercel.app"
+  },
+  {
+    id: "anvikshiki-journal",
+    slug: "anvikshiki-journal",
+    title: "Anvikshiki Journal",
+    client: "Academic & Research Community",
+    category: "Websites Developed",
+    subcategory: "Responsive Portfolio, Brand & Business Websites",
+    year: "2026",
+    dateRange: "2026",
+    location: "Global",
+    role: "Full-Stack Developer & Technical Administrator",
+    shortDescription: "A clean, responsive academic journal platform designed and developed to manage and publish scholarly articles, indexing, peer-reviewed research papers, and author submissions.",
+    fullDescription: "A clean, responsive academic journal platform designed and developed to manage and publish scholarly articles, indexing, peer-reviewed research papers, and author submissions.",
+    tags: [
+      "Academic Journal",
+      "Publication Platform",
+      "Full-Stack Development",
+      "Responsive Layout",
+      "Scholarly Research",
+      "Database Integration"
+    ],
+    thumbnail: "/ig-thumb-1.png", // Reuses render visual as a premium poster frame
+    poster: "/ig-thumb-1.png",
+    liveUrl: "https://anvikshikijournal.in/",
+    featured: true,
+    order: 3
   }
 ];
 

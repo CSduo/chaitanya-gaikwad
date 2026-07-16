@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { 
   Instagram, 
@@ -21,6 +21,10 @@ import {
   Briefcase,
   ArrowLeft,
   Play,
+  Pause,
+  Volume2,
+  VolumeX,
+  Maximize2,
   Download,
   ChevronLeft,
   ChevronRight
@@ -165,6 +169,112 @@ const EXPERIENCE = [
   }
 ];
 
+interface VideoCardProps {
+  vid: Project;
+  idx: number;
+  onExpand: (url: string) => void;
+}
+
+function VideoCard({ vid, idx, onExpand }: VideoCardProps) {
+  const [playing, setPlaying] = useState(true);
+  const [muted, setMuted] = useState(true);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  const togglePlay = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (videoRef.current) {
+      if (playing) {
+        videoRef.current.pause();
+      } else {
+        videoRef.current.play().catch((err) => console.log(err));
+      }
+      setPlaying(!playing);
+    }
+  };
+
+  const toggleMute = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (videoRef.current) {
+      videoRef.current.muted = !muted;
+      setMuted(!muted);
+    }
+  };
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 15 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: idx * 0.05 }}
+      className="bg-white/40 p-2 rounded-[2.5rem] border border-warm-ink/5 flex flex-col justify-between group"
+    >
+      <div 
+        onClick={() => onExpand(vid.media || "")}
+        className="relative rounded-[2.3rem] overflow-hidden bg-warm-ink/5 cursor-pointer group/vidbox aspect-[9/16] flex items-center justify-center"
+      >
+        <video
+          ref={videoRef}
+          src={vid.media}
+          poster={vid.poster}
+          autoPlay
+          loop
+          muted={muted}
+          playsInline
+          className="w-full h-full object-cover"
+        />
+
+        {/* Dynamic controls overlay: always visible or on hover, styled as floating glass circles */}
+        <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between bg-black/45 backdrop-blur-md px-4 py-2 rounded-full border border-white/10 opacity-0 group-hover/vidbox:opacity-100 transition-opacity duration-300 z-10">
+          <div className="flex items-center gap-3">
+            {/* Play/Pause Button */}
+            <button 
+              onClick={togglePlay}
+              className="text-white hover:text-warm-accent transition-colors p-1"
+              aria-label={playing ? "Pause video" : "Play video"}
+            >
+              {playing ? <Pause size={14} className="fill-current" /> : <Play size={14} className="fill-current translate-x-0.5" />}
+            </button>
+
+            {/* Mute/Unmute Button */}
+            <button 
+              onClick={toggleMute}
+              className="text-white hover:text-warm-accent transition-colors p-1"
+              aria-label={muted ? "Unmute audio" : "Mute audio"}
+            >
+              {muted ? <VolumeX size={14} /> : <Volume2 size={14} />}
+            </button>
+          </div>
+
+          {/* Play Bigger Button */}
+          <button 
+            onClick={(e) => {
+              e.stopPropagation();
+              onExpand(vid.media || "");
+            }}
+            className="text-white hover:text-warm-accent transition-colors p-1"
+            aria-label="Play video full screen"
+          >
+            <Maximize2 size={14} />
+          </button>
+        </div>
+      </div>
+
+      <div className="p-6">
+        <div className="flex justify-between items-start mb-2">
+          <span className="text-[9px] uppercase tracking-wider text-warm-ink/40 font-bold">{vid.client}</span>
+          <span className="text-[9px] uppercase tracking-wider text-warm-ink/40 font-bold">{vid.year}</span>
+        </div>
+        <h3 className="serif text-xl mb-3 leading-snug">{vid.title}</h3>
+        <p className="text-xs text-warm-ink/75 leading-relaxed mb-4">{vid.fullDescription}</p>
+        <div className="flex flex-wrap gap-1.5">
+          {vid.tags.map((tag) => (
+            <span key={tag} className="text-[9px] font-semibold bg-warm-ink/5 px-2 py-0.5 rounded text-warm-ink/60">{tag}</span>
+          ))}
+        </div>
+      </div>
+    </motion.div>
+  );
+}
+
 export default function App() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [currentHash, setCurrentHash] = useState(window.location.hash || "#/");
@@ -264,51 +374,9 @@ export default function App() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {videos.map((vid, idx) => {
-            const isVertical = vid.aspectRatio === "9:16";
-            return (
-              <motion.div
-                key={vid.id}
-                initial={{ opacity: 0, y: 15 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: idx * 0.05 }}
-                className="bg-white/40 p-2 rounded-[2.5rem] border border-warm-ink/5 flex flex-col justify-between group"
-              >
-                <div 
-                  onClick={() => setActiveVideoUrl(vid.media || null)}
-                  className={`relative rounded-[2.3rem] overflow-hidden bg-warm-ink/5 cursor-pointer group/vidbox flex items-center justify-center ${
-                    isVertical ? "aspect-[9/16]" : "aspect-[16/9]"
-                  }`}
-                >
-                  <img
-                    src={vid.poster}
-                    alt={vid.title}
-                    className="w-full h-full object-cover filter brightness-[0.9] transition-transform duration-500 group-hover/vidbox:scale-105"
-                  />
-                  {/* Hover play button */}
-                  <div className="absolute inset-0 bg-black/15 group-hover/vidbox:bg-black/30 flex items-center justify-center transition-colors duration-300">
-                    <div className="w-14 h-14 rounded-full bg-white/20 backdrop-blur-md border border-white/30 flex items-center justify-center text-white shadow-xl transform transition-all duration-300 group-hover/vidbox:scale-110 group-hover/vidbox:bg-white/40">
-                      <Play size={18} className="fill-current translate-x-0.5" />
-                    </div>
-                  </div>
-                </div>
-
-                <div className="p-6">
-                  <div className="flex justify-between items-start mb-2">
-                    <span className="text-[9px] uppercase tracking-wider text-warm-ink/40 font-bold">{vid.client}</span>
-                    <span className="text-[9px] uppercase tracking-wider text-warm-ink/40 font-bold">{vid.year}</span>
-                  </div>
-                  <h3 className="serif text-xl mb-3 leading-snug">{vid.title}</h3>
-                  <p className="text-xs text-warm-ink/75 leading-relaxed mb-4">{vid.fullDescription}</p>
-                  <div className="flex flex-wrap gap-1.5">
-                    {vid.tags.map((tag) => (
-                      <span key={tag} className="text-[9px] font-semibold bg-warm-ink/5 px-2 py-0.5 rounded text-warm-ink/60">{tag}</span>
-                    ))}
-                  </div>
-                </div>
-              </motion.div>
-            );
-          })}
+          {videos.map((vid, idx) => (
+            <VideoCard key={vid.id} vid={vid} idx={idx} onExpand={(url) => setActiveVideoUrl(url)} />
+          ))}
         </div>
       </div>
     );
@@ -605,7 +673,7 @@ export default function App() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {websites.map((web, idx) => {
             const isAcquisition = web.status === "Available for Acquisition";
             return (
@@ -669,36 +737,72 @@ export default function App() {
       <main className="max-w-5xl mx-auto px-6 pt-24 font-sans">
         {/* Home Hero Section */}
         <section id="home" className="py-20 md:py-32 flex flex-col justify-center min-h-[70vh] border-b border-warm-ink/10">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="space-y-6"
-          >
-            <h1 className="serif text-6xl md:text-8xl tracking-tight leading-none">
-              Chaitanya Gaikwad
-            </h1>
-            <p className="text-[10px] uppercase tracking-[0.3em] font-bold text-warm-accent">
-              Creative Direction • B2B Lead Strategy • Web Development
-            </p>
-            <p className="text-lg md:text-xl text-warm-ink/70 max-w-2xl font-light leading-relaxed">
-              I design and develop responsive brand websites, execute AI-assisted cinematic video campaigns, and build structured, data-driven lead pipelines for international businesses.
-            </p>
-            <div className="flex gap-4 pt-4">
-              <a 
-                href="#projects" 
-                className="bg-warm-accent text-white px-6 py-3 rounded-full text-xs uppercase tracking-wider font-semibold hover:bg-warm-accent/90 transition-colors"
-              >
-                View Portfolio
-              </a>
-              <a 
-                href="#contact" 
-                className="border border-warm-ink/20 text-warm-ink px-6 py-3 rounded-full text-xs uppercase tracking-wider font-semibold hover:bg-warm-ink/5 transition-colors"
-              >
-                Let's Connect
-              </a>
-            </div>
-          </motion.div>
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
+            {/* Bio Content */}
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+              className="md:col-span-7 space-y-6"
+            >
+              <h1 className="serif text-5xl lg:text-7xl leading-none">
+                <span className="hidden md:flex md:items-center md:flex-wrap gap-3">
+                  <span>Xiyàto Sāanvī</span>
+                  <span className="text-warm-ink/30 font-light select-none text-2xl lg:text-4xl">│</span>
+                  <span>Chaitanya Gaikwad</span>
+                </span>
+                
+                {/* Mobile layout */}
+                <span className="flex md:hidden flex-col items-start gap-1">
+                  <span>Xiyàto Sāanvī</span>
+                  <span className="w-16 h-px bg-warm-ink/20 my-2" />
+                  <span>Chaitanya Gaikwad</span>
+                </span>
+              </h1>
+              <p className="text-[10px] uppercase tracking-[0.3em] font-bold text-warm-accent">
+                AI Tools Expert • Visual Content Creator • Marketing & B2B Specialist
+              </p>
+              
+              <div className="space-y-4 text-warm-ink/75 leading-relaxed">
+                <p className="text-lg font-semibold text-warm-ink leading-snug">
+                  AI Tools Expert, Visual Content Creator, and Marketing & B2B Specialist.
+                </p>
+                <p className="text-sm">
+                  I help brands and businesses improve how they present themselves, market their services, connect with potential clients, and grow through modern digital systems. My work includes AI-powered visuals, short-form videos, website content and support, creative direction, B2B lead generation, business research, outreach campaigns, CRM-style tracking, automation, and digital marketing execution. I combine visual storytelling, emerging AI tools, marketing strategy, and practical business support to turn ideas into professional content and measurable growth opportunities.
+                </p>
+              </div>
+              
+              <div className="flex flex-wrap gap-4 pt-4">
+                <a 
+                  href="#projects" 
+                  className="bg-warm-accent text-white px-6 py-3 rounded-full text-xs uppercase tracking-wider font-semibold hover:bg-warm-accent/90 transition-colors"
+                >
+                  View Portfolio
+                </a>
+                <a 
+                  href="#contact" 
+                  className="border border-warm-ink/20 text-warm-ink px-6 py-3 rounded-full text-xs uppercase tracking-wider font-semibold hover:bg-warm-ink/5 transition-colors"
+                >
+                  Let's Connect
+                </a>
+              </div>
+            </motion.div>
+            
+            {/* Portrait Image */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="md:col-span-5 relative aspect-[4/5] rounded-[3rem] overflow-hidden bg-warm-ink/5 border border-warm-ink/10 max-w-sm mx-auto md:ml-auto shadow-2xl shadow-warm-accent/5"
+            >
+              <img 
+                src="/portrait.jpg" 
+                alt="Portrait of Xiyàto Sāanvī and Chaitanya Gaikwad"
+                className="w-full h-full object-cover hover:scale-[1.02] transition-transform duration-700"
+                referrerPolicy="no-referrer"
+              />
+            </motion.div>
+          </div>
         </section>
 
         {/* Projects Category Portal Section */}
@@ -935,15 +1039,20 @@ export default function App() {
                   href="https://wa.me/447882746212"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="font-sans text-2xl font-semibold tracking-wide text-warm-ink hover:text-warm-accent transition-colors underline underline-offset-8 decoration-warm-ink/20 self-start"
+                  className="inline-flex items-center gap-3 font-sans text-2xl font-semibold tracking-wide text-warm-ink hover:text-warm-accent transition-colors self-start group/wa"
                 >
-                  +44 7882 746212
+                  <span className="w-8 h-8 rounded-full bg-[#25D366] text-white flex items-center justify-center shadow-md flex-shrink-0 group-hover/wa:scale-105 transition-transform duration-300">
+                    <WhatsAppIcon className="w-5 h-5" />
+                  </span>
+                  <span className="underline underline-offset-8 decoration-warm-ink/20 group-hover/wa:decoration-warm-accent">
+                    +44 7882 746212
+                  </span>
                 </a>
                 <a 
                   href="https://www.instagram.com/xiyato22"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="font-sans text-xl text-warm-ink/70 hover:text-warm-accent transition-colors self-start"
+                  className="font-sans text-xl text-warm-ink/70 hover:text-warm-accent transition-colors self-start pl-11"
                 >
                   @xiyato22
                 </a>
