@@ -122,8 +122,7 @@ const EXPERIENCE = [
     instagramUrl: "https://www.instagram.com/sultanahco/",
     ariaLabel: "View Sultanah & Co. Interiors on Instagram",
     bgImage: "/ig-thumb-3.png",
-    verified: true,
-    igStats: { posts: "124", followers: "1,248", following: "852" }
+    verified: true
   },
   {
     company: "Red Chandelier Studio",
@@ -134,8 +133,7 @@ const EXPERIENCE = [
     instagramUrl: "https://www.instagram.com/redchandelier.studio/",
     ariaLabel: "View Red Chandelier Studio on Instagram",
     bgImage: "/ig-thumb-2.png",
-    verified: true,
-    igStats: { posts: "88", followers: "3,124", following: "450" }
+    verified: true
   },
   {
     company: "Chinese Company",
@@ -156,8 +154,7 @@ const EXPERIENCE = [
     instagramUrl: "https://www.instagram.com/erenodesignstudio/",
     ariaLabel: "View Ereno Design Studio on Instagram",
     bgImage: "/ig-thumb-1.png",
-    verified: true,
-    igStats: { posts: "215", followers: "1,940", following: "620" }
+    verified: true
   },
   {
     company: "Fitout 360 Interiors",
@@ -167,8 +164,7 @@ const EXPERIENCE = [
     instagram: "@fitout360uae",
     instagramUrl: "https://www.instagram.com/fitout360uae/",
     ariaLabel: "View Fitout 360 Interiors on Instagram",
-    verified: true,
-    igStats: { posts: "142", followers: "2,840", following: "510" }
+    verified: true
   },
   {
     company: "Jovial Decor",
@@ -178,8 +174,7 @@ const EXPERIENCE = [
     instagram: "@jovialdecoure",
     instagramUrl: "https://www.instagram.com/jovialdecoure/",
     ariaLabel: "View Jovial Decoure on Instagram",
-    verified: true,
-    igStats: { posts: "98", followers: "1,520", following: "340" }
+    verified: true
   }
 ];
 
@@ -416,11 +411,6 @@ export default function App() {
                               </svg>
                             )}
                           </div>
-                          {exp.igStats && (
-                            <span className="text-[10px] text-warm-ink/50 font-medium whitespace-nowrap">
-                              {exp.igStats.followers} followers
-                            </span>
-                          )}
                         </div>
                       ) : exp.private ? (
                         <div className="relative z-10 pt-2 border-t border-warm-ink/5 flex items-center justify-between mt-3 text-warm-ink/50 italic text-[10px]">
@@ -542,11 +532,6 @@ export default function App() {
                             </svg>
                           )}
                         </div>
-                        {exp.igStats && (
-                          <span className="text-[10px] text-warm-ink/50 font-medium whitespace-nowrap">
-                            {exp.igStats.followers} followers
-                          </span>
-                        )}
                       </div>
                     ) : exp.private ? (
                       <div className="relative z-10 pt-2 border-t border-warm-ink/5 flex items-center justify-between mt-3 text-warm-ink/50 italic text-[10px]">
