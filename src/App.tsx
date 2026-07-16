@@ -227,17 +227,17 @@ export default function App() {
               </div>
             </motion.div>
             
-            {/* Profile image (Wider & Shorter aspect, showing full portrait image) */}
+            {/* Profile image (Complete 9:16 Aspect Ratio with 400px max width) */}
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="md:col-span-5 relative aspect-[400/454] rounded-[2.5rem] overflow-hidden bg-white border border-warm-ink/10 w-full max-w-[400px] mx-auto md:ml-auto shadow-2xl shadow-warm-accent/5"
+              className="md:col-span-5 relative aspect-[9/16] rounded-[2.5rem] overflow-hidden bg-white border border-warm-ink/10 w-full max-w-[400px] mx-auto md:ml-auto shadow-2xl shadow-warm-accent/5"
             >
               <img 
                 src="/portrait.jpg" 
                 alt="Portrait of Chaitanya Gaikwad"
-                className="w-full h-full object-cover object-top transition-all duration-700"
+                className="w-full h-full object-cover transition-all duration-700"
                 referrerPolicy="no-referrer"
               />
             </motion.div>
