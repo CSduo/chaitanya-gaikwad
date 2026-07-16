@@ -21,7 +21,7 @@ import {
   Briefcase
 } from "lucide-react";
 
-const NAV_ITEMS = ["Home", "About", "Services", "Projects", "Contact"];
+const NAV_ITEMS = ["Home", "Experience", "Services", "Projects", "Contact"];
 
 const WhatsAppIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg
@@ -119,7 +119,7 @@ const EXPERIENCE = [
     instagram: "@sultanahco",
     instagramUrl: "https://www.instagram.com/sultanahco/",
     ariaLabel: "View Sultanah & Co. Interiors on Instagram",
-    igStats: { posts: "124", followers: "1,248", following: "852" }
+    bgImage: "/ig-thumb-3.png"
   },
   {
     company: "Red Chandelier Studio",
@@ -129,7 +129,7 @@ const EXPERIENCE = [
     instagram: "@redchandelier.studio",
     instagramUrl: "https://www.instagram.com/redchandelier.studio/",
     ariaLabel: "View Red Chandelier Studio on Instagram",
-    igStats: { posts: "88", followers: "3,124", following: "450" }
+    bgImage: "/ig-thumb-2.png"
   },
   {
     company: "Chinese Company",
@@ -138,7 +138,8 @@ const EXPERIENCE = [
     role: "Marketing, Lead Generation & Website Specialist",
     desc: "Built structured buyer databases, cross-border outreach workflows, buyer qualification systems, and sample-evaluation tracking while supporting export communication and a complete brand website project valued at approximately $3,000.",
     private: true,
-    privateText: "Instagram account not publicly available"
+    privateText: "Instagram account not publicly available",
+    bgImage: "/sakura-bg.png"
   },
   {
     company: "Ereno Design Studio",
@@ -148,7 +149,7 @@ const EXPERIENCE = [
     instagram: "@erenodesignstudio",
     instagramUrl: "https://www.instagram.com/erenodesignstudio/",
     ariaLabel: "View Ereno Design Studio on Instagram",
-    igStats: { posts: "215", followers: "1,940", following: "620" }
+    bgImage: "/ig-thumb-1.png"
   },
   {
     company: "Fitout 360 Interiors",
@@ -157,14 +158,15 @@ const EXPERIENCE = [
     desc: "Delivered more than nine high-fidelity commercial office renders and developed ultra-realistic AI video concepts, transforming raw layout references into polished visual options for client presentations.",
     instagram: "@fitout360uae",
     instagramUrl: "https://www.instagram.com/fitout360uae/",
-    ariaLabel: "View Fitout 360 Interiors on Instagram",
-    igStats: { posts: "142", followers: "2,840", following: "510" }
+    ariaLabel: "View Fitout 360 Interiors on Instagram"
   },
   {
     company: "Jovial Decor",
     period: "Feb 2026 – May 2026",
     role: "AI Design Specialist",
-    desc: "Created interior visuals, product mockups, curtain catalogue layouts, point-of-sale signage, invitation concepts, and social media assets for a home décor showroom covering approximately 10,000 square feet."
+    desc: "Created interior visuals, product mockups, curtain catalogue layouts, point-of-sale signage, invitation concepts, and social media assets for a home décor showroom covering approximately 10,000 square feet.",
+    private: true,
+    privateText: "Official channel not publicly available"
   }
 ];
 
@@ -302,13 +304,13 @@ export default function App() {
           </div>
         </section>
 
-        {/* About Section */}
-        <section id="about" className="mb-24 scroll-mt-20">
+        {/* Experience Section */}
+        <section id="experience" className="mb-24 scroll-mt-20">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-10">
             {/* Left Column (Desktop 5/12) */}
             <div className="md:col-span-5 space-y-8">
               <div>
-                <h2 className="serif text-4xl mb-4">About Me</h2>
+                <h2 className="serif text-4xl mb-4">Experience</h2>
                 <div className="h-px w-20 bg-warm-accent mb-8" />
               </div>
 
@@ -326,7 +328,7 @@ export default function App() {
                   </p>
                 </div>
 
-                <div className="space-y-4">
+                <div className="space-y-3">
                   {EXPERIENCE.slice(0, 3).map((exp, i) => (
                     <motion.div 
                       key={exp.company}
@@ -334,103 +336,73 @@ export default function App() {
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }}
                       transition={{ delay: i * 0.05 }}
-                      className="p-5 rounded-2xl bg-white/20 border border-warm-ink/5 hover:border-warm-ink/20 hover:bg-white/50 transition-all duration-200 shadow-sm hover:-translate-y-0.5 space-y-3"
+                      className="group relative overflow-hidden p-4 rounded-2xl border border-warm-ink/5 hover:border-warm-ink/20 transition-all duration-200 shadow-sm hover:-translate-y-0.5 space-y-2 bg-transparent"
                     >
-                      <div className="flex justify-between items-start gap-2">
-                        <div>
-                          <h4 className="font-semibold text-sm text-warm-ink leading-tight">{exp.company}</h4>
-                          {exp.descriptor && (
-                            <p className="text-[10px] text-warm-ink/60 mt-0.5 leading-snug">{exp.descriptor}</p>
-                          )}
+                      {/* Background Image Layer */}
+                      {exp.bgImage && (
+                        <div className="absolute inset-0 z-0 select-none pointer-events-none">
+                          <img 
+                            src={exp.bgImage} 
+                            alt="" 
+                            className="w-full h-full object-cover opacity-[0.10] transition-opacity duration-300 group-hover:opacity-[0.15] mix-blend-multiply" 
+                          />
                         </div>
-                        <span className="text-[9px] uppercase tracking-wider font-bold text-warm-ink/40 whitespace-nowrap self-start">
-                          {exp.period}
-                        </span>
-                      </div>
+                      )}
 
-                      <div className="space-y-2">
-                        <p className="text-[10px] font-semibold text-warm-accent uppercase tracking-wider leading-none">
-                          {exp.role}
-                        </p>
-                        <p className="text-xs text-warm-ink/70 leading-relaxed">
-                          {exp.desc}
-                        </p>
-                      </div>
+                      {/* Transparent Card Link Overlay */}
+                      {exp.instagramUrl && (
+                        <a
+                          href={exp.instagramUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          aria-label={exp.ariaLabel}
+                          className="absolute inset-0 z-20 cursor-pointer"
+                        />
+                      )}
 
-                      {/* Instagram Link or Private Indicator */}
-                      {exp.instagramUrl ? (
-                        <div className="space-y-3 pt-2">
-                          <a
-                            href={exp.instagramUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            aria-label={exp.ariaLabel}
-                            className="inline-flex items-center gap-2 text-xs font-semibold text-warm-ink/80 hover:text-warm-accent transition-colors group/link"
-                          >
+                      {/* Content Layer */}
+                      <div className="relative z-10 space-y-2">
+                        <div className="flex justify-between items-start gap-2">
+                          <div>
+                            <h4 className="font-semibold text-sm text-warm-ink leading-tight">{exp.company}</h4>
+                            {exp.descriptor && (
+                              <p className="text-[10px] text-warm-ink/60 mt-0.5 leading-snug">{exp.descriptor}</p>
+                            )}
+                          </div>
+                          <span className="text-[9px] uppercase tracking-wider font-bold text-warm-ink/40 whitespace-nowrap self-start">
+                            {exp.period}
+                          </span>
+                        </div>
+
+                        <div className="space-y-1">
+                          <p className="text-[10px] font-semibold text-warm-accent uppercase tracking-wider leading-none">
+                            {exp.role}
+                          </p>
+                          <p className="text-xs text-warm-ink/70 leading-relaxed">
+                            {exp.desc}
+                          </p>
+                        </div>
+
+                        {/* Social Link Display */}
+                        {exp.instagramUrl ? (
+                          <div className="inline-flex items-center gap-2 text-xs font-semibold text-warm-ink/80 group-hover/link:text-warm-accent transition-colors mt-0.5">
                             <span 
-                              className="w-5 h-5 rounded-full flex items-center justify-center text-white"
+                              className="w-5 h-5 rounded-full flex items-center justify-center text-white shadow-sm"
                               style={{
                                 background: "linear-gradient(135deg, #F9CE34 0%, #EE2A7B 45%, #D62976 65%, #962FBF 82%, #4F5BD5 100%)"
                               }}
                             >
                               <Instagram size={11} strokeWidth={2.5} />
                             </span>
-                            <span className="group-hover/link:underline">{exp.instagram}</span>
-                          </a>
-
-                          {/* Instagram Profile Preview Card */}
-                          {exp.igStats && (
-                            <div className="bg-warm-bg/40 p-3.5 rounded-xl border border-warm-ink/5 space-y-3 shadow-inner">
-                              <div className="flex items-center justify-between">
-                                <div className="flex items-center gap-2">
-                                  {/* Avatar Monogram */}
-                                  <div className="w-8 h-8 rounded-full bg-warm-accent/10 border border-warm-accent/20 flex items-center justify-center font-bold text-[11px] text-warm-accent select-none">
-                                    {exp.company.charAt(0)}
-                                  </div>
-                                  <div>
-                                    <p className="text-[11px] font-semibold text-warm-ink leading-tight select-none">
-                                      {exp.instagram}
-                                    </p>
-                                    <p className="text-[9px] text-warm-ink/50 leading-none select-none">
-                                      Instagram
-                                    </p>
-                                  </div>
-                                </div>
-                                <a
-                                  href={exp.instagramUrl}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                  aria-label={exp.ariaLabel}
-                                  className="text-[10px] font-bold text-white px-3 py-1 rounded-full hover:opacity-90 transition-all select-none shadow-sm flex items-center gap-1"
-                                  style={{
-                                    background: "linear-gradient(135deg, #F9CE34 0%, #EE2A7B 45%, #D62976 65%, #962FBF 82%, #4F5BD5 100%)"
-                                  }}
-                                >
-                                  <Instagram size={10} strokeWidth={2.5} />
-                                  <span>Follow</span>
-                                </a>
-                              </div>
-
-                              <div className="flex gap-4 text-[10px] text-warm-ink/70 border-t border-warm-ink/5 pt-2 select-none">
-                                <div><strong className="text-warm-ink font-semibold">{exp.igStats.posts}</strong> posts</div>
-                                <div><strong className="text-warm-ink font-semibold">{exp.igStats.followers}</strong> followers</div>
-                                <div><strong className="text-warm-ink font-semibold">{exp.igStats.following}</strong> following</div>
-                              </div>
-
-                              <div className="grid grid-cols-3 gap-1.5 border-t border-warm-ink/5 pt-2">
-                                <img src="/ig-thumb-1.png" alt="Recent project preview 1" className="aspect-square rounded-lg object-cover w-full h-full border border-warm-ink/5 shadow-sm" />
-                                <img src="/ig-thumb-2.png" alt="Recent project preview 2" className="aspect-square rounded-lg object-cover w-full h-full border border-warm-ink/5 shadow-sm" />
-                                <img src="/ig-thumb-3.png" alt="Recent project preview 3" className="aspect-square rounded-lg object-cover w-full h-full border border-warm-ink/5 shadow-sm" />
-                              </div>
-                            </div>
-                          )}
-                        </div>
-                      ) : exp.private ? (
-                        <div className="flex items-center gap-2 text-[10px] text-warm-ink/50 mt-1">
-                          <Globe size={12} className="flex-shrink-0" />
-                          <span className="italic">{exp.privateText}</span>
-                        </div>
-                      ) : null}
+                            <span className="underline decoration-warm-ink/20 group-hover:decoration-warm-accent">{exp.instagram}</span>
+                          </div>
+                        ) : exp.private ? (
+                          <div className="flex items-center gap-2 text-[10px] text-warm-ink/50 mt-0.5">
+                            <Globe size={12} className="flex-shrink-0" />
+                            <span className="italic">{exp.privateText}</span>
+                          </div>
+                        ) : null}
+                      </div>
                     </motion.div>
                   ))}
                 </div>
@@ -466,27 +438,41 @@ export default function App() {
                 </div>
               </div>
 
-              {/* Right Experience Panel - Collaborations & Finished Projects */}
-              <div className="space-y-6 pt-6 border-t border-warm-ink/5">
-                <div className="space-y-2">
-                  <span className="text-[10px] uppercase tracking-widest font-bold text-warm-accent">
-                    COLLABORATIONS & PROJECTS
-                  </span>
-                  <h3 className="serif text-2xl font-semibold text-warm-ink">
-                    On-Site & Completed Work
-                  </h3>
-                </div>
+              {/* Right Experience Panel - Collaborations (No subheader, directly under biography) */}
+              <div className="space-y-3 pt-6 border-t border-warm-ink/5">
+                {EXPERIENCE.slice(3, 6).map((exp, i) => (
+                  <motion.div 
+                    key={exp.company}
+                    initial={{ opacity: 0, y: 10 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: i * 0.05 }}
+                    className="group relative overflow-hidden p-4 rounded-2xl border border-warm-ink/5 hover:border-warm-ink/20 transition-all duration-200 shadow-sm hover:-translate-y-0.5 space-y-2 bg-transparent"
+                  >
+                    {/* Background Image Layer */}
+                    {exp.bgImage && (
+                      <div className="absolute inset-0 z-0 select-none pointer-events-none">
+                        <img 
+                          src={exp.bgImage} 
+                          alt="" 
+                          className="w-full h-full object-cover opacity-[0.10] transition-opacity duration-300 group-hover:opacity-[0.15] mix-blend-multiply" 
+                        />
+                      </div>
+                    )}
 
-                <div className="space-y-4">
-                  {EXPERIENCE.slice(3, 6).map((exp, i) => (
-                    <motion.div 
-                      key={exp.company}
-                      initial={{ opacity: 0, y: 10 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: i * 0.05 }}
-                      className="p-5 rounded-2xl bg-white/20 border border-warm-ink/5 hover:border-warm-ink/20 hover:bg-white/50 transition-all duration-200 shadow-sm hover:-translate-y-0.5 space-y-3"
-                    >
+                    {/* Transparent Card Link Overlay */}
+                    {exp.instagramUrl && (
+                      <a
+                        href={exp.instagramUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={exp.ariaLabel}
+                        className="absolute inset-0 z-20 cursor-pointer"
+                      />
+                    )}
+
+                    {/* Content Layer */}
+                    <div className="relative z-10 space-y-2">
                       <div className="flex justify-between items-start gap-2">
                         <div>
                           <h4 className="font-semibold text-sm text-warm-ink leading-tight">{exp.company}</h4>
@@ -499,7 +485,7 @@ export default function App() {
                         </span>
                       </div>
 
-                      <div className="space-y-2">
+                      <div className="space-y-1">
                         <p className="text-[10px] font-semibold text-warm-accent uppercase tracking-wider leading-none">
                           {exp.role}
                         </p>
@@ -508,83 +494,28 @@ export default function App() {
                         </p>
                       </div>
 
-                      {/* Instagram Link or Private Indicator */}
+                      {/* Social Link Display */}
                       {exp.instagramUrl ? (
-                        <div className="space-y-3 pt-2">
-                          <a
-                            href={exp.instagramUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            aria-label={exp.ariaLabel}
-                            className="inline-flex items-center gap-2 text-xs font-semibold text-warm-ink/80 hover:text-warm-accent transition-colors group/link"
+                        <div className="inline-flex items-center gap-2 text-xs font-semibold text-warm-ink/80 group-hover/link:text-warm-accent transition-colors mt-0.5">
+                          <span 
+                            className="w-5 h-5 rounded-full flex items-center justify-center text-white shadow-sm"
+                            style={{
+                              background: "linear-gradient(135deg, #F9CE34 0%, #EE2A7B 45%, #D62976 65%, #962FBF 82%, #4F5BD5 100%)"
+                            }}
                           >
-                            <span 
-                              className="w-5 h-5 rounded-full flex items-center justify-center text-white"
-                              style={{
-                                background: "linear-gradient(135deg, #F9CE34 0%, #EE2A7B 45%, #D62976 65%, #962FBF 82%, #4F5BD5 100%)"
-                              }}
-                            >
-                              <Instagram size={11} strokeWidth={2.5} />
-                            </span>
-                            <span className="group-hover/link:underline">{exp.instagram}</span>
-                          </a>
-
-                          {/* Instagram Profile Preview Card */}
-                          {exp.igStats && (
-                            <div className="bg-warm-bg/40 p-3.5 rounded-xl border border-warm-ink/5 space-y-3 shadow-inner">
-                              <div className="flex items-center justify-between">
-                                <div className="flex items-center gap-2">
-                                  {/* Avatar Monogram */}
-                                  <div className="w-8 h-8 rounded-full bg-warm-accent/10 border border-warm-accent/20 flex items-center justify-center font-bold text-[11px] text-warm-accent select-none">
-                                    {exp.company.charAt(0)}
-                                  </div>
-                                  <div>
-                                    <p className="text-[11px] font-semibold text-warm-ink leading-tight select-none">
-                                      {exp.instagram}
-                                    </p>
-                                    <p className="text-[9px] text-warm-ink/50 leading-none select-none">
-                                      Instagram
-                                    </p>
-                                  </div>
-                                </div>
-                                <a
-                                  href={exp.instagramUrl}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                  aria-label={exp.ariaLabel}
-                                  className="text-[10px] font-bold text-white px-3 py-1 rounded-full hover:opacity-90 transition-all select-none shadow-sm flex items-center gap-1"
-                                  style={{
-                                    background: "linear-gradient(135deg, #F9CE34 0%, #EE2A7B 45%, #D62976 65%, #962FBF 82%, #4F5BD5 100%)"
-                                  }}
-                                >
-                                  <Instagram size={10} strokeWidth={2.5} />
-                                  <span>Follow</span>
-                                </a>
-                              </div>
-
-                              <div className="flex gap-4 text-[10px] text-warm-ink/70 border-t border-warm-ink/5 pt-2 select-none">
-                                <div><strong className="text-warm-ink font-semibold">{exp.igStats.posts}</strong> posts</div>
-                                <div><strong className="text-warm-ink font-semibold">{exp.igStats.followers}</strong> followers</div>
-                                <div><strong className="text-warm-ink font-semibold">{exp.igStats.following}</strong> following</div>
-                              </div>
-
-                              <div className="grid grid-cols-3 gap-1.5 border-t border-warm-ink/5 pt-2">
-                                <img src="/ig-thumb-1.png" alt="Recent project preview 1" className="aspect-square rounded-lg object-cover w-full h-full border border-warm-ink/5 shadow-sm" />
-                                <img src="/ig-thumb-2.png" alt="Recent project preview 2" className="aspect-square rounded-lg object-cover w-full h-full border border-warm-ink/5 shadow-sm" />
-                                <img src="/ig-thumb-3.png" alt="Recent project preview 3" className="aspect-square rounded-lg object-cover w-full h-full border border-warm-ink/5 shadow-sm" />
-                              </div>
-                            </div>
-                          )}
+                            <Instagram size={11} strokeWidth={2.5} />
+                          </span>
+                          <span className="underline decoration-warm-ink/20 group-hover:decoration-warm-accent">{exp.instagram}</span>
                         </div>
                       ) : exp.private ? (
-                        <div className="flex items-center gap-2 text-[10px] text-warm-ink/50 mt-1">
+                        <div className="flex items-center gap-2 text-[10px] text-warm-ink/50 mt-0.5">
                           <Globe size={12} className="flex-shrink-0" />
                           <span className="italic">{exp.privateText}</span>
                         </div>
                       ) : null}
-                    </motion.div>
-                  ))}
-                </div>
+                    </div>
+                  </motion.div>
+                ))}
               </div>
             </div>
           </div>
