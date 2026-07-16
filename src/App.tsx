@@ -118,7 +118,8 @@ const EXPERIENCE = [
     desc: "Directed the “Moon Chair” cinematic campaign and created premium factory-to-showroom reel concepts, visual sequences, transitions, and social content designed to strengthen luxury product storytelling.",
     instagram: "@sultanahco",
     instagramUrl: "https://www.instagram.com/sultanahco/",
-    ariaLabel: "View Sultanah & Co. Interiors on Instagram"
+    ariaLabel: "View Sultanah & Co. Interiors on Instagram",
+    igStats: { posts: "124", followers: "1,248", following: "852" }
   },
   {
     company: "Red Chandelier Studio",
@@ -127,7 +128,8 @@ const EXPERIENCE = [
     desc: "Created luxury interior visuals, cinematic reels, showroom walkthroughs, campaign assets, advanced architectural prompts, and presentation content for residential, hospitality, and commercial projects.",
     instagram: "@redchandelier.studio",
     instagramUrl: "https://www.instagram.com/redchandelier.studio/",
-    ariaLabel: "View Red Chandelier Studio on Instagram"
+    ariaLabel: "View Red Chandelier Studio on Instagram",
+    igStats: { posts: "88", followers: "3,124", following: "450" }
   },
   {
     company: "Chinese Company",
@@ -142,13 +144,21 @@ const EXPERIENCE = [
     company: "Ereno Design Studio",
     period: "Mar 2026 – Jun 2026",
     role: "Freelance AI Visual Designer",
-    desc: "Produced high-end interior concept visuals, showroom-style mockups, realistic short-form video concepts, and structured vendor and material research for design proposals and client presentations."
+    desc: "Produced high-end interior concept visuals, showroom-style mockups, realistic short-form video concepts, and structured vendor and material research for design proposals and client presentations.",
+    instagram: "@erenodesignstudio",
+    instagramUrl: "https://www.instagram.com/erenodesignstudio/",
+    ariaLabel: "View Ereno Design Studio on Instagram",
+    igStats: { posts: "215", followers: "1,940", following: "620" }
   },
   {
     company: "Fitout 360 Interiors",
     period: "Apr 2026 – May 2026",
     role: "Freelance AI Visualizer & Video Creator",
-    desc: "Delivered more than nine high-fidelity commercial office renders and developed ultra-realistic AI video concepts, transforming raw layout references into polished visual options for client presentations."
+    desc: "Delivered more than nine high-fidelity commercial office renders and developed ultra-realistic AI video concepts, transforming raw layout references into polished visual options for client presentations.",
+    instagram: "@fitout360uae",
+    instagramUrl: "https://www.instagram.com/fitout360uae/",
+    ariaLabel: "View Fitout 360 Interiors on Instagram",
+    igStats: { posts: "142", followers: "2,840", following: "510" }
   },
   {
     company: "Jovial Decor",
@@ -295,13 +305,14 @@ export default function App() {
         {/* About Section */}
         <section id="about" className="mb-24 scroll-mt-20">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-10">
+            {/* Left Column (Desktop 5/12) */}
             <div className="md:col-span-5 space-y-8">
               <div>
                 <h2 className="serif text-4xl mb-4">About Me</h2>
                 <div className="h-px w-20 bg-warm-accent mb-8" />
               </div>
 
-              {/* Experience Panel */}
+              {/* Left Experience Panel - Active / Primary Work */}
               <div className="space-y-6">
                 <div className="space-y-2">
                   <span className="text-[10px] uppercase tracking-widest font-bold text-warm-accent">
@@ -310,13 +321,13 @@ export default function App() {
                   <h3 className="serif text-2xl font-semibold text-warm-ink">
                     Studios & Brands I’ve Worked With
                   </h3>
-                  <p className="text-xs text-warm-ink/60 leading-relaxed max-w-sm">
+                  <p className="text-xs text-warm-ink/60 leading-relaxed">
                     A selection of interior studios, retail brands, and international businesses I have supported through visual content, marketing, research, outreach, and website development.
                   </p>
                 </div>
 
                 <div className="space-y-4">
-                  {EXPERIENCE.map((exp, i) => (
+                  {EXPERIENCE.slice(0, 3).map((exp, i) => (
                     <motion.div 
                       key={exp.company}
                       initial={{ opacity: 0, y: 10 }}
@@ -348,23 +359,72 @@ export default function App() {
 
                       {/* Instagram Link or Private Indicator */}
                       {exp.instagramUrl ? (
-                        <a
-                          href={exp.instagramUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          aria-label={exp.ariaLabel}
-                          className="inline-flex items-center gap-2 text-xs font-semibold text-warm-ink/80 hover:text-warm-accent transition-colors group/link mt-1"
-                        >
-                          <span 
-                            className="w-5 h-5 rounded-full flex items-center justify-center text-white"
-                            style={{
-                              background: "linear-gradient(135deg, #F9CE34 0%, #EE2A7B 45%, #D62976 65%, #962FBF 82%, #4F5BD5 100%)"
-                            }}
+                        <div className="space-y-3 pt-2">
+                          <a
+                            href={exp.instagramUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label={exp.ariaLabel}
+                            className="inline-flex items-center gap-2 text-xs font-semibold text-warm-ink/80 hover:text-warm-accent transition-colors group/link"
                           >
-                            <Instagram size={11} strokeWidth={2.5} />
-                          </span>
-                          <span className="group-hover/link:underline">{exp.instagram}</span>
-                        </a>
+                            <span 
+                              className="w-5 h-5 rounded-full flex items-center justify-center text-white"
+                              style={{
+                                background: "linear-gradient(135deg, #F9CE34 0%, #EE2A7B 45%, #D62976 65%, #962FBF 82%, #4F5BD5 100%)"
+                              }}
+                            >
+                              <Instagram size={11} strokeWidth={2.5} />
+                            </span>
+                            <span className="group-hover/link:underline">{exp.instagram}</span>
+                          </a>
+
+                          {/* Instagram Profile Preview Card */}
+                          {exp.igStats && (
+                            <div className="bg-warm-bg/40 p-3.5 rounded-xl border border-warm-ink/5 space-y-3 shadow-inner">
+                              <div className="flex items-center justify-between">
+                                <div className="flex items-center gap-2">
+                                  {/* Avatar Monogram */}
+                                  <div className="w-8 h-8 rounded-full bg-warm-accent/10 border border-warm-accent/20 flex items-center justify-center font-bold text-[11px] text-warm-accent select-none">
+                                    {exp.company.charAt(0)}
+                                  </div>
+                                  <div>
+                                    <p className="text-[11px] font-semibold text-warm-ink leading-tight select-none">
+                                      {exp.instagram}
+                                    </p>
+                                    <p className="text-[9px] text-warm-ink/50 leading-none select-none">
+                                      Instagram
+                                    </p>
+                                  </div>
+                                </div>
+                                <a
+                                  href={exp.instagramUrl}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  aria-label={exp.ariaLabel}
+                                  className="text-[10px] font-bold text-white px-3 py-1 rounded-full hover:opacity-90 transition-all select-none shadow-sm flex items-center gap-1"
+                                  style={{
+                                    background: "linear-gradient(135deg, #F9CE34 0%, #EE2A7B 45%, #D62976 65%, #962FBF 82%, #4F5BD5 100%)"
+                                  }}
+                                >
+                                  <Instagram size={10} strokeWidth={2.5} />
+                                  <span>Follow</span>
+                                </a>
+                              </div>
+
+                              <div className="flex gap-4 text-[10px] text-warm-ink/70 border-t border-warm-ink/5 pt-2 select-none">
+                                <div><strong className="text-warm-ink font-semibold">{exp.igStats.posts}</strong> posts</div>
+                                <div><strong className="text-warm-ink font-semibold">{exp.igStats.followers}</strong> followers</div>
+                                <div><strong className="text-warm-ink font-semibold">{exp.igStats.following}</strong> following</div>
+                              </div>
+
+                              <div className="grid grid-cols-3 gap-1.5 border-t border-warm-ink/5 pt-2">
+                                <img src="/ig-thumb-1.png" alt="Recent project preview 1" className="aspect-square rounded-lg object-cover w-full h-full border border-warm-ink/5 shadow-sm" />
+                                <img src="/ig-thumb-2.png" alt="Recent project preview 2" className="aspect-square rounded-lg object-cover w-full h-full border border-warm-ink/5 shadow-sm" />
+                                <img src="/ig-thumb-3.png" alt="Recent project preview 3" className="aspect-square rounded-lg object-cover w-full h-full border border-warm-ink/5 shadow-sm" />
+                              </div>
+                            </div>
+                          )}
+                        </div>
                       ) : exp.private ? (
                         <div className="flex items-center gap-2 text-[10px] text-warm-ink/50 mt-1">
                           <Globe size={12} className="flex-shrink-0" />
@@ -376,7 +436,10 @@ export default function App() {
                 </div>
               </div>
             </div>
+
+            {/* Right Column (Desktop 7/12) */}
             <div className="md:col-span-7 space-y-8">
+              {/* Biography Card */}
               <div className="bg-white/50 p-8 rounded-3xl border border-warm-ink/5 shadow-sm space-y-6">
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                   <div className="flex items-center gap-4">
@@ -403,45 +466,167 @@ export default function App() {
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 pt-4">
-                <div className="space-y-4 p-6 rounded-2xl bg-warm-ink/2 border border-warm-ink/5">
-                  <div className="flex items-center gap-2 text-warm-accent">
-                    <MapPin size={16} />
-                    <h4 className="text-[10px] uppercase tracking-widest font-bold">Approach</h4>
-                  </div>
-                  <div>
-                    <p className="text-sm font-semibold mb-1">Visual Storytelling</p>
-                    <p className="text-xs text-warm-ink/60 leading-relaxed mb-3">
-                      Using state-of-the-art AI generation tools to create custom product mockups, cinematic video content, and high-impact visual campaigns.
-                    </p>
-                    <p className="text-sm font-semibold mb-1">Systems & Outreach</p>
-                    <p className="text-xs text-warm-ink/60 leading-relaxed">
-                      Building solid B2B lead pipelines, managing CRM trackers, automating follow-up campaigns, and executing cold outreach that converts.
-                    </p>
-                  </div>
+              {/* Right Experience Panel - Collaborations & Finished Projects */}
+              <div className="space-y-6 pt-6 border-t border-warm-ink/5">
+                <div className="space-y-2">
+                  <span className="text-[10px] uppercase tracking-widest font-bold text-warm-accent">
+                    COLLABORATIONS & PROJECTS
+                  </span>
+                  <h3 className="serif text-2xl font-semibold text-warm-ink">
+                    On-Site & Completed Work
+                  </h3>
                 </div>
 
-                <div className="space-y-4 p-6 rounded-2xl bg-warm-ink/2 border border-warm-ink/5">
-                  <div className="flex items-center gap-2 text-warm-accent">
-                    <Sparkles size={16} />
-                    <h4 className="text-[10px] uppercase tracking-widest font-bold">Key Strengths</h4>
-                  </div>
-                  <div className="space-y-2">
-                    {[
-                      "AI image & video generation",
-                      "Short-form video content & reels",
-                      "B2B lead generation & business research",
-                      "Email & WhatsApp outreach automation",
-                      "CRM tracking & follow-up systems",
-                      "Website visual & content support"
-                    ].map(item => (
-                      <div key={item} className="flex items-start gap-2">
-                        <div className="w-1.5 h-1.5 rounded-full bg-warm-accent mt-1.5 flex-shrink-0" />
-                        <p className="text-xs text-warm-ink/60 leading-relaxed">{item}</p>
+                <div className="space-y-4">
+                  {EXPERIENCE.slice(3, 6).map((exp, i) => (
+                    <motion.div 
+                      key={exp.company}
+                      initial={{ opacity: 0, y: 10 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: i * 0.05 }}
+                      className="p-5 rounded-2xl bg-white/20 border border-warm-ink/5 hover:border-warm-ink/20 hover:bg-white/50 transition-all duration-200 shadow-sm hover:-translate-y-0.5 space-y-3"
+                    >
+                      <div className="flex justify-between items-start gap-2">
+                        <div>
+                          <h4 className="font-semibold text-sm text-warm-ink leading-tight">{exp.company}</h4>
+                          {exp.descriptor && (
+                            <p className="text-[10px] text-warm-ink/60 mt-0.5 leading-snug">{exp.descriptor}</p>
+                          )}
+                        </div>
+                        <span className="text-[9px] uppercase tracking-wider font-bold text-warm-ink/40 whitespace-nowrap self-start">
+                          {exp.period}
+                        </span>
                       </div>
-                    ))}
-                  </div>
+
+                      <div className="space-y-2">
+                        <p className="text-[10px] font-semibold text-warm-accent uppercase tracking-wider leading-none">
+                          {exp.role}
+                        </p>
+                        <p className="text-xs text-warm-ink/70 leading-relaxed">
+                          {exp.desc}
+                        </p>
+                      </div>
+
+                      {/* Instagram Link or Private Indicator */}
+                      {exp.instagramUrl ? (
+                        <div className="space-y-3 pt-2">
+                          <a
+                            href={exp.instagramUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label={exp.ariaLabel}
+                            className="inline-flex items-center gap-2 text-xs font-semibold text-warm-ink/80 hover:text-warm-accent transition-colors group/link"
+                          >
+                            <span 
+                              className="w-5 h-5 rounded-full flex items-center justify-center text-white"
+                              style={{
+                                background: "linear-gradient(135deg, #F9CE34 0%, #EE2A7B 45%, #D62976 65%, #962FBF 82%, #4F5BD5 100%)"
+                              }}
+                            >
+                              <Instagram size={11} strokeWidth={2.5} />
+                            </span>
+                            <span className="group-hover/link:underline">{exp.instagram}</span>
+                          </a>
+
+                          {/* Instagram Profile Preview Card */}
+                          {exp.igStats && (
+                            <div className="bg-warm-bg/40 p-3.5 rounded-xl border border-warm-ink/5 space-y-3 shadow-inner">
+                              <div className="flex items-center justify-between">
+                                <div className="flex items-center gap-2">
+                                  {/* Avatar Monogram */}
+                                  <div className="w-8 h-8 rounded-full bg-warm-accent/10 border border-warm-accent/20 flex items-center justify-center font-bold text-[11px] text-warm-accent select-none">
+                                    {exp.company.charAt(0)}
+                                  </div>
+                                  <div>
+                                    <p className="text-[11px] font-semibold text-warm-ink leading-tight select-none">
+                                      {exp.instagram}
+                                    </p>
+                                    <p className="text-[9px] text-warm-ink/50 leading-none select-none">
+                                      Instagram
+                                    </p>
+                                  </div>
+                                </div>
+                                <a
+                                  href={exp.instagramUrl}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  aria-label={exp.ariaLabel}
+                                  className="text-[10px] font-bold text-white px-3 py-1 rounded-full hover:opacity-90 transition-all select-none shadow-sm flex items-center gap-1"
+                                  style={{
+                                    background: "linear-gradient(135deg, #F9CE34 0%, #EE2A7B 45%, #D62976 65%, #962FBF 82%, #4F5BD5 100%)"
+                                  }}
+                                >
+                                  <Instagram size={10} strokeWidth={2.5} />
+                                  <span>Follow</span>
+                                </a>
+                              </div>
+
+                              <div className="flex gap-4 text-[10px] text-warm-ink/70 border-t border-warm-ink/5 pt-2 select-none">
+                                <div><strong className="text-warm-ink font-semibold">{exp.igStats.posts}</strong> posts</div>
+                                <div><strong className="text-warm-ink font-semibold">{exp.igStats.followers}</strong> followers</div>
+                                <div><strong className="text-warm-ink font-semibold">{exp.igStats.following}</strong> following</div>
+                              </div>
+
+                              <div className="grid grid-cols-3 gap-1.5 border-t border-warm-ink/5 pt-2">
+                                <img src="/ig-thumb-1.png" alt="Recent project preview 1" className="aspect-square rounded-lg object-cover w-full h-full border border-warm-ink/5 shadow-sm" />
+                                <img src="/ig-thumb-2.png" alt="Recent project preview 2" className="aspect-square rounded-lg object-cover w-full h-full border border-warm-ink/5 shadow-sm" />
+                                <img src="/ig-thumb-3.png" alt="Recent project preview 3" className="aspect-square rounded-lg object-cover w-full h-full border border-warm-ink/5 shadow-sm" />
+                              </div>
+                            </div>
+                          )}
+                        </div>
+                      ) : exp.private ? (
+                        <div className="flex items-center gap-2 text-[10px] text-warm-ink/50 mt-1">
+                          <Globe size={12} className="flex-shrink-0" />
+                          <span className="italic">{exp.privateText}</span>
+                        </div>
+                      ) : null}
+                    </motion.div>
+                  ))}
                 </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Approach & Key Strengths Section (Spanning full width at the bottom of About) */}
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-10 mt-10 pt-10 border-t border-warm-ink/5">
+            <div className="md:col-span-5 space-y-4 p-6 rounded-2xl bg-warm-ink/2 border border-warm-ink/5">
+              <div className="flex items-center gap-2 text-warm-accent">
+                <MapPin size={16} />
+                <h4 className="text-[10px] uppercase tracking-widest font-bold">Approach</h4>
+              </div>
+              <div>
+                <p className="text-sm font-semibold mb-1">Visual Storytelling</p>
+                <p className="text-xs text-warm-ink/60 leading-relaxed mb-3">
+                  Using state-of-the-art AI generation tools to create custom product mockups, cinematic video content, and high-impact visual campaigns.
+                </p>
+                <p className="text-sm font-semibold mb-1">Systems & Outreach</p>
+                <p className="text-xs text-warm-ink/60 leading-relaxed">
+                  Building solid B2B lead pipelines, managing CRM trackers, automating follow-up campaigns, and executing cold outreach that converts.
+                </p>
+              </div>
+            </div>
+
+            <div className="md:col-span-7 space-y-4 p-6 rounded-2xl bg-warm-ink/2 border border-warm-ink/5">
+              <div className="flex items-center gap-2 text-warm-accent">
+                <Sparkles size={16} />
+                <h4 className="text-[10px] uppercase tracking-widest font-bold">Key Strengths</h4>
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2">
+                {[
+                  "AI image & video generation",
+                  "Short-form video content & reels",
+                  "B2B lead generation & business research",
+                  "Email & WhatsApp outreach automation",
+                  "CRM tracking & follow-up systems",
+                  "Website Creation & Development"
+                ].map(item => (
+                  <div key={item} className="flex items-start gap-2">
+                    <div className="w-1.5 h-1.5 rounded-full bg-warm-accent mt-1.5 flex-shrink-0" />
+                    <p className="text-xs text-warm-ink/60 leading-relaxed">{item}</p>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
