@@ -169,11 +169,12 @@ export default function App() {
       <main className="max-w-5xl mx-auto px-6 pt-24 pb-16">
         {/* Hero Section */}
         <section id="home" className="mb-20">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
+              className="md:col-span-7"
             >
               <div className="flex items-center gap-2 mb-4">
                 <span className="w-8 h-px bg-warm-accent" />
@@ -226,17 +227,17 @@ export default function App() {
               </div>
             </motion.div>
             
-            {/* Profile image (Complete 9:16 Aspect Ratio) */}
+            {/* Profile image (Wider & Shorter aspect, showing full portrait image) */}
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="relative aspect-[9/16] rounded-[2.5rem] overflow-hidden bg-warm-ink/5 border border-warm-ink/10 max-w-[320px] mx-auto md:ml-auto shadow-2xl shadow-warm-accent/5"
+              className="md:col-span-5 relative aspect-[400/454] rounded-[2.5rem] overflow-hidden bg-white border border-warm-ink/10 w-full max-w-[400px] mx-auto md:ml-auto shadow-2xl shadow-warm-accent/5"
             >
               <img 
                 src="/portrait.jpg" 
                 alt="Portrait of Chaitanya Gaikwad"
-                className="w-full h-full object-cover transition-all duration-700"
+                className="w-full h-full object-contain transition-all duration-700"
                 referrerPolicy="no-referrer"
               />
             </motion.div>
