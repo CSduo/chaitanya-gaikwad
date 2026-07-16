@@ -41,7 +41,7 @@ const WhatsAppIcon = (props: React.SVGProps<SVGSVGElement>) => (
     fill="currentColor"
     {...props}
   >
-    <path d="M12.004 2C6.48 2 2 6.48 2 12.004c0 1.762.455 3.486 1.32 5.012L2 22l5.128-1.327c1.474.808 3.128 1.233 4.876 1.233 5.524 0 10.004-4.48 10.004-10.004C22.008 6.48 17.528 2 12.004 2zm0 18.294c-1.574 0-3.118-.42-4.47-1.218l-.32-.19-3.32.86.874-3.2-.21-.334c-.876-1.396-1.34-3.018-1.34-4.708 0-4.838 3.934-8.772 8.772-8.772 4.838 0 8.772 3.934 8.772 8.772 0 4.838-3.934 8.772-8.772 8.772zm4.81-6.57c-.264-.132-1.564-.77-1.806-.858-.242-.088-.418-.132-.594.132-.176.264-.682.858-.836 1.034-.154.176-.308.198-.572.066-1.078-.538-1.884-.962-2.634-2.25-.198-.338.198-.314.568-.14.132.06.264.132.396.264.132.132.176.264.088.44-.088.176-.44.88-.538 1.1-.098.22-.198.242-.462.11-1.3-.642-1.93-1.21-2.434-2.146-.15-.262-.016-.402.106-.524.11-.11.242-.264.364-.396.12-.132.164-.22.242-.374.078-.154.038-.286-.018-.396-.056-.11-.538-1.298-.738-1.782-.194-.472-.39-.408-.538-.416-.14-.008-.3-.008-.462-.008-.162 0-.426.06-.648.304-.22.242-.84.82-.84 2.002s.862 2.32.982 2.482c.12.162 1.696 2.584 4.108 3.624.574.248 1.022.396 1.37.506.578.184 1.104.158 1.514.098.458-.066 1.408-.576 1.606-1.134.198-.558.198-1.038.138-1.138-.06-.1-.22-.198-.484-.33z" />
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.335-1.662c1.746.953 3.71 1.458 5.704 1.459h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
   </svg>
 );
 
@@ -743,21 +743,10 @@ export default function App() {
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
-              className="md:col-span-7 space-y-6"
+              className="md:col-span-6 space-y-6"
             >
               <h1 className="serif text-5xl lg:text-7xl leading-none">
-                <span className="hidden md:flex md:items-center md:flex-wrap gap-3">
-                  <span>Xiyàto Sāanvī</span>
-                  <span className="text-warm-ink/30 font-light select-none text-2xl lg:text-4xl">│</span>
-                  <span>Chaitanya Gaikwad</span>
-                </span>
-                
-                {/* Mobile layout */}
-                <span className="flex md:hidden flex-col items-start gap-1">
-                  <span>Xiyàto Sāanvī</span>
-                  <span className="w-16 h-px bg-warm-ink/20 my-2" />
-                  <span>Chaitanya Gaikwad</span>
-                </span>
+                Chaitanya Gaikwad
               </h1>
               <p className="text-[10px] uppercase tracking-[0.3em] font-bold text-warm-accent">
                 AI Tools Expert • Visual Content Creator • Marketing & B2B Specialist
@@ -772,19 +761,34 @@ export default function App() {
                 </p>
               </div>
               
-              <div className="flex flex-wrap gap-4 pt-4">
-                <a 
-                  href="#projects" 
-                  className="bg-warm-accent text-white px-6 py-3 rounded-full text-xs uppercase tracking-wider font-semibold hover:bg-warm-accent/90 transition-colors"
-                >
-                  View Portfolio
-                </a>
-                <a 
-                  href="#contact" 
-                  className="border border-warm-ink/20 text-warm-ink px-6 py-3 rounded-full text-xs uppercase tracking-wider font-semibold hover:bg-warm-ink/5 transition-colors"
-                >
-                  Let's Connect
-                </a>
+              <div className="space-y-4 pt-4">
+                <div className="flex flex-wrap gap-4">
+                  <a 
+                    href="#projects" 
+                    className="bg-warm-accent text-white px-6 py-3 rounded-full text-xs uppercase tracking-wider font-semibold hover:bg-warm-accent/90 transition-colors"
+                  >
+                    View Portfolio
+                  </a>
+                  <a 
+                    href="#contact" 
+                    className="border border-warm-ink/20 text-warm-ink px-6 py-3 rounded-full text-xs uppercase tracking-wider font-semibold hover:bg-warm-ink/5 transition-colors"
+                  >
+                    Let's Connect
+                  </a>
+                </div>
+                <div className="pt-2">
+                  <a 
+                    href="https://wa.me/447882746212"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2.5 bg-[#25D366]/10 text-green-800 border border-[#25D366]/20 px-6 py-3 rounded-full text-xs font-semibold hover:bg-[#25D366]/15 transition-all shadow-sm group/wa"
+                  >
+                    <span className="w-5 h-5 rounded-full bg-[#25D366] text-white flex items-center justify-center shadow-sm group-hover/wa:scale-105 transition-transform duration-300">
+                      <WhatsAppIcon className="w-3 h-3" />
+                    </span>
+                    <span className="font-mono tracking-wide underline underline-offset-4 decoration-green-800/20 group-hover/wa:decoration-green-800">+44 7882 746212</span>
+                  </a>
+                </div>
               </div>
             </motion.div>
             
@@ -793,11 +797,11 @@ export default function App() {
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="md:col-span-5 relative aspect-[4/5] rounded-[3rem] overflow-hidden bg-warm-ink/5 border border-warm-ink/10 max-w-sm mx-auto md:ml-auto shadow-2xl shadow-warm-accent/5"
+              className="md:col-span-6 relative aspect-[9/16] rounded-[3rem] overflow-hidden bg-warm-ink/5 border border-warm-ink/10 max-w-sm mx-auto md:ml-auto shadow-2xl shadow-warm-accent/5"
             >
               <img 
                 src="/portrait.jpg" 
-                alt="Portrait of Xiyàto Sāanvī and Chaitanya Gaikwad"
+                alt="Portrait of Chaitanya Gaikwad"
                 className="w-full h-full object-cover hover:scale-[1.02] transition-transform duration-700"
                 referrerPolicy="no-referrer"
               />
@@ -1181,13 +1185,13 @@ export default function App() {
             </button>
             <div 
               onClick={(e) => e.stopPropagation()} 
-              className="relative max-w-4xl w-full max-h-[85vh] overflow-hidden rounded-[2rem] bg-black shadow-2xl cursor-default"
+              className="relative max-h-[85vh] max-w-[90vw] md:max-w-4xl flex items-center justify-center rounded-[2rem] overflow-hidden bg-black shadow-2xl cursor-default"
             >
               <video
                 src={activeVideoUrl}
                 autoPlay
                 controls
-                className="w-full h-full object-contain mx-auto"
+                className="max-h-[85vh] max-w-full block"
               />
             </div>
           </motion.div>

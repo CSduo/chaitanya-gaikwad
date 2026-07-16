@@ -79,11 +79,11 @@ export const WEBSITES: Project[] = [
       "B2B Presentation",
       "Lead Capture",
       "International Brand",
-      "Available for Acquisition"
+      "Foreign Trade"
     ],
     thumbnail: "/sakura-bg.png", // Reuses sakura visual as a premium background style
     poster: "/sakura-bg.png",
-    status: "Available for Acquisition",
+    status: "Completed",
     featured: true,
     order: 2,
     liveUrl: "https://xiyora.vercel.app"
