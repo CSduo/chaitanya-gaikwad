@@ -186,7 +186,7 @@ export default function App() {
               </h1>
 
               {/* Professional Introduction */}
-              <div className="space-y-4 max-w-xl mb-8">
+              <div className="space-y-4 max-w-[480px] mb-8">
                 <p className="text-lg font-semibold text-warm-ink leading-snug">
                   AI Tools Expert, Visual Content Creator, and Marketing & B2B Specialist.
                 </p>
@@ -196,7 +196,7 @@ export default function App() {
               </div>
 
               {/* Expanded Clickable Social buttons */}
-              <div className="flex flex-wrap gap-4">
+              <div className="flex flex-col gap-3 w-full max-w-[280px]">
                 <motion.a
                   href="https://www.instagram.com/xiyato22"
                   target="_blank"
@@ -206,7 +206,7 @@ export default function App() {
                   aria-label="Visit on Instagram"
                   className="flex items-center gap-3 px-5 py-3 rounded-full border border-warm-ink/15 hover:border-warm-accent hover:text-warm-accent transition-all bg-white/40 shadow-sm text-sm font-semibold"
                 >
-                  <Instagram size={18} />
+                  <Instagram size={18} className="flex-shrink-0" />
                   <span>@xiyato22</span>
                 </motion.a>
 
@@ -219,7 +219,7 @@ export default function App() {
                   aria-label="Message on WhatsApp"
                   className="flex items-center gap-3 px-5 py-3 rounded-full border border-warm-ink/15 hover:border-warm-accent hover:text-warm-accent transition-all bg-white/40 shadow-sm text-sm font-semibold"
                 >
-                  <div className="w-4.5 h-4.5 flex items-center justify-center">
+                  <div className="w-4.5 h-4.5 flex items-center justify-center flex-shrink-0">
                     <WhatsAppIcon className="w-full h-full" />
                   </div>
                   <span className="font-sans tracking-wide">+44 7882 746212</span>
