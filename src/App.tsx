@@ -628,48 +628,104 @@ export default function App() {
 
   const renderVisualisationsPage = () => {
     const renders = getProjectsByCategory("3D Renders & Visualisations");
+    const spatialRenders = renders.filter(r => r.subcategory === "3D Renders" || r.id.startsWith("render-"));
+    const visualisations = renders.filter(r => r.subcategory === "Visualisations" || r.id.startsWith("vis-"));
+
     return (
-      <div className="max-w-5xl mx-auto px-6 py-24">
-        <a href="#projects" className="inline-flex items-center gap-2 text-[10px] uppercase tracking-widest font-semibold hover:text-warm-accent transition-colors mb-12">
-          <ArrowLeft size={12} /> Back to Projects
-        </a>
+      <div className="max-w-5xl mx-auto px-6 py-24 space-y-16">
+        <div>
+          <a href="#projects" className="inline-flex items-center gap-2 text-[10px] uppercase tracking-widest font-semibold hover:text-warm-accent transition-colors mb-12">
+            <ArrowLeft size={12} /> Back to Projects
+          </a>
 
-        <div className="mb-16">
-          <span className="text-[10px] uppercase tracking-[0.2em] text-warm-accent font-bold mb-3 block">Category Portfolio</span>
-          <h1 className="serif text-5xl mb-6">3D Renders & Visualisations</h1>
-          <p className="text-sm text-warm-ink/60 leading-relaxed max-w-2xl">
-            High-fidelity concept renders exploring texture matching, lighting, and interior planning. Click on any render panel to launch the lightbox.
-          </p>
+          <div className="mb-12">
+            <span className="text-[10px] uppercase tracking-[0.2em] text-warm-accent font-bold mb-3 block">Category Portfolio</span>
+            <h1 className="serif text-5xl mb-6">3D Renders & Visualisations</h1>
+            <p className="text-sm text-warm-ink/60 leading-relaxed max-w-2xl">
+              High-fidelity 3D spatial concept renders and visualisations exploring texture matching, lighting design, and creative composition. Click on any panel to launch the lightbox.
+            </p>
+          </div>
         </div>
 
-        {/* Masonry or structured grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-          {renders.map((ren, idx) => (
-            <motion.div
-              key={ren.id}
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: idx * 0.05 }}
-              onClick={() => setLightboxIndex(idx)}
-              className="bg-white/40 p-2 rounded-[2rem] border border-warm-ink/5 cursor-pointer group flex flex-col justify-between"
-            >
-              <div className="aspect-[4/3] rounded-[1.8rem] overflow-hidden bg-warm-ink/5 relative">
-                <img
-                  src={ren.thumbnail}
-                  alt={ren.title}
-                  className="w-full h-full object-cover filter brightness-[0.95] group-hover:scale-[1.03] transition-transform duration-500"
-                />
-                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300" />
-              </div>
-              <div className="px-4 py-4">
-                <span className="text-[8px] uppercase tracking-wider text-warm-accent font-bold block mb-1">
-                  {ren.subcategory}
-                </span>
-                <h3 className="serif text-lg font-semibold">{ren.title}</h3>
-              </div>
-            </motion.div>
-          ))}
-        </div>
+        {/* Section 1: 3D Renders */}
+        <section className="space-y-6">
+          <div className="border-b border-warm-ink/10 pb-4 flex items-center justify-between">
+            <h2 className="serif text-3xl">3D Renders</h2>
+            <span className="text-[10px] uppercase tracking-wider font-bold text-warm-accent bg-warm-accent/10 px-3 py-1 rounded-full">
+              {spatialRenders.length} Concepts
+            </span>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+            {spatialRenders.map((ren) => {
+              const globalIdx = renders.findIndex(r => r.id === ren.id);
+              return (
+                <motion.div
+                  key={ren.id}
+                  initial={{ opacity: 0, y: 15 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  onClick={() => setLightboxIndex(globalIdx)}
+                  className="bg-white/40 p-2 rounded-[2rem] border border-warm-ink/5 cursor-pointer group flex flex-col justify-between"
+                >
+                  <div className="aspect-[4/3] rounded-[1.8rem] overflow-hidden bg-warm-ink/5 relative">
+                    <img
+                      src={ren.thumbnail}
+                      alt={ren.title}
+                      loading="lazy"
+                      className="w-full h-full object-cover filter brightness-[0.95] group-hover:scale-[1.03] transition-transform duration-500"
+                    />
+                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300" />
+                  </div>
+                  <div className="px-4 py-4">
+                    <span className="text-[8px] uppercase tracking-wider text-warm-accent font-bold block mb-1">
+                      {ren.subcategory}
+                    </span>
+                    <h3 className="serif text-lg font-semibold">{ren.title}</h3>
+                  </div>
+                </motion.div>
+              );
+            })}
+          </div>
+        </section>
+
+        {/* Section 2: Visualisations */}
+        <section className="space-y-6 pt-6">
+          <div className="border-b border-warm-ink/10 pb-4 flex items-center justify-between">
+            <h2 className="serif text-3xl">Visualisations</h2>
+            <span className="text-[10px] uppercase tracking-wider font-bold text-warm-accent bg-warm-accent/10 px-3 py-1 rounded-full">
+              {visualisations.length} Concepts
+            </span>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+            {visualisations.map((ren) => {
+              const globalIdx = renders.findIndex(r => r.id === ren.id);
+              return (
+                <motion.div
+                  key={ren.id}
+                  initial={{ opacity: 0, y: 15 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  onClick={() => setLightboxIndex(globalIdx)}
+                  className="bg-white/40 p-2 rounded-[2rem] border border-warm-ink/5 cursor-pointer group flex flex-col justify-between"
+                >
+                  <div className="aspect-[4/3] rounded-[1.8rem] overflow-hidden bg-warm-ink/5 relative">
+                    <img
+                      src={ren.thumbnail}
+                      alt={ren.title}
+                      loading="lazy"
+                      className="w-full h-full object-cover filter brightness-[0.95] group-hover:scale-[1.03] transition-transform duration-500"
+                    />
+                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300" />
+                  </div>
+                  <div className="px-4 py-4">
+                    <span className="text-[8px] uppercase tracking-wider text-warm-accent font-bold block mb-1">
+                      {ren.subcategory}
+                    </span>
+                    <h3 className="serif text-lg font-semibold">{ren.title}</h3>
+                  </div>
+                </motion.div>
+              );
+            })}
+          </div>
+        </section>
       </div>
     );
   };
