@@ -926,19 +926,33 @@ export default function App() {
             </p>
           </div>
           
-          <div>
+          <div className="flex flex-wrap gap-4 justify-center">
             <a 
               href="https://wa.me/447882746212?text=Hello%2C%20I%20am%20interested%20in%20Ciyato%20and%20would%20like%20to%20learn%20more%20about%20the%20startup."
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="Enquire about Ciyato on WhatsApp"
-              className="inline-flex items-center gap-2.5 bg-[#25D366]/10 text-green-800 border border-[#25D366]/20 px-8 py-4 rounded-full text-xs font-semibold hover:bg-[#25D366]/15 transition-all shadow-sm group/wa"
+              aria-label="Enquire about Ciyato on WhatsApp UK"
+              className="inline-flex items-center gap-2.5 bg-[#25D366]/10 text-green-800 border border-[#25D366]/20 px-6 py-4 rounded-full text-xs font-semibold hover:bg-[#25D366]/15 transition-all shadow-sm group/wa"
             >
               <span className="w-6 h-6 rounded-full bg-[#25D366] text-white flex items-center justify-center shadow-sm group-hover/wa:scale-105 transition-transform duration-300">
                 <WhatsAppIcon className="w-3.5 h-3.5" />
               </span>
               <span className="font-mono tracking-wide underline underline-offset-4 decoration-green-800/20 group-hover/wa:decoration-green-800">
-                Enquire About Ciyato
+                WhatsApp +44 7882 746212
+              </span>
+            </a>
+            <a 
+              href="https://wa.me/917028311226?text=Hello%2C%20I%20am%20interested%20in%20Ciyato%20and%20would%20like%20to%20learn%20more%20about%20the%20startup."
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Enquire about Ciyato on WhatsApp India"
+              className="inline-flex items-center gap-2.5 bg-[#25D366]/10 text-green-800 border border-[#25D366]/20 px-6 py-4 rounded-full text-xs font-semibold hover:bg-[#25D366]/15 transition-all shadow-sm group/wa"
+            >
+              <span className="w-6 h-6 rounded-full bg-[#25D366] text-white flex items-center justify-center shadow-sm group-hover/wa:scale-105 transition-transform duration-300">
+                <WhatsAppIcon className="w-3.5 h-3.5" />
+              </span>
+              <span className="font-mono tracking-wide underline underline-offset-4 decoration-green-800/20 group-hover/wa:decoration-green-800">
+                WhatsApp +91 70283 11226
               </span>
             </a>
           </div>
@@ -995,17 +1009,28 @@ export default function App() {
                       Let's Connect
                     </a>
                   </div>
-                  <div className="pt-2">
+                  <div className="pt-2 flex flex-wrap justify-center gap-3">
                     <a 
                       href="https://wa.me/447882746212"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2.5 bg-[#25D366]/10 text-green-800 border border-[#25D366]/20 px-6 py-3 rounded-full text-xs font-semibold hover:bg-[#25D366]/15 transition-all shadow-sm group/wa"
+                      className="inline-flex items-center gap-2.5 bg-[#25D366]/10 text-green-800 border border-[#25D366]/20 px-5 py-2.5 rounded-full text-xs font-semibold hover:bg-[#25D366]/15 transition-all shadow-sm group/wa"
                     >
                       <span className="w-5 h-5 rounded-full bg-[#25D366] text-white flex items-center justify-center shadow-sm group-hover/wa:scale-105 transition-transform duration-300">
                         <WhatsAppIcon className="w-3 h-3" />
                       </span>
                       <span className="font-mono tracking-wide underline underline-offset-4 decoration-green-800/20 group-hover/wa:decoration-green-800">+44 7882 746212</span>
+                    </a>
+                    <a 
+                      href="https://wa.me/917028311226"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2.5 bg-[#25D366]/10 text-green-800 border border-[#25D366]/20 px-5 py-2.5 rounded-full text-xs font-semibold hover:bg-[#25D366]/15 transition-all shadow-sm group/wa"
+                    >
+                      <span className="w-5 h-5 rounded-full bg-[#25D366] text-white flex items-center justify-center shadow-sm group-hover/wa:scale-105 transition-transform duration-300">
+                        <WhatsAppIcon className="w-3 h-3" />
+                      </span>
+                      <span className="font-mono tracking-wide underline underline-offset-4 decoration-green-800/20 group-hover/wa:decoration-green-800">+91 70283 11226</span>
                     </a>
                   </div>
                 </div>
@@ -1315,6 +1340,19 @@ export default function App() {
                   </span>
                   <span className="underline underline-offset-8 decoration-warm-ink/20 group-hover/wa:decoration-warm-accent">
                     +44 7882 746212
+                  </span>
+                </a>
+                <a 
+                  href="https://wa.me/917028311226"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-3 font-sans text-2xl font-semibold tracking-wide text-warm-ink hover:text-warm-accent transition-colors self-start group/wa"
+                >
+                  <span className="w-8 h-8 rounded-full bg-[#25D366] text-white flex items-center justify-center shadow-md flex-shrink-0 group-hover/wa:scale-105 transition-transform duration-300">
+                    <WhatsAppIcon className="w-5 h-5" />
+                  </span>
+                  <span className="underline underline-offset-8 decoration-warm-ink/20 group-hover/wa:decoration-warm-accent">
+                    +91 70283 11226
                   </span>
                 </a>
                 <a 
