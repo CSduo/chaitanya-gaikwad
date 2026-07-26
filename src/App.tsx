@@ -1035,14 +1035,14 @@ export default function App() {
                 Chaitanya Gaikwad
               </h1>
               <div className="flex flex-col gap-1.5 text-[10px] uppercase tracking-[0.3em] font-bold text-warm-accent">
-                <span>AI Tools Expert</span>
+                <span>AI Visual Designer</span>
                 <span>Marketing & B2B Specialist</span>
                 <span>Visual Content Creator</span>
               </div>
               
               <div className="space-y-4 text-warm-ink/75 leading-relaxed">
                 <p className="text-lg font-semibold text-warm-ink leading-snug">
-                  AI Tools Expert, Visual Content Creator, and Marketing & B2B Specialist.
+                  AI Visual Designer, Visual Content Creator, and Marketing & B2B Specialist.
                 </p>
                 <p className="text-sm">
                   I help brands and businesses improve how they present themselves, market their services, connect with potential clients, and grow through modern digital systems. My work includes AI-powered visuals, short-form videos, website content and support, creative direction, B2B lead generation, business research, outreach campaigns, CRM-style tracking, automation, and digital marketing execution. I combine visual storytelling, emerging AI tools, marketing strategy, and practical business support to turn ideas into professional content and measurable growth opportunities.
