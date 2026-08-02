@@ -173,22 +173,59 @@ interface VideoCardProps {
   vid: Project;
   idx: number;
   onExpand: (url: string) => void;
+  activePlayingId: string | null;
+  setActivePlayingId: (id: string | null) => void;
+  isModalOpen: boolean;
 }
 
-function VideoCard({ vid, idx, onExpand }: VideoCardProps) {
-  const [playing, setPlaying] = useState(true);
+function VideoCard({ vid, idx, onExpand, activePlayingId, setActivePlayingId, isModalOpen }: VideoCardProps) {
   const [muted, setMuted] = useState(true);
+  const containerRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
+
+  const isPlaying = activePlayingId === vid.id && !isModalOpen;
+
+  // IntersectionObserver to auto-play only when front-and-center in viewport
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !isModalOpen) {
+          setActivePlayingId(vid.id);
+        } else if (!entry.isIntersecting && activePlayingId === vid.id) {
+          setActivePlayingId(null);
+        }
+      },
+      { threshold: 0.5 }
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [vid.id, activePlayingId, isModalOpen, setActivePlayingId]);
+
+  // Sync HTML5 video play/pause state with isPlaying flag
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    if (isPlaying) {
+      const playPromise = video.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(() => {});
+      }
+    } else {
+      video.pause();
+    }
+  }, [isPlaying]);
 
   const togglePlay = (e: React.MouseEvent) => {
     e.stopPropagation();
-    if (videoRef.current) {
-      if (playing) {
-        videoRef.current.pause();
-      } else {
-        videoRef.current.play().catch((err) => console.log(err));
-      }
-      setPlaying(!playing);
+    if (isPlaying) {
+      setActivePlayingId(null);
+    } else {
+      setActivePlayingId(vid.id);
     }
   };
 
@@ -208,6 +245,7 @@ function VideoCard({ vid, idx, onExpand }: VideoCardProps) {
       className="bg-white/40 p-2 rounded-[2.5rem] border border-warm-ink/5 flex flex-col justify-between group"
     >
       <div 
+        ref={containerRef}
         onClick={() => onExpand(vid.media || "")}
         className="relative rounded-[2.3rem] overflow-hidden bg-warm-ink/5 cursor-pointer group/vidbox aspect-[9/16] flex items-center justify-center"
       >
@@ -215,23 +253,23 @@ function VideoCard({ vid, idx, onExpand }: VideoCardProps) {
           ref={videoRef}
           src={vid.media}
           poster={vid.poster}
-          autoPlay
           loop
           muted={muted}
           playsInline
+          preload="metadata"
           className="w-full h-full object-cover"
         />
 
-        {/* Dynamic controls overlay: always visible or on hover, styled as floating glass circles */}
+        {/* Dynamic controls overlay: floating glass pill */}
         <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between bg-black/45 backdrop-blur-md px-4 py-2 rounded-full border border-white/10 opacity-0 group-hover/vidbox:opacity-100 transition-opacity duration-300 z-10">
           <div className="flex items-center gap-3">
             {/* Play/Pause Button */}
             <button 
               onClick={togglePlay}
               className="text-white hover:text-warm-accent transition-colors p-1"
-              aria-label={playing ? "Pause video" : "Play video"}
+              aria-label={isPlaying ? "Pause video" : "Play video"}
             >
-              {playing ? <Pause size={14} className="fill-current" /> : <Play size={14} className="fill-current translate-x-0.5" />}
+              {isPlaying ? <Pause size={14} className="fill-current" /> : <Play size={14} className="fill-current translate-x-0.5" />}
             </button>
 
             {/* Mute/Unmute Button */}
@@ -374,6 +412,8 @@ export default function App() {
   };
 
   // RENDER DYNAMIC SUBPAGES
+  const [activePlayingId, setActivePlayingId] = useState<string | null>(null);
+
   const renderVideosPage = () => {
     const videos = getProjectsByCategory("Cinematic Videos");
     return (
@@ -392,7 +432,15 @@ export default function App() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {videos.map((vid, idx) => (
-            <VideoCard key={vid.id} vid={vid} idx={idx} onExpand={(url) => setActiveVideoUrl(url)} />
+            <VideoCard 
+              key={vid.id} 
+              vid={vid} 
+              idx={idx} 
+              onExpand={(url) => setActiveVideoUrl(url)} 
+              activePlayingId={activePlayingId}
+              setActivePlayingId={setActivePlayingId}
+              isModalOpen={activeVideoUrl !== null}
+            />
           ))}
         </div>
       </div>
@@ -1098,7 +1146,7 @@ export default function App() {
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="md:col-span-6 relative aspect-[9/16] rounded-[3rem] overflow-hidden bg-warm-ink/5 border border-warm-ink/10 max-w-sm mx-auto md:ml-auto shadow-2xl shadow-warm-accent/5"
+              className="md:col-span-6 relative aspect-square rounded-[3rem] overflow-hidden bg-warm-ink/5 border border-warm-ink/10 max-w-sm mx-auto md:ml-auto shadow-2xl shadow-warm-accent/5"
             >
               <img 
                 src="/portrait.jpg" 
