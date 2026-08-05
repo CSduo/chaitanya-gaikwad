@@ -26,7 +26,8 @@ import {
   VolumeX,
   Maximize2,
   ChevronLeft,
-  ChevronRight
+  ChevronRight,
+  FileCode
 } from "lucide-react";
 import { CATEGORIES, getProjectsByCategory, Project, CIYATO_SCREENSHOTS } from "./data/projects";
 import { CadAutomationSection } from "./components/CadAutomationSection";
@@ -1183,6 +1184,7 @@ export default function App() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {CATEGORIES.map((cat, idx) => {
               const bgImages = [
+                "url('/portfolio/cad-automation/hero-plan.webp')",
                 "url('/projects/posters/sultanah-co-moon-chair-cinematic-campaign-poster.webp')",
                 "url('/projects/posters/excel-placeholder-poster.webp')",
                 "url('/projects/renders/render-2.webp')",

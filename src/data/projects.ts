@@ -119,6 +119,13 @@ export const WEBSITES: Project[] = [
 
 export const CATEGORIES = [
   {
+    id: "cad-automation",
+    title: "AI-Powered CAD Automation",
+    subtitle: "Architectural & Interior CAD Drafting",
+    desc: "AI-assisted AutoCAD drafting transforming measurements, hand sketches, and design references into editable DWG, DXF, and PDF drawing packages.",
+    route: "#/cad-automation"
+  },
+  {
     id: "videos",
     title: "Cinematic Videos",
     subtitle: "AI-Assisted Films, Reels & Product Stories",
