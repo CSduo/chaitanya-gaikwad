@@ -1081,9 +1081,9 @@ export default function App() {
   // MAIN HOMEPAGE RENDERING
   const renderMainPage = () => {
     return (
-      <main className="max-w-5xl mx-auto px-6 pt-24 font-sans">
+      <main className="max-w-6xl mx-auto px-6 pt-24 font-sans">
         {/* Home Hero Section */}
-        <section id="home" className="py-16 md:py-24 border-b border-warm-ink/10 space-y-10">
+        <section id="home" className="py-16 md:py-24 border-b border-warm-ink/10 space-y-12">
           {/* Top Header Row: Name & Badges on Left, Portrait on Right */}
           <motion.div
             initial={{ opacity: 0, y: -15 }}
@@ -1092,23 +1092,23 @@ export default function App() {
             className="flex flex-row items-center justify-between gap-6 md:gap-12"
           >
             {/* Left Side: Name and Badges */}
-            <div className="space-y-4 flex-1">
-              <h1 className="serif text-4xl sm:text-6xl lg:text-7xl leading-none">
-                Chaitanya<br className="hidden sm:block" /> Gaikwad
+            <div className="space-y-5 flex-1 min-w-0">
+              <h1 className="serif text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl leading-none tracking-tight">
+                Chaitanya Gaikwad
               </h1>
-              <div className="flex flex-col gap-1 text-[9px] sm:text-[10px] uppercase tracking-[0.25em] font-bold text-warm-accent">
+              <div className="flex flex-col gap-1.5 text-[9px] sm:text-[11px] md:text-[12px] uppercase tracking-[0.25em] font-bold text-warm-accent">
                 <span>AI Visual Designer</span>
                 <span>Marketing & B2B Specialist</span>
                 <span>Visual Content Creator</span>
               </div>
             </div>
 
-            {/* Right Side: Portrait Image */}
+            {/* Right Side: Enlarged Portrait Image on PC */}
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="relative w-36 h-36 sm:w-52 sm:h-52 md:w-64 md:h-64 rounded-[2rem] sm:rounded-[3rem] overflow-hidden bg-warm-ink/5 border border-warm-ink/10 shadow-xl shadow-warm-accent/5 flex-shrink-0"
+              className="relative w-36 h-36 sm:w-56 sm:h-56 md:w-72 md:h-72 lg:w-80 lg:h-80 xl:w-96 xl:h-96 rounded-[2rem] sm:rounded-[3.5rem] overflow-hidden bg-warm-ink/5 border border-warm-ink/10 shadow-2xl shadow-warm-accent/5 flex-shrink-0"
             >
               <img 
                 src="/portrait.jpg" 
