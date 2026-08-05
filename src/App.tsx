@@ -25,13 +25,13 @@ import {
   Volume2,
   VolumeX,
   Maximize2,
-  Download,
   ChevronLeft,
   ChevronRight
 } from "lucide-react";
 import { CATEGORIES, getProjectsByCategory, Project, CIYATO_SCREENSHOTS } from "./data/projects";
+import { CadAutomationSection } from "./components/CadAutomationSection";
 
-const NAV_ITEMS = ["Home", "About", "Services", "Projects", "Startup", "Contact"];
+const NAV_ITEMS = ["Home", "About", "CAD Automation", "Services", "Projects", "Startup", "Contact"];
 
 const WhatsAppIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg
@@ -399,17 +399,29 @@ export default function App() {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [startupLightboxIndex]);
 
-  // Check if we are on a project detail page, category page, or startup page
-  const isSubRoute = currentHash.startsWith("#/projects/") || currentHash === "#/startup" || currentHash === "#startup";
+  // Check if we are on a project detail page, category page, startup page, or CAD automation route
+  const isSubRoute = currentHash.startsWith("#/projects/") || currentHash === "#/startup" || currentHash === "#startup" || currentHash === "#/cad-automation" || currentHash === "#cad-automation";
 
   const handleNavLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, item: string) => {
     setMobileMenuOpen(false);
+    const sectionId = item.toLowerCase().replace(/\s+/g, '-');
     if (isSubRoute) {
-      // If on a sub-route, let it navigate back to the main homepage sections
+      // If on a sub-route, navigate back to the main homepage section
       e.preventDefault();
-      window.location.hash = `#${item.toLowerCase()}`;
+      window.location.hash = `#${sectionId}`;
     }
   };
+
+  const renderCadAutomationStandalonePage = () => (
+    <div className="max-w-5xl mx-auto px-6 pt-24 pb-16 font-sans">
+      <div>
+        <a href="#home" className="inline-flex items-center gap-2 text-[10px] uppercase tracking-widest font-semibold hover:text-warm-accent transition-colors mb-6">
+          <ArrowLeft size={12} /> Back to Home
+        </a>
+      </div>
+      <CadAutomationSection />
+    </div>
+  );
 
   // RENDER DYNAMIC SUBPAGES
   const [activePlayingId, setActivePlayingId] = useState<string | null>(null);
@@ -1158,6 +1170,9 @@ export default function App() {
           </div>
         </section>
 
+        {/* AI-Powered CAD Automation Section */}
+        <CadAutomationSection />
+
         {/* Projects Category Portal Section */}
         <section id="projects" className="py-24 border-b border-warm-ink/10 scroll-mt-20">
           <div className="mb-12">
@@ -1524,7 +1539,7 @@ export default function App() {
             {NAV_ITEMS.map((item) => (
               <a 
                 key={item} 
-                href={`#${item.toLowerCase()}`}
+                href={`#${item.toLowerCase().replace(/\s+/g, '-')}`}
                 onClick={(e) => handleNavLinkClick(e, item)}
                 className="text-[10px] uppercase tracking-widest hover:text-warm-accent transition-colors font-semibold"
               >
@@ -1552,7 +1567,7 @@ export default function App() {
             {NAV_ITEMS.map((item) => (
               <a 
                 key={item} 
-                href={`#${item.toLowerCase()}`}
+                href={`#${item.toLowerCase().replace(/\s+/g, '-')}`}
                 onClick={(e) => handleNavLinkClick(e, item)}
                 className="text-xs uppercase tracking-widest font-semibold hover:text-warm-accent transition-colors"
               >
@@ -1567,6 +1582,8 @@ export default function App() {
       <div className="flex-1 bg-warm-bg">
         {currentHash === "#/startup" || currentHash === "#startup" ? (
           renderStartupPage()
+        ) : currentHash === "#/cad-automation" || currentHash === "#cad-automation" ? (
+          renderCadAutomationStandalonePage()
         ) : currentHash === "#/" || !isSubRoute ? (
           renderMainPage()
         ) : currentHash === "#/projects/videos" ? (
