@@ -1171,9 +1171,6 @@ export default function App() {
           </div>
         </section>
 
-        {/* AI-Powered CAD Automation Section */}
-        <CadAutomationSection />
-
         {/* Projects Category Portal Section */}
         <section id="projects" className="py-24 border-b border-warm-ink/10 scroll-mt-20">
           <div className="mb-12">

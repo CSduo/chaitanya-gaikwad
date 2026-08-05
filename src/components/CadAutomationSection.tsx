@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { 
   FileCode, 
@@ -11,7 +11,9 @@ import {
   Sparkles, 
   ShieldCheck, 
   FolderCheck,
-  FileText
+  FileText,
+  ChevronLeft,
+  ChevronRight
 } from "lucide-react";
 
 const WhatsAppIcon = (props: React.SVGProps<SVGSVGElement>) => (
@@ -26,12 +28,84 @@ const WhatsAppIcon = (props: React.SVGProps<SVGSVGElement>) => (
   </svg>
 );
 
+export interface CadImageItem {
+  src: string;
+  title: string;
+  category?: string;
+}
+
 export function CadAutomationSection() {
-  const [activePreview, setActivePreview] = useState<{ src: string; title: string } | null>(null);
+  // Lightbox carousel state
+  const [activeGallery, setActiveGallery] = useState<CadImageItem[] | null>(null);
+  const [currentIndex, setCurrentIndex] = useState<number>(0);
 
   const whatsappMessage = encodeURIComponent(
     "Hello, I would like to discuss an AI-assisted AutoCAD drafting project. I have a plan/reference and need editable CAD drawings."
   );
+
+  // Gallery collections for each project
+  const HERO_GALLERY: CadImageItem[] = [
+    { src: "/portfolio/cad-automation/hero-plan.webp", title: "Master Bathroom - General Layout Plan", category: "Plan Drawing" },
+    { src: "/portfolio/cad-automation/hero-elevation.webp", title: "Master Bathroom - Bathtub & Window Elevation", category: "Wall Elevation" },
+    { src: "/portfolio/cad-automation/cigar-lounge-ceiling.webp", title: "Cigar Lounge - Reflected Ceiling Plan (RCP)", category: "Ceiling Plan" },
+    { src: "/portfolio/cad-automation/cigar-lounge-flooring.webp", title: "Cigar Lounge - Herringbone Flooring Plan", category: "Flooring Plan" }
+  ];
+
+  const MASTER_BATHROOM_GALLERY: CadImageItem[] = [
+    { src: "/portfolio/cad-automation/master-bathroom-plan.webp", title: "Master Bathroom - General Arrangement Plan", category: "Plan Drawing" },
+    { src: "/portfolio/cad-automation/master-bathroom-elevation.webp", title: "Master Bathroom - Wall 1: Bathtub & Window Elevation", category: "Elevation" },
+    { src: "/portfolio/cad-automation/master-bathroom-vanity.webp", title: "Master Bathroom - Wall 2: Vanity & WC Wall Elevation", category: "Elevation" },
+    { src: "/portfolio/cad-automation/master-bathroom-shower.webp", title: "Master Bathroom - Wall 3: Walk-in Shower Wall Elevation", category: "Elevation" },
+    { src: "/portfolio/cad-automation/master-bathroom-render-input.webp", title: "Client Reference - 3D Visual Render", category: "Input Material" },
+    { src: "/portfolio/cad-automation/master-bathroom-plan-input.webp", title: "Client Reference - Measured Hand Sketch & CAD Notes", category: "Input Material" }
+  ];
+
+  const CIGAR_LOUNGE_GALLERY: CadImageItem[] = [
+    { src: "/portfolio/cad-automation/cigar-lounge-layout.webp", title: "Cigar Lounge - General Furniture Layout", category: "Plan Drawing" },
+    { src: "/portfolio/cad-automation/cigar-lounge-ceiling.webp", title: "Cigar Lounge - Reflected Ceiling Plan (RCP)", category: "Ceiling Plan" },
+    { src: "/portfolio/cad-automation/cigar-lounge-flooring.webp", title: "Cigar Lounge - Herringbone Flooring Layout", category: "Flooring Plan" }
+  ];
+
+  const FEATURE_WALL_GALLERY: CadImageItem[] = [
+    { src: "/portfolio/cad-automation/feature-wall-overview.webp", title: "Custom Interior Walls - General Arrangement & Layout", category: "General Layout" },
+    { src: "/portfolio/cad-automation/toilet-elevations.webp", title: "Toilet Feature Wall - Vanity & Mirror Elevation Details", category: "Elevation" },
+    { src: "/portfolio/cad-automation/wash-elevations.webp", title: "Wash Feature Wall - Decorative Panelling & Fixture Elevation", category: "Elevation" },
+    { src: "/portfolio/cad-automation/stair-wall-detail.webp", title: "Stair Feature Wall - Architectural Joinery Construction Detail", category: "Construction Detail" }
+  ];
+
+  const BEFORE_AFTER_GALLERY: CadImageItem[] = [
+    { src: "/portfolio/cad-automation/master-bathroom-render-input.webp", title: "Client Input - Visual 3D Render Reference", category: "Client Reference" },
+    { src: "/portfolio/cad-automation/master-bathroom-plan-input.webp", title: "Client Input - Dimensioned Layout & Markups", category: "Client Reference" },
+    { src: "/portfolio/cad-automation/master-bathroom-plan.webp", title: "Editable CAD Output - Vector General Arrangement Plan", category: "Vector DWG / DXF" },
+    { src: "/portfolio/cad-automation/master-bathroom-elevation.webp", title: "Editable CAD Output - Vector Wall Elevation with Dimensions", category: "Vector DWG / DXF" }
+  ];
+
+  const openLightbox = (gallery: CadImageItem[], index: number = 0) => {
+    setActiveGallery(gallery);
+    setCurrentIndex(index);
+  };
+
+  const handleNext = () => {
+    if (!activeGallery) return;
+    setCurrentIndex((prev) => (prev + 1) % activeGallery.length);
+  };
+
+  const handlePrev = () => {
+    if (!activeGallery) return;
+    setCurrentIndex((prev) => (prev - 1 + activeGallery.length) % activeGallery.length);
+  };
+
+  // Keyboard navigation
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (!activeGallery) return;
+      if (e.key === "ArrowRight") handleNext();
+      if (e.key === "ArrowLeft") handlePrev();
+      if (e.key === "Escape") setActiveGallery(null);
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [activeGallery]);
 
   return (
     <section id="cad-automation" className="py-24 border-b border-warm-ink/10 scroll-mt-20 space-y-24">
@@ -68,74 +142,28 @@ export function CadAutomationSection() {
         <div className="lg:col-span-6 relative">
           <div className="relative aspect-[4/3] rounded-[2.5rem] overflow-hidden bg-white border border-warm-ink/10 shadow-xl p-4 flex flex-col justify-between group">
             <div className="grid grid-cols-2 gap-3 h-full">
-              {/* Plan Card */}
-              <div 
-                onClick={() => setActivePreview({ src: "/portfolio/cad-automation/hero-plan.webp", title: "General Layout Plan" })}
-                className="relative rounded-2xl overflow-hidden bg-warm-ink/5 border border-warm-ink/10 cursor-pointer group/card aspect-[4/3] shadow-sm"
-              >
-                <img 
-                  src="/portfolio/cad-automation/hero-plan.webp" 
-                  alt="General Plan CAD Preview"
-                  loading="lazy"
-                  className="w-full h-full object-cover group-hover/card:scale-105 transition-transform duration-500"
-                />
-                <div className="absolute bottom-2 left-2 bg-black/60 backdrop-blur-md px-2.5 py-1 rounded-full text-[9px] font-bold text-white tracking-widest uppercase">
-                  PLAN
+              {HERO_GALLERY.map((img, idx) => (
+                <div 
+                  key={idx}
+                  onClick={() => openLightbox(HERO_GALLERY, idx)}
+                  className="relative rounded-2xl overflow-hidden bg-warm-ink/5 border border-warm-ink/10 cursor-pointer group/card aspect-[4/3] shadow-sm"
+                >
+                  <img 
+                    src={img.src} 
+                    alt={img.title}
+                    loading="lazy"
+                    className="w-full h-full object-cover group-hover/card:scale-105 transition-transform duration-500"
+                  />
+                  <div className="absolute bottom-2 left-2 bg-black/65 backdrop-blur-md px-2.5 py-1 rounded-full text-[9px] font-bold text-white tracking-widest uppercase">
+                    {img.category}
+                  </div>
                 </div>
-              </div>
-
-              {/* Elevation Card */}
-              <div 
-                onClick={() => setActivePreview({ src: "/portfolio/cad-automation/hero-elevation.webp", title: "Wall Elevation" })}
-                className="relative rounded-2xl overflow-hidden bg-warm-ink/5 border border-warm-ink/10 cursor-pointer group/card aspect-[4/3] shadow-sm"
-              >
-                <img 
-                  src="/portfolio/cad-automation/hero-elevation.webp" 
-                  alt="Wall Elevation CAD Preview"
-                  loading="lazy"
-                  className="w-full h-full object-cover group-hover/card:scale-105 transition-transform duration-500"
-                />
-                <div className="absolute bottom-2 left-2 bg-black/60 backdrop-blur-md px-2.5 py-1 rounded-full text-[9px] font-bold text-white tracking-widest uppercase">
-                  ELEVATION
-                </div>
-              </div>
-
-              {/* Ceiling Card */}
-              <div 
-                onClick={() => setActivePreview({ src: "/portfolio/cad-automation/cigar-lounge-ceiling.webp", title: "Reflected Ceiling Plan" })}
-                className="relative rounded-2xl overflow-hidden bg-warm-ink/5 border border-warm-ink/10 cursor-pointer group/card aspect-[4/3] shadow-sm"
-              >
-                <img 
-                  src="/portfolio/cad-automation/cigar-lounge-ceiling.webp" 
-                  alt="Reflected Ceiling Plan CAD Preview"
-                  loading="lazy"
-                  className="w-full h-full object-cover group-hover/card:scale-105 transition-transform duration-500"
-                />
-                <div className="absolute bottom-2 left-2 bg-black/60 backdrop-blur-md px-2.5 py-1 rounded-full text-[9px] font-bold text-white tracking-widest uppercase">
-                  CEILING
-                </div>
-              </div>
-
-              {/* Flooring Card */}
-              <div 
-                onClick={() => setActivePreview({ src: "/portfolio/cad-automation/cigar-lounge-flooring.webp", title: "Herringbone Flooring Plan" })}
-                className="relative rounded-2xl overflow-hidden bg-warm-ink/5 border border-warm-ink/10 cursor-pointer group/card aspect-[4/3] shadow-sm"
-              >
-                <img 
-                  src="/portfolio/cad-automation/cigar-lounge-flooring.webp" 
-                  alt="Herringbone Flooring Plan CAD Preview"
-                  loading="lazy"
-                  className="w-full h-full object-cover group-hover/card:scale-105 transition-transform duration-500"
-                />
-                <div className="absolute bottom-2 left-2 bg-black/60 backdrop-blur-md px-2.5 py-1 rounded-full text-[9px] font-bold text-white tracking-widest uppercase">
-                  FLOORING
-                </div>
-              </div>
+              ))}
             </div>
             
             <div className="pt-3 flex justify-between items-center text-[10px] text-warm-ink/60 uppercase tracking-wider font-semibold border-t border-warm-ink/5">
-              <span>AutoCAD DWG / DXF Output</span>
-              <span>Click previews to expand</span>
+              <span>AutoCAD DWG / DXF Output (4 Sheets)</span>
+              <span className="text-warm-accent font-bold">Click any preview to browse carousel →</span>
             </div>
           </div>
         </div>
@@ -149,48 +177,44 @@ export function CadAutomationSection() {
             <h3 className="serif text-4xl">Featured Projects</h3>
           </div>
           <span className="text-xs text-warm-ink/50 font-semibold hidden md:block">
-            Editable DWG + DXF + Vector PDF Deliverables
+            Click cards or thumbnails to launch full drawing gallery
           </span>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* PROJECT 1 */}
-          <div className="p-6 rounded-[2.5rem] bg-white border border-warm-ink/5 shadow-sm space-y-6 flex flex-col justify-between hover:border-warm-accent/30 transition-colors">
+          <div className="p-6 rounded-[2.5rem] bg-white border border-warm-ink/5 shadow-sm space-y-6 flex flex-col justify-between hover:border-warm-accent/30 transition-all duration-300 group">
             <div className="space-y-4">
               {/* Previews Grid */}
-              <div className="grid grid-cols-2 gap-2 aspect-[4/3] rounded-[1.8rem] overflow-hidden bg-warm-ink/5 p-1.5 border border-warm-ink/10">
-                <img 
-                  src="/portfolio/cad-automation/master-bathroom-plan.webp" 
-                  alt="Master Bathroom Plan Preview"
-                  loading="lazy"
-                  onClick={() => setActivePreview({ src: "/portfolio/cad-automation/master-bathroom-plan.webp", title: "Master Bathroom Plan" })}
-                  className="w-full h-full object-cover rounded-xl cursor-pointer hover:scale-[1.03] transition-transform duration-300"
-                />
-                <img 
-                  src="/portfolio/cad-automation/master-bathroom-elevation.webp" 
-                  alt="Bathtub and Window Elevation Preview"
-                  loading="lazy"
-                  onClick={() => setActivePreview({ src: "/portfolio/cad-automation/master-bathroom-elevation.webp", title: "Bathtub & Window Elevation" })}
-                  className="w-full h-full object-cover rounded-xl cursor-pointer hover:scale-[1.03] transition-transform duration-300"
-                />
-                <img 
-                  src="/portfolio/cad-automation/master-bathroom-vanity.webp" 
-                  alt="Vanity and WC Elevation Preview"
-                  loading="lazy"
-                  onClick={() => setActivePreview({ src: "/portfolio/cad-automation/master-bathroom-vanity.webp", title: "Vanity & WC Wall Elevation" })}
-                  className="w-full h-full object-cover rounded-xl cursor-pointer hover:scale-[1.03] transition-transform duration-300"
-                />
-                <img 
-                  src="/portfolio/cad-automation/master-bathroom-shower.webp" 
-                  alt="Shower Wall Elevation Preview"
-                  loading="lazy"
-                  onClick={() => setActivePreview({ src: "/portfolio/cad-automation/master-bathroom-shower.webp", title: "Shower Wall Elevation" })}
-                  className="w-full h-full object-cover rounded-xl cursor-pointer hover:scale-[1.03] transition-transform duration-300"
-                />
+              <div 
+                onClick={() => openLightbox(MASTER_BATHROOM_GALLERY, 0)}
+                className="grid grid-cols-2 gap-2 aspect-[4/3] rounded-[1.8rem] overflow-hidden bg-warm-ink/5 p-1.5 border border-warm-ink/10 cursor-pointer relative"
+              >
+                {MASTER_BATHROOM_GALLERY.slice(0, 4).map((img, idx) => (
+                  <img 
+                    key={idx}
+                    src={img.src} 
+                    alt={img.title}
+                    loading="lazy"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      openLightbox(MASTER_BATHROOM_GALLERY, idx);
+                    }}
+                    className="w-full h-full object-cover rounded-xl hover:scale-[1.04] transition-transform duration-300"
+                  />
+                ))}
+                <div className="absolute bottom-3 right-3 bg-black/75 backdrop-blur-md text-white px-2.5 py-1 rounded-full text-[9px] font-mono font-bold">
+                  + 6 Drawings
+                </div>
               </div>
 
               <div>
-                <h4 className="serif text-2xl font-semibold mb-2">Master Bathroom CAD Package</h4>
+                <h4 
+                  onClick={() => openLightbox(MASTER_BATHROOM_GALLERY, 0)}
+                  className="serif text-2xl font-semibold mb-2 cursor-pointer hover:text-warm-accent transition-colors"
+                >
+                  Master Bathroom CAD Package
+                </h4>
                 <p className="text-xs text-warm-ink/75 leading-relaxed">
                   An editable bathroom drawing package developed from a measured plan and interior-design references. The package included the general arrangement, four wall elevations, sanitary-fixture coordination, window setting-out and professional presentation sheets.
                 </p>
@@ -207,35 +231,55 @@ export function CadAutomationSection() {
           </div>
 
           {/* PROJECT 2 */}
-          <div className="p-6 rounded-[2.5rem] bg-white border border-warm-ink/5 shadow-sm space-y-6 flex flex-col justify-between hover:border-warm-accent/30 transition-colors">
+          <div className="p-6 rounded-[2.5rem] bg-white border border-warm-ink/5 shadow-sm space-y-6 flex flex-col justify-between hover:border-warm-accent/30 transition-all duration-300 group">
             <div className="space-y-4">
               {/* Previews Grid */}
-              <div className="grid grid-cols-2 gap-2 aspect-[4/3] rounded-[1.8rem] overflow-hidden bg-warm-ink/5 p-1.5 border border-warm-ink/10">
+              <div 
+                onClick={() => openLightbox(CIGAR_LOUNGE_GALLERY, 0)}
+                className="grid grid-cols-2 gap-2 aspect-[4/3] rounded-[1.8rem] overflow-hidden bg-warm-ink/5 p-1.5 border border-warm-ink/10 cursor-pointer relative"
+              >
                 <img 
-                  src="/portfolio/cad-automation/cigar-lounge-layout.webp" 
-                  alt="General Lounge Layout Preview"
+                  src={CIGAR_LOUNGE_GALLERY[0].src} 
+                  alt={CIGAR_LOUNGE_GALLERY[0].title}
                   loading="lazy"
-                  onClick={() => setActivePreview({ src: "/portfolio/cad-automation/cigar-lounge-layout.webp", title: "General Lounge Layout" })}
-                  className="w-full h-full object-cover rounded-xl cursor-pointer hover:scale-[1.03] transition-transform duration-300 col-span-2 aspect-[16/9]"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    openLightbox(CIGAR_LOUNGE_GALLERY, 0);
+                  }}
+                  className="w-full h-full object-cover rounded-xl hover:scale-[1.04] transition-transform duration-300 col-span-2 aspect-[16/9]"
                 />
                 <img 
-                  src="/portfolio/cad-automation/cigar-lounge-ceiling.webp" 
-                  alt="Reflected Ceiling Plan Preview"
+                  src={CIGAR_LOUNGE_GALLERY[1].src} 
+                  alt={CIGAR_LOUNGE_GALLERY[1].title}
                   loading="lazy"
-                  onClick={() => setActivePreview({ src: "/portfolio/cad-automation/cigar-lounge-ceiling.webp", title: "Reflected Ceiling Plan" })}
-                  className="w-full h-full object-cover rounded-xl cursor-pointer hover:scale-[1.03] transition-transform duration-300"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    openLightbox(CIGAR_LOUNGE_GALLERY, 1);
+                  }}
+                  className="w-full h-full object-cover rounded-xl hover:scale-[1.04] transition-transform duration-300"
                 />
                 <img 
-                  src="/portfolio/cad-automation/cigar-lounge-flooring.webp" 
-                  alt="Herringbone Flooring Plan Preview"
+                  src={CIGAR_LOUNGE_GALLERY[2].src} 
+                  alt={CIGAR_LOUNGE_GALLERY[2].title}
                   loading="lazy"
-                  onClick={() => setActivePreview({ src: "/portfolio/cad-automation/cigar-lounge-flooring.webp", title: "Herringbone Flooring Plan" })}
-                  className="w-full h-full object-cover rounded-xl cursor-pointer hover:scale-[1.03] transition-transform duration-300"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    openLightbox(CIGAR_LOUNGE_GALLERY, 2);
+                  }}
+                  className="w-full h-full object-cover rounded-xl hover:scale-[1.04] transition-transform duration-300"
                 />
+                <div className="absolute bottom-3 right-3 bg-black/75 backdrop-blur-md text-white px-2.5 py-1 rounded-full text-[9px] font-mono font-bold">
+                  3 CAD Drawings
+                </div>
               </div>
 
               <div>
-                <h4 className="serif text-2xl font-semibold mb-2">Cigar Lounge Ceiling & Flooring</h4>
+                <h4 
+                  onClick={() => openLightbox(CIGAR_LOUNGE_GALLERY, 0)}
+                  className="serif text-2xl font-semibold mb-2 cursor-pointer hover:text-warm-accent transition-colors"
+                >
+                  Cigar Lounge Ceiling & Flooring
+                </h4>
                 <p className="text-xs text-warm-ink/75 leading-relaxed">
                   A reflected ceiling and flooring package created from a supplied furniture layout and luxury interior references. The work included a coordinated coffered-ceiling concept, lighting arrangement and editable herringbone flooring pattern.
                 </p>
@@ -252,35 +296,55 @@ export function CadAutomationSection() {
           </div>
 
           {/* PROJECT 3 */}
-          <div className="p-6 rounded-[2.5rem] bg-white border border-warm-ink/5 shadow-sm space-y-6 flex flex-col justify-between hover:border-warm-accent/30 transition-colors">
+          <div className="p-6 rounded-[2.5rem] bg-white border border-warm-ink/5 shadow-sm space-y-6 flex flex-col justify-between hover:border-warm-accent/30 transition-all duration-300 group">
             <div className="space-y-4">
               {/* Previews Grid */}
-              <div className="grid grid-cols-2 gap-2 aspect-[4/3] rounded-[1.8rem] overflow-hidden bg-warm-ink/5 p-1.5 border border-warm-ink/10">
+              <div 
+                onClick={() => openLightbox(FEATURE_WALL_GALLERY, 0)}
+                className="grid grid-cols-2 gap-2 aspect-[4/3] rounded-[1.8rem] overflow-hidden bg-warm-ink/5 p-1.5 border border-warm-ink/10 cursor-pointer relative"
+              >
                 <img 
-                  src="/portfolio/cad-automation/feature-wall-overview.webp" 
-                  alt="Three Wall Trial Preview"
+                  src={FEATURE_WALL_GALLERY[0].src} 
+                  alt={FEATURE_WALL_GALLERY[0].title}
                   loading="lazy"
-                  onClick={() => setActivePreview({ src: "/portfolio/cad-automation/feature-wall-overview.webp", title: "General Arrangement & Feature Wall" })}
-                  className="w-full h-full object-cover rounded-xl cursor-pointer hover:scale-[1.03] transition-transform duration-300 col-span-2 aspect-[16/9]"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    openLightbox(FEATURE_WALL_GALLERY, 0);
+                  }}
+                  className="w-full h-full object-cover rounded-xl hover:scale-[1.04] transition-transform duration-300 col-span-2 aspect-[16/9]"
                 />
                 <img 
-                  src="/portfolio/cad-automation/toilet-elevations.webp" 
-                  alt="Toilet Feature Wall Elevation"
+                  src={FEATURE_WALL_GALLERY[1].src} 
+                  alt={FEATURE_WALL_GALLERY[1].title}
                   loading="lazy"
-                  onClick={() => setActivePreview({ src: "/portfolio/cad-automation/toilet-elevations.webp", title: "Toilet Feature Wall Elevations" })}
-                  className="w-full h-full object-cover rounded-xl cursor-pointer hover:scale-[1.03] transition-transform duration-300"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    openLightbox(FEATURE_WALL_GALLERY, 1);
+                  }}
+                  className="w-full h-full object-cover rounded-xl hover:scale-[1.04] transition-transform duration-300"
                 />
                 <img 
-                  src="/portfolio/cad-automation/stair-wall-detail.webp" 
-                  alt="Stair Wall Detail Preview"
+                  src={FEATURE_WALL_GALLERY[3].src} 
+                  alt={FEATURE_WALL_GALLERY[3].title}
                   loading="lazy"
-                  onClick={() => setActivePreview({ src: "/portfolio/cad-automation/stair-wall-detail.webp", title: "Stair Wall Detail" })}
-                  className="w-full h-full object-cover rounded-xl cursor-pointer hover:scale-[1.03] transition-transform duration-300"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    openLightbox(FEATURE_WALL_GALLERY, 3);
+                  }}
+                  className="w-full h-full object-cover rounded-xl hover:scale-[1.04] transition-transform duration-300"
                 />
+                <div className="absolute bottom-3 right-3 bg-black/75 backdrop-blur-md text-white px-2.5 py-1 rounded-full text-[9px] font-mono font-bold">
+                  4 Wall Packages
+                </div>
               </div>
 
               <div>
-                <h4 className="serif text-2xl font-semibold mb-2">Custom Interior Wall Drafting</h4>
+                <h4 
+                  onClick={() => openLightbox(FEATURE_WALL_GALLERY, 0)}
+                  className="serif text-2xl font-semibold mb-2 cursor-pointer hover:text-warm-accent transition-colors"
+                >
+                  Custom Interior Wall Drafting
+                </h4>
                 <p className="text-xs text-warm-ink/75 leading-relaxed">
                   Editable feature-wall drawings developed from interior references, confirmed overall dimensions and project-specific design instructions. The workflow supports TV units, display walls, decorative panelling, cabinetry, mirrors and under-stair wall compositions.
                 </p>
@@ -307,7 +371,10 @@ export function CadAutomationSection() {
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
           {/* Left Side: Client Input */}
-          <div className="lg:col-span-5 space-y-4 p-6 rounded-[2rem] bg-warm-ink/5 border border-warm-ink/10">
+          <div 
+            onClick={() => openLightbox(BEFORE_AFTER_GALLERY, 0)}
+            className="lg:col-span-5 space-y-4 p-6 rounded-[2rem] bg-warm-ink/5 border border-warm-ink/10 cursor-pointer hover:border-warm-accent/40 transition-colors"
+          >
             <div className="flex justify-between items-center">
               <span className="text-[10px] uppercase tracking-widest font-bold text-warm-ink/60">Client Input</span>
               <span className="text-[9px] font-mono bg-warm-ink/10 px-2 py-0.5 rounded text-warm-ink/60">Reference Materials</span>
@@ -317,13 +384,13 @@ export function CadAutomationSection() {
                 src="/portfolio/cad-automation/master-bathroom-render-input.webp" 
                 alt="Client 3D Render Reference"
                 loading="lazy"
-                className="w-full h-full object-cover rounded-xl opacity-90"
+                className="w-full h-full object-cover rounded-xl opacity-90 hover:scale-105 transition-transform duration-300"
               />
               <img 
                 src="/portfolio/cad-automation/master-bathroom-plan-input.webp" 
                 alt="Client Dimension Sketch Input"
                 loading="lazy"
-                className="w-full h-full object-cover rounded-xl opacity-90"
+                className="w-full h-full object-cover rounded-xl opacity-90 hover:scale-105 transition-transform duration-300"
               />
             </div>
             <ul className="text-xs text-warm-ink/70 space-y-1 font-mono">
@@ -342,7 +409,10 @@ export function CadAutomationSection() {
           </div>
 
           {/* Right Side: Editable CAD Output */}
-          <div className="lg:col-span-5 space-y-4 p-6 rounded-[2rem] bg-white border border-warm-accent/20 shadow-md">
+          <div 
+            onClick={() => openLightbox(BEFORE_AFTER_GALLERY, 2)}
+            className="lg:col-span-5 space-y-4 p-6 rounded-[2rem] bg-white border border-warm-accent/20 shadow-md cursor-pointer hover:border-warm-accent transition-colors"
+          >
             <div className="flex justify-between items-center">
               <span className="text-[10px] uppercase tracking-widest font-bold text-warm-accent">Editable CAD Output</span>
               <span className="text-[9px] font-mono bg-warm-accent/10 text-warm-accent px-2 py-0.5 rounded font-bold">DWG / DXF / PDF</span>
@@ -352,7 +422,7 @@ export function CadAutomationSection() {
                 src="/portfolio/cad-automation/master-bathroom-plan.webp" 
                 alt="Clean Vector CAD Plan Output"
                 loading="lazy"
-                className="w-full h-full object-cover rounded-xl"
+                className="w-full h-full object-cover rounded-xl hover:scale-105 transition-transform duration-300"
               />
               <div className="absolute top-3 right-3 bg-black/75 text-white backdrop-blur-md px-3 py-1 rounded-full text-[9px] font-mono">
                 Editable Geometry + Layers
@@ -523,13 +593,12 @@ export function CadAutomationSection() {
           </a>
 
           {/* Secondary Button */}
-          <a 
-            href="#cad-automation" 
-            onClick={() => setActivePreview({ src: "/portfolio/cad-automation/master-bathroom-plan.webp", title: "Master Bathroom Plan Sample" })}
+          <button 
+            onClick={() => openLightbox(MASTER_BATHROOM_GALLERY, 0)}
             className="border border-warm-ink/20 text-warm-ink px-8 py-4 rounded-full text-xs font-semibold uppercase tracking-wider hover:bg-warm-ink/5 transition-colors"
           >
             View Drawing Samples
-          </a>
+          </button>
         </div>
       </div>
 
@@ -540,39 +609,105 @@ export function CadAutomationSection() {
         </p>
       </div>
 
-      {/* FULLSCREEN CAD PREVIEW LIGHTBOX */}
+      {/* INTERACTIVE MULTI-IMAGE CAROUSEL LIGHTBOX MODAL */}
       <AnimatePresence>
-        {activePreview && (
+        {activeGallery && activeGallery.length > 0 && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            onClick={() => setActivePreview(null)}
-            className="fixed inset-0 z-50 bg-black/90 backdrop-blur-md flex items-center justify-center p-4 cursor-pointer"
+            onClick={() => setActiveGallery(null)}
+            className="fixed inset-0 z-50 bg-black/95 backdrop-blur-lg flex items-center justify-center p-4 md:p-8 cursor-pointer select-none"
           >
+            {/* Close Button */}
             <button 
-              onClick={() => setActivePreview(null)}
-              className="absolute top-6 right-6 text-white/70 hover:text-white transition-colors z-10"
-              aria-label="Close preview"
+              onClick={() => setActiveGallery(null)}
+              className="absolute top-6 right-6 text-white/70 hover:text-white bg-white/10 hover:bg-white/20 p-2.5 rounded-full transition-all z-20"
+              aria-label="Close drawing viewer"
             >
-              <X size={28} />
+              <X size={24} />
             </button>
 
+            {/* Left Navigation Arrow */}
+            {activeGallery.length > 1 && (
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handlePrev();
+                }}
+                className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 bg-white/10 hover:bg-white/25 text-white p-3 md:p-4 rounded-full backdrop-blur-md transition-all z-20 hover:scale-110"
+                aria-label="Previous drawing"
+              >
+                <ChevronLeft size={28} />
+              </button>
+            )}
+
+            {/* Right Navigation Arrow */}
+            {activeGallery.length > 1 && (
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleNext();
+                }}
+                className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 bg-white/10 hover:bg-white/25 text-white p-3 md:p-4 rounded-full backdrop-blur-md transition-all z-20 hover:scale-110"
+                aria-label="Next drawing"
+              >
+                <ChevronRight size={28} />
+              </button>
+            )}
+
+            {/* Main Lightbox Content Card */}
             <div 
               onClick={(e) => e.stopPropagation()}
-              className="relative max-h-[90vh] max-w-[95vw] md:max-w-5xl bg-white p-3 rounded-[2.5rem] shadow-2xl space-y-3 cursor-default"
+              className="relative max-h-[92vh] w-full max-w-5xl bg-neutral-900 rounded-[2.5rem] p-4 md:p-6 shadow-2xl flex flex-col justify-between space-y-4 border border-white/10 cursor-default"
             >
-              <div className="aspect-[4/3] rounded-[2rem] overflow-hidden bg-neutral-100 flex items-center justify-center max-h-[80vh]">
+              {/* Image Header info */}
+              <div className="flex justify-between items-center px-2 border-b border-white/10 pb-3">
+                <div className="space-y-0.5">
+                  <span className="text-[10px] font-mono uppercase tracking-widest text-warm-accent font-bold block">
+                    {activeGallery[currentIndex].category || "CAD Drawing Package"}
+                  </span>
+                  <h3 className="serif text-xl md:text-2xl text-white font-semibold">
+                    {activeGallery[currentIndex].title}
+                  </h3>
+                </div>
+                <div className="text-[11px] font-mono bg-white/10 text-white/80 px-3 py-1 rounded-full border border-white/10">
+                  {currentIndex + 1} / {activeGallery.length}
+                </div>
+              </div>
+
+              {/* Main Image Display View */}
+              <div className="relative flex-1 rounded-2xl overflow-hidden bg-black flex items-center justify-center min-h-[50vh] max-h-[68vh] p-2">
                 <img 
-                  src={activePreview.src} 
-                  alt={activePreview.title}
-                  className="max-h-[80vh] w-auto max-w-full object-contain"
+                  key={currentIndex}
+                  src={activeGallery[currentIndex].src} 
+                  alt={activeGallery[currentIndex].title}
+                  className="max-h-[66vh] w-auto max-w-full object-contain rounded-lg transition-all duration-300"
                 />
               </div>
-              <div className="px-4 py-2 flex justify-between items-center">
-                <span className="serif text-xl font-semibold text-warm-ink">{activePreview.title}</span>
-                <span className="text-[9px] font-mono uppercase tracking-widest text-warm-accent font-bold">AutoCAD Vector Drawing</span>
-              </div>
+
+              {/* Bottom Thumbnail Carousel Strip */}
+              {activeGallery.length > 1 && (
+                <div className="flex gap-2.5 overflow-x-auto py-2 px-1 justify-center scrollbar-none border-t border-white/10 pt-3">
+                  {activeGallery.map((thumb, idx) => (
+                    <button
+                      key={idx}
+                      onClick={() => setCurrentIndex(idx)}
+                      className={`relative w-16 h-12 md:w-20 md:h-14 rounded-xl overflow-hidden flex-shrink-0 border-2 transition-all duration-200 ${
+                        idx === currentIndex 
+                          ? "border-warm-accent scale-105 shadow-md" 
+                          : "border-transparent opacity-50 hover:opacity-100"
+                      }`}
+                    >
+                      <img 
+                        src={thumb.src} 
+                        alt={thumb.title}
+                        className="w-full h-full object-cover"
+                      />
+                    </button>
+                  ))}
+                </div>
+              )}
             </div>
           </motion.div>
         )}
