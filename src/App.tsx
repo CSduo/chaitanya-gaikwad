@@ -1083,83 +1083,32 @@ export default function App() {
     return (
       <main className="max-w-5xl mx-auto px-6 pt-24 font-sans">
         {/* Home Hero Section */}
-        <section id="home" className="py-20 md:py-32 flex flex-col justify-center min-h-[70vh] border-b border-warm-ink/10">
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
-            {/* Bio Content */}
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-              className="md:col-span-6 space-y-6"
-            >
-              <h1 className="serif text-5xl lg:text-7xl leading-none">
-                Chaitanya Gaikwad
+        <section id="home" className="py-16 md:py-24 border-b border-warm-ink/10 space-y-10">
+          {/* Top Header Row: Name & Badges on Left, Portrait on Right */}
+          <motion.div
+            initial={{ opacity: 0, y: -15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="flex flex-row items-center justify-between gap-6 md:gap-12"
+          >
+            {/* Left Side: Name and Badges */}
+            <div className="space-y-4 flex-1">
+              <h1 className="serif text-4xl sm:text-6xl lg:text-7xl leading-none">
+                Chaitanya<br className="hidden sm:block" /> Gaikwad
               </h1>
-              <div className="flex flex-col gap-1.5 text-[10px] uppercase tracking-[0.3em] font-bold text-warm-accent">
+              <div className="flex flex-col gap-1 text-[9px] sm:text-[10px] uppercase tracking-[0.25em] font-bold text-warm-accent">
                 <span>AI Visual Designer</span>
                 <span>Marketing & B2B Specialist</span>
                 <span>Visual Content Creator</span>
               </div>
-              
-              <div className="space-y-4 text-warm-ink/75 leading-relaxed">
-                <p className="text-lg font-semibold text-warm-ink leading-snug">
-                  AI Visual Designer, Visual Content Creator, and Marketing & B2B Specialist.
-                </p>
-                <p className="text-sm">
-                  I help brands and businesses improve how they present themselves, market their services, connect with potential clients, and grow through modern digital systems. My work includes AI-powered visuals, short-form videos, website content and support, creative direction, B2B lead generation, business research, outreach campaigns, CRM-style tracking, automation, and digital marketing execution. I combine visual storytelling, emerging AI tools, marketing strategy, and practical business support to turn ideas into professional content and measurable growth opportunities.
-                </p>
-              </div>
-              
-              <div className="pt-4 flex flex-col items-center md:items-start">
-                <div className="flex flex-col items-center gap-3">
-                  <div className="flex flex-wrap gap-4 justify-center">
-                    <a 
-                      href="#projects" 
-                      className="bg-warm-accent text-white px-6 py-3 rounded-full text-xs uppercase tracking-wider font-semibold hover:bg-warm-accent/90 transition-colors"
-                    >
-                      View Portfolio
-                    </a>
-                    <a 
-                      href="#contact" 
-                      className="border border-warm-ink/20 text-warm-ink px-6 py-3 rounded-full text-xs uppercase tracking-wider font-semibold hover:bg-warm-ink/5 transition-colors"
-                    >
-                      Let's Connect
-                    </a>
-                  </div>
-                  <div className="pt-2 flex flex-wrap justify-center gap-3">
-                    <a 
-                      href="https://wa.me/447882746212"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2.5 bg-[#25D366]/10 text-green-800 border border-[#25D366]/20 px-5 py-2.5 rounded-full text-xs font-semibold hover:bg-[#25D366]/15 transition-all shadow-sm group/wa"
-                    >
-                      <span className="w-5 h-5 rounded-full bg-[#25D366] text-white flex items-center justify-center shadow-sm group-hover/wa:scale-105 transition-transform duration-300">
-                        <WhatsAppIcon className="w-3 h-3" />
-                      </span>
-                      <span className="font-mono tracking-wide underline underline-offset-4 decoration-green-800/20 group-hover/wa:decoration-green-800">+44 7882 746212</span>
-                    </a>
-                    <a 
-                      href="https://wa.me/917028311226"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2.5 bg-[#25D366]/10 text-green-800 border border-[#25D366]/20 px-5 py-2.5 rounded-full text-xs font-semibold hover:bg-[#25D366]/15 transition-all shadow-sm group/wa"
-                    >
-                      <span className="w-5 h-5 rounded-full bg-[#25D366] text-white flex items-center justify-center shadow-sm group-hover/wa:scale-105 transition-transform duration-300">
-                        <WhatsAppIcon className="w-3 h-3" />
-                      </span>
-                      <span className="font-mono tracking-wide underline underline-offset-4 decoration-green-800/20 group-hover/wa:decoration-green-800">+91 70283 11226</span>
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-            
-            {/* Portrait Image */}
+            </div>
+
+            {/* Right Side: Portrait Image */}
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="md:col-span-6 relative aspect-square rounded-[3rem] overflow-hidden bg-warm-ink/5 border border-warm-ink/10 max-w-sm mx-auto md:ml-auto shadow-2xl shadow-warm-accent/5"
+              className="relative w-36 h-36 sm:w-52 sm:h-52 md:w-64 md:h-64 rounded-[2rem] sm:rounded-[3rem] overflow-hidden bg-warm-ink/5 border border-warm-ink/10 shadow-xl shadow-warm-accent/5 flex-shrink-0"
             >
               <img 
                 src="/portrait.jpg" 
@@ -1168,7 +1117,68 @@ export default function App() {
                 referrerPolicy="no-referrer"
               />
             </motion.div>
-          </div>
+          </motion.div>
+
+          {/* Bottom Bio & Action Row */}
+          <motion.div
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            className="space-y-6 max-w-4xl"
+          >
+            <div className="space-y-4 text-warm-ink/80 leading-relaxed">
+              <p className="text-base sm:text-lg font-semibold text-warm-ink leading-snug">
+                AI Visual Designer, Visual Content Creator, and Marketing & B2B Specialist.
+              </p>
+              <p className="text-xs sm:text-sm text-warm-ink/75 leading-relaxed">
+                I help brands and businesses improve how they present themselves, market their services, connect with potential clients, and grow through modern digital systems. My work includes AI-powered visuals, short-form videos, website content and support, creative direction, B2B lead generation, business research, outreach campaigns, CRM-style tracking, automation, and digital marketing execution. I combine visual storytelling, emerging AI tools, marketing strategy, and practical business support to turn ideas into professional content and measurable growth opportunities.
+              </p>
+            </div>
+
+            {/* Action Buttons */}
+            <div className="pt-2 flex flex-col items-start gap-4">
+              <div className="flex flex-wrap gap-3">
+                <a 
+                  href="#projects" 
+                  className="bg-warm-accent text-white px-6 py-3 rounded-full text-xs uppercase tracking-wider font-semibold hover:bg-warm-accent/90 transition-colors shadow-sm"
+                >
+                  View Portfolio
+                </a>
+                <a 
+                  href="#contact" 
+                  className="border border-warm-ink/20 text-warm-ink px-6 py-3 rounded-full text-xs uppercase tracking-wider font-semibold hover:bg-warm-ink/5 transition-colors"
+                >
+                  Let's Connect
+                </a>
+              </div>
+
+              {/* WhatsApp Numbers */}
+              <div className="flex flex-wrap gap-3 pt-1">
+                <a 
+                  href="https://wa.me/447882746212"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2.5 bg-[#25D366]/10 text-green-800 border border-[#25D366]/20 px-4 py-2 rounded-full text-xs font-semibold hover:bg-[#25D366]/15 transition-all shadow-sm group/wa"
+                >
+                  <span className="w-5 h-5 rounded-full bg-[#25D366] text-white flex items-center justify-center shadow-sm group-hover/wa:scale-105 transition-transform duration-300">
+                    <WhatsAppIcon className="w-3 h-3" />
+                  </span>
+                  <span className="font-mono tracking-wide underline underline-offset-4 decoration-green-800/20 group-hover/wa:decoration-green-800">+44 7882 746212</span>
+                </a>
+                <a 
+                  href="https://wa.me/917028311226"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2.5 bg-[#25D366]/10 text-green-800 border border-[#25D366]/20 px-4 py-2 rounded-full text-xs font-semibold hover:bg-[#25D366]/15 transition-all shadow-sm group/wa"
+                >
+                  <span className="w-5 h-5 rounded-full bg-[#25D366] text-white flex items-center justify-center shadow-sm group-hover/wa:scale-105 transition-transform duration-300">
+                    <WhatsAppIcon className="w-3 h-3" />
+                  </span>
+                  <span className="font-mono tracking-wide underline underline-offset-4 decoration-green-800/20 group-hover/wa:decoration-green-800">+91 70283 11226</span>
+                </a>
+              </div>
+            </div>
+          </motion.div>
         </section>
 
         {/* Projects Category Portal Section */}
