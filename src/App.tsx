@@ -32,7 +32,7 @@ import {
 import { CATEGORIES, getProjectsByCategory, Project, CIYATO_SCREENSHOTS } from "./data/projects";
 import { CadAutomationSection } from "./components/CadAutomationSection";
 
-const NAV_ITEMS = ["Home", "About", "CAD Automation", "Services", "Projects", "Startup", "Contact"];
+const NAV_ITEMS = ["Home", "About", "Services", "Projects", "Startup", "Contact"];
 
 const WhatsAppIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg

@@ -13,7 +13,10 @@ import {
   FolderCheck,
   FileText,
   ChevronLeft,
-  ChevronRight
+  ChevronRight,
+  ZoomIn,
+  ZoomOut,
+  RotateCcw
 } from "lucide-react";
 
 const WhatsAppIcon = (props: React.SVGProps<SVGSVGElement>) => (
@@ -35,9 +38,10 @@ export interface CadImageItem {
 }
 
 export function CadAutomationSection() {
-  // Lightbox carousel state
+  // Lightbox carousel & zoom state
   const [activeGallery, setActiveGallery] = useState<CadImageItem[] | null>(null);
   const [currentIndex, setCurrentIndex] = useState<number>(0);
+  const [zoomScale, setZoomScale] = useState<number>(1);
 
   const whatsappMessage = encodeURIComponent(
     "Hello, I would like to discuss an AI-assisted AutoCAD drafting project. I have a plan/reference and need editable CAD drawings."
@@ -83,16 +87,31 @@ export function CadAutomationSection() {
   const openLightbox = (gallery: CadImageItem[], index: number = 0) => {
     setActiveGallery(gallery);
     setCurrentIndex(index);
+    setZoomScale(1);
   };
 
   const handleNext = () => {
     if (!activeGallery) return;
     setCurrentIndex((prev) => (prev + 1) % activeGallery.length);
+    setZoomScale(1);
   };
 
   const handlePrev = () => {
     if (!activeGallery) return;
     setCurrentIndex((prev) => (prev - 1 + activeGallery.length) % activeGallery.length);
+    setZoomScale(1);
+  };
+
+  const handleZoomIn = () => {
+    setZoomScale((prev) => Math.min(prev + 0.5, 3));
+  };
+
+  const handleZoomOut = () => {
+    setZoomScale((prev) => Math.max(prev - 0.5, 1));
+  };
+
+  const handleResetZoom = () => {
+    setZoomScale(1);
   };
 
   // Keyboard navigation
@@ -153,6 +172,7 @@ export function CadAutomationSection() {
                     alt={img.title}
                     loading="lazy"
                     className="w-full h-full object-cover group-hover/card:scale-105 transition-transform duration-500"
+                    style={{ imageRendering: "-webkit-optimize-contrast" }}
                   />
                   <div className="absolute bottom-2 left-2 bg-black/65 backdrop-blur-md px-2.5 py-1 rounded-full text-[9px] font-bold text-white tracking-widest uppercase">
                     {img.category}
@@ -201,6 +221,7 @@ export function CadAutomationSection() {
                       openLightbox(MASTER_BATHROOM_GALLERY, idx);
                     }}
                     className="w-full h-full object-cover rounded-xl hover:scale-[1.04] transition-transform duration-300"
+                    style={{ imageRendering: "-webkit-optimize-contrast" }}
                   />
                 ))}
                 <div className="absolute bottom-3 right-3 bg-black/75 backdrop-blur-md text-white px-2.5 py-1 rounded-full text-[9px] font-mono font-bold">
@@ -247,6 +268,7 @@ export function CadAutomationSection() {
                     openLightbox(CIGAR_LOUNGE_GALLERY, 0);
                   }}
                   className="w-full h-full object-cover rounded-xl hover:scale-[1.04] transition-transform duration-300 col-span-2 aspect-[16/9]"
+                  style={{ imageRendering: "-webkit-optimize-contrast" }}
                 />
                 <img 
                   src={CIGAR_LOUNGE_GALLERY[1].src} 
@@ -257,6 +279,7 @@ export function CadAutomationSection() {
                     openLightbox(CIGAR_LOUNGE_GALLERY, 1);
                   }}
                   className="w-full h-full object-cover rounded-xl hover:scale-[1.04] transition-transform duration-300"
+                  style={{ imageRendering: "-webkit-optimize-contrast" }}
                 />
                 <img 
                   src={CIGAR_LOUNGE_GALLERY[2].src} 
@@ -267,6 +290,7 @@ export function CadAutomationSection() {
                     openLightbox(CIGAR_LOUNGE_GALLERY, 2);
                   }}
                   className="w-full h-full object-cover rounded-xl hover:scale-[1.04] transition-transform duration-300"
+                  style={{ imageRendering: "-webkit-optimize-contrast" }}
                 />
                 <div className="absolute bottom-3 right-3 bg-black/75 backdrop-blur-md text-white px-2.5 py-1 rounded-full text-[9px] font-mono font-bold">
                   3 CAD Drawings
@@ -312,6 +336,7 @@ export function CadAutomationSection() {
                     openLightbox(FEATURE_WALL_GALLERY, 0);
                   }}
                   className="w-full h-full object-cover rounded-xl hover:scale-[1.04] transition-transform duration-300 col-span-2 aspect-[16/9]"
+                  style={{ imageRendering: "-webkit-optimize-contrast" }}
                 />
                 <img 
                   src={FEATURE_WALL_GALLERY[1].src} 
@@ -322,6 +347,7 @@ export function CadAutomationSection() {
                     openLightbox(FEATURE_WALL_GALLERY, 1);
                   }}
                   className="w-full h-full object-cover rounded-xl hover:scale-[1.04] transition-transform duration-300"
+                  style={{ imageRendering: "-webkit-optimize-contrast" }}
                 />
                 <img 
                   src={FEATURE_WALL_GALLERY[3].src} 
@@ -332,6 +358,7 @@ export function CadAutomationSection() {
                     openLightbox(FEATURE_WALL_GALLERY, 3);
                   }}
                   className="w-full h-full object-cover rounded-xl hover:scale-[1.04] transition-transform duration-300"
+                  style={{ imageRendering: "-webkit-optimize-contrast" }}
                 />
                 <div className="absolute bottom-3 right-3 bg-black/75 backdrop-blur-md text-white px-2.5 py-1 rounded-full text-[9px] font-mono font-bold">
                   4 Wall Packages
@@ -423,6 +450,7 @@ export function CadAutomationSection() {
                 alt="Clean Vector CAD Plan Output"
                 loading="lazy"
                 className="w-full h-full object-cover rounded-xl hover:scale-105 transition-transform duration-300"
+                style={{ imageRendering: "-webkit-optimize-contrast" }}
               />
               <div className="absolute top-3 right-3 bg-black/75 text-white backdrop-blur-md px-3 py-1 rounded-full text-[9px] font-mono">
                 Editable Geometry + Layers
@@ -609,7 +637,7 @@ export function CadAutomationSection() {
         </p>
       </div>
 
-      {/* INTERACTIVE MULTI-IMAGE CAROUSEL LIGHTBOX MODAL */}
+      {/* INTERACTIVE MULTI-IMAGE CAROUSEL LIGHTBOX MODAL WITH ZOOM & PAN */}
       <AnimatePresence>
         {activeGallery && activeGallery.length > 0 && (
           <motion.div
@@ -617,16 +645,50 @@ export function CadAutomationSection() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => setActiveGallery(null)}
-            className="fixed inset-0 z-50 bg-black/95 backdrop-blur-lg flex items-center justify-center p-4 md:p-8 cursor-pointer select-none"
+            className="fixed inset-0 z-50 bg-black/95 backdrop-blur-lg flex items-center justify-center p-3 md:p-6 cursor-pointer select-none"
           >
-            {/* Close Button */}
-            <button 
-              onClick={() => setActiveGallery(null)}
-              className="absolute top-6 right-6 text-white/70 hover:text-white bg-white/10 hover:bg-white/20 p-2.5 rounded-full transition-all z-20"
-              aria-label="Close drawing viewer"
-            >
-              <X size={24} />
-            </button>
+            {/* Top Toolbar: Close & Zoom Controls */}
+            <div className="absolute top-4 right-4 md:top-6 md:right-6 flex items-center gap-2 z-30">
+              <div 
+                onClick={(e) => e.stopPropagation()}
+                className="flex items-center gap-1 bg-white/10 backdrop-blur-md p-1.5 rounded-full border border-white/15"
+              >
+                <button
+                  onClick={handleZoomOut}
+                  title="Zoom Out"
+                  className="text-white/70 hover:text-white p-2 rounded-full hover:bg-white/20 transition-all"
+                >
+                  <ZoomOut size={18} />
+                </button>
+                <span className="text-[10px] font-mono text-white/90 px-2 font-bold min-w-[3rem] text-center">
+                  {Math.round(zoomScale * 100)}%
+                </span>
+                <button
+                  onClick={handleZoomIn}
+                  title="Zoom In"
+                  className="text-white/70 hover:text-white p-2 rounded-full hover:bg-white/20 transition-all"
+                >
+                  <ZoomIn size={18} />
+                </button>
+                {zoomScale !== 1 && (
+                  <button
+                    onClick={handleResetZoom}
+                    title="Reset Zoom"
+                    className="text-white/70 hover:text-white p-2 rounded-full hover:bg-white/20 transition-all ml-1 border-l border-white/15"
+                  >
+                    <RotateCcw size={16} />
+                  </button>
+                )}
+              </div>
+
+              <button 
+                onClick={() => setActiveGallery(null)}
+                className="text-white/70 hover:text-white bg-white/10 hover:bg-white/20 p-2.5 rounded-full transition-all border border-white/15"
+                aria-label="Close drawing viewer"
+              >
+                <X size={22} />
+              </button>
+            </div>
 
             {/* Left Navigation Arrow */}
             {activeGallery.length > 1 && (
@@ -635,10 +697,10 @@ export function CadAutomationSection() {
                   e.stopPropagation();
                   handlePrev();
                 }}
-                className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 bg-white/10 hover:bg-white/25 text-white p-3 md:p-4 rounded-full backdrop-blur-md transition-all z-20 hover:scale-110"
+                className="absolute left-3 md:left-6 top-1/2 -translate-y-1/2 bg-white/10 hover:bg-white/25 text-white p-3 md:p-4 rounded-full backdrop-blur-md transition-all z-30 hover:scale-110 border border-white/15"
                 aria-label="Previous drawing"
               >
-                <ChevronLeft size={28} />
+                <ChevronLeft size={26} />
               </button>
             )}
 
@@ -649,41 +711,52 @@ export function CadAutomationSection() {
                   e.stopPropagation();
                   handleNext();
                 }}
-                className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 bg-white/10 hover:bg-white/25 text-white p-3 md:p-4 rounded-full backdrop-blur-md transition-all z-20 hover:scale-110"
+                className="absolute right-3 md:right-6 top-1/2 -translate-y-1/2 bg-white/10 hover:bg-white/25 text-white p-3 md:p-4 rounded-full backdrop-blur-md transition-all z-30 hover:scale-110 border border-white/15"
                 aria-label="Next drawing"
               >
-                <ChevronRight size={28} />
+                <ChevronRight size={26} />
               </button>
             )}
 
             {/* Main Lightbox Content Card */}
             <div 
               onClick={(e) => e.stopPropagation()}
-              className="relative max-h-[92vh] w-full max-w-5xl bg-neutral-900 rounded-[2.5rem] p-4 md:p-6 shadow-2xl flex flex-col justify-between space-y-4 border border-white/10 cursor-default"
+              className="relative max-h-[94vh] w-full max-w-5xl bg-neutral-900 rounded-[2.5rem] p-4 md:p-6 shadow-2xl flex flex-col justify-between space-y-4 border border-white/10 cursor-default"
             >
               {/* Image Header info */}
-              <div className="flex justify-between items-center px-2 border-b border-white/10 pb-3">
+              <div className="flex justify-between items-center px-2 border-b border-white/10 pb-3 pr-40 md:pr-48">
                 <div className="space-y-0.5">
                   <span className="text-[10px] font-mono uppercase tracking-widest text-warm-accent font-bold block">
                     {activeGallery[currentIndex].category || "CAD Drawing Package"}
                   </span>
-                  <h3 className="serif text-xl md:text-2xl text-white font-semibold">
+                  <h3 className="serif text-lg md:text-2xl text-white font-semibold line-clamp-1">
                     {activeGallery[currentIndex].title}
                   </h3>
                 </div>
-                <div className="text-[11px] font-mono bg-white/10 text-white/80 px-3 py-1 rounded-full border border-white/10">
+                <div className="text-[11px] font-mono bg-white/10 text-white/80 px-3 py-1 rounded-full border border-white/10 hidden sm:block">
                   {currentIndex + 1} / {activeGallery.length}
                 </div>
               </div>
 
-              {/* Main Image Display View */}
-              <div className="relative flex-1 rounded-2xl overflow-hidden bg-black flex items-center justify-center min-h-[50vh] max-h-[68vh] p-2">
-                <img 
-                  key={currentIndex}
-                  src={activeGallery[currentIndex].src} 
-                  alt={activeGallery[currentIndex].title}
-                  className="max-h-[66vh] w-auto max-w-full object-contain rounded-lg transition-all duration-300"
-                />
+              {/* Main Image Display View with Drag & Pan support when zoomed */}
+              <div className="relative flex-1 rounded-2xl overflow-hidden bg-black flex items-center justify-center min-h-[50vh] max-h-[66vh] p-2 select-none">
+                <motion.div
+                  drag={zoomScale > 1}
+                  dragConstraints={{ left: -400, right: 400, top: -300, bottom: 300 }}
+                  className="w-full h-full flex items-center justify-center cursor-grab active:cursor-grabbing"
+                >
+                  <img 
+                    key={currentIndex}
+                    src={activeGallery[currentIndex].src} 
+                    alt={activeGallery[currentIndex].title}
+                    style={{ 
+                      transform: `scale(${zoomScale})`,
+                      transition: "transform 0.3s ease-out",
+                      imageRendering: "-webkit-optimize-contrast"
+                    }}
+                    className="max-h-[64vh] w-auto max-w-full object-contain rounded-lg shadow-2xl"
+                  />
+                </motion.div>
               </div>
 
               {/* Bottom Thumbnail Carousel Strip */}
@@ -692,10 +765,13 @@ export function CadAutomationSection() {
                   {activeGallery.map((thumb, idx) => (
                     <button
                       key={idx}
-                      onClick={() => setCurrentIndex(idx)}
+                      onClick={() => {
+                        setCurrentIndex(idx);
+                        setZoomScale(1);
+                      }}
                       className={`relative w-16 h-12 md:w-20 md:h-14 rounded-xl overflow-hidden flex-shrink-0 border-2 transition-all duration-200 ${
                         idx === currentIndex 
-                          ? "border-warm-accent scale-105 shadow-md" 
+                          ? "border-warm-accent scale-105 shadow-md opacity-100" 
                           : "border-transparent opacity-50 hover:opacity-100"
                       }`}
                     >
@@ -703,6 +779,7 @@ export function CadAutomationSection() {
                         src={thumb.src} 
                         alt={thumb.title}
                         className="w-full h-full object-cover"
+                        style={{ imageRendering: "-webkit-optimize-contrast" }}
                       />
                     </button>
                   ))}
