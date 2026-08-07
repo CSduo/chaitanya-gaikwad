@@ -321,7 +321,20 @@ function VideoCard({ vid, idx, onExpand, activePlayingId, setActivePlayingId, is
 
 export default function App() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [currentHash, setCurrentHash] = useState(window.location.hash || "#/");
+  const getCurrentRoute = () => {
+    const path = window.location.pathname;
+    const hash = window.location.hash;
+    if (path && path !== "/" && path !== "") return path;
+    if (hash && hash !== "#/" && hash !== "#") return hash.replace(/^#\/?/, "/");
+    return "/";
+  };
+  const [currentHash, setCurrentHash] = useState(getCurrentRoute());
+
+  const navigateTo = (path: string) => {
+    window.history.pushState({}, "", path);
+    setCurrentHash(path);
+    window.scrollTo({ top: 0 });
+  };
 
   // Media Modals & Lightbox states
   const [activeVideoUrl, setActiveVideoUrl] = useState<string | null>(null);
@@ -335,17 +348,19 @@ export default function App() {
   const [spreadsheetSearchQuery, setSpreadsheetSearchQuery] = useState("");
 
   useEffect(() => {
-    const handleHashChange = () => {
-      const hash = window.location.hash || "#/";
-      setCurrentHash(hash);
-      
-      // Auto scroll to top if accessing sub-routes
-      if (hash.startsWith("#/projects") || hash === "#/startup" || hash === "#startup") {
+    const handleLocationChange = () => {
+      const route = getCurrentRoute();
+      setCurrentHash(route);
+      if (route !== "/" && !route.startsWith("#")) {
         window.scrollTo({ top: 0 });
       }
     };
-    window.addEventListener("hashchange", handleHashChange);
-    return () => window.removeEventListener("hashchange", handleHashChange);
+    window.addEventListener("popstate", handleLocationChange);
+    window.addEventListener("hashchange", handleLocationChange);
+    return () => {
+      window.removeEventListener("popstate", handleLocationChange);
+      window.removeEventListener("hashchange", handleLocationChange);
+    };
   }, []);
 
   // Fetch Spreadsheet JSON database on route change
@@ -406,7 +421,7 @@ export default function App() {
   }, [startupLightboxIndex]);
 
   // Check if we are on a project detail page, category page, startup page, or CAD automation route
-  const isSubRoute = currentHash.startsWith("#/projects/") || currentHash === "#/startup" || currentHash === "#startup" || currentHash === "#/cad-automation" || currentHash === "#cad-automation";
+  const isSubRoute = currentHash.includes("/projects/") || currentHash.includes("startup") || currentHash.includes("cad-automation");
 
   const handleNavLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, item: string) => {
     setMobileMenuOpen(false);
@@ -508,7 +523,7 @@ export default function App() {
 
               <div className="grid grid-cols-2 gap-4 border-t border-warm-ink/5 pt-6">
                 <a
-                  href={`#/projects/b2b-research/${sheet.slug}`}
+                  href={`/projects/b2b-research/${sheet.slug}`}
                   className="flex items-center justify-center gap-1.5 bg-warm-accent text-white py-2.5 rounded-full text-[10px] uppercase tracking-wider font-semibold hover:bg-warm-accent/90 transition-colors"
                 >
                   <Search size={11} /> View Data
@@ -1113,7 +1128,7 @@ export default function App() {
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="relative w-36 h-36 sm:w-56 sm:h-56 md:w-72 md:h-72 lg:w-80 lg:h-80 xl:w-96 xl:h-96 rounded-[2rem] sm:rounded-[3.5rem] overflow-hidden bg-warm-ink/5 border border-warm-ink/10 shadow-2xl shadow-warm-accent/5 flex-shrink-0"
+              className="relative w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 lg:w-44 lg:h-44 rounded-2xl sm:rounded-3xl overflow-hidden bg-warm-ink/5 border border-warm-ink/10 shadow-lg shadow-warm-accent/5 flex-shrink-0"
             >
               <img 
                 src="/portrait.jpg" 

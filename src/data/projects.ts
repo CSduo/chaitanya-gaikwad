@@ -123,7 +123,7 @@ export const CATEGORIES = [
     title: "Architectural & Interior CAD Drafting",
     subtitle: "Professional AutoCAD Drawing Packages ($1,000 Value)",
     desc: "Professional AutoCAD drafting transforming measurements, hand sketches, and design references into editable DWG, DXF, and PDF drawing packages. Complete drawing set value: $1,000.",
-    route: "#/cad-automation"
+    route: "/cad-automation"
   },
   {
     id: "videos",
