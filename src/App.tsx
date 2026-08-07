@@ -321,20 +321,7 @@ function VideoCard({ vid, idx, onExpand, activePlayingId, setActivePlayingId, is
 
 export default function App() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const getCurrentRoute = () => {
-    const path = window.location.pathname;
-    const hash = window.location.hash;
-    if (path && path !== "/" && path !== "") return path;
-    if (hash && hash !== "#/" && hash !== "#") return hash.replace(/^#\/?/, "/");
-    return "/";
-  };
-  const [currentHash, setCurrentHash] = useState(getCurrentRoute());
-
-  const navigateTo = (path: string) => {
-    window.history.pushState({}, "", path);
-    setCurrentHash(path);
-    window.scrollTo({ top: 0 });
-  };
+  const [currentHash, setCurrentHash] = useState(window.location.hash || window.location.pathname || "#/");
 
   // Media Modals & Lightbox states
   const [activeVideoUrl, setActiveVideoUrl] = useState<string | null>(null);
@@ -348,25 +335,26 @@ export default function App() {
   const [spreadsheetSearchQuery, setSpreadsheetSearchQuery] = useState("");
 
   useEffect(() => {
-    const handleLocationChange = () => {
-      const route = getCurrentRoute();
-      setCurrentHash(route);
-      if (route !== "/" && !route.startsWith("#")) {
+    const syncRoute = () => {
+      const hash = window.location.hash || window.location.pathname || "#/";
+      setCurrentHash(hash);
+      if (hash.includes("projects") || hash.includes("startup") || hash.includes("cad-automation")) {
         window.scrollTo({ top: 0 });
       }
     };
-    window.addEventListener("popstate", handleLocationChange);
-    window.addEventListener("hashchange", handleLocationChange);
+    window.addEventListener("hashchange", syncRoute);
+    window.addEventListener("popstate", syncRoute);
+    syncRoute();
     return () => {
-      window.removeEventListener("popstate", handleLocationChange);
-      window.removeEventListener("hashchange", handleLocationChange);
+      window.removeEventListener("hashchange", syncRoute);
+      window.removeEventListener("popstate", syncRoute);
     };
   }, []);
 
   // Fetch Spreadsheet JSON database on route change
   useEffect(() => {
-    if (currentHash.startsWith("#/projects/b2b-research/")) {
-      const slug = currentHash.replace("#/projects/b2b-research/", "");
+    if (currentHash.includes("projects/b2b-research/")) {
+      const slug = currentHash.split("projects/b2b-research/")[1];
       setSpreadsheetLoading(true);
       setSpreadsheetData(null);
       fetch(`/data/spreadsheets/${slug}.json`)
@@ -421,15 +409,24 @@ export default function App() {
   }, [startupLightboxIndex]);
 
   // Check if we are on a project detail page, category page, startup page, or CAD automation route
-  const isSubRoute = currentHash.includes("/projects/") || currentHash.includes("startup") || currentHash.includes("cad-automation");
+  const isSubRoute = currentHash.includes("projects") || currentHash.includes("startup") || currentHash.includes("cad-automation");
 
   const handleNavLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, item: string) => {
     setMobileMenuOpen(false);
     const sectionId = item.toLowerCase().replace(/\s+/g, '-');
+    if (item === "Startup") {
+      e.preventDefault();
+      window.location.hash = "#/startup";
+      window.scrollTo({ top: 0 });
+      return;
+    }
     if (isSubRoute) {
-      // If on a sub-route, navigate back to the main homepage section
       e.preventDefault();
       window.location.hash = `#${sectionId}`;
+      setTimeout(() => {
+        const el = document.getElementById(sectionId);
+        if (el) el.scrollIntoView({ behavior: "smooth" });
+      }, 50);
     }
   };
 
@@ -523,7 +520,7 @@ export default function App() {
 
               <div className="grid grid-cols-2 gap-4 border-t border-warm-ink/5 pt-6">
                 <a
-                  href={`/projects/b2b-research/${sheet.slug}`}
+                  href={`#/projects/b2b-research/${sheet.slug}`}
                   className="flex items-center justify-center gap-1.5 bg-warm-accent text-white py-2.5 rounded-full text-[10px] uppercase tracking-wider font-semibold hover:bg-warm-accent/90 transition-colors"
                 >
                   <Search size={11} /> View Data
@@ -544,7 +541,7 @@ export default function App() {
   };
 
   const renderSpreadsheetViewerPage = () => {
-    const slug = currentHash.replace("#/projects/b2b-research/", "");
+    const slug = currentHash.split("projects/b2b-research/")[1];
     const projects = getProjectsByCategory("B2B Research & Excel Systems");
     const currentProject = projects.find((p) => p.slug === slug);
 
@@ -1609,21 +1606,19 @@ export default function App() {
 
       {/* Main Content Router */}
       <div className="flex-1 bg-warm-bg">
-        {currentHash === "#/startup" || currentHash === "#startup" ? (
+        {currentHash.includes("startup") ? (
           renderStartupPage()
-        ) : currentHash === "#/cad-automation" || currentHash === "#cad-automation" ? (
+        ) : currentHash.includes("cad-automation") ? (
           renderCadAutomationStandalonePage()
-        ) : currentHash === "#/" || !isSubRoute ? (
-          renderMainPage()
-        ) : currentHash === "#/projects/videos" ? (
-          renderVideosPage()
-        ) : currentHash === "#/projects/b2b-research" ? (
-          renderB2BResearchPage()
-        ) : currentHash.startsWith("#/projects/b2b-research/") ? (
+        ) : currentHash.includes("projects/b2b-research/") ? (
           renderSpreadsheetViewerPage()
-        ) : currentHash === "#/projects/visualisations" ? (
+        ) : currentHash.includes("projects/b2b-research") ? (
+          renderB2BResearchPage()
+        ) : currentHash.includes("projects/videos") ? (
+          renderVideosPage()
+        ) : currentHash.includes("projects/visualisations") ? (
           renderVisualisationsPage()
-        ) : currentHash === "#/projects/websites" ? (
+        ) : currentHash.includes("projects/websites") ? (
           renderWebsitesPage()
         ) : (
           renderMainPage()

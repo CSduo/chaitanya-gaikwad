@@ -123,35 +123,35 @@ export const CATEGORIES = [
     title: "Architectural & Interior CAD Drafting",
     subtitle: "Professional AutoCAD Drawing Packages",
     desc: "Professional AutoCAD drafting transforming measurements, hand sketches, and design references into editable DWG, DXF, and PDF drawing packages.",
-    route: "/cad-automation"
+    route: "#/cad-automation"
   },
   {
     id: "videos",
     title: "Cinematic Videos",
     subtitle: "AI-Assisted Films, Reels & Product Stories",
     desc: "Cinematic short-form videos, product campaigns, interior walkthroughs, and brand stories created through AI-assisted production, visual direction, editing, prompt engineering, and structured storytelling.",
-    route: "/projects/videos"
+    route: "#/projects/videos"
   },
   {
     id: "b2b-research",
     title: "B2B Research & Excel Systems",
     subtitle: "Lead Intelligence, Market Mapping & Outreach Workflows",
     desc: "Structured research and spreadsheet systems created for lead generation, buyer mapping, supplier discovery, competitor research, outreach tracking, sample evaluation, and cross-border business development.",
-    route: "/projects/b2b-research"
+    route: "#/projects/b2b-research"
   },
   {
     id: "visualisations",
     title: "3D Renders & Visualisations",
     subtitle: "Interior Concepts, Product Mockups & Spatial Studies",
     desc: "A curated collection of interior renders, architectural concepts, product visualisations, material studies, showroom previews, and presentation-ready imagery created for client communication and design exploration.",
-    route: "/projects/visualisations"
+    route: "#/projects/visualisations"
   },
   {
     id: "websites",
     title: "Websites Developed",
     subtitle: "Responsive Portfolio, Brand & Business Websites",
     desc: "Complete responsive websites developed through page planning, visual direction, content organisation, front-end implementation, mobile optimisation, contact integrations, and deployment.",
-    route: "/projects/websites"
+    route: "#/projects/websites"
   }
 ];
 
