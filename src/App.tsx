@@ -354,7 +354,9 @@ export default function App() {
   // Fetch Spreadsheet JSON database on route change
   useEffect(() => {
     if (currentHash.includes("projects/b2b-research/")) {
-      const slug = currentHash.split("projects/b2b-research/")[1];
+      const rawSlug = currentHash.split("projects/b2b-research/")[1] || "";
+      const slug = rawSlug.split("#")[0].split("/")[0].trim();
+      if (!slug) return;
       setSpreadsheetLoading(true);
       setSpreadsheetData(null);
       fetch(`/data/spreadsheets/${slug}.json`)
@@ -541,7 +543,8 @@ export default function App() {
   };
 
   const renderSpreadsheetViewerPage = () => {
-    const slug = currentHash.split("projects/b2b-research/")[1];
+    const rawSlug = currentHash.split("projects/b2b-research/")[1] || "";
+    const slug = rawSlug.split("#")[0].split("/")[0].trim();
     const projects = getProjectsByCategory("B2B Research & Excel Systems");
     const currentProject = projects.find((p) => p.slug === slug);
 
@@ -1610,9 +1613,9 @@ export default function App() {
           renderStartupPage()
         ) : currentHash.includes("cad-automation") ? (
           renderCadAutomationStandalonePage()
-        ) : currentHash.includes("projects/b2b-research/") ? (
+        ) : (currentHash.includes("b2b-research/") && currentHash.split("b2b-research/")[1]?.split("#")[0]?.split("/")[0]?.trim()) ? (
           renderSpreadsheetViewerPage()
-        ) : currentHash.includes("projects/b2b-research") ? (
+        ) : currentHash.includes("b2b-research") ? (
           renderB2BResearchPage()
         ) : currentHash.includes("projects/videos") ? (
           renderVideosPage()
