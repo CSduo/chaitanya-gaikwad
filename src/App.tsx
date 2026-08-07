@@ -336,7 +336,10 @@ export default function App() {
 
   useEffect(() => {
     const syncRoute = () => {
-      const hash = window.location.hash || window.location.pathname || "#/";
+      // Normalize: always start with #/ and strip double hashes
+      let hash = window.location.hash || "";
+      hash = hash.replace(/^#+/, "#"); // collapse ##... -> #
+      if (!hash || hash === "#") hash = window.location.pathname !== "/" ? window.location.pathname : "#/";
       setCurrentHash(hash);
       if (hash.includes("projects") || hash.includes("startup") || hash.includes("cad-automation")) {
         window.scrollTo({ top: 0 });
@@ -418,7 +421,7 @@ export default function App() {
     const sectionId = item.toLowerCase().replace(/\s+/g, '-');
     if (item === "Startup") {
       e.preventDefault();
-      window.location.hash = "#/startup";
+      window.location.hash = "/startup";
       window.scrollTo({ top: 0 });
       return;
     }
@@ -1225,7 +1228,7 @@ export default function App() {
                   viewport={{ once: true }}
                   transition={{ delay: idx * 0.05 }}
                   className="relative h-80 rounded-[2.5rem] overflow-hidden border border-warm-ink/5 shadow-sm group cursor-pointer"
-                  onClick={() => window.location.hash = cat.route}
+                  onClick={() => { const r = cat.route.replace(/^#/, ''); window.location.hash = r; }}
                 >
                   {/* Background overlay images */}
                   <div
