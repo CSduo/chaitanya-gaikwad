@@ -17,7 +17,9 @@ import {
   ZoomOut,
   RotateCcw,
   Download,
-  Sparkles
+  Sparkles,
+  MapPin,
+  DollarSign
 } from "lucide-react";
 
 const WhatsAppIcon = (props: React.SVGProps<SVGSVGElement>) => (
@@ -46,7 +48,7 @@ export function CadAutomationSection() {
   const viewportRef = useRef<HTMLDivElement>(null);
 
   const whatsappMessage = encodeURIComponent(
-    "Hello, I would like to generate a custom AutoCAD drafting package ($1,000 package value). I have a plan/reference and need editable CAD drawings."
+    "Hello, I would like to discuss an AutoCAD drafting project. I have a plan/reference and need editable CAD drawings."
   );
 
   // Gallery collections for each project
@@ -58,7 +60,7 @@ export function CadAutomationSection() {
   ];
 
   const MASTER_BATHROOM_GALLERY: CadImageItem[] = [
-    { src: "/portfolio/cad-automation/master-bathroom-plan.webp", title: "Master Bathroom - General Arrangement Plan ($1,000 Full CAD Package)", category: "Plan Drawing" },
+    { src: "/portfolio/cad-automation/master-bathroom-plan.webp", title: "Master Bathroom - General Arrangement Plan", category: "Plan Drawing" },
     { src: "/portfolio/cad-automation/master-bathroom-elevation.webp", title: "Master Bathroom - Wall 1: Bathtub & Window Elevation", category: "Elevation" },
     { src: "/portfolio/cad-automation/master-bathroom-vanity.webp", title: "Master Bathroom - Wall 2: Vanity & WC Wall Elevation", category: "Elevation" },
     { src: "/portfolio/cad-automation/master-bathroom-shower.webp", title: "Master Bathroom - Wall 3: Walk-in Shower Wall Elevation", category: "Elevation" },
@@ -67,13 +69,13 @@ export function CadAutomationSection() {
   ];
 
   const CIGAR_LOUNGE_GALLERY: CadImageItem[] = [
-    { src: "/portfolio/cad-automation/cigar-lounge-layout.webp", title: "Cigar Lounge - General Furniture Layout ($1,000 Full CAD Package)", category: "Plan Drawing" },
+    { src: "/portfolio/cad-automation/cigar-lounge-layout.webp", title: "Cigar Lounge - General Furniture Layout", category: "Plan Drawing" },
     { src: "/portfolio/cad-automation/cigar-lounge-ceiling.webp", title: "Cigar Lounge - Reflected Ceiling Plan (RCP)", category: "Ceiling Plan" },
     { src: "/portfolio/cad-automation/cigar-lounge-flooring.webp", title: "Cigar Lounge - Herringbone Flooring Layout", category: "Flooring Plan" }
   ];
 
   const FEATURE_WALL_GALLERY: CadImageItem[] = [
-    { src: "/portfolio/cad-automation/feature-wall-overview.webp", title: "Custom Interior Walls - General Arrangement & Layout ($1,000 Full Package)", category: "General Layout" },
+    { src: "/portfolio/cad-automation/feature-wall-overview.webp", title: "Custom Interior Walls - General Arrangement & Layout", category: "General Layout" },
     { src: "/portfolio/cad-automation/toilet-elevations.webp", title: "Toilet Feature Wall - Vanity & Mirror Elevation Details", category: "Elevation" },
     { src: "/portfolio/cad-automation/wash-elevations.webp", title: "Wash Feature Wall - Decorative Panelling & Fixture Elevation", category: "Elevation" },
     { src: "/portfolio/cad-automation/stair-wall-detail.webp", title: "Stair Feature Wall - Architectural Joinery Construction Detail", category: "Construction Detail" }
@@ -82,7 +84,7 @@ export function CadAutomationSection() {
   const BEFORE_AFTER_GALLERY: CadImageItem[] = [
     { src: "/portfolio/cad-automation/master-bathroom-render-input.webp", title: "Client Input - Visual 3D Render Reference", category: "Client Reference" },
     { src: "/portfolio/cad-automation/master-bathroom-plan-input.webp", title: "Client Input - Dimensioned Layout & Markups", category: "Client Reference" },
-    { src: "/portfolio/cad-automation/master-bathroom-plan.webp", title: "Editable CAD Output - Vector General Arrangement Plan ($1,000 Value)", category: "Vector DWG / DXF" },
+    { src: "/portfolio/cad-automation/master-bathroom-plan.webp", title: "Editable CAD Output - Vector General Arrangement Plan", category: "Vector DWG / DXF" },
     { src: "/portfolio/cad-automation/master-bathroom-elevation.webp", title: "Editable CAD Output - Vector Wall Elevation with Dimensions", category: "Vector DWG / DXF" }
   ];
 
@@ -124,7 +126,6 @@ export function CadAutomationSection() {
     }
   };
 
-  // Mouse Wheel Zoom
   const handleWheel = (e: React.WheelEvent) => {
     if (e.deltaY < 0) {
       handleZoomIn();
@@ -133,7 +134,6 @@ export function CadAutomationSection() {
     }
   };
 
-  // Keyboard navigation & escape/backspace handling
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (!activeGallery) return;
@@ -146,19 +146,14 @@ export function CadAutomationSection() {
   }, [activeGallery]);
 
   return (
-    <section id="cad-automation" className="py-24 border-b border-warm-ink/10 scroll-mt-20 space-y-24">
+    <section id="cad-automation" className="py-24 border-b border-warm-ink/10 scroll-mt-20 space-y-20">
       {/* 1. MAIN AUTOMATION HERO INTRODUCTION */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
         {/* Intro Copy */}
         <div className="lg:col-span-6 space-y-6">
-          <div className="flex flex-wrap items-center gap-3">
-            <div className="flex items-center gap-2 text-[10px] uppercase tracking-[0.25em] font-bold text-warm-accent">
-              <span className="w-2 h-2 rounded-full bg-warm-accent" />
-              <span>Architectural & Interior CAD Drafting</span>
-            </div>
-            <span className="bg-warm-accent/10 text-warm-accent border border-warm-accent/20 px-3 py-1 rounded-full text-[10px] font-mono font-bold tracking-wider uppercase">
-              $1,000 Package Value
-            </span>
+          <div className="flex items-center gap-2 text-[10px] uppercase tracking-[0.25em] font-bold text-warm-accent">
+            <span className="w-2 h-2 rounded-full bg-warm-accent" />
+            <span>Architectural & Interior CAD Drafting</span>
           </div>
 
           <h2 className="serif text-5xl lg:text-6xl leading-tight">
@@ -173,23 +168,11 @@ export function CadAutomationSection() {
             I combine structured design inputs, professional CAD scripting, and detailed quality checks to produce editable architectural and interior drawings faster. Plans, elevations, ceiling layouts, flooring patterns, and custom interior details are developed from supplied measurements, engineering drawings, and visual references, then delivered as editable DWG, DXF, and presentation-ready PDF files.
           </p>
 
-          <div className="flex flex-wrap items-center gap-4 pt-2">
-            <a 
-              href={`https://wa.me/447882746212?text=${whatsappMessage}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 bg-warm-accent text-white px-6 py-3 rounded-full text-xs font-semibold uppercase tracking-wider hover:bg-warm-accent/90 transition-all shadow-md"
-            >
-              <Sparkles size={16} />
-              <span>Generate Custom CAD Package</span>
-            </a>
-
-            <div className="p-3 px-4 rounded-full bg-white border border-warm-ink/10 shadow-sm flex items-center gap-2">
-              <ShieldCheck className="w-4 h-4 text-warm-accent flex-shrink-0" />
-              <span className="text-xs font-semibold text-warm-ink tracking-wide">
-                $1,000 Complete Package Value
-              </span>
-            </div>
+          <div className="p-4 rounded-2xl bg-white border border-warm-ink/10 shadow-sm flex items-center gap-3">
+            <ShieldCheck className="w-5 h-5 text-warm-accent flex-shrink-0" />
+            <p className="text-xs font-semibold text-warm-ink tracking-wide">
+              Designed for client review. Fully editable for professional refinement.
+            </p>
           </div>
         </div>
 
@@ -218,10 +201,34 @@ export function CadAutomationSection() {
             </div>
             
             <div className="pt-3 flex justify-between items-center text-[10px] text-warm-ink/60 uppercase tracking-wider font-semibold border-t border-warm-ink/5">
-              <span>AutoCAD DWG / DXF Output ($1,000 Set)</span>
+              <span>AutoCAD DWG / DXF Output (4 Sheets)</span>
               <span className="text-warm-accent font-bold">Click any preview to launch full screen →</span>
             </div>
           </div>
+        </div>
+      </div>
+
+      {/* SINGLE PROMINENT FEATURED CLIENT PROJECT HIGHLIGHT BANNER */}
+      <div className="p-8 md:p-10 rounded-[2.5rem] bg-gradient-to-br from-warm-ink/95 via-warm-ink to-neutral-900 text-white shadow-xl space-y-4 relative overflow-hidden border border-white/10">
+        <div className="flex flex-wrap items-center justify-between gap-4">
+          <div className="flex items-center gap-3">
+            <MapPin className="w-4 h-4 text-warm-accent" />
+            <span className="text-xs font-mono uppercase tracking-[0.25em] text-warm-accent font-bold">
+              Featured Client Project • Bahrain
+            </span>
+          </div>
+          <span className="text-xl md:text-2xl font-mono font-extrabold text-warm-accent bg-white/10 px-4 py-1.5 rounded-2xl border border-white/15 shadow-sm">
+            $1,000 Project Contract
+          </span>
+        </div>
+
+        <div className="space-y-2">
+          <h3 className="serif text-3xl md:text-4xl text-white font-semibold">
+            Bahrain Luxury Interior & Architectural CAD Package
+          </h3>
+          <p className="text-xs sm:text-sm text-white/80 leading-relaxed max-w-3xl">
+            This complete architectural & interior AutoCAD package was commissioned for a premier luxury interior design project in Bahrain as a full $1,000 drawing set contract. The deliverable included general arrangement layout plans, wall elevations, reflected ceiling plans, herringbone flooring patterns, and custom joinery construction details delivered as editable DWG, DXF, and presentation-ready PDF sets.
+          </p>
         </div>
       </div>
 
@@ -232,11 +239,9 @@ export function CadAutomationSection() {
             <span className="text-[10px] uppercase tracking-[0.2em] text-warm-accent font-bold block mb-2">Selected CAD Packages</span>
             <h3 className="serif text-4xl">Featured Projects</h3>
           </div>
-          <div className="flex items-center gap-3">
-            <span className="text-xs font-mono font-bold bg-warm-accent/10 text-warm-accent px-3 py-1 rounded-full border border-warm-accent/20">
-              Project Package Value: $1,000
-            </span>
-          </div>
+          <span className="text-xs text-warm-ink/50 font-semibold hidden md:block">
+            Click cards or thumbnails to launch full drawing gallery
+          </span>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -265,28 +270,23 @@ export function CadAutomationSection() {
                 <div className="absolute bottom-3 right-3 bg-black/75 backdrop-blur-md text-white px-2.5 py-1 rounded-full text-[9px] font-mono font-bold">
                   + 6 Drawings
                 </div>
-                <div className="absolute top-3 left-3 bg-warm-accent text-white px-2.5 py-1 rounded-full text-[9px] font-mono font-bold shadow-md">
-                  $1,000 Package
-                </div>
               </div>
 
               <div>
-                <div className="flex justify-between items-start mb-1">
-                  <h4 
-                    onClick={() => openLightbox(MASTER_BATHROOM_GALLERY, 0)}
-                    className="serif text-2xl font-semibold cursor-pointer hover:text-warm-accent transition-colors"
-                  >
-                    Master Bathroom CAD Package
-                  </h4>
-                </div>
+                <h4 
+                  onClick={() => openLightbox(MASTER_BATHROOM_GALLERY, 0)}
+                  className="serif text-2xl font-semibold mb-2 cursor-pointer hover:text-warm-accent transition-colors"
+                >
+                  Master Bathroom CAD Package
+                </h4>
                 <p className="text-xs text-warm-ink/75 leading-relaxed">
-                  An editable bathroom drawing package developed from a measured plan and interior-design references. The package included the general arrangement, four wall elevations, sanitary-fixture coordination, window setting-out and professional presentation sheets. Total project value: $1,000.
+                  An editable bathroom drawing package developed from a measured plan and interior-design references. The package included the general arrangement, four wall elevations, sanitary-fixture coordination, window setting-out and professional presentation sheets.
                 </p>
               </div>
             </div>
 
             <div className="flex flex-wrap gap-1.5 pt-2 border-t border-warm-ink/5">
-              {["PLAN", "4 ELEVATIONS", "FIXTURE LAYOUT", "DWG + DXF", "$1,000 VALUE"].map((tag) => (
+              {["PLAN", "4 ELEVATIONS", "FIXTURE LAYOUT", "DWG + DXF"].map((tag) => (
                 <span key={tag} className="text-[9px] font-semibold bg-warm-ink/5 text-warm-ink/70 px-2.5 py-1 rounded-full uppercase tracking-wider">
                   {tag}
                 </span>
@@ -338,9 +338,6 @@ export function CadAutomationSection() {
                 <div className="absolute bottom-3 right-3 bg-black/75 backdrop-blur-md text-white px-2.5 py-1 rounded-full text-[9px] font-mono font-bold">
                   3 CAD Drawings
                 </div>
-                <div className="absolute top-3 left-3 bg-warm-accent text-white px-2.5 py-1 rounded-full text-[9px] font-mono font-bold shadow-md">
-                  $1,000 Package
-                </div>
               </div>
 
               <div>
@@ -351,13 +348,13 @@ export function CadAutomationSection() {
                   Cigar Lounge Ceiling & Flooring
                 </h4>
                 <p className="text-xs text-warm-ink/75 leading-relaxed">
-                  A reflected ceiling and flooring package created from a supplied furniture layout and luxury interior references. The work included a coordinated coffered-ceiling concept, lighting arrangement and editable herringbone flooring pattern. Total project value: $1,000.
+                  A reflected ceiling and flooring package created from a supplied furniture layout and luxury interior references. The work included a coordinated coffered-ceiling concept, lighting arrangement and editable herringbone flooring pattern.
                 </p>
               </div>
             </div>
 
             <div className="flex flex-wrap gap-1.5 pt-2 border-t border-warm-ink/5">
-              {["RCP", "COFFERED CEILING", "LIGHTING LAYOUT", "HERRINGBONE FLOOR", "$1,000 VALUE"].map((tag) => (
+              {["RCP", "COFFERED CEILING", "LIGHTING LAYOUT", "HERRINGBONE FLOOR"].map((tag) => (
                 <span key={tag} className="text-[9px] font-semibold bg-warm-ink/5 text-warm-ink/70 px-2.5 py-1 rounded-full uppercase tracking-wider">
                   {tag}
                 </span>
@@ -409,9 +406,6 @@ export function CadAutomationSection() {
                 <div className="absolute bottom-3 right-3 bg-black/75 backdrop-blur-md text-white px-2.5 py-1 rounded-full text-[9px] font-mono font-bold">
                   4 Wall Packages
                 </div>
-                <div className="absolute top-3 left-3 bg-warm-accent text-white px-2.5 py-1 rounded-full text-[9px] font-mono font-bold shadow-md">
-                  $1,000 Package
-                </div>
               </div>
 
               <div>
@@ -422,13 +416,13 @@ export function CadAutomationSection() {
                   Custom Interior Wall Drafting
                 </h4>
                 <p className="text-xs text-warm-ink/75 leading-relaxed">
-                  Editable feature-wall drawings developed from interior references, confirmed overall dimensions and project-specific design instructions. The workflow supports TV units, display walls, decorative panelling, cabinetry, mirrors and under-stair wall compositions. Total project value: $1,000.
+                  Editable feature-wall drawings developed from interior references, confirmed overall dimensions and project-specific design instructions. The workflow supports TV units, display walls, decorative panelling, cabinetry, mirrors and under-stair wall compositions.
                 </p>
               </div>
             </div>
 
             <div className="flex flex-wrap gap-1.5 pt-2 border-t border-warm-ink/5">
-              {["FEATURE WALLS", "CABINETRY", "PANELLING", "DIMENSIONS", "$1,000 VALUE"].map((tag) => (
+              {["FEATURE WALLS", "CABINETRY", "PANELLING", "DIMENSIONS"].map((tag) => (
                 <span key={tag} className="text-[9px] font-semibold bg-warm-ink/5 text-warm-ink/70 px-2.5 py-1 rounded-full uppercase tracking-wider">
                   {tag}
                 </span>
@@ -491,7 +485,7 @@ export function CadAutomationSection() {
           >
             <div className="flex justify-between items-center">
               <span className="text-[10px] uppercase tracking-widest font-bold text-warm-accent">Editable CAD Output</span>
-              <span className="text-[9px] font-mono bg-warm-accent/10 text-warm-accent px-2 py-0.5 rounded font-bold">DWG / DXF / PDF ($1,000)</span>
+              <span className="text-[9px] font-mono bg-warm-accent/10 text-warm-accent px-2 py-0.5 rounded font-bold">DWG / DXF / PDF</span>
             </div>
             <div className="aspect-[4/3] rounded-2xl overflow-hidden bg-warm-ink/5 p-1 border border-warm-ink/10 relative">
               <img 
@@ -640,7 +634,7 @@ export function CadAutomationSection() {
               ))}
             </div>
             <p className="text-xs text-warm-ink/70 pt-1">
-              Flexible deliverables for review, editing, presentation and continued development by the client’s design team. Total project drawing set value: $1,000.
+              Flexible deliverables for review, editing, presentation and continued development by the client’s design team.
             </p>
           </div>
         </div>
@@ -649,12 +643,9 @@ export function CadAutomationSection() {
       {/* 6. CALL TO ACTION */}
       <div className="p-12 md:p-16 rounded-[3rem] bg-white border border-warm-ink/10 shadow-lg text-center max-w-3xl mx-auto space-y-8">
         <div className="space-y-3">
-          <div className="inline-block bg-warm-accent/10 text-warm-accent px-4 py-1.5 rounded-full text-xs font-mono font-bold border border-warm-accent/20 mb-2">
-            Full Drawing Package Value: $1,000
-          </div>
           <h3 className="serif text-4xl md:text-5xl">Have a plan, reference or design that needs drafting?</h3>
           <p className="text-sm text-warm-ink/70 leading-relaxed max-w-xl mx-auto">
-            Send the available layout, measurements and design references. I will review the material, identify what is confirmed or missing, and propose the appropriate editable CAD package ($1,000 project value).
+            Send the available layout, measurements and design references. I will review the material, identify what is confirmed or missing, and propose the appropriate editable CAD package.
           </p>
         </div>
 
@@ -669,7 +660,7 @@ export function CadAutomationSection() {
             <span className="w-5 h-5 rounded-full bg-white/20 flex items-center justify-center text-white">
               <WhatsAppIcon className="w-3 h-3" />
             </span>
-            <span>Generate Custom CAD Package ($1,000)</span>
+            <span>Start a CAD Project</span>
           </a>
 
           {/* Secondary Button */}
@@ -685,7 +676,7 @@ export function CadAutomationSection() {
       {/* DISCREET TRUST AND DISCLAIMER NOTE */}
       <div className="max-w-3xl mx-auto text-center px-4 pt-4">
         <p className="text-[11px] text-warm-ink/50 leading-relaxed font-mono">
-          CAD packages are developed from the measurements and references supplied for each project ($1,000 total package value). Provisional details remain editable and should be reviewed by the project’s qualified designer, draftsman or technical consultant before construction.
+          CAD packages are developed from the measurements and references supplied for each project. Provisional details remain editable and should be reviewed by the project’s qualified designer, draftsman or technical consultant before construction.
         </p>
       </div>
 
