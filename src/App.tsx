@@ -63,6 +63,11 @@ const SOCIAL_LINKS = [
 
 const SERVICES = [
   {
+    icon: FileCode,
+    title: "Architectural & Interior CAD Drafting",
+    desc: "Professional AutoCAD drafting transforming measurements, hand sketches, and design references into editable DWG, DXF, and PDF drawing packages ($1,000 package value)."
+  },
+  {
     icon: ImageIcon,
     title: "AI Visual Content",
     desc: "AI-generated images, cinematic product visuals, website hero images, mockups, brand visuals, and creative visual direction."
