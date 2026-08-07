@@ -15,7 +15,9 @@ import {
   ChevronRight,
   ZoomIn,
   ZoomOut,
-  RotateCcw
+  RotateCcw,
+  Download,
+  Sparkles
 } from "lucide-react";
 
 const WhatsAppIcon = (props: React.SVGProps<SVGSVGElement>) => (
@@ -41,10 +43,10 @@ export function CadAutomationSection() {
   const [activeGallery, setActiveGallery] = useState<CadImageItem[] | null>(null);
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const [zoomScale, setZoomScale] = useState<number>(1);
-  const [panPosition, setPanPosition] = useState<{ x: number; y: number }>({ x: 0, y: 0 });
+  const viewportRef = useRef<HTMLDivElement>(null);
 
   const whatsappMessage = encodeURIComponent(
-    "Hello, I would like to discuss an AutoCAD drafting project ($1,000 package value). I have a plan/reference and need editable CAD drawings."
+    "Hello, I would like to generate a custom AutoCAD drafting package ($1,000 package value). I have a plan/reference and need editable CAD drawings."
   );
 
   // Gallery collections for each project
@@ -88,45 +90,37 @@ export function CadAutomationSection() {
     setActiveGallery(gallery);
     setCurrentIndex(index);
     setZoomScale(1);
-    setPanPosition({ x: 0, y: 0 });
   };
 
   const handleNext = () => {
     if (!activeGallery) return;
     setCurrentIndex((prev) => (prev + 1) % activeGallery.length);
     setZoomScale(1);
-    setPanPosition({ x: 0, y: 0 });
   };
 
   const handlePrev = () => {
     if (!activeGallery) return;
     setCurrentIndex((prev) => (prev - 1 + activeGallery.length) % activeGallery.length);
     setZoomScale(1);
-    setPanPosition({ x: 0, y: 0 });
   };
 
   const handleZoomIn = () => {
-    setZoomScale((prev) => Math.min(prev + 0.5, 3.5));
+    setZoomScale((prev) => Math.min(prev + 0.5, 4));
   };
 
   const handleZoomOut = () => {
-    setZoomScale((prev) => {
-      const nextScale = Math.max(prev - 0.5, 1);
-      if (nextScale === 1) setPanPosition({ x: 0, y: 0 });
-      return nextScale;
-    });
+    setZoomScale((prev) => Math.max(prev - 0.5, 1));
   };
 
   const handleResetZoom = () => {
     setZoomScale(1);
-    setPanPosition({ x: 0, y: 0 });
   };
 
   const handleToggleZoom = () => {
     if (zoomScale > 1) {
       handleResetZoom();
     } else {
-      setZoomScale(2);
+      setZoomScale(2.5);
     }
   };
 
@@ -179,16 +173,23 @@ export function CadAutomationSection() {
             I combine structured design inputs, professional CAD scripting, and detailed quality checks to produce editable architectural and interior drawings faster. Plans, elevations, ceiling layouts, flooring patterns, and custom interior details are developed from supplied measurements, engineering drawings, and visual references, then delivered as editable DWG, DXF, and presentation-ready PDF files.
           </p>
 
-          <div className="p-4 rounded-2xl bg-white border border-warm-ink/10 shadow-sm flex items-center justify-between gap-4">
-            <div className="flex items-center gap-3">
-              <ShieldCheck className="w-5 h-5 text-warm-accent flex-shrink-0" />
-              <p className="text-xs font-semibold text-warm-ink tracking-wide">
-                Designed for client review. Fully editable for professional refinement.
-              </p>
+          <div className="flex flex-wrap items-center gap-4 pt-2">
+            <a 
+              href={`https://wa.me/447882746212?text=${whatsappMessage}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 bg-warm-accent text-white px-6 py-3 rounded-full text-xs font-semibold uppercase tracking-wider hover:bg-warm-accent/90 transition-all shadow-md"
+            >
+              <Sparkles size={16} />
+              <span>Generate Custom CAD Package</span>
+            </a>
+
+            <div className="p-3 px-4 rounded-full bg-white border border-warm-ink/10 shadow-sm flex items-center gap-2">
+              <ShieldCheck className="w-4 h-4 text-warm-accent flex-shrink-0" />
+              <span className="text-xs font-semibold text-warm-ink tracking-wide">
+                $1,000 Complete Package Value
+              </span>
             </div>
-            <span className="text-xs font-mono font-bold text-warm-accent bg-warm-accent/10 px-2.5 py-1 rounded-lg border border-warm-accent/20 flex-shrink-0">
-              $1,000
-            </span>
           </div>
         </div>
 
@@ -218,7 +219,7 @@ export function CadAutomationSection() {
             
             <div className="pt-3 flex justify-between items-center text-[10px] text-warm-ink/60 uppercase tracking-wider font-semibold border-t border-warm-ink/5">
               <span>AutoCAD DWG / DXF Output ($1,000 Set)</span>
-              <span className="text-warm-accent font-bold">Click any preview to browse carousel →</span>
+              <span className="text-warm-accent font-bold">Click any preview to launch full screen →</span>
             </div>
           </div>
         </div>
@@ -668,7 +669,7 @@ export function CadAutomationSection() {
             <span className="w-5 h-5 rounded-full bg-white/20 flex items-center justify-center text-white">
               <WhatsAppIcon className="w-3 h-3" />
             </span>
-            <span>Start a CAD Project ($1,000)</span>
+            <span>Generate Custom CAD Package ($1,000)</span>
           </a>
 
           {/* Secondary Button */}
@@ -688,7 +689,7 @@ export function CadAutomationSection() {
         </p>
       </div>
 
-      {/* 100% FULL-SCREEN LIGHTBOX OVERLAY WITH SMOOTH ZOOM, PAN & KEYBOARD EXIT */}
+      {/* 100% UNCONSTRAINED FULL-SCREEN LIGHTBOX OVERLAY WITH HD ZOOM, 360 PAN, DOWNLOAD & GENERATE CTA */}
       <AnimatePresence>
         {activeGallery && activeGallery.length > 0 && (
           <motion.div
@@ -697,72 +698,97 @@ export function CadAutomationSection() {
             exit={{ opacity: 0 }}
             onClick={() => setActiveGallery(null)}
             onWheel={handleWheel}
-            className="fixed inset-0 z-[9999] bg-black/95 backdrop-blur-xl flex flex-col justify-between p-3 md:p-6 cursor-pointer select-none overflow-hidden w-screen h-screen"
+            className="fixed inset-0 z-[9999] bg-black/98 backdrop-blur-2xl flex flex-col justify-between p-2 md:p-4 select-none overflow-hidden w-screen h-screen"
           >
-            {/* Top Toolbar: Drawing Title, Zoom Controls & Close (X) Button */}
+            {/* Top Bar: Drawing Info, Zoom, Download, Generate & Close Buttons */}
             <div 
               onClick={(e) => e.stopPropagation()}
-              className="flex justify-between items-center px-4 py-3 bg-neutral-900/90 border border-white/10 rounded-2xl backdrop-blur-md z-30 flex-shrink-0"
+              className="flex flex-wrap justify-between items-center gap-3 px-4 py-3 bg-neutral-900/95 border border-white/15 rounded-2xl backdrop-blur-md z-30 flex-shrink-0"
             >
-              <div className="space-y-0.5 max-w-[60%]">
+              <div className="space-y-0.5 max-w-[45%]">
                 <span className="text-[10px] font-mono uppercase tracking-widest text-warm-accent font-bold block">
                   {activeGallery[currentIndex].category || "CAD Drawing Package"} • Sheet {currentIndex + 1} of {activeGallery.length}
                 </span>
-                <h3 className="serif text-base md:text-xl text-white font-semibold line-clamp-1">
+                <h3 className="serif text-sm md:text-lg text-white font-semibold line-clamp-1">
                   {activeGallery[currentIndex].title}
                 </h3>
               </div>
 
-              {/* Controls Group */}
-              <div className="flex items-center gap-2">
+              {/* Action Toolbar */}
+              <div className="flex items-center gap-2 flex-wrap">
+                {/* Generate Button */}
+                <a 
+                  href={`https://wa.me/447882746212?text=${whatsappMessage}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hidden sm:inline-flex items-center gap-1.5 bg-warm-accent text-white px-3.5 py-2 rounded-full text-[11px] font-bold uppercase tracking-wider hover:bg-warm-accent/90 transition-all shadow-md"
+                >
+                  <Sparkles size={14} />
+                  <span>Generate</span>
+                </a>
+
+                {/* Download Sheet Button */}
+                <a
+                  href={activeGallery[currentIndex].src}
+                  download={`${activeGallery[currentIndex].title.replace(/[^a-zA-Z0-9]/g, '_')}.webp`}
+                  title="Download Ultra-HD Drawing Sheet"
+                  className="inline-flex items-center gap-1.5 bg-white/15 hover:bg-white/30 text-white px-3.5 py-2 rounded-full text-[11px] font-bold border border-white/20 transition-all shadow-sm"
+                >
+                  <Download size={14} />
+                  <span className="hidden sm:inline">Download Sheet</span>
+                </a>
+
+                {/* Zoom Controls */}
                 <div className="flex items-center gap-1 bg-white/10 p-1.5 rounded-full border border-white/15">
                   <button
                     onClick={handleZoomOut}
                     title="Zoom Out"
-                    className="text-white/70 hover:text-white p-2 rounded-full hover:bg-white/20 transition-all"
+                    className="text-white/70 hover:text-white p-1.5 rounded-full hover:bg-white/20 transition-all"
                   >
-                    <ZoomOut size={18} />
+                    <ZoomOut size={16} />
                   </button>
                   <button
                     onClick={handleToggleZoom}
-                    title="Toggle 100% / Fit Zoom"
-                    className="text-[10px] font-mono text-white/90 px-2.5 py-1 rounded-full font-bold hover:bg-white/20 transition-all"
+                    title="Toggle Zoom"
+                    className="text-[10px] font-mono text-white/90 px-2 py-0.5 rounded-full font-bold hover:bg-white/20 transition-all"
                   >
                     {Math.round(zoomScale * 100)}%
                   </button>
                   <button
                     onClick={handleZoomIn}
                     title="Zoom In"
-                    className="text-white/70 hover:text-white p-2 rounded-full hover:bg-white/20 transition-all"
+                    className="text-white/70 hover:text-white p-1.5 rounded-full hover:bg-white/20 transition-all"
                   >
-                    <ZoomIn size={18} />
+                    <ZoomIn size={16} />
                   </button>
                   {zoomScale !== 1 && (
                     <button
                       onClick={handleResetZoom}
-                      title="Reset Zoom"
-                      className="text-white/70 hover:text-white p-2 rounded-full hover:bg-white/20 transition-all ml-1 border-l border-white/15"
+                      title="Reset Zoom (Fit)"
+                      className="text-white/70 hover:text-white p-1.5 rounded-full hover:bg-white/20 transition-all ml-0.5 border-l border-white/15"
                     >
-                      <RotateCcw size={16} />
+                      <RotateCcw size={14} />
                     </button>
                   )}
                 </div>
 
+                {/* Close Button */}
                 <button 
                   onClick={() => setActiveGallery(null)}
-                  className="text-white/80 hover:text-white bg-white/15 hover:bg-white/30 p-2.5 rounded-full transition-all border border-white/20"
+                  className="text-white/80 hover:text-white bg-white/15 hover:bg-white/30 p-2 rounded-full transition-all border border-white/20"
                   aria-label="Close drawing viewer (Esc or Backspace)"
                   title="Close (Esc or Backspace)"
                 >
-                  <X size={22} />
+                  <X size={20} />
                 </button>
               </div>
             </div>
 
-            {/* Main Interactive Zoom & Pan Workspace */}
+            {/* Main Native Scroll & Pan Viewport Workspace */}
             <div 
+              ref={viewportRef}
               onClick={(e) => e.stopPropagation()}
-              className="relative flex-1 rounded-3xl overflow-hidden bg-black/60 flex items-center justify-center my-3 p-2 border border-white/10"
+              className="relative flex-1 rounded-2xl overflow-auto bg-neutral-950 flex items-center justify-center my-2 border border-white/10 scrollbar-thin scrollbar-thumb-white/20"
             >
               {/* Left Navigation Arrow */}
               {activeGallery.length > 1 && (
@@ -771,8 +797,8 @@ export function CadAutomationSection() {
                     e.stopPropagation();
                     handlePrev();
                   }}
-                  className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/15 hover:bg-white/30 text-white p-3 md:p-4 rounded-full backdrop-blur-md transition-all z-40 hover:scale-110 border border-white/20 shadow-xl"
-                  aria-label="Previous drawing"
+                  className="fixed left-4 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/35 text-white p-3 md:p-4 rounded-full backdrop-blur-md transition-all z-50 hover:scale-110 border border-white/30 shadow-2xl"
+                  aria-label="Previous drawing sheet"
                 >
                   <ChevronLeft size={28} />
                 </button>
@@ -785,19 +811,19 @@ export function CadAutomationSection() {
                     e.stopPropagation();
                     handleNext();
                   }}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/15 hover:bg-white/30 text-white p-3 md:p-4 rounded-full backdrop-blur-md transition-all z-40 hover:scale-110 border border-white/20 shadow-xl"
-                  aria-label="Next drawing"
+                  className="fixed right-4 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/35 text-white p-3 md:p-4 rounded-full backdrop-blur-md transition-all z-50 hover:scale-110 border border-white/30 shadow-2xl"
+                  aria-label="Next drawing sheet"
                 >
                   <ChevronRight size={28} />
                 </button>
               )}
 
-              {/* Draggable & Zoomable Crisp CAD Image */}
+              {/* 3200px Ultra HD CAD Image Container with Drag & Scroll Pan */}
               <motion.div
                 drag
-                dragConstraints={{ left: -1000, right: 1000, top: -800, bottom: 800 }}
-                dragElastic={0.1}
-                className="w-full h-full flex items-center justify-center cursor-grab active:cursor-grabbing overflow-visible"
+                dragConstraints={{ left: -2000, right: 2000, top: -1500, bottom: 1500 }}
+                dragElastic={0.05}
+                className="min-w-full min-h-full flex items-center justify-center p-4 cursor-grab active:cursor-grabbing"
               >
                 <img 
                   key={currentIndex}
@@ -807,18 +833,19 @@ export function CadAutomationSection() {
                   onDoubleClick={handleToggleZoom}
                   style={{ 
                     transform: `scale(${zoomScale})`,
-                    transition: "transform 0.25s cubic-bezier(0.16, 1, 0.3, 1)",
+                    transformOrigin: "center center",
+                    transition: "transform 0.2s cubic-bezier(0.16, 1, 0.3, 1)",
                     imageRendering: "-webkit-optimize-contrast"
                   }}
-                  className="max-h-[82vh] w-auto max-w-full object-contain rounded-lg shadow-2xl pointer-events-auto"
+                  className="max-h-[85vh] w-auto max-w-full object-contain rounded shadow-2xl"
                 />
               </motion.div>
             </div>
 
-            {/* Bottom Controls Bar: Thumbnail Strip & Keyboard Hint */}
+            {/* Bottom Controls Bar: Thumbnail Carousel & Keyboard Shortcut Hints */}
             <div 
               onClick={(e) => e.stopPropagation()}
-              className="flex flex-col sm:flex-row items-center justify-between gap-3 px-4 py-2 bg-neutral-900/90 border border-white/10 rounded-2xl backdrop-blur-md z-30 flex-shrink-0"
+              className="flex flex-col sm:flex-row items-center justify-between gap-3 px-4 py-2 bg-neutral-900/95 border border-white/15 rounded-2xl backdrop-blur-md z-30 flex-shrink-0"
             >
               <div className="flex gap-2 overflow-x-auto py-1 scrollbar-none max-w-full">
                 {activeGallery.map((thumb, idx) => (
@@ -844,8 +871,18 @@ export function CadAutomationSection() {
                 ))}
               </div>
 
-              <div className="text-[10px] font-mono text-white/50 uppercase tracking-widest hidden md:block">
-                Press <kbd className="bg-white/10 px-1.5 py-0.5 rounded text-white font-bold">Esc</kbd> or <kbd className="bg-white/10 px-1.5 py-0.5 rounded text-white font-bold">Backspace</kbd> to exit • Double click / Wheel to zoom
+              <div className="flex items-center gap-3 text-[10px] font-mono text-white/60">
+                <span className="hidden md:inline">
+                  <kbd className="bg-white/15 px-1.5 py-0.5 rounded text-white font-bold">Esc</kbd> or <kbd className="bg-white/15 px-1.5 py-0.5 rounded text-white font-bold">Backspace</kbd> exit
+                </span>
+                <a 
+                  href={`https://wa.me/447882746212?text=${whatsappMessage}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="sm:hidden text-warm-accent font-bold underline"
+                >
+                  Generate CAD →
+                </a>
               </div>
             </div>
           </motion.div>
