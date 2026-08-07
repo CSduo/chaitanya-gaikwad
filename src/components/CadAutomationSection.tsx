@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { 
   FileCode, 
@@ -15,8 +15,7 @@ import {
   ChevronRight,
   ZoomIn,
   ZoomOut,
-  RotateCcw,
-  DollarSign
+  RotateCcw
 } from "lucide-react";
 
 const WhatsAppIcon = (props: React.SVGProps<SVGSVGElement>) => (
@@ -42,6 +41,7 @@ export function CadAutomationSection() {
   const [activeGallery, setActiveGallery] = useState<CadImageItem[] | null>(null);
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const [zoomScale, setZoomScale] = useState<number>(1);
+  const [panPosition, setPanPosition] = useState<{ x: number; y: number }>({ x: 0, y: 0 });
 
   const whatsappMessage = encodeURIComponent(
     "Hello, I would like to discuss an AutoCAD drafting project ($1,000 package value). I have a plan/reference and need editable CAD drawings."
@@ -88,39 +88,64 @@ export function CadAutomationSection() {
     setActiveGallery(gallery);
     setCurrentIndex(index);
     setZoomScale(1);
+    setPanPosition({ x: 0, y: 0 });
   };
 
   const handleNext = () => {
     if (!activeGallery) return;
     setCurrentIndex((prev) => (prev + 1) % activeGallery.length);
     setZoomScale(1);
+    setPanPosition({ x: 0, y: 0 });
   };
 
   const handlePrev = () => {
     if (!activeGallery) return;
     setCurrentIndex((prev) => (prev - 1 + activeGallery.length) % activeGallery.length);
     setZoomScale(1);
+    setPanPosition({ x: 0, y: 0 });
   };
 
   const handleZoomIn = () => {
-    setZoomScale((prev) => Math.min(prev + 0.5, 3));
+    setZoomScale((prev) => Math.min(prev + 0.5, 3.5));
   };
 
   const handleZoomOut = () => {
-    setZoomScale((prev) => Math.max(prev - 0.5, 1));
+    setZoomScale((prev) => {
+      const nextScale = Math.max(prev - 0.5, 1);
+      if (nextScale === 1) setPanPosition({ x: 0, y: 0 });
+      return nextScale;
+    });
   };
 
   const handleResetZoom = () => {
     setZoomScale(1);
+    setPanPosition({ x: 0, y: 0 });
   };
 
-  // Keyboard navigation
+  const handleToggleZoom = () => {
+    if (zoomScale > 1) {
+      handleResetZoom();
+    } else {
+      setZoomScale(2);
+    }
+  };
+
+  // Mouse Wheel Zoom
+  const handleWheel = (e: React.WheelEvent) => {
+    if (e.deltaY < 0) {
+      handleZoomIn();
+    } else {
+      handleZoomOut();
+    }
+  };
+
+  // Keyboard navigation & escape/backspace handling
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (!activeGallery) return;
       if (e.key === "ArrowRight") handleNext();
       if (e.key === "ArrowLeft") handlePrev();
-      if (e.key === "Escape") setActiveGallery(null);
+      if (e.key === "Escape" || e.key === "Backspace") setActiveGallery(null);
     };
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
@@ -180,7 +205,7 @@ export function CadAutomationSection() {
                   <img 
                     src={img.src} 
                     alt={img.title}
-                    loading="lazy"
+                    loading="eager"
                     className="w-full h-full object-cover group-hover/card:scale-105 transition-transform duration-500"
                     style={{ imageRendering: "-webkit-optimize-contrast" }}
                   />
@@ -227,7 +252,7 @@ export function CadAutomationSection() {
                     key={idx}
                     src={img.src} 
                     alt={img.title}
-                    loading="lazy"
+                    loading="eager"
                     onClick={(e) => {
                       e.stopPropagation();
                       openLightbox(MASTER_BATHROOM_GALLERY, idx);
@@ -279,7 +304,7 @@ export function CadAutomationSection() {
                 <img 
                   src={CIGAR_LOUNGE_GALLERY[0].src} 
                   alt={CIGAR_LOUNGE_GALLERY[0].title}
-                  loading="lazy"
+                  loading="eager"
                   onClick={(e) => {
                     e.stopPropagation();
                     openLightbox(CIGAR_LOUNGE_GALLERY, 0);
@@ -290,7 +315,7 @@ export function CadAutomationSection() {
                 <img 
                   src={CIGAR_LOUNGE_GALLERY[1].src} 
                   alt={CIGAR_LOUNGE_GALLERY[1].title}
-                  loading="lazy"
+                  loading="eager"
                   onClick={(e) => {
                     e.stopPropagation();
                     openLightbox(CIGAR_LOUNGE_GALLERY, 1);
@@ -301,7 +326,7 @@ export function CadAutomationSection() {
                 <img 
                   src={CIGAR_LOUNGE_GALLERY[2].src} 
                   alt={CIGAR_LOUNGE_GALLERY[2].title}
-                  loading="lazy"
+                  loading="eager"
                   onClick={(e) => {
                     e.stopPropagation();
                     openLightbox(CIGAR_LOUNGE_GALLERY, 2);
@@ -350,7 +375,7 @@ export function CadAutomationSection() {
                 <img 
                   src={FEATURE_WALL_GALLERY[0].src} 
                   alt={FEATURE_WALL_GALLERY[0].title}
-                  loading="lazy"
+                  loading="eager"
                   onClick={(e) => {
                     e.stopPropagation();
                     openLightbox(FEATURE_WALL_GALLERY, 0);
@@ -361,7 +386,7 @@ export function CadAutomationSection() {
                 <img 
                   src={FEATURE_WALL_GALLERY[1].src} 
                   alt={FEATURE_WALL_GALLERY[1].title}
-                  loading="lazy"
+                  loading="eager"
                   onClick={(e) => {
                     e.stopPropagation();
                     openLightbox(FEATURE_WALL_GALLERY, 1);
@@ -372,7 +397,7 @@ export function CadAutomationSection() {
                 <img 
                   src={FEATURE_WALL_GALLERY[3].src} 
                   alt={FEATURE_WALL_GALLERY[3].title}
-                  loading="lazy"
+                  loading="eager"
                   onClick={(e) => {
                     e.stopPropagation();
                     openLightbox(FEATURE_WALL_GALLERY, 3);
@@ -433,13 +458,13 @@ export function CadAutomationSection() {
               <img 
                 src="/portfolio/cad-automation/master-bathroom-render-input.webp" 
                 alt="Client 3D Render Reference"
-                loading="lazy"
+                loading="eager"
                 className="w-full h-full object-cover rounded-xl opacity-90 hover:scale-105 transition-transform duration-300"
               />
               <img 
                 src="/portfolio/cad-automation/master-bathroom-plan-input.webp" 
                 alt="Client Dimension Sketch Input"
-                loading="lazy"
+                loading="eager"
                 className="w-full h-full object-cover rounded-xl opacity-90 hover:scale-105 transition-transform duration-300"
               />
             </div>
@@ -471,7 +496,7 @@ export function CadAutomationSection() {
               <img 
                 src="/portfolio/cad-automation/master-bathroom-plan.webp" 
                 alt="Clean Vector CAD Plan Output"
-                loading="lazy"
+                loading="eager"
                 className="w-full h-full object-cover rounded-xl hover:scale-105 transition-transform duration-300"
                 style={{ imageRendering: "-webkit-optimize-contrast" }}
               />
@@ -663,7 +688,7 @@ export function CadAutomationSection() {
         </p>
       </div>
 
-      {/* INTERACTIVE MULTI-IMAGE CAROUSEL LIGHTBOX MODAL WITH ZOOM & PAN */}
+      {/* 100% FULL-SCREEN LIGHTBOX OVERLAY WITH SMOOTH ZOOM, PAN & KEYBOARD EXIT */}
       <AnimatePresence>
         {activeGallery && activeGallery.length > 0 && (
           <motion.div
@@ -671,146 +696,157 @@ export function CadAutomationSection() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => setActiveGallery(null)}
-            className="fixed inset-0 z-50 bg-black/95 backdrop-blur-lg flex items-center justify-center p-3 md:p-6 cursor-pointer select-none"
+            onWheel={handleWheel}
+            className="fixed inset-0 z-[9999] bg-black/95 backdrop-blur-xl flex flex-col justify-between p-3 md:p-6 cursor-pointer select-none overflow-hidden w-screen h-screen"
           >
-            {/* Top Toolbar: Close & Zoom Controls */}
-            <div className="absolute top-4 right-4 md:top-6 md:right-6 flex items-center gap-2 z-30">
-              <div 
-                onClick={(e) => e.stopPropagation()}
-                className="flex items-center gap-1 bg-white/10 backdrop-blur-md p-1.5 rounded-full border border-white/15"
-              >
-                <button
-                  onClick={handleZoomOut}
-                  title="Zoom Out"
-                  className="text-white/70 hover:text-white p-2 rounded-full hover:bg-white/20 transition-all"
-                >
-                  <ZoomOut size={18} />
-                </button>
-                <span className="text-[10px] font-mono text-white/90 px-2 font-bold min-w-[3rem] text-center">
-                  {Math.round(zoomScale * 100)}%
-                </span>
-                <button
-                  onClick={handleZoomIn}
-                  title="Zoom In"
-                  className="text-white/70 hover:text-white p-2 rounded-full hover:bg-white/20 transition-all"
-                >
-                  <ZoomIn size={18} />
-                </button>
-                {zoomScale !== 1 && (
-                  <button
-                    onClick={handleResetZoom}
-                    title="Reset Zoom"
-                    className="text-white/70 hover:text-white p-2 rounded-full hover:bg-white/20 transition-all ml-1 border-l border-white/15"
-                  >
-                    <RotateCcw size={16} />
-                  </button>
-                )}
-              </div>
-
-              <button 
-                onClick={() => setActiveGallery(null)}
-                className="text-white/70 hover:text-white bg-white/10 hover:bg-white/20 p-2.5 rounded-full transition-all border border-white/15"
-                aria-label="Close drawing viewer"
-              >
-                <X size={22} />
-              </button>
-            </div>
-
-            {/* Left Navigation Arrow */}
-            {activeGallery.length > 1 && (
-              <button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  handlePrev();
-                }}
-                className="absolute left-3 md:left-6 top-1/2 -translate-y-1/2 bg-white/10 hover:bg-white/25 text-white p-3 md:p-4 rounded-full backdrop-blur-md transition-all z-30 hover:scale-110 border border-white/15"
-                aria-label="Previous drawing"
-              >
-                <ChevronLeft size={26} />
-              </button>
-            )}
-
-            {/* Right Navigation Arrow */}
-            {activeGallery.length > 1 && (
-              <button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  handleNext();
-                }}
-                className="absolute right-3 md:right-6 top-1/2 -translate-y-1/2 bg-white/10 hover:bg-white/25 text-white p-3 md:p-4 rounded-full backdrop-blur-md transition-all z-30 hover:scale-110 border border-white/15"
-                aria-label="Next drawing"
-              >
-                <ChevronRight size={26} />
-              </button>
-            )}
-
-            {/* Main Lightbox Content Card */}
+            {/* Top Toolbar: Drawing Title, Zoom Controls & Close (X) Button */}
             <div 
               onClick={(e) => e.stopPropagation()}
-              className="relative max-h-[94vh] w-full max-w-5xl bg-neutral-900 rounded-[2.5rem] p-4 md:p-6 shadow-2xl flex flex-col justify-between space-y-4 border border-white/10 cursor-default"
+              className="flex justify-between items-center px-4 py-3 bg-neutral-900/90 border border-white/10 rounded-2xl backdrop-blur-md z-30 flex-shrink-0"
             >
-              {/* Image Header info */}
-              <div className="flex justify-between items-center px-2 border-b border-white/10 pb-3 pr-40 md:pr-48">
-                <div className="space-y-0.5">
-                  <span className="text-[10px] font-mono uppercase tracking-widest text-warm-accent font-bold block">
-                    {activeGallery[currentIndex].category || "CAD Drawing Package"}
-                  </span>
-                  <h3 className="serif text-lg md:text-2xl text-white font-semibold line-clamp-1">
-                    {activeGallery[currentIndex].title}
-                  </h3>
-                </div>
-                <div className="text-[11px] font-mono bg-white/10 text-white/80 px-3 py-1 rounded-full border border-white/10 hidden sm:block">
-                  {currentIndex + 1} / {activeGallery.length}
-                </div>
+              <div className="space-y-0.5 max-w-[60%]">
+                <span className="text-[10px] font-mono uppercase tracking-widest text-warm-accent font-bold block">
+                  {activeGallery[currentIndex].category || "CAD Drawing Package"} • Sheet {currentIndex + 1} of {activeGallery.length}
+                </span>
+                <h3 className="serif text-base md:text-xl text-white font-semibold line-clamp-1">
+                  {activeGallery[currentIndex].title}
+                </h3>
               </div>
 
-              {/* Main Image Display View with Drag & Pan support when zoomed */}
-              <div className="relative flex-1 rounded-2xl overflow-hidden bg-black flex items-center justify-center min-h-[50vh] max-h-[66vh] p-2 select-none">
-                <motion.div
-                  drag={zoomScale > 1}
-                  dragConstraints={{ left: -400, right: 400, top: -300, bottom: 300 }}
-                  className="w-full h-full flex items-center justify-center cursor-grab active:cursor-grabbing"
-                >
-                  <img 
-                    key={currentIndex}
-                    src={activeGallery[currentIndex].src} 
-                    alt={activeGallery[currentIndex].title}
-                    style={{ 
-                      transform: `scale(${zoomScale})`,
-                      transition: "transform 0.3s ease-out",
-                      imageRendering: "-webkit-optimize-contrast"
-                    }}
-                    className="max-h-[64vh] w-auto max-w-full object-contain rounded-lg shadow-2xl"
-                  />
-                </motion.div>
-              </div>
-
-              {/* Bottom Thumbnail Carousel Strip */}
-              {activeGallery.length > 1 && (
-                <div className="flex gap-2.5 overflow-x-auto py-2 px-1 justify-center scrollbar-none border-t border-white/10 pt-3">
-                  {activeGallery.map((thumb, idx) => (
+              {/* Controls Group */}
+              <div className="flex items-center gap-2">
+                <div className="flex items-center gap-1 bg-white/10 p-1.5 rounded-full border border-white/15">
+                  <button
+                    onClick={handleZoomOut}
+                    title="Zoom Out"
+                    className="text-white/70 hover:text-white p-2 rounded-full hover:bg-white/20 transition-all"
+                  >
+                    <ZoomOut size={18} />
+                  </button>
+                  <button
+                    onClick={handleToggleZoom}
+                    title="Toggle 100% / Fit Zoom"
+                    className="text-[10px] font-mono text-white/90 px-2.5 py-1 rounded-full font-bold hover:bg-white/20 transition-all"
+                  >
+                    {Math.round(zoomScale * 100)}%
+                  </button>
+                  <button
+                    onClick={handleZoomIn}
+                    title="Zoom In"
+                    className="text-white/70 hover:text-white p-2 rounded-full hover:bg-white/20 transition-all"
+                  >
+                    <ZoomIn size={18} />
+                  </button>
+                  {zoomScale !== 1 && (
                     <button
-                      key={idx}
-                      onClick={() => {
-                        setCurrentIndex(idx);
-                        setZoomScale(1);
-                      }}
-                      className={`relative w-16 h-12 md:w-20 md:h-14 rounded-xl overflow-hidden flex-shrink-0 border-2 transition-all duration-200 ${
-                        idx === currentIndex 
-                          ? "border-warm-accent scale-105 shadow-md opacity-100" 
-                          : "border-transparent opacity-50 hover:opacity-100"
-                      }`}
+                      onClick={handleResetZoom}
+                      title="Reset Zoom"
+                      className="text-white/70 hover:text-white p-2 rounded-full hover:bg-white/20 transition-all ml-1 border-l border-white/15"
                     >
-                      <img 
-                        src={thumb.src} 
-                        alt={thumb.title}
-                        className="w-full h-full object-cover"
-                        style={{ imageRendering: "-webkit-optimize-contrast" }}
-                      />
+                      <RotateCcw size={16} />
                     </button>
-                  ))}
+                  )}
                 </div>
+
+                <button 
+                  onClick={() => setActiveGallery(null)}
+                  className="text-white/80 hover:text-white bg-white/15 hover:bg-white/30 p-2.5 rounded-full transition-all border border-white/20"
+                  aria-label="Close drawing viewer (Esc or Backspace)"
+                  title="Close (Esc or Backspace)"
+                >
+                  <X size={22} />
+                </button>
+              </div>
+            </div>
+
+            {/* Main Interactive Zoom & Pan Workspace */}
+            <div 
+              onClick={(e) => e.stopPropagation()}
+              className="relative flex-1 rounded-3xl overflow-hidden bg-black/60 flex items-center justify-center my-3 p-2 border border-white/10"
+            >
+              {/* Left Navigation Arrow */}
+              {activeGallery.length > 1 && (
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handlePrev();
+                  }}
+                  className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/15 hover:bg-white/30 text-white p-3 md:p-4 rounded-full backdrop-blur-md transition-all z-40 hover:scale-110 border border-white/20 shadow-xl"
+                  aria-label="Previous drawing"
+                >
+                  <ChevronLeft size={28} />
+                </button>
               )}
+
+              {/* Right Navigation Arrow */}
+              {activeGallery.length > 1 && (
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleNext();
+                  }}
+                  className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/15 hover:bg-white/30 text-white p-3 md:p-4 rounded-full backdrop-blur-md transition-all z-40 hover:scale-110 border border-white/20 shadow-xl"
+                  aria-label="Next drawing"
+                >
+                  <ChevronRight size={28} />
+                </button>
+              )}
+
+              {/* Draggable & Zoomable Crisp CAD Image */}
+              <motion.div
+                drag
+                dragConstraints={{ left: -1000, right: 1000, top: -800, bottom: 800 }}
+                dragElastic={0.1}
+                className="w-full h-full flex items-center justify-center cursor-grab active:cursor-grabbing overflow-visible"
+              >
+                <img 
+                  key={currentIndex}
+                  src={activeGallery[currentIndex].src} 
+                  alt={activeGallery[currentIndex].title}
+                  loading="eager"
+                  onDoubleClick={handleToggleZoom}
+                  style={{ 
+                    transform: `scale(${zoomScale})`,
+                    transition: "transform 0.25s cubic-bezier(0.16, 1, 0.3, 1)",
+                    imageRendering: "-webkit-optimize-contrast"
+                  }}
+                  className="max-h-[82vh] w-auto max-w-full object-contain rounded-lg shadow-2xl pointer-events-auto"
+                />
+              </motion.div>
+            </div>
+
+            {/* Bottom Controls Bar: Thumbnail Strip & Keyboard Hint */}
+            <div 
+              onClick={(e) => e.stopPropagation()}
+              className="flex flex-col sm:flex-row items-center justify-between gap-3 px-4 py-2 bg-neutral-900/90 border border-white/10 rounded-2xl backdrop-blur-md z-30 flex-shrink-0"
+            >
+              <div className="flex gap-2 overflow-x-auto py-1 scrollbar-none max-w-full">
+                {activeGallery.map((thumb, idx) => (
+                  <button
+                    key={idx}
+                    onClick={() => {
+                      setCurrentIndex(idx);
+                      setZoomScale(1);
+                    }}
+                    className={`relative w-14 h-10 md:w-16 md:h-11 rounded-lg overflow-hidden flex-shrink-0 border-2 transition-all duration-200 ${
+                      idx === currentIndex 
+                        ? "border-warm-accent scale-105 shadow-lg opacity-100" 
+                        : "border-transparent opacity-40 hover:opacity-100"
+                    }`}
+                  >
+                    <img 
+                      src={thumb.src} 
+                      alt={thumb.title}
+                      className="w-full h-full object-cover"
+                      style={{ imageRendering: "-webkit-optimize-contrast" }}
+                    />
+                  </button>
+                ))}
+              </div>
+
+              <div className="text-[10px] font-mono text-white/50 uppercase tracking-widest hidden md:block">
+                Press <kbd className="bg-white/10 px-1.5 py-0.5 rounded text-white font-bold">Esc</kbd> or <kbd className="bg-white/10 px-1.5 py-0.5 rounded text-white font-bold">Backspace</kbd> to exit • Double click / Wheel to zoom
+              </div>
             </div>
           </motion.div>
         )}
