@@ -41,17 +41,155 @@ export interface CadImageItem {
 }
 
 export function CadAutomationSection() {
-  // Lightbox carousel & zoom state
+  // Lightbox core state
   const [activeGallery, setActiveGallery] = useState<CadImageItem[] | null>(null);
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const [zoomScale, setZoomScale] = useState<number>(1);
-  const viewportRef = useRef<HTMLDivElement>(null);
+
+  // Pan state for zoom panning
+  const [panX, setPanX] = useState(0);
+  const [panY, setPanY] = useState(0);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const imgRef = useRef<HTMLImageElement>(null);
 
   const whatsappMessage = encodeURIComponent(
     "Hello, I would like to discuss an AutoCAD drafting project. I have a plan/reference and need editable CAD drawings."
   );
 
-  // Gallery collections for each project
+  // Clamp pan so image stays in frame
+  const clampPan = (scale: number, dx: number, dy: number) => {
+    const container = containerRef.current;
+    const img = imgRef.current;
+    if (!container || !img) return { x: dx, y: dy };
+    const cW = container.clientWidth;
+    const cH = container.clientHeight;
+    const imgW = img.naturalWidth || img.clientWidth;
+    const imgH = img.naturalHeight || img.clientHeight;
+    const scaledW = Math.min(imgW, cW) * scale;
+    const scaledH = Math.min(imgH, cH) * scale;
+    const maxX = Math.max(0, (scaledW - cW) / 2);
+    const maxY = Math.max(0, (scaledH - cH) / 2);
+    return {
+      x: Math.max(-maxX, Math.min(maxX, dx)),
+      y: Math.max(-maxY, Math.min(maxY, dy)),
+    };
+  };
+
+  // Mouse drag state
+  const isDragging = useRef(false);
+  const dragStart = useRef({ x: 0, y: 0, panX: 0, panY: 0 });
+
+  const onMouseDown = (e: React.MouseEvent) => {
+    if (zoomScale <= 1) return;
+    isDragging.current = true;
+    dragStart.current = { x: e.clientX, y: e.clientY, panX, panY };
+  };
+  const onMouseMove = (e: React.MouseEvent) => {
+    if (!isDragging.current) return;
+    const dx = e.clientX - dragStart.current.x;
+    const dy = e.clientY - dragStart.current.y;
+    const clamped = clampPan(zoomScale, dragStart.current.panX + dx, dragStart.current.panY + dy);
+    setPanX(clamped.x);
+    setPanY(clamped.y);
+  };
+  const onMouseUp = () => { isDragging.current = false; };
+
+  // Touch state
+  const lastTouches = useRef<React.TouchList | null>(null);
+  const pinchStartDist = useRef<number | null>(null);
+  const pinchStartScale = useRef(1);
+  const touchPanStart = useRef({ x: 0, y: 0, panX: 0, panY: 0 });
+
+  const getTouchDist = (t: React.TouchList) => {
+    const dx = t[1].clientX - t[0].clientX;
+    const dy = t[1].clientY - t[0].clientY;
+    return Math.sqrt(dx * dx + dy * dy);
+  };
+
+  const onTouchStart = (e: React.TouchEvent) => {
+    if (e.touches.length === 2) {
+      pinchStartDist.current = getTouchDist(e.touches);
+      pinchStartScale.current = zoomScale;
+    } else if (e.touches.length === 1) {
+      touchPanStart.current = { x: e.touches[0].clientX, y: e.touches[0].clientY, panX, panY };
+    }
+    lastTouches.current = e.touches;
+  };
+
+  const onTouchMove = (e: React.TouchEvent) => {
+    e.preventDefault();
+    if (e.touches.length === 2 && pinchStartDist.current !== null) {
+      // Pinch zoom
+      const dist = getTouchDist(e.touches);
+      const ratio = dist / pinchStartDist.current;
+      const newScale = Math.max(1, Math.min(5, pinchStartScale.current * ratio));
+      setZoomScale(newScale);
+      const clamped = clampPan(newScale, panX, panY);
+      setPanX(clamped.x);
+      setPanY(clamped.y);
+    } else if (e.touches.length === 1 && zoomScale > 1) {
+      // Single-finger pan (only when zoomed)
+      const dx = e.touches[0].clientX - touchPanStart.current.x;
+      const dy = e.touches[0].clientY - touchPanStart.current.y;
+      const clamped = clampPan(zoomScale, touchPanStart.current.panX + dx, touchPanStart.current.panY + dy);
+      setPanX(clamped.x);
+      setPanY(clamped.y);
+    }
+  };
+
+  const onTouchEnd = () => {
+    pinchStartDist.current = null;
+  };
+
+  const resetImageTransform = () => {
+    setZoomScale(1);
+    setPanX(0);
+    setPanY(0);
+  };
+
+  const goNext = () => {
+    if (!activeGallery) return;
+    setCurrentIndex((prev) => (prev + 1) % activeGallery.length);
+    resetImageTransform();
+  };
+
+  const goPrev = () => {
+    if (!activeGallery) return;
+    setCurrentIndex((prev) => (prev - 1 + activeGallery.length) % activeGallery.length);
+    resetImageTransform();
+  };
+
+  const handleToggleZoom = () => {
+    if (zoomScale > 1) {
+      resetImageTransform();
+    } else {
+      setZoomScale(2.5);
+      setPanX(0);
+      setPanY(0);
+    }
+  };
+
+  const handleWheel = (e: React.WheelEvent) => {
+    e.preventDefault();
+    const newScale = Math.max(1, Math.min(5, zoomScale + (e.deltaY < 0 ? 0.3 : -0.3)));
+    setZoomScale(newScale);
+    const clamped = clampPan(newScale, panX, panY);
+    setPanX(clamped.x);
+    setPanY(clamped.y);
+  };
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (!activeGallery) return;
+      if (e.key === "ArrowRight") goNext();
+      if (e.key === "ArrowLeft") goPrev();
+      if (e.key === "Escape" || e.key === "Backspace") { setActiveGallery(null); resetImageTransform(); }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [activeGallery, currentIndex, zoomScale]);
+
+
   const HERO_GALLERY: CadImageItem[] = [
     { src: "/portfolio/cad-automation/hero-plan.webp", title: "Master Bathroom - General Layout Plan", category: "Plan Drawing" },
     { src: "/portfolio/cad-automation/hero-elevation.webp", title: "Master Bathroom - Bathtub & Window Elevation", category: "Wall Elevation" },
@@ -88,62 +226,12 @@ export function CadAutomationSection() {
     { src: "/portfolio/cad-automation/master-bathroom-elevation.webp", title: "Editable CAD Output - Vector Wall Elevation with Dimensions", category: "Vector DWG / DXF" }
   ];
 
+
   const openLightbox = (gallery: CadImageItem[], index: number = 0) => {
     setActiveGallery(gallery);
     setCurrentIndex(index);
-    setZoomScale(1);
+    resetImageTransform();
   };
-
-  const handleNext = () => {
-    if (!activeGallery) return;
-    setCurrentIndex((prev) => (prev + 1) % activeGallery.length);
-    setZoomScale(1);
-  };
-
-  const handlePrev = () => {
-    if (!activeGallery) return;
-    setCurrentIndex((prev) => (prev - 1 + activeGallery.length) % activeGallery.length);
-    setZoomScale(1);
-  };
-
-  const handleZoomIn = () => {
-    setZoomScale((prev) => Math.min(prev + 0.5, 4));
-  };
-
-  const handleZoomOut = () => {
-    setZoomScale((prev) => Math.max(prev - 0.5, 1));
-  };
-
-  const handleResetZoom = () => {
-    setZoomScale(1);
-  };
-
-  const handleToggleZoom = () => {
-    if (zoomScale > 1) {
-      handleResetZoom();
-    } else {
-      setZoomScale(2.5);
-    }
-  };
-
-  const handleWheel = (e: React.WheelEvent) => {
-    if (e.deltaY < 0) {
-      handleZoomIn();
-    } else {
-      handleZoomOut();
-    }
-  };
-
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (!activeGallery) return;
-      if (e.key === "ArrowRight") handleNext();
-      if (e.key === "ArrowLeft") handlePrev();
-      if (e.key === "Escape" || e.key === "Backspace") setActiveGallery(null);
-    };
-    window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [activeGallery]);
 
   return (
     <section id="cad-automation" className="py-24 border-b border-warm-ink/10 scroll-mt-20 space-y-20">
@@ -680,201 +768,167 @@ export function CadAutomationSection() {
         </p>
       </div>
 
-      {/* 100% UNCONSTRAINED FULL-SCREEN LIGHTBOX OVERLAY WITH HD ZOOM, 360 PAN, DOWNLOAD & GENERATE CTA */}
+      {/* FULL-SCREEN LIGHTBOX — Bounded Pinch-Zoom + Mouse-Drag Pan, No Blank Screen */}
       <AnimatePresence>
         {activeGallery && activeGallery.length > 0 && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            onClick={() => setActiveGallery(null)}
-            onWheel={handleWheel}
-            className="fixed inset-0 z-[9999] bg-black/98 backdrop-blur-2xl flex flex-col justify-between p-2 md:p-4 select-none overflow-hidden w-screen h-screen"
+            className="fixed inset-0 z-[9999] bg-black flex flex-col select-none"
+            style={{ touchAction: "none" }}
           >
-            {/* Top Bar: Drawing Info, Zoom, Download, Generate & Close Buttons */}
-            <div 
-              onClick={(e) => e.stopPropagation()}
-              className="flex flex-wrap justify-between items-center gap-3 px-4 py-3 bg-neutral-900/95 border border-white/15 rounded-2xl backdrop-blur-md z-30 flex-shrink-0"
-            >
-              <div className="space-y-0.5 max-w-[45%]">
-                <span className="text-[10px] font-mono uppercase tracking-widest text-warm-accent font-bold block">
-                  {activeGallery[currentIndex].category || "CAD Drawing Package"} • Sheet {currentIndex + 1} of {activeGallery.length}
+            {/* Top Bar */}
+            <div className="flex flex-wrap justify-between items-center gap-2 px-4 py-3 bg-neutral-900/95 border-b border-white/10 flex-shrink-0 z-30">
+              <div className="space-y-0.5 min-w-0 flex-1">
+                <span className="text-[10px] font-mono uppercase tracking-widest text-warm-accent font-bold block truncate">
+                  {activeGallery[currentIndex].category || "CAD Drawing"} • {currentIndex + 1} / {activeGallery.length}
                 </span>
-                <h3 className="serif text-sm md:text-lg text-white font-semibold line-clamp-1">
+                <p className="serif text-sm text-white font-semibold truncate">
                   {activeGallery[currentIndex].title}
-                </h3>
+                </p>
               </div>
 
-              {/* Action Toolbar */}
-              <div className="flex items-center gap-2 flex-wrap">
-                {/* Generate Button */}
-                <a 
+              <div className="flex items-center gap-2 flex-shrink-0">
+                {/* Generate */}
+                <a
                   href={`https://wa.me/447882746212?text=${whatsappMessage}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hidden sm:inline-flex items-center gap-1.5 bg-warm-accent text-white px-3.5 py-2 rounded-full text-[11px] font-bold uppercase tracking-wider hover:bg-warm-accent/90 transition-all shadow-md"
+                  className="hidden sm:inline-flex items-center gap-1.5 bg-warm-accent text-white px-3 py-2 rounded-full text-[11px] font-bold uppercase tracking-wider hover:bg-warm-accent/90 transition-all"
                 >
-                  <Sparkles size={14} />
-                  <span>Generate</span>
+                  <Sparkles size={13} /><span>Generate</span>
                 </a>
 
-                {/* Download Sheet Button */}
+                {/* Download */}
                 <a
                   href={activeGallery[currentIndex].src}
                   download={`${activeGallery[currentIndex].title.replace(/[^a-zA-Z0-9]/g, '_')}.webp`}
-                  title="Download Ultra-HD Drawing Sheet"
-                  className="inline-flex items-center gap-1.5 bg-white/15 hover:bg-white/30 text-white px-3.5 py-2 rounded-full text-[11px] font-bold border border-white/20 transition-all shadow-sm"
+                  className="inline-flex items-center gap-1.5 bg-white/15 hover:bg-white/25 text-white px-3 py-2 rounded-full text-[11px] font-bold border border-white/20 transition-all"
                 >
-                  <Download size={14} />
-                  <span className="hidden sm:inline">Download Sheet</span>
+                  <Download size={13} /><span className="hidden sm:inline">Download</span>
                 </a>
 
-                {/* Zoom Controls */}
-                <div className="flex items-center gap-1 bg-white/10 p-1.5 rounded-full border border-white/15">
+                {/* Zoom level indicator + reset */}
+                {zoomScale !== 1 && (
                   <button
-                    onClick={handleZoomOut}
-                    title="Zoom Out"
-                    className="text-white/70 hover:text-white p-1.5 rounded-full hover:bg-white/20 transition-all"
+                    onClick={resetImageTransform}
+                    className="text-[10px] font-mono text-white bg-white/15 hover:bg-white/25 px-2.5 py-1.5 rounded-full font-bold border border-white/20 transition-all flex items-center gap-1"
                   >
-                    <ZoomOut size={16} />
+                    <RotateCcw size={11} /> {Math.round(zoomScale * 100)}%
                   </button>
-                  <button
-                    onClick={handleToggleZoom}
-                    title="Toggle Zoom"
-                    className="text-[10px] font-mono text-white/90 px-2 py-0.5 rounded-full font-bold hover:bg-white/20 transition-all"
-                  >
-                    {Math.round(zoomScale * 100)}%
-                  </button>
-                  <button
-                    onClick={handleZoomIn}
-                    title="Zoom In"
-                    className="text-white/70 hover:text-white p-1.5 rounded-full hover:bg-white/20 transition-all"
-                  >
-                    <ZoomIn size={16} />
-                  </button>
-                  {zoomScale !== 1 && (
-                    <button
-                      onClick={handleResetZoom}
-                      title="Reset Zoom (Fit)"
-                      className="text-white/70 hover:text-white p-1.5 rounded-full hover:bg-white/20 transition-all ml-0.5 border-l border-white/15"
-                    >
-                      <RotateCcw size={14} />
-                    </button>
-                  )}
+                )}
+
+                {/* Zoom + / - buttons (desktop) */}
+                <div className="hidden sm:flex items-center gap-1 bg-white/10 p-1 rounded-full border border-white/15">
+                  <button onClick={() => { const s = Math.max(1, zoomScale - 0.5); setZoomScale(s); const c = clampPan(s, panX, panY); setPanX(c.x); setPanY(c.y); }} className="text-white/70 hover:text-white p-1.5 rounded-full hover:bg-white/20 transition-all"><ZoomOut size={15} /></button>
+                  <button onClick={handleToggleZoom} className="text-[10px] font-mono text-white/90 px-1.5 font-bold">{Math.round(zoomScale * 100)}%</button>
+                  <button onClick={() => { const s = Math.min(5, zoomScale + 0.5); setZoomScale(s); const c = clampPan(s, panX, panY); setPanX(c.x); setPanY(c.y); }} className="text-white/70 hover:text-white p-1.5 rounded-full hover:bg-white/20 transition-all"><ZoomIn size={15} /></button>
                 </div>
 
-                {/* Close Button */}
-                <button 
-                  onClick={() => setActiveGallery(null)}
-                  className="text-white/80 hover:text-white bg-white/15 hover:bg-white/30 p-2 rounded-full transition-all border border-white/20"
-                  aria-label="Close drawing viewer (Esc or Backspace)"
-                  title="Close (Esc or Backspace)"
+                {/* Close */}
+                <button
+                  onClick={() => { setActiveGallery(null); resetImageTransform(); }}
+                  className="text-white bg-white/15 hover:bg-white/30 p-2 rounded-full transition-all border border-white/20"
                 >
                   <X size={20} />
                 </button>
               </div>
             </div>
 
-            {/* Main Native Scroll & Pan Viewport Workspace */}
-            <div 
-              ref={viewportRef}
-              onClick={(e) => e.stopPropagation()}
-              className="relative flex-1 rounded-2xl overflow-auto bg-neutral-950 flex items-center justify-center my-2 border border-white/10 scrollbar-thin scrollbar-thumb-white/20"
+            {/* Image Viewport — fully bounded, pinch-zoom, no blank screen */}
+            <div
+              ref={containerRef}
+              className="flex-1 relative overflow-hidden bg-neutral-950"
+              onMouseDown={onMouseDown}
+              onMouseMove={onMouseMove}
+              onMouseUp={onMouseUp}
+              onMouseLeave={onMouseUp}
+              onWheel={handleWheel}
+              onTouchStart={onTouchStart}
+              onTouchMove={onTouchMove}
+              onTouchEnd={onTouchEnd}
+              style={{ cursor: zoomScale > 1 ? "grab" : "default", touchAction: "none" }}
             >
-              {/* Left Navigation Arrow */}
+              {/* Image */}
+              <img
+                ref={imgRef}
+                key={currentIndex}
+                src={activeGallery[currentIndex].src}
+                alt={activeGallery[currentIndex].title}
+                loading="eager"
+                onDoubleClick={handleToggleZoom}
+                draggable={false}
+                style={{
+                  transform: `translate(${panX}px, ${panY}px) scale(${zoomScale})`,
+                  transformOrigin: "center center",
+                  transition: isDragging.current ? "none" : "transform 0.2s ease",
+                  userSelect: "none",
+                  pointerEvents: "none",
+                }}
+                className="absolute inset-0 m-auto w-full h-full object-contain"
+              />
+
+              {/* Left Arrow */}
               {activeGallery.length > 1 && (
                 <button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    handlePrev();
-                  }}
-                  className="fixed left-4 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/35 text-white p-3 md:p-4 rounded-full backdrop-blur-md transition-all z-50 hover:scale-110 border border-white/30 shadow-2xl"
-                  aria-label="Previous drawing sheet"
+                  onClick={(e) => { e.stopPropagation(); goPrev(); }}
+                  className="absolute left-2 top-1/2 -translate-y-1/2 bg-black/60 hover:bg-black/80 text-white p-3 rounded-full backdrop-blur-md transition-all z-20 border border-white/20 shadow-xl"
+                  aria-label="Previous drawing"
                 >
-                  <ChevronLeft size={28} />
+                  <ChevronLeft size={24} />
                 </button>
               )}
 
-              {/* Right Navigation Arrow */}
+              {/* Right Arrow */}
               {activeGallery.length > 1 && (
                 <button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    handleNext();
-                  }}
-                  className="fixed right-4 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/35 text-white p-3 md:p-4 rounded-full backdrop-blur-md transition-all z-50 hover:scale-110 border border-white/30 shadow-2xl"
-                  aria-label="Next drawing sheet"
+                  onClick={(e) => { e.stopPropagation(); goNext(); }}
+                  className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/60 hover:bg-black/80 text-white p-3 rounded-full backdrop-blur-md transition-all z-20 border border-white/20 shadow-xl"
+                  aria-label="Next drawing"
                 >
-                  <ChevronRight size={28} />
+                  <ChevronRight size={24} />
                 </button>
               )}
 
-              {/* 3200px Ultra HD CAD Image Container with Drag & Scroll Pan */}
-              <motion.div
-                drag
-                dragConstraints={{ left: -2000, right: 2000, top: -1500, bottom: 1500 }}
-                dragElastic={0.05}
-                className="min-w-full min-h-full flex items-center justify-center p-4 cursor-grab active:cursor-grabbing"
-              >
-                <img 
-                  key={currentIndex}
-                  src={activeGallery[currentIndex].src} 
-                  alt={activeGallery[currentIndex].title}
-                  loading="eager"
-                  onDoubleClick={handleToggleZoom}
-                  style={{ 
-                    transform: `scale(${zoomScale})`,
-                    transformOrigin: "center center",
-                    transition: "transform 0.2s cubic-bezier(0.16, 1, 0.3, 1)",
-                    imageRendering: "-webkit-optimize-contrast"
-                  }}
-                  className="max-h-[85vh] w-auto max-w-full object-contain rounded shadow-2xl"
-                />
-              </motion.div>
+              {/* Mobile hint */}
+              {zoomScale <= 1 && (
+                <div className="absolute bottom-4 left-1/2 -translate-x-1/2 sm:hidden bg-black/60 text-white/70 text-[10px] px-3 py-1.5 rounded-full font-mono backdrop-blur-sm">
+                  Pinch to zoom · Swipe to navigate
+                </div>
+              )}
             </div>
 
-            {/* Bottom Controls Bar: Thumbnail Carousel & Keyboard Shortcut Hints */}
-            <div 
-              onClick={(e) => e.stopPropagation()}
-              className="flex flex-col sm:flex-row items-center justify-between gap-3 px-4 py-2 bg-neutral-900/95 border border-white/15 rounded-2xl backdrop-blur-md z-30 flex-shrink-0"
-            >
-              <div className="flex gap-2 overflow-x-auto py-1 scrollbar-none max-w-full">
+            {/* Bottom Thumbnail Bar */}
+            <div className="flex items-center justify-between gap-3 px-4 py-2 bg-neutral-900/95 border-t border-white/10 flex-shrink-0 z-30">
+              <div className="flex gap-2 overflow-x-auto py-1 scrollbar-none">
                 {activeGallery.map((thumb, idx) => (
                   <button
                     key={idx}
-                    onClick={() => {
-                      setCurrentIndex(idx);
-                      setZoomScale(1);
-                    }}
+                    onClick={() => { setCurrentIndex(idx); resetImageTransform(); }}
                     className={`relative w-14 h-10 md:w-16 md:h-11 rounded-lg overflow-hidden flex-shrink-0 border-2 transition-all duration-200 ${
-                      idx === currentIndex 
-                        ? "border-warm-accent scale-105 shadow-lg opacity-100" 
-                        : "border-transparent opacity-40 hover:opacity-100"
+                      idx === currentIndex
+                        ? "border-warm-accent scale-105 shadow-lg opacity-100"
+                        : "border-transparent opacity-40 hover:opacity-80"
                     }`}
                   >
-                    <img 
-                      src={thumb.src} 
-                      alt={thumb.title}
-                      className="w-full h-full object-cover"
-                      style={{ imageRendering: "-webkit-optimize-contrast" }}
-                    />
+                    <img src={thumb.src} alt={thumb.title} className="w-full h-full object-cover" />
                   </button>
                 ))}
               </div>
 
-              <div className="flex items-center gap-3 text-[10px] font-mono text-white/60">
-                <span className="hidden md:inline">
-                  <kbd className="bg-white/15 px-1.5 py-0.5 rounded text-white font-bold">Esc</kbd> or <kbd className="bg-white/15 px-1.5 py-0.5 rounded text-white font-bold">Backspace</kbd> exit
-                </span>
-                <a 
-                  href={`https://wa.me/447882746212?text=${whatsappMessage}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="sm:hidden text-warm-accent font-bold underline"
-                >
-                  Generate CAD →
-                </a>
+              <div className="text-[10px] font-mono text-white/40 hidden md:block">
+                <kbd className="bg-white/15 px-1.5 py-0.5 rounded text-white font-bold">Esc</kbd> to exit
               </div>
+
+              <a
+                href={`https://wa.me/447882746212?text=${whatsappMessage}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="sm:hidden text-warm-accent text-[11px] font-bold whitespace-nowrap"
+              >
+                Generate CAD →
+              </a>
             </div>
           </motion.div>
         )}
