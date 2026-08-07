@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { 
   Instagram, 
@@ -27,7 +27,8 @@ import {
   Maximize2,
   ChevronLeft,
   ChevronRight,
-  FileCode
+  FileCode,
+  Download
 } from "lucide-react";
 import { CATEGORIES, getProjectsByCategory, Project, CIYATO_SCREENSHOTS } from "./data/projects";
 import { CadAutomationSection } from "./components/CadAutomationSection";
@@ -176,6 +177,7 @@ const EXPERIENCE = [
 ];
 
 interface VideoCardProps {
+  key?: string | number;
   vid: Project;
   idx: number;
   onExpand: (url: string) => void;
@@ -336,12 +338,18 @@ export default function App() {
 
   useEffect(() => {
     const syncRoute = () => {
-      // Normalize: always start with #/ and strip double hashes
+      // Normalize: always start with #/ and collapse multiple leading hashes (##...)
       let hash = window.location.hash || "";
-      hash = hash.replace(/^#+/, "#"); // collapse ##... -> #
+      if (hash.startsWith("##")) {
+        const cleanHash = "#" + hash.replace(/^#+/, "");
+        window.location.hash = cleanHash;
+        hash = cleanHash;
+      } else {
+        hash = hash.replace(/^#+/, "#");
+      }
       if (!hash || hash === "#") hash = window.location.pathname !== "/" ? window.location.pathname : "#/";
       setCurrentHash(hash);
-      if (hash.includes("projects") || hash.includes("startup") || hash.includes("cad-automation")) {
+      if (hash.includes("projects") || hash.includes("startup") || hash.includes("cad-automation") || hash.includes("b2b-research")) {
         window.scrollTo({ top: 0 });
       }
     };
@@ -356,8 +364,8 @@ export default function App() {
 
   // Fetch Spreadsheet JSON database on route change
   useEffect(() => {
-    if (currentHash.includes("projects/b2b-research/")) {
-      const rawSlug = currentHash.split("projects/b2b-research/")[1] || "";
+    if (currentHash.includes("b2b-research/")) {
+      const rawSlug = currentHash.split("b2b-research/")[1] || "";
       const slug = rawSlug.split("#")[0].split("/")[0].trim();
       if (!slug) return;
       setSpreadsheetLoading(true);
@@ -414,20 +422,22 @@ export default function App() {
   }, [startupLightboxIndex]);
 
   // Check if we are on a project detail page, category page, startup page, or CAD automation route
-  const isSubRoute = currentHash.includes("projects") || currentHash.includes("startup") || currentHash.includes("cad-automation");
+  const isSubRoute = currentHash.includes("projects") || currentHash.includes("startup") || currentHash.includes("cad-automation") || currentHash.includes("b2b-research");
 
   const handleNavLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, item: string) => {
     setMobileMenuOpen(false);
     const sectionId = item.toLowerCase().replace(/\s+/g, '-');
     if (item === "Startup") {
       e.preventDefault();
-      window.location.hash = "/startup";
+      const cleanHash = "/startup";
+      window.location.hash = cleanHash;
       window.scrollTo({ top: 0 });
       return;
     }
     if (isSubRoute) {
       e.preventDefault();
-      window.location.hash = `#${sectionId}`;
+      const targetHash = `#${sectionId}`;
+      window.location.hash = targetHash;
       setTimeout(() => {
         const el = document.getElementById(sectionId);
         if (el) el.scrollIntoView({ behavior: "smooth" });
@@ -546,8 +556,8 @@ export default function App() {
   };
 
   const renderSpreadsheetViewerPage = () => {
-    const rawSlug = currentHash.split("projects/b2b-research/")[1] || "";
-    const slug = rawSlug.split("#")[0].split("/")[0].trim();
+    const rawSlug = currentHash.includes("b2b-research/") ? currentHash.split("b2b-research/")[1] : "";
+    const slug = (rawSlug || "").split("#")[0].split("/")[0].trim();
     const projects = getProjectsByCategory("B2B Research & Excel Systems");
     const currentProject = projects.find((p) => p.slug === slug);
 
@@ -1228,7 +1238,7 @@ export default function App() {
                   viewport={{ once: true }}
                   transition={{ delay: idx * 0.05 }}
                   className="relative h-80 rounded-[2.5rem] overflow-hidden border border-warm-ink/5 shadow-sm group cursor-pointer"
-                  onClick={() => { const r = cat.route.replace(/^#/, ''); window.location.hash = r; }}
+                  onClick={(e) => { e.preventDefault(); const r = cat.route.replace(/^#+/, ''); window.location.hash = r.startsWith('/') ? r : '/' + r; }}
                 >
                   {/* Background overlay images */}
                   <div
