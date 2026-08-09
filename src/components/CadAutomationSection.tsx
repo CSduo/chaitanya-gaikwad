@@ -297,15 +297,15 @@ export function CadAutomationSection() {
       </div>
 
       {/* SINGLE PROMINENT FEATURED CLIENT PROJECT HIGHLIGHT BANNER */}
-      <div className="p-8 md:p-10 rounded-[2.5rem] bg-gradient-to-br from-warm-ink/95 via-warm-ink to-neutral-900 text-white shadow-xl space-y-4 relative overflow-hidden border border-white/10">
+      <div className="p-8 md:p-10 rounded-[2.5rem] bg-gradient-to-br from-neutral-900 via-neutral-800 to-neutral-900 text-white shadow-xl space-y-4 relative overflow-hidden border border-white/10">
         <div className="flex flex-wrap items-center justify-between gap-4">
           <div className="flex items-center gap-3">
-            <MapPin className="w-4 h-4 text-warm-accent" />
-            <span className="text-xs font-mono uppercase tracking-[0.25em] text-warm-accent font-bold">
+            <MapPin className="w-4 h-4 text-amber-400" />
+            <span className="text-xs font-mono uppercase tracking-[0.25em] text-amber-400 font-bold">
               Featured Client Project • Bahrain
             </span>
           </div>
-          <span className="text-xl md:text-2xl font-mono font-extrabold text-warm-accent bg-white/10 px-4 py-1.5 rounded-2xl border border-white/15 shadow-sm">
+          <span className="text-xl md:text-2xl font-mono font-extrabold text-amber-300 bg-white/10 px-4 py-1.5 rounded-2xl border border-amber-400/30 shadow-sm">
             $1,000 Project Contract
           </span>
         </div>

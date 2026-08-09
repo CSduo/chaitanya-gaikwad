@@ -1134,44 +1134,60 @@ export default function App() {
               <span className="text-black/30">•</span>
               <span>AI Visual Designer</span>
               <span className="text-black/30">•</span>
-              <span>Marketing &amp; B2B Specialist</span>
+              <span className="hidden sm:inline">Marketing &amp; B2B Specialist</span>
+              <span className="sm:hidden">Marketing &amp; B2B</span>
               <span className="text-black/30">•</span>
               <span>Visual Content Creator</span>
             </div>
 
+            {/* Thin divider line */}
+            <div className="w-16 h-px bg-black/20 mx-auto" />
+
             {/* 3. Centered Portrait with flanking skill icons on desktop */}
-            <div className="relative w-full flex items-center justify-center gap-8 md:gap-16 py-4">
+            <div className="relative w-full flex items-center justify-center gap-6 md:gap-12 lg:gap-20 py-4">
               {/* Left skill column — desktop only */}
-              <div className="hidden md:flex flex-col items-end gap-5 flex-1 max-w-[200px]">
-                <div className="flex items-center gap-3 text-right">
+              <div className="hidden md:flex flex-col items-end gap-6 flex-1 max-w-[220px]">
+                <div className="flex items-center gap-4 text-right group">
                   <div className="text-right">
-                    <p className="text-[10px] font-extrabold uppercase tracking-widest text-black">CAD Drafting</p>
-                    <p className="text-[9px] text-black/50 font-medium">AutoCAD · Architecture</p>
+                    <p className="text-[11px] font-extrabold uppercase tracking-widest text-black">CAD Drafting</p>
+                    <p className="text-[10px] text-black/40 font-medium mt-0.5">AutoCAD · Architecture</p>
                   </div>
-                  <div className="w-9 h-9 rounded-xl bg-black text-white flex items-center justify-center flex-shrink-0 text-xs font-bold">📐</div>
+                  <div className="w-12 h-12 rounded-2xl bg-black flex items-center justify-center flex-shrink-0 shadow-lg group-hover:scale-105 transition-transform duration-300">
+                    <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M6.75 7.5l3 2.25-3 2.25m4.5 0h3m-9 8.25h13.5A2.25 2.25 0 0021 18V6a2.25 2.25 0 00-2.25-2.25H5.25A2.25 2.25 0 003 6v12a2.25 2.25 0 002.25 2.25z" />
+                    </svg>
+                  </div>
                 </div>
-                <div className="flex items-center gap-3 text-right">
+                <div className="flex items-center gap-4 text-right group">
                   <div className="text-right">
-                    <p className="text-[10px] font-extrabold uppercase tracking-widest text-black">AI Visuals</p>
-                    <p className="text-[9px] text-black/50 font-medium">Midjourney · Gen AI</p>
+                    <p className="text-[11px] font-extrabold uppercase tracking-widest text-black">AI Visuals</p>
+                    <p className="text-[10px] text-black/40 font-medium mt-0.5">Midjourney · Gen AI</p>
                   </div>
-                  <div className="w-9 h-9 rounded-xl bg-black text-white flex items-center justify-center flex-shrink-0 text-xs">✦</div>
+                  <div className="w-12 h-12 rounded-2xl bg-black flex items-center justify-center flex-shrink-0 shadow-lg group-hover:scale-105 transition-transform duration-300">
+                    <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.091z" />
+                    </svg>
+                  </div>
                 </div>
-                <div className="flex items-center gap-3 text-right">
+                <div className="flex items-center gap-4 text-right group">
                   <div className="text-right">
-                    <p className="text-[10px] font-extrabold uppercase tracking-widest text-black">Web Dev</p>
-                    <p className="text-[9px] text-black/50 font-medium">React · Vite · Deploy</p>
+                    <p className="text-[11px] font-extrabold uppercase tracking-widest text-black">Web Dev</p>
+                    <p className="text-[10px] text-black/40 font-medium mt-0.5">React · Vite · Deploy</p>
                   </div>
-                  <div className="w-9 h-9 rounded-xl bg-black text-white flex items-center justify-center flex-shrink-0 text-xs">⌨</div>
+                  <div className="w-12 h-12 rounded-2xl bg-black flex items-center justify-center flex-shrink-0 shadow-lg group-hover:scale-105 transition-transform duration-300">
+                    <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5" />
+                    </svg>
+                  </div>
                 </div>
               </div>
 
-              {/* Center Portrait */}
+              {/* Center Portrait — bigger on mobile */}
               <motion.div
                 initial={{ opacity: 0, scale: 0.93 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
-                className="relative w-36 h-36 sm:w-44 sm:h-44 md:w-52 md:h-52 rounded-3xl overflow-hidden bg-neutral-100 border border-black/10 shadow-2xl flex-shrink-0"
+                className="relative w-52 h-52 sm:w-56 sm:h-56 md:w-60 md:h-60 lg:w-72 lg:h-72 rounded-3xl overflow-hidden bg-neutral-100 border border-black/10 shadow-2xl flex-shrink-0"
               >
                 <img
                   src="/portrait.jpg"
@@ -1182,26 +1198,38 @@ export default function App() {
               </motion.div>
 
               {/* Right skill column — desktop only */}
-              <div className="hidden md:flex flex-col items-start gap-5 flex-1 max-w-[200px]">
-                <div className="flex items-center gap-3">
-                  <div className="w-9 h-9 rounded-xl bg-black text-white flex items-center justify-center flex-shrink-0 text-xs">🎬</div>
+              <div className="hidden md:flex flex-col items-start gap-6 flex-1 max-w-[220px]">
+                <div className="flex items-center gap-4 group">
+                  <div className="w-12 h-12 rounded-2xl bg-black flex items-center justify-center flex-shrink-0 shadow-lg group-hover:scale-105 transition-transform duration-300">
+                    <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M3.375 19.5h17.25m-17.25 0a1.125 1.125 0 01-1.125-1.125M3.375 19.5h7.5c.621 0 1.125-.504 1.125-1.125m-9.75 0V5.625m0 12.75v-1.5c0-.621.504-1.125 1.125-1.125m18.375 2.625V5.625m0 12.75c0 .621-.504 1.125-1.125 1.125m1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125" />
+                    </svg>
+                  </div>
                   <div>
-                    <p className="text-[10px] font-extrabold uppercase tracking-widest text-black">Cinematic Video</p>
-                    <p className="text-[9px] text-black/50 font-medium">Reels · AI Films</p>
+                    <p className="text-[11px] font-extrabold uppercase tracking-widest text-black">Cinematic Video</p>
+                    <p className="text-[10px] text-black/40 font-medium mt-0.5">Reels · AI Films</p>
                   </div>
                 </div>
-                <div className="flex items-center gap-3">
-                  <div className="w-9 h-9 rounded-xl bg-black text-white flex items-center justify-center flex-shrink-0 text-xs">📊</div>
+                <div className="flex items-center gap-4 group">
+                  <div className="w-12 h-12 rounded-2xl bg-black flex items-center justify-center flex-shrink-0 shadow-lg group-hover:scale-105 transition-transform duration-300">
+                    <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z" />
+                    </svg>
+                  </div>
                   <div>
-                    <p className="text-[10px] font-extrabold uppercase tracking-widest text-black">B2B Research</p>
-                    <p className="text-[9px] text-black/50 font-medium">Lead Gen · Excel</p>
+                    <p className="text-[11px] font-extrabold uppercase tracking-widest text-black">B2B Research</p>
+                    <p className="text-[10px] text-black/40 font-medium mt-0.5">Lead Gen · Excel</p>
                   </div>
                 </div>
-                <div className="flex items-center gap-3">
-                  <div className="w-9 h-9 rounded-xl bg-black text-white flex items-center justify-center flex-shrink-0 text-xs">📣</div>
+                <div className="flex items-center gap-4 group">
+                  <div className="w-12 h-12 rounded-2xl bg-black flex items-center justify-center flex-shrink-0 shadow-lg group-hover:scale-105 transition-transform duration-300">
+                    <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M10.34 15.84c-.688-.06-1.386-.09-2.09-.09H7.5a4.5 4.5 0 110-9h.75c.704 0 1.402-.03 2.09-.09m0 9.18c.253.962.584 1.892.985 2.783.247.55.06 1.21-.463 1.511l-.657.38c-.551.318-1.26.117-1.527-.461a20.845 20.845 0 01-1.44-4.282m3.102.069a18.03 18.03 0 01-.59-4.59c0-1.586.205-3.124.59-4.59m0 9.18a23.848 23.848 0 018.835 2.535M10.34 6.66a23.847 23.847 0 008.835-2.535m0 0A23.74 23.74 0 0018.795 3m.38 1.125a23.91 23.91 0 011.014 5.395m-1.014 8.855c-.118.38-.245.754-.38 1.125m.38-1.125a23.91 23.91 0 001.014-5.395m0-3.46c.495.413.811 1.035.811 1.73 0 .695-.316 1.317-.811 1.73m0-3.46a24.347 24.347 0 010 3.46" />
+                    </svg>
+                  </div>
                   <div>
-                    <p className="text-[10px] font-extrabold uppercase tracking-widest text-black">Marketing</p>
-                    <p className="text-[9px] text-black/50 font-medium">Strategy · Growth</p>
+                    <p className="text-[11px] font-extrabold uppercase tracking-widest text-black">Marketing</p>
+                    <p className="text-[10px] text-black/40 font-medium mt-0.5">Strategy · Growth</p>
                   </div>
                 </div>
               </div>
