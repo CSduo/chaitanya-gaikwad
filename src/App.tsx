@@ -1128,9 +1128,6 @@ export default function App() {
             transition={{ duration: 0.8 }}
             className="flex flex-col items-center text-center gap-5"
           >
-            {/* Top Live Availability Badge (Manus inspired) */}
-            <AvailabilityBadge text="Available for CAD Drafting & Creative Direction" />
-
             {/* 1. Centered Name */}
             <h1 className="serif text-4xl sm:text-6xl md:text-7xl lg:text-8xl text-black font-semibold leading-tight tracking-tight">
               Chaitanya Gaikwad
