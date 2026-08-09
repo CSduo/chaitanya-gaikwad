@@ -34,8 +34,6 @@ import { CATEGORIES, getProjectsByCategory, Project, CIYATO_SCREENSHOTS } from "
 import { CadAutomationSection } from "./components/CadAutomationSection";
 import { BackgroundGrid } from "./components/ui/BackgroundGrid";
 import { ScrollProgress } from "./components/ui/ScrollProgress";
-import { AvailabilityBadge } from "./components/ui/AvailabilityBadge";
-import { MetricCounterGrid } from "./components/ui/MetricCounterGrid";
 import { SpotlightCard } from "./components/ui/SpotlightCard";
 
 const NAV_ITEMS = ["Home", "About", "Services", "Projects", "Startup", "Contact"];
@@ -1297,9 +1295,6 @@ export default function App() {
                 <span className="font-mono">+91 70283 11226</span>
               </a>
             </motion.div>
-
-            {/* 6. Bklit UI-inspired KPI Metric Counter Grid */}
-            <MetricCounterGrid />
           </motion.div>
         </section>
 
