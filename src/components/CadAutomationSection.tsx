@@ -21,6 +21,7 @@ import {
   MapPin,
   DollarSign
 } from "lucide-react";
+import { BorderBeam } from "./ui/BorderBeam";
 
 const WhatsAppIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg
@@ -298,7 +299,8 @@ export function CadAutomationSection() {
 
       {/* SINGLE PROMINENT FEATURED CLIENT PROJECT HIGHLIGHT BANNER */}
       <div className="p-8 md:p-10 rounded-[2.5rem] bg-gradient-to-br from-neutral-900 via-neutral-800 to-neutral-900 text-white shadow-xl space-y-4 relative overflow-hidden border border-white/10">
-        <div className="flex flex-wrap items-center justify-between gap-4">
+        <BorderBeam size={300} duration={10} colorFrom="#F59E0B" colorTo="#FDE68A" borderWidth={2} />
+        <div className="flex flex-wrap items-center justify-between gap-4 relative z-10">
           <div className="flex items-center gap-3">
             <MapPin className="w-4 h-4 text-amber-400" />
             <span className="text-xs font-mono uppercase tracking-[0.25em] text-amber-400 font-bold">
@@ -310,7 +312,7 @@ export function CadAutomationSection() {
           </span>
         </div>
 
-        <div className="space-y-2">
+        <div className="space-y-2 relative z-10">
           <h3 className="serif text-3xl md:text-4xl text-white font-semibold">
             Bahrain Luxury Interior & Architectural CAD Package
           </h3>

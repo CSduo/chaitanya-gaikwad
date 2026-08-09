@@ -25,3 +25,13 @@ body {
 .display {
   font-family: var(--font-display);
 }
+
+@keyframes border-beam {
+  100% {
+    offset-distance: 100%;
+  }
+}
+
+.animate-border-beam {
+  animation: border-beam var(--duration, 8s) infinite linear;
+}

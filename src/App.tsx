@@ -32,6 +32,11 @@ import {
 } from "lucide-react";
 import { CATEGORIES, getProjectsByCategory, Project, CIYATO_SCREENSHOTS } from "./data/projects";
 import { CadAutomationSection } from "./components/CadAutomationSection";
+import { BackgroundGrid } from "./components/ui/BackgroundGrid";
+import { ScrollProgress } from "./components/ui/ScrollProgress";
+import { AvailabilityBadge } from "./components/ui/AvailabilityBadge";
+import { MetricCounterGrid } from "./components/ui/MetricCounterGrid";
+import { SpotlightCard } from "./components/ui/SpotlightCard";
 
 const NAV_ITEMS = ["Home", "About", "Services", "Projects", "Startup", "Contact"];
 
@@ -1123,6 +1128,9 @@ export default function App() {
             transition={{ duration: 0.8 }}
             className="flex flex-col items-center text-center gap-5"
           >
+            {/* Top Live Availability Badge (Manus inspired) */}
+            <AvailabilityBadge text="Available for CAD Drafting & Creative Direction" />
+
             {/* 1. Centered Name */}
             <h1 className="serif text-4xl sm:text-6xl md:text-7xl lg:text-8xl text-black font-semibold leading-tight tracking-tight">
               Chaitanya Gaikwad
@@ -1292,6 +1300,9 @@ export default function App() {
                 <span className="font-mono">+91 70283 11226</span>
               </a>
             </motion.div>
+
+            {/* 6. Bklit UI-inspired KPI Metric Counter Grid */}
+            <MetricCounterGrid />
           </motion.div>
         </section>
 
@@ -1318,31 +1329,31 @@ export default function App() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: idx * 0.05 }}
-                  className="relative h-80 rounded-[2.5rem] overflow-hidden border border-black/5 shadow-sm group cursor-pointer"
+                  className="rounded-[2.5rem] overflow-hidden group cursor-pointer"
                   onClick={(e) => { e.preventDefault(); const r = cat.route.replace(/^#+/, ''); window.location.hash = r.startsWith('/') ? r : '/' + r; }}
                 >
-                  {/* Background overlay images */}
-                  <div
-                    className="absolute inset-0 bg-cover bg-center filter brightness-[0.4] group-hover:scale-105 transition-transform duration-500"
-                    style={{ backgroundImage: bgImages[idx] }}
-                  />
-                  {/* Content */}
-                  <div className="absolute inset-0 p-8 flex flex-col justify-between text-white z-10">
-                    <div>
-                      <span className="text-[9px] uppercase tracking-[0.15em] font-bold text-white/60 mb-2 block">
-                        {cat.subtitle}
-                      </span>
-                      <h3 className="serif text-3xl font-semibold leading-tight">{cat.title}</h3>
+                  <SpotlightCard className="relative h-80 rounded-[2.5rem] overflow-hidden border border-black/10 shadow-sm group">
+                    {/* Background overlay images */}
+                    <div
+                      className="absolute inset-0 bg-cover bg-center filter brightness-[0.4] group-hover:scale-105 transition-transform duration-500"
+                      style={{ backgroundImage: bgImages[idx] }}
+                    />
+                    {/* Content */}
+                    <div className="absolute inset-0 p-8 flex flex-col justify-between text-white z-10">
+                      <div>
+                        <span className="text-[9px] uppercase tracking-[0.2em] font-bold text-white/90 mb-2 block">
+                          Category Portfolio
+                        </span>
+                        <h3 className="serif text-3xl font-semibold leading-tight text-white mb-2">{cat.title}</h3>
+                        <p className="text-xs text-white/80 max-w-sm line-clamp-2">{cat.description}</p>
+                      </div>
+
+                      <div className="flex items-center gap-2 text-[10px] uppercase tracking-widest font-bold text-white group-hover:translate-x-1.5 transition-transform">
+                        <span>Explore Category</span>
+                        <ChevronRight size={14} />
+                      </div>
                     </div>
-                    <div>
-                      <p className="text-xs text-white/70 leading-relaxed max-w-sm mb-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        {cat.desc}
-                      </p>
-                      <span className="inline-flex items-center gap-1 text-[10px] uppercase tracking-wider font-bold text-white group-hover:text-black transition-colors">
-                        Browse Category <ChevronRight size={12} />
-                      </span>
-                    </div>
-                  </div>
+                  </SpotlightCard>
                 </motion.div>
               );
             })}
@@ -1650,7 +1661,13 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-white text-black antialiased font-sans flex flex-col justify-between">
+    <div className="min-h-screen bg-white text-black antialiased font-sans flex flex-col justify-between relative selection:bg-black selection:text-white">
+      {/* Motion.dev Scroll Progress Bar */}
+      <ScrollProgress />
+
+      {/* Haikei Architectural Blueprint Background Grid */}
+      <BackgroundGrid />
+
       {/* Navigation */}
       <nav className="fixed top-0 w-full z-40 bg-white/85 backdrop-blur-sm border-b border-black/10">
         <div className="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
