@@ -1115,102 +1115,155 @@ export default function App() {
   const renderMainPage = () => {
     return (
       <main className="max-w-6xl mx-auto px-6 pt-24 font-sans">
-        {/* Home Hero Section */}
-        <section id="home" className="py-16 md:py-24 border-b border-black/10 space-y-12">
-          {/* Top Header Row: Name & Badges on Left, Portrait on Right */}
+        {/* Home Hero Section — Centered Name, Portrait, Roles, 4-Button Grid */}
+        <section id="home" className="py-12 md:py-20 border-b border-black/10">
           <motion.div
             initial={{ opacity: 0, y: -15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="flex flex-row items-center justify-between gap-6 md:gap-12"
+            className="flex flex-col items-center text-center gap-5"
           >
-            {/* Left Side: Name and Badges */}
-            <div className="space-y-5 flex-1 min-w-0">
-              <h1 className="serif text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl leading-none tracking-tight">
-                Chaitanya Gaikwad
-              </h1>
-              <div className="flex flex-col gap-1.5 text-[9px] sm:text-[11px] md:text-[12px] uppercase tracking-[0.25em] font-bold text-black">
-                <span>AI Visual Designer</span>
-                <span>Marketing & B2B Specialist</span>
-                <span>Visual Content Creator</span>
+            {/* 1. Centered Name */}
+            <h1 className="serif text-4xl sm:text-6xl md:text-7xl lg:text-8xl text-black font-semibold leading-tight tracking-tight">
+              Chaitanya Gaikwad
+            </h1>
+
+            {/* 2. Role Badges with dots */}
+            <div className="flex flex-wrap justify-center items-center gap-x-2 gap-y-1 text-[9px] sm:text-[10px] uppercase tracking-[0.22em] font-extrabold text-black">
+              <span>CAD Drafter</span>
+              <span className="text-black/30">•</span>
+              <span>AI Visual Designer</span>
+              <span className="text-black/30">•</span>
+              <span>Marketing &amp; B2B Specialist</span>
+              <span className="text-black/30">•</span>
+              <span>Visual Content Creator</span>
+            </div>
+
+            {/* 3. Centered Portrait with flanking skill icons on desktop */}
+            <div className="relative w-full flex items-center justify-center gap-8 md:gap-16 py-4">
+              {/* Left skill column — desktop only */}
+              <div className="hidden md:flex flex-col items-end gap-5 flex-1 max-w-[200px]">
+                <div className="flex items-center gap-3 text-right">
+                  <div className="text-right">
+                    <p className="text-[10px] font-extrabold uppercase tracking-widest text-black">CAD Drafting</p>
+                    <p className="text-[9px] text-black/50 font-medium">AutoCAD · Architecture</p>
+                  </div>
+                  <div className="w-9 h-9 rounded-xl bg-black text-white flex items-center justify-center flex-shrink-0 text-xs font-bold">📐</div>
+                </div>
+                <div className="flex items-center gap-3 text-right">
+                  <div className="text-right">
+                    <p className="text-[10px] font-extrabold uppercase tracking-widest text-black">AI Visuals</p>
+                    <p className="text-[9px] text-black/50 font-medium">Midjourney · Gen AI</p>
+                  </div>
+                  <div className="w-9 h-9 rounded-xl bg-black text-white flex items-center justify-center flex-shrink-0 text-xs">✦</div>
+                </div>
+                <div className="flex items-center gap-3 text-right">
+                  <div className="text-right">
+                    <p className="text-[10px] font-extrabold uppercase tracking-widest text-black">Web Dev</p>
+                    <p className="text-[9px] text-black/50 font-medium">React · Vite · Deploy</p>
+                  </div>
+                  <div className="w-9 h-9 rounded-xl bg-black text-white flex items-center justify-center flex-shrink-0 text-xs">⌨</div>
+                </div>
+              </div>
+
+              {/* Center Portrait */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.93 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+                className="relative w-36 h-36 sm:w-44 sm:h-44 md:w-52 md:h-52 rounded-3xl overflow-hidden bg-neutral-100 border border-black/10 shadow-2xl flex-shrink-0"
+              >
+                <img
+                  src="/portrait.jpg"
+                  alt="Portrait of Chaitanya Gaikwad"
+                  className="w-full h-full object-cover hover:scale-[1.03] transition-transform duration-700"
+                  referrerPolicy="no-referrer"
+                />
+              </motion.div>
+
+              {/* Right skill column — desktop only */}
+              <div className="hidden md:flex flex-col items-start gap-5 flex-1 max-w-[200px]">
+                <div className="flex items-center gap-3">
+                  <div className="w-9 h-9 rounded-xl bg-black text-white flex items-center justify-center flex-shrink-0 text-xs">🎬</div>
+                  <div>
+                    <p className="text-[10px] font-extrabold uppercase tracking-widest text-black">Cinematic Video</p>
+                    <p className="text-[9px] text-black/50 font-medium">Reels · AI Films</p>
+                  </div>
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className="w-9 h-9 rounded-xl bg-black text-white flex items-center justify-center flex-shrink-0 text-xs">📊</div>
+                  <div>
+                    <p className="text-[10px] font-extrabold uppercase tracking-widest text-black">B2B Research</p>
+                    <p className="text-[9px] text-black/50 font-medium">Lead Gen · Excel</p>
+                  </div>
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className="w-9 h-9 rounded-xl bg-black text-white flex items-center justify-center flex-shrink-0 text-xs">📣</div>
+                  <div>
+                    <p className="text-[10px] font-extrabold uppercase tracking-widest text-black">Marketing</p>
+                    <p className="text-[9px] text-black/50 font-medium">Strategy · Growth</p>
+                  </div>
+                </div>
               </div>
             </div>
 
-            {/* Right Side: Enlarged Portrait Image on PC */}
+            {/* 4. Bio Narrative */}
             <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="relative w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 lg:w-44 lg:h-44 rounded-2xl sm:rounded-3xl overflow-hidden bg-warm-ink/5 border border-black/10 shadow-lg shadow-warm-accent/5 flex-shrink-0"
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              className="max-w-3xl mx-auto space-y-3 text-center"
             >
-              <img 
-                src="/portrait.jpg" 
-                alt="Portrait of Chaitanya Gaikwad"
-                className="w-full h-full object-cover hover:scale-[1.02] transition-transform duration-700"
-                referrerPolicy="no-referrer"
-              />
+              <h2 className="text-base sm:text-lg font-bold text-black leading-snug">
+                Architectural CAD Drafter, AI Visual Designer, and B2B Marketing Specialist.
+              </h2>
+              <p className="text-xs sm:text-sm text-black/65 leading-relaxed font-medium">
+                I help architecture firms, brands, and international businesses elevate their visual presentation, market services, and grow through precision CAD work, AI-powered content creation, cinematic video production, B2B lead generation, market research, and responsive web development.
+              </p>
             </motion.div>
-          </motion.div>
 
-          {/* Bottom Bio & Action Row */}
-          <motion.div
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            className="space-y-6 max-w-4xl"
-          >
-            <div className="space-y-4 text-black/80 leading-relaxed">
-              <p className="text-base sm:text-lg font-semibold text-black leading-snug">
-                AI Visual Designer, Visual Content Creator, and Marketing & B2B Specialist.
-              </p>
-              <p className="text-xs sm:text-sm text-black/75 leading-relaxed">
-                I help brands and businesses improve how they present themselves, market their services, connect with potential clients, and grow through modern digital systems. My work includes AI-powered visuals, short-form videos, website content and support, creative direction, B2B lead generation, business research, outreach campaigns, CRM-style tracking, automation, and digital marketing execution. I combine visual storytelling, emerging AI tools, marketing strategy, and practical business support to turn ideas into professional content and measurable growth opportunities.
-              </p>
-            </div>
-
-            {/* Action Buttons */}
-            <div className="pt-2 flex flex-col items-start gap-4">
-              <div className="flex flex-wrap gap-3">
-                <a 
-                  href="#projects" 
-                  className="bg-black text-white px-6 py-3 rounded-full text-xs uppercase tracking-wider font-semibold hover:bg-black/90 transition-colors shadow-sm"
-                >
-                  View Portfolio
-                </a>
-                <a 
-                  href="#contact" 
-                  className="border border-black/20 text-black px-6 py-3 rounded-full text-xs uppercase tracking-wider font-semibold hover:bg-warm-ink/5 transition-colors"
-                >
-                  Let's Connect
-                </a>
-              </div>
-
-              {/* WhatsApp Numbers */}
-              <div className="flex flex-wrap gap-3 pt-1">
-                <a 
-                  href="https://wa.me/447882746212"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2.5 bg-[#25D366]/10 text-green-800 border border-[#25D366]/20 px-4 py-2 rounded-full text-xs font-semibold hover:bg-[#25D366]/15 transition-all shadow-sm group/wa"
-                >
-                  <span className="w-5 h-5 rounded-full bg-[#25D366] text-white flex items-center justify-center shadow-sm group-hover/wa:scale-105 transition-transform duration-300">
-                    <WhatsAppIcon className="w-3 h-3" />
-                  </span>
-                  <span className="font-mono tracking-wide underline underline-offset-4 decoration-green-800/20 group-hover/wa:decoration-green-800">+44 7882 746212</span>
-                </a>
-                <a 
-                  href="https://wa.me/917028311226"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2.5 bg-[#25D366]/10 text-green-800 border border-[#25D366]/20 px-4 py-2 rounded-full text-xs font-semibold hover:bg-[#25D366]/15 transition-all shadow-sm group/wa"
-                >
-                  <span className="w-5 h-5 rounded-full bg-[#25D366] text-white flex items-center justify-center shadow-sm group-hover/wa:scale-105 transition-transform duration-300">
-                    <WhatsAppIcon className="w-3 h-3" />
-                  </span>
-                  <span className="font-mono tracking-wide underline underline-offset-4 decoration-green-800/20 group-hover/wa:decoration-green-800">+91 70283 11226</span>
-                </a>
-              </div>
-            </div>
+            {/* 5. Four-button structured grid */}
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.45 }}
+              className="grid grid-cols-2 lg:grid-cols-4 gap-3 w-full max-w-2xl pt-2"
+            >
+              <a
+                href="#projects"
+                className="bg-black text-white px-4 py-3.5 rounded-2xl text-[10px] uppercase tracking-widest font-extrabold text-center hover:bg-neutral-800 transition-all shadow-md flex items-center justify-center gap-1.5 border border-black"
+              >
+                VIEW PORTFOLIO
+              </a>
+              <a
+                href="#contact"
+                className="bg-black text-white px-4 py-3.5 rounded-2xl text-[10px] uppercase tracking-widest font-extrabold text-center hover:bg-neutral-800 transition-all shadow-md flex items-center justify-center gap-1.5 border border-black"
+              >
+                LET'S CONNECT
+              </a>
+              <a
+                href="https://wa.me/447882746212"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-black text-white px-3 py-3.5 rounded-2xl text-[10px] font-bold text-center hover:bg-neutral-800 transition-all shadow-md flex items-center justify-center gap-2 border border-black"
+              >
+                <span className="w-5 h-5 rounded-full bg-[#25D366] flex items-center justify-center flex-shrink-0">
+                  <WhatsAppIcon className="w-3 h-3" />
+                </span>
+                <span className="font-mono">+44 7882 746212</span>
+              </a>
+              <a
+                href="https://wa.me/917028311226"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-black text-white px-3 py-3.5 rounded-2xl text-[10px] font-bold text-center hover:bg-neutral-800 transition-all shadow-md flex items-center justify-center gap-2 border border-black"
+              >
+                <span className="w-5 h-5 rounded-full bg-[#25D366] flex items-center justify-center flex-shrink-0">
+                  <WhatsAppIcon className="w-3 h-3" />
+                </span>
+                <span className="font-mono">+91 70283 11226</span>
+              </a>
+            </motion.div>
           </motion.div>
         </section>
 
