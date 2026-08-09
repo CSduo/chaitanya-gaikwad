@@ -35,6 +35,7 @@ import { CadAutomationSection } from "./components/CadAutomationSection";
 import { BackgroundGrid } from "./components/ui/BackgroundGrid";
 import { ScrollProgress } from "./components/ui/ScrollProgress";
 import { SpotlightCard } from "./components/ui/SpotlightCard";
+import { FloatingSakuraField } from "./components/ui/decorations";
 
 const NAV_ITEMS = ["Home", "About", "Services", "Projects", "Startup", "Contact"];
 
@@ -1119,12 +1120,15 @@ export default function App() {
     return (
       <main className="max-w-6xl mx-auto px-6 pt-24 font-sans">
         {/* Home Hero Section — Centered Name, Portrait, Roles, 4-Button Grid */}
-        <section id="home" className="py-12 md:py-20 border-b border-black/10">
+        <section id="home" className="py-12 md:py-20 border-b border-black/10 relative">
+          {/* Bespoke Japanese Sakura botanical & architectural flourishes */}
+          <FloatingSakuraField />
+
           <motion.div
             initial={{ opacity: 0, y: -15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="flex flex-col items-center text-center gap-5"
+            className="flex flex-col items-center text-center gap-5 relative z-10"
           >
             {/* 1. Centered Name */}
             <h1 className="serif text-4xl sm:text-6xl md:text-7xl lg:text-8xl text-black font-semibold leading-tight tracking-tight">
@@ -1337,7 +1341,7 @@ export default function App() {
                           Category Portfolio
                         </span>
                         <h3 className="serif text-3xl font-semibold leading-tight text-white mb-2">{cat.title}</h3>
-                        <p className="text-xs text-white/80 max-w-sm line-clamp-2">{cat.description}</p>
+                        <p className="text-xs text-white/80 max-w-sm line-clamp-2">{cat.desc}</p>
                       </div>
 
                       <div className="flex items-center gap-2 text-[10px] uppercase tracking-widest font-bold text-white group-hover:translate-x-1.5 transition-transform">
