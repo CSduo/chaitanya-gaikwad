@@ -250,7 +250,7 @@ function VideoCard({ vid, idx, onExpand, activePlayingId, setActivePlayingId, is
       initial={{ opacity: 0, y: 15 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: idx * 0.05 }}
-      className="bg-white/40 p-2 rounded-[2.5rem] border border-warm-ink/5 flex flex-col justify-between group"
+      className="bg-white/40 p-2 rounded-[2.5rem] border border-black/5 flex flex-col justify-between group"
     >
       <div 
         ref={containerRef}
@@ -274,7 +274,7 @@ function VideoCard({ vid, idx, onExpand, activePlayingId, setActivePlayingId, is
             {/* Play/Pause Button */}
             <button 
               onClick={togglePlay}
-              className="text-white hover:text-warm-accent transition-colors p-1"
+              className="text-white hover:text-black transition-colors p-1"
               aria-label={isPlaying ? "Pause video" : "Play video"}
             >
               {isPlaying ? <Pause size={14} className="fill-current" /> : <Play size={14} className="fill-current translate-x-0.5" />}
@@ -283,7 +283,7 @@ function VideoCard({ vid, idx, onExpand, activePlayingId, setActivePlayingId, is
             {/* Mute/Unmute Button */}
             <button 
               onClick={toggleMute}
-              className="text-white hover:text-warm-accent transition-colors p-1"
+              className="text-white hover:text-black transition-colors p-1"
               aria-label={muted ? "Unmute audio" : "Mute audio"}
             >
               {muted ? <VolumeX size={14} /> : <Volume2 size={14} />}
@@ -296,7 +296,7 @@ function VideoCard({ vid, idx, onExpand, activePlayingId, setActivePlayingId, is
               e.stopPropagation();
               onExpand(vid.media || "");
             }}
-            className="text-white hover:text-warm-accent transition-colors p-1"
+            className="text-white hover:text-black transition-colors p-1"
             aria-label="Play video full screen"
           >
             <Maximize2 size={14} />
@@ -306,14 +306,14 @@ function VideoCard({ vid, idx, onExpand, activePlayingId, setActivePlayingId, is
 
       <div className="p-6">
         <div className="flex justify-between items-start mb-2">
-          <span className="text-[9px] uppercase tracking-wider text-warm-ink/40 font-bold">{vid.client}</span>
-          <span className="text-[9px] uppercase tracking-wider text-warm-ink/40 font-bold">{vid.year}</span>
+          <span className="text-[9px] uppercase tracking-wider text-black/40 font-bold">{vid.client}</span>
+          <span className="text-[9px] uppercase tracking-wider text-black/40 font-bold">{vid.year}</span>
         </div>
         <h3 className="serif text-xl mb-3 leading-snug">{vid.title}</h3>
-        <p className="text-xs text-warm-ink/75 leading-relaxed mb-4">{vid.fullDescription}</p>
+        <p className="text-xs text-black/75 leading-relaxed mb-4">{vid.fullDescription}</p>
         <div className="flex flex-wrap gap-1.5">
           {vid.tags.map((tag) => (
-            <span key={tag} className="text-[9px] font-semibold bg-warm-ink/5 px-2 py-0.5 rounded text-warm-ink/60">{tag}</span>
+            <span key={tag} className="text-[9px] font-semibold bg-warm-ink/5 px-2 py-0.5 rounded text-black/60">{tag}</span>
           ))}
         </div>
       </div>
@@ -448,7 +448,7 @@ export default function App() {
   const renderCadAutomationStandalonePage = () => (
     <div className="max-w-5xl mx-auto px-6 pt-24 pb-16 font-sans">
       <div>
-        <a href="#home" className="inline-flex items-center gap-2 text-[10px] uppercase tracking-widest font-semibold hover:text-warm-accent transition-colors mb-6">
+        <a href="#home" className="inline-flex items-center gap-2 text-[10px] uppercase tracking-widest font-semibold hover:text-black transition-colors mb-6">
           <ArrowLeft size={12} /> Back to Home
         </a>
       </div>
@@ -463,14 +463,14 @@ export default function App() {
     const videos = getProjectsByCategory("Cinematic Videos");
     return (
       <div className="max-w-5xl mx-auto px-6 py-24">
-        <a href="#projects" className="inline-flex items-center gap-2 text-[10px] uppercase tracking-widest font-semibold hover:text-warm-accent transition-colors mb-12">
+        <a href="#projects" className="inline-flex items-center gap-2 text-[10px] uppercase tracking-widest font-semibold hover:text-black transition-colors mb-12">
           <ArrowLeft size={12} /> Back to Projects
         </a>
 
         <div className="mb-16">
-          <span className="text-[10px] uppercase tracking-[0.2em] text-warm-accent font-bold mb-3 block">Category Portfolio</span>
+          <span className="text-[10px] uppercase tracking-[0.2em] text-black font-bold mb-3 block">Category Portfolio</span>
           <h1 className="serif text-5xl mb-6">Cinematic Videos</h1>
-          <p className="text-sm text-warm-ink/60 leading-relaxed max-w-2xl">
+          <p className="text-sm text-black/60 leading-relaxed max-w-2xl">
             Short-form films, luxury product campaigns, and retail walkthroughs created using advanced AI text-to-video systems, prompt engineering, custom storyboarding, and pacing edits.
           </p>
         </div>
@@ -496,14 +496,14 @@ export default function App() {
     const spreadsheets = getProjectsByCategory("B2B Research & Excel Systems");
     return (
       <div className="max-w-5xl mx-auto px-6 py-24">
-        <a href="#projects" className="inline-flex items-center gap-2 text-[10px] uppercase tracking-widest font-semibold hover:text-warm-accent transition-colors mb-12">
+        <a href="#projects" className="inline-flex items-center gap-2 text-[10px] uppercase tracking-widest font-semibold hover:text-black transition-colors mb-12">
           <ArrowLeft size={12} /> Back to Projects
         </a>
 
         <div className="mb-16">
-          <span className="text-[10px] uppercase tracking-[0.2em] text-warm-accent font-bold mb-3 block">Category Portfolio</span>
+          <span className="text-[10px] uppercase tracking-[0.2em] text-black font-bold mb-3 block">Category Portfolio</span>
           <h1 className="serif text-5xl mb-6">B2B Research & Excel Systems</h1>
-          <p className="text-sm text-warm-ink/60 leading-relaxed max-w-2xl">
+          <p className="text-sm text-black/60 leading-relaxed max-w-2xl">
             Clean, structured lead generation pipelines, buyer shortlists, and competitor market intelligence. Original phone numbers and emails have been safely redacted to safeguard confidentiality.
           </p>
         </div>
@@ -515,35 +515,35 @@ export default function App() {
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: idx * 0.05 }}
-              className="bg-white p-8 rounded-[2.5rem] border border-warm-ink/5 shadow-sm hover:border-warm-accent transition-all flex flex-col justify-between"
+              className="bg-white p-8 rounded-[2.5rem] border border-black/5 shadow-sm hover:border-black transition-all flex flex-col justify-between"
             >
               <div>
                 <div className="flex justify-between items-start mb-4">
-                  <span className="text-[9px] uppercase tracking-wider text-warm-accent font-bold">{sheet.subcategory}</span>
+                  <span className="text-[9px] uppercase tracking-wider text-black font-bold">{sheet.subcategory}</span>
                   <span className="text-[9px] uppercase tracking-wider bg-green-800/10 text-green-800 font-bold px-2 py-0.5 rounded">
                     {sheet.sheetCount} Sheets
                   </span>
                 </div>
                 <h3 className="serif text-2xl mb-3 leading-snug">{sheet.title}</h3>
-                <p className="text-xs text-warm-ink/75 leading-relaxed mb-6">{sheet.shortDescription}</p>
+                <p className="text-xs text-black/75 leading-relaxed mb-6">{sheet.shortDescription}</p>
                 <div className="flex flex-wrap gap-1.5 mb-8">
                   {sheet.tags.map((tag) => (
-                    <span key={tag} className="text-[9px] font-semibold bg-warm-bg px-2 py-0.5 rounded text-warm-ink/60">{tag}</span>
+                    <span key={tag} className="text-[9px] font-semibold bg-white px-2 py-0.5 rounded text-black/60">{tag}</span>
                   ))}
                 </div>
               </div>
 
-              <div className="grid grid-cols-2 gap-4 border-t border-warm-ink/5 pt-6">
+              <div className="grid grid-cols-2 gap-4 border-t border-black/5 pt-6">
                 <a
                   href={`#/projects/b2b-research/${sheet.slug}`}
-                  className="flex items-center justify-center gap-1.5 bg-warm-accent text-white py-2.5 rounded-full text-[10px] uppercase tracking-wider font-semibold hover:bg-warm-accent/90 transition-colors"
+                  className="flex items-center justify-center gap-1.5 bg-black text-white py-2.5 rounded-full text-[10px] uppercase tracking-wider font-semibold hover:bg-black/90 transition-colors"
                 >
                   <Search size={11} /> View Data
                 </a>
                 <a
                   href={sheet.spreadsheetDownload}
                   download
-                  className="flex items-center justify-center gap-1.5 bg-warm-ink/5 text-warm-ink py-2.5 rounded-full text-[10px] uppercase tracking-wider font-semibold hover:bg-warm-ink/10 transition-colors"
+                  className="flex items-center justify-center gap-1.5 bg-warm-ink/5 text-black py-2.5 rounded-full text-[10px] uppercase tracking-wider font-semibold hover:bg-warm-ink/10 transition-colors"
                 >
                   <Download size={11} /> Download
                 </a>
@@ -583,21 +583,21 @@ export default function App() {
 
     return (
       <div className="w-full px-4 sm:px-10 py-24 max-w-[1600px] mx-auto">
-        <a href="#/projects/b2b-research" className="inline-flex items-center gap-2 text-[10px] uppercase tracking-widest font-semibold hover:text-warm-accent transition-colors mb-12">
+        <a href="#/projects/b2b-research" className="inline-flex items-center gap-2 text-[10px] uppercase tracking-widest font-semibold hover:text-black transition-colors mb-12">
           <ArrowLeft size={12} /> Back to B2B Research
         </a>
 
         {/* Workbook details */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-10 items-end">
           <div className="lg:col-span-2">
-            <span className="text-[10px] uppercase tracking-[0.2em] text-warm-accent font-bold mb-2 block">Interactive Spreadsheet Previews</span>
+            <span className="text-[10px] uppercase tracking-[0.2em] text-black font-bold mb-2 block">Interactive Spreadsheet Previews</span>
             <h1 className="serif text-4xl mb-4">{currentProject.title}</h1>
-            <p className="text-xs text-warm-ink/60 leading-relaxed max-w-2xl">{currentProject.fullDescription}</p>
+            <p className="text-xs text-black/60 leading-relaxed max-w-2xl">{currentProject.fullDescription}</p>
           </div>
           <div className="flex flex-col sm:flex-row gap-4 lg:justify-end">
-            <div className="px-5 py-3 rounded-2xl bg-white border border-warm-ink/5 flex items-center justify-between gap-6">
+            <div className="px-5 py-3 rounded-2xl bg-white border border-black/5 flex items-center justify-between gap-6">
               <div className="text-left">
-                <p className="text-[8px] uppercase tracking-wider font-bold text-warm-ink/40">Privacy Status</p>
+                <p className="text-[8px] uppercase tracking-wider font-bold text-black/40">Privacy Status</p>
                 <p className="text-[10px] font-bold text-green-700">Phone & Email Redacted</p>
               </div>
               <Shield size={16} className="text-green-700" />
@@ -605,7 +605,7 @@ export default function App() {
             <a
               href={currentProject.spreadsheetDownload}
               download
-              className="inline-flex items-center justify-center gap-2 bg-warm-accent text-white px-6 py-3 rounded-full text-xs uppercase tracking-wider font-bold hover:bg-warm-accent/90 transition-all shadow-sm"
+              className="inline-flex items-center justify-center gap-2 bg-black text-white px-6 py-3 rounded-full text-xs uppercase tracking-wider font-bold hover:bg-black/90 transition-all shadow-sm"
             >
               <Download size={14} /> Download Portfolio Copy
             </a>
@@ -613,16 +613,16 @@ export default function App() {
         </div>
 
         {/* Dynamic Sheets & Search */}
-        <div className="bg-white rounded-[2rem] border border-warm-ink/5 shadow-sm overflow-hidden flex flex-col min-h-[500px]">
+        <div className="bg-white rounded-[2rem] border border-black/5 shadow-sm overflow-hidden flex flex-col min-h-[500px]">
           {spreadsheetLoading ? (
             <div className="flex-1 flex flex-col items-center justify-center p-20 gap-3">
               <div className="w-6 h-6 border-2 border-warm-accent border-t-transparent rounded-full animate-spin" />
-              <p className="text-xs text-warm-ink/40 font-bold uppercase tracking-wider">Parsing Worksheet...</p>
+              <p className="text-xs text-black/40 font-bold uppercase tracking-wider">Parsing Worksheet...</p>
             </div>
           ) : spreadsheetData ? (
             <>
               {/* Sheet tabs & Search */}
-              <div className="border-b border-warm-ink/10 px-6 py-4 flex flex-col md:flex-row md:items-center justify-between gap-4 bg-warm-bg/30">
+              <div className="border-b border-black/10 px-6 py-4 flex flex-col md:flex-row md:items-center justify-between gap-4 bg-white/30">
                 <div className="flex flex-wrap gap-2">
                   {spreadsheetData.sheets.map((sheet: any, idx: number) => (
                     <button
@@ -633,8 +633,8 @@ export default function App() {
                       }}
                       className={`px-4 py-2 rounded-lg text-xs font-semibold uppercase tracking-wider transition-all ${
                         activeSheetIndex === idx
-                          ? "bg-warm-accent text-white shadow-sm"
-                          : "bg-white border border-warm-ink/5 text-warm-ink/60 hover:text-warm-ink"
+                          ? "bg-black text-white shadow-sm"
+                          : "bg-white border border-black/5 text-black/60 hover:text-black"
                       }`}
                     >
                       {sheet.name}
@@ -648,9 +648,9 @@ export default function App() {
                     placeholder="Search rows..."
                     value={spreadsheetSearchQuery}
                     onChange={(e) => setSpreadsheetSearchQuery(e.target.value)}
-                    className="pl-8 pr-4 py-2 border border-warm-ink/10 rounded-full bg-white text-xs font-medium focus:outline-none focus:border-warm-accent w-full md:w-64 shadow-inner"
+                    className="pl-8 pr-4 py-2 border border-black/10 rounded-full bg-white text-xs font-medium focus:outline-none focus:border-warm-accent w-full md:w-64 shadow-inner"
                   />
-                  <Search size={12} className="absolute left-3 top-2.5 text-warm-ink/30" />
+                  <Search size={12} className="absolute left-3 top-2.5 text-black/30" />
                 </div>
               </div>
 
@@ -662,7 +662,7 @@ export default function App() {
                       {headers.map((h: any, i: number) => (
                         <th
                           key={i}
-                          className="px-6 py-3.5 bg-warm-accent/5 text-left text-[10px] uppercase font-bold tracking-wider text-warm-accent border-b border-warm-ink/10 whitespace-nowrap"
+                          className="px-6 py-3.5 bg-black/5 text-left text-[10px] uppercase font-bold tracking-wider text-black border-b border-black/10 whitespace-nowrap"
                         >
                           {h || `Column ${i + 1}`}
                         </th>
@@ -674,17 +674,17 @@ export default function App() {
                       filteredRows.map((row: any[], i: number) => (
                         <tr
                           key={i}
-                          className="border-b border-warm-ink/5 hover:bg-warm-accent/2 transition-colors"
+                          className="border-b border-black/5 hover:bg-black/2 transition-colors"
                         >
                           {row.map((cell: any, j: number) => (
                             <td
                               key={j}
-                              className="px-6 py-3 text-xs text-warm-ink/80 whitespace-nowrap font-medium font-sans"
+                              className="px-6 py-3 text-xs text-black/80 whitespace-nowrap font-medium font-sans"
                             >
                               {cell !== null ? (
                                 cell
                               ) : (
-                                <span className="text-warm-ink/20">-</span>
+                                <span className="text-black/20">-</span>
                               )}
                             </td>
                           ))}
@@ -694,7 +694,7 @@ export default function App() {
                       <tr>
                         <td
                           colSpan={headers.length || 1}
-                          className="text-center py-20 text-xs text-warm-ink/40 font-bold uppercase tracking-wider"
+                          className="text-center py-20 text-xs text-black/40 font-bold uppercase tracking-wider"
                         >
                           No matching records found
                         </td>
@@ -705,14 +705,14 @@ export default function App() {
               </div>
               
               {/* Row counter footer */}
-              <div className="border-t border-warm-ink/5 px-6 py-3 bg-warm-bg/20 flex justify-between items-center text-[10px] text-warm-ink/40 font-bold uppercase tracking-widest">
+              <div className="border-t border-black/5 px-6 py-3 bg-white/20 flex justify-between items-center text-[10px] text-black/40 font-bold uppercase tracking-widest">
                 <span>Active Sheet: {activeSheet?.name}</span>
                 <span>Showing {filteredRows.length} of {bodyRows.length} rows</span>
               </div>
             </>
           ) : (
             <div className="flex-1 flex flex-col items-center justify-center p-20">
-              <p className="text-xs text-warm-ink/40 font-bold uppercase tracking-wider">No sheets available</p>
+              <p className="text-xs text-black/40 font-bold uppercase tracking-wider">No sheets available</p>
             </div>
           )}
         </div>
@@ -728,14 +728,14 @@ export default function App() {
     return (
       <div className="max-w-5xl mx-auto px-6 py-24 space-y-16">
         <div>
-          <a href="#projects" className="inline-flex items-center gap-2 text-[10px] uppercase tracking-widest font-semibold hover:text-warm-accent transition-colors mb-12">
+          <a href="#projects" className="inline-flex items-center gap-2 text-[10px] uppercase tracking-widest font-semibold hover:text-black transition-colors mb-12">
             <ArrowLeft size={12} /> Back to Projects
           </a>
 
           <div className="mb-12">
-            <span className="text-[10px] uppercase tracking-[0.2em] text-warm-accent font-bold mb-3 block">Category Portfolio</span>
+            <span className="text-[10px] uppercase tracking-[0.2em] text-black font-bold mb-3 block">Category Portfolio</span>
             <h1 className="serif text-5xl mb-6">3D Renders & Visualisations</h1>
-            <p className="text-sm text-warm-ink/60 leading-relaxed max-w-2xl">
+            <p className="text-sm text-black/60 leading-relaxed max-w-2xl">
               High-fidelity 3D spatial concept renders and visualisations exploring texture matching, lighting design, and creative composition. Click on any panel to launch the lightbox.
             </p>
           </div>
@@ -743,9 +743,9 @@ export default function App() {
 
         {/* Section 1: 3D Renders */}
         <section className="space-y-6">
-          <div className="border-b border-warm-ink/10 pb-4 flex items-center justify-between">
+          <div className="border-b border-black/10 pb-4 flex items-center justify-between">
             <h2 className="serif text-3xl">3D Renders</h2>
-            <span className="text-[10px] uppercase tracking-wider font-bold text-warm-accent bg-warm-accent/10 px-3 py-1 rounded-full">
+            <span className="text-[10px] uppercase tracking-wider font-bold text-black bg-black/10 px-3 py-1 rounded-full">
               {spatialRenders.length} Concepts
             </span>
           </div>
@@ -758,7 +758,7 @@ export default function App() {
                   initial={{ opacity: 0, y: 15 }}
                   animate={{ opacity: 1, y: 0 }}
                   onClick={() => setLightboxIndex(globalIdx)}
-                  className="bg-white/40 p-2 rounded-[2rem] border border-warm-ink/5 cursor-pointer group flex flex-col justify-between"
+                  className="bg-white/40 p-2 rounded-[2rem] border border-black/5 cursor-pointer group flex flex-col justify-between"
                 >
                   <div className="aspect-[4/3] rounded-[1.8rem] overflow-hidden bg-warm-ink/5 relative">
                     <img
@@ -770,7 +770,7 @@ export default function App() {
                     <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300" />
                   </div>
                   <div className="px-4 py-4">
-                    <span className="text-[8px] uppercase tracking-wider text-warm-accent font-bold block mb-1">
+                    <span className="text-[8px] uppercase tracking-wider text-black font-bold block mb-1">
                       {ren.subcategory}
                     </span>
                     <h3 className="serif text-lg font-semibold">{ren.title}</h3>
@@ -783,9 +783,9 @@ export default function App() {
 
         {/* Section 2: Visualisations */}
         <section className="space-y-6 pt-6">
-          <div className="border-b border-warm-ink/10 pb-4 flex items-center justify-between">
+          <div className="border-b border-black/10 pb-4 flex items-center justify-between">
             <h2 className="serif text-3xl">Visualisations</h2>
-            <span className="text-[10px] uppercase tracking-wider font-bold text-warm-accent bg-warm-accent/10 px-3 py-1 rounded-full">
+            <span className="text-[10px] uppercase tracking-wider font-bold text-black bg-black/10 px-3 py-1 rounded-full">
               {visualisations.length} Concepts
             </span>
           </div>
@@ -798,7 +798,7 @@ export default function App() {
                   initial={{ opacity: 0, y: 15 }}
                   animate={{ opacity: 1, y: 0 }}
                   onClick={() => setLightboxIndex(globalIdx)}
-                  className="bg-white/40 p-2 rounded-[2rem] border border-warm-ink/5 cursor-pointer group flex flex-col justify-between"
+                  className="bg-white/40 p-2 rounded-[2rem] border border-black/5 cursor-pointer group flex flex-col justify-between"
                 >
                   <div className="aspect-[4/3] rounded-[1.8rem] overflow-hidden bg-warm-ink/5 relative">
                     <img
@@ -810,7 +810,7 @@ export default function App() {
                     <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300" />
                   </div>
                   <div className="px-4 py-4">
-                    <span className="text-[8px] uppercase tracking-wider text-warm-accent font-bold block mb-1">
+                    <span className="text-[8px] uppercase tracking-wider text-black font-bold block mb-1">
                       {ren.subcategory}
                     </span>
                     <h3 className="serif text-lg font-semibold">{ren.title}</h3>
@@ -828,14 +828,14 @@ export default function App() {
     const websites = getProjectsByCategory("Websites Developed");
     return (
       <div className="max-w-5xl mx-auto px-6 py-24">
-        <a href="#projects" className="inline-flex items-center gap-2 text-[10px] uppercase tracking-widest font-semibold hover:text-warm-accent transition-colors mb-12">
+        <a href="#projects" className="inline-flex items-center gap-2 text-[10px] uppercase tracking-widest font-semibold hover:text-black transition-colors mb-12">
           <ArrowLeft size={12} /> Back to Projects
         </a>
 
         <div className="mb-16">
-          <span className="text-[10px] uppercase tracking-[0.2em] text-warm-accent font-bold mb-3 block">Category Portfolio</span>
+          <span className="text-[10px] uppercase tracking-[0.2em] text-black font-bold mb-3 block">Category Portfolio</span>
           <h1 className="serif text-5xl mb-6">Websites Developed</h1>
-          <p className="text-sm text-warm-ink/60 leading-relaxed max-w-2xl">
+          <p className="text-sm text-black/60 leading-relaxed max-w-2xl">
             Complete responsive websites built from layout wireframing, content planning, and visual styling to front-end development, mobile optimisation, and live deployment.
           </p>
         </div>
@@ -849,33 +849,33 @@ export default function App() {
                 initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: idx * 0.05 }}
-                className="bg-white p-8 rounded-[2.5rem] border border-warm-ink/5 shadow-sm hover:border-warm-accent transition-all flex flex-col justify-between"
+                className="bg-white p-8 rounded-[2.5rem] border border-black/5 shadow-sm hover:border-black transition-all flex flex-col justify-between"
               >
                 <div>
                   <div className="flex justify-between items-start mb-4">
-                    <span className="text-[9px] uppercase tracking-wider text-warm-accent font-bold">{web.role}</span>
+                    <span className="text-[9px] uppercase tracking-wider text-black font-bold">{web.role}</span>
                     {isAcquisition && (
-                      <span className="text-[9px] uppercase tracking-wider bg-warm-accent/15 text-warm-accent font-bold px-2 py-0.5 rounded">
+                      <span className="text-[9px] uppercase tracking-wider bg-black/15 text-black font-bold px-2 py-0.5 rounded">
                         {web.status}
                       </span>
                     )}
                   </div>
                   <h3 className="serif text-3xl mb-3 leading-snug">{web.title}</h3>
-                  <p className="text-xs text-warm-ink/75 leading-relaxed mb-6">{web.fullDescription}</p>
+                  <p className="text-xs text-black/75 leading-relaxed mb-6">{web.fullDescription}</p>
                   <div className="flex flex-wrap gap-1.5 mb-8">
                     {web.tags.map((tag) => (
-                      <span key={tag} className="text-[9px] font-semibold bg-warm-bg px-2 py-0.5 rounded text-warm-ink/60">{tag}</span>
+                      <span key={tag} className="text-[9px] font-semibold bg-white px-2 py-0.5 rounded text-black/60">{tag}</span>
                     ))}
                   </div>
                 </div>
 
-                <div className="border-t border-warm-ink/5 pt-6">
+                <div className="border-t border-black/5 pt-6">
                   {isAcquisition ? (
                     <a
                       href="https://wa.me/447882746212?text=Hi%20Chaitanya%2C%20I%20am%20inquiring%20about%20acquiring%20the%20Export%20Brand%20Website%20listed%20on%20your%20portfolio."
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center justify-center gap-2 bg-warm-accent text-white py-3 rounded-full text-xs uppercase tracking-wider font-semibold hover:bg-warm-accent/90 transition-colors w-full"
+                      className="flex items-center justify-center gap-2 bg-black text-white py-3 rounded-full text-xs uppercase tracking-wider font-semibold hover:bg-black/90 transition-colors w-full"
                     >
                       <WhatsAppIcon className="w-4 h-4" /> Inquire Website Acquisition
                     </a>
@@ -884,7 +884,7 @@ export default function App() {
                       href={web.liveUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center justify-center gap-1.5 bg-warm-ink/5 text-warm-ink py-3 rounded-full text-xs uppercase tracking-wider font-semibold hover:bg-warm-ink/10 transition-colors w-full"
+                      className="flex items-center justify-center gap-1.5 bg-warm-ink/5 text-black py-3 rounded-full text-xs uppercase tracking-wider font-semibold hover:bg-warm-ink/10 transition-colors w-full"
                     >
                       Visit Live Website <ExternalLink size={12} />
                     </a>
@@ -905,7 +905,7 @@ export default function App() {
         <div>
           <a 
             href="#home" 
-            className="inline-flex items-center gap-2 text-[10px] uppercase tracking-widest font-semibold hover:text-warm-accent transition-colors"
+            className="inline-flex items-center gap-2 text-[10px] uppercase tracking-widest font-semibold hover:text-black transition-colors"
           >
             <ArrowLeft size={12} /> Back to Home
           </a>
@@ -918,10 +918,10 @@ export default function App() {
               <img 
                 src="/projects/startup/logo.webp" 
                 alt="Ciyato Logo" 
-                className="w-16 h-16 rounded-[1.25rem] border border-warm-ink/10 shadow-sm"
+                className="w-16 h-16 rounded-[1.25rem] border border-black/10 shadow-sm"
               />
               <div>
-                <span className="text-[10px] uppercase tracking-[0.2em] text-warm-accent font-bold block mb-1">My Startup</span>
+                <span className="text-[10px] uppercase tracking-[0.2em] text-black font-bold block mb-1">My Startup</span>
                 <span className="inline-block text-[9px] uppercase tracking-wider bg-amber-500/10 text-amber-800 font-bold px-2 py-0.5 rounded-full border border-amber-500/10">
                   Currently in Development
                 </span>
@@ -929,15 +929,15 @@ export default function App() {
             </div>
 
             <h1 className="serif text-5xl lg:text-7xl leading-none">Ciyato</h1>
-            <p className="text-lg font-semibold text-warm-ink leading-snug">
+            <p className="text-lg font-semibold text-black leading-snug">
               An AI-Powered Android Launcher & Phone Organiser
             </p>
-            <p className="text-sm text-warm-ink/75 leading-relaxed">
+            <p className="text-sm text-black/75 leading-relaxed">
               A cleaner and more intelligent way to organise apps, files, screenshots, notes, and everyday phone content from one connected Android experience.
             </p>
           </div>
           
-          <div className="md:col-span-5 relative aspect-[4/5] rounded-[2.5rem] overflow-hidden bg-warm-ink/5 border border-warm-ink/10 max-w-sm mx-auto md:ml-auto shadow-xl">
+          <div className="md:col-span-5 relative aspect-[4/5] rounded-[2.5rem] overflow-hidden bg-warm-ink/5 border border-black/10 max-w-sm mx-auto md:ml-auto shadow-xl">
             <img 
               src="/projects/startup/hero.webp" 
               alt="Ciyato Android Interface Preview"
@@ -947,25 +947,25 @@ export default function App() {
         </section>
 
         {/* Product Vision */}
-        <section className="grid grid-cols-1 md:grid-cols-2 gap-12 border-t border-warm-ink/10 pt-16">
+        <section className="grid grid-cols-1 md:grid-cols-2 gap-12 border-t border-black/10 pt-16">
           <div className="space-y-4">
-            <h2 className="serif text-3xl text-warm-accent">The Vision</h2>
-            <p className="text-sm text-warm-ink/75 leading-relaxed">
+            <h2 className="serif text-3xl text-black">The Vision</h2>
+            <p className="text-sm text-black/75 leading-relaxed">
               Modern phones contain hundreds of apps, files, screenshots, notifications, and pieces of information, but the systems used to organise them have changed very little. Ciyato is being created to make Android devices feel cleaner, easier to navigate, and more personally organised without taking control away from the user.
             </p>
           </div>
           <div className="space-y-4">
-            <h2 className="serif text-3xl text-warm-accent">What Ciyato Is</h2>
-            <p className="text-sm text-warm-ink/75 leading-relaxed">
+            <h2 className="serif text-3xl text-black">What Ciyato Is</h2>
+            <p className="text-sm text-black/75 leading-relaxed">
               Ciyato is both a real Android launcher and an internal phone-organisation application. The launcher reorganises the home screen and app library, while the internal application provides access to search, files, shared content, settings, privacy controls, and future AI-assisted organisation tools.
             </p>
           </div>
         </section>
 
         {/* Key Capabilities Grid */}
-        <section className="space-y-12 border-t border-warm-ink/10 pt-16">
+        <section className="space-y-12 border-t border-black/10 pt-16">
           <div>
-            <span className="text-[10px] uppercase tracking-[0.2em] text-warm-accent font-bold block mb-2">Capabilities</span>
+            <span className="text-[10px] uppercase tracking-[0.2em] text-black font-bold block mb-2">Capabilities</span>
             <h2 className="serif text-4xl">Key Features & Intent</h2>
           </div>
           
@@ -998,21 +998,21 @@ export default function App() {
             ].map((cap, i) => (
               <div 
                 key={i} 
-                className="p-8 rounded-[2rem] bg-white border border-warm-ink/5 shadow-sm space-y-4 hover:border-warm-accent transition-colors"
+                className="p-8 rounded-[2rem] bg-white border border-black/5 shadow-sm space-y-4 hover:border-black transition-colors"
               >
                 <h3 className="serif text-xl font-semibold leading-tight">{cap.title}</h3>
-                <p className="text-xs text-warm-ink/60 leading-relaxed">{cap.desc}</p>
+                <p className="text-xs text-black/60 leading-relaxed">{cap.desc}</p>
               </div>
             ))}
           </div>
         </section>
 
         {/* Application Interface Gallery */}
-        <section className="space-y-12 border-t border-warm-ink/10 pt-16">
+        <section className="space-y-12 border-t border-black/10 pt-16">
           <div>
-            <span className="text-[10px] uppercase tracking-[0.2em] text-warm-accent font-bold block mb-2">Screenshots</span>
+            <span className="text-[10px] uppercase tracking-[0.2em] text-black font-bold block mb-2">Screenshots</span>
             <h2 className="serif text-4xl">Application Interface Gallery</h2>
-            <p className="text-xs text-warm-ink/50 mt-2">
+            <p className="text-xs text-black/50 mt-2">
               Preview shots illustrating app library categorisation, layouts, and search configurations. Click to expand.
             </p>
           </div>
@@ -1023,9 +1023,9 @@ export default function App() {
                 key={screen.id}
                 whileHover={{ y: -4 }}
                 onClick={() => setStartupLightboxIndex(idx)}
-                className="group cursor-pointer bg-white border border-warm-ink/5 rounded-2xl overflow-hidden p-2.5 shadow-sm hover:border-warm-accent transition-all duration-300"
+                className="group cursor-pointer bg-white border border-black/5 rounded-2xl overflow-hidden p-2.5 shadow-sm hover:border-black transition-all duration-300"
               >
-                <div className="aspect-[9/16] rounded-xl overflow-hidden bg-warm-ink/5 border border-warm-ink/5">
+                <div className="aspect-[9/16] rounded-xl overflow-hidden bg-warm-ink/5 border border-black/5">
                   <img 
                     src={screen.thumb} 
                     alt={screen.title}
@@ -1034,7 +1034,7 @@ export default function App() {
                   />
                 </div>
                 <div className="mt-3">
-                  <p className="text-[9px] uppercase tracking-wider font-semibold text-warm-ink/40 line-clamp-1">{screen.title}</p>
+                  <p className="text-[9px] uppercase tracking-wider font-semibold text-black/40 line-clamp-1">{screen.title}</p>
                 </div>
               </motion.div>
             ))}
@@ -1042,16 +1042,16 @@ export default function App() {
         </section>
 
         {/* Development Status */}
-        <section className="grid grid-cols-1 md:grid-cols-12 gap-12 border-t border-warm-ink/10 pt-16">
+        <section className="grid grid-cols-1 md:grid-cols-12 gap-12 border-t border-black/10 pt-16">
           <div className="md:col-span-6 space-y-4">
-            <h2 className="serif text-3xl text-warm-accent">Building Ciyato</h2>
-            <p className="text-sm text-warm-ink/75 leading-relaxed">
+            <h2 className="serif text-3xl text-black">Building Ciyato</h2>
+            <p className="text-sm text-black/75 leading-relaxed">
               Ciyato has progressed through multiple interface and product-development versions and is currently being refined into a functional Android application. The focus is on real installed-app support, reliable launcher behaviour, practical organisation tools, privacy, performance, and a premium but simple user experience.
             </p>
           </div>
           
-          <div className="md:col-span-6 flex flex-col justify-center space-y-3 bg-white p-8 rounded-[2rem] border border-warm-ink/5 shadow-sm">
-            <span className="text-[10px] uppercase tracking-wider text-warm-accent font-bold mb-1">Development Milestones</span>
+          <div className="md:col-span-6 flex flex-col justify-center space-y-3 bg-white p-8 rounded-[2rem] border border-black/5 shadow-sm">
+            <span className="text-[10px] uppercase tracking-wider text-black font-bold mb-1">Development Milestones</span>
             {[
               "Product concept established",
               "Interface system in development",
@@ -1060,18 +1060,18 @@ export default function App() {
               "Preparing for future testing and launch"
             ].map((status, i) => (
               <div key={i} className="flex items-center gap-3">
-                <div className="w-1.5 h-1.5 rounded-full bg-warm-accent flex-shrink-0" />
-                <p className="text-xs text-warm-ink/70 font-semibold">{status}</p>
+                <div className="w-1.5 h-1.5 rounded-full bg-black flex-shrink-0" />
+                <p className="text-xs text-black/70 font-semibold">{status}</p>
               </div>
             ))}
           </div>
         </section>
 
         {/* WhatsApp Enquiry CTA */}
-        <section className="bg-white border border-warm-ink/5 p-12 md:p-16 rounded-[3rem] shadow-sm text-center max-w-3xl mx-auto space-y-8">
+        <section className="bg-white border border-black/5 p-12 md:p-16 rounded-[3rem] shadow-sm text-center max-w-3xl mx-auto space-y-8">
           <div className="space-y-3">
             <h2 className="serif text-4xl">Interested in Ciyato?</h2>
-            <p className="text-sm text-warm-ink/60 leading-relaxed max-w-xl mx-auto">
+            <p className="text-sm text-black/60 leading-relaxed max-w-xl mx-auto">
               For product discussions, early collaboration, development opportunities, partnerships, or enquiries relating to Ciyato, contact me directly on WhatsApp.
             </p>
           </div>
@@ -1116,7 +1116,7 @@ export default function App() {
     return (
       <main className="max-w-6xl mx-auto px-6 pt-24 font-sans">
         {/* Home Hero Section */}
-        <section id="home" className="py-16 md:py-24 border-b border-warm-ink/10 space-y-12">
+        <section id="home" className="py-16 md:py-24 border-b border-black/10 space-y-12">
           {/* Top Header Row: Name & Badges on Left, Portrait on Right */}
           <motion.div
             initial={{ opacity: 0, y: -15 }}
@@ -1129,7 +1129,7 @@ export default function App() {
               <h1 className="serif text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl leading-none tracking-tight">
                 Chaitanya Gaikwad
               </h1>
-              <div className="flex flex-col gap-1.5 text-[9px] sm:text-[11px] md:text-[12px] uppercase tracking-[0.25em] font-bold text-warm-accent">
+              <div className="flex flex-col gap-1.5 text-[9px] sm:text-[11px] md:text-[12px] uppercase tracking-[0.25em] font-bold text-black">
                 <span>AI Visual Designer</span>
                 <span>Marketing & B2B Specialist</span>
                 <span>Visual Content Creator</span>
@@ -1141,7 +1141,7 @@ export default function App() {
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="relative w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 lg:w-44 lg:h-44 rounded-2xl sm:rounded-3xl overflow-hidden bg-warm-ink/5 border border-warm-ink/10 shadow-lg shadow-warm-accent/5 flex-shrink-0"
+              className="relative w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 lg:w-44 lg:h-44 rounded-2xl sm:rounded-3xl overflow-hidden bg-warm-ink/5 border border-black/10 shadow-lg shadow-warm-accent/5 flex-shrink-0"
             >
               <img 
                 src="/portrait.jpg" 
@@ -1159,11 +1159,11 @@ export default function App() {
             transition={{ duration: 0.8, delay: 0.3 }}
             className="space-y-6 max-w-4xl"
           >
-            <div className="space-y-4 text-warm-ink/80 leading-relaxed">
-              <p className="text-base sm:text-lg font-semibold text-warm-ink leading-snug">
+            <div className="space-y-4 text-black/80 leading-relaxed">
+              <p className="text-base sm:text-lg font-semibold text-black leading-snug">
                 AI Visual Designer, Visual Content Creator, and Marketing & B2B Specialist.
               </p>
-              <p className="text-xs sm:text-sm text-warm-ink/75 leading-relaxed">
+              <p className="text-xs sm:text-sm text-black/75 leading-relaxed">
                 I help brands and businesses improve how they present themselves, market their services, connect with potential clients, and grow through modern digital systems. My work includes AI-powered visuals, short-form videos, website content and support, creative direction, B2B lead generation, business research, outreach campaigns, CRM-style tracking, automation, and digital marketing execution. I combine visual storytelling, emerging AI tools, marketing strategy, and practical business support to turn ideas into professional content and measurable growth opportunities.
               </p>
             </div>
@@ -1173,13 +1173,13 @@ export default function App() {
               <div className="flex flex-wrap gap-3">
                 <a 
                   href="#projects" 
-                  className="bg-warm-accent text-white px-6 py-3 rounded-full text-xs uppercase tracking-wider font-semibold hover:bg-warm-accent/90 transition-colors shadow-sm"
+                  className="bg-black text-white px-6 py-3 rounded-full text-xs uppercase tracking-wider font-semibold hover:bg-black/90 transition-colors shadow-sm"
                 >
                   View Portfolio
                 </a>
                 <a 
                   href="#contact" 
-                  className="border border-warm-ink/20 text-warm-ink px-6 py-3 rounded-full text-xs uppercase tracking-wider font-semibold hover:bg-warm-ink/5 transition-colors"
+                  className="border border-black/20 text-black px-6 py-3 rounded-full text-xs uppercase tracking-wider font-semibold hover:bg-warm-ink/5 transition-colors"
                 >
                   Let's Connect
                 </a>
@@ -1215,9 +1215,9 @@ export default function App() {
         </section>
 
         {/* Projects Category Portal Section */}
-        <section id="projects" className="py-24 border-b border-warm-ink/10 scroll-mt-20">
+        <section id="projects" className="py-24 border-b border-black/10 scroll-mt-20">
           <div className="mb-12">
-            <span className="text-[10px] uppercase tracking-[0.2em] text-warm-accent font-bold mb-3 block">Works & Capabilities</span>
+            <span className="text-[10px] uppercase tracking-[0.2em] text-black font-bold mb-3 block">Works & Capabilities</span>
             <h2 className="serif text-5xl">Projects</h2>
           </div>
 
@@ -1237,7 +1237,7 @@ export default function App() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: idx * 0.05 }}
-                  className="relative h-80 rounded-[2.5rem] overflow-hidden border border-warm-ink/5 shadow-sm group cursor-pointer"
+                  className="relative h-80 rounded-[2.5rem] overflow-hidden border border-black/5 shadow-sm group cursor-pointer"
                   onClick={(e) => { e.preventDefault(); const r = cat.route.replace(/^#+/, ''); window.location.hash = r.startsWith('/') ? r : '/' + r; }}
                 >
                   {/* Background overlay images */}
@@ -1257,7 +1257,7 @@ export default function App() {
                       <p className="text-xs text-white/70 leading-relaxed max-w-sm mb-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                         {cat.desc}
                       </p>
-                      <span className="inline-flex items-center gap-1 text-[10px] uppercase tracking-wider font-bold text-white group-hover:text-warm-accent transition-colors">
+                      <span className="inline-flex items-center gap-1 text-[10px] uppercase tracking-wider font-bold text-white group-hover:text-black transition-colors">
                         Browse Category <ChevronRight size={12} />
                       </span>
                     </div>
@@ -1269,18 +1269,18 @@ export default function App() {
         </section>
 
         {/* Startup Preview Section */}
-        <section id="startup-preview" className="py-24 border-b border-warm-ink/10 scroll-mt-20">
-          <div className="p-8 md:p-12 rounded-[3rem] bg-white border border-warm-ink/5 shadow-sm">
+        <section id="startup-preview" className="py-24 border-b border-black/10 scroll-mt-20">
+          <div className="p-8 md:p-12 rounded-[3rem] bg-white border border-black/5 shadow-sm">
             <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
               <div className="md:col-span-7 space-y-6">
                 <div className="flex items-center gap-4">
                   <img 
                     src="/projects/startup/logo.webp" 
                     alt="Ciyato Logo" 
-                    className="w-14 h-14 rounded-[1.1rem] border border-warm-ink/10 shadow-sm"
+                    className="w-14 h-14 rounded-[1.1rem] border border-black/10 shadow-sm"
                   />
                   <div>
-                    <span className="text-[10px] uppercase tracking-[0.2em] text-warm-accent font-bold block mb-0.5">My Startup</span>
+                    <span className="text-[10px] uppercase tracking-[0.2em] text-black font-bold block mb-0.5">My Startup</span>
                     <span className="inline-block text-[8px] uppercase tracking-wider bg-amber-500/10 text-amber-800 font-bold px-2 py-0.5 rounded-full border border-amber-500/10">
                       Currently in Development
                     </span>
@@ -1288,21 +1288,21 @@ export default function App() {
                 </div>
 
                 <h2 className="serif text-4xl">Ciyato — Android Launcher & AI Organiser</h2>
-                <p className="text-sm text-warm-ink/70 leading-relaxed">
+                <p className="text-sm text-black/70 leading-relaxed">
                   Ciyato is an AI-powered Android launcher and phone organisation system designed to transform a cluttered device into a clean, searchable, intelligently organised digital space. It combines a home-screen replacement with an internal dashboard to manage apps, files, screenshots, and notes.
                 </p>
 
                 <div className="pt-2">
                   <a 
                     href="#/startup" 
-                    className="inline-flex items-center gap-2 bg-warm-accent text-white px-6 py-3 rounded-full text-xs uppercase tracking-wider font-semibold hover:bg-warm-accent/90 transition-colors shadow-sm"
+                    className="inline-flex items-center gap-2 bg-black text-white px-6 py-3 rounded-full text-xs uppercase tracking-wider font-semibold hover:bg-black/90 transition-colors shadow-sm"
                   >
                     Explore Ciyato Launcher <ChevronRight size={12} />
                   </a>
                 </div>
               </div>
               
-              <div className="md:col-span-5 relative aspect-[4/5] rounded-[2rem] overflow-hidden bg-warm-bg border border-warm-ink/10 max-w-xs mx-auto md:ml-auto shadow-md">
+              <div className="md:col-span-5 relative aspect-[4/5] rounded-[2rem] overflow-hidden bg-white border border-black/10 max-w-xs mx-auto md:ml-auto shadow-md">
                 <img 
                   src="/projects/startup/hero.webp" 
                   alt="Ciyato Android Launcher Interface Preview" 
@@ -1314,9 +1314,9 @@ export default function App() {
         </section>
 
         {/* Services Section */}
-        <section id="services" className="py-24 border-b border-warm-ink/10 scroll-mt-20">
+        <section id="services" className="py-24 border-b border-black/10 scroll-mt-20">
           <div className="mb-12">
-            <span className="text-[10px] uppercase tracking-[0.2em] text-warm-accent font-bold mb-3 block">Offerings</span>
+            <span className="text-[10px] uppercase tracking-[0.2em] text-black font-bold mb-3 block">Offerings</span>
             <h2 className="serif text-5xl">Services</h2>
           </div>
 
@@ -1328,14 +1328,14 @@ export default function App() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.03 }}
-                className="p-8 rounded-[2rem] bg-white border border-warm-ink/5 hover:border-warm-accent shadow-sm transition-all flex flex-col justify-between"
+                className="p-8 rounded-[2rem] bg-white border border-black/5 hover:border-black shadow-sm transition-all flex flex-col justify-between"
               >
                 <div>
-                  <div className="w-10 h-10 rounded-xl bg-warm-accent/5 flex items-center justify-center mb-6 text-warm-accent">
+                  <div className="w-10 h-10 rounded-xl bg-black/5 flex items-center justify-center mb-6 text-black">
                     <item.icon size={20} strokeWidth={1.5} />
                   </div>
                   <h3 className="serif text-2xl mb-3 leading-snug">{item.title}</h3>
-                  <p className="text-xs text-warm-ink/60 leading-relaxed">{item.desc}</p>
+                  <p className="text-xs text-black/60 leading-relaxed">{item.desc}</p>
                 </div>
               </motion.div>
             ))}
@@ -1347,12 +1347,12 @@ export default function App() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
             {/* Left side: Bio */}
             <div className="lg:col-span-5 space-y-6">
-              <span className="text-[10px] uppercase tracking-[0.2em] text-warm-accent font-bold block">My Journey</span>
+              <span className="text-[10px] uppercase tracking-[0.2em] text-black font-bold block">My Journey</span>
               <h2 className="serif text-5xl tracking-tight">Professional Experience</h2>
-              <p className="text-sm text-warm-ink/75 leading-relaxed">
+              <p className="text-sm text-black/75 leading-relaxed">
                 I partner with interior design studios, manufacturers, and international business startups. My work bridges the gap between high-fidelity media campaigns (videos, renders) and operational business setups (spreadsheets, lead qualification pipelines, and complete website creation).
               </p>
-              <p className="text-sm text-warm-ink/75 leading-relaxed">
+              <p className="text-sm text-black/75 leading-relaxed">
                 By combining digital development and structured outreach with visual content production, I help businesses clarify their presence and build solid lead pipelines that convert.
               </p>
             </div>
@@ -1364,7 +1364,7 @@ export default function App() {
                   <motion.div
                     key={exp.company}
                     whileHover={{ y: -3 }}
-                    className="p-6 rounded-[2rem] border bg-white border-warm-ink/5 flex flex-col justify-between h-[280px] shadow-sm relative overflow-hidden group/card"
+                    className="p-6 rounded-[2rem] border bg-white border-black/5 flex flex-col justify-between h-[280px] shadow-sm relative overflow-hidden group/card"
                   >
                     {/* Background Transparent Visual Card overlay */}
                     {exp.bgImage && (
@@ -1379,19 +1379,19 @@ export default function App() {
                         <div>
                           <h3 className="serif text-xl font-bold leading-tight">{exp.company}</h3>
                           {exp.descriptor && (
-                            <p className="text-[9px] text-warm-ink/40 font-bold uppercase mt-0.5">{exp.descriptor}</p>
+                            <p className="text-[9px] text-black/40 font-bold uppercase mt-0.5">{exp.descriptor}</p>
                           )}
                         </div>
-                        <span className="text-[8px] uppercase tracking-wider font-bold text-warm-ink/40 whitespace-nowrap">
+                        <span className="text-[8px] uppercase tracking-wider font-bold text-black/40 whitespace-nowrap">
                           {exp.period}
                         </span>
                       </div>
 
                       <div className="space-y-1">
-                        <p className="text-[9px] font-bold text-warm-accent uppercase tracking-wider">
+                        <p className="text-[9px] font-bold text-black uppercase tracking-wider">
                           {exp.role}
                         </p>
-                        <p className="text-[11px] text-warm-ink/70 leading-relaxed line-clamp-4">
+                        <p className="text-[11px] text-black/70 leading-relaxed line-clamp-4">
                           {exp.desc}
                         </p>
                       </div>
@@ -1399,13 +1399,13 @@ export default function App() {
 
                     {/* Social Link Display */}
                     {exp.instagramUrl ? (
-                      <div className="relative z-10 pt-3 border-t border-warm-ink/5 flex items-center mt-3">
+                      <div className="relative z-10 pt-3 border-t border-black/5 flex items-center mt-3">
                         <a 
                           href={exp.instagramUrl}
                           target="_blank"
                           rel="noopener noreferrer"
                           aria-label={exp.ariaLabel}
-                          className="inline-flex items-center gap-1.5 text-xs font-semibold text-warm-ink/80 hover:text-warm-accent transition-colors group/link"
+                          className="inline-flex items-center gap-1.5 text-xs font-semibold text-black/80 hover:text-black transition-colors group/link"
                         >
                           <span 
                             className="w-5 h-5 rounded-full flex items-center justify-center text-white shadow-sm flex-shrink-0"
@@ -1424,7 +1424,7 @@ export default function App() {
                         </a>
                       </div>
                     ) : exp.private ? (
-                      <div className="relative z-10 pt-3 border-t border-warm-ink/5 flex items-center justify-between mt-3 text-warm-ink/40 italic text-[10px]">
+                      <div className="relative z-10 pt-3 border-t border-black/5 flex items-center justify-between mt-3 text-black/40 italic text-[10px]">
                         <div className="flex items-center gap-1.5 truncate">
                           <Globe size={11} className="flex-shrink-0" />
                           <span className="truncate">{exp.privateText}</span>
@@ -1439,26 +1439,26 @@ export default function App() {
           </div>
 
           {/* Approach & Key Strengths Section */}
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-10 mt-10 pt-10 border-t border-warm-ink/5">
-            <div className="md:col-span-5 space-y-4 p-6 rounded-2xl bg-warm-ink/2 border border-warm-ink/5">
-              <div className="flex items-center gap-2 text-warm-accent">
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-10 mt-10 pt-10 border-t border-black/5">
+            <div className="md:col-span-5 space-y-4 p-6 rounded-2xl bg-warm-ink/2 border border-black/5">
+              <div className="flex items-center gap-2 text-black">
                 <MapPin size={16} />
                 <h4 className="text-[10px] uppercase tracking-widest font-bold">Approach</h4>
               </div>
               <div>
                 <p className="text-sm font-semibold mb-1">Visual Storytelling</p>
-                <p className="text-xs text-warm-ink/60 leading-relaxed mb-3">
+                <p className="text-xs text-black/60 leading-relaxed mb-3">
                   Using state-of-the-art AI generation tools to create custom product mockups, cinematic video content, and high-impact visual campaigns.
                 </p>
                 <p className="text-sm font-semibold mb-1">Systems & Outreach</p>
-                <p className="text-xs text-warm-ink/60 leading-relaxed">
+                <p className="text-xs text-black/60 leading-relaxed">
                   Building solid B2B lead pipelines, managing CRM trackers, automating follow-up campaigns, and executing cold outreach that converts.
                 </p>
               </div>
             </div>
 
-            <div className="md:col-span-7 space-y-4 p-6 rounded-2xl bg-warm-ink/2 border border-warm-ink/5">
-              <div className="flex items-center gap-2 text-warm-accent">
+            <div className="md:col-span-7 space-y-4 p-6 rounded-2xl bg-warm-ink/2 border border-black/5">
+              <div className="flex items-center gap-2 text-black">
                 <Sparkles size={16} />
                 <h4 className="text-[10px] uppercase tracking-widest font-bold">Key Strengths</h4>
               </div>
@@ -1472,8 +1472,8 @@ export default function App() {
                   "Website Creation & Development"
                 ].map((item) => (
                   <div key={item} className="flex items-start gap-2">
-                    <div className="w-1.5 h-1.5 rounded-full bg-warm-accent mt-1.5 flex-shrink-0" />
-                    <p className="text-xs text-warm-ink/60 leading-relaxed">{item}</p>
+                    <div className="w-1.5 h-1.5 rounded-full bg-black mt-1.5 flex-shrink-0" />
+                    <p className="text-xs text-black/60 leading-relaxed">{item}</p>
                   </div>
                 ))}
               </div>
@@ -1482,11 +1482,11 @@ export default function App() {
         </section>
 
         {/* Footer / Contact */}
-        <footer id="contact" className="py-24 border-t border-warm-ink/10">
+        <footer id="contact" className="py-24 border-t border-black/10">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center font-sans">
             <div>
               <h2 className="serif text-5xl mb-8 leading-none">Let's connect.</h2>
-              <p className="text-base text-warm-ink/60 mb-10 max-w-sm leading-relaxed">
+              <p className="text-base text-black/60 mb-10 max-w-sm leading-relaxed">
                 Open to creative direction, B2B campaigns, or website support opportunities.
               </p>
               <div className="flex flex-col space-y-4">
@@ -1494,7 +1494,7 @@ export default function App() {
                   href="https://wa.me/447882746212"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-3 font-sans text-2xl font-semibold tracking-wide text-warm-ink hover:text-warm-accent transition-colors self-start group/wa"
+                  className="inline-flex items-center gap-3 font-sans text-2xl font-semibold tracking-wide text-black hover:text-black transition-colors self-start group/wa"
                 >
                   <span className="w-8 h-8 rounded-full bg-[#25D366] text-white flex items-center justify-center shadow-md flex-shrink-0 group-hover/wa:scale-105 transition-transform duration-300">
                     <WhatsAppIcon className="w-5 h-5" />
@@ -1507,7 +1507,7 @@ export default function App() {
                   href="https://wa.me/917028311226"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-3 font-sans text-2xl font-semibold tracking-wide text-warm-ink hover:text-warm-accent transition-colors self-start group/wa"
+                  className="inline-flex items-center gap-3 font-sans text-2xl font-semibold tracking-wide text-black hover:text-black transition-colors self-start group/wa"
                 >
                   <span className="w-8 h-8 rounded-full bg-[#25D366] text-white flex items-center justify-center shadow-md flex-shrink-0 group-hover/wa:scale-105 transition-transform duration-300">
                     <WhatsAppIcon className="w-5 h-5" />
@@ -1520,7 +1520,7 @@ export default function App() {
                   href="https://www.instagram.com/xiyato22"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-3 font-sans text-xl text-warm-ink/70 hover:text-warm-accent transition-colors self-start group/ig"
+                  className="inline-flex items-center gap-3 font-sans text-xl text-black/70 hover:text-black transition-colors self-start group/ig"
                 >
                   <span 
                     className="w-8 h-8 rounded-full text-white flex items-center justify-center shadow-md flex-shrink-0 group-hover/ig:scale-105 transition-transform duration-300"
@@ -1544,7 +1544,7 @@ export default function App() {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={link.ariaLabel}
-                    className="text-warm-ink/50 hover:text-warm-accent transition-all group flex flex-col items-center gap-2"
+                    className="text-black/50 hover:text-black transition-all group flex flex-col items-center gap-2"
                   >
                     <div className="w-6 h-6">
                       <link.icon className="w-full h-full" strokeWidth={1.5} />
@@ -1554,10 +1554,10 @@ export default function App() {
                 ))}
               </div>
               <div className="text-left md:text-right">
-                <p className="text-[10px] uppercase tracking-[0.2em] text-warm-ink/50 font-bold mb-2">
+                <p className="text-[10px] uppercase tracking-[0.2em] text-black/50 font-bold mb-2">
                   Portfolio 2026 • Chaitanya Gaikwad
                 </p>
-                <p className="text-[10px] uppercase tracking-[0.2em] text-warm-ink/40 font-bold">
+                <p className="text-[10px] uppercase tracking-[0.2em] text-black/40 font-bold">
                   Creative & B2B Strategy
                 </p>
               </div>
@@ -1569,11 +1569,11 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-warm-bg text-warm-ink antialiased font-sans flex flex-col justify-between">
+    <div className="min-h-screen bg-white text-black antialiased font-sans flex flex-col justify-between">
       {/* Navigation */}
-      <nav className="fixed top-0 w-full z-40 bg-warm-bg/85 backdrop-blur-sm border-b border-warm-ink/10">
+      <nav className="fixed top-0 w-full z-40 bg-white/85 backdrop-blur-sm border-b border-black/10">
         <div className="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
-          <a href="#home" className="serif text-xl font-semibold tracking-tight hover:text-warm-accent transition-colors">
+          <a href="#home" className="serif text-xl font-semibold tracking-tight hover:text-black transition-colors">
             CG.
           </a>
           
@@ -1583,7 +1583,7 @@ export default function App() {
                 key={item} 
                 href={`#${item.toLowerCase().replace(/\s+/g, '-')}`}
                 onClick={(e) => handleNavLinkClick(e, item)}
-                className="text-[10px] uppercase tracking-widest hover:text-warm-accent transition-colors font-semibold"
+                className="text-[10px] uppercase tracking-widest hover:text-black transition-colors font-semibold"
               >
                 {item}
               </a>
@@ -1592,7 +1592,7 @@ export default function App() {
 
           <button 
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden p-2 text-warm-ink hover:text-warm-accent transition-colors focus:outline-none"
+            className="md:hidden p-2 text-black hover:text-black transition-colors focus:outline-none"
             aria-label="Toggle navigation menu"
           >
             {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
@@ -1604,14 +1604,14 @@ export default function App() {
           <motion.div 
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
-            className="md:hidden border-t border-warm-ink/10 bg-warm-bg px-6 py-6 space-y-4 flex flex-col"
+            className="md:hidden border-t border-black/10 bg-white px-6 py-6 space-y-4 flex flex-col"
           >
             {NAV_ITEMS.map((item) => (
               <a 
                 key={item} 
                 href={`#${item.toLowerCase().replace(/\s+/g, '-')}`}
                 onClick={(e) => handleNavLinkClick(e, item)}
-                className="text-xs uppercase tracking-widest font-semibold hover:text-warm-accent transition-colors"
+                className="text-xs uppercase tracking-widest font-semibold hover:text-black transition-colors"
               >
                 {item}
               </a>
@@ -1621,7 +1621,7 @@ export default function App() {
       </nav>
 
       {/* Main Content Router */}
-      <div className="flex-1 bg-warm-bg">
+      <div className="flex-1 bg-white">
         {currentHash.includes("startup") ? (
           renderStartupPage()
         ) : currentHash.includes("cad-automation") ? (
