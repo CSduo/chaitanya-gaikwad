@@ -142,7 +142,7 @@ const EXPERIENCE = [
     descriptor: "Hotel Linen & Premium Bedding Export Client",
     period: "Mar 2025 – Present",
     role: "Marketing, Lead Generation & Website Specialist",
-    desc: "Built structured buyer databases, cross-border outreach workflows, buyer qualification systems, and sample-evaluation tracking while supporting export communication and a complete brand website project valued at approximately $3,000.",
+    desc: "Built structured buyer databases, cross-border outreach workflows, buyer qualification systems, and sample-evaluation tracking while supporting export communication and a complete brand website project.",
     private: true,
     privateText: "Instagram account not publicly available",
     bgImage: "/sakura-bg.png"

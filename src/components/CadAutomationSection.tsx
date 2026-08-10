@@ -307,8 +307,8 @@ export function CadAutomationSection() {
               Featured Client Project • Bahrain
             </span>
           </div>
-          <span className="text-xl md:text-2xl font-mono font-extrabold text-amber-300 bg-white/10 px-4 py-1.5 rounded-2xl border border-amber-400/30 shadow-sm">
-            $1,000 Project Contract
+          <span className="text-xs md:text-sm font-mono font-bold uppercase tracking-wider text-amber-300 bg-white/10 px-4 py-1.5 rounded-2xl border border-amber-400/30 shadow-sm">
+            Complete Drawing Package
           </span>
         </div>
 
@@ -317,7 +317,7 @@ export function CadAutomationSection() {
             Bahrain Luxury Interior & Architectural CAD Package
           </h3>
           <p className="text-xs sm:text-sm text-white/80 leading-relaxed max-w-3xl">
-            This complete architectural & interior AutoCAD package was commissioned for a premier luxury interior design project in Bahrain as a full $1,000 drawing set contract. The deliverable included general arrangement layout plans, wall elevations, reflected ceiling plans, herringbone flooring patterns, and custom joinery construction details delivered as editable DWG, DXF, and presentation-ready PDF sets.
+            This complete architectural & interior AutoCAD package was commissioned for a premier luxury interior design project in Bahrain as a comprehensive multi-sheet drawing set. The deliverable included general arrangement layout plans, wall elevations, reflected ceiling plans, herringbone flooring patterns, and custom joinery construction details delivered as editable DWG, DXF, and presentation-ready PDF sets.
           </p>
         </div>
       </div>
