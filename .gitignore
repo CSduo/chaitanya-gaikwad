@@ -1,11 +1,26 @@
+# dependencies
 node_modules/
+.pnp
+.pnp.js
+
+# next.js
+.next/
+out/
 build/
 dist/
-coverage/
-.DS_Store
-*.log
+
+# production
+*.tsbuildinfo
+next-env.d.ts
+
+# environment
 .env*
 !.env.example
+
+# vercel
 .vercel
-project-media-staging/
-test_out.txt
+
+# misc
+.DS_Store
+*.log
+coverage/
