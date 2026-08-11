@@ -204,7 +204,68 @@ testimonials, fake client logos, invented metrics, invented vacancies.
 
 ---
 
-## 12. KNOWN LIMITATIONS
+## 12. VERCEL DEPLOYMENT
+
+### First attempt — FAILED
+
+```
+Error: No Output Directory named "dist" found after the Build completed.
+```
+
+**The build itself succeeded** — compile, typecheck and all 27 static pages generated
+normally. The failure was in the deploy step, caused by configuration inherited from the
+previous Vite application:
+
+1. **`vercel.json` was never replaced.** It still contained the SPA catch-all
+   `{"source": "/(.*)", "destination": "/index.html"}` — the exact soft-404 rewrite the audit
+   flagged and the brief required be removed. `/index.html` does not exist in a Next.js build.
+2. **The Vercel project's Output Directory was still `dist`**, the Vite convention. Next.js
+   outputs to `.next`.
+
+### Fix
+
+`vercel.json` replaced with an explicit framework declaration:
+
+```json
+{
+  "framework": "nextjs",
+  "buildCommand": "next build",
+  "outputDirectory": ".next",
+  "installCommand": "npm ci"
+}
+```
+
+`vercel.json` build settings take precedence over dashboard project settings, so this
+overrides the stale `dist` override without needing a dashboard change.
+
+### Second attempt — READY
+
+| | |
+|---|---|
+| Status | **● Ready** |
+| Duration | 38s |
+| Preview URL | `https://chaitanya-gaikwad-kr2dbwfcl-xiyatosaanvi-2995s-projects.vercel.app` |
+| Build log | Clean — `Build Completed`, `Deploying outputs`, no errors or warnings |
+
+**Verified in the deployed artifact:** all 12 redirects compiled into the Vercel routing
+layer with 308 status, both header rules applied (5 security headers site-wide, immutable
+caching on `/media/*`), 17 static + 3 dynamic routes, 19 prerendered HTML pages. The three
+unpublished legal routes are correctly absent from the prerender output.
+
+### Preview is behind Vercel Deployment Protection
+
+Every path on the preview returns `302 → vercel.com/sso-api`. This is the account's
+Deployment Protection on preview deployments, **not a site fault**. The owner can open the
+URL directly while signed in to Vercel. Automated verification of the live preview was
+therefore not possible; the equivalent checks were run against the identical production build
+locally (§2–§11, 33/33 passing) and against the deployed build artifact above.
+
+To allow automated checking of future previews, either disable Deployment Protection for
+previews or issue a Protection Bypass for Automation token.
+
+---
+
+## 13. KNOWN LIMITATIONS
 
 1. **No screenshots captured.** The browser pane does not composite in this environment;
    every `screenshot` call timed out — the same limitation recorded in the original audit.

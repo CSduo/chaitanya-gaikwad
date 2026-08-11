@@ -142,6 +142,15 @@ Carried forward from the audit, still unverified:
    `chaitanya-gaikwad.vercel.app` at `https://xiyato.uk` with permanent redirects. Application
    canonicals already all point at the apex; this is the remaining domain-level step.
 2. **Environment variables** — the four from §1.
+3. **Optional — stale Vercel project settings.** The project still carries Vite-era build
+   settings (Output Directory `dist`, and likely a Vite or "Other" framework preset). These
+   caused the first deployment to fail. `vercel.json` now overrides them and deployment
+   succeeds, so no dashboard change is required — but clearing the Output Directory override
+   and setting the framework preset to **Next.js** would remove the contradiction.
+4. **Optional — Deployment Protection.** Preview deployments sit behind Vercel SSO, so every
+   preview path returns a 302 to a login page for anyone not signed in. Fine for private
+   review; disable it for previews, or issue a Protection Bypass for Automation token, if
+   previews need to be shared or checked automatically.
 
 ---
 
