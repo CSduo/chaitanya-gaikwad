@@ -265,7 +265,53 @@ previews or issue a Protection Bypass for Automation token.
 
 ---
 
-## 13. KNOWN LIMITATIONS
+## 13. HOMEPAGE REBUILD — VERIFICATION
+
+The homepage was rebuilt as an experiential sequence (hero showreel → three
+immersive service chapters → featured work → process → engagement model → founder →
+locations → CTA). Routes and architecture were not changed.
+
+### Verified
+
+| Check | Result |
+|---|---|
+| Build / typecheck / lint | **PASS** (strict, zero warnings) |
+| Server HTML | 918 words, one `<h1>`, 14 `<h2>`, 15 `<h3>` |
+| **All chapter content present without JS** | Every stage label, QA check and workflow step is in the server HTML — the animation is enhancement, not the content |
+| Hero showreel | 3 scenes, manual controls always visible, `aria-current` tracks, autoplay pauses on hover/focus |
+| Scene 02 redaction | Real column schema rendered; 6 company cells redacted with an accessible label |
+| Comparison slider | Keyboard-operable via a real `<input type="range">`, 44px target |
+| Overflow, 6 widths (1920→360) | **Zero** at every width; the visual reel is a properly contained horizontal scroller |
+| Tap targets | **Zero** under 44px at every width |
+| Broken images | **Zero**; 11 of 17 correctly deferred as lazy |
+| Mobile height | Trimmed 14,431px → 13,611px by shortening the CAD sequence below `lg` |
+
+### NOT verified — environment limitation
+
+**The scroll-driven CAD chapter sequence could not be exercised.** Evidence gathered
+while diagnosing it:
+
+| Probe | Result |
+|---|---|
+| `document.hidden` | `true` — the pane never composites |
+| `requestAnimationFrame` | **never fires** |
+| Scroll events during programmatic scroll | **0 fired** (scroll position moved 1651 → 2251) |
+| IntersectionObserver on programmatic scroll | **0 callbacks** |
+
+No scroll-driven mechanism of any kind can run in this pane. The implementation was
+moved from a scroll listener to IntersectionObserver checkpoints during this work —
+better engineering either way, but it did not make the sequence testable here.
+
+**Mitigation:** the section degrades safely. If staging never advances, the visitor
+still sees the full copy, the complete stage track, the QA list, the reference image
+and the CTA — all server-rendered. Under `prefers-reduced-motion` the finished state
+renders immediately by design.
+
+**This needs a human check in a real browser** before it can be called working.
+
+---
+
+## 14. KNOWN LIMITATIONS
 
 1. **No screenshots captured.** The browser pane does not composite in this environment;
    every `screenshot` call timed out — the same limitation recorded in the original audit.

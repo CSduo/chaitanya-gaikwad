@@ -18,6 +18,11 @@ export type Service = {
   slug: ServiceSlug;
   name: string;
   shortName: string;
+  /**
+   * Secondary brand motif — DELIVER / GROW / PRESENT.
+   * Used as a visual register on the homepage, never as the service name.
+   */
+  motif: "Deliver" | "Grow" | "Present";
   /** One-line positioning used on cards and in navigation contexts. */
   summary: string;
   /** Two-to-three sentence overview used on the services index. */
@@ -38,6 +43,7 @@ export const SERVICES: Service[] = [
     slug: "cad-technical-production",
     name: "CAD & Technical Production",
     shortName: "CAD & Technical Production",
+    motif: "Deliver",
     summary:
       "Editable drawing packages produced from your design direction, measurements and references.",
     overview:
@@ -129,6 +135,7 @@ export const SERVICES: Service[] = [
     slug: "growth-operations",
     name: "Growth Operations",
     shortName: "Growth Operations",
+    motif: "Grow",
     summary:
       "Structured market research, qualified prospect data and the systems to work it.",
     overview:
@@ -225,6 +232,7 @@ export const SERVICES: Service[] = [
     slug: "visual-content",
     name: "Visual Content",
     shortName: "Visual Content",
+    motif: "Present",
     summary:
       "Visualisation, film and presentation material for design and product businesses.",
     overview:
