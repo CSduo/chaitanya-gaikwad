@@ -13,10 +13,10 @@ import { useRouter } from "next/navigation";
 const EXACT: Record<string, string> = {
   "#/cad-automation": "/services/cad-technical-production",
   "#cad-automation": "/services/cad-technical-production",
-  "#/projects/videos": "/work?category=visual-content",
-  "#/projects/visualisations": "/work?category=visual-content",
-  "#/projects/b2b-research": "/work?category=growth-operations",
-  "#/projects/websites": "/work?category=multi-disciplinary",
+  "#/projects/videos": "/work?category=video",
+  "#/projects/visualisations": "/work?category=visualisation",
+  "#/projects/b2b-research": "/work?category=growth-b2b",
+  "#/projects/websites": "/work?category=websites",
   "#/projects": "/work",
   "#/startup": "/work",
   "#startup": "/work",
@@ -42,7 +42,7 @@ export function LegacyHashRedirect() {
 
     // Deep workbook links: #/projects/b2b-research/<slug>
     if (!destination && normalised.startsWith("#/projects/b2b-research/")) {
-      destination = "/work?category=growth-operations";
+      destination = "/work?category=growth-b2b";
     }
 
     if (!destination) return;

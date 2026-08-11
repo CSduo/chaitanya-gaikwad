@@ -38,9 +38,7 @@ export const SERVICE_OPTIONS = [
 ];
 
 export const DISCIPLINE_OPTIONS = [
-  { value: "technical-production", label: "Technical production" },
-  { value: "growth-operations", label: "Growth operations" },
-  { value: "visual-content", label: "Visual content" },
+  ...SERVICES.map((s) => ({ value: s.slug, label: s.shortName })),
   { value: "other", label: "Other" },
 ];
 

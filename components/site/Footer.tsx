@@ -32,7 +32,7 @@ export function Footer() {
   const legal = publishedLegalPages();
   const locations = publishedLocations();
   const emailChannels = publishedChannels();
-  const year = new Date().getFullYear();
+  // Owner-specified copyright year (see SITE.copyrightYear), not the current year.
 
   return (
     <footer className="border-t border-rule bg-paper-deep">
@@ -145,7 +145,7 @@ export function Footer() {
         </div>
 
         {/* ---- Band 3: locations ---- */}
-        <div className="grid gap-8 border-t border-rule py-10 sm:grid-cols-2 sm:gap-10 sm:py-14 lg:grid-cols-3">
+        <div className="grid gap-8 border-t border-rule py-10 sm:grid-cols-2 sm:gap-10 sm:py-14">
           {locations.map((loc) => (
             <div key={loc.slug}>
               <ColumnHeading>{loc.name}</ColumnHeading>
@@ -161,16 +161,14 @@ export function Footer() {
               ) : (
                 <p className="text-sm leading-relaxed text-ink-muted">{loc.summary}</p>
               )}
-              {loc.timezone ? <p className="meta mt-3">{loc.timezone}</p> : null}
+              {loc.phone.map((p) => (
+                <p key={p} className="mt-3 text-sm text-ink-soft">
+                  {p}
+                </p>
+              ))}
+              {loc.timezone ? <p className="meta mt-2">{loc.timezone}</p> : null}
             </div>
           ))}
-          <div>
-            <ColumnHeading>International delivery</ColumnHeading>
-            <p className="text-sm leading-relaxed text-ink-muted">
-              Work is delivered remotely to clients across the United Kingdom, Europe, the
-              Middle East and Asia.
-            </p>
-          </div>
         </div>
 
         {/* ---- Band 4: legal ---- */}
@@ -191,7 +189,7 @@ export function Footer() {
           ) : null}
 
           <p className="meta mt-6">
-            &copy; {year} {SITE.name}
+            &copy; {SITE.copyrightYear} {SITE.name}
           </p>
 
           {/*

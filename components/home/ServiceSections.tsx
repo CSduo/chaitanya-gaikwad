@@ -1,0 +1,451 @@
+"use client";
+
+import { useState } from "react";
+import Image from "next/image";
+import Link from "next/link";
+import { Container } from "@/components/ui/primitives";
+import { ImageGrid, VideoGallery, type LightboxItem } from "@/components/media/viewers";
+import { CAD_DRAWINGS, WORKBOOKS, allVideos, allWebsites } from "@/lib/portfolio";
+import { VISUALS, featuredVisuals, activeVisualGroups, type VisualGroup } from "@/lib/visuals";
+import type { Service } from "@/lib/services";
+
+/* ------------------------------------------------------------------ */
+/* Shared chapter shell                                                */
+/* ------------------------------------------------------------------ */
+
+function ChapterHeader({
+  service,
+  tone = "light",
+}: {
+  service: Service;
+  tone?: "light" | "dark";
+}) {
+  const dark = tone === "dark";
+  return (
+    <div className="lg:col-span-4">
+      <p className={`font-mono text-[0.6875rem] uppercase tracking-[0.18em] ${dark ? "text-paper/45" : "text-ink-faint"}`}>
+        {`Service 0${service.order}`}
+      </p>
+      <p className={`mt-3 font-mono text-[0.8125rem] uppercase tracking-[0.28em] ${dark ? "text-paper/70" : "text-accent"}`}>
+        {service.motif}
+      </p>
+      <h3 className={`display mt-4 text-[1.875rem] leading-[1.08] sm:text-[2.25rem] ${dark ? "text-paper" : "text-ink"}`}>
+        {service.name}
+      </h3>
+      <p className={`mt-5 text-base leading-relaxed ${dark ? "text-paper/70" : "text-ink-soft"}`}>
+        {service.summary}
+      </p>
+
+      <ul className="mt-7 flex flex-wrap gap-2">
+        {service.groups.slice(0, 4).map((g) => (
+          <li
+            key={g.title}
+            className={`border px-3 py-1.5 font-mono text-[0.625rem] uppercase tracking-[0.1em] ${
+              dark ? "border-paper/25 text-paper/70" : "border-rule text-ink-muted"
+            }`}
+          >
+            {g.title}
+          </li>
+        ))}
+      </ul>
+
+      <Link
+        href={`/services/${service.slug}`}
+        className={`group mt-8 inline-flex min-h-[44px] items-center gap-2 text-sm font-medium transition-colors ${
+          dark ? "text-paper hover:text-paper/70" : "text-ink hover:text-accent"
+        }`}
+      >
+        <span className={`underline underline-offset-4 ${dark ? "decoration-paper/40" : "decoration-rule-strong"}`}>
+          Explore {service.shortName}
+        </span>
+        <span aria-hidden="true" className="transition-transform group-hover:translate-x-0.5">
+          &rarr;
+        </span>
+      </Link>
+    </div>
+  );
+}
+
+function Chapter({
+  service,
+  tone = "light",
+  children,
+}: {
+  service: Service;
+  tone?: "light" | "surface" | "dark";
+  children: React.ReactNode;
+}) {
+  const bg =
+    tone === "dark" ? "bg-ink text-paper" : tone === "surface" ? "bg-surface" : "bg-paper";
+  return (
+    <section
+      id={`service-${service.slug}`}
+      className={`scroll-mt-16 border-t border-rule py-16 sm:py-20 lg:py-24 ${bg}`}
+    >
+      <Container width="page">
+        <div className="grid gap-10 lg:grid-cols-12 lg:gap-14">
+          <ChapterHeader service={service} tone={tone === "dark" ? "dark" : "light"} />
+          <div className="lg:col-span-8">{children}</div>
+        </div>
+      </Container>
+    </section>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/* 01 — CAD & TECHNICAL PRODUCTION                                     */
+/* ------------------------------------------------------------------ */
+
+const CAD_STAGES = ["Input", "Draft", "QA", "Handoff"];
+
+export function CadSection({ service }: { service: Service }) {
+  const inputs = CAD_DRAWINGS.filter((d) => d.role === "input");
+  const outputs = CAD_DRAWINGS.filter((d) => d.role === "output");
+  // Curated selection here; the service page carries all 15 sheets.
+  const items: LightboxItem[] = CAD_DRAWINGS.filter((d) => d.role === "output")
+    .slice(0, 8)
+    .map((d) => ({
+      src: d.src,
+      alt: d.alt,
+      width: d.width,
+      height: d.height,
+      title: d.title,
+      caption: d.category,
+    }));
+
+  return (
+    <Chapter service={service} tone="light">
+      {/* Input to output, from one real engagement */}
+      <div className="grid gap-px border border-rule bg-rule sm:grid-cols-2">
+        <figure className="bg-paper p-5">
+          <figcaption className="label mb-4">Supplied by the client</figcaption>
+          <div className="relative aspect-[4/3] overflow-hidden border border-rule bg-paper-deep">
+            <Image
+              src="/media/cad/master-bathroom-render-input.webp"
+              alt="Client-supplied 3D render used as design reference"
+              fill
+              loading="lazy"
+              sizes="(min-width: 640px) 340px, 90vw"
+              className="object-cover"
+            />
+          </div>
+        </figure>
+        <figure className="bg-paper p-5">
+          <figcaption className="label mb-4">Returned as editable CAD</figcaption>
+          <div className="relative aspect-[4/3] overflow-hidden border border-rule bg-paper-deep">
+            <Image
+              src="/media/cad/master-bathroom-plan.webp"
+              alt="Drafted general arrangement plan produced from the reference"
+              fill
+              loading="lazy"
+              sizes="(min-width: 640px) 340px, 90vw"
+              className="object-contain"
+            />
+          </div>
+        </figure>
+      </div>
+
+      <ol className="mt-px grid grid-cols-4 gap-px border border-rule bg-rule">
+        {CAD_STAGES.map((s, i) => (
+          <li key={s} className="bg-paper px-3 py-3">
+            <span className="label block">{String(i + 1).padStart(2, "0")}</span>
+            <span className="mt-1 block text-xs text-ink">{s}</span>
+          </li>
+        ))}
+      </ol>
+
+      <div className="mt-10">
+        <div className="mb-4 flex flex-wrap items-baseline justify-between gap-3">
+          <h4 className="label">
+            Drawing set — {outputs.length} drawings, {inputs.length} client references
+          </h4>
+          <p className="meta">Select any drawing to open and zoom</p>
+        </div>
+        <ImageGrid items={items} columns={4} aspect="4/3" zoomable />
+        <Link
+          href="/services/cad-technical-production#drawings"
+          className="group mt-6 inline-flex min-h-[44px] items-center gap-2 text-sm font-medium text-ink transition-colors hover:text-accent"
+        >
+          <span className="underline decoration-rule-strong underline-offset-4">
+            View the full drawing set
+          </span>
+          <span aria-hidden="true">&rarr;</span>
+        </Link>
+      </div>
+    </Chapter>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/* 02 — GROWTH, MARKETING & B2B                                        */
+/* ------------------------------------------------------------------ */
+
+export function GrowthSection({ service }: { service: Service }) {
+  const totalSheets = WORKBOOKS.reduce((n, w) => n + w.sheetCount, 0);
+
+  return (
+    <Chapter service={service} tone="surface">
+      <div className="mb-8 grid gap-px border border-rule bg-rule sm:grid-cols-3">
+        {[
+          { v: String(WORKBOOKS.length), l: "Research systems" },
+          { v: String(totalSheets), l: "Structured sheets" },
+          { v: "8", l: "Markets covered" },
+        ].map((m) => (
+          <div key={m.l} className="bg-surface px-5 py-5">
+            <p className="label">{m.l}</p>
+            <p className="display mt-2 text-2xl text-ink">{m.v}</p>
+          </div>
+        ))}
+      </div>
+
+      <ul className="grid gap-px border border-rule bg-rule sm:grid-cols-2">
+        {WORKBOOKS.slice(0, 4).map((w) => (
+          <li key={w.slug} className="group relative bg-surface p-6">
+            <p className="label">{w.region}</p>
+            <h4 className="display mt-3 text-lg leading-snug">
+              <Link
+                href={`/work/research/${w.slug}`}
+                className="transition-colors after:absolute after:inset-0 hover:text-accent"
+              >
+                {w.title}
+              </Link>
+            </h4>
+            <p className="mt-3 text-sm leading-relaxed text-ink-muted">{w.summary}</p>
+            <p className="meta mt-4">
+              {w.sheetCount} {w.sheetCount === 1 ? "sheet" : "sheets"} · open data viewer
+            </p>
+          </li>
+        ))}
+      </ul>
+
+      <Link
+        href="/services/growth-marketing-b2b#research"
+        className="group mt-6 inline-flex min-h-[44px] items-center gap-2 text-sm font-medium text-ink transition-colors hover:text-accent"
+      >
+        <span className="underline decoration-rule-strong underline-offset-4">
+          Explore all {WORKBOOKS.length} research systems
+        </span>
+        <span aria-hidden="true">&rarr;</span>
+      </Link>
+
+      <p className="mt-6 border-t border-rule pt-5 font-mono text-[0.6875rem] leading-relaxed text-ink-faint">
+        Published copies are redacted: contact details were removed before publication.
+      </p>
+    </Chapter>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/* 03 — 3D VISUALISATION & IMAGE PRODUCTION                            */
+/* ------------------------------------------------------------------ */
+
+export function VisualisationSection({ service }: { service: Service }) {
+  const groups = activeVisualGroups();
+  const [group, setGroup] = useState<VisualGroup | null>(null);
+  const pool = group ? VISUALS.filter((v) => v.group === group) : VISUALS;
+  const shown = group ? pool.slice(0, 12) : featuredVisuals(8);
+
+  const items: LightboxItem[] = shown.map((v) => ({
+    src: v.src,
+    alt: v.alt,
+    width: v.width,
+    height: v.height,
+    title: v.title,
+  }));
+
+  return (
+    <Chapter service={service} tone="light">
+      <div className="mb-6 flex flex-wrap gap-2">
+        <button
+          type="button"
+          onClick={() => setGroup(null)}
+          aria-pressed={group === null}
+          className={`min-h-[44px] border px-4 text-sm transition-colors ${
+            group === null
+              ? "border-ink bg-ink text-paper"
+              : "border-rule text-ink-muted hover:border-ink hover:text-ink"
+          }`}
+        >
+          Featured
+        </button>
+        {groups.map((g) => (
+          <button
+            key={g.group}
+            type="button"
+            onClick={() => setGroup(g.group)}
+            aria-pressed={group === g.group}
+            className={`min-h-[44px] border px-4 text-sm transition-colors ${
+              group === g.group
+                ? "border-ink bg-ink text-paper"
+                : "border-rule text-ink-muted hover:border-ink hover:text-ink"
+            }`}
+          >
+            {g.label}
+            <span className={group === g.group ? "ml-2 text-paper/60" : "ml-2 text-ink-faint"}>
+              {g.count}
+            </span>
+          </button>
+        ))}
+      </div>
+
+      <p className="meta mb-4" aria-live="polite">
+        Showing {shown.length} of {VISUALS.length} images
+      </p>
+
+      <ImageGrid items={items} columns={4} aspect="4/3" />
+
+      <Link
+        href="/services/visualisation-image-production#gallery"
+        className="group mt-6 inline-flex min-h-[44px] items-center gap-2 text-sm font-medium text-ink transition-colors hover:text-accent"
+      >
+        <span className="underline decoration-rule-strong underline-offset-4">
+          View all {VISUALS.length} visualisations
+        </span>
+        <span aria-hidden="true">&rarr;</span>
+      </Link>
+    </Chapter>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/* 04 — VIDEO, AI FILM & EDITING                                       */
+/* ------------------------------------------------------------------ */
+
+export function VideoSection({ service }: { service: Service }) {
+  const videos = allVideos();
+  // Three strongest here; the service page carries the full library.
+  const shown = videos.slice(0, 3);
+
+  return (
+    <Chapter service={service} tone="dark">
+      <p className="mb-6 font-mono text-[0.6875rem] uppercase tracking-[0.14em] text-paper/45">
+        {videos.length} films · select a poster to play
+      </p>
+
+      <div className="[&_.label]:text-paper/45 [&_.meta]:text-paper/50">
+        <VideoGallery videos={shown} columns={3} />
+      </div>
+
+      <Link
+        href="/services/video-ai-film-editing#films"
+        className="group mt-8 inline-flex min-h-[44px] items-center gap-2 text-sm font-medium text-paper transition-colors hover:text-paper/70"
+      >
+        <span className="underline decoration-paper/40 underline-offset-4">
+          View all {videos.length} films
+        </span>
+        <span aria-hidden="true">&rarr;</span>
+      </Link>
+    </Chapter>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/* 05 — AUTOMATION & WORKFLOW SYSTEMS                                  */
+/* ------------------------------------------------------------------ */
+
+const WORKFLOW = [
+  { k: "Input", d: "An enquiry, a lead list or a project stage opens." },
+  { k: "Route", d: "Information is written once into a single logged record." },
+  { k: "Rules", d: "Qualification, validation and exception rules are applied." },
+  { k: "Action", d: "Follow-ups, tasks and documents are generated." },
+  { k: "Track", d: "Status and replies are written back to the record." },
+];
+
+export function AutomationSection({ service }: { service: Service }) {
+  return (
+    <Chapter service={service} tone="surface">
+      <ol className="relative border border-rule bg-surface">
+        {WORKFLOW.map((s, i) => (
+          <li
+            key={s.k}
+            className="flex items-start gap-5 border-b border-rule px-6 py-5 last:border-b-0"
+          >
+            <span className="flex h-9 w-9 shrink-0 items-center justify-center border border-rule-strong bg-paper font-mono text-[0.625rem] text-ink-muted">
+              {String(i + 1).padStart(2, "0")}
+            </span>
+            <div className="min-w-0">
+              <h4 className="font-mono text-[0.8125rem] uppercase tracking-[0.16em] text-ink">
+                {s.k}
+              </h4>
+              <p className="mt-1.5 text-sm leading-relaxed text-ink-muted">{s.d}</p>
+            </div>
+          </li>
+        ))}
+      </ol>
+
+      <div className="mt-8 grid gap-px border border-rule bg-rule sm:grid-cols-2">
+        {service.groups.slice(0, 4).map((g) => (
+          <div key={g.title} className="bg-surface p-5">
+            <h4 className="label mb-3">{g.title}</h4>
+            <ul className="space-y-1.5">
+              {g.items.slice(0, 3).map((item) => (
+                <li key={item} className="text-sm leading-snug text-ink-muted">
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+
+      {service.boundary ? (
+        <p className="mt-6 border-l border-accent/40 bg-accent-wash px-5 py-4 text-sm leading-relaxed text-ink-soft">
+          {service.boundary}
+        </p>
+      ) : null}
+    </Chapter>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/* 06 — WEBSITE DESIGN & DEVELOPMENT                                   */
+/* ------------------------------------------------------------------ */
+
+export function WebsiteSection({ service }: { service: Service }) {
+  const sites = allWebsites();
+  return (
+    <Chapter service={service} tone="light">
+      <ul className="grid gap-px border border-rule bg-rule">
+        {sites.map((s) => (
+          <li key={s.slug} className="bg-paper p-6 lg:p-7">
+            <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-2">
+              <div className="min-w-0">
+                <p className="label">{s.client ?? s.clientDescriptor}</p>
+                <h4 className="display mt-2 text-xl">{s.title}</h4>
+              </div>
+              <p className="meta shrink-0">{s.year}</p>
+            </div>
+
+            <p className="mt-4 max-w-2xl text-sm leading-relaxed text-ink-muted">
+              {s.description}
+            </p>
+
+            <ul className="mt-5 flex flex-wrap gap-x-4 gap-y-1.5">
+              {s.scope.map((item) => (
+                <li key={item} className="font-mono text-[0.625rem] uppercase tracking-[0.08em] text-ink-faint">
+                  {item}
+                </li>
+              ))}
+            </ul>
+
+            {s.liveUrl ? (
+              <a
+                href={s.liveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group mt-6 inline-flex min-h-[44px] items-center gap-2 text-sm font-medium text-ink transition-colors hover:text-accent"
+              >
+                <span className="underline decoration-rule-strong underline-offset-4">
+                  Visit site
+                </span>
+                <span aria-hidden="true" className="text-xs">
+                  &#8599;
+                </span>
+              </a>
+            ) : null}
+          </li>
+        ))}
+      </ul>
+    </Chapter>
+  );
+}

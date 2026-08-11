@@ -6,7 +6,15 @@ const eslintConfig = [
   ...(Array.isArray(coreWebVitals) ? coreWebVitals : [coreWebVitals]),
   ...(Array.isArray(nextTypescript) ? nextTypescript : [nextTypescript]),
   {
-    ignores: [".next/**", "node_modules/**", "audit/**", "next-env.d.ts"],
+    // .legacy-extract holds one-off Node generators used to derive lib/ data
+    // from the archived site. They are tooling, not shipped code.
+    ignores: [
+      ".next/**",
+      "node_modules/**",
+      "audit/**",
+      ".legacy-extract/**",
+      "next-env.d.ts",
+    ],
   },
 ];
 

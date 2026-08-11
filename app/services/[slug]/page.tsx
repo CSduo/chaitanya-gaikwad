@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import { notFound } from "next/navigation";
 import {
   Container,
@@ -13,6 +12,7 @@ import {
 } from "@/components/ui/primitives";
 import { ProjectCTA } from "@/components/site/ProjectCTA";
 import { CaseStudyCard } from "@/components/work/cards";
+import { ServiceProof } from "@/components/home/ServiceProof";
 import { SERVICES, getService } from "@/lib/services";
 import { caseStudiesForService } from "@/lib/case-studies";
 import { pageMetadata, serviceSchema, breadcrumbSchema } from "@/lib/seo";
@@ -36,64 +36,6 @@ export async function generateMetadata({
     description: service.overview,
     path: `/services/${service.slug}`,
   });
-}
-
-/**
- * The CAD service page carries a real input-to-output comparison, because
- * that transformation is the thing being sold. Other services do not fake one.
- */
-function InputOutput() {
-  return (
-    <div className="grid gap-px border border-rule bg-rule lg:grid-cols-2">
-      <div className="bg-paper p-7 lg:p-8">
-        <Eyebrow>Supplied by the client</Eyebrow>
-        <div className="mt-5 grid grid-cols-2 gap-3">
-          <div className="relative aspect-[2/3] overflow-hidden border border-rule bg-paper-deep">
-            <Image
-              src="/media/cad/master-bathroom-render-input.webp"
-              alt="Client-supplied 3D visual render used as design reference"
-              fill
-              loading="lazy"
-              sizes="(min-width: 1024px) 220px, 40vw"
-              className="object-cover"
-            />
-          </div>
-          <div className="relative aspect-[2/3] overflow-hidden border border-rule bg-paper-deep">
-            <Image
-              src="/media/cad/master-bathroom-plan-input.webp"
-              alt="Client-supplied measured hand sketch with dimensions and CAD notes"
-              fill
-              loading="lazy"
-              sizes="(min-width: 1024px) 220px, 40vw"
-              className="object-contain p-2"
-            />
-          </div>
-        </div>
-        <p className="mt-5 text-sm leading-relaxed text-ink-muted">
-          A visual render and a measured hand sketch. Enough to establish intent and fixed
-          dimensions — not enough to build from.
-        </p>
-      </div>
-
-      <div className="bg-paper p-7 lg:p-8">
-        <Eyebrow>Returned as editable CAD</Eyebrow>
-        <div className="relative mt-5 aspect-[3200/2260] overflow-hidden border border-rule bg-paper-deep">
-          <Image
-            src="/media/cad/master-bathroom-plan.webp"
-            alt="Drafted general arrangement plan produced from the supplied reference material"
-            fill
-            loading="lazy"
-            sizes="(min-width: 1024px) 440px, 90vw"
-            className="object-contain"
-          />
-        </div>
-        <p className="mt-5 text-sm leading-relaxed text-ink-muted">
-          Native geometry with structured layers, dimensions and annotation — issued as DWG,
-          DXF and PDF. Not a traced raster image placed in a drawing frame.
-        </p>
-      </div>
-    </div>
-  );
 }
 
 export default async function ServicePage({
@@ -163,21 +105,23 @@ export default async function ServicePage({
         </Container>
       </Section>
 
-      {/* CAD only — the input-to-output transformation */}
-      {isCad ? (
-        <Section bordered>
-          <Container width="page">
-            <SectionHeading
-              eyebrow="Transformation"
-              title="What arrives, and what goes back."
-              intro="Most packages begin from partial information. The first step is establishing which dimensions are confirmed and which are derived from visual reference."
-            />
-            <div className="mt-14">
-              <InputOutput />
-            </div>
-          </Container>
-        </Section>
-      ) : null}
+      {/* The full portfolio for this service — everything, not a sample */}
+      <Section bordered>
+        <Container width="wide">
+          <SectionHeading
+            eyebrow="The work"
+            title="Produced under this service."
+            intro={
+              isCad
+                ? "Drawings from a delivered interior package, shown alongside the client material they were produced from."
+                : undefined
+            }
+          />
+          <div className="mt-12">
+            <ServiceProof slug={service.slug} />
+          </div>
+        </Container>
+      </Section>
 
       {/* 03–07 — Capability groups (the variable band) */}
       <Section tone={isCad ? "surface" : "paper"} bordered>

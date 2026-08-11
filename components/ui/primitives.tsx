@@ -17,13 +17,18 @@ export function Container({
   children,
   width = "page",
   className = "",
+  id,
 }: {
   children: ReactNode;
   width?: Width;
   className?: string;
+  id?: string;
 }) {
   return (
-    <div className={`mx-auto w-full px-6 sm:px-8 lg:px-12 ${widthClass[width]} ${className}`}>
+    <div
+      id={id}
+      className={`mx-auto w-full px-6 sm:px-8 lg:px-12 ${widthClass[width]} ${className}`}
+    >
       {children}
     </div>
   );

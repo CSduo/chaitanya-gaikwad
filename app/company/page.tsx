@@ -273,7 +273,7 @@ export default function CompanyPage() {
               </div>
             ))}
             <div className="bg-paper p-7">
-              <h3 className="display text-xl">International delivery</h3>
+              <h3 className="display text-xl">Working internationally</h3>
               <p className="meta mt-2">Remote</p>
               <p className="mt-4 text-sm leading-relaxed text-ink-muted">
                 Engagements run across the United Kingdom, Europe, the Middle East and Asia,

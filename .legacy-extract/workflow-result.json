@@ -1,0 +1,1042 @@
+{
+ "visuals": [
+  {
+   "file": "vis-1.webp",
+   "group": "other",
+   "subject": "dimensioned 3D layout of living-dining room",
+   "alt": "Isometric 3D render of an open living and dining room with wall-mounted TV, media console, desk, bookcase, sofa, coffee table and six-seat dining table, overlaid with dimension callouts.",
+   "quality": "weak",
+   "notes": "Technical layout render rather than a finished visual; carries visible on-image text including a title reading 'Homestyler Blueprint - Markup Corrected Layout' and dimension labels (165\", 132\", 34\", 33\", TV 36\"). Ambiguous between an interior and a documentation drawing, so filed as other."
+  },
+  {
+   "file": "vis-2.webp",
+   "group": "interiors",
+   "subject": "living room with wave-relief mural feature wall",
+   "alt": "Formal living room with a long white sofa, silver textured pillows, round marble and chrome coffee table, matching lamps on mirrored side tables, and a full-width grey and white wave mural with a tree and flying birds behind it.",
+   "quality": "strong",
+   "notes": ""
+  },
+  {
+   "file": "vis-3.webp",
+   "group": "exterior-architectural",
+   "subject": "textured white arch niche with stepped plinth",
+   "alt": "Minimal white textured render of a tall arched recess containing stepped platforms and a stone vase of dried grasses, with a second arch partly visible at the right edge.",
+   "quality": "strong",
+   "notes": ""
+  },
+  {
+   "file": "vis-4.webp",
+   "group": "product-furniture",
+   "subject": "row of coloured glass animal figurines",
+   "alt": "Eight blown-glass ornaments lined up against a plain off-white backdrop, including a black bull, a spotted dog, a cartoon cow, two abstract swirl forms, a black swan and a pair of pale swans.",
+   "quality": "standard",
+   "notes": "Decorative glass objects rather than furniture; filed under product-furniture as the closest product-shot category. Lighting is flat and the pieces overlap, so individual items read less clearly."
+  },
+  {
+   "file": "vis-5.webp",
+   "group": "retail-showroom",
+   "subject": "rug showroom with hanging carpets and artwork",
+   "alt": "Showroom interior with irregularly shaped patterned rugs on the floor, carpets hung and draped down arched alcove walls, a curved beige sofa, round stone coffee table, brass chandelier and a large painted owl portrait.",
+   "quality": "strong",
+   "notes": ""
+  },
+  {
+   "file": "vis-6.webp",
+   "group": "retail-showroom",
+   "subject": "fabric showroom with cushion and swatch displays",
+   "alt": "Warm-lit textile showroom with a curved beige sofa and cushions, backlit arched shelving holding rows of decorative pillows, and tall racks of fabric swatches on either side.",
+   "quality": "strong",
+   "notes": "Two-letter monogram 'JD' appears on the wall above the central arch."
+  },
+  {
+   "file": "vis-7.webp",
+   "group": "interiors",
+   "subject": "gallery wall of framed botanical prints",
+   "alt": "Five black-framed prints of olive-green botanical and leaf motifs arranged as a gallery wall above a beige sofa with matching cushions.",
+   "quality": "standard",
+   "notes": "Sits between an interior vignette and a wall-art product shot; grouped as interiors because the room context carries the frame."
+  },
+  {
+   "file": "vis-8.webp",
+   "group": "retail-showroom",
+   "subject": "artificial flower and vase store aisle",
+   "alt": "Narrow retail aisle with glass shelves of ceramic vases on the left, potted artificial plants and flowers on the right, dense hanging floral garlands covering the ceiling and a moss-clad wall.",
+   "quality": "standard",
+   "notes": "Very densely packed frame with strong colour clash and little focal hierarchy; reads as a documentary store shot rather than a styled image."
+  },
+  {
+   "file": "vis-9.webp",
+   "group": "product-furniture",
+   "subject": "black ruffled vase with rose arrangement",
+   "alt": "Glossy black vase with sculpted ruffled petal edges and white rims, filled with pink and cream roses, photographed against a soft-focus background of pastel blooms.",
+   "quality": "strong",
+   "notes": "Same product-shot concept as vis-10.webp (single flower-filled vase, blurred floral setting) but a different object; not a duplicate."
+  },
+  {
+   "file": "vis-10.webp",
+   "group": "product-furniture",
+   "subject": "patterned ceramic vase with rose bouquet",
+   "alt": "Tall ceramic vase with an embossed silver and white chevron pattern holding peach roses and white hydrangea, standing on a dark marble table with candles and window lights blurred behind.",
+   "quality": "standard",
+   "notes": "Shares its concept and treatment with vis-9.webp; the two would read as repetitive if placed side by side."
+  },
+  {
+   "file": "vis-11.webp",
+   "group": "product-furniture",
+   "subject": "patterned ceramic vase holding flower arrangement",
+   "alt": "A tapered ceramic vase with a white and grey chevron relief pattern holds a mixed arrangement of pink, orange and white flowers on a polished marble countertop, with warm blurred lights behind.",
+   "quality": "strong",
+   "notes": "Decor product staged in an interior; closest fit is product rather than interiors."
+  },
+  {
+   "file": "vis-12.webp",
+   "group": "other",
+   "subject": "illuminated logo wall in lobby interior",
+   "alt": "A white square monogram and the wordmark reading ERWIN ERENO DESIGN STUDIO are mounted on a dark wall at the entrance of a warmly lit lobby with marble flooring, wood-clad columns and a backlit stone panel.",
+   "quality": "standard",
+   "notes": "Branding/signage mockup, not an interiors shot. Carries visible third-party studio name text (ERWIN ERENO DESIGN STUDIO) which does not match this repository's owner - confirm before publishing."
+  },
+  {
+   "file": "vis-13.webp",
+   "group": "other",
+   "subject": "screenshot of spreadsheet listing trade events",
+   "alt": "A screenshot of a Google Sheets spreadsheet titled Laminate events in India, showing a table of event names, cities, dates, duration, month, business tier and primary focus columns.",
+   "quality": "weak",
+   "notes": "Not portfolio imagery at all - an internal working spreadsheet screenshot with fully legible business data. Should almost certainly be excluded from a public gallery."
+  },
+  {
+   "file": "vis-14.webp",
+   "group": "interiors",
+   "subject": "pink girls bedroom with vanity and desk",
+   "alt": "A high-angle view of a pink-themed bedroom with a fluted pink upholstered headboard, quilted bedding, a shaggy pink rug, a wood study desk with pink chair, a light-framed vanity mirror and fairy-lit shelves of ornaments.",
+   "quality": "standard",
+   "notes": "Same room and scheme as vis-15 and vis-16; heavily styled with dense small props, several of which are indistinct."
+  },
+  {
+   "file": "vis-15.webp",
+   "group": "interiors",
+   "subject": "top-down 3D cutaway of pink bedroom",
+   "alt": "A top-down three-dimensional cutaway model of a small pink bedroom showing the bed against the left wall, a fitted wardrobe, an open door, a shaggy rug, a lit vanity and a desk along the walls.",
+   "quality": "standard",
+   "notes": "Doll's-house style plan render of the same room as vis-14 and vis-16; near-duplicate of vis-16 from a different camera angle."
+  },
+  {
+   "file": "vis-16.webp",
+   "group": "interiors",
+   "subject": "angled 3D cutaway of pink bedroom",
+   "alt": "An angled overhead cutaway render of a pink bedroom with a fluted headboard, fitted wood wardrobe, shaggy pink rug, lit vanity mirror and a desk running under the curtained window.",
+   "quality": "standard",
+   "notes": "Same room and layout as vis-15 (different camera) and same scheme as vis-14."
+  },
+  {
+   "file": "vis-17.webp",
+   "group": "workspace-office",
+   "subject": "labelled 3D floor plan of office floor",
+   "alt": "A top-down three-dimensional floor plan of an office and laboratory floor with labelled zones including storage area, manager room, meeting room, technical team, workstation area, discussion rooms, pantry, breakout area, washroom and toilets.",
+   "quality": "standard",
+   "notes": "Several labels are garbled or mirrored - reads SVE NASH, SUCTION AORY, FUNE HOOD and reversed text near the reception area; not usable at large size without correction."
+  },
+  {
+   "file": "vis-18.webp",
+   "group": "interiors",
+   "subject": "waiting nook with purple armchairs and artwork",
+   "alt": "A small seating nook with two purple velvet armchairs facing a dark wood coffee table, set against a fluted lilac accent wall hung with a three-panel abstract purple and gold artwork, beside a wood door with a vertical glass panel.",
+   "quality": "standard",
+   "notes": "Composition closely mirrors vis-19 in a different colourway; likely an office waiting area, so workspace-office would fit equally well. Book titles on the table are illegible garbled text."
+  },
+  {
+   "file": "vis-19.webp",
+   "group": "workspace-office",
+   "subject": "office waiting nook with green armchairs",
+   "alt": "An office waiting area with two green upholstered armchairs around a wood coffee table, a preserved moss and brass wall panel on a fluted grey wall, a fiddle-leaf fig in a bronze planter and a wood door revealing a meeting room beyond.",
+   "quality": "strong",
+   "notes": "Same composition and furniture layout as vis-18 in an alternate colourway."
+  },
+  {
+   "file": "vis-20.webp",
+   "group": "interiors",
+   "subject": "beige master bedroom with crystal chandelier",
+   "alt": "A cream and beige master bedroom with a tall upholstered headboard on a panelled wall, a tiered crystal chandelier, matching table lamps, an upholstered bench at the foot of the bed and an armchair with ottoman by floor-length curtained windows.",
+   "quality": "strong"
+  },
+  {
+   "file": "vis-21.webp",
+   "group": "interiors",
+   "subject": "large beige living room with two sofas",
+   "alt": "A large formal living room with two facing cream sofas, round marble coffee tables, a tiered crystal chandelier, panelled walls, floor-length beige curtains and polished marble flooring, opening to a further seating area at the rear.",
+   "quality": "strong",
+   "notes": "Same palette, chandelier style and lighting treatment as vis-20; likely from the same set."
+  },
+  {
+   "file": "vis-22.webp",
+   "group": "interiors",
+   "subject": "beige living room with round coffee table",
+   "alt": "A cream-toned living room with a linen sofa, wooden armchair, round oak coffee table holding a white deer figurine, floor lamp, framed abstract art and arched wall niche with pottery.",
+   "quality": "strong"
+  },
+  {
+   "file": "vis-23.webp",
+   "group": "interiors",
+   "subject": "bedroom with textured accent wall and cove lighting",
+   "alt": "A warmly lit bedroom with a beige upholstered bed, textured accent wall lit by concealed cove lighting, woven pendant lamp, two globe bedside lamps and potted plants beside a shaded window.",
+   "quality": "strong"
+  },
+  {
+   "file": "vis-24.webp",
+   "group": "interiors",
+   "subject": "bedroom with lace bedding and gold-leg nightstands",
+   "alt": "A bedroom styled with lace-trimmed bedding and bench, cream headboard, gold-legged nightstands, woven pendant lamp and a textured accent wall lit from below by cove lighting.",
+   "quality": "standard",
+   "notes": "Near-duplicate of vis-23.webp: same room geometry, camera angle, pendant and cove-lit accent wall, restyled with lace textiles and different nightstands."
+  },
+  {
+   "file": "vis-25.webp",
+   "group": "product-furniture",
+   "subject": "framed ink-wash landscape canvas on wall",
+   "alt": "A wide thin-framed canvas hung on a plain wall showing a monochrome ink-wash landscape of misty mountains, a wooden boat on still water and a pagoda beneath a tree.",
+   "quality": "strong",
+   "notes": "Ambiguous group: it is a wall-art product shot rather than furniture or a room view; placed under product-furniture as the closest fit."
+  },
+  {
+   "file": "vis-26.webp",
+   "group": "other",
+   "subject": "illustrated product category list infographic",
+   "alt": "A two-column infographic on a linen background listing home product categories such as wallpapers, bedding, flooring, cushion covers, curtains, carpets, appliance covers, wall art, plants, idols, clocks and bathroom items, each with a line drawing.",
+   "quality": "weak",
+   "notes": "Text-heavy infographic, not a photograph; dense small type will be unreadable at portfolio thumbnail sizes."
+  },
+  {
+   "file": "vis-27.webp",
+   "group": "retail-showroom",
+   "subject": "three curtain styles in labelled display alcoves",
+   "alt": "A showroom wall with three recessed alcoves each displaying a curtain style over sheer backing, labelled Empire, Sandglass and Japanese on brass plaques.",
+   "quality": "strong",
+   "notes": "Visible on-set label text reads EMPIRE, SANDGLASS and JAPANESE."
+  },
+  {
+   "file": "vis-28.webp",
+   "group": "retail-showroom",
+   "subject": "curtain display bay with Ganesha statue",
+   "alt": "An illuminated display bay with pleated patterned drapes and sheers held by beaded tiebacks, staged with a seated Ganesha statue playing a flute, a brass figurine and a dark vase of dried palm and lotus pods.",
+   "quality": "strong"
+  },
+  {
+   "file": "vis-29.webp",
+   "group": "retail-showroom",
+   "subject": "shop window with curtain panels and bedding",
+   "alt": "A lit shop window display showing a row of curtain panels in floral, blue, cream, grey and pink fabrics, with folded bedsheets on a ladder rack and shelves, crockery, plants, wall clocks and a printed sign.",
+   "quality": "weak",
+   "notes": "The sign text is garbled and misspelled (reads roughly 'Premium Bedsheet Sets / King Queen - Cotton is Sateen / Thie Starting'), so the image should not be used where the sign is legible."
+  },
+  {
+   "file": "vis-30.webp",
+   "group": "product-furniture",
+   "subject": "abstract marble-pattern rug in bedroom",
+   "alt": "A large rug with a swirling brown and cream marbled pattern laid on stone flooring in front of a king bed with a padded headboard, white linens and matching bedside lamps.",
+   "quality": "strong",
+   "notes": "Framed as a rug product shot staged in a bedroom rather than a general room view."
+  },
+  {
+   "file": "vis-31.webp",
+   "group": "product-furniture",
+   "subject": "geometric blue and green rug in living room",
+   "alt": "A rectangular rug with blue, olive and grey banded and half-circle shapes covering a marble floor between a cream sectional sofa, tub chair and round black marble coffee table.",
+   "quality": "standard",
+   "notes": "Rug product shot staged in a living room; upper part of the room is cropped and dimly lit."
+  },
+  {
+   "file": "vis-32.webp",
+   "group": "product-furniture",
+   "subject": "blue and beige abstract rug in apartment",
+   "alt": "A blue and beige abstract-pattern rug on the floor of a lived-in apartment living room with a beige fabric sofa, wooden side table, television and a balcony door framed by potted plants and a marigold garland.",
+   "quality": "weak",
+   "notes": "Appears to be an on-site installation photo in an occupied home; mixed lighting, cluttered background and soft focus make it less usable as portfolio material than the studio-styled rug shots."
+  },
+  {
+   "file": "vis-33.webp",
+   "group": "interiors",
+   "subject": "living and dining room with patterned rug",
+   "alt": "An open-plan living and dining area with a green sectional sofa, glass coffee table and a large blue and beige patterned shag rug, with a dining table and copper chandelier beyond.",
+   "quality": "strong",
+   "notes": "Rug is the clear focal subject; could also read as material-detail but the full room is shown."
+  },
+  {
+   "file": "vis-34.webp",
+   "group": "product-furniture",
+   "subject": "three framed deer wall art panels",
+   "alt": "Three framed three-dimensional deer artworks in black frames lit by track spotlights above a white ribbed sideboard.",
+   "quality": "strong",
+   "notes": "Same wall and sideboard setup as vis-35; a paired set rather than a duplicate."
+  },
+  {
+   "file": "vis-35.webp",
+   "group": "product-furniture",
+   "subject": "three framed textured landscape art panels",
+   "alt": "Three framed textured landscape artworks in orange, white and teal, lit by track spotlights above a white ribbed sideboard.",
+   "quality": "strong",
+   "notes": "Same wall, lighting and sideboard as vis-34; near-identical staging, differing artwork."
+  },
+  {
+   "file": "vis-36.webp",
+   "group": "workspace-office",
+   "subject": "executive office with round marbled rug",
+   "alt": "A beige executive office with a light wood desk, built-in shelving, abstract painting and a large round rug with a black outline motif.",
+   "quality": "strong",
+   "notes": "Painting above the desk is the same artwork shown in vis-40."
+  },
+  {
+   "file": "vis-37.webp",
+   "group": "product-furniture",
+   "subject": "silver astronaut sculpture on moon base",
+   "alt": "A silver astronaut figurine with raised arms standing on a grey moon-shaped base against an illustrated purple space backdrop with a lit arch.",
+   "quality": "standard",
+   "notes": "Decor object shot on a graphic backdrop; closest fit is product rather than interiors."
+  },
+  {
+   "file": "vis-38.webp",
+   "group": "product-furniture",
+   "subject": "gold horse and black cobra sculptures",
+   "alt": "Two faceted gold horse-head sculptures on black plinths flanking a black and gold cobra figurine, against a dark background with purple smoke and orchids.",
+   "quality": "standard",
+   "notes": "Heavily styled dark product shot; dramatic lighting may not suit a light gallery layout."
+  },
+  {
+   "file": "vis-39.webp",
+   "group": "workspace-office",
+   "subject": "traditional home study with round rug",
+   "alt": "A traditional wood-panelled home office with a dark timber desk, built-in bookcases, lantern pendant and a large round pale patterned rug.",
+   "quality": "standard",
+   "notes": ""
+  },
+  {
+   "file": "vis-40.webp",
+   "group": "workspace-office",
+   "subject": "cream office with blue swirl rug",
+   "alt": "A cream and gold executive office with a light desk, tub chairs, marble side table and a large round rug with blue and gold marbled swirls.",
+   "quality": "strong",
+   "notes": "Shares the same framed abstract artwork as vis-36; different room and rug."
+  },
+  {
+   "file": "vis-41.webp",
+   "group": "interiors",
+   "subject": "large formal living room at night",
+   "alt": "A wide beige and brown formal living room lit at night, with multiple sofas, a low timber coffee table, table lamps and a staircase visible through an opening.",
+   "quality": "strong",
+   "notes": ""
+  },
+  {
+   "file": "vis-42.webp",
+   "group": "interiors",
+   "subject": "open timber pavilion lounge facing water",
+   "alt": "A double-height timber pavilion living room at night, with pale sectional sofas, marble floors and folding doors open to a terrace overlooking water and hills.",
+   "quality": "strong",
+   "notes": ""
+  },
+  {
+   "file": "vis-43.webp",
+   "group": "hospitality",
+   "subject": "dimly lit hotel lounge bar",
+   "alt": "A warmly lit lounge with a curved cream sofa, bronze tables, planting and a bar counter with rattan stools beside a vaulted arched corridor.",
+   "quality": "strong",
+   "notes": "Bar counter and dining seating beyond indicate a hospitality venue rather than a residence."
+  },
+  {
+   "file": "render-1.webp",
+   "group": "interiors",
+   "subject": "compact bathroom with travertine walls",
+   "alt": "A narrow bathroom finished in beige travertine-look stone, with a wall-hung toilet, round vessel basin on a stone ledge, backlit towel shelves, and matte black rainfall shower and tapware.",
+   "quality": "strong"
+  },
+  {
+   "file": "render-2.webp",
+   "group": "interiors",
+   "subject": "bedroom corner with fluted upholstered headboard",
+   "alt": "A dimly lit bedroom corner showing a low beige upholstered bed with a fluted headboard and dark throw, set against a large plain wall beside a dark wood wardrobe with a backlit niche.",
+   "quality": "weak",
+   "notes": "Composition is dominated by a large empty wall with visible lighting pools and very little detail; bed is cropped at the frame edge. Shares palette and joinery style with render-4."
+  },
+  {
+   "file": "render-3.webp",
+   "group": "interiors",
+   "subject": "narrow hallway with tall wood wardrobe",
+   "alt": "A narrow hallway with a floor-to-ceiling dark wood wardrobe with slim brass handles, slatted timber doors on either side, grey tile flooring and a mottled beige runner rug.",
+   "quality": "standard"
+  },
+  {
+   "file": "render-4.webp",
+   "group": "interiors",
+   "subject": "narrow room with single bed and overhead cabinet",
+   "alt": "A narrow room viewed end-on, with a single upholstered bed under a wood overhead cabinet and backlit niche, a folding louvre door to one side, a slatted timber door to the other, and a mottled rug on grey tile.",
+   "quality": "standard",
+   "notes": "Appears to be the same corridor-type space and joinery as render-3, shot from the opposite direction; not a duplicate but closely related."
+  },
+  {
+   "file": "render-5.webp",
+   "group": "interiors",
+   "subject": "utility room with stacked washer and dryer",
+   "alt": "A small utility room with a stacked white washing machine and dryer, open shelving holding detergent bottles and paper rolls, and a wood-fronted cabinet with a dark sink and black tap beneath a window with dark venetian blinds.",
+   "quality": "standard",
+   "notes": "Small rendered text on the appliance control panels and detergent labels is illegible and slightly garbled."
+  },
+  {
+   "file": "render-6.webp",
+   "group": "interiors",
+   "subject": "laundry room with ironing board and drying rail",
+   "alt": "A laundry room in pale oak joinery with overhead cabinets, a backlit shelf holding towels, paper rolls and a storage box, a pull-out ironing board, a wall-mounted drying rail with hanging towels, stacked laundry appliances and fabric hampers on grey tile.",
+   "quality": "strong"
+  }
+ ],
+ "visualGroupCounts": {
+  "other": 4,
+  "interiors": 20,
+  "exterior-architectural": 1,
+  "product-furniture": 12,
+  "retail-showroom": 6,
+  "workspace-office": 5,
+  "hospitality": 1
+ },
+ "visualQualityCounts": {
+  "weak": 6,
+  "strong": 25,
+  "standard": 18
+ },
+ "services": [
+  {
+   "slug": "cad-technical-production",
+   "name": "CAD & Technical Production",
+   "shortName": "CAD & Technical Production",
+   "motif": "Deliver",
+   "summary": "Editable interior drawing packages produced from your design direction, measurements and references.",
+   "overview": "External drafting and documentation capacity for interior, fit-out and design-led teams. We work from approved layouts, marked-up PDFs, site dimensions, sketches and renders, and return coordinated drawing sets in DWG, DXF and PDF. The geometry stays native and editable, so your own people can open the files and carry the work on.",
+   "intro": [
+    "XIYÀTO works as external production capacity for interior, fit-out and design practices carrying more drawing work than their studio can absorb. You supply the design direction — approved layouts, marked-up drawings, measured dimensions, reference imagery, renders or a dimensioned hand sketch — and we produce the coordinated, editable package your team reviews and issues.",
+    "This is drafting and documentation, not design authorship. Your practice keeps design ownership and technical authority throughout; we take on the production load and hand back files built to be worked on rather than merely looked at. Where a dimension has been derived from a render or a reference rather than confirmed on site, it is flagged as provisional instead of presented as fact."
+   ],
+   "groups": [
+    {
+     "title": "Inputs we work from",
+     "intro": "A package can begin from partial information. What matters is that the design intent is settled and the fixed dimensions are identifiable.",
+     "items": [
+      "Marked-up PDFs and previously issued drawings",
+      "Measured site dimensions and survey notes",
+      "Dimensioned hand sketches with annotated constraints",
+      "Approved layouts and space plans",
+      "3D renders and visual references",
+      "Material and finish direction",
+      "Written revision instructions across a set"
+     ]
+    },
+    {
+     "title": "Drawing production",
+     "intro": "Drawing types produced across residential, hospitality and commercial interior work.",
+     "items": [
+      "General arrangement and layout plans",
+      "Interior wall elevations, taken wall by wall",
+      "Reflected ceiling plans with lighting arrangement",
+      "Flooring setting-out, including patterned layouts such as herringbone",
+      "Feature wall elevations and panelling detail",
+      "Joinery and construction details",
+      "Sanitary, fixture, door and window coordination",
+      "Complete multi-sheet packages covering several spaces at once"
+     ]
+    },
+    {
+     "title": "File standards and coordination",
+     "intro": "The package is built to be opened and continued by your team, not delivered as a closed output.",
+     "items": [
+      "Layer structure and naming set to your office convention",
+      "Consistent annotation, dimensioning and text styles",
+      "Title block and sheet setup to your template",
+      "Drawing list and sheet numbering issued with the set",
+      "Scale and setting-out held consistent across sheets",
+      "Native DWG and DXF that reopens in your own environment",
+      "Revision rounds produced against written comments"
+     ]
+    },
+    {
+     "title": "Checks before issue",
+     "intro": "Every package is checked before it leaves the studio, and anything estimated is recorded as such.",
+     "items": [
+      "Dimensional agreement between plan and elevation",
+      "Room geometry, orientation and alignment",
+      "Door, window and fixture relationships across the set",
+      "Layer structure, naming and organisation",
+      "Native editable geometry — no traced raster or proxy content",
+      "Reopen check performed on the delivered DWG",
+      "Provisional dimensions flagged for your review"
+     ]
+    }
+   ],
+   "process": [
+    {
+     "step": "01",
+     "title": "Brief and inputs",
+     "body": "You send whatever material exists. We review it and separate what is confirmed, what is assumed from visual reference and what is still missing, before any drafting starts."
+    },
+    {
+     "step": "02",
+     "title": "Scope confirmation",
+     "body": "Fixed dimensions, design rules, the drawing list, layer convention and output formats are agreed in writing, so the finished package is measured against a defined scope rather than an impression."
+    },
+    {
+     "step": "03",
+     "title": "Drafting and coordination",
+     "body": "Drawings are produced as native geometry with structured layers and consistent annotation, then cross-checked so plan, elevation and ceiling agree with one another."
+    },
+    {
+     "step": "04",
+     "title": "QA and handover",
+     "body": "The set is dimension-checked, reopened from the delivered files and issued as editable DWG and DXF alongside presentation-ready PDFs, with revision notes attached."
+    }
+   ],
+   "deliverables": [
+    "Editable DWG drawing files with structured layers",
+    "DXF exchange files",
+    "Presentation-ready PDF sheet set",
+    "Raster previews for quick review and sign-off",
+    "Drawing list, revision notes and a record of any provisional dimensions"
+   ],
+   "boundary": "XIYÀTO provides drafting, documentation and production capacity working from design direction supplied by the client. We do not provide architectural or engineering certification, statutory or planning approval, building-code compliance sign-off, or architect-of-record responsibility, and we do not act as the designer of record. Drawings are issued for the practice's own review; any dimension derived from visual reference rather than confirmed measurement is flagged as provisional and should be verified, along with the wider set, by the project's qualified designer or technical consultant before construction."
+  },
+  {
+   "slug": "growth-marketing-b2b",
+   "name": "Growth, Marketing & B2B",
+   "shortName": "Growth & B2B",
+   "motif": "Grow",
+   "summary": "Market research, qualified B2B target data, outreach systems and the marketing material that supports them.",
+   "overview": "Commercial groundwork for design, product and property businesses opening a new market or rebuilding a pipeline. We research the market, identify and score the companies worth approaching, structure the findings into workbooks your team can actually work, and support the outreach and marketing material that follows. Every claim in the data is traceable to a recorded public source.",
+   "intro": [
+    "Growth, Marketing & B2B is the commercial side of the studio: business research, qualified prospect data, outreach operations and the marketing material that sits alongside them. It is built for interior, fit-out, furniture, property and hospitality businesses that know roughly where the opportunity sits — a region, a sector, a trade route, a trade fair — but do not yet have the evidence, the target list or the working system to act on it.",
+    "This is research and systems work rather than campaign management or media buying. A workbook is delivered to be worked, not filed: records are scored, segmented and sourced, the scoring method is documented alongside the data, rejected records are kept in an auditable backup rather than quietly deleted, and the outreach structure is mapped record by record so your commercial team can start without repeating the research."
+   ],
+   "groups": [
+    {
+     "title": "Business and market research",
+     "intro": "Establishing what the market actually looks like before any list is built.",
+     "items": [
+      "Market and sector mapping across a defined geography",
+      "Competitor, supplier and manufacturer landscape research",
+      "Export and import trade-route research",
+      "City-level segmentation within a target market",
+      "Trade fair, exhibition and industry event mapping",
+      "Buying-side structure: who specifies, who procures, who signs off",
+      "Public-source evidence gathering with a URL logged against every claim"
+     ]
+    },
+    {
+     "title": "B2B lead generation and qualification",
+     "intro": "Turning a market map into a defensible target list.",
+     "items": [
+      "Company identification against an agreed target profile",
+      "Decision-maker and department route mapping from public sources",
+      "Active project, showroom or tender activity used as qualifying evidence",
+      "Priority scoring against criteria agreed in advance",
+      "Segmentation by city, sector, size or service fit",
+      "Deduplication, record cleaning and auditable removal logging",
+      "Reachability and contact-route assessment per record",
+      "Verification status recorded against each record"
+     ]
+    },
+    {
+     "title": "Outreach and follow-up",
+     "intro": "The structure that makes outreach repeatable and reviewable.",
+     "items": [
+      "Email and WhatsApp outreach sequence structuring",
+      "Personalised opening angle mapped per record rather than per list",
+      "Channel recommendation and send prioritisation",
+      "Follow-up cadence, reminder structure and re-approach timing",
+      "CRM-style status tracking held in the workbook itself",
+      "Enquiry, sample-request and reply logging through to next step",
+      "Cross-border communication support across time zones and language register"
+     ]
+    },
+    {
+     "title": "Marketing and brand presentation support",
+     "intro": "The material outreach relies on once a conversation opens.",
+     "items": [
+      "Content planning and publishing calendars",
+      "Social channel support against a defined posting rhythm",
+      "Company profile, capability statement and line-card copy",
+      "Campaign support around a launch, trade fair or new-market push",
+      "Segment-specific positioning and messaging",
+      "Sales and pitch collateral structuring",
+      "Coordination with visualisation, film and website output so outreach has a credible destination"
+     ]
+    },
+    {
+     "title": "Data structure and handover",
+     "intro": "How the work is assembled so it survives handover to your team.",
+     "items": [
+      "Multi-sheet workbooks with a defined sheet per process step",
+      "Field schema agreed before research begins",
+      "Source log and verification trail as standard sheets",
+      "Backup sheet retaining every removed or rejected record",
+      "Scoring methodology documented in-workbook, not held by us",
+      "Top-up and refresh rounds against an existing workbook"
+     ]
+    }
+   ],
+   "process": [
+    {
+     "step": "01",
+     "title": "Define the market",
+     "body": "Target geography, sector, company profile, qualification criteria and the fields to be captured are agreed in writing before research starts. This is the step that decides whether the output is usable."
+    },
+    {
+     "step": "02",
+     "title": "Research and evidence",
+     "body": "Public sources are worked systematically. Each record is built with supporting evidence and a source URL, and anything that fails the profile is moved to a backup sheet rather than deleted."
+    },
+    {
+     "step": "03",
+     "title": "Qualify, score and segment",
+     "body": "Records are verified, deduplicated and scored against the agreed criteria, then segmented by city, sector or fit so the list can be approached in a sensible order."
+    },
+    {
+     "step": "04",
+     "title": "Structure, hand off and support",
+     "body": "The workbook is assembled with scoring methodology, source log, contact routes and outreach angles. Where the engagement continues, outreach and follow-up are run and logged against it."
+    }
+   ],
+   "deliverables": [
+    "Structured multi-sheet workbooks with a documented field schema",
+    "Scored and ranked target shortlists, segmented for use",
+    "Decision-maker route mapping and per-record channel recommendations",
+    "Source log, verification status and an auditable backup of removed records",
+    "Outreach sequences, follow-up cadence and CRM-style tracking sheets",
+    "Content plans and campaign material supporting the outreach"
+   ],
+   "boundary": "XIYÀTO provides research, structured data and outreach operations. We do not guarantee response rates, meetings, enquiries or revenue outcomes — those depend on your offer, your market and your commercial follow-through. Research is compiled from publicly available sources with provenance recorded against each record; contact detail is redacted in any published portfolio material."
+  },
+  {
+   "slug": "visualisation-image-production",
+   "name": "3D Visualisation & Image Production",
+   "shortName": "3D Visualisation",
+   "motif": "Visualise",
+   "summary": "Still imagery for interiors, products and brands, produced from your layouts, materials and references.",
+   "overview": "Still image production for design-led businesses: interior and spatial visualisation, product and furniture imagery, dimensioned layout studies and brand visuals. We work from your plans, measurements, material direction and product references, and specify each image around where it will be used — a client pitch, a showroom screen, a catalogue page or a website header.",
+   "intro": [
+    "Most design work has to be sold before it exists. This service covers the still imagery that carries that job: rooms that have not been built, furniture that is not yet on a shop floor, and finishes a client cannot hold in their hand. XIYÀTO produces this material as external capacity for interior, fit-out, furniture, property and hospitality businesses, working from the drawings, dimensions, product photography and material direction you already hold.",
+    "Images are produced through a combination of 3D visualisation, AI-assisted generation and compositing, chosen by what the image has to do rather than by tool preference. Every output is specified against its placement — pitch document, showroom screen, catalogue spread, property listing, website header or social frame — and delivered in the ratios and resolutions that placement requires. Directions are put forward as options for your selection rather than as a single fixed image."
+   ],
+   "groups": [
+    {
+     "title": "Inputs we work from",
+     "intro": "Imagery can be produced from partial information, provided the fixed geometry and the design intent are established.",
+     "items": [
+      "Floor plans, layouts and marked-up drawings",
+      "Measured dimensions and site photographs",
+      "Material, finish and colour references",
+      "Existing product photography and specification sheets",
+      "Mood boards and reference imagery",
+      "Brand guidelines, palettes and typefaces",
+      "Written direction on mood, audience and intended placement"
+     ]
+    },
+    {
+     "title": "Interior and spatial visualisation",
+     "items": [
+      "Residential room visualisation from plans and layouts",
+      "Hospitality interiors — bar, restaurant and lounge settings",
+      "Retail and showroom floor visualisation",
+      "Dimensioned 3D layout studies produced from marked-up plans",
+      "Lighting and atmosphere studies, daylight and evening",
+      "Material, finish and colour-scheme variants of a single view",
+      "Concept options prepared for client selection",
+      "Comparison views showing an existing space against a proposal"
+     ]
+    },
+    {
+     "title": "Product and furniture imagery",
+     "items": [
+      "Furniture and lighting pieces shown in a styled context",
+      "Product imagery on plain and set backgrounds",
+      "Fabric, finish and colourway variants across a range",
+      "Wall art, décor and accessory placement in room settings",
+      "Range and catalogue sets held to one consistent treatment",
+      "Detail and scale views for specification sheets",
+      "Packaging and product mockups"
+     ]
+    },
+    {
+     "title": "Brand and commercial visuals",
+     "items": [
+      "Website hero and section header images",
+      "Campaign and product-launch key visuals",
+      "Still frames sized for social and channel formats",
+      "Presentation, pitch-deck and tender imagery",
+      "Brochure, catalogue and print-ready visuals",
+      "Mockups of collateral, signage and point-of-sale",
+      "Listing and directory imagery for marketplaces"
+     ]
+    },
+    {
+     "title": "Direction, consistency and finishing",
+     "items": [
+      "Visual direction and reference boards agreed before production",
+      "Composition, framing and camera-height decisions",
+      "Lighting scheme and mood definition",
+      "Colour and material alignment to existing brand assets",
+      "Consistency rules applied across a set or a full range",
+      "Retouching, clean-up and background replacement",
+      "Format, ratio and resolution planning for each placement"
+     ]
+    }
+   ],
+   "process": [
+    {
+     "step": "01",
+     "title": "Brief and placement",
+     "body": "You send plans, references and product material, and we establish where each image will be used. Placement sets the ratio, resolution and level of detail before anything is produced."
+    },
+    {
+     "step": "02",
+     "title": "Direction",
+     "body": "Composition, lighting, material treatment and mood are agreed against reference. Where a set is involved, the rules that hold it consistent are fixed at this stage."
+    },
+    {
+     "step": "03",
+     "title": "Production and review",
+     "body": "Selected directions are produced and put forward as options rather than a single take. Revisions are worked against your written comments on the chosen route."
+    },
+    {
+     "step": "04",
+     "title": "Delivery",
+     "body": "Final images are exported to the formats, ratios and resolutions each placement requires, with working files retained so the set can be extended later."
+    }
+   ],
+   "deliverables": [
+    "High-resolution still images in the agreed ratios",
+    "Placement-specific export variants for web, print, presentation and social",
+    "Material, finish and colourway variants of selected views",
+    "Dimensioned 3D layout studies where a plan is supplied",
+    "Print-ready files at specified resolution and colour profile",
+    "Working files and source assets on request"
+   ],
+   "boundary": "Visualisation is representational. Images are an interpretation of supplied design direction, not a specification, a technical drawing or an approval document. Colours, finishes and materials shown on screen are indicative and should be confirmed against physical samples and supplier data before ordering or construction. Where AI-assisted generation is used, it is a production method applied under direction; we will state plainly which images are generated rather than photographed."
+  },
+  {
+   "slug": "video-ai-film-editing",
+   "name": "Video, AI Film & Editing",
+   "shortName": "Video & Film",
+   "motif": "Film",
+   "summary": "Short-form cinematic film for furniture, interiors and hospitality brands — produced, edited and cut to placement.",
+   "overview": "Short-form film production for design, furniture, property and hospitality businesses. We produce product campaigns, showroom walkthroughs and interior sequences using filmed material, AI-assisted generation and edit-room work, in whatever combination the brief actually needs. Output is specified around the placement it is made for rather than exported to a generic ratio.",
+   "intro": [
+    "Film is how a piece of furniture, a finished interior or an unbuilt development gets seen by people who will never stand in front of it. XIYÀTO produces short-form film for exactly that job: product campaigns built around a single piece, factory-to-showroom production stories, showroom walkthroughs, hospitality ambience edits, before-and-after interior sequences and commercial films for property. The work delivered to date spans furniture brands, interior studios, showroom operators, hospitality venues and a property developer in the Middle East.",
+    "AI-assisted generation sits inside that process rather than standing in for it. Some sequences are filmed, some are generated, most are a combination — and the decision is made shot by shot, against what the material needs and what is realistically available to shoot. What holds a piece together is the edit: shot order, pacing, grade and sound. We state which method a project will use before production begins, so you know what you are commissioning and how it can honestly be described in use."
+   ],
+   "groups": [
+    {
+     "title": "Film we produce",
+     "intro": "Formats delivered across furniture, interior, showroom, hospitality and property work.",
+     "items": [
+      "Product and campaign films built around a single piece",
+      "Factory-to-showroom production stories",
+      "Showroom and point-of-view walkthroughs",
+      "Interior and spatial sequences",
+      "Hospitality venue and ambience edits",
+      "Commercial films for property and development",
+      "Before-and-after interior sequences",
+      "Material, finish and detail close-up studies"
+     ]
+    },
+    {
+     "title": "Direction and structure",
+     "intro": "Agreed before anything is shot or generated, so the cut is built to a plan rather than assembled from whatever exists.",
+     "items": [
+      "Concept direction developed from product, project or brand material",
+      "Shot list and sequence planning",
+      "Beat structure and storyboarding for short-form",
+      "Alignment against supplied reference and mood material",
+      "On-screen copy, caption and voiceover scripting",
+      "Duration and pacing target set per placement"
+     ]
+    },
+    {
+     "title": "Production methods",
+     "intro": "Filmed, generated or built from stills — chosen per shot and recorded so each sequence can be labelled correctly.",
+     "items": [
+      "Direction and assembly from supplied footage, stills and renders",
+      "AI-assisted sequence generation",
+      "Motion built from still visualisation and product photography",
+      "Continuity of set, finish and lighting held across shots",
+      "Reconstruction of shots that cannot practically be filmed",
+      "Coordination with visualisation output produced alongside the film"
+     ]
+    },
+    {
+     "title": "Edit and post",
+     "items": [
+      "Sequence structuring and shot order",
+      "Pacing and cut rhythm to a target duration",
+      "Colour grade and finish consistency across the set",
+      "Music selection, sound design and audio mix",
+      "Text, caption and lower-third treatment",
+      "Logo, brand and end-card placement",
+      "Speed ramping, transitions and motion treatment",
+      "Revision rounds worked against issued comments"
+     ]
+    },
+    {
+     "title": "Formats and delivery",
+     "intro": "One production, cut for every place it has to run.",
+     "items": [
+      "Vertical 9:16 masters for reels and stories",
+      "Portrait 4:5 for feed placement",
+      "Landscape 16:9 for websites and showroom screens",
+      "Cut-downs and shorter edits from the same production",
+      "Captioned and subtitled versions",
+      "Silent-autoplay versions carrying on-screen copy",
+      "Poster frames and thumbnail stills per cut",
+      "Compression profiles for web embedding"
+     ]
+    }
+   ],
+   "process": [
+    {
+     "step": "01",
+     "title": "Brief and material",
+     "body": "You send product references, project photography, renders, brand assets and any existing footage. We establish where the film will run, how long it should be and what it has to communicate."
+    },
+    {
+     "step": "02",
+     "title": "Direction and shot plan",
+     "body": "Concept, sequence structure and shot list are agreed, along with which shots are filmed, generated or built from existing stills. Duration and delivery ratios are fixed at this point."
+    },
+    {
+     "step": "03",
+     "title": "Production and edit",
+     "body": "Shots are produced or generated, then assembled — order, pacing, grade, sound and on-screen copy. A first cut is issued for comment."
+    },
+    {
+     "step": "04",
+     "title": "Revision and delivery",
+     "body": "Comments are worked through in defined rounds, then final masters are exported to each agreed ratio with poster frames and web-ready compression."
+    }
+   ],
+   "deliverables": [
+    "Final film master in the agreed primary ratio",
+    "Vertical, portrait and landscape cut-downs from the same production",
+    "Poster frames and thumbnail stills for each cut",
+    "Captioned and silent-autoplay versions where the placement requires them",
+    "Web-compressed exports for site and showroom embedding",
+    "Project and source files retained, available on request"
+   ],
+   "boundary": "Where a sequence is generated or reconstructed rather than filmed, it is representational — it should not be presented as a record of a built space or a finished production item. We identify the method used for each sequence so it can be described accurately in campaign use. Clearance for supplied footage, music, brand assets and any third-party material rests with the client; we work from what is provided and flag anything requiring a licence before delivery."
+  },
+  {
+   "slug": "automation-workflow-systems",
+   "name": "Automation & Workflow Systems",
+   "shortName": "Automation & Workflow",
+   "motif": "Automate",
+   "summary": "Working systems for the repetitive parts of studio operations — enquiries, outreach, handovers and admin.",
+   "overview": "Practical automation built inside the tools a team already uses. We map where information is re-typed, chased or lost between steps, then build, document and hand over the systems that remove the manual repetition. The result is a process your own people can run and amend without us.",
+   "intro": [
+    "Design, fit-out, furniture and property teams lose a surprising amount of time to coordination rather than to work: the same enquiry details typed into three places, follow-ups tracked from memory, project folders rebuilt by hand, reports assembled at the end of every month. Automation & Workflow Systems addresses that layer. We look at how the work is actually done now, identify the steps that repeat without judgement being applied, and build systems that carry the information across instead.",
+    "This is capability we run on our own operation before we offer it to anyone else — the enquiry routing, research workbooks, outreach tracking and production handovers behind XIYÀTO's other services are built the same way. We hold no client automation engagement released as published case-study material, and we would rather say that plainly than imply otherwise. Systems are built inside the tools you already use, documented in ordinary language, and handed over with the rules written down."
+   ],
+   "groups": [
+    {
+     "title": "Enquiry and intake",
+     "intro": "The first hour after an enquiry arrives is where most manual handling happens. It is usually the first thing worth automating.",
+     "items": [
+      "Web and email enquiries routed into a single logged record",
+      "Automatic acknowledgement with a stated response time",
+      "Qualification questions captured at first contact",
+      "Source, date, owner and status recorded per enquiry",
+      "Reminder rules for enquiries left unanswered past an agreed threshold",
+      "Handover of the enquiry record into your project or sales tracker"
+     ]
+    },
+    {
+     "title": "Outreach and follow-up",
+     "intro": "Sequenced, logged and rule-bound — built so a person can see exactly what was sent, to whom and when.",
+     "items": [
+      "Follow-up sequences with stop-on-reply rules",
+      "Merge fields drawn from a structured prospect workbook",
+      "Reply logging and status updates written back to the record",
+      "Suppression and do-not-contact handling",
+      "Sending schedules and daily volume limits",
+      "Manual-send checklists where automated sending is not appropriate",
+      "Reporting views by stage: contacted, replied, dormant, closed"
+     ]
+    },
+    {
+     "title": "Project and production workflow",
+     "intro": "The administrative spine around delivery work — folders, revisions, checkpoints and handover.",
+     "items": [
+      "Standard folder and file-naming structures created per project",
+      "Drawing, asset and revision logging",
+      "Task templates generated when a project stage opens",
+      "Approval and sign-off checkpoints with recorded dates",
+      "Notifications when a stage is marked complete",
+      "Handover packs assembled against a defined checklist",
+      "Status views drawn from the underlying records rather than typed by hand"
+     ]
+    },
+    {
+     "title": "Data, documents and admin",
+     "intro": "Repetitive document and spreadsheet work, moved off people and onto rules.",
+     "items": [
+      "Consolidation of records held across multiple sheets and sources",
+      "Deduplication and record-cleaning rules with a backup of anything removed",
+      "Validation rules that prevent broken records at the point of entry",
+      "Quotation, proposal and document generation from templates",
+      "Recurring report assembly on a fixed schedule",
+      "Scheduled exports and backups of working data"
+     ]
+    },
+    {
+     "title": "AI-assisted steps",
+     "intro": "Used where it genuinely saves time, and always with a person between the system and the client.",
+     "items": [
+      "First-pass reply drafting held for human review before sending",
+      "Summarising long enquiry or project threads into a record note",
+      "Classifying and tagging incoming enquiries and leads",
+      "Extracting structured fields from unstructured documents",
+      "Drafting content outlines and captions from an agreed brief",
+      "Review checkpoints placed before anything client-facing leaves the system"
+     ]
+    }
+   ],
+   "process": [
+    {
+     "step": "01",
+     "title": "Map the current process",
+     "body": "We work through how the task is done today — the tools in use, the steps that repeat, and the points where information is re-entered or chased. Nothing is automated before it is understood."
+    },
+    {
+     "step": "02",
+     "title": "Agree the rules",
+     "body": "Triggers, decision rules, exception handling and the points where a person must stay in the loop are written down and agreed in advance, so the system's behaviour is defined rather than discovered."
+    },
+    {
+     "step": "03",
+     "title": "Build and test",
+     "body": "The system is built inside your existing tools and run against real cases in a test state until the ordinary path and the exceptions both behave correctly."
+    },
+    {
+     "step": "04",
+     "title": "Handover",
+     "body": "You receive the working system, written documentation and a walkthrough for the people who will operate it, along with a plain list of what deliberately remains manual."
+    }
+   ],
+   "deliverables": [
+    "A working system built inside the tools your team already uses",
+    "Written documentation of triggers, rules and exception handling",
+    "A process map showing the workflow before and after",
+    "Templates, forms and message structures used by the system",
+    "A walkthrough for the people who will run it day to day",
+    "A stated list of what remains manual, and the reason it does"
+   ],
+   "boundary": "This service is offered as capability. We hold no client automation engagement released as published case-study material, and we do not present the systems described here as delivered project references. Systems are built inside tools you already hold accounts for; we do not take on IT administration, data-security certification, regulatory compliance sign-off or ongoing managed support unless that is separately agreed in writing. Where a step involves judgement, client communication or a commercial decision, we keep a person in the loop by design."
+  },
+  {
+   "slug": "website-design-development",
+   "name": "Website Design & Development",
+   "shortName": "Website Design & Development",
+   "motif": "Build",
+   "summary": "Responsive websites for design-led businesses — structure, front-end build, mobile optimisation and deployment.",
+   "overview": "Complete responsive websites for portfolios, brands and businesses, taken from page structure and visual direction through to front-end development, integrations and deployment. We work as external build capacity for practices that need a proper public presence without adding a permanent development function. Sites are built on your own domain and hosting, with the source code handed over.",
+   "intro": [
+    "Most design and fit-out businesses do not need a large website. They need a considered one: pages that load quickly, project work presented at the quality it was produced, layouts that hold up on a phone, and an enquiry that reaches a named inbox rather than disappearing. We handle that end to end — page structure, visual direction, content placement, front-end development, mobile optimisation and deployment.",
+    "Sites are built around the material they have to carry. Interior and product photography, drawing sets and film are heavy, image-led content, so galleries, viewers and image handling are treated as part of the build rather than bolted on afterwards. Where a site has to do more than present — submissions, structured records, content an in-house team can edit without calling a developer — that is built too, and the codebase is left in a state your own developer can pick up."
+   ],
+   "groups": [
+    {
+     "title": "Structure and direction",
+     "intro": "Agreed before anything is designed, so the build is measured against a defined scope.",
+     "items": [
+      "Site map and page-by-page structure",
+      "Content planning and placement against each page",
+      "Portfolio and project organisation for image-led work",
+      "Navigation and information architecture",
+      "Visual direction developed from existing brand material",
+      "Enquiry route and contact structure"
+     ]
+    },
+    {
+     "title": "Front-end development",
+     "intro": "Implementation across breakpoints, with the design system built as reusable components rather than one-off pages.",
+     "items": [
+      "Responsive layout across desktop, tablet and mobile",
+      "Component-based implementation and a consistent type scale",
+      "Project, gallery and case-study page templates",
+      "Image handling, sizing and load behaviour",
+      "Accessible navigation, focus order and keyboard routes",
+      "Media viewers for drawings, stills and film",
+      "Interaction and motion where it serves the content"
+     ]
+    },
+    {
+     "title": "Platform and integrations",
+     "intro": "Where a site needs to do more than present, the functional layer is built alongside the front end.",
+     "items": [
+      "Server-side enquiry handling routed to a named inbox",
+      "Form validation and spam handling",
+      "Database-backed content and structured record sets",
+      "Submission, review and publication flows",
+      "Content administration for non-technical editors",
+      "Third-party service integration for mail, analytics and scheduling"
+     ]
+    },
+    {
+     "title": "Search, performance and accessibility",
+     "intro": "Handled during the build rather than as a post-launch corrective exercise.",
+     "items": [
+      "Statically pre-rendered pages so content is crawlable",
+      "Per-page titles, descriptions and metadata",
+      "Sitemap and structured data output",
+      "Image format and payload optimisation",
+      "Mobile performance checks on real device widths",
+      "Semantic markup, contrast and alternative text",
+      "Redirect mapping where an existing site is being replaced"
+     ]
+    },
+    {
+     "title": "Deployment and handover",
+     "items": [
+      "Hosting setup and deployment pipeline",
+      "Domain and DNS configuration",
+      "SSL and environment configuration",
+      "Analytics installation and verification",
+      "Source code handed over in a repository you control",
+      "Handover notes covering editing, redeployment and future changes"
+     ]
+    }
+   ],
+   "process": [
+    {
+     "step": "01",
+     "title": "Scope and structure",
+     "body": "We establish who the site is for, what it has to do, and which pages carry that. The site map, functional requirements and content needed per page are agreed in writing before design begins."
+    },
+    {
+     "step": "02",
+     "title": "Direction and layout",
+     "body": "Visual direction and the key page layouts are put forward for review. Typography, grid, colour and the component set are fixed at this stage so the full build is consistent."
+    },
+    {
+     "step": "03",
+     "title": "Build",
+     "body": "Front-end development across all breakpoints, with content placed, integrations wired and accessibility and performance checked as part of the work rather than after it. Review builds are shared as pages become available."
+    },
+    {
+     "step": "04",
+     "title": "Launch and handover",
+     "body": "The site is deployed to your domain and hosting, redirects are mapped where an existing site is being replaced, and the repository and handover notes are passed to you."
+    }
+   ],
+   "deliverables": [
+    "A deployed responsive website on your own domain and hosting",
+    "Agreed site map, page structure and content plan",
+    "Front-end source code in a repository held in your name",
+    "Enquiry handling routed to a named inbox, tested before launch",
+    "Page metadata, sitemap and redirect mapping for search",
+    "Handover notes covering editing, deployment and future changes"
+   ],
+   "boundary": "Hosting, domain and third-party service accounts are set up in your name, so the business retains ownership and control of the site and its data. Ongoing content updates, campaign work and subscription costs sit outside the build unless agreed separately. We implement accessibility and privacy requirements as specified in the brief, but do not provide legal advice or formal conformance certification."
+  }
+ ]
+}

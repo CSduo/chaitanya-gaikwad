@@ -10,11 +10,33 @@ export const SITE = {
   nameAscii: "XIYATO",
   url: "https://xiyato.uk",
   descriptor:
-    "Technical production, growth operations and visual content for design-led businesses.",
+    "Technical, creative and growth services for architecture firms, design businesses and international brands.",
   defaultDescription:
-    "XIYÀTO is a specialist production studio delivering CAD and technical documentation, growth operations and visual content for architecture, interior, fit-out and furniture businesses.",
+    "XIYÀTO delivers CAD and technical production, B2B growth and marketing, 3D visualisation, video and AI film, automation systems and websites for architecture, interior, fit-out and furniture businesses.",
   locale: "en_GB",
   language: "en-GB",
+  /** Owner-specified. Not derived from the current year. */
+  copyrightYear: 2023,
+} as const;
+
+/* ------------------------------------------------------------------ */
+/* Primary conversion channel                                          */
+/* ------------------------------------------------------------------ */
+
+const PROJECT_MESSAGE = "Hello XIYÀTO, I would like to discuss a project.";
+
+/** The global "Start a project" action opens WhatsApp with a prefilled note. */
+export const WHATSAPP = {
+  uk: {
+    number: "+44 7882 746212",
+    href: `https://wa.me/447882746212?text=${encodeURIComponent(PROJECT_MESSAGE)}`,
+    plain: "https://wa.me/447882746212",
+  },
+  india: {
+    number: "+91 70283 11226",
+    href: `https://wa.me/917028311226?text=${encodeURIComponent(PROJECT_MESSAGE)}`,
+    plain: "https://wa.me/917028311226",
+  },
 } as const;
 
 /* ------------------------------------------------------------------ */
@@ -76,17 +98,17 @@ export type DirectChannel = {
 export const DIRECT_CHANNELS: DirectChannel[] = [
   {
     id: "whatsapp-uk",
-    label: "WhatsApp (UK)",
-    value: "+44 7882 746212",
-    href: "https://wa.me/447882746212",
-    secondary: true,
+    label: "United Kingdom",
+    value: WHATSAPP.uk.number,
+    href: WHATSAPP.uk.href,
+    secondary: false,
   },
   {
     id: "whatsapp-in",
-    label: "WhatsApp (India)",
-    value: "+91 70283 11226",
-    href: "https://wa.me/917028311226",
-    secondary: true,
+    label: "India",
+    value: WHATSAPP.india.number,
+    href: WHATSAPP.india.href,
+    secondary: false,
   },
 ];
 
@@ -115,8 +137,11 @@ export const PRIMARY_NAV: NavItem[] = [
     children: [
       { label: "Services Overview", href: "/services" },
       { label: "CAD & Technical Production", href: "/services/cad-technical-production" },
-      { label: "Growth Operations", href: "/services/growth-operations" },
-      { label: "Visual Content", href: "/services/visual-content" },
+      { label: "Growth, Marketing & B2B", href: "/services/growth-marketing-b2b" },
+      { label: "3D Visualisation & Image Production", href: "/services/visualisation-image-production" },
+      { label: "Video, AI Film & Editing", href: "/services/video-ai-film-editing" },
+      { label: "Automation & Workflow Systems", href: "/services/automation-workflow-systems" },
+      { label: "Website Design & Development", href: "/services/website-design-development" },
     ],
   },
   {
@@ -132,4 +157,18 @@ export const PRIMARY_NAV: NavItem[] = [
   { label: "Contact", href: "/contact" },
 ];
 
-export const PRIMARY_CTA = { label: "Start a project", href: "/contact" } as const;
+/**
+ * The global primary action opens WhatsApp directly — it is the fastest route
+ * to a real conversation. The contact form remains for detailed briefs.
+ */
+export const PRIMARY_CTA = {
+  label: "Start a project",
+  href: WHATSAPP.uk.href,
+  external: true,
+} as const;
+
+export const SECONDARY_CTA = {
+  label: "Detailed enquiry",
+  href: "/contact",
+  external: false,
+} as const;

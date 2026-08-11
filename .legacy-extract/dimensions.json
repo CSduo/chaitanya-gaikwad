@@ -1,0 +1,402 @@
+{
+ "/media/cad/cad-automation-hero.webp": {
+  "w": 3200,
+  "h": 2260,
+  "kb": 300
+ },
+ "/media/cad/cigar-lounge-ceiling.webp": {
+  "w": 3200,
+  "h": 2260,
+  "kb": 292
+ },
+ "/media/cad/cigar-lounge-flooring.webp": {
+  "w": 3200,
+  "h": 2260,
+  "kb": 284
+ },
+ "/media/cad/cigar-lounge-layout.webp": {
+  "w": 3200,
+  "h": 2260,
+  "kb": 234
+ },
+ "/media/cad/feature-wall-overview.webp": {
+  "w": 3200,
+  "h": 2199,
+  "kb": 206
+ },
+ "/media/cad/hero-ceiling.webp": {
+  "w": 3200,
+  "h": 2260,
+  "kb": 292
+ },
+ "/media/cad/hero-elevation.webp": {
+  "w": 3200,
+  "h": 2260,
+  "kb": 140
+ },
+ "/media/cad/hero-flooring.webp": {
+  "w": 3200,
+  "h": 2260,
+  "kb": 284
+ },
+ "/media/cad/hero-plan.webp": {
+  "w": 3200,
+  "h": 2260,
+  "kb": 300
+ },
+ "/media/cad/master-bathroom-elevation.webp": {
+  "w": 3200,
+  "h": 2260,
+  "kb": 140
+ },
+ "/media/cad/master-bathroom-plan-input.webp": {
+  "w": 247,
+  "h": 532,
+  "kb": 28
+ },
+ "/media/cad/master-bathroom-plan.webp": {
+  "w": 3200,
+  "h": 2260,
+  "kb": 300
+ },
+ "/media/cad/master-bathroom-render-input.webp": {
+  "w": 986,
+  "h": 1448,
+  "kb": 318
+ },
+ "/media/cad/master-bathroom-shower.webp": {
+  "w": 3200,
+  "h": 2260,
+  "kb": 202
+ },
+ "/media/cad/master-bathroom-vanity.webp": {
+  "w": 3200,
+  "h": 2260,
+  "kb": 162
+ },
+ "/media/cad/stair-wall-detail.webp": {
+  "w": 2536,
+  "h": 3200,
+  "kb": 94
+ },
+ "/media/cad/stair-wall-input.webp": {
+  "w": 1054,
+  "h": 1536,
+  "kb": 83
+ },
+ "/media/cad/toilet-3d-input.webp": {
+  "w": 1086,
+  "h": 1448,
+  "kb": 252
+ },
+ "/media/cad/toilet-elevations.webp": {
+  "w": 3200,
+  "h": 2199,
+  "kb": 220
+ },
+ "/media/cad/wash-elevations.webp": {
+  "w": 3200,
+  "h": 2199,
+  "kb": 205
+ },
+ "/media/visual/render-1.webp": {
+  "w": 999,
+  "h": 1230,
+  "kb": 125
+ },
+ "/media/visual/render-2.webp": {
+  "w": 991,
+  "h": 1236,
+  "kb": 78
+ },
+ "/media/visual/render-3.webp": {
+  "w": 975,
+  "h": 1226,
+  "kb": 60
+ },
+ "/media/visual/render-4.webp": {
+  "w": 988,
+  "h": 1232,
+  "kb": 61
+ },
+ "/media/visual/render-5.webp": {
+  "w": 988,
+  "h": 1226,
+  "kb": 44
+ },
+ "/media/visual/render-6.webp": {
+  "w": 978,
+  "h": 1232,
+  "kb": 62
+ },
+ "/media/visual/vis-1.webp": {
+  "w": 1440,
+  "h": 960,
+  "kb": 110
+ },
+ "/media/visual/vis-10.webp": {
+  "w": 1440,
+  "h": 1920,
+  "kb": 264
+ },
+ "/media/visual/vis-11.webp": {
+  "w": 1440,
+  "h": 1920,
+  "kb": 315
+ },
+ "/media/visual/vis-12.webp": {
+  "w": 1440,
+  "h": 1080,
+  "kb": 116
+ },
+ "/media/visual/vis-13.webp": {
+  "w": 1440,
+  "h": 754,
+  "kb": 165
+ },
+ "/media/visual/vis-14.webp": {
+  "w": 1439,
+  "h": 1079,
+  "kb": 280
+ },
+ "/media/visual/vis-15.webp": {
+  "w": 1439,
+  "h": 1079,
+  "kb": 136
+ },
+ "/media/visual/vis-16.webp": {
+  "w": 1439,
+  "h": 1079,
+  "kb": 193
+ },
+ "/media/visual/vis-17.webp": {
+  "w": 1440,
+  "h": 1184,
+  "kb": 200
+ },
+ "/media/visual/vis-18.webp": {
+  "w": 1439,
+  "h": 1154,
+  "kb": 147
+ },
+ "/media/visual/vis-19.webp": {
+  "w": 1439,
+  "h": 1154,
+  "kb": 185
+ },
+ "/media/visual/vis-2.webp": {
+  "w": 1440,
+  "h": 960,
+  "kb": 176
+ },
+ "/media/visual/vis-20.webp": {
+  "w": 1439,
+  "h": 959,
+  "kb": 137
+ },
+ "/media/visual/vis-21.webp": {
+  "w": 1439,
+  "h": 959,
+  "kb": 144
+ },
+ "/media/visual/vis-22.webp": {
+  "w": 1440,
+  "h": 1919,
+  "kb": 175
+ },
+ "/media/visual/vis-23.webp": {
+  "w": 1440,
+  "h": 1919,
+  "kb": 209
+ },
+ "/media/visual/vis-24.webp": {
+  "w": 1440,
+  "h": 1919,
+  "kb": 299
+ },
+ "/media/visual/vis-25.webp": {
+  "w": 1440,
+  "h": 960,
+  "kb": 122
+ },
+ "/media/visual/vis-26.webp": {
+  "w": 1080,
+  "h": 1440,
+  "kb": 174
+ },
+ "/media/visual/vis-27.webp": {
+  "w": 1440,
+  "h": 960,
+  "kb": 143
+ },
+ "/media/visual/vis-28.webp": {
+  "w": 1386,
+  "h": 1440,
+  "kb": 212
+ },
+ "/media/visual/vis-29.webp": {
+  "w": 1440,
+  "h": 960,
+  "kb": 173
+ },
+ "/media/visual/vis-3.webp": {
+  "w": 1440,
+  "h": 1440,
+  "kb": 469
+ },
+ "/media/visual/vis-30.webp": {
+  "w": 1440,
+  "h": 1440,
+  "kb": 229
+ },
+ "/media/visual/vis-31.webp": {
+  "w": 1440,
+  "h": 1440,
+  "kb": 230
+ },
+ "/media/visual/vis-32.webp": {
+  "w": 1440,
+  "h": 1440,
+  "kb": 252
+ },
+ "/media/visual/vis-33.webp": {
+  "w": 1440,
+  "h": 1440,
+  "kb": 207
+ },
+ "/media/visual/vis-34.webp": {
+  "w": 1440,
+  "h": 1440,
+  "kb": 117
+ },
+ "/media/visual/vis-35.webp": {
+  "w": 1440,
+  "h": 1440,
+  "kb": 140
+ },
+ "/media/visual/vis-36.webp": {
+  "w": 1440,
+  "h": 1920,
+  "kb": 284
+ },
+ "/media/visual/vis-37.webp": {
+  "w": 1079,
+  "h": 1440,
+  "kb": 136
+ },
+ "/media/visual/vis-38.webp": {
+  "w": 1440,
+  "h": 960,
+  "kb": 182
+ },
+ "/media/visual/vis-39.webp": {
+  "w": 1440,
+  "h": 1919,
+  "kb": 311
+ },
+ "/media/visual/vis-4.webp": {
+  "w": 1440,
+  "h": 960,
+  "kb": 211
+ },
+ "/media/visual/vis-40.webp": {
+  "w": 1438,
+  "h": 1920,
+  "kb": 224
+ },
+ "/media/visual/vis-41.webp": {
+  "w": 1439,
+  "h": 1079,
+  "kb": 197
+ },
+ "/media/visual/vis-42.webp": {
+  "w": 1439,
+  "h": 1079,
+  "kb": 184
+ },
+ "/media/visual/vis-43.webp": {
+  "w": 1439,
+  "h": 1079,
+  "kb": 194
+ },
+ "/media/visual/vis-5.webp": {
+  "w": 1080,
+  "h": 1440,
+  "kb": 239
+ },
+ "/media/visual/vis-6.webp": {
+  "w": 1080,
+  "h": 1440,
+  "kb": 166
+ },
+ "/media/visual/vis-7.webp": {
+  "w": 1080,
+  "h": 1440,
+  "kb": 114
+ },
+ "/media/visual/vis-8.webp": {
+  "w": 1440,
+  "h": 960,
+  "kb": 405
+ },
+ "/media/visual/vis-9.webp": {
+  "w": 1440,
+  "h": 1920,
+  "kb": 218
+ },
+ "/media/posters/bahrain-client-commercial-ad-poster.webp": {
+  "w": 1080,
+  "h": 1350,
+  "kb": 51
+ },
+ "/media/posters/bingxi-factory-video-poster.webp": {
+  "w": 832,
+  "h": 464,
+  "kb": 25
+ },
+ "/media/posters/excel-placeholder-poster.webp": {
+  "w": 1024,
+  "h": 1024,
+  "kb": 61
+ },
+ "/media/posters/great-design-holds-attention-walkthrough-poster.webp": {
+  "w": 720,
+  "h": 1280,
+  "kb": 67
+ },
+ "/media/posters/kozena-luxury-furniture-campaign-poster.webp": {
+  "w": 1080,
+  "h": 1920,
+  "kb": 57
+ },
+ "/media/posters/one-design-district-showroom-reel-poster.webp": {
+  "w": 720,
+  "h": 1280,
+  "kb": 30
+ },
+ "/media/posters/premium-bar-red-restaurant-concept-poster.webp": {
+  "w": 1080,
+  "h": 1920,
+  "kb": 80
+ },
+ "/media/posters/room-transformation-interior-walkthrough-poster.webp": {
+  "w": 1080,
+  "h": 1920,
+  "kb": 23
+ },
+ "/media/posters/sultanah-co-moon-chair-cinematic-campaign-poster.webp": {
+  "w": 1080,
+  "h": 1350,
+  "kb": 44
+ },
+ "/media/posters/the-bar-edit-cinematic-poster.webp": {
+  "w": 1080,
+  "h": 1350,
+  "kb": 43
+ },
+ "/media/founder/portrait.jpg": {
+  "w": 1024,
+  "h": 1016,
+  "kb": 176
+ }
+}

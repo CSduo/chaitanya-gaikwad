@@ -2,6 +2,7 @@ import type { MetadataRoute } from "next";
 import { SITE } from "@/lib/site";
 import { SERVICES } from "@/lib/services";
 import { allCaseStudies } from "@/lib/case-studies";
+import { allWorkbooks } from "@/lib/portfolio";
 import { publishedLegalPages } from "@/lib/company";
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -33,6 +34,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: c.featured ? 0.8 : 0.6,
   }));
 
+  const research: MetadataRoute.Sitemap = allWorkbooks().map((w) => ({
+    url: url(`/work/research/${w.slug}`),
+    lastModified: now,
+    changeFrequency: "yearly",
+    priority: w.featured ? 0.7 : 0.5,
+  }));
+
   // Unpublished legal routes are excluded — they 404 rather than existing as shells.
   const legal: MetadataRoute.Sitemap = publishedLegalPages().map((p) => ({
     url: url(`/legal/${p.slug}`),
@@ -41,5 +49,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.2,
   }));
 
-  return [...core, ...services, ...work, ...legal];
+  return [...core, ...services, ...work, ...research, ...legal];
 }

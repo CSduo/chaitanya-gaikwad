@@ -12,32 +12,44 @@ import type { ServiceSlug } from "./services";
 
 export type WorkCategory =
   | "technical-production"
-  | "growth-operations"
-  | "visual-content"
-  | "multi-disciplinary";
+  | "growth-b2b"
+  | "visualisation"
+  | "video"
+  | "automation"
+  | "websites";
 
 export type EngagementType = "project" | "ongoing-support" | "advisory-consulting";
 
 export const WORK_CATEGORIES: { slug: WorkCategory; label: string; blurb: string }[] = [
   {
     slug: "technical-production",
-    label: "Technical Production",
+    label: "CAD & Technical",
     blurb: "Drawing packages, documentation and drafting capacity.",
   },
   {
-    slug: "growth-operations",
-    label: "Growth Operations",
-    blurb: "Market research, qualified data and outreach systems.",
+    slug: "growth-b2b",
+    label: "Growth & B2B",
+    blurb: "Market research, qualified target data and outreach systems.",
   },
   {
-    slug: "visual-content",
-    label: "Visual Content",
-    blurb: "Visualisation, film and presentation material.",
+    slug: "visualisation",
+    label: "Visualisation",
+    blurb: "Interior, product and brand imagery.",
   },
   {
-    slug: "multi-disciplinary",
-    label: "Multi-disciplinary Engagements",
-    blurb: "Engagements spanning more than one capability.",
+    slug: "video",
+    label: "Video",
+    blurb: "Cinematic film, product campaigns and showroom reels.",
+  },
+  {
+    slug: "automation",
+    label: "Automation",
+    blurb: "Workflow and operational systems.",
+  },
+  {
+    slug: "websites",
+    label: "Websites",
+    blurb: "Responsive front-end builds and platforms.",
   },
 ];
 
@@ -233,8 +245,8 @@ export const CASE_STUDIES: CaseStudy[] = [
     clientDescriptor: "Design and fit-out business entering the Saudi market",
     sector: "Luxury development, hospitality and interiors",
     location: "Riyadh and Jeddah, Saudi Arabia",
-    category: "growth-operations",
-    services: ["growth-operations"],
+    category: "growth-b2b",
+    services: ["growth-marketing-b2b"],
     dateRange: "2026",
     engagementType: "project",
     scope: [
@@ -343,8 +355,8 @@ export const CASE_STUDIES: CaseStudy[] = [
     clientAnonymised: false,
     sector: "Luxury furniture and interiors",
     location: "Remote delivery",
-    category: "visual-content",
-    services: ["visual-content"],
+    category: "video",
+    services: ["video-ai-film-editing"],
     dateRange: "2025",
     engagementType: "ongoing-support",
     scope: [
@@ -398,8 +410,8 @@ export const CASE_STUDIES: CaseStudy[] = [
     clientDescriptor: "International bedding and hotel-linen exporter",
     sector: "Textile manufacturing and export",
     location: "Cross-border — India, China and GCC markets",
-    category: "multi-disciplinary",
-    services: ["growth-operations", "visual-content"],
+    category: "growth-b2b",
+    services: ["growth-marketing-b2b", "website-design-development"],
     dateRange: "2025 — 2026",
     engagementType: "ongoing-support",
     scope: [
@@ -457,7 +469,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     seo: {
       title: "Hotel Linen Export — Market and Commercial Programme",
       description:
-        "A multi-disciplinary export engagement: a seven-sheet buyer shortlist across three city segments, outreach tracking, and a responsive brand website.",
+        "A cross-border export engagement: a seven-sheet buyer shortlist across three city segments, outreach tracking, and a responsive brand website.",
     },
   },
 
@@ -470,8 +482,8 @@ export const CASE_STUDIES: CaseStudy[] = [
     clientDescriptor: "Design-build and fit-out contractor",
     sector: "Automotive retail and showroom fit-out",
     location: "Middle East",
-    category: "growth-operations",
-    services: ["growth-operations"],
+    category: "growth-b2b",
+    services: ["growth-marketing-b2b"],
     dateRange: "2026",
     engagementType: "project",
     scope: [
@@ -520,8 +532,8 @@ export const CASE_STUDIES: CaseStudy[] = [
     clientDescriptor: "Internal studio programme and design-studio commissions",
     sector: "Interior, hospitality and commercial design",
     location: "Remote delivery",
-    category: "visual-content",
-    services: ["visual-content"],
+    category: "visualisation",
+    services: ["visualisation-image-production", "video-ai-film-editing"],
     dateRange: "2026",
     engagementType: "ongoing-support",
     scope: [

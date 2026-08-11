@@ -131,12 +131,12 @@ export default function LocationsPage() {
         </Container>
       </Section>
 
-      {/* 04 — International delivery model */}
+      {/* 04 — Working internationally */}
       <Section bordered>
         <Container width="page">
           <div className="grid gap-10 lg:grid-cols-12 lg:gap-16">
             <div className="lg:col-span-4">
-              <Eyebrow>International delivery</Eyebrow>
+              <Eyebrow>Working internationally</Eyebrow>
               <h2 className="display mt-5 text-3xl">How remote delivery works.</h2>
             </div>
             <div className="lg:col-span-8">

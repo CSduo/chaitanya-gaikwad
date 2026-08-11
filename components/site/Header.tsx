@@ -109,15 +109,21 @@ function NavDropdown({
       {open ? (
         <div
           id={menuId}
-          className="absolute left-0 top-full z-50 w-72 border border-rule bg-surface shadow-[0_16px_40px_-24px_rgba(22,19,15,0.35)]"
+          /*
+           * Two columns once there are more than four entries, so the full
+           * service range stays visible instead of becoming a tall list.
+           */
+          className={`absolute left-0 top-full z-50 border border-rule bg-surface shadow-[0_16px_40px_-24px_rgba(22,19,15,0.35)] ${
+            items.length > 4 ? "w-[34rem]" : "w-72"
+          }`}
         >
-          <ul className="py-1">
+          <ul className={items.length > 4 ? "grid grid-cols-2 gap-px bg-rule" : "py-1"}>
             {items.map((child) => (
-              <li key={child.href}>
+              <li key={child.href} className={items.length > 4 ? "bg-surface" : undefined}>
                 <Link
                   href={child.href}
                   aria-current={pathname === child.href ? "page" : undefined}
-                  className={`block px-5 py-3 text-sm transition-colors hover:bg-paper-deep hover:text-accent ${
+                  className={`flex min-h-[48px] items-center px-5 py-3 text-sm leading-snug transition-colors hover:bg-paper-deep hover:text-accent ${
                     pathname === child.href ? "text-accent" : "text-ink-soft"
                   }`}
                 >
@@ -175,12 +181,18 @@ export function Header() {
         </nav>
 
         <div className="hidden lg:block">
-          <Link
+          {/* Opens WhatsApp with a prefilled note — the fastest route to a reply. */}
+          <a
             href={PRIMARY_CTA.href}
-            className="inline-flex min-h-[44px] items-center rounded-xs bg-ink px-5 text-sm font-medium tracking-tight text-paper transition-colors hover:bg-accent"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex min-h-[44px] items-center gap-2 rounded-xs bg-ink px-5 text-sm font-medium tracking-tight text-paper transition-colors hover:bg-accent"
           >
             {PRIMARY_CTA.label}
-          </Link>
+            <span aria-hidden="true" className="text-xs">
+              &#8599;
+            </span>
+          </a>
         </div>
 
         <MobileNav />

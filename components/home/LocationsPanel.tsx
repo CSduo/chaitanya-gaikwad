@@ -1,6 +1,7 @@
 "use client";
 
 import { useInView, useReducedMotion } from "./hooks";
+import { WHATSAPP } from "@/lib/site";
 
 /**
  * Geographic presence rendered as an abstract longitude grid rather than a map
@@ -54,23 +55,39 @@ export function LocationsPanel({
         <p className="label text-center">Working across</p>
 
         <div className="mx-auto mt-12 grid max-w-3xl gap-10 sm:grid-cols-2">
-          {locations.map((loc, i) => (
-            <div
-              key={loc.slug}
-              className="text-center"
-              style={{
-                opacity: on ? 1 : 0,
-                transform: on ? "translateY(0)" : "translateY(10px)",
-                transition: reduced ? "none" : `all 600ms ease ${500 + i * 200}ms`,
-              }}
-            >
-              <h3 className="display text-2xl sm:text-3xl">{loc.name}</h3>
-              {loc.timezone ? <p className="meta mt-2">{loc.timezone}</p> : null}
-              <p className="mx-auto mt-4 max-w-xs text-sm leading-relaxed text-ink-muted">
-                {loc.summary}
-              </p>
-            </div>
-          ))}
+          {locations.map((loc, i) => {
+            const wa = loc.slug === "united-kingdom" ? WHATSAPP.uk : WHATSAPP.india;
+            return (
+              <div
+                key={loc.slug}
+                className="text-center"
+                style={{
+                  opacity: on ? 1 : 0,
+                  transform: on ? "translateY(0)" : "translateY(10px)",
+                  transition: reduced ? "none" : `all 600ms ease ${500 + i * 200}ms`,
+                }}
+              >
+                <h3 className="display text-2xl sm:text-3xl">{loc.name}</h3>
+                {loc.timezone ? <p className="meta mt-2">{loc.timezone}</p> : null}
+                <p className="mx-auto mt-4 max-w-xs text-sm leading-relaxed text-ink-muted">
+                  {loc.summary}
+                </p>
+                <a
+                  href={wa.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-4 inline-flex min-h-[44px] items-center gap-1.5 text-sm text-ink transition-colors hover:text-accent"
+                >
+                  <span className="underline decoration-rule-strong underline-offset-4">
+                    {wa.number}
+                  </span>
+                  <span aria-hidden="true" className="text-xs text-ink-faint">
+                    &#8599;
+                  </span>
+                </a>
+              </div>
+            );
+          })}
         </div>
 
         <div
@@ -80,10 +97,9 @@ export function LocationsPanel({
             transition: reduced ? "none" : "opacity 700ms ease 1100ms",
           }}
         >
-          <p className="label">International delivery</p>
-          <p className="mx-auto mt-3 max-w-md text-sm leading-relaxed text-ink-muted">
+          <p className="mx-auto max-w-md text-sm leading-relaxed text-ink-muted">
             Engagements run across the United Kingdom, Europe, the Middle East and Asia,
-            delivered digitally and scheduled around the client&rsquo;s working day.
+            scheduled around the client&rsquo;s working day.
           </p>
         </div>
       </div>

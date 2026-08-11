@@ -51,6 +51,12 @@ const nextConfig: NextConfig = {
       { source: "/services/cad", destination: "/services/cad-technical-production", permanent: true },
       { source: "/company/about", destination: "/company", permanent: true },
       { source: "/legal", destination: "/legal/privacy", permanent: true },
+
+      // ---- Service taxonomy expanded from three areas to six ----
+      { source: "/services/growth-operations", destination: "/services/growth-marketing-b2b", permanent: true },
+      // "Visual content" split into visualisation and video; visualisation was
+      // the larger body of work, so it takes the legacy slug.
+      { source: "/services/visual-content", destination: "/services/visualisation-image-production", permanent: true },
     ];
   },
 };

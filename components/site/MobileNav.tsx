@@ -86,12 +86,14 @@ export function MobileNav() {
       <div className="flex items-center gap-2">
         {/* Compact CTA — hidden on the narrowest screens to avoid crowding.
             The panel always carries the primary CTA. */}
-        <Link
+        <a
           href={PRIMARY_CTA.href}
+          target="_blank"
+          rel="noopener noreferrer"
           className="hidden min-h-[44px] items-center rounded-xs bg-ink px-4 text-xs font-medium tracking-tight text-paper transition-colors hover:bg-accent min-[400px]:inline-flex"
         >
           Start
-        </Link>
+        </a>
 
         <button
           ref={triggerRef}
@@ -205,11 +207,23 @@ export function MobileNav() {
                 })}
               </ul>
 
-              <Link
+              <a
                 href={PRIMARY_CTA.href}
-                className="mt-8 flex min-h-[52px] w-full items-center justify-center rounded-xs bg-ink px-6 text-sm font-medium tracking-tight text-paper transition-colors hover:bg-accent"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-8 flex min-h-[52px] w-full items-center justify-center gap-2 rounded-xs bg-ink px-6 text-sm font-medium tracking-tight text-paper transition-colors hover:bg-accent"
               >
                 {PRIMARY_CTA.label}
+                <span aria-hidden="true" className="text-xs">
+                  &#8599;
+                </span>
+              </a>
+
+              <Link
+                href="/contact"
+                className="mt-3 flex min-h-[48px] w-full items-center justify-center rounded-xs border border-rule-strong px-6 text-sm tracking-tight text-ink transition-colors hover:border-ink"
+              >
+                Detailed enquiry
               </Link>
 
               <div className="mt-10 space-y-4 border-t border-rule pt-6">
@@ -233,7 +247,7 @@ export function MobileNav() {
                       href={c.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex min-h-[36px] items-center text-sm text-ink-soft hover:text-accent"
+                      className="flex min-h-[44px] items-center text-sm text-ink-soft hover:text-accent"
                     >
                       {c.label} — {c.value}
                     </a>
