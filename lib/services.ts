@@ -411,99 +411,6 @@ export const SERVICES: Service[] = [
   },
 
   {
-    slug: "automation-workflow-systems",
-    name: "Automation & Workflow Systems",
-    shortName: "Automation & Workflow",
-    motif: "Automate",
-    summary: "Workflow design and business process automation built inside the tools your team already uses: enquiries, lead management, outreach and reporting.",
-    overview: "We map how the work runs today, then build, document and hand over the systems that remove the manual repetition, working inside the tools your team already runs.",
-    intro: [
-      "Most businesses lose more time to coordination than to the work itself: the same enquiry typed into three places, follow-ups tracked from memory, prospect lists rebuilt by hand, reports assembled at the end of every month. Automation and Workflow Systems addresses that layer. We examine how the work is actually done, isolate the steps that repeat without judgement, and build systems that carry the information across instead.",
-      "Coverage runs from enquiry routing and lead-management workflows to outreach and follow-up sequences, research and content pipelines, data consolidation and lightweight internal tooling. AI-assisted steps are used for classification, drafting and extraction, with a person reviewing the output before it moves on, with a person kept between the system and the client. We run this capability on our own operation. No client engagement has yet been released as a published case study, and we would rather state that plainly than imply otherwise.",
-    ],
-    groups: [
-      {
-        title: "Enquiry and intake",
-        intro: "The first hour after an enquiry arrives is where most manual handling happens. It is usually the first thing worth automating.",
-        items: [
-          "Web and email enquiries routed into a single logged record",
-          "Automatic acknowledgement with a stated response time",
-          "Qualification questions captured at first contact",
-          "Source, date, owner and status recorded per enquiry",
-          "Reminder rules for enquiries left unanswered past an agreed threshold",
-          "Handover of the enquiry record into your project or sales tracker",
-        ],
-      },
-      {
-        title: "Outreach and follow-up",
-        intro: "Sequenced, logged and rule-bound — built so a person can see exactly what was sent, to whom and when.",
-        items: [
-          "Follow-up sequences with stop-on-reply rules",
-          "Merge fields drawn from a structured prospect workbook",
-          "Reply logging and status updates written back to the record",
-          "Suppression and do-not-contact handling",
-          "Sending schedules and daily volume limits",
-          "Manual-send checklists where automated sending is not appropriate",
-          "Reporting views by stage: contacted, replied, dormant, closed",
-        ],
-      },
-      {
-        title: "Project and production workflow",
-        intro: "The administrative spine around delivery work — folders, revisions, checkpoints and handover.",
-        items: [
-          "Standard folder and file-naming structures created per project",
-          "Drawing, asset and revision logging",
-          "Task templates generated when a project stage opens",
-          "Approval and sign-off checkpoints with recorded dates",
-          "Notifications when a stage is marked complete",
-          "Handover packs assembled against a defined checklist",
-          "Status views drawn from the underlying records rather than typed by hand",
-        ],
-      },
-      {
-        title: "Data, documents and admin",
-        intro: "Repetitive document and spreadsheet work, moved off people and onto rules.",
-        items: [
-          "Consolidation of records held across multiple sheets and sources",
-          "Deduplication and record-cleaning rules with a backup of anything removed",
-          "Validation rules that prevent broken records at the point of entry",
-          "Quotation, proposal and document generation from templates",
-          "Recurring report assembly on a fixed schedule",
-          "Scheduled exports and backups of working data",
-        ],
-      },
-      {
-        title: "AI-assisted steps",
-        intro: "Used where it genuinely saves time, and always with a person between the system and the client.",
-        items: [
-          "First-pass reply drafting held for human review before sending",
-          "Summarising long enquiry or project threads into a record note",
-          "Classifying and tagging incoming enquiries and leads",
-          "Extracting structured fields from unstructured documents",
-          "Drafting content outlines and captions from an agreed brief",
-          "Review checkpoints placed before anything client-facing leaves the system",
-        ],
-      },
-    ],
-    process: [
-      { step: "01", title: "Map the current process", body: "We work through how the task is done today — the tools in use, the steps that repeat, and the points where information is re-entered or chased. Nothing is automated before it is understood." },
-      { step: "02", title: "Agree the rules", body: "Triggers, decision rules, exception handling and the points where a person must stay in the loop are written down and agreed in advance, so the system's behaviour is defined rather than discovered." },
-      { step: "03", title: "Build and test", body: "The system is built inside your existing tools and run against real cases in a test state until the ordinary path and the exceptions both behave correctly." },
-      { step: "04", title: "Handover", body: "You receive the working system, written documentation and a walkthrough for the people who will operate it, along with a plain list of what deliberately remains manual." },
-    ],
-    deliverables: [
-      "A working system built inside the tools your team already uses",
-      "Written documentation of triggers, rules and exception handling",
-      "A process map showing the workflow before and after",
-      "Templates, forms and message structures used by the system",
-      "A walkthrough for the people who will run it day to day",
-      "A stated list of what remains manual, and the reason it does",
-    ],
-    boundary: "This service is offered as capability. We hold no client automation engagement released as published case-study material, and we do not present the systems described here as delivered project references. Systems are built inside tools you already hold accounts for; we do not take on IT administration, data-security certification, regulatory compliance sign-off or ongoing managed support unless that is separately agreed in writing. Where a step involves judgement, client communication or a commercial decision, we keep a person in the loop by design.",
-    order: 5,
-  },
-
-  {
     slug: "website-design-development",
     name: "Website Design & Development",
     shortName: "Website Design & Development",
@@ -592,6 +499,67 @@ export const SERVICES: Service[] = [
       "Handover notes covering editing, deployment and future changes",
     ],
     boundary: "Hosting, domain and third-party service accounts are set up in your name, so the business retains ownership and control of the site and its data. Ongoing content updates, campaign work and subscription costs sit outside the build unless agreed separately. We implement accessibility and privacy requirements as specified in the brief, but do not provide legal advice or formal conformance certification.",
+    order: 5,
+  },
+
+  {
+    slug: "automation-workflow-systems",
+    name: "Automation & Marketing Systems",
+    shortName: "Automation & Marketing",
+    motif: "Automate",
+    summary: "Client acquisition campaigns, outreach operations, and marketing automations engineered to generate qualified B2B pipeline.",
+    overview: "We partner with your marketing and sales team to launch outreach campaigns, automate enquiry ingestion, and build reliable client acquisition pipelines.",
+    intro: [
+      "We design and deploy marketing outreach and client acquisition systems. From verified cold email campaigns and multi-channel outreach to automated WhatsApp enquiry routing and CRM synchronization, we help your business capture demand and close more clients with less friction.",
+      "Every workflow is built inside your existing toolchain and designed to give your team direct visibility over every lead, conversation, and deal stage.",
+    ],
+    groups: [
+      {
+        title: "Outreach & client acquisition",
+        intro: "Direct B2B campaigns engineered to book high-intent meetings.",
+        items: [
+          "Targeted cold outreach campaigns with verified prospect data",
+          "Automated follow-up cadences with smart reply detection",
+          "Personalized multi-step email and message sequences",
+          "Sender domain reputation management and deliverability setup",
+          "Lead status tracking: contacted, replied, booked, converted",
+        ],
+      },
+      {
+        title: "Inbound & enquiry automation",
+        intro: "Instant qualification and capture so no lead falls through the cracks.",
+        items: [
+          "WhatsApp business automated replies and instant routing",
+          "Instagram DM keyword triggers and story lead capture",
+          "Web contact form intake routed into a single operational sheet",
+          "Automatic enquiry qualification and calendar booking links",
+          "Instant alert notifications to your team on high-priority leads",
+        ],
+      },
+      {
+        title: "CRM & pipeline synchronization",
+        intro: "Keep your sales data clean, current, and actionable in real time.",
+        items: [
+          "Automatic contact sync across your CRM and marketing database",
+          "Lead scoring and priority routing to named account reps",
+          "Stage progression triggers and automated task generation",
+          "Periodic pipeline summary reports delivered to your inbox",
+        ],
+      },
+    ],
+    process: [
+      { step: "01", title: "Strategy & target profile", body: "We define your ideal client profile, campaign angles, and qualification criteria." },
+      { step: "02", title: "Setup & infrastructure", body: "We configure verified sender systems, response templates, and automated triggers." },
+      { step: "03", title: "Launch & outreach", body: "Campaigns go live with real-time tracking, response handling, and CRM synchronization." },
+      { step: "04", title: "Handover & optimization", body: "Full performance visibility and operational walkthrough for your sales team." },
+    ],
+    deliverables: [
+      "Live outreach and client acquisition campaigns",
+      "Automated WhatsApp and inbound qualification flows",
+      "CRM and pipeline sync setup",
+      "Verified response templates and message sequences",
+      "Full documentation and handover for your internal team",
+    ],
     order: 6,
   },
 ];

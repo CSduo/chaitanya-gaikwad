@@ -70,7 +70,9 @@ export function DataViewer({
 
   const cleanSheets = useMemo(() => {
     if (!workbook?.sheets?.length) return [];
-    return workbook.sheets.filter((s) => !/backup|scoring/i.test(s.name));
+    return workbook.sheets.filter(
+      (s) => !/backup|scoring|executive summary|exclusive summary/i.test(s.name)
+    );
   }, [workbook]);
 
   const sheet = cleanSheets[sheetIndex] ?? cleanSheets[0];

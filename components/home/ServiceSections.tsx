@@ -314,59 +314,55 @@ export function VideoSection({ service }: { service: Service }) {
 }
 
 /* ------------------------------------------------------------------ */
-/* 05 — AUTOMATION & WORKFLOW SYSTEMS                                  */
+/* 06 — AUTOMATION & MARKETING SYSTEMS                                 */
 /* ------------------------------------------------------------------ */
 
-const WORKFLOW = [
-  { k: "Input", d: "An enquiry, a lead list or a project stage opens." },
-  { k: "Route", d: "Information is written once into a single logged record." },
-  { k: "Rules", d: "Qualification, validation and exception rules are applied." },
-  { k: "Action", d: "Follow-ups, tasks and documents are generated." },
-  { k: "Track", d: "Status and replies are written back to the record." },
+const MARKETING_PILLARS = [
+  {
+    num: "01",
+    title: "Client Acquisition & Campaigns",
+    desc: "Targeted outreach, verified cold emailing, and bespoke marketing campaigns to generate qualified client meetings.",
+  },
+  {
+    num: "02",
+    title: "Inbound & Social Ingestion",
+    desc: "Automated WhatsApp and social DM response flows to capture, qualify, and route high-value briefs instantly.",
+  },
+  {
+    num: "03",
+    title: "Pipeline & CRM Synchronization",
+    desc: "Seamless lead handoff, automated follow-up cadences, and CRM tracking built to empower your sales team.",
+  },
 ];
 
 export function AutomationSection({ service }: { service: Service }) {
   return (
     <Chapter service={service} tone="surface">
-      <ol className="relative border border-rule bg-surface">
-        {WORKFLOW.map((s, i) => (
-          <li
-            key={s.k}
-            className="flex items-start gap-5 border-b border-rule px-6 py-5 last:border-b-0"
-          >
-            <span className="flex h-9 w-9 shrink-0 items-center justify-center border border-rule-strong bg-paper font-mono text-[0.625rem] text-ink-muted">
-              {String(i + 1).padStart(2, "0")}
+      <div className="grid gap-3 sm:grid-cols-3">
+        {MARKETING_PILLARS.map((p) => (
+          <div key={p.num} className="rounded-lg border border-rule bg-paper p-5 shadow-2xs">
+            <span className="font-mono text-[0.625rem] font-semibold uppercase tracking-[0.14em] text-accent">
+              {p.num} · Acquisition
             </span>
-            <div className="min-w-0">
-              <h4 className="font-mono text-[0.8125rem] uppercase tracking-[0.16em] text-ink">
-                {s.k}
-              </h4>
-              <p className="mt-1.5 text-sm leading-relaxed text-ink-muted">{s.d}</p>
-            </div>
-          </li>
-        ))}
-      </ol>
-
-      <div className="mt-8 grid gap-px border border-rule bg-rule sm:grid-cols-2">
-        {service.groups.slice(0, 4).map((g) => (
-          <div key={g.title} className="bg-surface p-5">
-            <h4 className="label mb-3">{g.title}</h4>
-            <ul className="space-y-1.5">
-              {g.items.slice(0, 3).map((item) => (
-                <li key={item} className="text-sm leading-snug text-ink-muted">
-                  {item}
-                </li>
-              ))}
-            </ul>
+            <h4 className="mt-2 text-sm font-semibold text-ink">{p.title}</h4>
+            <p className="mt-2 text-xs leading-relaxed text-ink-muted">{p.desc}</p>
           </div>
         ))}
       </div>
-
-      {service.boundary ? (
-        <p className="mt-6 border-l border-accent/40 bg-accent-wash px-5 py-4 text-sm leading-relaxed text-ink-soft">
-          {service.boundary}
-        </p>
-      ) : null}
+      <div className="mt-6 flex flex-wrap items-center justify-between gap-4 rounded-lg border border-rule/70 bg-paper-deep p-4 sm:p-5">
+        <div>
+          <p className="text-sm font-semibold text-ink">Looking to scale your outreach and client acquisition?</p>
+          <p className="mt-0.5 text-xs text-ink-muted">
+            We partner with your team to design campaigns, build prospect pipelines, and secure new accounts.
+          </p>
+        </div>
+        <a
+          href="/contact"
+          className="inline-flex min-h-[38px] items-center rounded-xs bg-ink px-4 text-xs font-semibold text-paper transition-colors hover:bg-accent"
+        >
+          Discuss a campaign &rarr;
+        </a>
+      </div>
     </Chapter>
   );
 }

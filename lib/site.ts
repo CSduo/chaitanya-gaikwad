@@ -140,8 +140,8 @@ export const PRIMARY_NAV: NavItem[] = [
       { label: "Growth, Marketing & B2B", href: "/services/growth-marketing-b2b" },
       { label: "3D Visualisation & Image Production", href: "/services/visualisation-image-production" },
       { label: "Video, AI Film & Editing", href: "/services/video-ai-film-editing" },
-      { label: "Automation & Workflow Systems", href: "/services/automation-workflow-systems" },
       { label: "Website Design & Development", href: "/services/website-design-development" },
+      { label: "Automation & Marketing Systems", href: "/services/automation-workflow-systems" },
     ],
   },
   {

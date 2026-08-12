@@ -93,7 +93,7 @@ function VideoScene({
           }}
           onPause={handleVideoPause}
           onEnded={handleVideoPause}
-          className="h-full w-full object-contain bg-black"
+          className="h-full w-full object-cover bg-black"
         />
       ) : (
         <>

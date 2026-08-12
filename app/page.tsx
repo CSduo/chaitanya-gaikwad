@@ -14,7 +14,6 @@ import {
   AutomationSection,
   WebsiteSection,
 } from "@/components/home/ServiceSections";
-import { ProductionTrack } from "@/components/home/ProductionTrack";
 import { LocationsPanel } from "@/components/home/LocationsPanel";
 import { ProjectCTA } from "@/components/site/ProjectCTA";
 import { SERVICES, getService } from "@/lib/services";
@@ -239,29 +238,13 @@ export default function HomePage() {
       <VisualisationSection service={visualisation} />
       <SectionDivider index={4} label="Film" className="py-1" />
       <VideoSection service={video} />
-      <SectionDivider index={5} label="Automate" className="py-1" />
-      <AutomationSection service={automation} />
-      <SectionDivider index={6} label="Build" className="py-1" />
+      <SectionDivider index={5} label="Build" className="py-1" />
       <WebsiteSection service={web} />
+      <SectionDivider index={6} label="Automate" className="py-1" />
+      <AutomationSection service={automation} />
 
       {/* ============================================================
-          03 — HOW WE WORK
-         ============================================================ */}
-      <Section tone="surface" bordered>
-        <Container width="page">
-          <SectionHeading
-            eyebrow="How we work"
-            title="One process, whatever the output."
-            intro={HOME_COPY.howWeWorkIntro}
-          />
-          <div className="mt-14">
-            <ProductionTrack />
-          </div>
-        </Container>
-      </Section>
-
-      {/* ============================================================
-          04 — ENGAGEMENT MODEL
+          03 — ENGAGEMENT MODEL
          ============================================================ */}
       <Section bordered>
         <Container width="page">
