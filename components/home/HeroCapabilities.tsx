@@ -4,8 +4,6 @@ import { useState } from "react";
 import Image from "next/image";
 import { CadScene, DataScene } from "./scenes";
 import { useAutoAdvance, useReducedMotion } from "./hooks";
-import { featuredVisuals } from "@/lib/visuals";
-import { featuredVideos } from "@/lib/portfolio";
 
 /* ------------------------------------------------------------------ */
 /* Scenes unique to the hero                                           */
