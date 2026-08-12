@@ -68,7 +68,12 @@ export function DataViewer({
     };
   }, [dataUrl]);
 
-  const sheet = workbook?.sheets?.[sheetIndex];
+  const cleanSheets = useMemo(() => {
+    if (!workbook?.sheets?.length) return [];
+    return workbook.sheets.filter((s) => !/backup|scoring/i.test(s.name));
+  }, [workbook]);
+
+  const sheet = cleanSheets[sheetIndex] ?? cleanSheets[0];
 
   const { headers, rows } = useMemo(() => {
     if (!sheet?.data?.length) return { headers: [] as string[], rows: [] as (string | number | null)[][] };
@@ -99,15 +104,15 @@ export function DataViewer({
 
   if (status === "loading") {
     return (
-      <div className="flex min-h-64 items-center justify-center border border-rule bg-surface">
+      <div className="flex min-h-64 items-center justify-center rounded-lg border border-rule bg-surface">
         <p className="label">Loading workbook…</p>
       </div>
     );
   }
 
-  if (status === "error" || !workbook?.sheets?.length) {
+  if (status === "error" || !cleanSheets.length) {
     return (
-      <div className="border border-rule bg-surface p-8">
+      <div className="rounded-lg border border-rule bg-surface p-8">
         <p className="text-base text-ink">This dataset could not be loaded.</p>
         <p className="mt-2 text-sm text-ink-muted">
           The redacted portfolio copy is still available to download.
@@ -124,14 +129,14 @@ export function DataViewer({
   }
 
   return (
-    <div className="border border-rule bg-surface">
-      {/* Sheet tabs */}
+    <div className="rounded-lg border border-rule bg-surface overflow-hidden shadow-2xs">
+      {/* Sheet tabs - horizontal scrollable on mobile */}
       <div
         role="tablist"
         aria-label={`Sheets in ${title}`}
-        className="flex flex-wrap gap-px border-b border-rule bg-rule"
+        className="flex items-center gap-1.5 overflow-x-auto border-b border-rule bg-paper-deep/60 p-2 sm:p-2.5 scrollbar-none"
       >
-        {workbook.sheets.map((s, i) => {
+        {cleanSheets.map((s, i) => {
           const on = i === sheetIndex;
           return (
             <button
@@ -143,15 +148,17 @@ export function DataViewer({
               onKeyDown={(e) => {
                 if (e.key === "ArrowRight") {
                   e.preventDefault();
-                  selectSheet((i + 1) % workbook.sheets.length);
+                  selectSheet((i + 1) % cleanSheets.length);
                 }
                 if (e.key === "ArrowLeft") {
                   e.preventDefault();
-                  selectSheet((i - 1 + workbook.sheets.length) % workbook.sheets.length);
+                  selectSheet((i - 1 + cleanSheets.length) % cleanSheets.length);
                 }
               }}
-              className={`min-h-[44px] px-4 py-2 text-xs tracking-tight transition-colors ${
-                on ? "bg-ink text-paper" : "bg-surface text-ink-muted hover:bg-paper-deep"
+              className={`min-h-[38px] whitespace-nowrap rounded-md px-3.5 py-1.5 text-xs font-medium tracking-tight transition-all shrink-0 ${
+                on
+                  ? "bg-ink text-paper shadow-xs"
+                  : "border border-rule bg-paper text-ink-muted hover:border-ink/50 hover:text-ink"
               }`}
             >
               {s.name}

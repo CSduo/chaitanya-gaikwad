@@ -184,36 +184,52 @@ export default function HomePage() {
       </section>
 
       {/* ============================================================
-          02 — WHAT WE DO: six service chapters, each with its proof
+          02 — WHAT WE DO: six core services in clean structured boxes
          ============================================================ */}
       <Container width="page" className="scroll-mt-16 pt-16 sm:pt-20" id="capabilities">
-        <div className="flex flex-wrap items-baseline justify-between gap-x-8 gap-y-3">
-          <h2 className="display text-[1.75rem] sm:text-4xl">What we do.</h2>
-          <p className="font-mono text-[0.6875rem] uppercase tracking-[0.2em] text-ink-faint">
-            {HOME_COPY.eyebrow}
+        <div className="max-w-3xl">
+          <h2 className="display text-3xl sm:text-4xl lg:text-5xl leading-tight">
+            We provide six services given below.
+          </h2>
+          <p className="mt-4 text-base sm:text-lg text-ink-soft leading-relaxed">
+            Select any service below to examine dedicated production workflows and published deliverables.
           </p>
         </div>
-        <p className="mt-5 max-w-2xl text-[0.9375rem] leading-relaxed text-ink-soft sm:text-base">
-          {HOME_COPY.capabilitiesIntro}
-        </p>
-        <ul className="mt-7 grid gap-px border border-rule bg-rule sm:mt-8 sm:grid-cols-2 lg:grid-cols-3">
+
+        <div className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {SERVICES.map((s) => (
-            <li key={s.slug} className="bg-paper">
-              <a
-                href={`#service-${s.slug}`}
-                className="flex min-h-[72px] items-center justify-between gap-4 px-5 py-4 transition-colors hover:bg-paper-deep"
-              >
-                <span className="min-w-0">
-                  <span className="label block">{`0${s.order} · ${s.motif}`}</span>
-                  <span className="mt-1 block text-sm leading-snug text-ink">{s.name}</span>
+            <Link
+              key={s.slug}
+              href={`/services/${s.slug}`}
+              className="group relative flex flex-col justify-between rounded-lg border border-rule bg-surface p-5 shadow-2xs transition-all hover:border-ink/60 hover:bg-paper-deep hover:shadow-sm"
+            >
+              <div>
+                <div className="flex items-center justify-between">
+                  <span className="font-mono text-[0.625rem] uppercase tracking-[0.14em] text-accent font-semibold">
+                    {`0${s.order} · ${s.motif}`}
+                  </span>
+                  <span className="text-xs text-ink-muted transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-ink">
+                    &#8599;
+                  </span>
+                </div>
+                <h3 className="mt-2 text-base font-semibold text-ink transition-colors group-hover:text-accent">
+                  {s.name}
+                </h3>
+                <p className="mt-1.5 text-xs leading-relaxed text-ink-muted line-clamp-2">
+                  {s.summary}
+                </p>
+              </div>
+              <div className="mt-4 flex items-center justify-between border-t border-rule/60 pt-2.5">
+                <span className="text-[0.6875rem] font-medium text-ink-soft group-hover:text-ink">
+                  Explore {s.shortName}
                 </span>
-                <span aria-hidden="true" className="shrink-0 text-ink-faint">
-                  &darr;
+                <span className="text-xs text-ink-faint transition-transform group-hover:translate-x-1 group-hover:text-ink">
+                  &rarr;
                 </span>
-              </a>
-            </li>
+              </div>
+            </Link>
           ))}
-        </ul>
+        </div>
       </Container>
 
       <CadSection service={cad} />

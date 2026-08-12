@@ -5,7 +5,6 @@ import {
   Container,
   Eyebrow,
   Breadcrumbs,
-  CapabilityList,
   JsonLd,
 } from "@/components/ui/primitives";
 import { DataViewer } from "@/components/media/DataViewer";
@@ -78,41 +77,33 @@ export default async function ResearchPage({
             <p className="mt-6 text-lg leading-relaxed text-ink-soft">{workbook.summary}</p>
           </div>
 
-          <dl className="mt-10 grid gap-px border border-rule bg-rule sm:grid-cols-2 lg:grid-cols-4">
-            <div className="bg-paper px-5 py-5">
-              <dt className="label">Region</dt>
-              <dd className="mt-2 text-sm text-ink">{workbook.region}</dd>
+          <dl className="mt-8 grid grid-cols-2 gap-2 sm:gap-3 lg:grid-cols-4">
+            <div className="rounded-lg border border-rule bg-surface p-3.5 sm:p-4 shadow-2xs">
+              <dt className="label text-[0.625rem]">Region</dt>
+              <dd className="mt-1 text-sm font-semibold text-ink">{workbook.region}</dd>
             </div>
-            <div className="bg-paper px-5 py-5">
-              <dt className="label">Sheets</dt>
-              <dd className="mt-2 text-sm text-ink">{workbook.sheetCount}</dd>
+            <div className="rounded-lg border border-rule bg-surface p-3.5 sm:p-4 shadow-2xs">
+              <dt className="label text-[0.625rem]">Focus Area</dt>
+              <dd className="mt-1 text-sm font-semibold text-ink truncate">{workbook.tags[0]}</dd>
             </div>
-            <div className="bg-paper px-5 py-5">
-              <dt className="label">Focus</dt>
-              <dd className="mt-2 text-sm text-ink">{workbook.tags[0]}</dd>
+            <div className="rounded-lg border border-rule bg-surface p-3.5 sm:p-4 shadow-2xs">
+              <dt className="label text-[0.625rem]">Intelligence Level</dt>
+              <dd className="mt-1 text-sm font-semibold text-ink">Verified B2B</dd>
             </div>
-            <div className="bg-paper px-5 py-5">
-              <dt className="label">Published copy</dt>
-              <dd className="mt-2 text-sm text-ink">Redacted</dd>
+            <div className="rounded-lg border border-rule bg-surface p-3.5 sm:p-4 shadow-2xs">
+              <dt className="label text-[0.625rem]">Published Copy</dt>
+              <dd className="mt-1 text-sm font-semibold text-ink">Redacted</dd>
             </div>
           </dl>
         </Container>
       </section>
 
-      <Container width="wide" className="py-14">
-        <div className="mb-8 grid gap-10 lg:grid-cols-12">
-          <div className="lg:col-span-8">
-            <h2 className="display text-2xl">Explore the workbook</h2>
-            <p className="mt-3 max-w-2xl text-sm leading-relaxed text-ink-muted">
-              Every sheet from the delivered workbook is below. Search filters the whole
-              sheet, not just the visible page. Contact details were removed before
-              publication and are not present in this copy.
-            </p>
-          </div>
-          <div className="lg:col-span-4">
-            <h3 className="label mb-3">Sheets</h3>
-            <CapabilityList items={workbook.sheetNames} />
-          </div>
+      <Container width="wide" className="py-10 sm:py-14">
+        <div className="mb-6 max-w-3xl">
+          <h2 className="display text-2xl sm:text-3xl">Explore the workbook</h2>
+          <p className="mt-2 text-sm leading-relaxed text-ink-muted">
+            Search filters the whole dataset. Contact details are redacted in this published copy.
+          </p>
         </div>
 
         <DataViewer

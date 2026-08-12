@@ -151,51 +151,50 @@ function VideoScene({
 }
 
 const AUTOMATION_SERVICES = [
-  { num: "01", title: "WhatsApp Automation", desc: "Instant response flows, lead captures & live CRM handoff" },
-  { num: "02", title: "Instagram DM & Lead Automation", desc: "Auto-reply to keywords, comments & story mentions" },
-  { num: "03", title: "Email Sequences & Cold Outreach", desc: "Multi-step inbound nurturing & verified B2B email campaigns" },
-  { num: "04", title: "Lead Routing & CRM Sync", desc: "Automated qualification, calendar booking & pipeline tracking" },
-  { num: "05", title: "Marketing & Growth Pipelines", desc: "End-to-end client acquisition systems running 24/7" },
+  { num: "01", title: "WhatsApp Automation", desc: "Instant reply flows & live CRM sync" },
+  { num: "02", title: "Instagram DM & Lead Gen", desc: "Keyword triggers, comments & story replies" },
+  { num: "03", title: "Email Outreach & Campaigns", desc: "Verified cold outreach & client nurturing" },
+  { num: "04", title: "CRM Sync & Lead Routing", desc: "Auto qualification & booking pipeline" },
 ];
 
 function AutomationScene({ active }: { active: boolean }) {
   const reduced = useReducedMotion();
   const on = active || reduced;
   return (
-    <div className="flex h-full w-full flex-col justify-center bg-paper-deep px-5 py-6 sm:px-8">
-      <div className="flex items-center justify-between border-b border-rule pb-3">
-        <p className="label">Automation &amp; Marketing Systems</p>
+    <div className="flex h-full w-full flex-col justify-between bg-paper-deep p-3.5 sm:p-6 select-none overflow-hidden">
+      <div className="flex items-center justify-between border-b border-rule pb-2 sm:pb-2.5">
+        <p className="label text-[0.625rem] sm:text-xs">Automation &amp; Marketing</p>
         <span className="font-mono text-[0.5625rem] uppercase tracking-[0.12em] text-accent font-semibold">
-          Active Pipelines
+          Active Systems
         </span>
       </div>
-      <ol className="mt-3 space-y-2">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-1.5 sm:gap-2 my-auto">
         {AUTOMATION_SERVICES.map((step, i) => (
-          <li
+          <div
             key={step.title}
-            className="flex items-start gap-3 rounded-lg border border-rule/60 bg-paper px-3 py-2 transition-all duration-300"
+            className="flex items-center gap-2.5 rounded-md border border-rule/70 bg-paper p-2 sm:p-2.5 shadow-2xs transition-all duration-300"
             style={{
               opacity: on ? 1 : 0.2,
               transform: on ? "translateY(0)" : "translateY(4px)",
-              transitionDelay: reduced ? "0ms" : `${i * 90}ms`,
+              transitionDelay: reduced ? "0ms" : `${i * 80}ms`,
             }}
           >
-            <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded bg-ink font-mono text-[0.625rem] font-medium text-paper">
+            <span className="flex h-5 w-5 sm:h-6 sm:w-6 shrink-0 items-center justify-center rounded bg-ink font-mono text-[0.5625rem] sm:text-[0.625rem] font-medium text-paper">
               {step.num}
             </span>
             <div className="min-w-0">
-              <span className="block text-xs font-semibold text-ink leading-tight">
+              <span className="block truncate text-[0.6875rem] sm:text-xs font-semibold text-ink leading-tight">
                 {step.title}
               </span>
-              <span className="block text-[0.6875rem] text-ink-muted leading-tight mt-0.5">
+              <span className="block truncate text-[0.625rem] sm:text-[0.6875rem] text-ink-muted leading-tight mt-0.5">
                 {step.desc}
               </span>
             </div>
-          </li>
+          </div>
         ))}
-      </ol>
-      <p className="mt-3 border-t border-rule pt-2 font-mono text-[0.625rem] leading-relaxed text-ink-faint">
-        Custom automations engineered to drive leads, engagement, and revenue for your business.
+      </div>
+      <p className="border-t border-rule pt-1.5 sm:pt-2 font-mono text-[0.5625rem] sm:text-[0.625rem] leading-tight text-ink-faint">
+        Custom automations engineered to drive leads &amp; revenue 24/7.
       </p>
     </div>
   );
