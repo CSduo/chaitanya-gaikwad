@@ -101,13 +101,12 @@ function Chapter({
 /* 01 — CAD & TECHNICAL PRODUCTION                                     */
 /* ------------------------------------------------------------------ */
 
-const CAD_STAGES = ["Input", "Draft", "QA", "Handoff"];
+const CAD_STAGES = ["Draft", "QA", "Revisions", "Handoff"];
 
 export function CadSection({ service }: { service: Service }) {
-  const inputs = CAD_DRAWINGS.filter((d) => d.role === "input");
   const outputs = CAD_DRAWINGS.filter((d) => d.role === "output");
-  // Curated selection here; the service page carries all 15 sheets.
-  const items: LightboxItem[] = CAD_DRAWINGS.filter((d) => d.role === "output")
+  // Curated selection; the service page carries the full set.
+  const items: LightboxItem[] = outputs
     .slice(0, 8)
     .map((d) => ({
       src: d.src,
@@ -118,38 +117,9 @@ export function CadSection({ service }: { service: Service }) {
       caption: d.category,
     }));
 
+
   return (
     <Chapter service={service} tone="light">
-      {/* Input to output, from one real engagement */}
-      <div className="grid gap-3 sm:grid-cols-2 sm:gap-4">
-        <figure className="border border-rule bg-paper p-5">
-          <figcaption className="label mb-4">Supplied by the client</figcaption>
-          <div className="relative aspect-[4/3] overflow-hidden border border-rule bg-paper-deep">
-            <Image
-              src="/media/cad/mb-render-input.jpg"
-              alt="Client-supplied 3D render used as design reference"
-              fill
-              loading="lazy"
-              sizes="(min-width: 640px) 340px, 90vw"
-              className="object-cover"
-            />
-          </div>
-        </figure>
-        <figure className="border border-rule bg-paper p-5">
-          <figcaption className="label mb-4">Returned as editable CAD</figcaption>
-          <div className="relative aspect-[4/3] overflow-hidden border border-rule bg-paper-deep">
-            <Image
-              src="/media/cad/mb-plan.png"
-              alt="Drafted general arrangement plan produced from the reference"
-              fill
-              loading="lazy"
-              sizes="(min-width: 640px) 340px, 90vw"
-              className="object-contain"
-            />
-          </div>
-        </figure>
-      </div>
-
       <ol className="mt-px grid grid-cols-4 gap-px border border-rule bg-rule">
         {CAD_STAGES.map((s, i) => (
           <li key={s} className="bg-paper px-3 py-3">
@@ -162,7 +132,7 @@ export function CadSection({ service }: { service: Service }) {
       <div className="mt-10">
         <div className="mb-4 flex flex-wrap items-baseline justify-between gap-3">
           <h4 className="label">
-            Drawing set — {outputs.length} drawings, {inputs.length} client references
+            Drawing set — {outputs.length} produced drawings
           </h4>
           <p className="meta">Select any drawing to open and zoom</p>
         </div>

@@ -26,12 +26,14 @@ function CadProof() {
   const [selectedProject, setSelectedProject] = useState<string | null>(null);
   const [activeModalIndex, setActiveModalIndex] = useState<number | null>(null);
 
-  const filteredDrawings = selectedProject
-    ? CAD_DRAWINGS.filter((d) => d.project === selectedProject)
-    : CAD_DRAWINGS;
+  // Only show produced drawings — client inputs are never displayed
+  const OUTPUT_DRAWINGS = CAD_DRAWINGS.filter((d) => d.role === "output");
 
-  const outputs = CAD_DRAWINGS.filter((d) => d.role === "output").length;
-  const inputs = CAD_DRAWINGS.length - outputs;
+  const filteredDrawings = selectedProject
+    ? OUTPUT_DRAWINGS.filter((d) => d.project === selectedProject)
+    : OUTPUT_DRAWINGS;
+
+  const outputCount = OUTPUT_DRAWINGS.length;
 
   return (
     <div id="drawings" className="scroll-mt-16 space-y-6">
@@ -47,10 +49,11 @@ function CadProof() {
               : "border border-rule bg-surface text-ink-muted hover:border-ink hover:text-ink"
           }`}
         >
-          All Drawings ({CAD_DRAWINGS.length})
+          All Drawings ({outputCount})
         </button>
         {CAD_PROJECTS.map((p) => {
-          const count = CAD_DRAWINGS.filter((d) => d.project === p.id).length;
+          const count = OUTPUT_DRAWINGS.filter((d) => d.project === p.id).length;
+          if (count === 0) return null;
           return (
             <button
               key={p.id}
@@ -71,7 +74,7 @@ function CadProof() {
 
       <div className="flex flex-wrap items-baseline justify-between gap-3 border-b border-rule pb-3">
         <p className="meta">
-          Showing {filteredDrawings.length} sheets · {outputs} produced drawings · {inputs} client inputs · select any drawing to inspect & zoom
+          Showing {filteredDrawings.length} of {outputCount} drawings · select any to inspect & zoom
         </p>
       </div>
 
