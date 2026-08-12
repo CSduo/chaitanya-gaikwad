@@ -201,23 +201,68 @@ function AutomationScene({ active }: { active: boolean }) {
 }
 
 function WebScene() {
+  const websites = [
+    {
+      name: "Xiyora — Export Brand Website",
+      tag: "Luxury Commerce & Export",
+      host: "xiyora.vercel.app",
+      href: "https://xiyora.vercel.app",
+    },
+    {
+      name: "Anvikshiki Journal Platform",
+      tag: "Academic Publishing Engine",
+      host: "anvikshikijournal.in",
+      href: "https://anvikshikijournal.in",
+    },
+    {
+      name: "XIYÀTO Studio Platform",
+      tag: "Dual-Hub Agency Architecture",
+      host: "xiyato.uk",
+      href: "https://xiyato.uk",
+    },
+  ];
+
   return (
-    <div className="flex h-full w-full flex-col justify-center bg-paper-deep px-6 py-8 sm:px-10">
-      <p className="label mb-5">Live builds</p>
-      <ul className="space-y-px bg-rule">
-        {[
-          { name: "Export brand website", host: "xiyora.vercel.app" },
-          { name: "Academic journal platform", host: "anvikshikijournal.in" },
-          { name: "XIYÀTO studio site", host: "xiyato.uk" },
-        ].map((s) => (
-          <li key={s.host} className="flex items-center justify-between gap-4 bg-paper px-4 py-3.5">
-            <span className="min-w-0 truncate text-sm text-ink">{s.name}</span>
-            <span className="shrink-0 font-mono text-[0.625rem] text-ink-faint">{s.host}</span>
-          </li>
+    <div className="flex h-full w-full flex-col justify-between bg-paper-deep p-4 sm:p-7 select-none overflow-hidden">
+      <div className="flex items-center justify-between border-b border-rule pb-2.5">
+        <p className="label text-[0.625rem] sm:text-xs">Websites We Have Developed</p>
+        <span className="font-mono text-[0.5625rem] uppercase tracking-[0.12em] text-accent font-semibold flex items-center gap-1.5">
+          <span className="h-1.5 w-1.5 rounded-full bg-accent animate-pulse" />
+          Live &amp; Deployed
+        </span>
+      </div>
+
+      <div className="my-auto grid grid-cols-1 gap-2 sm:gap-2.5">
+        {websites.map((s) => (
+          <a
+            key={s.host}
+            href={s.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group flex items-center justify-between gap-3 rounded-lg border border-rule/70 bg-paper p-3 sm:p-3.5 shadow-2xs transition-all hover:border-ink/60 hover:bg-paper-deep hover:shadow-xs cursor-pointer"
+          >
+            <div className="min-w-0">
+              <div className="flex items-center gap-2">
+                <span className="block truncate text-xs sm:text-sm font-semibold text-ink group-hover:text-accent transition-colors">
+                  {s.name}
+                </span>
+                <span className="hidden sm:inline-block rounded bg-paper-deep px-1.5 py-0.5 font-mono text-[0.5625rem] text-ink-muted">
+                  {s.tag}
+                </span>
+              </div>
+              <span className="block truncate font-mono text-[0.625rem] text-ink-muted group-hover:text-ink mt-0.5">
+                {s.host}
+              </span>
+            </div>
+            <div className="flex h-7 w-7 sm:h-8 sm:w-8 shrink-0 items-center justify-center rounded-md border border-rule bg-paper-deep text-ink-muted transition-all group-hover:border-ink group-hover:bg-ink group-hover:text-paper">
+              <span className="text-xs">&#8599;</span>
+            </div>
+          </a>
         ))}
-      </ul>
-      <p className="mt-6 border-t border-rule pt-4 font-mono text-[0.625rem] leading-relaxed text-ink-faint">
-        Responsive front-end builds, deployed and maintained.
+      </div>
+
+      <p className="border-t border-rule pt-2 font-mono text-[0.5625rem] sm:text-[0.625rem] leading-tight text-ink-faint">
+        Custom Next.js &amp; front-end builds engineered for performance and deployed to production.
       </p>
     </div>
   );
@@ -232,8 +277,8 @@ const CAPABILITIES = [
   { n: "02", motif: "Grow", label: "Growth & B2B", anchor: "service-growth-marketing-b2b", note: "Markets mapped, targets qualified, every claim verified." },
   { n: "03", motif: "Visualise", label: "Visualisation", anchor: "service-visualisation-image-production", note: "Photorealistic 3D interior, exterior, and product renders." },
   { n: "04", motif: "Film", label: "Video & AI Film", anchor: "service-video-ai-film-editing", note: "Cinematic commercial films and AI-powered video editing." },
-  { n: "05", motif: "Automate", label: "Automation", anchor: "service-automation-workflow-systems", note: "WhatsApp, Instagram, and email automations that convert leads." },
-  { n: "06", motif: "Build", label: "Websites", anchor: "service-website-design-development", note: "High-performance digital platforms deployed on your domain." },
+  { n: "05", motif: "Build", label: "Websites", anchor: "service-website-design-development", note: "High-performance digital platforms deployed on your domain." },
+  { n: "06", motif: "Automate", label: "Automation", anchor: "service-automation-workflow-systems", note: "Outreach campaigns and marketing pipelines that convert leads." },
 ];
 
 export function HeroCapabilities() {
@@ -279,10 +324,10 @@ export function HeroCapabilities() {
           />
         </div>
         <div className={index === 4 ? "h-full w-full" : "hidden"}>
-          <AutomationScene active={index === 4} />
+          <WebScene />
         </div>
         <div className={index === 5 ? "h-full w-full" : "hidden"}>
-          <WebScene />
+          <AutomationScene active={index === 5} />
         </div>
       </div>
 
