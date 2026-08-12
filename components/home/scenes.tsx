@@ -5,128 +5,43 @@ import Image from "next/image";
 import { useReducedMotion } from "./hooks";
 
 /* ------------------------------------------------------------------ */
-/* SCENE 01 — CAD: client reference ↔ drafted output                    */
+/* SCENE 01 — CAD: Precision technical drawing                          */
 /* ------------------------------------------------------------------ */
 
-/**
- * Pointer-driven comparison between the reference a client supplied and the
- * drawing produced from it. Both are genuine assets from the same engagement.
- * Keyboard-operable via a real range input, so the interaction is not
- * pointer-only.
- */
 export function CadScene({ active }: { active: boolean }) {
-  const reduced = useReducedMotion();
-  const [pos, setPos] = useState(58);
-  const frameRef = useRef<HTMLDivElement>(null);
-  const dragging = useRef(false);
-
-  // A slow settle on first reveal hints that the divider moves.
-  useEffect(() => {
-    if (!active || reduced) return;
-    let raf = 0;
-    const from = 78;
-    const to = 52;
-    const start = performance.now();
-    const tick = (now: number) => {
-      const t = Math.min(1, (now - start) / 1100);
-      const eased = 1 - Math.pow(1 - t, 3);
-      setPos(from + (to - from) * eased);
-      if (t < 1) raf = requestAnimationFrame(tick);
-    };
-    raf = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(raf);
-  }, [active, reduced]);
-
-  function setFromClientX(clientX: number) {
-    const el = frameRef.current;
-    if (!el) return;
-    const r = el.getBoundingClientRect();
-    setPos(Math.min(100, Math.max(0, ((clientX - r.left) / r.width) * 100)));
-  }
-
   return (
-    <div className="relative h-full w-full select-none">
-      <div
-        ref={frameRef}
-        className="relative h-full w-full overflow-hidden bg-ink"
-        onPointerMove={(e) => {
-          if (e.pointerType === "mouse" || dragging.current) setFromClientX(e.clientX);
-        }}
-        onPointerDown={(e) => {
-          dragging.current = true;
-          setFromClientX(e.clientX);
-        }}
-        onPointerUp={() => (dragging.current = false)}
-        onPointerLeave={() => (dragging.current = false)}
-      >
-        {/* Output — the drafted drawing sits underneath */}
-        <Image
-          src="/media/cad/mb-plan.png"
-          alt="Drafted general arrangement plan produced from the client's reference material"
-          fill
-          priority
-          sizes="(min-width: 1024px) 760px, 100vw"
-          className="object-cover object-center"
-        />
+    <div className="relative h-full w-full select-none overflow-hidden bg-surface">
+      {/* High-resolution produced drawing sheet */}
+      <Image
+        src="/media/cad/mb-plan.png"
+        alt="Architectural general arrangement technical drawing"
+        fill
+        priority={active}
+        sizes="(min-width: 1024px) 760px, 100vw"
+        className="object-contain p-4"
+      />
 
-        {/* Input — the client's render, clipped to the divider */}
-        <div
-          className="absolute inset-0 overflow-hidden"
-          style={{ clipPath: `inset(0 ${100 - pos}% 0 0)` }}
-        >
-          <Image
-            src="/media/cad/mb-render-input.jpg"
-            alt="Client-supplied 3D visual render used as design reference"
-            fill
-            priority
-            sizes="(min-width: 1024px) 760px, 100vw"
-            className="object-cover object-center"
-          />
-        </div>
-
-        {/* Divider */}
-        <div
-          className="pointer-events-none absolute inset-y-0 w-px bg-paper/90"
-          style={{ left: `${pos}%` }}
-        >
-          <span className="absolute left-1/2 top-1/2 flex h-9 w-9 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-paper/70 bg-ink/75 text-paper">
-            <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor" aria-hidden="true">
-              <path d="M9 6 3 12l6 6V6zm6 0v12l6-6-6-6z" />
-            </svg>
-          </span>
-        </div>
-
-        {/* Corner labels */}
-        <span className="pointer-events-none absolute left-4 top-4 bg-ink/80 px-2.5 py-1 font-mono text-[0.625rem] uppercase tracking-[0.14em] text-paper">
-          Client reference
+      {/* Top technical badges */}
+      <div className="pointer-events-none absolute left-4 top-4 flex items-center gap-2">
+        <span className="bg-ink px-2.5 py-1 font-mono text-[0.625rem] uppercase tracking-[0.14em] text-paper">
+          Technical Drawing
         </span>
-        <span className="pointer-events-none absolute right-4 top-4 bg-ink/80 px-2.5 py-1 font-mono text-[0.625rem] uppercase tracking-[0.14em] text-paper">
-          Editable CAD
+        <span className="hidden sm:inline-block bg-paper/90 border border-rule px-2 py-0.5 font-mono text-[0.5625rem] text-ink-muted">
+          Master Bathroom · GA Plan
         </span>
       </div>
 
-      {/* Accessible control — also the touch affordance */}
-      <label className="absolute inset-x-4 bottom-3 flex items-center gap-3">
-        <span className="sr-only">
-          Reveal the drafted drawing beneath the client reference
-        </span>
-        <input
-          type="range"
-          min={0}
-          max={100}
-          value={Math.round(pos)}
-          onChange={(e) => setPos(Number(e.target.value))}
-          className="h-11 w-full cursor-ew-resize appearance-none bg-transparent
-            [&::-webkit-slider-runnable-track]:h-px [&::-webkit-slider-runnable-track]:bg-paper/30
-            [&::-webkit-slider-thumb]:mt-[-12px] [&::-webkit-slider-thumb]:h-6 [&::-webkit-slider-thumb]:w-6
-            [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:rounded-full
-            [&::-webkit-slider-thumb]:border [&::-webkit-slider-thumb]:border-paper/70
-            [&::-webkit-slider-thumb]:bg-ink
-            [&::-moz-range-track]:h-px [&::-moz-range-track]:bg-paper/30
-            [&::-moz-range-thumb]:h-6 [&::-moz-range-thumb]:w-6 [&::-moz-range-thumb]:rounded-full
-            [&::-moz-range-thumb]:border [&::-moz-range-thumb]:border-paper/70 [&::-moz-range-thumb]:bg-ink"
-        />
-      </label>
+      {/* Bottom info bar */}
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-paper via-paper/80 to-transparent p-4 pt-12">
+        <div className="flex items-end justify-between gap-4">
+          <p className="text-xs text-ink-soft">
+            Full architectural drawing package · 8344 × 5894 px
+          </p>
+          <span className="font-mono text-[0.625rem] uppercase tracking-[0.12em] text-ink-muted">
+            Sheet 01
+          </span>
+        </div>
+      </div>
     </div>
   );
 }

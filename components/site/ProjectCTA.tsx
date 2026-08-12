@@ -49,40 +49,59 @@ export function ProjectCTA({
             </Link>
           </div>
 
-          <dl className="mt-10 flex flex-wrap gap-x-10 gap-y-4">
-            <div>
-              <dt className="label text-paper/45">United Kingdom</dt>
-              <dd className="mt-1">
-                <a
-                  href={WHATSAPP.uk.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex min-h-[44px] items-center gap-1.5 text-sm text-paper/85 underline decoration-paper/30 underline-offset-4 transition-colors hover:decoration-paper"
-                >
-                  {WHATSAPP.uk.number}
-                  <span aria-hidden="true" className="text-xs">
-                    &#8599;
+          <div className="mt-10 grid grid-cols-1 gap-3 sm:grid-cols-2">
+            <a
+              href={WHATSAPP.uk.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex items-center justify-between rounded-lg border border-paper/20 bg-paper/5 p-3.5 shadow-xs backdrop-blur-xs transition-all hover:border-emerald-400/60 hover:bg-emerald-500/10 hover:shadow-sm"
+            >
+              <div className="flex items-center gap-3 min-w-0">
+                <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-emerald-500/20 text-emerald-400 transition-transform group-hover:scale-105">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                    <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766 0-3.18-2.586-5.771-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.312.045-.634.076-1.928-.475-1.524-.651-2.502-2.193-2.578-2.296-.076-.103-.618-.823-.618-1.569 0-.746.392-1.112.53-1.264.14-.152.304-.19.405-.19.102 0 .204.002.293.006.093.004.218-.035.34.259.127.306.435 1.06.474 1.137.038.077.064.167.013.269-.05.103-.076.166-.152.254-.076.089-.16.198-.228.266-.077.076-.157.159-.068.312.09.153.398.657.854 1.063.586.522 1.08.683 1.233.76.153.076.242.064.331-.039.09-.102.381-.444.483-.596.102-.153.204-.127.344-.076.14.051.889.419 1.042.495.153.076.254.115.292.178.038.064.038.369-.106.774zM12 2C6.477 2 2 6.477 2 12c0 1.891.524 3.66 1.434 5.176L2 22l4.954-1.399C8.406 21.498 10.144 22 12 22c5.523 0 10-4.477 10-10S17.523 2 12 2z" />
+                  </svg>
+                </div>
+                <div className="min-w-0">
+                  <span className="block font-mono text-[0.625rem] uppercase tracking-[0.12em] text-paper/60">
+                    United Kingdom
                   </span>
-                </a>
-              </dd>
-            </div>
-            <div>
-              <dt className="label text-paper/45">India</dt>
-              <dd className="mt-1">
-                <a
-                  href={WHATSAPP.india.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex min-h-[44px] items-center gap-1.5 text-sm text-paper/85 underline decoration-paper/30 underline-offset-4 transition-colors hover:decoration-paper"
-                >
-                  {WHATSAPP.india.number}
-                  <span aria-hidden="true" className="text-xs">
-                    &#8599;
+                  <span className="block truncate text-sm font-semibold text-paper group-hover:text-emerald-300">
+                    {WHATSAPP.uk.number}
                   </span>
-                </a>
-              </dd>
-            </div>
-          </dl>
+                </div>
+              </div>
+              <span className="text-xs text-paper/40 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-emerald-400">
+                &#8599;
+              </span>
+            </a>
+
+            <a
+              href={WHATSAPP.india.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex items-center justify-between rounded-lg border border-paper/20 bg-paper/5 p-3.5 shadow-xs backdrop-blur-xs transition-all hover:border-emerald-400/60 hover:bg-emerald-500/10 hover:shadow-sm"
+            >
+              <div className="flex items-center gap-3 min-w-0">
+                <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-emerald-500/20 text-emerald-400 transition-transform group-hover:scale-105">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                    <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766 0-3.18-2.586-5.771-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.312.045-.634.076-1.928-.475-1.524-.651-2.502-2.193-2.578-2.296-.076-.103-.618-.823-.618-1.569 0-.746.392-1.112.53-1.264.14-.152.304-.19.405-.19.102 0 .204.002.293.006.093.004.218-.035.34.259.127.306.435 1.06.474 1.137.038.077.064.167.013.269-.05.103-.076.166-.152.254-.076.089-.16.198-.228.266-.077.076-.157.159-.068.312.09.153.398.657.854 1.063.586.522 1.08.683 1.233.76.153.076.242.064.331-.039.09-.102.381-.444.483-.596.102-.153.204-.127.344-.076.14.051.889.419 1.042.495.153.076.254.115.292.178.038.064.038.369-.106.774zM12 2C6.477 2 2 6.477 2 12c0 1.891.524 3.66 1.434 5.176L2 22l4.954-1.399C8.406 21.498 10.144 22 12 22c5.523 0 10-4.477 10-10S17.523 2 12 2z" />
+                  </svg>
+                </div>
+                <div className="min-w-0">
+                  <span className="block font-mono text-[0.625rem] uppercase tracking-[0.12em] text-paper/60">
+                    India
+                  </span>
+                  <span className="block truncate text-sm font-semibold text-paper group-hover:text-emerald-300">
+                    {WHATSAPP.india.number}
+                  </span>
+                </div>
+              </div>
+              <span className="text-xs text-paper/40 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-emerald-400">
+                &#8599;
+              </span>
+            </a>
+          </div>
         </div>
 
         {services && services.length > 0 ? (

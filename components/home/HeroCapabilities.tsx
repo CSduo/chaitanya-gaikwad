@@ -12,109 +12,138 @@ import { featuredVideos } from "@/lib/portfolio";
 /* ------------------------------------------------------------------ */
 
 function VisualisationScene({ active }: { active: boolean }) {
-  const picks = featuredVisuals(4);
   return (
-    <div className="grid h-full w-full grid-cols-2 gap-1 bg-paper-deep">
-      {picks.map((v, i) => (
-        <div key={v.src} className="relative overflow-hidden bg-paper-deep">
-          <Image
-            src={v.src}
-            alt={i === 0 ? v.alt : ""}
-            aria-hidden={i === 0 ? undefined : true}
-            fill
-            priority={active && i === 0}
-            loading={active && i === 0 ? undefined : "lazy"}
-            sizes="(min-width: 1024px) 380px, 50vw"
-            className="object-cover"
-          />
+    <div className="relative h-full w-full overflow-hidden bg-ink select-none">
+      <Image
+        src="/media/visual/vis-24.webp"
+        alt="High-end luxury hospitality interior 3D visualisation"
+        fill
+        priority={active}
+        sizes="(min-width: 1024px) 760px, 100vw"
+        className="object-cover object-center"
+      />
+      {/* Top Tag */}
+      <div className="pointer-events-none absolute left-4 top-4 flex items-center gap-2">
+        <span className="bg-ink/90 px-2.5 py-1 font-mono text-[0.625rem] uppercase tracking-[0.14em] text-paper">
+          3D Visualisation
+        </span>
+        <span className="hidden sm:inline-block bg-paper/90 border border-rule px-2 py-0.5 font-mono text-[0.5625rem] text-ink-muted">
+          Atmospheric Interior Study
+        </span>
+      </div>
+
+      {/* Bottom Gradient Overlay */}
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-ink/90 via-ink/40 to-transparent p-4 pt-16">
+        <div className="flex items-end justify-between gap-4">
+          <p className="max-w-md text-xs sm:text-sm text-paper/90 font-light leading-relaxed">
+            Photorealistic 3D architectural &amp; interior renders produced for pitches, campaigns, and approvals.
+          </p>
+          <span className="shrink-0 font-mono text-[0.625rem] uppercase tracking-[0.12em] text-paper/70">
+            Ultra-HD 3D
+          </span>
         </div>
-      ))}
+      </div>
     </div>
   );
 }
 
 function VideoScene() {
-  const picks = featuredVideos(3);
   return (
-    <div className="grid h-full w-full grid-cols-3 gap-1 bg-paper-deep">
-      {picks.map((v, i) => (
-        <div key={v.slug} className="relative overflow-hidden bg-ink">
-          <Image
-            src={v.poster}
-            alt={i === 0 ? `Still from ${v.title}` : ""}
-            aria-hidden={i === 0 ? undefined : true}
-            fill
-            loading="lazy"
-            sizes="(min-width: 1024px) 250px, 33vw"
-            className="object-cover opacity-90"
-          />
-          <span className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-ink/85 to-transparent px-3 pb-3 pt-8">
-            <span className="block truncate font-mono text-[0.5625rem] uppercase tracking-[0.12em] text-paper/70">
-              {v.client ?? v.clientDescriptor}
-            </span>
+    <div className="relative h-full w-full overflow-hidden bg-ink select-none">
+      <Image
+        src="/media/posters/sultanah-co-moon-chair-cinematic-campaign-poster.webp"
+        alt="Luxury Begins in the Details - Sultanah & Co. Interiors cinematic video"
+        fill
+        sizes="(min-width: 1024px) 760px, 100vw"
+        className="object-cover opacity-90"
+      />
+
+      {/* Center Play Indicator */}
+      <div className="absolute inset-0 flex items-center justify-center">
+        <div className="flex flex-col items-center gap-3">
+          <span
+            aria-hidden="true"
+            className="flex h-16 w-16 items-center justify-center rounded-full border border-paper/80 bg-ink/75 text-paper shadow-2xl backdrop-blur-sm transition-transform hover:scale-105"
+          >
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
+              <path d="M8 5v14l11-7z" />
+            </svg>
           </span>
-          {i === 1 ? (
-            <span
-              aria-hidden="true"
-              className="absolute left-1/2 top-1/2 flex h-11 w-11 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-paper/60 bg-ink/55 text-paper"
-            >
-              <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
-                <path d="M8 5v14l11-7z" />
-              </svg>
-            </span>
-          ) : null}
+          <span className="rounded-full bg-ink/80 px-3 py-1 font-mono text-[0.625rem] uppercase tracking-[0.14em] text-paper/90 backdrop-blur-sm">
+            Watch Film
+          </span>
         </div>
-      ))}
+      </div>
+
+      {/* Top Badge */}
+      <div className="pointer-events-none absolute left-4 top-4 flex items-center gap-2">
+        <span className="bg-ink/90 px-2.5 py-1 font-mono text-[0.625rem] uppercase tracking-[0.14em] text-paper">
+          Video &amp; AI Films
+        </span>
+        <span className="hidden sm:inline-block bg-paper/90 border border-rule px-2 py-0.5 font-mono text-[0.5625rem] text-ink-muted">
+          Sultanah &amp; Co. Interiors
+        </span>
+      </div>
+
+      {/* Bottom Title Bar */}
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-ink via-ink/60 to-transparent p-4 pt-14">
+        <h4 className="text-sm sm:text-base font-semibold text-paper">
+          Luxury Begins in the Details
+        </h4>
+        <p className="mt-0.5 font-mono text-[0.625rem] uppercase tracking-[0.12em] text-paper/70">
+          Cinematic brand film · AI video production · Commercial post-production
+        </p>
+      </div>
     </div>
   );
 }
 
-const FLOW = ["Enquiry", "Route", "Qualify", "Track", "Follow up"];
+const AUTOMATION_SERVICES = [
+  { num: "01", title: "WhatsApp Automation", desc: "Instant response flows, lead captures & live CRM handoff" },
+  { num: "02", title: "Instagram DM & Lead Automation", desc: "Auto-reply to keywords, comments & story mentions" },
+  { num: "03", title: "Email Sequences & Cold Outreach", desc: "Multi-step inbound nurturing & verified B2B email campaigns" },
+  { num: "04", title: "Lead Routing & CRM Sync", desc: "Automated qualification, calendar booking & pipeline tracking" },
+  { num: "05", title: "Marketing & Growth Pipelines", desc: "End-to-end client acquisition systems running 24/7" },
+];
 
 function AutomationScene({ active }: { active: boolean }) {
   const reduced = useReducedMotion();
   const on = active || reduced;
   return (
-    <div className="flex h-full w-full flex-col justify-center bg-paper-deep px-6 py-8 sm:px-10">
-      <p className="label mb-6">Workflow</p>
-      <ol className="space-y-0">
-        {FLOW.map((step, i) => (
-          <li key={step} className="flex items-center gap-4">
-            <div className="flex flex-col items-center">
-              <span
-                className="flex h-8 w-8 shrink-0 items-center justify-center border border-rule-strong bg-paper font-mono text-[0.5625rem] text-ink-muted transition-opacity duration-500"
-                style={{
-                  opacity: on ? 1 : 0.15,
-                  transitionDelay: reduced ? "0ms" : `${i * 180}ms`,
-                }}
-              >
-                {String(i + 1).padStart(2, "0")}
-              </span>
-              {i < FLOW.length - 1 ? (
-                <span
-                  aria-hidden="true"
-                  className="w-px bg-rule-strong transition-all duration-500"
-                  style={{
-                    height: on ? "1.75rem" : "0rem",
-                    transitionDelay: reduced ? "0ms" : `${i * 180 + 120}ms`,
-                  }}
-                />
-              ) : null}
-            </div>
-            <span
-              className="text-sm text-ink-soft transition-opacity duration-500"
-              style={{ opacity: on ? 1 : 0.2, transitionDelay: reduced ? "0ms" : `${i * 180}ms` }}
-            >
-              {step}
-              {i === 2 ? (
-                <span className="ml-2 font-mono text-[0.625rem] text-accent">rules applied</span>
-              ) : null}
+    <div className="flex h-full w-full flex-col justify-center bg-paper-deep px-5 py-6 sm:px-8">
+      <div className="flex items-center justify-between border-b border-rule pb-3">
+        <p className="label">Automation &amp; Marketing Systems</p>
+        <span className="font-mono text-[0.5625rem] uppercase tracking-[0.12em] text-accent font-semibold">
+          Active Pipelines
+        </span>
+      </div>
+      <ol className="mt-3 space-y-2">
+        {AUTOMATION_SERVICES.map((step, i) => (
+          <li
+            key={step.title}
+            className="flex items-start gap-3 rounded-lg border border-rule/60 bg-paper px-3 py-2 transition-all duration-300"
+            style={{
+              opacity: on ? 1 : 0.2,
+              transform: on ? "translateY(0)" : "translateY(4px)",
+              transitionDelay: reduced ? "0ms" : `${i * 90}ms`,
+            }}
+          >
+            <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded bg-ink font-mono text-[0.625rem] font-medium text-paper">
+              {step.num}
             </span>
+            <div className="min-w-0">
+              <span className="block text-xs font-semibold text-ink leading-tight">
+                {step.title}
+              </span>
+              <span className="block text-[0.6875rem] text-ink-muted leading-tight mt-0.5">
+                {step.desc}
+              </span>
+            </div>
           </li>
         ))}
       </ol>
-      <p className="mt-6 border-t border-rule pt-4 font-mono text-[0.625rem] leading-relaxed text-ink-faint">
-        Systems built inside the tools a team already uses.
+      <p className="mt-3 border-t border-rule pt-2 font-mono text-[0.625rem] leading-relaxed text-ink-faint">
+        Custom automations engineered to drive leads, engagement, and revenue for your business.
       </p>
     </div>
   );
@@ -148,12 +177,12 @@ function WebScene() {
 /* ------------------------------------------------------------------ */
 
 const CAPABILITIES = [
-  { n: "01", motif: "Deliver", label: "CAD & Technical", anchor: "service-cad-technical-production", note: "Reference material in, editable drawing packages out." },
-  { n: "02", motif: "Grow", label: "Growth & B2B", anchor: "service-growth-marketing-b2b", note: "Markets mapped, targets qualified, every claim sourced." },
-  { n: "03", motif: "Visualise", label: "Visualisation", anchor: "service-visualisation-image-production", note: "Interiors and products shown before they are built." },
-  { n: "04", motif: "Film", label: "Video & AI Film", anchor: "service-video-ai-film-editing", note: "Short-form cinematic work, cut to its placement." },
-  { n: "05", motif: "Automate", label: "Automation", anchor: "service-automation-workflow-systems", note: "The repetitive parts of studio operations, systematised." },
-  { n: "06", motif: "Build", label: "Websites", anchor: "service-website-design-development", note: "Responsive builds, deployed and maintained." },
+  { n: "01", motif: "Deliver", label: "CAD & Technical", anchor: "service-cad-technical-production", note: "Precision technical drawing packages and full joinery details." },
+  { n: "02", motif: "Grow", label: "Growth & B2B", anchor: "service-growth-marketing-b2b", note: "Markets mapped, targets qualified, every claim verified." },
+  { n: "03", motif: "Visualise", label: "Visualisation", anchor: "service-visualisation-image-production", note: "Photorealistic 3D interior, exterior, and product renders." },
+  { n: "04", motif: "Film", label: "Video & AI Film", anchor: "service-video-ai-film-editing", note: "Cinematic commercial films and AI-powered video editing." },
+  { n: "05", motif: "Automate", label: "Automation", anchor: "service-automation-workflow-systems", note: "WhatsApp, Instagram, and email automations that convert leads." },
+  { n: "06", motif: "Build", label: "Websites", anchor: "service-website-design-development", note: "High-performance digital platforms deployed on your domain." },
 ];
 
 export function HeroCapabilities() {
