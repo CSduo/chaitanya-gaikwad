@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { CadScene, DataScene } from "./scenes";
 import { useAutoAdvance, useReducedMotion } from "./hooks";
@@ -45,53 +45,107 @@ function VisualisationScene({ active }: { active: boolean }) {
   );
 }
 
-function VideoScene() {
+function VideoScene({
+  active,
+  onPlayStateChange,
+}: {
+  active: boolean;
+  onPlayStateChange: (playing: boolean) => void;
+}) {
+  const [isPlaying, setIsPlaying] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  // When scene becomes inactive, pause video
+  useEffect(() => {
+    if (!active && isPlaying && videoRef.current) {
+      videoRef.current.pause();
+      setIsPlaying(false);
+      onPlayStateChange(false);
+    }
+  }, [active, isPlaying, onPlayStateChange]);
+
+  const handleStartPlay = () => {
+    setIsPlaying(true);
+    onPlayStateChange(true);
+    if (videoRef.current) {
+      videoRef.current.play().catch(() => {});
+    }
+  };
+
+  const handleVideoPause = () => {
+    setIsPlaying(false);
+    onPlayStateChange(false);
+  };
+
   return (
     <div className="relative h-full w-full overflow-hidden bg-ink select-none">
-      <Image
-        src="/media/posters/sultanah-co-moon-chair-cinematic-campaign-poster.webp"
-        alt="Luxury Begins in the Details - Sultanah & Co. Interiors cinematic video"
-        fill
-        sizes="(min-width: 1024px) 760px, 100vw"
-        className="object-cover opacity-90"
-      />
+      {isPlaying ? (
+        <video
+          ref={videoRef}
+          src="/media/video/sultanah-co-moon-chair-cinematic-campaign.mp4"
+          poster="/media/posters/sultanah-co-moon-chair-cinematic-campaign-poster.webp"
+          controls
+          autoPlay
+          playsInline
+          onPlay={() => {
+            setIsPlaying(true);
+            onPlayStateChange(true);
+          }}
+          onPause={handleVideoPause}
+          onEnded={handleVideoPause}
+          className="h-full w-full object-contain bg-black"
+        />
+      ) : (
+        <>
+          <Image
+            src="/media/posters/sultanah-co-moon-chair-cinematic-campaign-poster.webp"
+            alt="Luxury Begins in the Details - Sultanah & Co. Interiors cinematic video"
+            fill
+            sizes="(min-width: 1024px) 760px, 100vw"
+            className="object-cover opacity-90"
+          />
 
-      {/* Center Play Indicator */}
-      <div className="absolute inset-0 flex items-center justify-center">
-        <div className="flex flex-col items-center gap-3">
-          <span
-            aria-hidden="true"
-            className="flex h-16 w-16 items-center justify-center rounded-full border border-paper/80 bg-ink/75 text-paper shadow-2xl backdrop-blur-sm transition-transform hover:scale-105"
+          {/* Center Play Button Action */}
+          <button
+            type="button"
+            onClick={handleStartPlay}
+            aria-label="Play Sultanah and Co video"
+            className="absolute inset-0 flex flex-col items-center justify-center gap-3 group cursor-pointer"
           >
-            <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
-              <path d="M8 5v14l11-7z" />
-            </svg>
-          </span>
-          <span className="rounded-full bg-ink/80 px-3 py-1 font-mono text-[0.625rem] uppercase tracking-[0.14em] text-paper/90 backdrop-blur-sm">
-            Watch Film
-          </span>
-        </div>
-      </div>
+            <span
+              aria-hidden="true"
+              className="flex h-16 w-16 items-center justify-center rounded-full border border-paper/90 bg-ink/80 text-paper shadow-2xl backdrop-blur-sm transition-transform duration-300 group-hover:scale-110 group-hover:bg-ink"
+            >
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" className="ml-1">
+                <path d="M8 5v14l11-7z" />
+              </svg>
+            </span>
+            <span className="rounded-full bg-ink/90 px-3.5 py-1 font-mono text-[0.6875rem] uppercase tracking-[0.14em] text-paper shadow-md backdrop-blur-sm transition-colors group-hover:bg-accent group-hover:text-white">
+              Click to Play Film
+            </span>
+          </button>
 
-      {/* Top Badge */}
-      <div className="pointer-events-none absolute left-4 top-4 flex items-center gap-2">
-        <span className="bg-ink/90 px-2.5 py-1 font-mono text-[0.625rem] uppercase tracking-[0.14em] text-paper">
-          Video &amp; AI Films
-        </span>
-        <span className="hidden sm:inline-block bg-paper/90 border border-rule px-2 py-0.5 font-mono text-[0.5625rem] text-ink-muted">
-          Sultanah &amp; Co. Interiors
-        </span>
-      </div>
+          {/* Top Badge */}
+          <div className="pointer-events-none absolute left-4 top-4 flex items-center gap-2">
+            <span className="bg-ink/90 px-2.5 py-1 font-mono text-[0.625rem] uppercase tracking-[0.14em] text-paper">
+              Video &amp; AI Films
+            </span>
+            <span className="hidden sm:inline-block bg-paper/90 border border-rule px-2 py-0.5 font-mono text-[0.5625rem] text-ink-muted">
+              Sultanah &amp; Co. Interiors
+            </span>
+          </div>
 
-      {/* Bottom Title Bar */}
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-ink via-ink/60 to-transparent p-4 pt-14">
-        <h4 className="text-sm sm:text-base font-semibold text-paper">
-          Luxury Begins in the Details
-        </h4>
-        <p className="mt-0.5 font-mono text-[0.625rem] uppercase tracking-[0.12em] text-paper/70">
-          Cinematic brand film · AI video production · Commercial post-production
-        </p>
-      </div>
+          {/* Bottom Title Bar */}
+          <div className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-ink via-ink/60 to-transparent p-4 pt-14">
+            <h4 className="text-sm sm:text-base font-semibold text-paper">
+              Luxury Begins in the Details
+            </h4>
+            <p className="mt-0.5 font-mono text-[0.625rem] uppercase tracking-[0.12em] text-paper/70">
+              Cinematic brand film · AI video production · Commercial post-production
+            </p>
+          </div>
+        </>
+      )}
     </div>
   );
 }
@@ -186,8 +240,12 @@ const CAPABILITIES = [
 export function HeroCapabilities() {
   const reduced = useReducedMotion();
   const [paused, setPaused] = useState(false);
+  const [isVideoPlaying, setIsVideoPlaying] = useState(false);
+
+  const isSlidePaused = paused || isVideoPlaying;
+
   const [index, setIndex] = useAutoAdvance(CAPABILITIES.length, 6000, {
-    paused,
+    paused: isSlidePaused,
     enabled: !reduced,
   });
 
@@ -216,7 +274,10 @@ export function HeroCapabilities() {
           <VisualisationScene active={index === 2} />
         </div>
         <div className={index === 3 ? "h-full w-full" : "hidden"}>
-          <VideoScene />
+          <VideoScene
+            active={index === 3}
+            onPlayStateChange={(playing) => setIsVideoPlaying(playing)}
+          />
         </div>
         <div className={index === 4 ? "h-full w-full" : "hidden"}>
           <AutomationScene active={index === 4} />
