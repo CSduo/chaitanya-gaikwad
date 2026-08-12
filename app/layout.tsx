@@ -110,6 +110,9 @@ export const metadata: Metadata = {
     ],
   },
   manifest: "/site.webmanifest",
+  verification: {
+    google: "googleb531fd48b43d4f1b",
+  },
   robots: {
     index: true,
     follow: true,
