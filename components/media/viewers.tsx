@@ -33,6 +33,12 @@ export function Lightbox({
   onClose: () => void;
   onIndexChange: (i: number) => void;
   zoomable?: boolean;
+  /**
+   * Technical drawings must never be cropped - a trimmed title block or a
+   * clipped dimension makes the sheet unreadable. They use "contain" on a
+   * neutral well; photographic work uses "cover".
+   */
+  fit?: "cover" | "contain";
 }) {
   const [zoomed, setZoomed] = useState(false);
   const open = index !== null;
@@ -133,11 +139,18 @@ export function ImageGrid({
   columns = 3,
   aspect = "4/3",
   zoomable = false,
+  fit = "cover",
 }: {
   items: LightboxItem[];
   columns?: 2 | 3 | 4;
   aspect?: string;
   zoomable?: boolean;
+  /**
+   * Technical drawings must never be cropped - a trimmed title block or a
+   * clipped dimension makes the sheet unreadable. They use "contain" on a
+   * neutral well; photographic work uses "cover".
+   */
+  fit?: "cover" | "contain";
 }) {
   const [index, setIndex] = useState<number | null>(null);
   const cols =
@@ -149,16 +162,16 @@ export function ImageGrid({
 
   return (
     <>
-      <ul className={`grid grid-cols-2 gap-px border border-rule bg-rule ${cols}`}>
+      <ul className={`grid grid-cols-2 gap-3 sm:gap-4 ${cols}`}>
         {items.map((item, i) => (
-          <li key={item.src} className="bg-surface">
+          <li key={item.src}>
             <button
               type="button"
               onClick={() => setIndex(i)}
               className="group block w-full text-left"
             >
               <span
-                className="relative block overflow-hidden bg-paper-deep"
+                className="media-frame media-well relative block overflow-hidden"
                 style={{ aspectRatio: aspect }}
               >
                 <Image
@@ -166,8 +179,8 @@ export function ImageGrid({
                   alt={item.alt}
                   fill
                   loading="lazy"
-                  sizes="(min-width: 1024px) 300px, (min-width: 640px) 45vw, 48vw"
-                  className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                  sizes="(min-width: 1024px) 340px, (min-width: 640px) 45vw, 48vw"
+                  className={`media-clean ${fit === "contain" ? "object-contain p-2" : "object-cover"}`}
                 />
               </span>
               {item.title ? (
@@ -216,9 +229,17 @@ export type VideoItem = {
 export function VideoGallery({
   videos,
   columns = 3,
+  rail = false,
 }: {
   videos: VideoItem[];
   columns?: 2 | 3 | 4;
+  /**
+   * Present as a horizontal rail below `sm`. A 9:16 poster is roughly 640px
+   * tall on a 360px screen, so three stacked portrait posters consume most of
+   * a phone page on their own. The rail keeps every film reachable at a
+   * legible size without burying what follows.
+   */
+  rail?: boolean;
 }) {
   const [index, setIndex] = useState<number | null>(null);
   const open = index !== null;
@@ -239,20 +260,27 @@ export function VideoGallery({
         ? "sm:grid-cols-2 lg:grid-cols-3"
         : "sm:grid-cols-2";
 
+  const listCls = rail
+    ? `-mx-6 flex snap-x snap-mandatory gap-4 overflow-x-auto px-6 pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:mx-0 sm:grid sm:grid-cols-1 sm:gap-6 sm:overflow-visible sm:px-0 ${cols}`
+    : `grid grid-cols-1 gap-6 ${cols}`;
+
   return (
     <>
-      <ul className={`grid grid-cols-1 gap-6 ${cols}`}>
+      <ul className={listCls}>
         {videos.map((v, i) => {
           const portrait = v.posterHeight > v.posterWidth;
           return (
-            <li key={v.slug}>
+            <li
+              key={v.slug}
+              className={rail ? "w-[74vw] max-w-[280px] shrink-0 snap-start sm:w-auto sm:max-w-none" : undefined}
+            >
               <button
                 type="button"
                 onClick={() => setIndex(i)}
                 className="group block w-full text-left"
               >
                 <span
-                  className={`relative block overflow-hidden border border-rule bg-paper-deep ${
+                  className={`media-frame media-well relative block overflow-hidden ${
                     portrait ? "aspect-[9/16]" : "aspect-video"
                   }`}
                 >
@@ -262,12 +290,12 @@ export function VideoGallery({
                     fill
                     loading="lazy"
                     sizes="(min-width: 1024px) 340px, (min-width: 640px) 45vw, 92vw"
-                    className="object-cover transition-transform duration-500 group-hover:scale-[1.02]"
+                    className="media-clean object-cover"
                   />
-                  <span className="absolute inset-0 flex items-center justify-center bg-ink/20 transition-colors group-hover:bg-ink/35">
+                  <span className="absolute inset-0 flex items-center justify-center bg-ink/15 transition-colors group-hover:bg-ink/30">
                     <span
                       aria-hidden="true"
-                      className="flex h-14 w-14 items-center justify-center rounded-full border border-paper/60 bg-ink/55 text-paper backdrop-blur-sm transition-transform group-hover:scale-105"
+                      className="flex h-14 w-14 items-center justify-center rounded-full border border-paper/70 bg-ink/60 text-paper transition-transform group-hover:scale-105"
                     >
                       <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
                         <path d="M8 5v14l11-7z" />

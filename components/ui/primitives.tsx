@@ -294,7 +294,7 @@ export function Breadcrumbs({
                 </span>
               ) : (
                 <>
-                  <Link href={item.path} className="hover:text-accent hover:underline underline-offset-4">
+                  <Link href={item.path} className="inline-flex min-h-[44px] items-center hover:text-accent hover:underline underline-offset-4 lg:min-h-[24px]">
                     {item.name}
                   </Link>
                   <span aria-hidden="true" className="text-rule-strong">

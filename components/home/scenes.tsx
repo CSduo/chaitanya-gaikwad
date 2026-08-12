@@ -89,7 +89,7 @@ export function CadScene({ active }: { active: boolean }) {
           className="pointer-events-none absolute inset-y-0 w-px bg-paper/90"
           style={{ left: `${pos}%` }}
         >
-          <span className="absolute left-1/2 top-1/2 flex h-9 w-9 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-paper/70 bg-ink/70 text-paper backdrop-blur-sm">
+          <span className="absolute left-1/2 top-1/2 flex h-9 w-9 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-paper/70 bg-ink/75 text-paper">
             <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor" aria-hidden="true">
               <path d="M9 6 3 12l6 6V6zm6 0v12l6-6-6-6z" />
             </svg>
@@ -97,10 +97,10 @@ export function CadScene({ active }: { active: boolean }) {
         </div>
 
         {/* Corner labels */}
-        <span className="pointer-events-none absolute left-4 top-4 bg-ink/70 px-2.5 py-1 font-mono text-[0.625rem] uppercase tracking-[0.14em] text-paper/90 backdrop-blur-sm">
+        <span className="pointer-events-none absolute left-4 top-4 bg-ink/80 px-2.5 py-1 font-mono text-[0.625rem] uppercase tracking-[0.14em] text-paper">
           Client reference
         </span>
-        <span className="pointer-events-none absolute right-4 top-4 bg-ink/70 px-2.5 py-1 font-mono text-[0.625rem] uppercase tracking-[0.14em] text-paper/90 backdrop-blur-sm">
+        <span className="pointer-events-none absolute right-4 top-4 bg-ink/80 px-2.5 py-1 font-mono text-[0.625rem] uppercase tracking-[0.14em] text-paper">
           Editable CAD
         </span>
       </div>

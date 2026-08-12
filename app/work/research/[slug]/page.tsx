@@ -133,7 +133,7 @@ export default async function ResearchPage({
                   <h3 className="display mt-3 text-lg leading-snug">
                     <Link
                       href={`/work/research/${w.slug}`}
-                      className="transition-colors after:absolute after:inset-0 hover:text-accent"
+                      className="inline-flex min-h-[44px] items-center transition-colors after:absolute after:inset-0 hover:text-accent"
                     >
                       {w.title}
                     </Link>

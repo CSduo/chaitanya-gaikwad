@@ -40,11 +40,11 @@ const nextConfig: NextConfig = {
     return [
       // ---- Legacy path redirects (see REDIRECT_MAP_FINAL.md) ----
       { source: "/cad-automation", destination: "/services/cad-technical-production", permanent: true },
-      { source: "/projects/videos", destination: "/work?category=visual-content", permanent: true },
-      { source: "/projects/visualisations", destination: "/work?category=visual-content", permanent: true },
-      { source: "/projects/b2b-research", destination: "/work?category=growth-operations", permanent: true },
-      { source: "/projects/b2b-research/:slug", destination: "/work?category=growth-operations", permanent: true },
-      { source: "/projects/websites", destination: "/work?category=multi-disciplinary", permanent: true },
+      { source: "/projects/videos", destination: "/work?category=video", permanent: true },
+      { source: "/projects/visualisations", destination: "/work?category=visualisation", permanent: true },
+      { source: "/projects/b2b-research", destination: "/work?category=growth-b2b", permanent: true },
+      { source: "/projects/b2b-research/:slug", destination: "/work?category=growth-b2b", permanent: true },
+      { source: "/projects/websites", destination: "/work?category=websites", permanent: true },
       { source: "/projects", destination: "/work", permanent: true },
       { source: "/startup", destination: "/work", permanent: true },
       { source: "/about", destination: "/company", permanent: true },

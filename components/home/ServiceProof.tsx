@@ -39,7 +39,7 @@ function CadProof() {
           {outputs} drawings · {inputs} client references · select any sheet to zoom
         </p>
       </div>
-      <ImageGrid items={items} columns={4} aspect="4/3" zoomable />
+      <ImageGrid items={items} columns={4} aspect="4/3" zoomable fit="contain" />
     </div>
   );
 }
@@ -53,7 +53,7 @@ function GrowthProof() {
           <h3 className="display mt-3 text-lg leading-snug">
             <Link
               href={`/work/research/${w.slug}`}
-              className="transition-colors after:absolute after:inset-0 hover:text-accent"
+              className="inline-flex min-h-[44px] items-center transition-colors after:absolute after:inset-0 hover:text-accent"
             >
               {w.title}
             </Link>

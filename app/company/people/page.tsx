@@ -12,12 +12,13 @@ import {
 } from "@/components/ui/primitives";
 import { ProjectCTA } from "@/components/site/ProjectCTA";
 import { founder, teamMembers, specialists, DISCIPLINES } from "@/lib/company";
-import { pageMetadata, breadcrumbSchema } from "@/lib/seo";
+import { pageMetadata, breadcrumbSchema, personSchema } from "@/lib/seo";
+import { ROUTE_SEO } from "@/lib/seo-copy";
+import { FOUNDER_COPY } from "@/lib/company-copy";
 
 export const metadata: Metadata = pageMetadata({
-  title: "Founder & People",
-  description:
-    "XIYÀTO is founder-led. Scoping, production leadership and quality assurance sit with the founder on every engagement.",
+  title: ROUTE_SEO.people.metaTitle,
+  description: ROUTE_SEO.people.metaDescription,
   path: "/company/people",
 });
 
@@ -35,6 +36,16 @@ export default function PeoplePage() {
           { name: "Founder & People", path: "/company/people" },
         ])}
       />
+      {person ? (
+        <JsonLd
+          data={personSchema({
+            name: person.name,
+            role: person.role,
+            path: "/company/people",
+            image: person.image?.src,
+          })}
+        />
+      ) : null}
 
       {/* 01 — People hero */}
       <section className="border-b border-rule">
@@ -48,13 +59,11 @@ export default function PeoplePage() {
           />
           <div className="max-w-3xl">
             <Eyebrow>Founder &amp; People</Eyebrow>
-            <h1 className="display mt-6 text-4xl sm:text-5xl">
-              Founder-led, with specialists engaged per project.
+            <h1 className="display mt-6 text-[2.125rem] leading-[1.1] sm:text-5xl">
+              {FOUNDER_COPY.h1}
             </h1>
-            <p className="mt-7 text-lg leading-relaxed text-ink-soft">
-              XIYÀTO is deliberately small. Scoping, production leadership and the final
-              quality check sit with the founder on every engagement, which is what keeps the
-              standard consistent and the accountability unambiguous.
+            <p className="mt-6 text-base leading-relaxed text-ink-soft sm:mt-7 sm:text-lg">
+              {FOUNDER_COPY.standfirst}
             </p>
           </div>
         </Container>

@@ -11,11 +11,11 @@ import { EnquiryForm } from "@/components/forms/EnquiryForm";
 import { publishedChannels, DIRECT_CHANNELS, SOCIAL_CHANNELS } from "@/lib/site";
 import { publishedLocations } from "@/lib/company";
 import { pageMetadata, breadcrumbSchema } from "@/lib/seo";
+import { ROUTE_SEO } from "@/lib/seo-copy";
 
 export const metadata: Metadata = pageMetadata({
-  title: "Contact",
-  description:
-    "Start a project with XIYÀTO. Send the brief and whatever material exists — we will confirm what is workable and propose a defined scope.",
+  title: ROUTE_SEO.contact.metaTitle,
+  description: ROUTE_SEO.contact.metaDescription,
   path: "/contact",
 });
 
@@ -37,10 +37,10 @@ export default function ContactPage() {
         <Container width="page" className="py-16 sm:py-20">
           <div className="max-w-3xl">
             <Eyebrow>Contact</Eyebrow>
-            <h1 className="display mt-6 text-4xl sm:text-5xl lg:text-[3.5rem]">
+            <h1 className="display mt-6 text-[2.125rem] leading-[1.1] sm:text-5xl lg:text-[3.5rem]">
               Start a project.
             </h1>
-            <p className="mt-7 text-lg leading-relaxed text-ink-soft">
+            <p className="mt-6 text-base leading-relaxed text-ink-soft sm:mt-7 sm:text-lg">
               Send the brief and whatever material already exists. It does not need to be
               complete — establishing what is confirmed, assumed and missing is the first
               step of every engagement.
@@ -118,7 +118,7 @@ export default function ContactPage() {
                 <p className="mt-2 text-xs leading-relaxed text-ink-muted">{c.purpose}</p>
                 <a
                   href={`mailto:${c.email}`}
-                  className="mt-3 inline-block text-sm text-ink underline decoration-rule-strong underline-offset-4 hover:text-accent"
+                  className="mt-3 inline-flex min-h-[44px] items-center text-sm text-ink underline decoration-rule-strong underline-offset-4 hover:text-accent"
                 >
                   {c.email}
                 </a>
@@ -135,7 +135,7 @@ export default function ContactPage() {
                   href={c.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mt-3 inline-block text-sm text-ink underline decoration-rule-strong underline-offset-4 hover:text-accent"
+                  className="mt-3 inline-flex min-h-[44px] items-center text-sm text-ink underline decoration-rule-strong underline-offset-4 hover:text-accent"
                 >
                   {c.value}
                 </a>
@@ -152,7 +152,7 @@ export default function ContactPage() {
                   href={c.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mt-3 inline-block text-sm text-ink underline decoration-rule-strong underline-offset-4 hover:text-accent"
+                  className="mt-3 inline-flex min-h-[44px] items-center text-sm text-ink underline decoration-rule-strong underline-offset-4 hover:text-accent"
                 >
                   {c.value}
                 </a>
@@ -166,7 +166,7 @@ export default function ContactPage() {
               </p>
               <a
                 href="/careers#talent-network"
-                className="mt-3 inline-block text-sm text-ink underline decoration-rule-strong underline-offset-4 hover:text-accent"
+                className="mt-3 inline-flex min-h-[44px] items-center text-sm text-ink underline decoration-rule-strong underline-offset-4 hover:text-accent"
               >
                 Careers
               </a>

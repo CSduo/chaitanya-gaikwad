@@ -2,27 +2,43 @@
 
 /* =========================================================================
    XIYATO DESIGN SYSTEM
-   Restrained British specialist consultancy / architectural studio.
-   Paper ground, warm near-black ink, single oxblood accent, technical rules.
+   Architectural, editorial, technical. A pure white canvas, near-black
+   typography, strictly neutral greys, and the single red taken from the
+   XIYATO monogram.
+
+   The palette is deliberately free of warm cast: no cream, no beige, no
+   ivory, no brown-tinted grey. Every neutral below is achromatic
+   (R = G = B) so nothing can drift yellow on a wide-gamut display.
+
+   --color-accent is sampled from the supplied logo artwork: the dominant
+   red across 7,869 measured pixels of the monogram is #810100.
    ========================================================================= */
 
 @theme {
-  /* ---- Colour ---- */
-  --color-paper: #faf8f5;
-  --color-paper-deep: #f3efe9;
-  --color-surface: #ffffff;
-  --color-ink: #16130f;
-  --color-ink-soft: #423b33;
-  --color-ink-muted: #6b6157;
-  --color-ink-faint: #948a7e;
-  --color-rule: #e0dad0;
-  --color-rule-strong: #c9c0b3;
-  --color-accent: #6b2233;
-  --color-accent-hover: #551a28;
-  --color-accent-wash: #f6eef0;
-  --color-success: #2f5d3f;
-  --color-error: #9b2c2c;
-  --color-focus: #6b2233;
+  /* ---- Ground and surfaces: achromatic by construction ---- */
+  --color-paper: #ffffff;        /* page ground */
+  --color-surface: #ffffff;      /* cards, panels, form fields */
+  --color-paper-deep: #f7f7f7;   /* alternating sections, media wells, footer */
+  --color-surface-muted: #f1f1f1;/* deeper wells */
+
+  /* ---- Type: near-black through neutral grey ---- */
+  --color-ink: #0a0a0a;
+  --color-ink-soft: #3a3a3a;
+  --color-ink-muted: #5a5a5a;
+  --color-ink-faint: #737373;    /* 4.7:1 on white — AA for body text */
+
+  /* ---- Rules ---- */
+  --color-rule: #e5e5e5;
+  --color-rule-strong: #cfcfcf;
+
+  /* ---- Brand red, used as an accent only ---- */
+  --color-accent: #810100;       /* 10.8:1 on white */
+  --color-accent-hover: #5e0100;
+  --color-accent-wash: #fdf3f3;
+
+  --color-success: #15643a;
+  --color-error: #9b1c1c;
+  --color-focus: #810100;
 
   /* ---- Type families (bound to next/font in layout.tsx) ---- */
   --font-sans: var(--font-plex-sans), ui-sans-serif, system-ui, sans-serif;
@@ -167,13 +183,133 @@
   }
 }
 
+/* =========================================================================
+   BRAND GRAPHIC LANGUAGE
+   Construction geometry derived from the logo: fine drafting lines,
+   registration crosshairs, corner frames. Everything here is decoration —
+   it is aria-hidden, non-interactive, and always sits BEHIND content.
+
+   Rule that outranks all of the below: decoration never crosses portfolio
+   media. It frames the work; it does not draw on it.
+   ========================================================================= */
+
+/* Every decorative layer inherits these guarantees. */
+.deco {
+  position: absolute;
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
+}
+
+/*
+  Content must always be able to sit above decoration, and decoration must
+  never be able to lengthen the page sideways.
+
+  `overflow: clip` rather than `hidden`: it clips the bled-off construction
+  geometry without creating a scroll container, so any sticky or focus-scroll
+  behaviour inside the section is unaffected.
+*/
+.deco-host {
+  position: relative;
+  isolation: isolate;
+  overflow: clip;
+}
+.deco-host > *:not(.deco) {
+  position: relative;
+  z-index: 1;
+}
+
 /* ---- Technical drafting grid, used sparingly as a section ground ---- */
 .draft-grid {
   background-image:
     linear-gradient(to right, var(--color-rule) 1px, transparent 1px),
     linear-gradient(to bottom, var(--color-rule) 1px, transparent 1px);
   background-size: 48px 48px;
-  opacity: 0.4;
+  opacity: 0.45;
+}
+
+/* Mobile simplifies the decoration rather than shrinking it. */
+@media (max-width: 1023px) {
+  .draft-grid {
+    background-size: 32px 32px;
+    opacity: 0.3;
+  }
+  /*
+    Construction geometry is a desktop-only flourish. Below the lg breakpoint
+    it competes with the copy rather than framing it, so it is removed outright
+    instead of being shrunk.
+  */
+  .deco-desktop {
+    display: none;
+  }
+}
+
+/* =========================================================================
+   SECTION DIVIDER — the technical "box line" transition.
+   Restored from the pre-rebuild decoration set (CornerCrosshairs /
+   BlueprintAccent), rebuilt to match the final logo: two hairlines, a
+   centred registration tick, and one short red segment.
+   ========================================================================= */
+
+.rule-draw {
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 900ms cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+.rule-draw[data-in="true"] {
+  transform: scaleX(1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rule-draw {
+    transform: scaleX(1);
+    transition: none;
+  }
+}
+
+/* =========================================================================
+   MEDIA PRESENTATION
+   The work is the product proof. It is presented unobstructed, on a
+   neutral well, framed by its container rather than marked on its surface.
+   ========================================================================= */
+
+.media-well {
+  background-color: var(--color-paper-deep);
+  border: 1px solid var(--color-rule);
+}
+
+/*
+  Hover depth is applied to the FRAME, never to the image. Transforming the
+  bitmap itself forces the compositor to resample it, which visibly softens
+  fine CAD linework and render detail.
+*/
+.media-frame {
+  transition:
+    border-color 300ms ease,
+    box-shadow 300ms ease,
+    transform 300ms ease;
+}
+@media (hover: hover) {
+  .media-frame:hover {
+    border-color: var(--color-rule-strong);
+    box-shadow: 0 2px 14px -6px rgb(0 0 0 / 0.18);
+    transform: translateY(-2px);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .media-frame,
+  .media-frame:hover {
+    transform: none;
+    transition: none;
+  }
+}
+
+/* Media itself carries no filter, no blend mode and no transform. */
+.media-clean {
+  display: block;
+  filter: none;
+  mix-blend-mode: normal;
+  backface-visibility: hidden;
 }
 
 /* ---- Motion: purposeful only, and fully opt-out ---- */

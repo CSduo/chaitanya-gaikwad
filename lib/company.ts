@@ -31,13 +31,18 @@ export const PEOPLE: Person[] = [
     role: "Founder",
     type: "founder",
     disciplines: [
-      "Technical production",
-      "Growth operations",
-      "Visual content",
+      "CAD & technical production",
+      "Growth, marketing & B2B",
+      "3D visualisation & image production",
+      "Video, AI film & editing",
+      "Automation & workflow systems",
+      "Website design & development",
     ],
     biography: [
-      "Chaitanya Gaikwad founded XIYÀTO to give design-led businesses a dependable external production partner — one that could absorb drawing work, research work and visual production without the overhead of adding permanent headcount.",
-      "The work has run across interior and fit-out documentation, market research and outreach systems for cross-border businesses, and visualisation and film for furniture, hospitality and interior studios. That range is deliberate: the same projects usually need drawings, data and presentation material, and the handovers between them are where time is normally lost.",
+      "XIYÀTO was built around a practical observation. A design, fit-out, furniture or property business rarely needs one thing at a time: the same project usually wants drawings, research, imagery, film, a website and a sensible way of running the admin around all of it. Bought separately, much of the cost lands in the handovers rather than the work itself, in the re-explaining, the mismatched files and the version that never reached the person who needed it. Chaitanya Gaikwad founded the studio to hold those disciplines in one place, under one person answerable for how they fit together.",
+      "He works across all six of them rather than fronting them. Interior and fit-out documentation, market and buyer research, visualisation, short-form film, workflow systems and website builds are scoped, directed and reviewed by the same person, which is what allows a drawing package, the imagery that presents it and the site it eventually sits on to be planned as one piece of work rather than three unrelated ones. Specialists are engaged where an engagement calls for them, against a written brief and into the same review.",
+      "What holds the standard steady is procedural rather than stylistic. Each engagement opens by separating what is confirmed from what is assumed and what is still missing, and that separation is recorded before production starts. Scoring methods are documented alongside research data. A dimension taken from a render rather than a measurement is flagged as provisional. Delivered drawing files are reopened and checked before they are issued. Where a system is built, the rules behind it are written down in ordinary language so your own people can run and amend it without calling us.",
+      "Clients deal with him directly, from the first conversation through to handover. There is no account layer sitting between a brief and the person producing against it, which keeps the answer to \"where is this\" short and makes it unambiguous who is responsible when something needs correcting.",
     ],
     responsibilities: [
       "Scoping every engagement and confirming what is fixed, assumed or missing before production begins",
@@ -46,10 +51,12 @@ export const PEOPLE: Person[] = [
       "Direct client communication throughout an engagement",
     ],
     image: {
-      src: "/media/founder/portrait.jpg",
-      width: 1024,
-      height: 1016,
-      alt: "Chaitanya Gaikwad, founder of XIYÀTO",
+      // Supplied portrait, cropped to 4:5 with no retouching. A 1:1 derivative
+      // sits alongside it at /media/people/founder-1x1.jpg for compact contexts.
+      src: "/media/people/founder-4x5.jpg",
+      width: 1000,
+      height: 1250,
+      alt: "Chaitanya Gaikwad, founder of XIYÀTO, in a head-and-shoulders portrait facing the camera, wearing an open patterned shirt over a dark collared top against a plain pale wall.",
     },
     visible: true,
     order: 1,
@@ -173,16 +180,28 @@ export function specialistRoles(): Role[] {
 
 export const DISCIPLINES = [
   {
-    title: "Technical production",
+    title: "CAD & technical production",
     body: "CAD drafting, interior documentation, drawing coordination and technical QA.",
   },
   {
-    title: "Growth operations",
+    title: "Growth, marketing & B2B",
     body: "Market research, prospect qualification, data structuring and outreach systems.",
   },
   {
-    title: "Visual content",
-    body: "Interior and product visualisation, short-form film, edit and presentation material.",
+    title: "3D visualisation & image production",
+    body: "Interior, architectural and product imagery, material studies and campaign visuals.",
+  },
+  {
+    title: "Video, AI film & editing",
+    body: "Product and interior films, short-form edits, sequencing, grade and sound.",
+  },
+  {
+    title: "Automation & workflow systems",
+    body: "Workflow design, research and outreach automation, data organisation and tooling.",
+  },
+  {
+    title: "Website design & development",
+    body: "Content architecture, responsive front-end development, integrations and deployment.",
   },
 ];
 
@@ -205,19 +224,20 @@ export const LEGAL_PAGES: LegalPage[] = [
   {
     slug: "privacy",
     title: "Privacy Policy",
-    description: "How XIYÀTO handles the information submitted through this website.",
+    description: "How XIYÀTO collects, uses and stores the information you submit through this website, including enquiry forms, and how to ask for it to be removed.",
     published: true,
   },
   {
     slug: "terms",
     title: "Terms of Use",
-    description: "The terms on which this website is made available.",
+    description: "The terms on which XIYÀTO makes this website available, covering acceptable use, the ownership of published work and the limits of what is offered here.",
     published: true,
   },
   {
     slug: "cookies",
     title: "Cookie Policy",
-    description: "How this website uses cookies and similar technologies.",
+    description:
+      "How this website uses cookies and similar technologies, what each is used for, and how to control them in your browser.",
     // This site sets no cookies and runs no analytics, so there is nothing to disclose.
     published: false,
   },

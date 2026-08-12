@@ -76,16 +76,21 @@ function Chapter({
   children: React.ReactNode;
 }) {
   const bg =
-    tone === "dark" ? "bg-ink text-paper" : tone === "surface" ? "bg-surface" : "bg-paper";
+    tone === "dark" ? "bg-ink text-paper" : tone === "surface" ? "bg-paper-deep" : "bg-paper";
   return (
     <section
       id={`service-${service.slug}`}
-      className={`scroll-mt-16 border-t border-rule py-16 sm:py-20 lg:py-24 ${bg}`}
+      className={`scroll-mt-16 border-t border-rule py-12 sm:py-20 lg:py-24 ${bg}`}
     >
       <Container width="page">
-        <div className="grid gap-10 lg:grid-cols-12 lg:gap-14">
+        <div className="grid gap-8 sm:gap-10 lg:grid-cols-12 lg:gap-14">
           <ChapterHeader service={service} tone={tone === "dark" ? "dark" : "light"} />
-          <div className="lg:col-span-8">{children}</div>
+          {/*
+            min-w-0 is load-bearing: grid items default to min-width:auto, so a
+            horizontally-scrolling rail inside this column would force the
+            column wider than the page instead of scrolling within it.
+          */}
+          <div className="min-w-0 lg:col-span-8">{children}</div>
         </div>
       </Container>
     </section>
@@ -116,8 +121,8 @@ export function CadSection({ service }: { service: Service }) {
   return (
     <Chapter service={service} tone="light">
       {/* Input to output, from one real engagement */}
-      <div className="grid gap-px border border-rule bg-rule sm:grid-cols-2">
-        <figure className="bg-paper p-5">
+      <div className="grid gap-3 sm:grid-cols-2 sm:gap-4">
+        <figure className="border border-rule bg-paper p-5">
           <figcaption className="label mb-4">Supplied by the client</figcaption>
           <div className="relative aspect-[4/3] overflow-hidden border border-rule bg-paper-deep">
             <Image
@@ -130,7 +135,7 @@ export function CadSection({ service }: { service: Service }) {
             />
           </div>
         </figure>
-        <figure className="bg-paper p-5">
+        <figure className="border border-rule bg-paper p-5">
           <figcaption className="label mb-4">Returned as editable CAD</figcaption>
           <div className="relative aspect-[4/3] overflow-hidden border border-rule bg-paper-deep">
             <Image
@@ -161,7 +166,7 @@ export function CadSection({ service }: { service: Service }) {
           </h4>
           <p className="meta">Select any drawing to open and zoom</p>
         </div>
-        <ImageGrid items={items} columns={4} aspect="4/3" zoomable />
+        <ImageGrid items={items} columns={4} aspect="4/3" zoomable fit="contain" />
         <Link
           href="/services/cad-technical-production#drawings"
           className="group mt-6 inline-flex min-h-[44px] items-center gap-2 text-sm font-medium text-ink transition-colors hover:text-accent"
@@ -205,7 +210,7 @@ export function GrowthSection({ service }: { service: Service }) {
             <h4 className="display mt-3 text-lg leading-snug">
               <Link
                 href={`/work/research/${w.slug}`}
-                className="transition-colors after:absolute after:inset-0 hover:text-accent"
+                className="inline-flex min-h-[44px] items-center transition-colors after:absolute after:inset-0 hover:text-accent"
               >
                 {w.title}
               </Link>
@@ -323,7 +328,7 @@ export function VideoSection({ service }: { service: Service }) {
       </p>
 
       <div className="[&_.label]:text-paper/45 [&_.meta]:text-paper/50">
-        <VideoGallery videos={shown} columns={3} />
+        <VideoGallery videos={shown} columns={3} rail />
       </div>
 
       <Link

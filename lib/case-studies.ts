@@ -24,32 +24,32 @@ export const WORK_CATEGORIES: { slug: WorkCategory; label: string; blurb: string
   {
     slug: "technical-production",
     label: "CAD & Technical",
-    blurb: "Drawing packages, documentation and drafting capacity.",
+    blurb: "Interior drawing packages: plans, elevations, ceilings, flooring setting-out and joinery details, delivered as editable sets.",
   },
   {
     slug: "growth-b2b",
     label: "Growth & B2B",
-    blurb: "Market research, qualified target data and outreach systems.",
+    blurb: "Eight research workbooks mapping markets across the Gulf, India, China and the Philippines, scored and ranked for outreach.",
   },
   {
     slug: "visualisation",
     label: "Visualisation",
-    blurb: "Interior, product and brand imagery.",
+    blurb: "Forty-one published images across interiors, product and furniture, retail, workspace, hospitality and architectural subjects.",
   },
   {
     slug: "video",
     label: "Video",
-    blurb: "Cinematic film, product campaigns and showroom reels.",
+    blurb: "Eight client films for furniture brands, showrooms, interior studios, hospitality venues and a Middle East developer, plus one internal visual study.",
   },
   {
     slug: "automation",
     label: "Automation",
-    blurb: "Workflow and operational systems.",
+    blurb: "Offered as capability and run on our own operation. No client automation engagement is published as a case study yet.",
   },
   {
     slug: "websites",
     label: "Websites",
-    blurb: "Responsive front-end builds and platforms.",
+    blurb: "Three responsive builds: an export brand site, an academic journal platform with author submissions, and this studio site.",
   },
 ];
 

@@ -4,7 +4,7 @@ import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { LegacyHashRedirect } from "@/components/site/LegacyHashRedirect";
 import { JsonLd } from "@/components/ui/primitives";
-import { organizationSchema } from "@/lib/seo";
+import { organizationSchema, webSiteSchema } from "@/lib/seo";
 import { SITE } from "@/lib/site";
 import "./globals.css";
 
@@ -38,15 +38,13 @@ export const metadata: Metadata = {
   description: SITE.defaultDescription,
   applicationName: SITE.name,
   formatDetection: { telephone: false },
-  icons: {
-    icon: [{ url: "/icon", type: "image/png" }],
-    apple: [{ url: "/apple-icon", type: "image/png" }],
-  },
+  // icon.png, apple-icon.png and favicon.ico are file conventions in app/ —
+  // Next emits the correct <link> tags from the real emblem artwork.
   manifest: "/site.webmanifest",
 };
 
 export const viewport: Viewport = {
-  themeColor: "#faf8f5",
+  themeColor: "#ffffff",
   colorScheme: "light",
 };
 
@@ -58,6 +56,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     >
       <body className="flex min-h-screen flex-col">
         <JsonLd data={organizationSchema()} />
+        <JsonLd data={webSiteSchema()} />
         <LegacyHashRedirect />
 
         <a

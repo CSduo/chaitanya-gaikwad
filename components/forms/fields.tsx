@@ -198,7 +198,7 @@ export function CheckboxField({
           onChange={(e) => onChange(e.target.checked)}
           aria-invalid={error ? true : undefined}
           aria-describedby={error ? `${id}-error` : undefined}
-          className={`mt-0.5 h-5 w-5 shrink-0 cursor-pointer appearance-none border bg-surface transition-colors checked:border-ink checked:bg-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus ${
+          className={`mt-0.5 h-6 w-6 shrink-0 cursor-pointer appearance-none border bg-surface transition-colors checked:border-ink checked:bg-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus ${
             error ? "border-error" : "border-rule-strong"
           }`}
         />

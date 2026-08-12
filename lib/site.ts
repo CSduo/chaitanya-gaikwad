@@ -12,7 +12,7 @@ export const SITE = {
   descriptor:
     "Technical, creative and growth services for architecture firms, design businesses and international brands.",
   defaultDescription:
-    "XIYÀTO delivers CAD and technical production, B2B growth and marketing, 3D visualisation, video and AI film, automation systems and websites for architecture, interior, fit-out and furniture businesses.",
+    "CAD and technical production, B2B growth, 3D visualisation, film, automation and websites for design practices, brands and manufacturers. UK and India.",
   locale: "en_GB",
   language: "en-GB",
   /** Owner-specified. Not derived from the current year. */

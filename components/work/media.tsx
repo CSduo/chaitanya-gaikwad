@@ -48,7 +48,7 @@ export function LazyVideo({ item, className = "" }: { item: VideoItem; className
               <span className="sr-only">Play video: {item.title}</span>
               <span
                 aria-hidden="true"
-                className="flex h-16 w-16 items-center justify-center rounded-full border border-paper/70 bg-ink/60 text-paper backdrop-blur-sm transition-transform group-hover:scale-105"
+                className="flex h-16 w-16 items-center justify-center rounded-full border border-paper/70 bg-ink/65 text-paper transition-transform group-hover:scale-105"
               >
                 <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
                   <path d="M8 5v14l11-7z" />
@@ -84,7 +84,7 @@ export function Gallery({ images }: { images: MediaItem[] }) {
 
   return (
     <>
-      <ul className="grid grid-cols-1 gap-px border border-rule bg-rule sm:grid-cols-2 lg:grid-cols-3">
+      <ul className="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-3">
         {images.map((img, i) => (
           <li key={img.src} className="bg-surface">
             <button
@@ -99,7 +99,7 @@ export function Gallery({ images }: { images: MediaItem[] }) {
                   fill
                   loading="lazy"
                   sizes="(min-width: 1024px) 380px, (min-width: 640px) 45vw, 92vw"
-                  className="object-cover transition-transform duration-500 group-hover:scale-[1.02]"
+                  className="media-clean object-cover"
                 />
               </span>
               {img.caption ? (

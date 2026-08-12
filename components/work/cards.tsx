@@ -53,7 +53,7 @@ export function CaseStudyCard({
                 ? "(min-width: 1024px) 560px, (min-width: 640px) 90vw, 100vw"
                 : "(min-width: 1024px) 380px, (min-width: 640px) 45vw, 92vw"
             }
-            className="object-cover transition-transform duration-500 group-hover:scale-[1.02]"
+            className="media-clean object-cover"
           />
         </Link>
       ) : null}
@@ -64,7 +64,7 @@ export function CaseStudyCard({
         <h3 className={`display mt-4 ${featured ? "text-2xl lg:text-3xl" : "text-xl"}`}>
           <Link
             href={`/work/${study.slug}`}
-            className="transition-colors after:absolute after:inset-0 hover:text-accent"
+            className="inline-flex min-h-[44px] items-center transition-colors after:absolute after:inset-0 hover:text-accent"
           >
             {study.projectName}
           </Link>
@@ -96,7 +96,7 @@ export function ServiceCard({ service }: { service: Service }) {
       <h3 className="display mt-4 text-2xl">
         <Link
           href={`/services/${service.slug}`}
-          className="transition-colors after:absolute after:inset-0 hover:text-accent"
+          className="inline-flex min-h-[44px] items-center transition-colors after:absolute after:inset-0 hover:text-accent"
         >
           {service.name}
         </Link>

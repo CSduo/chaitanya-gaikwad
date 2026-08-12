@@ -16,6 +16,7 @@ import { ServiceProof } from "@/components/home/ServiceProof";
 import { SERVICES, getService } from "@/lib/services";
 import { caseStudiesForService } from "@/lib/case-studies";
 import { pageMetadata, serviceSchema, breadcrumbSchema } from "@/lib/seo";
+import { SERVICE_SEO } from "@/lib/seo-copy";
 
 export function generateStaticParams() {
   return SERVICES.map((s) => ({ slug: s.slug }));
@@ -31,9 +32,12 @@ export async function generateMetadata({
   const { slug } = await params;
   const service = getService(slug);
   if (!service) return {};
+  const seo = SERVICE_SEO[service.slug];
   return pageMetadata({
-    title: service.name,
-    description: service.overview,
+    // Each service carries its own written title and description; none falls
+    // back to the service name, so no two service pages share metadata.
+    title: seo?.metaTitle ?? service.name,
+    description: seo?.metaDescription ?? service.overview,
     path: `/services/${service.slug}`,
   });
 }

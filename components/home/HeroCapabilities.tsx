@@ -14,7 +14,7 @@ import { featuredVideos } from "@/lib/portfolio";
 function VisualisationScene({ active }: { active: boolean }) {
   const picks = featuredVisuals(4);
   return (
-    <div className="grid h-full w-full grid-cols-2 gap-px bg-rule">
+    <div className="grid h-full w-full grid-cols-2 gap-1 bg-paper-deep">
       {picks.map((v, i) => (
         <div key={v.src} className="relative overflow-hidden bg-paper-deep">
           <Image
@@ -36,7 +36,7 @@ function VisualisationScene({ active }: { active: boolean }) {
 function VideoScene() {
   const picks = featuredVideos(3);
   return (
-    <div className="grid h-full w-full grid-cols-3 gap-px bg-rule">
+    <div className="grid h-full w-full grid-cols-3 gap-1 bg-paper-deep">
       {picks.map((v, i) => (
         <div key={v.slug} className="relative overflow-hidden bg-ink">
           <Image

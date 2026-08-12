@@ -21,10 +21,14 @@ import { SERVICES, getService } from "@/lib/services";
 import { publishedLocations } from "@/lib/company";
 import { pageMetadata } from "@/lib/seo";
 import { SITE, PRIMARY_CTA, WHATSAPP } from "@/lib/site";
+import { HOME_COPY } from "@/lib/home-copy";
+import { ROUTE_SEO } from "@/lib/seo-copy";
+import { ConstructionRing } from "@/components/brand/decorations";
+import { SectionDivider } from "@/components/brand/Divider";
 
 export const metadata: Metadata = pageMetadata({
-  title: `${SITE.name} — ${SITE.descriptor}`,
-  description: SITE.defaultDescription,
+  title: ROUTE_SEO.home.metaTitle,
+  description: ROUTE_SEO.home.metaDescription,
   path: "/",
 });
 
@@ -60,23 +64,33 @@ export default function HomePage() {
       {/* ============================================================
           01 — HERO
          ============================================================ */}
-      <section className="border-b border-rule">
-        <Container width="page" className="pb-14 pt-12 sm:pt-16 lg:pb-20 lg:pt-20">
-          <div className="grid gap-10 lg:grid-cols-12 lg:gap-14">
-            <div className="lg:col-span-5 lg:pt-6">
-              <p className="display text-[1.75rem] tracking-[0.16em] text-ink">{SITE.name}</p>
+      <section className="deco-host border-b border-rule">
+        {/*
+          Construction geometry from the logo, bled off the top-right corner.
+          Desktop only: at phone widths it would sit under the headline rather
+          than beside it.
+        */}
+        <ConstructionRing
+          className="deco deco-desktop -right-40 -top-52 h-[34rem] w-[34rem] text-rule"
+          opacity={0.5}
+        />
 
-              <h1 className="display mt-7 text-[2.25rem] leading-[1.06] sm:text-[2.75rem] lg:text-[3.25rem]">
-                Technical, creative and growth services for design-led businesses.
-              </h1>
-
-              <p className="mt-7 max-w-lg text-base leading-relaxed text-ink-soft">
-                CAD &amp; technical production, B2B growth &amp; marketing, 3D visualisation,
-                video production, automation and websites — for architecture firms, interior
-                and fit-out teams, furniture brands and international companies.
+        <Container width="page" className="pb-12 pt-10 sm:pt-14 lg:pb-20 lg:pt-20">
+          <div className="flex flex-col gap-8 lg:grid lg:grid-cols-12 lg:gap-14">
+            <div className="order-1 lg:col-span-5 lg:pt-6">
+              <p className="display text-[1.5rem] tracking-[0.16em] text-ink sm:text-[1.75rem]">
+                {SITE.name}
               </p>
 
-              <div className="mt-9 flex flex-wrap gap-3">
+              <h1 className="display mt-5 text-[1.9375rem] leading-[1.1] sm:mt-7 sm:text-[2.5rem] sm:leading-[1.06] lg:text-[3.125rem]">
+                {HOME_COPY.h1}
+              </h1>
+
+              <p className="mt-5 max-w-lg text-[0.9375rem] leading-relaxed text-ink-soft sm:mt-7 sm:text-base">
+                {HOME_COPY.standfirst}
+              </p>
+
+              <div className="mt-7 flex flex-wrap gap-3 sm:mt-9">
                 <a
                   href={PRIMARY_CTA.href}
                   target="_blank"
@@ -96,8 +110,14 @@ export default function HomePage() {
                 </a>
               </div>
 
-              {/* Geography with direct contact, no "international delivery" claim */}
-              <dl className="mt-10 flex flex-wrap gap-x-12 gap-y-5 border-t border-rule pt-7">
+              {/*
+                Geography with direct contact — no "international delivery"
+                claim. Kept inside the left column at every width: the headline
+                and standfirst already answer what XIYÀTO does within the first
+                phone viewport, so the numbers following the CTAs read as the
+                next useful step rather than as an interruption.
+              */}
+              <dl className="mt-8 flex flex-wrap gap-x-12 gap-y-4 border-t border-rule pt-6 sm:mt-10 sm:pt-7">
                 <div>
                   <dt className="label">United Kingdom</dt>
                   <dd className="mt-1.5">
@@ -145,12 +165,15 @@ export default function HomePage() {
          ============================================================ */}
       <Container width="page" className="scroll-mt-16 pt-16 sm:pt-20" id="capabilities">
         <div className="flex flex-wrap items-baseline justify-between gap-x-8 gap-y-3">
-          <h2 className="display text-3xl sm:text-4xl">What we do.</h2>
+          <h2 className="display text-[1.75rem] sm:text-4xl">What we do.</h2>
           <p className="font-mono text-[0.6875rem] uppercase tracking-[0.2em] text-ink-faint">
-            Six service areas · evidence in each
+            {HOME_COPY.eyebrow}
           </p>
         </div>
-        <ul className="mt-8 grid gap-px border border-rule bg-rule sm:grid-cols-2 lg:grid-cols-3">
+        <p className="mt-5 max-w-2xl text-[0.9375rem] leading-relaxed text-ink-soft sm:text-base">
+          {HOME_COPY.capabilitiesIntro}
+        </p>
+        <ul className="mt-7 grid gap-px border border-rule bg-rule sm:mt-8 sm:grid-cols-2 lg:grid-cols-3">
           {SERVICES.map((s) => (
             <li key={s.slug} className="bg-paper">
               <a
@@ -171,10 +194,15 @@ export default function HomePage() {
       </Container>
 
       <CadSection service={cad} />
+      <SectionDivider index={2} label="Growth" className="py-1" />
       <GrowthSection service={growth} />
+      <SectionDivider index={3} label="Visualise" className="py-1" />
       <VisualisationSection service={visualisation} />
+      <SectionDivider index={4} label="Film" className="py-1" />
       <VideoSection service={video} />
+      <SectionDivider index={5} label="Automate" className="py-1" />
       <AutomationSection service={automation} />
+      <SectionDivider index={6} label="Build" className="py-1" />
       <WebsiteSection service={web} />
 
       {/* ============================================================
@@ -185,7 +213,7 @@ export default function HomePage() {
           <SectionHeading
             eyebrow="How we work"
             title="One process, whatever the output."
-            intro="The same four stages run whether the deliverable is a drawing package, a research workbook, a film or a website."
+            intro={HOME_COPY.howWeWorkIntro}
           />
           <div className="mt-14">
             <ProductionTrack />

@@ -16,11 +16,11 @@ import {
 } from "@/lib/company";
 import { publishedChannels } from "@/lib/site";
 import { pageMetadata, breadcrumbSchema } from "@/lib/seo";
+import { ROUTE_SEO } from "@/lib/seo-copy";
 
 export const metadata: Metadata = pageMetadata({
-  title: "Careers",
-  description:
-    "XIYÀTO works with independent specialists across technical production, growth operations and visual content. There are no open vacancies at present; the talent network is always open.",
+  title: ROUTE_SEO.careers.metaTitle,
+  description: ROUTE_SEO.careers.metaDescription,
   path: "/careers",
 });
 
@@ -63,10 +63,10 @@ export default function CareersPage() {
         <Container width="page" className="py-16 sm:py-20 lg:py-24">
           <div className="max-w-3xl">
             <Eyebrow>Careers</Eyebrow>
-            <h1 className="display mt-6 text-4xl sm:text-5xl lg:text-[3.5rem]">
+            <h1 className="display mt-6 text-[2.125rem] leading-[1.1] sm:text-5xl lg:text-[3.5rem]">
               We work with specialists, project by project.
             </h1>
-            <p className="mt-7 text-lg leading-relaxed text-ink-soft">
+            <p className="mt-6 text-base leading-relaxed text-ink-soft sm:mt-7 sm:text-lg">
               XIYÀTO is a small, founder-led studio. Rather than carrying permanent capacity
               that is idle between engagements, we bring in independent specialists against
               defined briefs — and keep a standing network of people we can approach when the

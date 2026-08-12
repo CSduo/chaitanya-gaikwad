@@ -14,11 +14,12 @@ import { CaseStudyCard } from "@/components/work/cards";
 import { SERVICES } from "@/lib/services";
 import { featuredCaseStudies } from "@/lib/case-studies";
 import { pageMetadata, breadcrumbSchema } from "@/lib/seo";
+import { ROUTE_SEO } from "@/lib/seo-copy";
+import { SERVICES_INDEX_COPY } from "@/lib/company-copy";
 
 export const metadata: Metadata = pageMetadata({
-  title: "Services",
-  description:
-    "Three services: CAD and technical production, growth operations, and visual content — delivered as external production capacity for design-led businesses.",
+  title: ROUTE_SEO.services.metaTitle,
+  description: ROUTE_SEO.services.metaDescription,
   path: "/services",
 });
 
@@ -62,14 +63,11 @@ export default function ServicesPage() {
         <Container width="page" className="py-16 sm:py-20 lg:py-24">
           <div className="max-w-3xl">
             <Eyebrow>Services</Eyebrow>
-            <h1 className="display mt-6 text-4xl sm:text-5xl lg:text-[3.5rem]">
-              Production capacity across three disciplines.
+            <h1 className="display mt-6 text-[2.125rem] leading-[1.1] sm:text-5xl lg:text-[3.5rem]">
+              {SERVICES_INDEX_COPY.h1}
             </h1>
-            <p className="mt-7 text-lg leading-relaxed text-ink-soft">
-              XIYÀTO is engaged as external capacity, not as a design authority. Each
-              service takes defined inputs and returns defined outputs — drawings your team
-              can edit, data your team can work, and visual material built for a specific
-              placement.
+            <p className="mt-6 text-base leading-relaxed text-ink-soft sm:mt-7 sm:text-lg">
+              {SERVICES_INDEX_COPY.standfirst}
             </p>
           </div>
         </Container>

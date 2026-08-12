@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import {
   SITE,
   SOCIAL_CHANNELS,
@@ -21,7 +22,7 @@ function FooterLink({ href, children }: { href: string; children: React.ReactNod
   return (
     <Link
       href={href}
-      className="inline-flex min-h-[32px] items-center text-sm text-ink-soft transition-colors hover:text-accent"
+      className="inline-flex min-h-[44px] lg:min-h-[32px] items-center text-sm text-ink-soft transition-colors hover:text-accent"
     >
       {children}
     </Link>
@@ -40,7 +41,16 @@ export function Footer() {
         {/* ---- Band 1: brand ---- */}
         <div className="flex flex-col gap-6 py-10 sm:flex-row sm:items-start sm:justify-between sm:py-14">
           <div className="max-w-md">
-            <p className="display text-2xl tracking-[0.14em] text-ink">{SITE.name}</p>
+            <div className="flex items-center gap-4">
+              <Image
+                src="/brand/emblem-mark-256.png"
+                alt=""
+                width={44}
+                height={44}
+                className="media-clean h-11 w-11 shrink-0"
+              />
+              <p className="display text-2xl tracking-[0.14em] text-ink">{SITE.name}</p>
+            </div>
             <p className="mt-4 text-sm leading-relaxed text-ink-muted">{SITE.descriptor}</p>
           </div>
           {SOCIAL_CHANNELS.length > 0 ? (
@@ -53,7 +63,7 @@ export function Footer() {
                       href={c.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex min-h-[32px] items-center text-sm text-ink-soft transition-colors hover:text-accent"
+                      className="inline-flex min-h-[44px] lg:min-h-[32px] items-center text-sm text-ink-soft transition-colors hover:text-accent"
                     >
                       {c.label} — {c.value}
                     </a>
@@ -122,7 +132,7 @@ export function Footer() {
                 <li key={c.id}>
                   <a
                     href={`mailto:${c.email}`}
-                    className="inline-flex min-h-[32px] items-center text-sm text-ink-soft transition-colors hover:text-accent"
+                    className="inline-flex min-h-[44px] lg:min-h-[32px] items-center text-sm text-ink-soft transition-colors hover:text-accent"
                   >
                     {c.email}
                   </a>
@@ -134,7 +144,7 @@ export function Footer() {
                     href={c.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex min-h-[32px] items-center text-sm text-ink-soft transition-colors hover:text-accent"
+                    className="inline-flex min-h-[44px] lg:min-h-[32px] items-center text-sm text-ink-soft transition-colors hover:text-accent"
                   >
                     {c.label}
                   </a>
@@ -179,7 +189,7 @@ export function Footer() {
                 <li key={p.slug}>
                   <Link
                     href={`/legal/${p.slug}`}
-                    className="inline-flex min-h-[32px] items-center text-xs text-ink-muted transition-colors hover:text-accent"
+                    className="inline-flex min-h-[44px] lg:min-h-[32px] items-center text-xs text-ink-muted transition-colors hover:text-accent"
                   >
                     {p.title}
                   </Link>

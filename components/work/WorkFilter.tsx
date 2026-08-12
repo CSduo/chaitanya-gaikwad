@@ -18,11 +18,18 @@ export function WorkFilter({
   total: number;
 }) {
   const base =
-    "inline-flex min-h-[44px] items-center gap-2 border px-4 text-sm transition-colors";
+    "inline-flex min-h-[44px] shrink-0 snap-start items-center gap-2 border px-4 text-sm whitespace-nowrap transition-colors";
 
   return (
+    /*
+      A horizontal rail on phones and a wrapping row from `sm` up. Six labels
+      wrap to three cramped lines on a 360px screen, so below that breakpoint
+      they scroll instead — full-size targets, no shrunken pills. The negative
+      margin lets the rail bleed to the screen edge so the last chip is
+      visibly cut off, which is what signals that it scrolls.
+    */
     <nav aria-label="Filter work by category">
-      <ul className="flex flex-wrap gap-2">
+      <ul className="-mx-6 flex snap-x snap-mandatory gap-2 overflow-x-auto px-6 pb-1 [scrollbar-width:none] sm:mx-0 sm:flex-wrap sm:overflow-visible sm:px-0 [&::-webkit-scrollbar]:hidden">
         <li>
           <Link
             href="/work"

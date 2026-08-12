@@ -30,10 +30,17 @@ export function pageMetadata({
   noIndex = false,
 }: PageMetaInput): Metadata {
   const url = absoluteUrl(path);
-  const ogImage = image ? absoluteUrl(image) : absoluteUrl("/opengraph-image");
+  const ogImage = image ? absoluteUrl(image) : absoluteUrl("/opengraph-image.png");
+
+  /*
+    The root layout appends "— XIYÀTO" via the title template. A written title
+    that already carries the brand would otherwise be branded twice and run
+    past the ~60-character SERP limit, so it is emitted absolutely instead.
+  */
+  const carriesBrand = title.includes(SITE.name) || title.includes(SITE.nameAscii);
 
   return {
-    title,
+    title: carriesBrand ? { absolute: title } : title,
     description,
     alternates: { canonical: url },
     robots: noIndex
@@ -73,13 +80,56 @@ export function organizationSchema() {
       { "@type": "Country", name: "United Kingdom" },
       { "@type": "Country", name: "India" },
     ],
+    logo: absoluteUrl("/brand/emblem-512.png"),
+    image: absoluteUrl("/opengraph-image.png"),
     founder: { "@type": "Person", name: "Chaitanya Gaikwad" },
     knowsAbout: [
       "CAD drafting",
       "Interior technical documentation",
-      "Market research",
+      "B2B market research",
       "Architectural visualisation",
+      "Product visualisation",
+      "Video production and editing",
+      "Workflow automation",
+      "Website design and development",
     ],
+    // Deliberately absent: address, telephone, legalName, foundingDate,
+    // numberOfEmployees, aggregateRating, award. None has been verified, and
+    // structured data is not a place to guess.
+  };
+}
+
+/** Site-level identity, emitted once from the root layout. */
+export function webSiteSchema() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: SITE.name,
+    alternateName: SITE.nameAscii,
+    url: SITE.url,
+    inLanguage: SITE.language,
+    publisher: { "@type": "Organization", name: SITE.name, url: SITE.url },
+  };
+}
+
+/**
+ * Founder identity. Only name, role and affiliation are asserted — the
+ * properties a public page actually evidences.
+ */
+export function personSchema(input: {
+  name: string;
+  role: string;
+  path: string;
+  image?: string;
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: input.name,
+    jobTitle: input.role,
+    url: absoluteUrl(input.path),
+    ...(input.image ? { image: absoluteUrl(input.image) } : {}),
+    worksFor: { "@type": "Organization", name: SITE.name, url: SITE.url },
   };
 }
 

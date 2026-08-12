@@ -47,11 +47,11 @@ export const SERVICES: Service[] = [
     name: "CAD & Technical Production",
     shortName: "CAD & Technical Production",
     motif: "Deliver",
-    summary: "Editable interior drawing packages produced from your design direction, measurements and references.",
-    overview: "External drafting and documentation capacity for interior, fit-out and design-led teams. We work from approved layouts, marked-up PDFs, site dimensions, sketches and renders, and return coordinated drawing sets in DWG, DXF and PDF. The geometry stays native and editable, so your own people can open the files and carry the work on.",
+    summary: "Outsourced CAD drafting for interior and fit-out teams: plans, elevations, RCPs and flooring setting-out, issued as editable DWG.",
+    overview: "External CAD drafting and documentation capacity for interior, fit-out and design businesses, working from your layouts, dimensions, sketches and renders to editable DWG, DXF and PDF sets.",
     intro: [
-      "XIYÀTO works as external production capacity for interior, fit-out and design practices carrying more drawing work than their studio can absorb. You supply the design direction — approved layouts, marked-up drawings, measured dimensions, reference imagery, renders or a dimensioned hand sketch — and we produce the coordinated, editable package your team reviews and issues.",
-      "This is drafting and documentation, not design authorship. Your practice keeps design ownership and technical authority throughout; we take on the production load and hand back files built to be worked on rather than merely looked at. Where a dimension has been derived from a render or a reference rather than confirmed on site, it is flagged as provisional instead of presented as fact.",
+      "XIYÀTO works as external drafting capacity for interior, fit-out and design practices carrying more drawing work than the studio can absorb. You supply the design direction: approved layouts, marked-up PDFs, measured site dimensions, renders or a dimensioned hand sketch. We return the coordinated package your team reviews and issues, covering general arrangement plans, wall elevations, reflected ceiling plans, flooring setting-out and joinery detail.",
+      "This is drafting and documentation, not design authorship. Your practice keeps design ownership and technical authority. We take on the production load and return native DWG and DXF built to your layer convention and title block, so the set can be revised and issued from your office. Every package is dimension-checked and reopened before issue, and any dimension taken from a render rather than confirmed on site is flagged as provisional.",
     ],
     groups: [
       {
@@ -130,11 +130,11 @@ export const SERVICES: Service[] = [
     name: "Growth, Marketing & B2B",
     shortName: "Growth & B2B",
     motif: "Grow",
-    summary: "Market research, qualified B2B target data, outreach systems and the marketing material that supports them.",
-    overview: "Commercial groundwork for design, product and property businesses opening a new market or rebuilding a pipeline. We research the market, identify and score the companies worth approaching, structure the findings into workbooks your team can actually work, and support the outreach and marketing material that follows. Every claim in the data is traceable to a recorded public source.",
+    summary: "Research-led B2B lead generation: market intelligence, scored target lists, contact routes, outreach systems and marketing support.",
+    overview: "B2B lead generation and market research for businesses entering a new market or rebuilding a pipeline, with every target company identified, evidenced, scored and structured for outreach.",
     intro: [
-      "Growth, Marketing & B2B is the commercial side of the studio: business research, qualified prospect data, outreach operations and the marketing material that sits alongside them. It is built for interior, fit-out, furniture, property and hospitality businesses that know roughly where the opportunity sits — a region, a sector, a trade route, a trade fair — but do not yet have the evidence, the target list or the working system to act on it.",
-      "This is research and systems work rather than campaign management or media buying. A workbook is delivered to be worked, not filed: records are scored, segmented and sourced, the scoring method is documented alongside the data, rejected records are kept in an auditable backup rather than quietly deleted, and the outreach structure is mapped record by record so your commercial team can start without repeating the research.",
+      "Growth, Marketing & B2B is the research-led commercial side of XIYÀTO: market intelligence, company and prospect research, qualified B2B target data, outreach operations and the marketing that supports them. It serves design, fit-out, furniture, manufacturing, property and hospitality businesses that know roughly where the opportunity sits — a region, a sector, a trade route, an exhibition — but do not yet hold the evidence, the target list or the working system to act on it.",
+      "This is research and systems work rather than campaign management or media buying. Published workbooks under this service span market entry, buyer discovery, contact-route mapping and event research across Saudi Arabia, the GCC, India, China and the Philippines. Each is built to be worked rather than filed: records are scored and ranked, contact routes are recorded against the companies that have them, and the larger studies carry a source log and a record of what was removed during cleaning.",
     ],
     groups: [
       {
@@ -226,11 +226,11 @@ export const SERVICES: Service[] = [
     name: "3D Visualisation & Image Production",
     shortName: "3D Visualisation",
     motif: "Visualise",
-    summary: "Still imagery for interiors, products and brands, produced from your layouts, materials and references.",
-    overview: "Still image production for design-led businesses: interior and spatial visualisation, product and furniture imagery, dimensioned layout studies and brand visuals. We work from your plans, measurements, material direction and product references, and specify each image around where it will be used — a client pitch, a showroom screen, a catalogue page or a website header.",
+    summary: "Interior, architectural and product visualisation produced from your plans, materials and references, built for a defined placement.",
+    overview: "Still image production for design-led businesses: interior and architectural visualisation, product and furniture imagery, material studies and campaign visuals, specified by placement.",
     intro: [
-      "Most design work has to be sold before it exists. This service covers the still imagery that carries that job: rooms that have not been built, furniture that is not yet on a shop floor, and finishes a client cannot hold in their hand. XIYÀTO produces this material as external capacity for interior, fit-out, furniture, property and hospitality businesses, working from the drawings, dimensions, product photography and material direction you already hold.",
-      "Images are produced through a combination of 3D visualisation, AI-assisted generation and compositing, chosen by what the image has to do rather than by tool preference. Every output is specified against its placement — pitch document, showroom screen, catalogue spread, property listing, website header or social frame — and delivered in the ratios and resolutions that placement requires. Directions are put forward as options for your selection rather than as a single fixed image.",
+      "Most design work has to be sold before it exists. This service covers the imagery that carries that job: interiors not yet built, furniture not yet on a showroom floor, and finishes a client cannot hold. We produce it for interior and fit-out practices, furniture and product manufacturers, property and hospitality businesses and brands, working from the drawings, dimensions, product photography and material direction you already hold.",
+      "Coverage runs from interior and architectural visualisation to product and furniture imagery, material studies, showroom sets and campaign visuals. Images are produced through 3D visualisation, AI-assisted generation and compositing, and each is specified against its placement: a pitch document, a showroom screen, a catalogue spread or a website header, in the ratio that placement requires. Directions are put forward as options for your selection, not as a single fixed image.",
     ],
     groups: [
       {
@@ -319,11 +319,11 @@ export const SERVICES: Service[] = [
     name: "Video, AI Film & Editing",
     shortName: "Video & Film",
     motif: "Film",
-    summary: "Short-form cinematic film for furniture, interiors and hospitality brands — produced, edited and cut to placement.",
-    overview: "Short-form film production for design, furniture, property and hospitality businesses. We produce product campaigns, showroom walkthroughs and interior sequences using filmed material, AI-assisted generation and edit-room work, in whatever combination the brief actually needs. Output is specified around the placement it is made for rather than exported to a generic ratio.",
+    summary: "Cinematic product films, reels and interior sequences for furniture, hospitality and property brands, edited and cut for every placement.",
+    overview: "Short-form film for design, furniture, property and hospitality businesses: product campaigns, showroom walkthroughs, interior reels and brand films, cut to every placement they run in.",
     intro: [
-      "Film is how a piece of furniture, a finished interior or an unbuilt development gets seen by people who will never stand in front of it. XIYÀTO produces short-form film for exactly that job: product campaigns built around a single piece, factory-to-showroom production stories, showroom walkthroughs, hospitality ambience edits, before-and-after interior sequences and commercial films for property. The work delivered to date spans furniture brands, interior studios, showroom operators, hospitality venues and a property developer in the Middle East.",
-      "AI-assisted generation sits inside that process rather than standing in for it. Some sequences are filmed, some are generated, most are a combination — and the decision is made shot by shot, against what the material needs and what is realistically available to shoot. What holds a piece together is the edit: shot order, pacing, grade and sound. We state which method a project will use before production begins, so you know what you are commissioning and how it can honestly be described in use.",
+      "Film is how a piece of furniture, a finished interior or an unbuilt development reaches people who will never stand in front of it. XIYÀTO produces cinematic short-form film for that job: product and campaign films, showroom and interior walkthroughs, hospitality edits and commercial films for property. The work to date spans furniture brands, interior studios, showroom operators, hospitality venues and a developer in the Middle East.",
+      "What holds a short-form film together is the edit: shot order, pacing, grade and sound. Some sequences are filmed, some are generated with AI assistance, most combine the two, and the method is agreed shot by shot before production so the film can be described accurately in use. Every cut is then produced to its placement: vertical for reels, portrait for feed, landscape for websites and showroom screens.",
     ],
     groups: [
       {
@@ -415,11 +415,11 @@ export const SERVICES: Service[] = [
     name: "Automation & Workflow Systems",
     shortName: "Automation & Workflow",
     motif: "Automate",
-    summary: "Working systems for the repetitive parts of studio operations — enquiries, outreach, handovers and admin.",
-    overview: "Practical automation built inside the tools a team already uses. We map where information is re-typed, chased or lost between steps, then build, document and hand over the systems that remove the manual repetition. The result is a process your own people can run and amend without us.",
+    summary: "Workflow design and business process automation built inside the tools your team already uses: enquiries, lead management, outreach and reporting.",
+    overview: "We map how the work runs today, then build, document and hand over the systems that remove the manual repetition, working inside the tools your team already runs.",
     intro: [
-      "Design, fit-out, furniture and property teams lose a surprising amount of time to coordination rather than to work: the same enquiry details typed into three places, follow-ups tracked from memory, project folders rebuilt by hand, reports assembled at the end of every month. Automation & Workflow Systems addresses that layer. We look at how the work is actually done now, identify the steps that repeat without judgement being applied, and build systems that carry the information across instead.",
-      "This is capability we run on our own operation before we offer it to anyone else — the enquiry routing, research workbooks, outreach tracking and production handovers behind XIYÀTO's other services are built the same way. We hold no client automation engagement released as published case-study material, and we would rather say that plainly than imply otherwise. Systems are built inside the tools you already use, documented in ordinary language, and handed over with the rules written down.",
+      "Most businesses lose more time to coordination than to the work itself: the same enquiry typed into three places, follow-ups tracked from memory, prospect lists rebuilt by hand, reports assembled at the end of every month. Automation and Workflow Systems addresses that layer. We examine how the work is actually done, isolate the steps that repeat without judgement, and build systems that carry the information across instead.",
+      "Coverage runs from enquiry routing and lead-management workflows to outreach and follow-up sequences, research and content pipelines, data consolidation and lightweight internal tooling. AI-assisted steps are used for classification, drafting and extraction, with a person reviewing the output before it moves on, with a person kept between the system and the client. We run this capability on our own operation. No client engagement has yet been released as a published case study, and we would rather state that plainly than imply otherwise.",
     ],
     groups: [
       {
@@ -508,11 +508,11 @@ export const SERVICES: Service[] = [
     name: "Website Design & Development",
     shortName: "Website Design & Development",
     motif: "Build",
-    summary: "Responsive websites for design-led businesses — structure, front-end build, mobile optimisation and deployment.",
-    overview: "Complete responsive websites for portfolios, brands and businesses, taken from page structure and visual direction through to front-end development, integrations and deployment. We work as external build capacity for practices that need a proper public presence without adding a permanent development function. Sites are built on your own domain and hosting, with the source code handed over.",
+    summary: "Business, portfolio and brand websites: content architecture, responsive front-end build, integrations, deployment and code handover.",
+    overview: "Complete websites for businesses, portfolios and brands — from content architecture and visual direction through to responsive front-end development, integrations, deployment and handover.",
     intro: [
-      "Most design and fit-out businesses do not need a large website. They need a considered one: pages that load quickly, project work presented at the quality it was produced, layouts that hold up on a phone, and an enquiry that reaches a named inbox rather than disappearing. We handle that end to end — page structure, visual direction, content placement, front-end development, mobile optimisation and deployment.",
-      "Sites are built around the material they have to carry. Interior and product photography, drawing sets and film are heavy, image-led content, so galleries, viewers and image handling are treated as part of the build rather than bolted on afterwards. Where a site has to do more than present — submissions, structured records, content an in-house team can edit without calling a developer — that is built too, and the codebase is left in a state your own developer can pick up.",
+      "Design practices, manufacturers and export brands rarely need a large website. They need a considered one: a clear structure, work presented at the quality it was produced, pages that load quickly, layouts that hold on a phone, and an enquiry that reaches a named inbox. We build business, portfolio and brand websites end to end, from content architecture and visual direction through to front-end development, mobile optimisation and deployment.",
+      "Sites are built around the material they have to carry. Interior photography, product ranges, drawing sets and film are heavy, image-led content, so galleries, viewers and image handling belong inside the build rather than bolted on afterwards. Where a site has to do more than present — enquiry handling, author or client submissions, structured records, content your own team can edit — that is built alongside it. Domain, hosting and the repository stay in your name.",
     ],
     groups: [
       {

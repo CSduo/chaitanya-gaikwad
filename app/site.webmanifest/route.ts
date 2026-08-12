@@ -2,6 +2,10 @@ import { SITE } from "@/lib/site";
 
 export const dynamic = "force-static";
 
+/**
+ * Icons point at the static brand emblem cropped from the supplied logo
+ * artwork, not at a generated letterform.
+ */
 export function GET() {
   const manifest = {
     name: `${SITE.name} — ${SITE.descriptor}`,
@@ -9,12 +13,13 @@ export function GET() {
     description: SITE.defaultDescription,
     start_url: "/",
     display: "standalone",
-    background_color: "#faf8f5",
-    theme_color: "#faf8f5",
+    background_color: "#ffffff",
+    theme_color: "#ffffff",
     lang: SITE.language,
     icons: [
-      { src: "/icon", sizes: "512x512", type: "image/png", purpose: "any" },
-      { src: "/apple-icon", sizes: "180x180", type: "image/png" },
+      { src: "/brand/emblem-512.png", sizes: "512x512", type: "image/png", purpose: "any" },
+      { src: "/brand/emblem-256.png", sizes: "256x256", type: "image/png", purpose: "any" },
+      { src: "/brand/emblem-180.png", sizes: "180x180", type: "image/png" },
     ],
   };
 

@@ -19,6 +19,8 @@ import {
 import { allVideos, allWorkbooks, allWebsites, CAD_DRAWINGS } from "@/lib/portfolio";
 import { VISUALS } from "@/lib/visuals";
 import { pageMetadata, breadcrumbSchema } from "@/lib/seo";
+import { ROUTE_SEO } from "@/lib/seo-copy";
+import { WORK_COPY } from "@/lib/company-copy";
 
 /* ------------------------------------------------------------------ */
 /* One flat index across every kind of portfolio item                  */
@@ -92,6 +94,55 @@ function buildEntries(): Entry[] {
   return entries;
 }
 
+/** Each work category resolves to the service that produced it. */
+const SERVICE_FOR_CATEGORY: Record<WorkCategory, string> = {
+  "technical-production": "/services/cad-technical-production",
+  "growth-b2b": "/services/growth-marketing-b2b",
+  visualisation: "/services/visualisation-image-production",
+  video: "/services/video-ai-film-editing",
+  automation: "/services/automation-workflow-systems",
+  websites: "/services/website-design-development",
+};
+
+function EntryGrid({ entries }: { entries: Entry[] }) {
+  return (
+    <ul className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {entries.map((e) => (
+        <li
+          key={e.key}
+          className="media-frame group relative flex flex-col border border-rule bg-surface"
+        >
+          {e.image ? (
+            <span className="relative block aspect-[16/10] overflow-hidden bg-paper-deep">
+              <Image
+                src={e.image.src}
+                alt=""
+                fill
+                loading="lazy"
+                sizes="(min-width: 1024px) 360px, (min-width: 640px) 45vw, 92vw"
+                className="media-clean object-cover"
+              />
+            </span>
+          ) : null}
+          <div className="flex flex-1 flex-col p-6">
+            <p className="label">{e.kind}</p>
+            <h3 className="display mt-3 text-lg leading-snug">
+              <Link
+                href={e.href}
+                className="inline-flex min-h-[44px] items-center transition-colors after:absolute after:inset-0 hover:text-accent"
+              >
+                {e.title}
+              </Link>
+            </h3>
+            {e.meta ? <p className="meta mt-2">{e.meta}</p> : null}
+            <p className="mt-3 flex-1 text-sm leading-relaxed text-ink-muted">{e.blurb}</p>
+          </div>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
 export async function generateMetadata({
   searchParams,
 }: {
@@ -107,9 +158,8 @@ export async function generateMetadata({
     });
   }
   return pageMetadata({
-    title: "Work",
-    description:
-      "Drawing packages, research systems, visualisation, film and websites produced by XIYÀTO across six service areas.",
+    title: ROUTE_SEO.work.metaTitle,
+    description: ROUTE_SEO.work.metaDescription,
     path: "/work",
   });
 }
@@ -145,12 +195,11 @@ export default async function WorkPage({
         <Container width="page" className="py-14 sm:py-18 lg:py-24">
           <div className="max-w-3xl">
             <Eyebrow>Work</Eyebrow>
-            <h1 className="display mt-6 text-4xl sm:text-5xl lg:text-[3.5rem]">
-              The archive.
+            <h1 className="display mt-6 text-[2.125rem] leading-[1.1] sm:text-5xl lg:text-[3.5rem]">
+              {WORK_COPY.h1}
             </h1>
-            <p className="mt-7 text-lg leading-relaxed text-ink-soft">
-              Drawing packages, research systems, visualisation, film and websites. Where a
-              client is not named, the sector and location are given instead.
+            <p className="mt-6 text-base leading-relaxed text-ink-soft sm:mt-7 sm:text-lg">
+              {WORK_COPY.standfirst}
             </p>
           </div>
 
@@ -172,7 +221,7 @@ export default async function WorkPage({
 
       <Section bordered>
         <Container width="page">
-          <div className="flex flex-col gap-8">
+          <div className="flex min-w-0 flex-col gap-8">
             <SectionHeading
               eyebrow="Index"
               title={activeLabel ?? "All work"}
@@ -194,37 +243,47 @@ export default async function WorkPage({
             Showing {visible.length} of {entries.length} items
           </p>
 
-          <ul className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {visible.map((e) => (
-              <li key={e.key} className="group relative flex flex-col border border-rule bg-surface">
-                {e.image ? (
-                  <span className="relative block aspect-[16/10] overflow-hidden bg-paper-deep">
-                    <Image
-                      src={e.image.src}
-                      alt=""
-                      fill
-                      loading="lazy"
-                      sizes="(min-width: 1024px) 360px, (min-width: 640px) 45vw, 92vw"
-                      className="object-cover transition-transform duration-500 group-hover:scale-[1.02]"
-                    />
-                  </span>
-                ) : null}
-                <div className="flex flex-1 flex-col p-6">
-                  <p className="label">{e.kind}</p>
-                  <h2 className="display mt-3 text-lg leading-snug">
-                    <Link
-                      href={e.href}
-                      className="transition-colors after:absolute after:inset-0 hover:text-accent"
-                    >
-                      {e.title}
-                    </Link>
-                  </h2>
-                  {e.meta ? <p className="meta mt-2">{e.meta}</p> : null}
-                  <p className="mt-3 flex-1 text-sm leading-relaxed text-ink-muted">{e.blurb}</p>
-                </div>
-              </li>
-            ))}
-          </ul>
+          {/*
+            Unfiltered, the archive is presented in labelled category chapters so
+            the shape of the portfolio is legible at a glance. Filtered, it is a
+            single flat grid. Either way the cards and their destinations are
+            identical — only the grouping changes.
+          */}
+          {active ? (
+            <EntryGrid entries={visible} />
+          ) : (
+            <div className="space-y-16">
+              {categories.map((c) => {
+                const group = entries.filter((e) => e.category === c.slug);
+                if (group.length === 0) return null;
+                return (
+                  <section key={c.slug} id={c.slug} className="scroll-mt-24">
+                    <div className="mb-7 flex flex-wrap items-baseline justify-between gap-x-6 gap-y-3 border-b border-rule pb-4">
+                      <div className="max-w-2xl">
+                        <div className="flex items-baseline gap-3">
+                          <h2 className="display text-2xl sm:text-[1.75rem]">{c.label}</h2>
+                          <span className="meta">
+                            {group.length} {group.length === 1 ? "item" : "items"}
+                          </span>
+                        </div>
+                        <p className="mt-2 text-sm leading-relaxed text-ink-muted">{c.blurb}</p>
+                      </div>
+                      <Link
+                        href={SERVICE_FOR_CATEGORY[c.slug]}
+                        className="group inline-flex min-h-[44px] items-center gap-2 text-sm text-ink transition-colors hover:text-accent"
+                      >
+                        <span className="underline decoration-rule-strong underline-offset-4">
+                          {c.label} service
+                        </span>
+                        <span aria-hidden="true">&rarr;</span>
+                      </Link>
+                    </div>
+                    <EntryGrid entries={group} />
+                  </section>
+                );
+              })}
+            </div>
+          )}
 
           {/* Visualisations are a gallery rather than discrete entries. */}
           {(!active || active === "visualisation") && (
@@ -241,16 +300,16 @@ export default async function WorkPage({
                   <span aria-hidden="true">&rarr;</span>
                 </Link>
               </div>
-              <ul className="mt-8 grid grid-cols-2 gap-px border border-rule bg-rule sm:grid-cols-4 lg:grid-cols-6">
+              <ul className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-4 lg:grid-cols-6">
                 {VISUALS.slice(0, 12).map((v) => (
-                  <li key={v.src} className="relative aspect-square bg-paper-deep">
+                  <li key={v.src} className="media-well relative aspect-square overflow-hidden">
                     <Image
                       src={v.src}
                       alt={v.alt}
                       fill
                       loading="lazy"
                       sizes="(min-width: 1024px) 180px, 45vw"
-                      className="object-cover"
+                      className="media-clean object-cover"
                     />
                   </li>
                 ))}
