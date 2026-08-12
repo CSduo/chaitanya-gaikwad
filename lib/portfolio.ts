@@ -76,21 +76,6 @@ export const VIDEOS: VideoProject[] = [
     order: 3,
   },
   {
-    slug: "one-design-district-showroom-reel",
-    title: "One Design District Showroom Reel",
-    client: "One Design District",
-    year: "2026",
-    tags: ["Showroom", "Interior", "Point of view"],
-    description:
-      "A point-of-view walkthrough showing statement furniture pieces and premium finishes across a showroom floor.",
-    src: "/media/video/one-design-district-showroom-reel.mp4",
-    poster: "/media/posters/one-design-district-showroom-reel-poster.webp",
-    posterWidth: 720,
-    posterHeight: 1280,
-    featured: false,
-    order: 4,
-  },
-  {
     slug: "the-bar-edit-cinematic",
     title: "The Bar Edit",
     client: null,
@@ -104,7 +89,7 @@ export const VIDEOS: VideoProject[] = [
     posterWidth: 1080,
     posterHeight: 1350,
     featured: false,
-    order: 5,
+    order: 4,
   },
   {
     slug: "premium-bar-red-restaurant-concept",
@@ -120,7 +105,7 @@ export const VIDEOS: VideoProject[] = [
     posterWidth: 1080,
     posterHeight: 1920,
     featured: false,
-    order: 6,
+    order: 5,
   },
   {
     slug: "bahrain-client-commercial-ad",
@@ -136,7 +121,7 @@ export const VIDEOS: VideoProject[] = [
     posterWidth: 1080,
     posterHeight: 1350,
     featured: false,
-    order: 7,
+    order: 6,
   },
   {
     slug: "room-transformation-interior-walkthrough",
@@ -152,7 +137,7 @@ export const VIDEOS: VideoProject[] = [
     posterWidth: 1080,
     posterHeight: 1920,
     featured: false,
-    order: 8,
+    order: 7,
   },
   {
     slug: "great-design-holds-attention-walkthrough",
@@ -168,7 +153,7 @@ export const VIDEOS: VideoProject[] = [
     posterWidth: 720,
     posterHeight: 1280,
     featured: false,
-    order: 9,
+    order: 8,
   },
 ];
 

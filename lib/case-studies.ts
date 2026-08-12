@@ -39,7 +39,7 @@ export const WORK_CATEGORIES: { slug: WorkCategory; label: string; blurb: string
   {
     slug: "video",
     label: "Video",
-    blurb: "Eight client films for furniture brands, showrooms, interior studios, hospitality venues and a Middle East developer, plus one internal visual study.",
+    blurb: "Seven client films for furniture brands, showrooms, interior studios, hospitality venues and a Middle East developer, plus one internal visual study.",
   },
   {
     slug: "automation",
@@ -592,14 +592,6 @@ export const CASE_STUDIES: CaseStudy[] = [
         height: 1920,
         title: "Room transformation walkthrough",
         description: "Before-and-after interior transformation study exploring material and spatial change.",
-      },
-      {
-        src: "/media/video/one-design-district-showroom-reel.mp4",
-        poster: "/media/video/one-design-district-showroom-reel-poster.webp",
-        width: 720,
-        height: 1280,
-        title: "Showroom walkthrough",
-        description: "Point-of-view showroom walkthrough showing statement pieces and premium finishes.",
       },
     ],
     relatedProjects: ["bahrain-luxury-interior-cad-package", "sultanah-moon-chair-cinematic-campaign"],
