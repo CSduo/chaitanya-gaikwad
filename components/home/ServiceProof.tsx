@@ -96,18 +96,6 @@ function CadProof() {
                 className="object-contain p-2 transition-transform duration-300 group-hover:scale-[1.02]"
               />
 
-              {/* Role badge */}
-              <div className="absolute top-2.5 left-2.5">
-                <span
-                  className={`px-2 py-0.5 rounded text-[10px] font-mono uppercase tracking-wider font-semibold shadow-sm ${
-                    d.role === "output"
-                      ? "bg-emerald-600 text-white"
-                      : "bg-amber-600 text-white"
-                  }`}
-                >
-                  {d.role === "output" ? "CAD Output" : "Client Input"}
-                </span>
-              </div>
 
               {/* Hover zoom hint */}
               <div className="absolute inset-0 flex items-center justify-center bg-ink/30 opacity-0 transition-opacity group-hover:opacity-100">

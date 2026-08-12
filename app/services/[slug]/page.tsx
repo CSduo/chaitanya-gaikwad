@@ -11,10 +11,8 @@ import {
   JsonLd,
 } from "@/components/ui/primitives";
 import { ProjectCTA } from "@/components/site/ProjectCTA";
-import { CaseStudyCard } from "@/components/work/cards";
 import { ServiceProof } from "@/components/home/ServiceProof";
 import { SERVICES, getService } from "@/lib/services";
-import { caseStudiesForService } from "@/lib/case-studies";
 import { pageMetadata, serviceSchema, breadcrumbSchema } from "@/lib/seo";
 import { SERVICE_SEO } from "@/lib/seo-copy";
 
@@ -51,7 +49,6 @@ export default async function ServicePage({
   const service = getService(slug);
   if (!service) notFound();
 
-  const related = caseStudiesForService(service.slug, 3);
   const isCad = service.slug === "cad-technical-production";
 
   return (
@@ -180,25 +177,7 @@ export default async function ServicePage({
         </Container>
       </Section>
 
-      {/* 10 — Related case studies */}
-      {related.length > 0 ? (
-        <Section bordered>
-          <Container width="page">
-            <SectionHeading
-              eyebrow="Related work"
-              title="This service in practice."
-              action={{ label: "All work", href: "/work" }}
-            />
-            <div className="mt-14 grid gap-6 lg:grid-cols-3">
-              {related.map((study) => (
-                <div key={study.slug} className="relative">
-                  <CaseStudyCard study={study} />
-                </div>
-              ))}
-            </div>
-          </Container>
-        </Section>
-      ) : null}
+
 
       {/* 11 — CTA */}
       <ProjectCTA

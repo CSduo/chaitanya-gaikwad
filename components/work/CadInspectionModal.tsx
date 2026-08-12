@@ -146,15 +146,6 @@ export function CadInspectionModal({
       <header className="flex h-14 shrink-0 items-center justify-between border-b border-white/10 px-4 sm:px-6">
         <div className="flex items-center gap-3 min-w-0">
           <div className="flex items-center gap-2">
-            <span
-              className={`px-2 py-0.5 rounded text-[10px] font-mono uppercase tracking-wider font-semibold ${
-                current.role === "output"
-                  ? "bg-emerald-500/20 text-emerald-300 border border-emerald-500/30"
-                  : "bg-amber-500/20 text-amber-300 border border-amber-500/30"
-              }`}
-            >
-              {current.role === "output" ? "Produced CAD" : "Client Input"}
-            </span>
             <span className="hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-mono uppercase tracking-wider bg-white/10 text-white/70">
               {current.category}
             </span>

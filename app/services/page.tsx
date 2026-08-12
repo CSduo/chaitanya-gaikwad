@@ -10,9 +10,7 @@ import {
   JsonLd,
 } from "@/components/ui/primitives";
 import { ProjectCTA } from "@/components/site/ProjectCTA";
-import { CaseStudyCard } from "@/components/work/cards";
 import { SERVICES } from "@/lib/services";
-import { featuredCaseStudies } from "@/lib/case-studies";
 import { pageMetadata, breadcrumbSchema } from "@/lib/seo";
 import { ROUTE_SEO } from "@/lib/seo-copy";
 import { SERVICES_INDEX_COPY } from "@/lib/company-copy";
@@ -47,7 +45,6 @@ const ENGAGEMENT_STEPS = [
 ];
 
 export default function ServicesPage() {
-  const relevantWork = featuredCaseStudies(3);
 
   return (
     <>
@@ -145,23 +142,7 @@ export default function ServicesPage() {
         </Container>
       </Section>
 
-      {/* 06 — Related work */}
-      <Section tone="surface" bordered>
-        <Container width="page">
-          <SectionHeading
-            eyebrow="Related work"
-            title="These services in practice."
-            action={{ label: "All work", href: "/work" }}
-          />
-          <div className="mt-14 grid gap-6 lg:grid-cols-3">
-            {relevantWork.map((study) => (
-              <div key={study.slug} className="relative">
-                <CaseStudyCard study={study} />
-              </div>
-            ))}
-          </div>
-        </Container>
-      </Section>
+
 
       {/* 07 — CTA */}
       <ProjectCTA
