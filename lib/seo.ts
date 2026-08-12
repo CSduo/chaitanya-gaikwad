@@ -71,31 +71,58 @@ export function pageMetadata({
 export function organizationSchema() {
   return {
     "@context": "https://schema.org",
-    "@type": "ProfessionalService",
+    "@type": ["Organization", "ProfessionalService"],
     name: SITE.name,
-    alternateName: SITE.nameAscii,
+    legalName: SITE.name,
+    alternateName: [SITE.nameAscii, "Xiyato", "Xiyato Studio", "Xiyato UK", "Xiyato India"],
     url: SITE.url,
     description: SITE.defaultDescription,
+    sameAs: [
+      "https://www.instagram.com/xiyato22",
+      "https://xiyato.uk",
+    ],
+    contactPoint: [
+      {
+        "@type": "ContactPoint",
+        telephone: "+44 7882 746212",
+        contactType: "customer service",
+        areaServed: ["GB", "EU"],
+        availableLanguage: ["English"],
+      },
+      {
+        "@type": "ContactPoint",
+        telephone: "+91 70283 11226",
+        contactType: "technical support",
+        areaServed: ["IN", "AE", "SA", "Worldwide"],
+        availableLanguage: ["English", "Hindi", "Marathi"],
+      },
+    ],
     areaServed: [
       { "@type": "Country", name: "United Kingdom" },
       { "@type": "Country", name: "India" },
+      { "@type": "Country", name: "Saudi Arabia" },
+      { "@type": "Country", name: "United Arab Emirates" },
+      { "@type": "Place", name: "Europe" },
+      { "@type": "Place", name: "Worldwide" },
     ],
     logo: absoluteUrl("/brand/emblem-512.png"),
     image: absoluteUrl("/opengraph-image.png"),
-    founder: { "@type": "Person", name: "Chaitanya Gaikwad" },
+    founder: {
+      "@type": "Person",
+      name: "Chaitanya Gaikwad",
+      jobTitle: "Founder & Creative Production Lead",
+      url: absoluteUrl("/company/people"),
+    },
     knowsAbout: [
-      "CAD drafting",
+      "CAD drafting and technical production",
       "Interior technical documentation",
-      "B2B market research",
-      "Architectural visualisation",
-      "Product visualisation",
-      "Video production and editing",
-      "Workflow automation",
-      "Website design and development",
+      "B2B market research and lead intelligence",
+      "3D architectural visualisation",
+      "Photorealistic product rendering",
+      "Cinematic video production and AI video editing",
+      "Marketing automation and CRM systems",
+      "Website design and Next.js development",
     ],
-    // Deliberately absent: address, telephone, legalName, foundingDate,
-    // numberOfEmployees, aggregateRating, award. None has been verified, and
-    // structured data is not a place to guess.
   };
 }
 
@@ -105,10 +132,15 @@ export function webSiteSchema() {
     "@context": "https://schema.org",
     "@type": "WebSite",
     name: SITE.name,
-    alternateName: SITE.nameAscii,
+    alternateName: [SITE.nameAscii, "Xiyato Studio"],
     url: SITE.url,
     inLanguage: SITE.language,
-    publisher: { "@type": "Organization", name: SITE.name, url: SITE.url },
+    publisher: {
+      "@type": "Organization",
+      name: SITE.name,
+      url: SITE.url,
+      logo: absoluteUrl("/brand/emblem-512.png"),
+    },
   };
 }
 

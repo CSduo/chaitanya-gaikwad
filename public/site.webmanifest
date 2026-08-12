@@ -1,0 +1,38 @@
+{
+  "name": "XIYÀTO — Technical, creative and growth services for architecture firms, design businesses and international brands.",
+  "short_name": "XIYATO",
+  "description": "CAD and technical production, B2B growth, 3D visualisation, film, automation and websites for design practices, brands and manufacturers. UK and India.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#ffffff",
+  "icons": [
+    {
+      "src": "/brand/emblem-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/brand/emblem-256.png",
+      "sizes": "256x256",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/brand/emblem-180.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    },
+    {
+      "src": "/brand/emblem-64.png",
+      "sizes": "64x64",
+      "type": "image/png"
+    },
+    {
+      "src": "/brand/emblem-32.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    }
+  ]
+}
