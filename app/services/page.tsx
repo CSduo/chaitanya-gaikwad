@@ -13,7 +13,6 @@ import { ProjectCTA } from "@/components/site/ProjectCTA";
 import { SERVICES } from "@/lib/services";
 import { pageMetadata, breadcrumbSchema } from "@/lib/seo";
 import { ROUTE_SEO } from "@/lib/seo-copy";
-import { SERVICES_INDEX_COPY } from "@/lib/company-copy";
 
 export const metadata: Metadata = pageMetadata({
   title: ROUTE_SEO.services.metaTitle,
@@ -55,20 +54,7 @@ export default function ServicesPage() {
         ])}
       />
 
-      {/* 01 — Introduction */}
-      <section className="border-b border-rule">
-        <Container width="page" className="py-16 sm:py-20 lg:py-24">
-          <div className="max-w-3xl">
-            <Eyebrow>Services</Eyebrow>
-            <h1 className="display mt-6 text-[2.125rem] leading-[1.1] sm:text-5xl lg:text-[3.5rem]">
-              {SERVICES_INDEX_COPY.h1}
-            </h1>
-            <p className="mt-6 text-base leading-relaxed text-ink-soft sm:mt-7 sm:text-lg">
-              {SERVICES_INDEX_COPY.standfirst}
-            </p>
-          </div>
-        </Container>
-      </section>
+
 
       {/* 02–04 — One overview block per service */}
       {SERVICES.map((service, index) => (
