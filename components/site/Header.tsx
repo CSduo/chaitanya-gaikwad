@@ -113,7 +113,7 @@ function NavDropdown({
            * Two columns once there are more than four entries, so the full
            * service range stays visible instead of becoming a tall list.
            */
-          className={`absolute left-0 top-full z-50 border border-rule bg-surface shadow-[0_16px_40px_-24px_rgba(22,19,15,0.35)] ${
+          className={`absolute left-0 top-full z-50 border border-rule bg-surface shadow-[0_16px_40px_-24px_rgb(0_0_0/0.28)] ${
             items.length > 4 ? "w-[34rem]" : "w-72"
           }`}
         >
