@@ -38,6 +38,14 @@ const nextConfig: NextConfig = {
 
   async redirects() {
     return [
+      // ---- Host canonicalisation (www -> apex) ----
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: "www.xiyato.uk" }],
+        destination: "https://xiyato.uk/:path*",
+        permanent: true,
+      },
+
       // ---- Legacy path redirects (see REDIRECT_MAP_FINAL.md) ----
       { source: "/cad-automation", destination: "/services/cad-technical-production", permanent: true },
       { source: "/projects/videos", destination: "/work?category=video", permanent: true },
