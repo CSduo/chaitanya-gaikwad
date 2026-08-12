@@ -61,7 +61,7 @@ export function CadScene({ active }: { active: boolean }) {
       >
         {/* Output — the drafted drawing sits underneath */}
         <Image
-          src="/media/cad/master-bathroom-plan.webp"
+          src="/media/cad/mb-plan.png"
           alt="Drafted general arrangement plan produced from the client's reference material"
           fill
           priority
@@ -75,7 +75,7 @@ export function CadScene({ active }: { active: boolean }) {
           style={{ clipPath: `inset(0 ${100 - pos}% 0 0)` }}
         >
           <Image
-            src="/media/cad/master-bathroom-render-input.webp"
+            src="/media/cad/mb-render-input.jpg"
             alt="Client-supplied 3D visual render used as design reference"
             fill
             priority

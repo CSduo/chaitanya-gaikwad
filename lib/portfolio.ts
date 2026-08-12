@@ -308,8 +308,17 @@ export const WORKBOOKS: Workbook[] = [
 ];
 
 /* ================================================================== */
-/* CAD — 15 unique drawings across three spaces                        */
+/* CAD — 25 Ultra-HD drawings across seven real project packages        */
 /* ================================================================== */
+
+export type CadProjectId =
+  | "master-bathroom"
+  | "cigar-lounge"
+  | "master-bedroom"
+  | "toilet-wash"
+  | "stair-wall"
+  | "villa-concept"
+  | "villa-measurement";
 
 export type CadDrawing = {
   src: string;
@@ -320,140 +329,386 @@ export type CadDrawing = {
   height: number;
   /** "input" = supplied by the client; "output" = produced by XIYÀTO. */
   role: "input" | "output";
-  project: "master-bathroom" | "cigar-lounge" | "feature-walls";
+  project: CadProjectId;
+  downloads?: {
+    pdf?: string;
+    dwg?: string;
+  };
 };
 
-export const CAD_DRAWINGS: CadDrawing[] = [
-  // ---- Master bathroom ----
+export const CAD_PROJECTS: {
+  id: CadProjectId;
+  title: string;
+  summary: string;
+  pdfDownload?: string;
+  dwgDownload?: string;
+}[] = [
   {
-    src: "/media/cad/master-bathroom-render-input.webp",
-    title: "Client reference — 3D visual render",
-    category: "Client input",
-    alt: "Client-supplied 3D visual render of the master bathroom used as design reference",
-    width: 986, height: 1448, role: "input", project: "master-bathroom",
+    id: "master-bathroom",
+    title: "Master Bathroom Package",
+    summary:
+      "General arrangement plan plus four detailed wall elevations, produced from a client 3D render and measured site sketches.",
+    pdfDownload: "/media/cad/downloads/master-bathroom-set.pdf",
+    dwgDownload: "/media/cad/downloads/master-bathroom-set.dwg",
   },
   {
-    src: "/media/cad/master-bathroom-plan-input.webp",
-    title: "Client reference — measured hand sketch",
-    category: "Client input",
-    alt: "Client-supplied measured hand sketch with dimensions and CAD notes",
-    width: 247, height: 532, role: "input", project: "master-bathroom",
+    id: "cigar-lounge",
+    title: "Cigar Lounge — Ceiling & Flooring",
+    summary:
+      "Coordinated coffered ceiling plan (RCP), bespoke seating arrangement, and detailed herringbone parquet flooring setting-out.",
+    pdfDownload: "/media/cad/downloads/cigar-lounge-set.pdf",
+    dwgDownload: "/media/cad/downloads/cigar-lounge-set.dwg",
   },
   {
-    src: "/media/cad/master-bathroom-plan.webp",
-    title: "General arrangement plan",
-    category: "Plan",
-    alt: "Master bathroom general arrangement plan with dimensions and fixture setting-out",
-    width: 3200, height: 2260, role: "output", project: "master-bathroom",
+    id: "master-bedroom",
+    title: "Master Bedroom & Joinery Suite",
+    summary:
+      "Full room layout, bespoke bed headboard millwork, wardrobe elevations, window vanity, and ceiling electrical coordination.",
+    pdfDownload: "/media/cad/downloads/master-bedroom-set.pdf",
+    dwgDownload: "/media/cad/downloads/master-bedroom-set.dwg",
   },
   {
-    src: "/media/cad/master-bathroom-elevation.webp",
-    title: "Wall 1 — bathtub and window elevation",
-    category: "Elevation",
-    alt: "Interior wall elevation showing bathtub and window setting-out",
-    width: 3200, height: 2260, role: "output", project: "master-bathroom",
+    id: "toilet-wash",
+    title: "Powder Room & Feature Walls",
+    summary:
+      "Guest powder room plan, vertical fluted wall panelling details, halo-lit vanity mirror, and plumbing fixture elevations.",
+    pdfDownload: "/media/cad/downloads/toilet-wash-set.pdf",
   },
   {
-    src: "/media/cad/master-bathroom-vanity.webp",
-    title: "Wall 2 — vanity and WC elevation",
-    category: "Elevation",
-    alt: "Interior wall elevation showing the vanity and WC wall",
-    width: 3200, height: 2260, role: "output", project: "master-bathroom",
+    id: "stair-wall",
+    title: "Stair Feature Wall Joinery Detail",
+    summary:
+      "Precision architectural joinery construction detail for custom staircase panelling with panel reveals and hidden fixings.",
+    pdfDownload: "/media/cad/downloads/stair-wall-detail.pdf",
   },
   {
-    src: "/media/cad/master-bathroom-shower.webp",
-    title: "Wall 3 — walk-in shower elevation",
-    category: "Elevation",
-    alt: "Interior wall elevation showing the walk-in shower",
-    width: 3200, height: 2260, role: "output", project: "master-bathroom",
-  },
-
-  // ---- Cigar lounge ----
-  {
-    src: "/media/cad/cigar-lounge-layout.webp",
-    title: "General furniture layout",
-    category: "Plan",
-    alt: "Cigar lounge general furniture layout plan",
-    width: 3200, height: 2260, role: "output", project: "cigar-lounge",
+    id: "villa-concept",
+    title: "Luxury Villa Architectural Concept",
+    summary:
+      "Multi-sheet architectural layout and concept documentation: master site plan, ground floor, and first floor residential suites.",
+    pdfDownload: "/media/cad/downloads/villa-concept-set.pdf",
   },
   {
-    src: "/media/cad/cigar-lounge-ceiling.webp",
-    title: "Reflected ceiling plan",
-    category: "RCP",
-    alt: "Cigar lounge reflected ceiling plan showing coffered ceiling and lighting arrangement",
-    width: 3200, height: 2260, role: "output", project: "cigar-lounge",
-  },
-  {
-    src: "/media/cad/cigar-lounge-flooring.webp",
-    title: "Herringbone flooring setting-out",
-    category: "Flooring",
-    alt: "Cigar lounge herringbone flooring setting-out plan",
-    width: 3200, height: 2260, role: "output", project: "cigar-lounge",
-  },
-
-  // ---- Feature walls ----
-  {
-    src: "/media/cad/feature-wall-overview.webp",
-    title: "General arrangement and layout",
-    category: "Plan",
-    alt: "Custom interior feature walls general arrangement and layout drawing",
-    width: 3200, height: 2199, role: "output", project: "feature-walls",
-  },
-  {
-    src: "/media/cad/toilet-3d-input.webp",
-    title: "Client reference — toilet wall 3D",
-    category: "Client input",
-    alt: "Client-supplied 3D reference for the toilet feature wall",
-    width: 1080, height: 1440, role: "input", project: "feature-walls",
-  },
-  {
-    src: "/media/cad/toilet-elevations.webp",
-    title: "Toilet feature wall — elevation detail",
-    category: "Elevation",
-    alt: "Toilet feature wall elevation detailing vanity and mirror",
-    width: 3200, height: 2199, role: "output", project: "feature-walls",
-  },
-  {
-    src: "/media/cad/wash-elevations.webp",
-    title: "Wash feature wall — panelling and fixtures",
-    category: "Elevation",
-    alt: "Wash feature wall elevation detailing decorative panelling and fixtures",
-    width: 3200, height: 2199, role: "output", project: "feature-walls",
-  },
-  {
-    src: "/media/cad/stair-wall-input.webp",
-    title: "Client reference — stair wall",
-    category: "Client input",
-    alt: "Client-supplied reference for the stair feature wall",
-    width: 1080, height: 1440, role: "input", project: "feature-walls",
-  },
-  {
-    src: "/media/cad/stair-wall-detail.webp",
-    title: "Stair feature wall — joinery construction detail",
-    category: "Construction detail",
-    alt: "Stair feature wall architectural joinery construction detail drawing",
-    width: 2536, height: 3200, role: "output", project: "feature-walls",
+    id: "villa-measurement",
+    title: "Area Measurement & Boundary Survey",
+    summary:
+      "Verified polyline boundary measurement and gross internal area calculation validated against architectural surveys.",
+    pdfDownload: "/media/cad/downloads/villa03-area-measurement.pdf",
   },
 ];
 
-export const CAD_PROJECTS = [
+export const CAD_DRAWINGS: CadDrawing[] = [
+  // ---- 1. Master bathroom ----
   {
-    id: "master-bathroom" as const,
-    title: "Master Bathroom Package",
-    summary:
-      "General arrangement plus three wall elevations, produced from a client render and a measured hand sketch.",
+    src: "/media/cad/mb-render-input.jpg",
+    title: "Client reference — 3D concept visual",
+    category: "Client input",
+    alt: "Client-supplied 3D visual render of the luxury master bathroom",
+    width: 986,
+    height: 1448,
+    role: "input",
+    project: "master-bathroom",
   },
   {
-    id: "cigar-lounge" as const,
-    title: "Cigar Lounge — Ceiling & Flooring",
-    summary:
-      "A coordinated coffered-ceiling concept with lighting arrangement, and an editable herringbone flooring pattern.",
+    src: "/media/cad/mb-sketch-input.jpg",
+    title: "Client reference — measured site sketch",
+    category: "Client input",
+    alt: "Client-supplied measured hand sketch with on-site dimensions and CAD notes",
+    width: 247,
+    height: 532,
+    role: "input",
+    project: "master-bathroom",
   },
   {
-    id: "feature-walls" as const,
-    title: "Custom Feature Walls",
-    summary:
-      "Feature wall elevations and a stair joinery construction detail, drawn from supplied 3D references.",
+    src: "/media/cad/mb-plan.png",
+    title: "General arrangement floor plan",
+    category: "Floor Plan",
+    alt: "Master bathroom general arrangement plan with dimension strings, fixture setting-out and door swings",
+    width: 7629,
+    height: 5389,
+    role: "output",
+    project: "master-bathroom",
+    downloads: {
+      pdf: "/media/cad/downloads/master-bathroom-set.pdf",
+      dwg: "/media/cad/downloads/master-bathroom-set.dwg",
+    },
+  },
+  {
+    src: "/media/cad/mb-wall-1.png",
+    title: "Wall 1 — bathtub & window elevation",
+    category: "Elevation",
+    alt: "Interior wall elevation detailing freestanding bathtub placement, window reveals, and wall tiling setting-out",
+    width: 7629,
+    height: 5389,
+    role: "output",
+    project: "master-bathroom",
+    downloads: { pdf: "/media/cad/downloads/master-bathroom-set.pdf" },
+  },
+  {
+    src: "/media/cad/mb-wall-2.png",
+    title: "Wall 2 — vanity & WC elevation",
+    category: "Elevation",
+    alt: "Interior wall elevation detailing bespoke vanity unit, mirror lighting, and concealed cistern WC partition",
+    width: 7629,
+    height: 5389,
+    role: "output",
+    project: "master-bathroom",
+    downloads: { pdf: "/media/cad/downloads/master-bathroom-set.pdf" },
+  },
+  {
+    src: "/media/cad/mb-wall-3.png",
+    title: "Wall 3 — walk-in shower elevation",
+    category: "Elevation",
+    alt: "Interior wall elevation detailing walk-in shower glass partition, niche recess, and concealed mixer heights",
+    width: 7629,
+    height: 5389,
+    role: "output",
+    project: "master-bathroom",
+    downloads: { pdf: "/media/cad/downloads/master-bathroom-set.pdf" },
+  },
+  {
+    src: "/media/cad/mb-wall-4.png",
+    title: "Wall 4 — entrance door & reveal elevation",
+    category: "Elevation",
+    alt: "Interior wall elevation detailing bathroom entrance portal, architrave profile, and wall finish transition",
+    width: 7573,
+    height: 5389,
+    role: "output",
+    project: "master-bathroom",
+    downloads: { pdf: "/media/cad/downloads/master-bathroom-set.pdf" },
+  },
+
+  // ---- 2. Cigar lounge ----
+  {
+    src: "/media/cad/cl-render-tv-input.jpg",
+    title: "Client reference — TV wall 3D visual",
+    category: "Client input",
+    alt: "Client-supplied 3D visual render of the cigar lounge media wall",
+    width: 675,
+    height: 452,
+    role: "input",
+    project: "cigar-lounge",
+  },
+  {
+    src: "/media/cad/cl-render-bar-input.jpg",
+    title: "Client reference — bar counter 3D visual",
+    category: "Client input",
+    alt: "Client-supplied 3D visual render of the lounge bar and joinery",
+    width: 600,
+    height: 547,
+    role: "input",
+    project: "cigar-lounge",
+  },
+  {
+    src: "/media/cad/cl-layout.png",
+    title: "General furniture layout & seating plan",
+    category: "Floor Plan",
+    alt: "Cigar lounge general furniture arrangement plan with custom seating, bar, and circulation clearances",
+    width: 7629,
+    height: 5389,
+    role: "output",
+    project: "cigar-lounge",
+    downloads: {
+      pdf: "/media/cad/downloads/cigar-lounge-set.pdf",
+      dwg: "/media/cad/downloads/cigar-lounge-set.dwg",
+    },
+  },
+  {
+    src: "/media/cad/cl-ceiling.png",
+    title: "Reflected ceiling plan (RCP)",
+    category: "RCP",
+    alt: "Reflected ceiling plan showing multi-tier coffered ceiling grid, perimeter LED cove lighting, and downlight coordination",
+    width: 7629,
+    height: 5389,
+    role: "output",
+    project: "cigar-lounge",
+    downloads: { pdf: "/media/cad/downloads/cigar-lounge-set.pdf" },
+  },
+  {
+    src: "/media/cad/cl-flooring.png",
+    title: "Herringbone timber flooring setting-out",
+    category: "Flooring",
+    alt: "Herringbone parquet flooring setting-out plan with centerlines, perimeter borders, and threshold details",
+    width: 7629,
+    height: 5389,
+    role: "output",
+    project: "cigar-lounge",
+    downloads: { pdf: "/media/cad/downloads/cigar-lounge-set.pdf" },
+  },
+
+  // ---- 3. Master Bedroom ----
+  {
+    src: "/media/cad/mbr-render-window.jpg",
+    title: "Client reference — bedroom window visual",
+    category: "Client input",
+    alt: "Client-supplied 3D visual render of arched window feature and vanity",
+    width: 1409,
+    height: 1116,
+    role: "input",
+    project: "master-bedroom",
+  },
+  {
+    src: "/media/cad/mbr-render-bed.jpg",
+    title: "Client reference — bed headboard & joinery visual",
+    category: "Client input",
+    alt: "Client-supplied 3D visual render of custom bed headboard wall and study desk",
+    width: 1600,
+    height: 971,
+    role: "input",
+    project: "master-bedroom",
+  },
+  {
+    src: "/media/cad/mbr-plan.png",
+    title: "Master bedroom general arrangement plan",
+    category: "Floor Plan",
+    alt: "Master bedroom general arrangement plan with custom joinery, bed zone, study office, and sitting bench setting-out",
+    width: 8344,
+    height: 5894,
+    role: "output",
+    project: "master-bedroom",
+    downloads: {
+      pdf: "/media/cad/downloads/master-bedroom-set.pdf",
+      dwg: "/media/cad/downloads/master-bedroom-set.dwg",
+    },
+  },
+  {
+    src: "/media/cad/mbr-elevation-1.png",
+    title: "Wall 1 & 2 — bed headboard & wardrobe elevations",
+    category: "Elevation",
+    alt: "Interior wall elevations detailing custom acoustic headboard panelling, bedside sconces, and full-height wardrobe joinery",
+    width: 8344,
+    height: 5894,
+    role: "output",
+    project: "master-bedroom",
+    downloads: { pdf: "/media/cad/downloads/master-bedroom-set.pdf" },
+  },
+  {
+    src: "/media/cad/mbr-elevation-2.png",
+    title: "Wall 3 & 4 — window vanity & office study desk",
+    category: "Elevation",
+    alt: "Interior wall elevations detailing integrated window bench seating, vanity mirror lighting, and study desk millwork",
+    width: 8344,
+    height: 5894,
+    role: "output",
+    project: "master-bedroom",
+    downloads: { pdf: "/media/cad/downloads/master-bedroom-set.pdf" },
+  },
+  {
+    src: "/media/cad/mbr-ceiling.png",
+    title: "Reflected ceiling & electrical setting-out",
+    category: "RCP",
+    alt: "Reflected ceiling plan and electrical layout with recessed lighting, linear magnetic tracks, and AC diffuser positions",
+    width: 8344,
+    height: 5894,
+    role: "output",
+    project: "master-bedroom",
+    downloads: { pdf: "/media/cad/downloads/master-bedroom-set.pdf" },
+  },
+
+  // ---- 4. Toilet & Wash Feature Wall ----
+  {
+    src: "/media/cad/tw-plan.png",
+    title: "Toilet & wash powder room general plan",
+    category: "Floor Plan",
+    alt: "Powder room and guest toilet general arrangement layout with fixture clearances and partition thicknesses",
+    width: 4764,
+    height: 3274,
+    role: "output",
+    project: "toilet-wash",
+    downloads: { pdf: "/media/cad/downloads/toilet-wash-set.pdf" },
+  },
+  {
+    src: "/media/cad/tw-toilet-elevation.png",
+    title: "Toilet feature wall — panelling & mirror detail",
+    category: "Elevation",
+    alt: "Toilet feature wall elevation detailing vertical fluted panelling, LED halo backlit mirror, and stone vanity counter",
+    width: 4764,
+    height: 3274,
+    role: "output",
+    project: "toilet-wash",
+    downloads: { pdf: "/media/cad/downloads/toilet-wash-set.pdf" },
+  },
+  {
+    src: "/media/cad/tw-wash-elevation.png",
+    title: "Wash feature wall — joinery & fixture detail",
+    category: "Elevation",
+    alt: "Wash area feature wall elevation detailing decorative moulding, wall-mounted faucet heights, and towel niche integration",
+    width: 4764,
+    height: 3274,
+    role: "output",
+    project: "toilet-wash",
+    downloads: { pdf: "/media/cad/downloads/toilet-wash-set.pdf" },
+  },
+
+  // ---- 5. Stair Wall Detail ----
+  {
+    src: "/media/cad/sw-client-markup.jpg",
+    title: "Client reference — marked-up design sketch",
+    category: "Client input",
+    alt: "Client-supplied design intent sketch with on-site height dimensions and material specifications",
+    width: 1235,
+    height: 1536,
+    role: "input",
+    project: "stair-wall",
+  },
+  {
+    src: "/media/cad/sw-joinery-detail.png",
+    title: "Stair feature wall — architectural joinery detail",
+    category: "Construction Detail",
+    alt: "Architectural joinery construction detail for custom stair feature wall with panel joint reveals and concealed fixings",
+    width: 5064,
+    height: 6388,
+    role: "output",
+    project: "stair-wall",
+    downloads: { pdf: "/media/cad/downloads/stair-wall-detail.pdf" },
+  },
+
+  // ---- 6. Luxury Villa Architectural Concept ----
+  {
+    src: "/media/cad/va-site-concept.png",
+    title: "Site plan & landscape boundary coordination",
+    category: "Site Plan",
+    alt: "Master site layout plan showing building footprint, vehicular access, garden setbacks, and boundary wall details",
+    width: 2977,
+    height: 2105,
+    role: "output",
+    project: "villa-concept",
+    downloads: { pdf: "/media/cad/downloads/villa-concept-set.pdf" },
+  },
+  {
+    src: "/media/cad/va-ground-floor.png",
+    title: "Ground floor architectural layout",
+    category: "Floor Plan",
+    alt: "Ground floor layout with double-height foyer, formal majlis, family living, show kitchen, and service quarters",
+    width: 2977,
+    height: 2105,
+    role: "output",
+    project: "villa-concept",
+    downloads: { pdf: "/media/cad/downloads/villa-concept-set.pdf" },
+  },
+  {
+    src: "/media/cad/va-first-floor.png",
+    title: "First floor residential layout",
+    category: "Floor Plan",
+    alt: "First floor bedroom suites arrangement with walk-in closets, ensuite bathrooms, family lounge, and terrace balconies",
+    width: 2977,
+    height: 2105,
+    role: "output",
+    project: "villa-concept",
+    downloads: { pdf: "/media/cad/downloads/villa-concept-set.pdf" },
+  },
+
+  // ---- 7. Villa Area Measurement ----
+  {
+    src: "/media/cad/vm-area-boundary.png",
+    title: "Verified area calculation & boundary survey",
+    category: "Area Analysis",
+    alt: "Accurate polyline boundary measurement and gross internal area calculation validated against architectural surveys",
+    width: 1980,
+    height: 1810,
+    role: "output",
+    project: "villa-measurement",
+    downloads: { pdf: "/media/cad/downloads/villa03-area-measurement.pdf" },
   },
 ];
 

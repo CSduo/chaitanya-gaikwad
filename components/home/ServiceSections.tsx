@@ -126,7 +126,7 @@ export function CadSection({ service }: { service: Service }) {
           <figcaption className="label mb-4">Supplied by the client</figcaption>
           <div className="relative aspect-[4/3] overflow-hidden border border-rule bg-paper-deep">
             <Image
-              src="/media/cad/master-bathroom-render-input.webp"
+              src="/media/cad/mb-render-input.jpg"
               alt="Client-supplied 3D render used as design reference"
               fill
               loading="lazy"
@@ -139,7 +139,7 @@ export function CadSection({ service }: { service: Service }) {
           <figcaption className="label mb-4">Returned as editable CAD</figcaption>
           <div className="relative aspect-[4/3] overflow-hidden border border-rule bg-paper-deep">
             <Image
-              src="/media/cad/master-bathroom-plan.webp"
+              src="/media/cad/mb-plan.png"
               alt="Drafted general arrangement plan produced from the reference"
               fill
               loading="lazy"

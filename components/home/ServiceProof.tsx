@@ -2,10 +2,12 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { ImageGrid, VideoGallery, type LightboxItem } from "@/components/media/viewers";
-import { CAD_DRAWINGS, WORKBOOKS, allVideos, allWebsites } from "@/lib/portfolio";
+import { CAD_DRAWINGS, CAD_PROJECTS, WORKBOOKS, allVideos, allWebsites } from "@/lib/portfolio";
 import { VISUALS, activeVisualGroups, type VisualGroup } from "@/lib/visuals";
 import type { ServiceSlug } from "@/lib/services";
+import { CadInspectionModal } from "@/components/work/CadInspectionModal";
 
 /**
  * The complete portfolio for a given service, rendered on its service page.
@@ -21,25 +23,152 @@ export function ServiceProof({ slug }: { slug: ServiceSlug }) {
 }
 
 function CadProof() {
-  const items: LightboxItem[] = CAD_DRAWINGS.map((d) => ({
-    src: d.src,
-    alt: d.alt,
-    width: d.width,
-    height: d.height,
-    title: d.title,
-    caption: d.category,
-  }));
+  const [selectedProject, setSelectedProject] = useState<string | null>(null);
+  const [activeModalIndex, setActiveModalIndex] = useState<number | null>(null);
+
+  const filteredDrawings = selectedProject
+    ? CAD_DRAWINGS.filter((d) => d.project === selectedProject)
+    : CAD_DRAWINGS;
+
   const outputs = CAD_DRAWINGS.filter((d) => d.role === "output").length;
   const inputs = CAD_DRAWINGS.length - outputs;
 
   return (
-    <div id="drawings" className="scroll-mt-16">
-      <div className="mb-6 flex flex-wrap items-baseline justify-between gap-3">
+    <div id="drawings" className="scroll-mt-16 space-y-6">
+      {/* Filter Tabs by Red Chandelier Project */}
+      <div className="flex flex-wrap items-center gap-2">
+        <button
+          type="button"
+          onClick={() => setSelectedProject(null)}
+          aria-pressed={selectedProject === null}
+          className={`min-h-[40px] px-3.5 py-1.5 rounded-lg text-xs font-mono uppercase tracking-wider transition-all ${
+            selectedProject === null
+              ? "bg-ink text-paper font-semibold shadow-sm"
+              : "border border-rule bg-surface text-ink-muted hover:border-ink hover:text-ink"
+          }`}
+        >
+          All Drawings ({CAD_DRAWINGS.length})
+        </button>
+        {CAD_PROJECTS.map((p) => {
+          const count = CAD_DRAWINGS.filter((d) => d.project === p.id).length;
+          return (
+            <button
+              key={p.id}
+              type="button"
+              onClick={() => setSelectedProject(p.id)}
+              aria-pressed={selectedProject === p.id}
+              className={`min-h-[40px] px-3.5 py-1.5 rounded-lg text-xs font-mono uppercase tracking-wider transition-all ${
+                selectedProject === p.id
+                  ? "bg-ink text-paper font-semibold shadow-sm"
+                  : "border border-rule bg-surface text-ink-muted hover:border-ink hover:text-ink"
+              }`}
+            >
+              {p.title.split(" — ")[0]} ({count})
+            </button>
+          );
+        })}
+      </div>
+
+      <div className="flex flex-wrap items-baseline justify-between gap-3 border-b border-rule pb-3">
         <p className="meta">
-          {outputs} drawings · {inputs} client references · select any sheet to zoom
+          Showing {filteredDrawings.length} sheets · {outputs} produced drawings · {inputs} client inputs · select any drawing to inspect & zoom
         </p>
       </div>
-      <ImageGrid items={items} columns={4} aspect="4/3" zoomable fit="contain" />
+
+      {/* Grid of CAD Drawing Sheets */}
+      <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+        {filteredDrawings.map((d, i) => (
+          <li
+            key={d.src}
+            className="group relative flex flex-col overflow-hidden rounded-xl border border-rule bg-surface transition-all hover:border-ink/40 hover:shadow-md"
+          >
+            <button
+              type="button"
+              onClick={() => setActiveModalIndex(i)}
+              className="relative aspect-[4/3] w-full overflow-hidden bg-neutral-900/5 block text-left"
+            >
+              <Image
+                src={d.src}
+                alt={d.alt}
+                fill
+                loading="lazy"
+                sizes="(min-width: 1280px) 280px, (min-width: 1024px) 340px, (min-width: 640px) 45vw, 92vw"
+                className="object-contain p-2 transition-transform duration-300 group-hover:scale-[1.02]"
+              />
+
+              {/* Role badge */}
+              <div className="absolute top-2.5 left-2.5">
+                <span
+                  className={`px-2 py-0.5 rounded text-[10px] font-mono uppercase tracking-wider font-semibold shadow-sm ${
+                    d.role === "output"
+                      ? "bg-emerald-600 text-white"
+                      : "bg-amber-600 text-white"
+                  }`}
+                >
+                  {d.role === "output" ? "CAD Output" : "Client Input"}
+                </span>
+              </div>
+
+              {/* Hover zoom hint */}
+              <div className="absolute inset-0 flex items-center justify-center bg-ink/30 opacity-0 transition-opacity group-hover:opacity-100">
+                <span className="flex items-center gap-1.5 rounded-full bg-ink/90 px-3 py-1.5 text-xs font-medium text-paper shadow-lg backdrop-blur-sm">
+                  <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2">
+                    <circle cx="11" cy="11" r="8" />
+                    <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                    <line x1="11" y1="8" x2="11" y2="14" />
+                    <line x1="8" y1="11" x2="14" y2="11" />
+                  </svg>
+                  <span>Click to Zoom</span>
+                </span>
+              </div>
+            </button>
+
+            {/* Card Content & Action Info */}
+            <div className="flex flex-1 flex-col justify-between p-4">
+              <div>
+                <p className="font-mono text-[10px] uppercase tracking-wider text-ink-muted">
+                  {d.category}
+                </p>
+                <h3 className="mt-1 text-sm font-semibold text-ink leading-snug line-clamp-1">
+                  {d.title}
+                </h3>
+              </div>
+
+              <div className="mt-3 flex items-center justify-between border-t border-rule/60 pt-2.5">
+                <span className="font-mono text-[11px] text-ink-muted">
+                  {d.width} × {d.height}
+                </span>
+
+                {d.downloads?.pdf && (
+                  <a
+                    href={d.downloads.pdf}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    download
+                    onClick={(e) => e.stopPropagation()}
+                    className="inline-flex items-center gap-1 text-[11px] font-mono text-ink hover:text-accent font-medium transition-colors"
+                  >
+                    <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" strokeWidth="2">
+                      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                      <polyline points="7 10 12 15 17 10" />
+                      <line x1="12" y1="15" x2="12" y2="3" />
+                    </svg>
+                    <span>Vector PDF</span>
+                  </a>
+                )}
+              </div>
+            </div>
+          </li>
+        ))}
+      </ul>
+
+      {/* Full-Screen CAD Pan/Zoom Inspection Lightbox Modal */}
+      <CadInspectionModal
+        drawings={filteredDrawings}
+        initialIndex={activeModalIndex ?? 0}
+        isOpen={activeModalIndex !== null}
+        onClose={() => setActiveModalIndex(null)}
+      />
     </div>
   );
 }
