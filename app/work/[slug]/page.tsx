@@ -154,7 +154,7 @@ export default async function CaseStudyPage({
 
       {/* 01 — Project hero */}
       <section className="border-b border-rule">
-        <Container width="page" className="pb-14 pt-10 sm:pb-16">
+        <Container width="page" className="pb-10 pt-10 sm:pb-12">
           <Breadcrumbs
             trail={[
               { name: "Home", path: "/" },
@@ -164,187 +164,215 @@ export default async function CaseStudyPage({
           />
           <div className="max-w-3xl">
             {category ? <Eyebrow>{category.label}</Eyebrow> : null}
-            <h1 className="display mt-6 text-4xl sm:text-5xl">{study.projectName}</h1>
-            <p className="mt-7 text-lg leading-relaxed text-ink-soft">{study.summary}</p>
+            <h1 className="display mt-6 text-3xl sm:text-4xl lg:text-5xl">{study.projectName}</h1>
+            <p className="mt-5 text-base sm:text-lg leading-relaxed text-ink-soft">{study.summary}</p>
           </div>
         </Container>
       </section>
 
-      {/* 02 — Metadata */}
-      {metaItems.length > 0 ? (
-        <Container width="page" className="py-10">
-          <MetadataGrid items={metaItems} />
-        </Container>
-      ) : null}
-
-      {/* 11 — Evidence (surfaced early where it exists) */}
-      {study.metrics && study.metrics.length > 0 ? (
-        <Container width="page" className="pb-14">
-          <h2 className="label mb-4">Produced</h2>
-          <EvidenceRow items={study.metrics} />
-        </Container>
-      ) : null}
-
-      {/* 04 — Challenge + 05 — Scope */}
-      {study.challenge || study.scope ? (
-        <Section tone="surface" bordered>
-          <Container width="page">
-            <div className="grid gap-10 lg:grid-cols-12 lg:gap-16">
-              {study.challenge ? (
-                <div className="lg:col-span-7">
-                  <Eyebrow>Requirement</Eyebrow>
-                  <div className="prose-body mt-5 max-w-2xl">
-                    <p>{study.challenge}</p>
+      {/* For Bahrain CAD package: drawings are shown immediately front and center with no write-ups */}
+      {study.slug === "bahrain-luxury-interior-cad-package" ? (
+        <>
+          {study.images && study.images.length > 0 ? (
+            <Section bordered className="bg-surface/40">
+              <Container width="wide">
+                <div className="mb-8 flex flex-wrap items-baseline justify-between gap-4 border-b border-rule pb-4">
+                  <div>
+                    <h2 className="display text-2xl sm:text-3xl">Drawing Package Sheets</h2>
+                    <p className="mt-1 text-sm text-ink-muted">
+                      {study.images.length} coordinated sheets · Click any drawing to open high-resolution inspection viewer
+                    </p>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className="inline-flex items-center rounded-md border border-rule bg-paper px-3 py-1 font-mono text-xs text-ink-muted">
+                      DWG · DXF · PDF
+                    </span>
                   </div>
                 </div>
-              ) : null}
-              {study.scope ? (
-                <div className="lg:col-span-5">
-                  <Eyebrow>Scope</Eyebrow>
-                  <CapabilityList items={study.scope} className="mt-5" />
+                <Gallery images={study.images} />
+              </Container>
+            </Section>
+          ) : null}
+        </>
+      ) : (
+        <>
+          {/* 02 — Metadata */}
+          {metaItems.length > 0 ? (
+            <Container width="page" className="py-10">
+              <MetadataGrid items={metaItems} />
+            </Container>
+          ) : null}
+
+          {/* 11 — Evidence (surfaced early where it exists) */}
+          {study.metrics && study.metrics.length > 0 ? (
+            <Container width="page" className="pb-14">
+              <h2 className="label mb-4">Produced</h2>
+              <EvidenceRow items={study.metrics} />
+            </Container>
+          ) : null}
+
+          {/* 04 — Challenge + 05 — Scope */}
+          {study.challenge || study.scope ? (
+            <Section tone="surface" bordered>
+              <Container width="page">
+                <div className="grid gap-10 lg:grid-cols-12 lg:gap-16">
+                  {study.challenge ? (
+                    <div className="lg:col-span-7">
+                      <Eyebrow>Requirement</Eyebrow>
+                      <div className="prose-body mt-5 max-w-2xl">
+                        <p>{study.challenge}</p>
+                      </div>
+                    </div>
+                  ) : null}
+                  {study.scope ? (
+                    <div className="lg:col-span-5">
+                      <Eyebrow>Scope</Eyebrow>
+                      <CapabilityList items={study.scope} className="mt-5" />
+                    </div>
+                  ) : null}
                 </div>
-              ) : null}
-            </div>
-          </Container>
-        </Section>
-      ) : null}
+              </Container>
+            </Section>
+          ) : null}
 
-      {/* 06 — Inputs */}
-      {study.inputs ? (
-        <Section bordered>
-          <Container width="page">
-            <div className="grid gap-10 lg:grid-cols-12 lg:gap-16">
-              <div className="lg:col-span-4">
-                <Eyebrow>Inputs</Eyebrow>
-                <h2 className="display mt-5 text-2xl sm:text-3xl">What we started from.</h2>
-                <p className="mt-4 text-sm leading-relaxed text-ink-muted">
-                  {study.inputs.intro}
-                </p>
-              </div>
-              <div className="lg:col-span-8">
-                <CapabilityList items={study.inputs.items} columns={2} />
-              </div>
-            </div>
-          </Container>
-        </Section>
-      ) : null}
+          {/* 06 — Inputs */}
+          {study.inputs ? (
+            <Section bordered>
+              <Container width="page">
+                <div className="grid gap-10 lg:grid-cols-12 lg:gap-16">
+                  <div className="lg:col-span-4">
+                    <Eyebrow>Inputs</Eyebrow>
+                    <h2 className="display mt-5 text-2xl sm:text-3xl">What we started from.</h2>
+                    <p className="mt-4 text-sm leading-relaxed text-ink-muted">
+                      {study.inputs.intro}
+                    </p>
+                  </div>
+                  <div className="lg:col-span-8">
+                    <CapabilityList items={study.inputs.items} columns={2} />
+                  </div>
+                </div>
+              </Container>
+            </Section>
+          ) : null}
 
-      {/* 07 — Approach */}
-      {study.process && study.process.length > 0 ? (
-        <Section tone="deep" bordered>
-          <Container width="page">
-            <SectionHeading eyebrow="Approach" title="How the engagement ran." />
-            <ProcessList className="mt-12 lg:grid-cols-4" steps={study.process} />
-          </Container>
-        </Section>
-      ) : null}
+          {/* 07 — Approach */}
+          {study.process && study.process.length > 0 ? (
+            <Section tone="deep" bordered>
+              <Container width="page">
+                <SectionHeading eyebrow="Approach" title="How the engagement ran." />
+                <ProcessList className="mt-12 lg:grid-cols-4" steps={study.process} />
+              </Container>
+            </Section>
+          ) : null}
 
-      {/* 08 — Production */}
-      {study.production ? (
-        <Section bordered>
-          <Container width="page">
-            <div className="grid gap-10 lg:grid-cols-12 lg:gap-16">
-              <div className="lg:col-span-4">
-                <Eyebrow>Production</Eyebrow>
-                <h2 className="display mt-5 text-2xl sm:text-3xl">What was produced.</h2>
-              </div>
-              <div className="lg:col-span-8">
-                <p className="max-w-2xl text-base leading-relaxed text-ink-soft">
-                  {study.production.intro}
-                </p>
-                {study.production.items ? (
-                  <CapabilityList items={study.production.items} className="mt-8" />
-                ) : null}
-              </div>
-            </div>
-          </Container>
-        </Section>
-      ) : null}
+          {/* 08 — Production */}
+          {study.production ? (
+            <Section bordered>
+              <Container width="page">
+                <div className="grid gap-10 lg:grid-cols-12 lg:gap-16">
+                  <div className="lg:col-span-4">
+                    <Eyebrow>Production</Eyebrow>
+                    <h2 className="display mt-5 text-2xl sm:text-3xl">What was produced.</h2>
+                  </div>
+                  <div className="lg:col-span-8">
+                    <p className="max-w-2xl text-base leading-relaxed text-ink-soft">
+                      {study.production.intro}
+                    </p>
+                    {study.production.items ? (
+                      <CapabilityList items={study.production.items} className="mt-8" />
+                    ) : null}
+                  </div>
+                </div>
+              </Container>
+            </Section>
+          ) : null}
 
-      {/* Structured evidence tables */}
-      {study.schemaTables && study.schemaTables.length > 0 ? (
-        <Section tone="surface" bordered>
-          <Container width="page">
-            <SectionHeading
-              eyebrow="System"
-              title="How the deliverable is structured."
-              intro="Records themselves are withheld from public display. The structure shows how the system works."
-            />
-            <div className="mt-12 space-y-12">
-              {study.schemaTables.map((table) => (
-                <DataTable key={table.caption} table={table} />
-              ))}
-            </div>
-          </Container>
-        </Section>
-      ) : null}
+          {/* Structured evidence tables */}
+          {study.schemaTables && study.schemaTables.length > 0 ? (
+            <Section tone="surface" bordered>
+              <Container width="page">
+                <SectionHeading
+                  eyebrow="System"
+                  title="How the deliverable is structured."
+                  intro="Records themselves are withheld from public display. The structure shows how the system works."
+                />
+                <div className="mt-12 space-y-12">
+                  {study.schemaTables.map((table) => (
+                    <DataTable key={table.caption} table={table} />
+                  ))}
+                </div>
+              </Container>
+            </Section>
+          ) : null}
 
-      {/* 09 — QA */}
-      {study.qaValidation ? (
-        <Section bordered>
-          <Container width="page">
-            <div className="grid gap-10 lg:grid-cols-12 lg:gap-16">
-              <div className="lg:col-span-4">
-                <Eyebrow>Quality assurance</Eyebrow>
-                <h2 className="display mt-5 text-2xl sm:text-3xl">Checked before issue.</h2>
-                <p className="mt-4 text-sm leading-relaxed text-ink-muted">
-                  {study.qaValidation.intro}
-                </p>
-              </div>
-              <div className="lg:col-span-8">
-                <CapabilityList items={study.qaValidation.items} columns={2} />
-              </div>
-            </div>
-          </Container>
-        </Section>
-      ) : null}
+          {/* 09 — QA */}
+          {study.qaValidation ? (
+            <Section bordered>
+              <Container width="page">
+                <div className="grid gap-10 lg:grid-cols-12 lg:gap-16">
+                  <div className="lg:col-span-4">
+                    <Eyebrow>Quality assurance</Eyebrow>
+                    <h2 className="display mt-5 text-2xl sm:text-3xl">Checked before issue.</h2>
+                    <p className="mt-4 text-sm leading-relaxed text-ink-muted">
+                      {study.qaValidation.intro}
+                    </p>
+                  </div>
+                  <div className="lg:col-span-8">
+                    <CapabilityList items={study.qaValidation.items} columns={2} />
+                  </div>
+                </div>
+              </Container>
+            </Section>
+          ) : null}
 
-      {/* 10 — Deliverables */}
-      {study.deliverables && study.deliverables.length > 0 ? (
-        <Section tone="deep" bordered>
-          <Container width="page">
-            <div className="grid gap-10 lg:grid-cols-12 lg:gap-16">
-              <div className="lg:col-span-4">
-                <Eyebrow>Deliverables</Eyebrow>
-                <h2 className="display mt-5 text-2xl sm:text-3xl">Issued to the client.</h2>
-              </div>
-              <div className="lg:col-span-8">
-                <CapabilityList items={study.deliverables} columns={2} />
-              </div>
-            </div>
-          </Container>
-        </Section>
-      ) : null}
+          {/* 10 — Deliverables */}
+          {study.deliverables && study.deliverables.length > 0 ? (
+            <Section tone="deep" bordered>
+              <Container width="page">
+                <div className="grid gap-10 lg:grid-cols-12 lg:gap-16">
+                  <div className="lg:col-span-4">
+                    <Eyebrow>Deliverables</Eyebrow>
+                    <h2 className="display mt-5 text-2xl sm:text-3xl">Issued to the client.</h2>
+                  </div>
+                  <div className="lg:col-span-8">
+                    <CapabilityList items={study.deliverables} columns={2} />
+                  </div>
+                </div>
+              </Container>
+            </Section>
+          ) : null}
 
-      {/* 12 — Gallery */}
-      {study.images && study.images.length > 0 ? (
-        <Section bordered>
-          <Container width="wide">
-            <SectionHeading
-              eyebrow="Gallery"
-              title="Selected output."
-              intro="Select any image to view it full size."
-            />
-            <div className="mt-12">
-              <Gallery images={study.images} />
-            </div>
-          </Container>
-        </Section>
-      ) : null}
+          {/* 12 — Gallery */}
+          {study.images && study.images.length > 0 ? (
+            <Section bordered>
+              <Container width="wide">
+                <SectionHeading
+                  eyebrow="Gallery"
+                  title="Selected output."
+                  intro="Select any image to view it full size."
+                />
+                <div className="mt-12">
+                  <Gallery images={study.images} />
+                </div>
+              </Container>
+            </Section>
+          ) : null}
 
-      {/* Video */}
-      {study.video && study.video.length > 0 ? (
-        <Section tone="surface" bordered>
-          <Container width="page">
-            <SectionHeading eyebrow="Film" title="Motion output." />
-            <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:max-w-3xl">
-              {study.video.map((v) => (
-                <LazyVideo key={v.src} item={v} />
-              ))}
-            </div>
-          </Container>
-        </Section>
-      ) : null}
+          {/* Video */}
+          {study.video && study.video.length > 0 ? (
+            <Section tone="surface" bordered>
+              <Container width="page">
+                <SectionHeading eyebrow="Film" title="Motion output." />
+                <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:max-w-3xl">
+                  {study.video.map((v) => (
+                    <LazyVideo key={v.src} item={v} />
+                  ))}
+                </div>
+              </Container>
+            </Section>
+          ) : null}
+        </>
+      )}
 
       {/* 13 — Related capabilities + 14 — Related projects */}
       <Section bordered>

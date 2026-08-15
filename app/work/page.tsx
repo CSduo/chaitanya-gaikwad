@@ -35,6 +35,8 @@ type Entry = {
   category: WorkCategory;
   image?: { src: string; alt: string };
   kind: string;
+  isExternal?: boolean;
+  actionLabel?: string;
 };
 
 function buildEntries(): Entry[] {
@@ -50,7 +52,8 @@ function buildEntries(): Entry[] {
       href: `/work/${c.slug}`,
       category: c.category,
       image: img ? { src: img.src, alt: "" } : undefined,
-      kind: "Case study",
+      kind: c.slug === "bahrain-luxury-interior-cad-package" ? "CAD Drawing Package" : "Case study",
+      actionLabel: c.slug === "bahrain-luxury-interior-cad-package" ? "View Drawing Sheets" : "View Case Study",
     });
   }
 
@@ -62,7 +65,8 @@ function buildEntries(): Entry[] {
       blurb: w.summary,
       href: `/work/research/${w.slug}`,
       category: "growth-b2b",
-      kind: "Research system",
+      kind: "Lead Gen · Research File",
+      actionLabel: "Inspect Dataset",
     });
   }
 
@@ -76,6 +80,7 @@ function buildEntries(): Entry[] {
       category: "video",
       image: { src: v.poster, alt: "" },
       kind: "Film",
+      actionLabel: "Watch Film",
     });
   }
 
@@ -85,9 +90,11 @@ function buildEntries(): Entry[] {
       title: s.title,
       meta: `${s.client ?? s.clientDescriptor} · ${s.year}`,
       blurb: s.description,
-      href: "/services/website-design-development#builds",
+      href: s.liveUrl || "/services/website-design-development#builds",
       category: "websites",
-      kind: "Website",
+      kind: "Live Website",
+      isExternal: Boolean(s.liveUrl),
+      actionLabel: "Visit Live Site ↗",
     });
   }
 
@@ -107,38 +114,64 @@ const SERVICE_FOR_CATEGORY: Record<WorkCategory, string> = {
 function EntryGrid({ entries }: { entries: Entry[] }) {
   return (
     <ul className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-      {entries.map((e) => (
-        <li
-          key={e.key}
-          className="media-frame group relative flex flex-col border border-rule bg-surface"
-        >
-          {e.image ? (
-            <span className="relative block aspect-[16/10] overflow-hidden bg-paper-deep">
-              <Image
-                src={e.image.src}
-                alt=""
-                fill
-                loading="lazy"
-                sizes="(min-width: 1024px) 360px, (min-width: 640px) 45vw, 92vw"
-                className="media-clean object-cover"
-              />
-            </span>
-          ) : null}
-          <div className="flex flex-1 flex-col p-6">
-            <p className="label">{e.kind}</p>
-            <h3 className="display mt-3 text-lg leading-snug">
-              <Link
-                href={e.href}
-                className="inline-flex min-h-[44px] items-center transition-colors after:absolute after:inset-0 hover:text-accent"
-              >
-                {e.title}
-              </Link>
-            </h3>
-            {e.meta ? <p className="meta mt-2">{e.meta}</p> : null}
-            <p className="mt-3 flex-1 text-sm leading-relaxed text-ink-muted">{e.blurb}</p>
-          </div>
-        </li>
-      ))}
+      {entries.map((e) => {
+        const isExternal = Boolean(e.isExternal);
+        const CardLink = isExternal ? "a" : Link;
+        const linkProps = isExternal
+          ? { href: e.href, target: "_blank", rel: "noopener noreferrer" }
+          : { href: e.href };
+
+        return (
+          <li
+            key={e.key}
+            className="media-frame group relative flex flex-col border border-rule bg-surface transition-all hover:border-ink/40 hover:shadow-sm"
+          >
+            {e.image ? (
+              <span className="relative block aspect-[16/10] overflow-hidden bg-paper-deep">
+                <Image
+                  src={e.image.src}
+                  alt=""
+                  fill
+                  loading="lazy"
+                  sizes="(min-width: 1024px) 360px, (min-width: 640px) 45vw, 92vw"
+                  className="media-clean object-cover transition-transform duration-300 group-hover:scale-[1.02]"
+                />
+              </span>
+            ) : null}
+            <div className="flex flex-1 flex-col p-6">
+              <div className="flex items-center justify-between gap-2">
+                <p className="label">{e.kind}</p>
+                {isExternal ? (
+                  <span className="font-mono text-[0.625rem] uppercase tracking-wider text-ink-muted">
+                    External ↗
+                  </span>
+                ) : null}
+              </div>
+              <h3 className="display mt-3 text-lg leading-snug">
+                <CardLink
+                  {...linkProps}
+                  className="inline-flex min-h-[44px] items-center transition-colors after:absolute after:inset-0 hover:text-accent"
+                >
+                  {e.title}
+                </CardLink>
+              </h3>
+              {e.meta ? <p className="meta mt-2">{e.meta}</p> : null}
+              <p className="mt-3 flex-1 text-sm leading-relaxed text-ink-muted">{e.blurb}</p>
+
+              {e.actionLabel ? (
+                <div className="mt-5 pt-4 border-t border-rule/60 flex items-center justify-between">
+                  <span className={`inline-flex items-center gap-1.5 text-xs font-semibold ${
+                    isExternal ? "text-accent underline underline-offset-4" : "text-ink"
+                  }`}>
+                    {e.actionLabel}
+                    {!isExternal && <span aria-hidden="true">&rarr;</span>}
+                  </span>
+                </div>
+              ) : null}
+            </div>
+          </li>
+        );
+      })}
     </ul>
   );
 }

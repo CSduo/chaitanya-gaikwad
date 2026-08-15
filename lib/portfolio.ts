@@ -179,20 +179,6 @@ export type Workbook = {
 
 export const WORKBOOKS: Workbook[] = [
   {
-    slug: "saudi-riyadh-jeddah-55-lead-intelligence",
-    title: "Saudi Market Entry — Lead Intelligence",
-    summary:
-      "Developers, luxury hotel projects and pre-opening opportunities mapped across Riyadh and Jeddah, scored and routed for outreach.",
-    region: "Saudi Arabia",
-    tags: ["Market entry", "Lead intelligence", "Decision-maker routes"],
-    sheetCount: 6,
-    sheetNames: ["Master Leads", "Ongoing Projects", "Decision Maker Routes", "Outreach Angles", "Source Log", "Send Guidance"],
-    dataUrl: "/media/data/saudi-riyadh-jeddah-55-lead-intelligence.json",
-    downloadUrl: "/media/downloads/saudi-riyadh-jeddah-55-lead-intelligence-redacted.xlsx",
-    featured: true,
-    order: 1,
-  },
-  {
     slug: "cleaned-premium-fabric-import-buyer-shortlist",
     title: "Premium Fabric Import Buyer Shortlist",
     summary:
@@ -204,7 +190,7 @@ export const WORKBOOKS: Workbook[] = [
     dataUrl: "/media/data/cleaned-premium-fabric-import-buyer-shortlist.json",
     downloadUrl: "/media/downloads/cleaned-premium-fabric-import-buyer-shortlist-redacted.xlsx",
     featured: true,
-    order: 2,
+    order: 1,
   },
   {
     slug: "automotive-showroom-lead-intelligence",
@@ -218,7 +204,7 @@ export const WORKBOOKS: Workbook[] = [
     dataUrl: "/media/data/automotive-showroom-lead-intelligence.json",
     downloadUrl: "/media/downloads/automotive-showroom-lead-intelligence-redacted.xlsx",
     featured: true,
-    order: 3,
+    order: 2,
   },
   {
     slug: "philippines-vip-approachable-lead-intelligence",
@@ -232,7 +218,7 @@ export const WORKBOOKS: Workbook[] = [
     dataUrl: "/media/data/philippines-vip-approachable-lead-intelligence.json",
     downloadUrl: "/media/downloads/philippines-vip-approachable-lead-intelligence-redacted.xlsx",
     featured: false,
-    order: 4,
+    order: 3,
   },
   {
     slug: "china-interior-markets-100plus",
@@ -246,7 +232,7 @@ export const WORKBOOKS: Workbook[] = [
     dataUrl: "/media/data/china-interior-markets-100plus.json",
     downloadUrl: "/media/downloads/china-interior-markets-100plus-redacted.xlsx",
     featured: false,
-    order: 5,
+    order: 4,
   },
   {
     slug: "middle-east-interiors-fitout-whatsapp-expanded",
@@ -260,7 +246,7 @@ export const WORKBOOKS: Workbook[] = [
     dataUrl: "/media/data/middle-east-interiors-fitout-whatsapp-expanded.json",
     downloadUrl: "/media/downloads/middle-east-interiors-fitout-whatsapp-expanded-redacted.xlsx",
     featured: false,
-    order: 6,
+    order: 5,
   },
   {
     slug: "electronics-middle-east-selected-leads",
@@ -274,7 +260,7 @@ export const WORKBOOKS: Workbook[] = [
     dataUrl: "/media/data/electronics-middle-east-selected-leads.json",
     downloadUrl: "/media/downloads/electronics-middle-east-selected-leads-redacted.xlsx",
     featured: false,
-    order: 7,
+    order: 6,
   },
   {
     slug: "laminate-events-in-india",
@@ -288,7 +274,7 @@ export const WORKBOOKS: Workbook[] = [
     dataUrl: "/media/data/laminate-events-in-india.json",
     downloadUrl: "/media/downloads/laminate-events-in-india-redacted.xlsx",
     featured: false,
-    order: 8,
+    order: 7,
   },
 ];
 

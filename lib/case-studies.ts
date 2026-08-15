@@ -29,7 +29,7 @@ export const WORK_CATEGORIES: { slug: WorkCategory; label: string; blurb: string
   {
     slug: "growth-b2b",
     label: "Growth & B2B",
-    blurb: "Eight research workbooks mapping markets across the Gulf, India, China and the Philippines, scored and ranked for outreach.",
+    blurb: "Seven research workbooks mapping markets across the Gulf, India, China and the Philippines, scored and ranked for outreach.",
   },
   {
     slug: "visualisation",
@@ -144,7 +144,7 @@ export const CASE_STUDIES: CaseStudy[] = [
       "Sanitary fixture and window coordination",
     ],
     summary:
-      "A multi-sheet interior drawing package produced for a luxury project in Bahrain, covering a master bathroom, a cigar lounge and a set of custom feature walls. The practice supplied design direction, measured dimensions and visual references; XIYÀTO produced the coordinated, editable documentation set.",
+      "A multi-sheet interior drawing package produced for a luxury project in Bahrain, covering a master bathroom, a cigar lounge, master bedroom suite and a set of custom feature walls. Delivered as coordinated, editable documentation sheets.",
     challenge:
       "The design intent existed as renders, a measured hand sketch and written direction rather than as drawings. The package needed to resolve that material into a coordinated set where plan, elevation and ceiling geometry agreed with one another, remained fully editable by the practice, and made clear which dimensions were confirmed on site and which were derived from visual reference.",
     inputs: {
@@ -208,8 +208,8 @@ export const CASE_STUDIES: CaseStudy[] = [
       "Raster previews for review",
     ],
     metrics: [
-      { value: "3", label: "Spaces documented" },
-      { value: "4", label: "Wall elevations" },
+      { value: "4", label: "Spaces documented" },
+      { value: "11", label: "Drawing sheets produced" },
       { value: "DWG · DXF · PDF", label: "Issued formats" },
     ],
     images: [
@@ -235,117 +235,6 @@ export const CASE_STUDIES: CaseStudy[] = [
       description:
         "A multi-sheet interior drawing package produced for a luxury project in Bahrain: plans, elevations, reflected ceiling, flooring setting-out and joinery detail, issued as editable DWG, DXF and PDF.",
       image: "/media/cad/mb-plan.png",
-    },
-  },
-
-  /* ---------------------------------------------------------------- */
-  {
-    slug: "saudi-market-entry-lead-intelligence",
-    projectName: "Saudi Market Entry — Lead Intelligence System",
-    client: null,
-    clientAnonymised: true,
-    clientDescriptor: "Design and fit-out business entering the Saudi market",
-    sector: "Luxury development, hospitality and interiors",
-    location: "Riyadh and Jeddah, Saudi Arabia",
-    category: "growth-b2b",
-    services: ["growth-marketing-b2b"],
-    dateRange: "2026",
-    engagementType: "project",
-    scope: [
-      "Market and developer mapping across two cities",
-      "Priority scoring against defined criteria",
-      "Decision-maker route mapping from public sources",
-      "Active project and evidence logging",
-      "Outreach angle and channel guidance",
-      "Source log and verification trail",
-    ],
-    summary:
-      "A six-sheet lead intelligence workbook built to support market entry into Riyadh and Jeddah. Targets were identified, scored and segmented from public sources, with active project evidence, contact routes and outreach guidance recorded against every record.",
-    challenge:
-      "Entering an unfamiliar market without a defined target list means outreach is guesswork. The requirement was a workbook the commercial team could act on immediately — ranked by fit, evidenced against live project activity, and structured so that every claim in it could be traced back to a public source.",
-    process: [
-      {
-        step: "01",
-        title: "Criteria definition",
-        body: "Target geography, segment, company profile and the scoring dimensions were agreed before research began.",
-      },
-      {
-        step: "02",
-        title: "Research and evidence",
-        body: "Public sources were worked systematically. Active projects and announcements were recorded as evidence alongside each organisation.",
-      },
-      {
-        step: "03",
-        title: "Scoring and segmentation",
-        body: "Each record was scored out of 100 and assigned a priority band, with the scoring method documented in the workbook itself.",
-      },
-      {
-        step: "04",
-        title: "Outreach structuring",
-        body: "Contact route, best channel, outreach angle and send guidance were mapped per record so the workbook could be worked without further research.",
-      },
-    ],
-    production: {
-      intro:
-        "The workbook was built as a working system rather than a list, with each sheet serving a distinct step in the outreach process.",
-    },
-    qaValidation: {
-      intro: "Data integrity controls applied across the workbook.",
-      items: [
-        "Every record carries a verification status",
-        "Source URLs recorded per record",
-        "Scoring methodology documented in-workbook",
-        "Public-source provenance only",
-        "Contact detail redacted in any portfolio copy",
-      ],
-    },
-    deliverables: [
-      "Six-sheet structured workbook",
-      "Scored and ranked target shortlist",
-      "Decision-maker route mapping",
-      "Source log and verification trail",
-      "Send guidance and outreach angles",
-    ],
-    metrics: [
-      { value: "55", label: "Scored target records" },
-      { value: "6", label: "Structured sheets" },
-      { value: "18", label: "Data fields per record" },
-      { value: "31", label: "Logged sources" },
-    ],
-    schemaTables: [
-      {
-        caption: "Workbook structure",
-        note: "Target records are withheld from public display. The structure below shows how the system is organised.",
-        columns: ["Sheet", "Records", "Purpose"],
-        rows: [
-          ["Master Leads", "55", "Scored and ranked target records"],
-          ["Ongoing Projects", "15", "Live project activity used as qualifying evidence"],
-          ["Decision Maker Routes", "6", "Route patterns for reaching leadership"],
-          ["Outreach Angles", "5", "Positioning angles mapped to segment"],
-          ["Source Log", "31", "Provenance for every claim in the workbook"],
-          ["Send Guidance", "12", "Sequencing and prioritisation for the team"],
-        ],
-      },
-      {
-        caption: "Fields captured per target record",
-        columns: ["Field group", "Fields"],
-        rows: [
-          ["Ranking", "Rank · Priority band · Final score /100"],
-          ["Identity", "Company · Segment · City focus · Website"],
-          ["Route", "Public contact route · Decision-maker route"],
-          ["Evidence", "Active project · Verification status · Source URLs"],
-          ["Fit", "Service fit · Why the lead matters"],
-          ["Action", "Suggested outreach angle · Best channel · Notes"],
-        ],
-      },
-    ],
-    relatedProjects: ["automotive-showroom-target-mapping", "hotel-linen-export-market-programme"],
-    featured: true,
-    order: 2,
-    seo: {
-      title: "Saudi Market Entry — Lead Intelligence System",
-      description:
-        "A six-sheet lead intelligence workbook supporting market entry into Riyadh and Jeddah: 55 scored targets, decision-maker routes, project evidence and a full source log.",
     },
   },
 
@@ -394,134 +283,12 @@ export const CASE_STUDIES: CaseStudy[] = [
     ],
     relatedProjects: ["interior-visualisation-studies"],
     featured: true,
-    order: 3,
+    order: 2,
     seo: {
       title: "Moon Chair — Cinematic Product Campaign",
       description:
         "A short-form cinematic product campaign for Sultanah & Co. Interiors, carrying a luxury furniture story from factory floor to showroom setting.",
       image: "/media/video/sultanah-co-moon-chair-cinematic-campaign-poster.webp",
-    },
-  },
-
-  /* ---------------------------------------------------------------- */
-  {
-    slug: "hotel-linen-export-market-programme",
-    projectName: "Hotel Linen Export — Market and Commercial Programme",
-    client: null,
-    clientAnonymised: true,
-    clientDescriptor: "International bedding and hotel-linen exporter",
-    sector: "Textile manufacturing and export",
-    location: "Cross-border — India, China and GCC markets",
-    category: "growth-b2b",
-    services: ["growth-marketing-b2b", "website-design-development"],
-    dateRange: "2025 — 2026",
-    engagementType: "ongoing-support",
-    scope: [
-      "Buyer discovery and shortlist construction",
-      "Cross-border outreach workflow",
-      "Buyer qualification and sample-evaluation tracking",
-      "Commercial web presence",
-    ],
-    summary:
-      "A long-running engagement supporting an export business across buyer research, outreach operations and commercial presentation — including a structured importer shortlist and a responsive brand website built to carry enquiries.",
-    challenge:
-      "Export outreach was being run without a qualified buyer list or a consistent way of tracking which prospects had been evaluated. The engagement needed to produce both the underlying data system and the commercial presence that outreach could point at.",
-    process: [
-      { step: "01", title: "Buyer discovery", body: "Importers were identified and segmented by city, scale and export relevance across target markets." },
-      { step: "02", title: "Cleaning and ranking", body: "Directory-style and low-value records were removed to a backup sheet, and the remainder ranked against a documented scoring method." },
-      { step: "03", title: "Outreach operations", body: "Contact routes, sample evaluation and follow-up were tracked in a structured workbook." },
-      { step: "04", title: "Commercial presence", body: "A responsive brand website was produced to give outreach a credible destination and a route for enquiries." },
-    ],
-    production: {
-      intro:
-        "The engagement spanned two capabilities: the research and tracking system, and the customer-facing presentation built on top of it.",
-    },
-    deliverables: [
-      "Seven-sheet buyer shortlist workbook",
-      "City-segmented target lists",
-      "Documented scoring methodology",
-      "Backup log of removed records",
-      "Responsive brand website",
-    ],
-    metrics: [
-      { value: "7", label: "Structured sheets" },
-      { value: "459", label: "Records processed" },
-      { value: "3", label: "City segments" },
-      { value: "294", label: "Records removed to backup" },
-    ],
-    schemaTables: [
-      {
-        caption: "Buyer shortlist workbook structure",
-        note: "Buyer records are withheld from public display.",
-        columns: ["Sheet", "Records", "Purpose"],
-        rows: [
-          ["Executive Summary", "—", "Purpose, method and how to work the shortlist"],
-          ["Top 30 Strategic Targets", "30", "Highest-priority buyers across all segments"],
-          ["Mumbai", "30", "City-segmented targets"],
-          ["Pune", "25", "City-segmented targets"],
-          ["Bangalore", "51", "City-segmented targets"],
-          ["Removed — Backup Rows", "294", "Auditable log of every excluded record"],
-          ["Scoring Method", "—", "Documented ranking criteria"],
-        ],
-      },
-    ],
-    relatedProjects: ["saudi-market-entry-lead-intelligence"],
-    featured: false,
-    order: 4,
-    seo: {
-      title: "Hotel Linen Export — Market and Commercial Programme",
-      description:
-        "A cross-border export engagement: a seven-sheet buyer shortlist across three city segments, outreach tracking, and a responsive brand website.",
-    },
-  },
-
-  /* ---------------------------------------------------------------- */
-  {
-    slug: "automotive-showroom-target-mapping",
-    projectName: "Automotive Showroom — Design-Build Target Mapping",
-    client: null,
-    clientAnonymised: true,
-    clientDescriptor: "Design-build and fit-out contractor",
-    sector: "Automotive retail and showroom fit-out",
-    location: "Middle East",
-    category: "growth-b2b",
-    services: ["growth-marketing-b2b"],
-    dateRange: "2026",
-    engagementType: "project",
-    scope: [
-      "Showroom and dealership target identification",
-      "EV and emerging-brand distributor mapping",
-      "Ranking for design-build outreach",
-      "Contact route and source logging",
-    ],
-    summary:
-      "A ranked database of automotive showroom and dealership targets built for design-build outreach, including emerging EV and international brand distributors entering the region.",
-    challenge:
-      "Showroom fit-out opportunity concentrates around brands that are opening, relocating or refreshing sites. The mapping needed to surface that activity rather than simply listing every dealership in the market.",
-    process: [
-      { step: "01", title: "Segment definition", body: "Dealership, distributor and emerging-brand segments were defined against design-build relevance." },
-      { step: "02", title: "Identification", body: "Targets were compiled from public sources with contact routes recorded row by row." },
-      { step: "03", title: "Ranking", body: "Records were ranked for commercial value to a design-build contractor." },
-      { step: "04", title: "Outreach structuring", body: "A separate outreach strategy sheet translated the data into an approach per segment." },
-    ],
-    deliverables: [
-      "Two-sheet lead intelligence workbook",
-      "Ranked showroom and distributor targets",
-      "Row-level source links and contact routes",
-      "Outreach strategy by segment",
-    ],
-    metrics: [
-      { value: "117", label: "Ranked target records" },
-      { value: "22", label: "Data fields per record" },
-      { value: "2", label: "Structured sheets" },
-    ],
-    relatedProjects: ["saudi-market-entry-lead-intelligence"],
-    featured: false,
-    order: 5,
-    seo: {
-      title: "Automotive Showroom — Design-Build Target Mapping",
-      description:
-        "A ranked database of automotive showroom, dealership and EV distributor targets built for design-build fit-out outreach in the Middle East.",
     },
   },
 
@@ -596,7 +363,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     ],
     relatedProjects: ["bahrain-luxury-interior-cad-package", "sultanah-moon-chair-cinematic-campaign"],
     featured: false,
-    order: 6,
+    order: 3,
     seo: {
       title: "Interior Visualisation — Concept and Material Studies",
       description:
