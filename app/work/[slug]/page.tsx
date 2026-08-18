@@ -147,7 +147,7 @@ export default async function CaseStudyPage({
       <JsonLd
         data={breadcrumbSchema([
           { name: "Home", path: "/" },
-          { name: "Work", path: "/work" },
+          { name: "CAD & Technical", path: "/services/cad-technical-production" },
           { name: study.projectName, path: `/work/${study.slug}` },
         ])}
       />
@@ -158,7 +158,7 @@ export default async function CaseStudyPage({
           <Breadcrumbs
             trail={[
               { name: "Home", path: "/" },
-              { name: "Work", path: "/work" },
+              { name: "CAD & Technical", path: "/services/cad-technical-production" },
               { name: study.projectName, path: `/work/${study.slug}` },
             ]}
           />

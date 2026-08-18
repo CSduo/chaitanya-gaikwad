@@ -20,14 +20,14 @@ export default function NotFound() {
 
         <div className="mt-10 flex flex-wrap gap-3">
           <ButtonLink href="/">Return home</ButtonLink>
-          <ButtonLink href="/work" variant="secondary">
-            View work
+          <ButtonLink href="/#capabilities" variant="secondary">
+            View portfolio &amp; capabilities
           </ButtonLink>
         </div>
 
         <ul className="mt-14 border-t border-rule">
           {[
-            { href: "/work", label: "Work", note: "Case studies across all disciplines" },
+            { href: "/#capabilities", label: "Work & Portfolio", note: "Published work and capabilities across all disciplines" },
             { href: "/services", label: "Services", note: "Technical production, growth operations, visual content" },
             { href: "/company", label: "Company", note: "How XIYÀTO operates" },
             { href: "/contact", label: "Contact", note: "Start a project enquiry" },

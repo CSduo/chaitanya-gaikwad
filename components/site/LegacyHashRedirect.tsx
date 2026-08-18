@@ -13,14 +13,14 @@ import { useRouter } from "next/navigation";
 const EXACT: Record<string, string> = {
   "#/cad-automation": "/services/cad-technical-production",
   "#cad-automation": "/services/cad-technical-production",
-  "#/projects/videos": "/work?category=video",
-  "#/projects/visualisations": "/work?category=visualisation",
-  "#/projects/b2b-research": "/work?category=growth-b2b",
-  "#/projects/websites": "/work?category=websites",
-  "#/projects": "/work",
-  "#/startup": "/work",
-  "#startup": "/work",
-  "#projects": "/work",
+  "#/projects/videos": "/services/video-ai-film-editing",
+  "#/projects/visualisations": "/services/visualisation-image-production",
+  "#/projects/b2b-research": "/services/growth-marketing-b2b",
+  "#/projects/websites": "/services/website-design-development",
+  "#/projects": "/#capabilities",
+  "#/startup": "/#capabilities",
+  "#startup": "/#capabilities",
+  "#projects": "/#capabilities",
   "#services": "/services",
   "#about": "/company",
   "#contact": "/contact",
@@ -42,7 +42,7 @@ export function LegacyHashRedirect() {
 
     // Deep workbook links: #/projects/b2b-research/<slug>
     if (!destination && normalised.startsWith("#/projects/b2b-research/")) {
-      destination = "/work?category=growth-b2b";
+      destination = "/services/growth-marketing-b2b";
     }
 
     if (!destination) return;

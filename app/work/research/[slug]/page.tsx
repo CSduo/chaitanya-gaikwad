@@ -57,7 +57,7 @@ export default async function ResearchPage({
       <JsonLd
         data={breadcrumbSchema([
           { name: "Home", path: "/" },
-          { name: "Work", path: "/work" },
+          { name: "Growth & B2B", path: "/services/growth-marketing-b2b" },
           { name: workbook.title, path: `/work/research/${workbook.slug}` },
         ])}
       />
@@ -67,7 +67,7 @@ export default async function ResearchPage({
           <Breadcrumbs
             trail={[
               { name: "Home", path: "/" },
-              { name: "Work", path: "/work" },
+              { name: "Growth & B2B", path: "/services/growth-marketing-b2b" },
               { name: workbook.title, path: `/work/research/${workbook.slug}` },
             ]}
           />

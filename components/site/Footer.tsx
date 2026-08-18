@@ -7,7 +7,6 @@ import {
   publishedChannels,
 } from "@/lib/site";
 import { SERVICES } from "@/lib/services";
-import { WORK_CATEGORIES } from "@/lib/case-studies";
 import {
   publishedLegalPages,
   publishedLocations,
@@ -77,16 +76,26 @@ export function Footer() {
         {/* ---- Band 2: navigation (2x2 grid on mobile, 4 columns on desktop) ---- */}
         <div className="grid grid-cols-2 gap-x-6 gap-y-7 border-t border-rule py-8 sm:gap-10 sm:py-12 lg:grid-cols-4">
           <div>
-            <ColumnHeading>Work</ColumnHeading>
+            <ColumnHeading>Work &amp; Portfolio</ColumnHeading>
             <ul className="space-y-0.5">
               <li>
-                <FooterLink href="/work">All work</FooterLink>
+                <FooterLink href="/#capabilities">Portfolio Overview</FooterLink>
               </li>
-              {WORK_CATEGORIES.map((c) => (
-                <li key={c.slug}>
-                  <FooterLink href={`/work?category=${c.slug}`}>{c.label}</FooterLink>
-                </li>
-              ))}
+              <li>
+                <FooterLink href="/services/cad-technical-production">CAD Drawing Sets</FooterLink>
+              </li>
+              <li>
+                <FooterLink href="/services/growth-marketing-b2b">B2B Intelligence</FooterLink>
+              </li>
+              <li>
+                <FooterLink href="/services/visualisation-image-production">3D Visualisations</FooterLink>
+              </li>
+              <li>
+                <FooterLink href="/services/video-ai-film-editing">Video &amp; Film</FooterLink>
+              </li>
+              <li>
+                <FooterLink href="/services/website-design-development">Websites</FooterLink>
+              </li>
             </ul>
           </div>
 

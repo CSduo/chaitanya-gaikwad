@@ -46,15 +46,18 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
 
+      // ---- Work page redirection to Homepage Capabilities / Portfolio ----
+      { source: "/work", destination: "/#capabilities", permanent: true },
+
       // ---- Legacy path redirects (see REDIRECT_MAP_FINAL.md) ----
       { source: "/cad-automation", destination: "/services/cad-technical-production", permanent: true },
-      { source: "/projects/videos", destination: "/work?category=video", permanent: true },
-      { source: "/projects/visualisations", destination: "/work?category=visualisation", permanent: true },
-      { source: "/projects/b2b-research", destination: "/work?category=growth-b2b", permanent: true },
-      { source: "/projects/b2b-research/:slug", destination: "/work?category=growth-b2b", permanent: true },
-      { source: "/projects/websites", destination: "/work?category=websites", permanent: true },
-      { source: "/projects", destination: "/work", permanent: true },
-      { source: "/startup", destination: "/work", permanent: true },
+      { source: "/projects/videos", destination: "/services/video-ai-film-editing", permanent: true },
+      { source: "/projects/visualisations", destination: "/services/visualisation-image-production", permanent: true },
+      { source: "/projects/b2b-research", destination: "/services/growth-marketing-b2b", permanent: true },
+      { source: "/projects/b2b-research/:slug", destination: "/services/growth-marketing-b2b", permanent: true },
+      { source: "/projects/websites", destination: "/services/website-design-development", permanent: true },
+      { source: "/projects", destination: "/#capabilities", permanent: true },
+      { source: "/startup", destination: "/#capabilities", permanent: true },
       { source: "/about", destination: "/company", permanent: true },
       { source: "/services/cad", destination: "/services/cad-technical-production", permanent: true },
       { source: "/company/about", destination: "/company", permanent: true },
