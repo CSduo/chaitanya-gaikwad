@@ -47,35 +47,172 @@ export function CadScene({ active }: { active: boolean }) {
 }
 
 /* ------------------------------------------------------------------ */
-/* SCENE 02 — GROWTH OPERATIONS: a real workbook schema, redacted       */
+/* ------------------------------------------------------------------ */
+/* SCENE 02 — GROWTH OPERATIONS: Real Automotive Showroom Intelligence */
 /* ------------------------------------------------------------------ */
 
-/**
- * Column headers and verification vocabulary are taken verbatim from a real
- * delivered workbook. Company identities are redacted, exactly as they are in
- * any published copy — the point is the system, not the targets.
- */
-const COLUMNS = ["Rank", "Priority", "Score", "Company", "Segment", "Verification"];
+export type RealLeadRecord = {
+  rank: string;
+  priority: string;
+  score: string;
+  company: string;
+  brands: string;
+  leadType: string;
+  location: string;
+  role: string;
+  route: string;
+  status: string;
+};
 
-const ROWS: { rank: string; priority: string; score: string; segment: string; status: string }[] = [
-  { rank: "01", priority: "A++", score: "99", segment: "Luxury developer", status: "Verified" },
-  { rank: "02", priority: "A+", score: "94", segment: "Hospitality group", status: "Verified" },
-  { rank: "03", priority: "A+", score: "91", segment: "Fit-out contractor", status: "Verified" },
-  { rank: "04", priority: "A", score: "86", segment: "Interior practice", status: "Source logged" },
-  { rank: "05", priority: "A", score: "83", segment: "Commercial developer", status: "Source logged" },
-  { rank: "06", priority: "B+", score: "77", segment: "Retail group", status: "Source logged" },
+const REAL_COLUMNS = [
+  { label: "Rank", minWidth: "w-14" },
+  { label: "Priority", minWidth: "w-16" },
+  { label: "Score", minWidth: "w-14" },
+  { label: "Company / Dealer Group", minWidth: "w-56" },
+  { label: "Brands Represented", minWidth: "w-48" },
+  { label: "Lead Type / Facility", minWidth: "w-48" },
+  { label: "City / Region", minWidth: "w-36" },
+  { label: "Decision-Maker Role", minWidth: "w-48" },
+  { label: "Best Contact Route", minWidth: "w-52" },
+  { label: "Verification Status", minWidth: "w-40" },
 ];
 
-const CHECKS = ["Public route confirmed", "Active project evidence", "Source URL logged"];
+const REAL_ROWS: RealLeadRecord[] = [
+  {
+    rank: "01",
+    priority: "A++",
+    score: "98",
+    company: "Al-Futtaim BYD KSA",
+    brands: "BYD EVs & Hybrids",
+    leadType: "Flagship Showroom Network",
+    location: "Riyadh, Saudi Arabia",
+    role: "Managing Director / Projects",
+    route: "Official BYD Business Channel",
+    status: "Verified · 2026 Rollout",
+  },
+  {
+    rank: "02",
+    priority: "A++",
+    score: "96",
+    company: "Al-Futtaim BYD KSA",
+    brands: "BYD",
+    leadType: "Mall & Retail Showroom",
+    location: "Dhahran, Saudi Arabia",
+    role: "Dealer Operations / Projects",
+    route: "Official Branch Route",
+    status: "Verified · Active Location",
+  },
+  {
+    rank: "03",
+    priority: "A+",
+    score: "94",
+    company: "Al-Futtaim BYD KSA",
+    brands: "BYD",
+    leadType: "Integrated 3S Facility",
+    location: "Abha, Saudi Arabia",
+    role: "Dealer Development / Facilities",
+    route: "Corporate Route",
+    status: "Verified · 3S Facility",
+  },
+  {
+    rank: "04",
+    priority: "A++",
+    score: "97",
+    company: "SAMACO Automotive (Porsche)",
+    brands: "Porsche",
+    leadType: "Luxury Dealership Flagship",
+    location: "Riyadh, Saudi Arabia",
+    role: "Marketing / Projects / Facilities",
+    route: "Porsche Brand Channel",
+    status: "Verified · Luxury Flagship",
+  },
+  {
+    rank: "05",
+    priority: "A+",
+    score: "94",
+    company: "SAMACO Automotive (Porsche)",
+    brands: "Porsche",
+    leadType: "VIP Retail & Lounge",
+    location: "Jeddah, Saudi Arabia",
+    role: "Projects / Brand Manager",
+    route: "Corporate Channel",
+    status: "Verified · VIP Retail",
+  },
+  {
+    rank: "06",
+    priority: "A+",
+    score: "93",
+    company: "SAMACO Automotive (Audi)",
+    brands: "Audi",
+    leadType: "Premium Dealership",
+    location: "Riyadh, Saudi Arabia",
+    role: "Audi Brand Manager / Facilities",
+    route: "Official Corporate Route",
+    status: "Verified · Prime Market",
+  },
+  {
+    rank: "07",
+    priority: "A",
+    score: "91",
+    company: "SAMACO Automotive (Audi)",
+    brands: "Audi",
+    leadType: "Premium Dealership",
+    location: "Jeddah, Saudi Arabia",
+    role: "Projects & Marketing",
+    route: "Corporate Contact Route",
+    status: "Verified · Active Branch",
+  },
+  {
+    rank: "08",
+    priority: "A++",
+    score: "99",
+    company: "SAMACO Automotive (Supercar Group)",
+    brands: "Lamborghini, Bentley, Bugatti, Pagani",
+    leadType: "Ultra-Luxury Dealer Group",
+    location: "Riyadh / Jeddah, KSA",
+    role: "Luxury Brands Director",
+    route: "Executive Channel",
+    status: "Verified · VIP Configuration",
+  },
+  {
+    rank: "09",
+    priority: "A++",
+    score: "96",
+    company: "Mohamed Yousuf Naghi Motors",
+    brands: "BMW, MINI, Rolls-Royce",
+    leadType: "Luxury Dealership Network",
+    location: "Jeddah / Riyadh, KSA",
+    role: "Dealer Development / Facilities",
+    route: "Corporate Executive Route",
+    status: "Verified · National Network",
+  },
+  {
+    rank: "10",
+    priority: "A+",
+    score: "95",
+    company: "Wallan Trading Company (Genesis)",
+    brands: "Genesis & Hyundai Luxury",
+    leadType: "Luxury Flagship Retail",
+    location: "Riyadh, Saudi Arabia",
+    role: "Brand Director / Projects",
+    route: "Official Wallan Route",
+    status: "Verified · Flagship Network",
+  },
+];
+
+const CHECKS = [
+  "Public route confirmed",
+  "Active project signal",
+  "Decision-maker mapped",
+  "Source logged",
+];
 
 export function DataScene({ active }: { active: boolean }) {
   const reduced = useReducedMotion();
-  const [revealed, setRevealed] = useState(reduced ? ROWS.length : 0);
+  const [revealed, setRevealed] = useState(reduced ? REAL_ROWS.length : 0);
   const [selected, setSelected] = useState<number | null>(reduced ? 0 : null);
   const [checks, setChecks] = useState(reduced ? CHECKS.length : 0);
 
-  // Reset when the scene is hidden by adjusting state during render rather
-  // than in an effect, which avoids a cascading re-render.
   const [wasActive, setWasActive] = useState(active);
   if (active !== wasActive) {
     setWasActive(active);
@@ -89,61 +226,88 @@ export function DataScene({ active }: { active: boolean }) {
   useEffect(() => {
     if (reduced || !active) return;
     const timers: ReturnType<typeof setTimeout>[] = [];
-    ROWS.forEach((_, i) => timers.push(setTimeout(() => setRevealed(i + 1), 160 + i * 130)));
-    timers.push(setTimeout(() => setSelected(0), 1150));
-    CHECKS.forEach((_, i) => timers.push(setTimeout(() => setChecks(i + 1), 1450 + i * 320)));
+    REAL_ROWS.forEach((_, i) =>
+      timers.push(setTimeout(() => setRevealed(i + 1), 120 + i * 90)),
+    );
+    timers.push(setTimeout(() => setSelected(0), 1050));
+    CHECKS.forEach((_, i) =>
+      timers.push(setTimeout(() => setChecks(i + 1), 1200 + i * 220)),
+    );
     return () => timers.forEach(clearTimeout);
   }, [active, reduced]);
 
   return (
     <div className="flex h-full w-full flex-col bg-paper-deep">
-      <div className="flex items-center justify-between border-b border-rule px-4 py-2.5">
-        <span className="font-mono text-[0.625rem] uppercase tracking-[0.14em] text-ink-muted">
-          Master leads
-        </span>
-        <span className="font-mono text-[0.625rem] uppercase tracking-[0.14em] text-ink-faint">
-          55 records · 18 fields
-        </span>
+      {/* Top Header Bar with Live Dataset Metadata & Scroll Prompt */}
+      <div className="flex flex-wrap items-center justify-between gap-2 border-b border-rule bg-paper px-4 py-2.5">
+        <div className="flex items-center gap-2">
+          <span className="h-2 w-2 rounded-full bg-accent animate-pulse" />
+          <span className="font-mono text-[0.625rem] font-semibold uppercase tracking-[0.14em] text-ink">
+            Automotive Showroom Lead Intelligence
+          </span>
+        </div>
+        <div className="flex items-center gap-3">
+          <span className="hidden font-mono text-[0.625rem] uppercase tracking-[0.12em] text-ink-muted sm:inline-block">
+            114 records · 22 research fields
+          </span>
+          <span className="inline-flex items-center gap-1 rounded-xs bg-paper-deep px-2 py-0.5 font-mono text-[0.5625rem] font-medium text-accent border border-rule">
+            <span>⇄</span>
+            <span>Scroll horizontally</span>
+          </span>
+        </div>
       </div>
 
-      <div className="min-h-0 flex-1 overflow-hidden">
-        <table className="w-full table-fixed border-collapse text-left">
-          <thead>
-            <tr className="border-b border-rule">
-              {COLUMNS.map((c, i) => (
+      {/* Horizontally & Vertically Scrollable Interactive Table */}
+      <div className="min-h-0 flex-1 overflow-x-auto overflow-y-auto overscroll-contain">
+        <table className="min-w-[940px] w-full border-collapse text-left text-xs">
+          <thead className="sticky top-0 z-10 bg-paper-deep/95 backdrop-blur-xs border-b border-rule">
+            <tr>
+              {REAL_COLUMNS.map((col) => (
                 <th
-                  key={c}
-                  className={`px-3 py-2 font-mono text-[0.5625rem] font-medium uppercase tracking-[0.12em] text-ink-faint ${
-                    i === 3 ? "w-[26%]" : i === 4 ? "w-[26%]" : ""
-                  } ${i > 3 ? "hidden sm:table-cell" : ""}`}
+                  key={col.label}
+                  className={`px-3 py-2 font-mono text-[0.5625rem] font-medium uppercase tracking-[0.12em] text-ink-muted ${col.minWidth}`}
                 >
-                  {c}
+                  {col.label}
                 </th>
               ))}
             </tr>
           </thead>
           <tbody>
-            {ROWS.map((r, i) => (
+            {REAL_ROWS.map((r, i) => (
               <tr
-                key={r.rank}
-                className={`border-b border-rule/70 transition-all duration-500 ${
+                key={r.rank + r.company}
+                className={`border-b border-rule/70 transition-all duration-300 hover:bg-surface ${
                   i < revealed ? "opacity-100 translate-y-0" : "opacity-0 translate-y-1"
-                } ${selected === i ? "bg-accent-wash" : ""}`}
+                } ${selected === i ? "bg-accent-wash/60" : ""}`}
               >
-                <td className="px-3 py-2 font-mono text-[0.6875rem] text-ink-muted">{r.rank}</td>
-                <td className="px-3 py-2 font-mono text-[0.6875rem] text-accent">{r.priority}</td>
-                <td className="px-3 py-2 font-mono text-[0.6875rem] text-ink-muted">{r.score}</td>
-                <td className="px-3 py-2">
-                  {/* Identities are withheld from public display. */}
-                  <span
-                    aria-label="Company name redacted"
-                    className="inline-block h-2.5 w-full max-w-[7rem] rounded-[1px] bg-ink/25"
-                  />
+                <td className="px-3 py-2 font-mono text-[0.6875rem] font-medium text-ink-muted">
+                  {r.rank}
                 </td>
-                <td className="hidden px-3 py-2 text-[0.6875rem] text-ink-soft sm:table-cell">
-                  {r.segment}
+                <td className="px-3 py-2 font-mono text-[0.6875rem] font-semibold text-accent">
+                  {r.priority}
                 </td>
-                <td className="hidden px-3 py-2 font-mono text-[0.625rem] text-ink-muted sm:table-cell">
+                <td className="px-3 py-2 font-mono text-[0.6875rem] text-ink-soft">
+                  {r.score}
+                </td>
+                <td className="px-3 py-2 font-medium text-ink">
+                  {r.company}
+                </td>
+                <td className="px-3 py-2 text-ink-soft text-[0.6875rem]">
+                  {r.brands}
+                </td>
+                <td className="px-3 py-2 text-ink-muted text-[0.6875rem]">
+                  {r.leadType}
+                </td>
+                <td className="px-3 py-2 font-mono text-[0.625rem] text-ink-soft">
+                  {r.location}
+                </td>
+                <td className="px-3 py-2 text-ink-soft text-[0.6875rem]">
+                  {r.role}
+                </td>
+                <td className="px-3 py-2 font-mono text-[0.625rem] text-ink-muted">
+                  {r.route}
+                </td>
+                <td className="px-3 py-2 font-mono text-[0.625rem] text-success">
                   {r.status}
                 </td>
               </tr>
@@ -152,28 +316,31 @@ export function DataScene({ active }: { active: boolean }) {
         </table>
       </div>
 
-      <div className="border-t border-rule px-4 py-3">
-        <p className="font-mono text-[0.5625rem] uppercase tracking-[0.14em] text-ink-faint">
-          Qualification
-        </p>
-        <ul className="mt-2 flex flex-wrap gap-x-5 gap-y-1">
-          {CHECKS.map((c, i) => (
-            <li
-              key={c}
-              className={`flex items-center gap-1.5 text-[0.6875rem] transition-opacity duration-500 ${
-                i < checks ? "opacity-100" : "opacity-25"
-              }`}
-            >
-              <span
-                aria-hidden="true"
-                className={i < checks ? "text-success" : "text-ink-faint"}
+      {/* Bottom Qualification Bar with Deep Link */}
+      <div className="flex flex-wrap items-center justify-between gap-3 border-t border-rule bg-paper px-4 py-2.5">
+        <div className="flex items-center gap-3">
+          <p className="font-mono text-[0.5625rem] uppercase tracking-[0.14em] text-ink-faint">
+            Verified Checks
+          </p>
+          <ul className="flex flex-wrap gap-x-4 gap-y-1">
+            {CHECKS.map((c, i) => (
+              <li
+                key={c}
+                className={`flex items-center gap-1 text-[0.625rem] transition-opacity duration-300 ${
+                  i < checks ? "opacity-100" : "opacity-25"
+                }`}
               >
-                ✓
-              </span>
-              <span className="text-ink-soft">{c}</span>
-            </li>
-          ))}
-        </ul>
+                <span
+                  aria-hidden="true"
+                  className={i < checks ? "text-success font-bold" : "text-ink-faint"}
+                >
+                  ✓
+                </span>
+                <span className="text-ink-soft">{c}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
     </div>
   );
