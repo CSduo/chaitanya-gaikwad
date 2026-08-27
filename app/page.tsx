@@ -6,6 +6,7 @@ import {
   SectionHeading,
 } from "@/components/ui/primitives";
 import { HeroCapabilities } from "@/components/home/HeroCapabilities";
+import { ServicesCarousel } from "@/components/home/ServicesCarousel";
 import {
   CadSection,
   GrowthSection,
@@ -195,40 +196,7 @@ export default function HomePage() {
           </p>
         </div>
 
-        <div className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
-          {SERVICES.map((s) => (
-            <Link
-              key={s.slug}
-              href={`/services/${s.slug}`}
-              className="group relative flex flex-col justify-between rounded-lg border border-rule bg-surface p-5 shadow-2xs transition-all hover:border-ink/60 hover:bg-paper-deep hover:shadow-sm"
-            >
-              <div>
-                <div className="flex items-center justify-between">
-                  <span className="font-mono text-[0.625rem] uppercase tracking-[0.14em] text-accent font-semibold">
-                    {`0${s.order} · ${s.motif}`}
-                  </span>
-                  <span className="text-xs text-ink-muted transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-ink">
-                    &#8599;
-                  </span>
-                </div>
-                <h3 className="mt-2 text-base font-semibold text-ink transition-colors group-hover:text-accent">
-                  {s.name}
-                </h3>
-                <p className="mt-1.5 text-xs leading-relaxed text-ink-muted line-clamp-2">
-                  {s.summary}
-                </p>
-              </div>
-              <div className="mt-4 flex items-center justify-between border-t border-rule/60 pt-2.5">
-                <span className="text-[0.6875rem] font-medium text-ink-soft group-hover:text-ink">
-                  Explore {s.shortName}
-                </span>
-                <span className="text-xs text-ink-faint transition-transform group-hover:translate-x-1 group-hover:text-ink">
-                  &rarr;
-                </span>
-              </div>
-            </Link>
-          ))}
-        </div>
+        <ServicesCarousel services={SERVICES} />
       </Container>
 
       <CadSection service={cad} />

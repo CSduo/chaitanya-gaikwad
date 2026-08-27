@@ -326,3 +326,180 @@
     scroll-behavior: auto !important;
   }
 }
+
+/* =========================================================================
+   BESPOKE DISCIPLINE THEMES (M1 / R4)
+   5 Editorial Atmospheric Scopes for Service Showcase Chapters
+   ========================================================================= */
+
+/* 1. CAD & Technical Production: Technical Drafting Slate */
+.theme-slate {
+  --color-paper: #0b1120;
+  --color-surface: #131d31;
+  --color-surface-muted: #1e293b;
+  --color-paper-deep: #070c18;
+  --color-ink: #f8fafc;
+  --color-ink-soft: #cbd5e1;
+  --color-ink-muted: #94a3b8;
+  --color-ink-faint: #64748b;
+  --color-rule: rgba(148, 163, 184, 0.18);
+  --color-rule-strong: rgba(148, 163, 184, 0.35);
+  --color-accent: #38bdf8;
+  --color-accent-hover: #0ea5e9;
+  --color-accent-wash: rgba(56, 189, 248, 0.12);
+  --color-focus: #38bdf8;
+  color: var(--color-ink);
+  background-color: var(--color-paper);
+}
+
+/* 2. Growth, Marketing & B2B: Research Dossier */
+.theme-dossier {
+  --color-paper: #121316;
+  --color-surface: #1c1d22;
+  --color-surface-muted: #27272e;
+  --color-paper-deep: #0c0d0f;
+  --color-ink: #fafafa;
+  --color-ink-soft: #d4d4d8;
+  --color-ink-muted: #a1a1aa;
+  --color-ink-faint: #71717a;
+  --color-rule: rgba(244, 244, 245, 0.14);
+  --color-rule-strong: rgba(244, 244, 245, 0.28);
+  --color-accent: #f59e0b;
+  --color-accent-hover: #d97706;
+  --color-accent-wash: rgba(245, 158, 11, 0.12);
+  --color-focus: #f59e0b;
+  color: var(--color-ink);
+  background-color: var(--color-paper);
+}
+
+/* 3. 3D Visualisation & Image Production: Titanium Gallery */
+.theme-titanium {
+  --color-paper: #09090b;
+  --color-surface: #141417;
+  --color-surface-muted: #202025;
+  --color-paper-deep: #050507;
+  --color-ink: #ffffff;
+  --color-ink-soft: #e4e4e7;
+  --color-ink-muted: #a1a1aa;
+  --color-ink-faint: #71717a;
+  --color-rule: rgba(228, 228, 231, 0.16);
+  --color-rule-strong: rgba(228, 228, 231, 0.32);
+  --color-accent: #e4e4e7;
+  --color-accent-hover: #ffffff;
+  --color-accent-wash: rgba(228, 228, 231, 0.1);
+  --color-focus: #e4e4e7;
+  color: var(--color-ink);
+  background-color: var(--color-paper);
+}
+
+/* 4. Video, AI Film & Editing: Obsidian Black */
+.theme-obsidian {
+  --color-paper: #050505;
+  --color-surface: #0d0d10;
+  --color-surface-muted: #18181c;
+  --color-paper-deep: #000000;
+  --color-ink: #ffffff;
+  --color-ink-soft: #d4d4d4;
+  --color-ink-muted: #a3a3a3;
+  --color-ink-faint: #737373;
+  --color-rule: rgba(255, 255, 255, 0.12);
+  --color-rule-strong: rgba(255, 255, 255, 0.25);
+  --color-accent: #f43f5e;
+  --color-accent-hover: #e11d48;
+  --color-accent-wash: rgba(244, 63, 94, 0.12);
+  --color-focus: #f43f5e;
+  color: var(--color-ink);
+  background-color: var(--color-paper);
+}
+
+/* 5. Website Design & Automation: Tech Clean */
+.theme-tech {
+  --color-paper: #080c14;
+  --color-surface: #0f1523;
+  --color-surface-muted: #1a2236;
+  --color-paper-deep: #04060a;
+  --color-ink: #f9fafb;
+  --color-ink-soft: #e5e7eb;
+  --color-ink-muted: #9ca3af;
+  --color-ink-faint: #6b7280;
+  --color-rule: rgba(52, 211, 153, 0.16);
+  --color-rule-strong: rgba(52, 211, 153, 0.32);
+  --color-accent: #10b981;
+  --color-accent-hover: #059669;
+  --color-accent-wash: rgba(16, 185, 129, 0.12);
+  --color-focus: #10b981;
+  color: var(--color-ink);
+  background-color: var(--color-paper);
+}
+
+/* =========================================================================
+   THEMATIC BACKGROUND PATTERNS (Hardware Accelerated, Zero CLS)
+   ========================================================================= */
+
+/* CAD Blueprint Grid */
+.pattern-draft-grid {
+  background-image:
+    linear-gradient(to right, rgba(56, 189, 248, 0.08) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(56, 189, 248, 0.08) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+/* Growth Dossier Ledger Lines */
+.pattern-dossier-ledger {
+  background-image:
+    linear-gradient(to bottom, rgba(245, 158, 11, 0.06) 1px, transparent 1px),
+    linear-gradient(to right, rgba(245, 158, 11, 0.03) 1px, transparent 1px);
+  background-size: 100% 28px, 120px 100%;
+}
+
+/* Titanium Gallery Spotlight Radial Sheen */
+.pattern-gallery-spotlight,
+.pattern-titanium-sheen {
+  background-image:
+    radial-gradient(ellipse 80% 50% at 50% 0%, rgba(228, 228, 231, 0.07), transparent 70%);
+}
+
+/* Obsidian Cinema Glow / Vignette */
+.pattern-cinema-glow,
+.pattern-obsidian-vignette {
+  background-image:
+    radial-gradient(circle at 50% 50%, transparent 40%, rgba(0, 0, 0, 0.85) 100%),
+    linear-gradient(to bottom, rgba(244, 63, 94, 0.04) 1px, transparent 1px);
+  background-size: 100% 100%, 100% 48px;
+}
+
+/* Tech Clean Mesh / Dot Matrix */
+.pattern-tech-mesh,
+.pattern-tech-matrix {
+  background-image:
+    radial-gradient(rgba(52, 211, 153, 0.15) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* =========================================================================
+   TACTILE & MICRO-HAPTIC INTERACTION UTILITIES (M1 / R5)
+   ========================================================================= */
+.tactile-press {
+  transform: translateZ(0);
+  transition: transform 120ms cubic-bezier(0.2, 0, 0, 1);
+}
+.tactile-press:active {
+  transform: scale(0.98);
+}
+
+.tactile-lift {
+  transform: translateZ(0);
+  transition: transform 200ms cubic-bezier(0.22, 1, 0.36, 1), box-shadow 200ms ease;
+}
+@media (hover: hover) {
+  .tactile-lift:hover {
+    transform: translateY(-2px);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .tactile-press:active,
+  .tactile-lift:hover {
+    transform: none !important;
+  }
+}
+
