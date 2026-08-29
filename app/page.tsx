@@ -22,7 +22,7 @@ import { pageMetadata } from "@/lib/seo";
 import { SITE, PRIMARY_CTA, WHATSAPP } from "@/lib/site";
 import { HOME_COPY } from "@/lib/home-copy";
 import { ROUTE_SEO } from "@/lib/seo-copy";
-import { ConstructionRing, ArchitecturalHeroBackground } from "@/components/brand/decorations";
+import { ArchitecturalHeroBackground } from "@/components/brand/decorations";
 import { SectionDivider } from "@/components/brand/Divider";
 
 export const metadata: Metadata = pageMetadata({
@@ -64,13 +64,8 @@ export default function HomePage() {
           01 — HERO (Pure Black Architectural Sophistication)
          ============================================================ */}
       <section className="deco-host relative border-b border-zinc-800 bg-black text-white overflow-hidden">
-        {/* Subtle white architectural CAD grid & blueprint vector overlay */}
+        {/* Subtle white architectural & interior CAD blueprint vector overlay */}
         <ArchitecturalHeroBackground />
-
-        <ConstructionRing
-          className="deco deco-desktop -right-44 -top-48 h-[38rem] w-[38rem] text-white"
-          opacity={0.12}
-        />
 
         <Container width="page" className="relative z-10 pb-16 pt-12 sm:pt-16 lg:pb-24 lg:pt-24">
           <div className="max-w-4xl">
