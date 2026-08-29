@@ -298,3 +298,89 @@ export function ServiceMotif({
   const Motif = MOTIFS[slug as MotifSlug];
   return Motif ? <Motif className={className} opacity={opacity} /> : null;
 }
+
+/* ------------------------------------------------------------------ */
+/* 9 — ARCHITECTURAL HERO BACKGROUND (Pure Black & Crisp White CAD)    */
+/* ------------------------------------------------------------------ */
+
+export function ArchitecturalHeroBackground({ className = "" }: { className?: string }) {
+  return (
+    <div
+      className={`pointer-events-none absolute inset-0 select-none overflow-hidden ${className}`}
+      aria-hidden="true"
+    >
+      {/* 1. Fine White Technical Drafting Grid */}
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.06)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.06)_1px,transparent_1px)] bg-[size:3.5rem_3.5rem] [mask-image:radial-gradient(ellipse_80%_80%_at_50%_40%,#000_65%,transparent_100%)]" />
+
+      {/* 2. Major 14rem Structural Module Lines */}
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.1)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.1)_1px,transparent_1px)] bg-[size:14rem_14rem] [mask-image:radial-gradient(ellipse_75%_75%_at_50%_35%,#000_50%,transparent_100%)]" />
+
+      {/* 3. Architectural Blueprint Vector Elements in Crisp White */}
+      <svg
+        className="absolute inset-0 h-full w-full stroke-white text-white"
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+      >
+        {/* Large Concentric Azimuth Calibration Rings (Top Right) */}
+        <g opacity="0.16" strokeWidth="0.8">
+          <circle cx="85%" cy="18%" r="140" strokeDasharray="3 3" />
+          <circle cx="85%" cy="18%" r="260" strokeWidth="0.5" />
+          <circle cx="85%" cy="18%" r="380" strokeDasharray="4 6" />
+          <circle cx="85%" cy="18%" r="520" strokeWidth="0.4" />
+          {/* Cardinal Coordinate Axes */}
+          <line x1="85%" y1="0%" x2="85%" y2="100%" strokeDasharray="2 4" strokeWidth="0.5" />
+          <line x1="0%" y1="18%" x2="100%" y2="18%" strokeDasharray="2 4" strokeWidth="0.5" />
+          <line x1="40%" y1="0%" x2="100%" y2="60%" strokeDasharray="1 5" strokeWidth="0.35" />
+        </g>
+
+        {/* Technical Coordinate Crosshairs (+) at key structural intersections */}
+        {[
+          { x: "12%", y: "22%" },
+          { x: "48%", y: "14%" },
+          { x: "72%", y: "55%" },
+          { x: "20%", y: "80%" },
+          { x: "88%", y: "78%" },
+          { x: "60%", y: "88%" },
+        ].map((pt, i) => (
+          <g key={i} strokeWidth="1" opacity="0.3">
+            <line x1={`calc(${pt.x} - 7px)`} y1={pt.y} x2={`calc(${pt.x} + 7px)`} y2={pt.y} />
+            <line x1={pt.x} y1={`calc(${pt.y} - 7px)`} x2={pt.x} y2={`calc(${pt.y} + 7px)`} />
+            <circle cx={pt.x} cy={pt.y} r="1.5" fill="white" fillOpacity="0.5" stroke="none" />
+          </g>
+        ))}
+
+        {/* Isometric 30-degree Drafting Perspective Guides (Bottom Left) */}
+        <g strokeWidth="0.5" strokeDasharray="2 4" opacity="0.12">
+          <line x1="0%" y1="75%" x2="450" y2="40%" />
+          <line x1="0%" y1="88%" x2="600" y2="40%" />
+          <line x1="120" y1="100%" x2="720" y2="40%" />
+        </g>
+
+        {/* Datum Elevation Level Markers (Right Margin) */}
+        <g opacity="0.25" strokeWidth="0.75" className="font-mono text-[9px] tracking-wider fill-white">
+          <path d="M calc(100% - 130px) 90 L calc(100% - 110px) 90 L calc(100% - 100px) 80" />
+          <text x="calc(100% - 95px)" y="84" stroke="none">▽ +3.600 ROOF</text>
+
+          <path d="M calc(100% - 150px) 240 L calc(100% - 130px) 240 L calc(100% - 120px) 230" />
+          <text x="calc(100% - 115px)" y="234" stroke="none">▽ +0.000 FFL</text>
+        </g>
+
+        {/* Dimensional Measurement Line Top Center */}
+        <g opacity="0.2" strokeWidth="0.6" className="font-mono text-[8px] tracking-widest fill-white">
+          <line x1="28%" y1="40" x2="68%" y2="40" strokeDasharray="2 2" />
+          <line x1="28%" y1="34" x2="28%" y2="46" />
+          <line x1="68%" y1="34" x2="68%" y2="46" />
+          <text x="48%" y="34" textAnchor="middle" stroke="none">DIM: 9600mm · ARCH STRUCTURAL SPAN</text>
+        </g>
+
+        {/* Technical Blueprint Certification Block (Bottom Right) */}
+        <g opacity="0.22" strokeWidth="0.6" className="font-mono text-[8px] uppercase tracking-[0.18em] fill-white">
+          <rect x="calc(100% - 220px)" y="calc(100% - 56px)" width="190" height="42" stroke="white" strokeWidth="0.6" />
+          <text x="calc(100% - 208px)" y="calc(100% - 40px)" stroke="none">XIYÀTO · SPEC SET 01</text>
+          <text x="calc(100% - 208px)" y="calc(100% - 26px)" stroke="none">SCALE 1:1 · QA VERIFIED</text>
+        </g>
+      </svg>
+    </div>
+  );
+}
+
