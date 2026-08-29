@@ -28,13 +28,10 @@ function ChapterHeader({
   const getMotifColor = () => {
     switch (tone) {
       case "slate":
-        return "text-sky-400";
       case "terminal":
-        return "text-amber-400";
       case "cyber":
-        return "text-emerald-400";
       case "dark":
-        return "text-rose-400";
+        return "text-zinc-400";
       default:
         return "text-accent";
     }
@@ -43,11 +40,9 @@ function ChapterHeader({
   const getBadgeStyle = () => {
     switch (tone) {
       case "slate":
-        return "border-slate-700 bg-slate-900/80 text-slate-300";
       case "terminal":
-        return "border-amber-900/60 bg-amber-950/40 text-amber-300";
       case "cyber":
-        return "border-emerald-900/60 bg-emerald-950/40 text-emerald-300";
+        return "border-zinc-800 bg-zinc-900/80 text-zinc-300";
       case "dark":
         return "border-paper/20 bg-ink-soft text-paper/70";
       default:
@@ -131,9 +126,9 @@ function Chapter({
       case "slate":
         return "bg-[#0b1120] text-slate-100 border-t border-slate-800/80";
       case "terminal":
-        return "bg-[#11141a] text-slate-100 border-t border-amber-900/30";
+        return "bg-[#11141a] text-slate-100 border-t border-zinc-800";
       case "cyber":
-        return "bg-[#090e17] text-slate-100 border-t border-emerald-950";
+        return "bg-[#090e17] text-slate-100 border-t border-zinc-800";
       case "dark":
         return "bg-[#070708] text-paper border-t border-rule/20";
       case "surface":
@@ -167,11 +162,11 @@ const CAD_STAGES = ["01 · Draft", "02 · QA Check", "03 · Revisions", "04 · F
 export function CadSection({ service }: { service: Service }) {
   return (
     <Chapter service={service} tone="slate">
-      {/* CAD Production Stages Bar */}
-      <ol className="mb-6 grid grid-cols-2 gap-px border border-slate-700/60 bg-slate-800/80 sm:grid-cols-4 rounded-xs overflow-hidden">
+      {/* CAD Production Stages Bar in Refined Architectural Grey */}
+      <ol className="mb-6 grid grid-cols-2 gap-px border border-zinc-800/80 bg-zinc-800/80 sm:grid-cols-4 rounded-xs overflow-hidden">
         {CAD_STAGES.map((s) => (
-          <li key={s} className="bg-[#111c30] px-3.5 py-2.5">
-            <span className="block font-mono text-xs text-sky-300 font-medium">{s}</span>
+          <li key={s} className="bg-[#0e1320] px-3.5 py-2.5">
+            <span className="block font-mono text-xs text-zinc-300 font-medium">{s}</span>
           </li>
         ))}
       </ol>
@@ -195,7 +190,7 @@ export function GrowthSection({ service }: { service: Service }) {
       <div className="mt-6 flex flex-wrap items-center justify-between gap-3 border-t border-rule/70 pt-4">
         <Link
           href="/services/growth-marketing-b2b#research"
-          className="group inline-flex items-center gap-2 text-xs font-mono font-medium text-amber-800 transition-colors hover:text-amber-950"
+          className="group inline-flex items-center gap-2 text-xs font-mono font-medium text-ink transition-colors hover:text-accent"
         >
           <span>Explore research methodologies</span>
           <span aria-hidden="true">&rarr;</span>
@@ -365,7 +360,7 @@ export function WebsiteSection({ service }: { service: Service }) {
 }
 
 /* ------------------------------------------------------------------ */
-/* 06 — AUTOMATION & MARKETING SYSTEMS (Cybernetic Matrix)             */
+/* 06 — AUTOMATION & MARKETING SYSTEMS (Refined Cybernetic Architecture) */
 /* ------------------------------------------------------------------ */
 
 const MARKETING_PILLARS = [
@@ -393,9 +388,9 @@ export function AutomationSection({ service }: { service: Service }) {
         {MARKETING_PILLARS.map((p) => (
           <div
             key={p.num}
-            className="rounded-lg border border-emerald-900/60 bg-[#0d1624] p-5 shadow-2xs"
+            className="rounded-lg border border-zinc-800/90 bg-[#0c121e] p-5 shadow-2xs"
           >
-            <span className="font-mono text-[0.625rem] font-semibold uppercase tracking-[0.14em] text-emerald-400">
+            <span className="font-mono text-[0.625rem] font-semibold uppercase tracking-[0.14em] text-zinc-400">
               {p.num} · Acquisition
             </span>
             <h4 className="mt-2 text-sm font-semibold text-slate-100">{p.title}</h4>
@@ -404,7 +399,7 @@ export function AutomationSection({ service }: { service: Service }) {
         ))}
       </div>
 
-      <div className="mt-6 flex flex-wrap items-center justify-between gap-4 rounded-lg border border-emerald-900/50 bg-[#0f1b2c] p-4 sm:p-5">
+      <div className="mt-6 flex flex-wrap items-center justify-between gap-4 rounded-lg border border-zinc-800/80 bg-[#0f1726] p-4 sm:p-5">
         <div>
           <p className="text-sm font-semibold text-slate-100">
             Looking to scale outreach and client acquisition?
@@ -415,7 +410,7 @@ export function AutomationSection({ service }: { service: Service }) {
         </div>
         <a
           href="/contact"
-          className="inline-flex min-h-[38px] items-center rounded-xs bg-emerald-500 px-4 text-xs font-semibold text-slate-950 transition-colors hover:bg-emerald-400"
+          className="inline-flex min-h-[38px] items-center rounded-xs bg-white px-4 text-xs font-semibold text-black transition-colors hover:bg-zinc-200"
         >
           Discuss a campaign &rarr;
         </a>

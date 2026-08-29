@@ -79,8 +79,8 @@ export default function HomePage() {
               <p className="display text-[1.5rem] tracking-[0.16em] text-white sm:text-[1.75rem] font-medium">
                 {SITE.name}
               </p>
-              <span className="inline-flex items-center gap-1.5 rounded-full bg-zinc-900/90 px-3 py-1 text-[0.5625rem] font-mono uppercase tracking-widest text-emerald-400 border border-zinc-800 shadow-xs">
-                <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
+              <span className="inline-flex items-center gap-1.5 rounded-full bg-zinc-900/80 px-3 py-1 text-[0.5625rem] font-mono uppercase tracking-widest text-zinc-400 border border-zinc-800 shadow-xs">
+                <span className="h-1.5 w-1.5 rounded-full bg-zinc-400 animate-pulse" />
                 Studio London &amp; India
               </span>
             </div>
