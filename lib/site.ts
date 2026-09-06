@@ -86,13 +86,13 @@ export const CONTACT_CHANNELS: ContactChannel[] = [
     id: "projects",
     label: "Project enquiries",
     purpose: "New briefs, scoping and production capacity.",
-    email: null,
+    email: "contact@xiyato.uk",
   },
   {
     id: "general",
     label: "General enquiries",
     purpose: "Everything that is not a live project brief.",
-    email: null,
+    email: "contact@xiyato.uk",
   },
   {
     id: "careers",

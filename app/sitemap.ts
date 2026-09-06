@@ -6,46 +6,40 @@ import { allWorkbooks } from "@/lib/portfolio";
 import { publishedLegalPages } from "@/lib/company";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const now = new Date();
+  // Stable date representing the latest verified content update.
+  // Must only be updated after meaningful content changes, not on every build.
+  const lastContentUpdate = new Date("2026-09-06T00:00:00.000Z");
   const url = (p: string) => `${SITE.url}${p}`;
 
   const core: MetadataRoute.Sitemap = [
-    { url: url("/"), lastModified: now, changeFrequency: "monthly", priority: 1 },
-    { url: url("/services"), lastModified: now, changeFrequency: "monthly", priority: 0.9 },
-    { url: url("/company"), lastModified: now, changeFrequency: "yearly", priority: 0.7 },
-    { url: url("/company/people"), lastModified: now, changeFrequency: "yearly", priority: 0.6 },
-    { url: url("/company/locations"), lastModified: now, changeFrequency: "yearly", priority: 0.5 },
-    { url: url("/careers"), lastModified: now, changeFrequency: "monthly", priority: 0.5 },
-    { url: url("/contact"), lastModified: now, changeFrequency: "yearly", priority: 0.8 },
+    { url: url("/"), lastModified: lastContentUpdate },
+    { url: url("/services"), lastModified: lastContentUpdate },
+    { url: url("/company"), lastModified: lastContentUpdate },
+    { url: url("/company/people"), lastModified: lastContentUpdate },
+    { url: url("/company/locations"), lastModified: lastContentUpdate },
+    { url: url("/careers"), lastModified: lastContentUpdate },
+    { url: url("/contact"), lastModified: lastContentUpdate },
   ];
 
   const services: MetadataRoute.Sitemap = SERVICES.map((s) => ({
     url: url(`/services/${s.slug}`),
-    lastModified: now,
-    changeFrequency: "monthly",
-    priority: s.order === 1 ? 0.9 : 0.8,
+    lastModified: lastContentUpdate,
   }));
 
   const work: MetadataRoute.Sitemap = allCaseStudies().map((c) => ({
     url: url(`/work/${c.slug}`),
-    lastModified: now,
-    changeFrequency: "yearly",
-    priority: c.featured ? 0.8 : 0.6,
+    lastModified: lastContentUpdate,
   }));
 
   const research: MetadataRoute.Sitemap = allWorkbooks().map((w) => ({
     url: url(`/work/research/${w.slug}`),
-    lastModified: now,
-    changeFrequency: "yearly",
-    priority: w.featured ? 0.7 : 0.5,
+    lastModified: lastContentUpdate,
   }));
 
   // Unpublished legal routes are excluded — they 404 rather than existing as shells.
   const legal: MetadataRoute.Sitemap = publishedLegalPages().map((p) => ({
     url: url(`/legal/${p.slug}`),
-    lastModified: now,
-    changeFrequency: "yearly",
-    priority: 0.2,
+    lastModified: lastContentUpdate,
   }));
 
   return [...core, ...services, ...work, ...research, ...legal];

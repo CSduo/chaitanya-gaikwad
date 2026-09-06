@@ -47,7 +47,7 @@ export default function LocationsPage() {
           <div className="max-w-3xl">
             <Eyebrow>Locations</Eyebrow>
             <h1 className="display mt-6 text-4xl sm:text-5xl">
-              Two working locations, one delivery model.
+              UK client coordination, India production.
             </h1>
             <p className="mt-7 text-lg leading-relaxed text-ink-soft">
               XIYÀTO maintains a UK-facing commercial presence with production running from

@@ -71,7 +71,7 @@ export function pageMetadata({
 export function organizationSchema() {
   return {
     "@context": "https://schema.org",
-    "@type": ["Organization", "ProfessionalService"],
+    "@type": "Organization",
     name: SITE.name,
     legalName: SITE.name,
     alternateName: [SITE.nameAscii, "Xiyato", "Xiyato Studio", "Xiyato UK", "Xiyato India"],
@@ -86,7 +86,7 @@ export function organizationSchema() {
         "@type": "ContactPoint",
         telephone: "+44 7882 746212",
         contactType: "customer service",
-        areaServed: ["GB", "US", "EU", "AE", "SA", "QA", "CA", "AU", "SG"],
+        areaServed: ["GB", "US", "AE", "SA", "QA"],
         availableLanguage: ["English"],
       },
       {
@@ -103,17 +103,7 @@ export function organizationSchema() {
       { "@type": "Country", name: "United Arab Emirates", identifier: "AE" },
       { "@type": "Country", name: "Saudi Arabia", identifier: "SA" },
       { "@type": "Country", name: "Qatar", identifier: "QA" },
-      { "@type": "Country", name: "Australia", identifier: "AU" },
-      { "@type": "Country", name: "Canada", identifier: "CA" },
-      { "@type": "Country", name: "Singapore", identifier: "SG" },
-      { "@type": "Country", name: "Germany", identifier: "DE" },
-      { "@type": "Country", name: "Netherlands", identifier: "NL" },
-      { "@type": "Country", name: "Switzerland", identifier: "CH" },
-      { "@type": "Country", name: "France", identifier: "FR" },
-      { "@type": "Country", name: "Ireland", identifier: "IE" },
       { "@type": "Country", name: "India", identifier: "IN" },
-      { "@type": "Place", name: "Europe" },
-      { "@type": "Place", name: "Worldwide" },
     ],
     hasOfferCatalog: {
       "@type": "OfferCatalog",

@@ -76,7 +76,7 @@ export default function HomePage() {
               </p>
               <span className="inline-flex items-center gap-1.5 rounded-full bg-zinc-900/80 px-3 py-1 text-[0.5625rem] font-mono uppercase tracking-widest text-zinc-400 border border-zinc-800 shadow-xs">
                 <span className="h-1.5 w-1.5 rounded-full bg-zinc-400 animate-pulse" />
-                Studio London &amp; India
+                UK Client Relations &amp; India Production
               </span>
             </div>
 
@@ -114,7 +114,7 @@ export default function HomePage() {
             {/* Geography & Direct WhatsApp Contact with Green Aesthetic Numbers */}
             <div className="mt-12 max-w-2xl border-t border-zinc-800/90 pt-6 sm:mt-14 sm:pt-8">
               <p className="font-mono text-[0.6875rem] uppercase tracking-[0.18em] text-zinc-400 mb-3.5">
-                Direct Contact &amp; Studio Locations
+                Direct Contact &amp; Client Coordination
               </p>
               <div className="grid grid-cols-1 gap-3.5 sm:grid-cols-2">
                 <a

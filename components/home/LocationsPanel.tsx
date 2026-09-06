@@ -68,7 +68,7 @@ export function LocationsPanel({
                 <div>
                   <div className="flex items-center justify-between">
                     <span className="font-mono text-[0.625rem] font-semibold uppercase tracking-[0.14em] text-accent">
-                      {isUk ? "Primary Hub 01" : "Production Hub 02"}
+                      {isUk ? "UK Client Coordination" : "Production Hub"}
                     </span>
                     <span className="rounded-full border border-rule bg-paper px-2.5 py-0.5 font-mono text-[0.5625rem] text-ink-muted">
                       {tz}
