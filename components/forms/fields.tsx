@@ -190,19 +190,39 @@ export function CheckboxField({
   return (
     <div>
       <div className="flex items-start gap-3">
-        <input
-          id={id}
-          name={name}
-          type="checkbox"
-          checked={checked}
-          onChange={(e) => onChange(e.target.checked)}
-          aria-invalid={error ? true : undefined}
-          aria-describedby={error ? `${id}-error` : undefined}
-          className={`mt-0.5 h-6 w-6 shrink-0 cursor-pointer appearance-none border bg-surface transition-colors checked:border-ink checked:bg-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus ${
-            error ? "border-error" : "border-rule-strong"
-          }`}
-        />
-        <label htmlFor={id} className="cursor-pointer text-sm leading-relaxed text-ink-soft">
+        <div className="relative mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center">
+          <input
+            id={id}
+            name={name}
+            type="checkbox"
+            checked={checked}
+            onChange={(e) => onChange(e.target.checked)}
+            aria-invalid={error ? true : undefined}
+            aria-describedby={error ? `${id}-error` : undefined}
+            className={`peer h-5 w-5 cursor-pointer appearance-none rounded-xs border transition-all ${
+              checked
+                ? "border-ink bg-ink shadow-xs"
+                : error
+                ? "border-error bg-surface hover:border-ink"
+                : "border-rule-strong bg-surface hover:border-ink"
+            } focus-visible:ring-2 focus-visible:ring-ink focus-visible:ring-offset-1`}
+          />
+          {checked ? (
+            <svg
+              viewBox="0 0 16 16"
+              fill="none"
+              stroke="white"
+              strokeWidth="2.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="pointer-events-none absolute h-3.5 w-3.5"
+              aria-hidden="true"
+            >
+              <path d="M3.5 8.5l3 3 6-6" />
+            </svg>
+          ) : null}
+        </div>
+        <label htmlFor={id} className="cursor-pointer text-sm leading-relaxed text-ink-soft select-none hover:text-ink">
           {label}
         </label>
       </div>

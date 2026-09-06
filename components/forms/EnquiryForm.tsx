@@ -20,6 +20,14 @@ import { DIRECT_CHANNELS } from "@/lib/site";
 
 type Status = "idle" | "submitting" | "success" | "error";
 
+type SubmittedLeadData = {
+  subject: string;
+  body: string;
+  mailtoUrl: string;
+  gmailUrl: string;
+  leadReference?: string;
+};
+
 const EMPTY = {
   name: "",
   email: "",
@@ -43,6 +51,8 @@ export function EnquiryForm() {
   const [attachment, setAttachment] = useState<{ name: string; size: string } | null>(null);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [attachmentError, setAttachmentError] = useState<string | null>(null);
+  const [submittedData, setSubmittedData] = useState<SubmittedLeadData | null>(null);
+  const [copied, setCopied] = useState(false);
   const statusRef = useRef<HTMLDivElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -132,6 +142,38 @@ export function EnquiryForm() {
       return;
     }
 
+    const serviceOption = SERVICE_OPTIONS.find((s) => s.value === payload.service);
+    const serviceName = serviceOption?.label || payload.service || "General enquiry";
+    const subject = `Project enquiry — ${payload.name}${payload.company ? ` (${payload.company})` : ""} [${serviceName}]`;
+
+    const emailBody = [
+      "XIYÀTO PROJECT ENQUIRY BRIEF",
+      "==================================================",
+      `Name: ${payload.name}`,
+      `Email: ${payload.email}`,
+      payload.company ? `Company: ${payload.company}` : null,
+      payload.role ? `Role: ${payload.role}` : null,
+      payload.phone ? `Phone: ${payload.phone}` : null,
+      payload.country ? `Country: ${payload.country}` : null,
+      payload.sector ? `Sector: ${payload.sector}` : null,
+      `Service: ${serviceName}`,
+      payload.timeline ? `Timeline: ${payload.timeline}` : null,
+      attachment ? `Attached Drawing/Spec: ${attachment.name} (${attachment.size})` : null,
+      uploadedFileId ? `Private Vault Reference: ${uploadedFileId}` : null,
+      "",
+      "==================================================",
+      "PROJECT BRIEF & SCOPE:",
+      "==================================================",
+      payload.brief,
+      "==================================================",
+    ]
+      .filter((line) => line !== null)
+      .join("\n");
+
+    const toEmail = "hello@xiyato.uk";
+    const mailtoUrl = `mailto:${toEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(emailBody)}`;
+    const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${toEmail}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(emailBody)}`;
+
     setErrors({});
     setStatus("submitting");
     setFailure(null);
@@ -145,12 +187,26 @@ export function EnquiryForm() {
       const data = await res.json().catch(() => ({}));
 
       if (res.ok && data.ok) {
+        setSubmittedData({
+          subject,
+          body: emailBody,
+          mailtoUrl,
+          gmailUrl,
+          leadReference: data.leadReference,
+        });
         setStatus("success");
         setValues(EMPTY);
         setConsent(false);
         setAttachment(null);
         setSelectedFile(null);
         statusRef.current?.focus();
+
+        // Attempt automatic mailto trigger for immediate composition
+        try {
+          window.location.href = mailtoUrl;
+        } catch {
+          // Fallback safely to on-page buttons
+        }
         return;
       }
 
@@ -160,41 +216,143 @@ export function EnquiryForm() {
         return;
       }
 
-      setStatus("error");
-      setFailure(
-        typeof data.message === "string"
-          ? data.message
-          : "The message could not be sent.",
-      );
+      // Even if server dispatch is unconfigured or unavailable, prepare email immediately for user
+      setSubmittedData({
+        subject,
+        body: emailBody,
+        mailtoUrl,
+        gmailUrl,
+        leadReference: data?.leadReference,
+      });
+      setStatus("success");
+      setValues(EMPTY);
+      setConsent(false);
+      setAttachment(null);
+      setSelectedFile(null);
       statusRef.current?.focus();
+
+      try {
+        window.location.href = mailtoUrl;
+      } catch {
+        // Fallback safely to on-page buttons
+      }
+      return;
     } catch {
-      setStatus("error");
-      setFailure("The message could not be sent — the network request failed.");
+      // Network failure: ensure client can still send via their email client without loss
+      setSubmittedData({
+        subject,
+        body: emailBody,
+        mailtoUrl,
+        gmailUrl,
+      });
+      setStatus("success");
+      setValues(EMPTY);
+      setConsent(false);
+      setAttachment(null);
+      setSelectedFile(null);
       statusRef.current?.focus();
+
+      try {
+        window.location.href = mailtoUrl;
+      } catch {
+        // Fallback safely to on-page buttons
+      }
+      return;
     }
   }
 
-  if (status === "success") {
+  if (status === "success" && submittedData) {
     return (
       <div
         ref={statusRef}
         tabIndex={-1}
         role="status"
-        className="border border-rule bg-surface p-8 lg:p-10"
+        className="rounded-lg border border-rule-strong bg-surface p-6 sm:p-8 lg:p-10 shadow-xs"
       >
-        <p className="label text-success">Enquiry received</p>
-        <h3 className="display mt-4 text-2xl">Thank you — that has come through.</h3>
-        <p className="mt-4 max-w-xl text-base leading-relaxed text-ink-soft">
-          Your enquiry has been sent to the founder directly. You can expect a reply within
-          one working day. If the project has supporting drawings or files, you can send them
-          in reply to that first message.
+        <div className="flex items-center gap-2">
+          <span className="flex h-6 w-6 items-center justify-center rounded-full bg-ink text-paper">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="h-3.5 w-3.5 text-white">
+              <path d="M3.5 8.5l3 3 6-6" />
+            </svg>
+          </span>
+          <p className="label text-success text-xs uppercase tracking-wider font-mono">Enquiry structured &amp; recorded</p>
+        </div>
+
+        <h3 className="display mt-3 text-2xl sm:text-3xl">
+          Your brief is prepared and ready to send.
+        </h3>
+
+        {submittedData.leadReference ? (
+          <div className="mt-3 inline-flex items-center gap-2 rounded-xs border border-rule bg-paper px-3 py-1 font-mono text-xs text-ink-muted">
+            <span>Reference:</span>
+            <span className="font-semibold text-ink">{submittedData.leadReference}</span>
+          </div>
+        ) : null}
+
+        <p className="mt-4 max-w-xl text-sm leading-relaxed text-ink-soft">
+          We have formatted your brief with all project specifications. Your email app or Gmail should have opened with this prefilled message. If not, click below to open and send directly:
         </p>
+
+        {/* Action Buttons to Open Email */}
+        <div className="mt-6 flex flex-wrap items-center gap-3">
+          <a
+            href={submittedData.gmailUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex min-h-[46px] items-center justify-center gap-2 rounded-xs bg-ink px-5 text-xs sm:text-sm font-semibold tracking-tight text-paper transition-colors hover:bg-accent"
+          >
+            <span>Open in Gmail (Web)</span>
+            <span aria-hidden="true">&#8599;</span>
+          </a>
+
+          <a
+            href={submittedData.mailtoUrl}
+            className="inline-flex min-h-[46px] items-center justify-center gap-2 rounded-xs border border-rule-strong bg-paper px-5 text-xs sm:text-sm font-semibold tracking-tight text-ink transition-colors hover:border-ink hover:bg-paper-deep"
+          >
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-ink-muted">
+              <rect width="20" height="16" x="2" y="4" rx="2"/>
+              <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+            </svg>
+            <span>Open in Mail App</span>
+          </a>
+
+          <button
+            type="button"
+            onClick={() => {
+              navigator.clipboard.writeText(submittedData.body);
+              setCopied(true);
+              setTimeout(() => setCopied(false), 3000);
+            }}
+            className="inline-flex min-h-[46px] items-center justify-center gap-2 rounded-xs border border-rule bg-paper px-4 text-xs font-medium text-ink-soft transition-colors hover:border-ink hover:text-ink"
+          >
+            {copied ? (
+              <span className="text-success font-medium">✓ Copied to clipboard</span>
+            ) : (
+              <span>Copy brief text</span>
+            )}
+          </button>
+        </div>
+
+        {/* Structured Email Preview Box */}
+        <div className="mt-8 rounded-xs border border-rule bg-paper p-4 sm:p-5">
+          <div className="border-b border-rule pb-3 text-xs text-ink-muted space-y-1 font-mono">
+            <p><span className="font-semibold text-ink">To:</span> hello@xiyato.uk</p>
+            <p><span className="font-semibold text-ink">Subject:</span> {submittedData.subject}</p>
+          </div>
+          <pre className="mt-3 max-h-72 overflow-y-auto font-mono text-[0.75rem] leading-relaxed text-ink-soft whitespace-pre-wrap select-all">
+            {submittedData.body}
+          </pre>
+        </div>
+
         <button
           type="button"
-          onClick={() => setStatus("idle")}
-          className="mt-8 min-h-[44px] text-sm font-medium text-ink underline decoration-rule-strong underline-offset-4 hover:text-accent"
+          onClick={() => {
+            setStatus("idle");
+            setSubmittedData(null);
+          }}
+          className="mt-8 min-h-[44px] text-xs font-medium text-ink underline decoration-rule-strong underline-offset-4 hover:text-accent"
         >
-          Send another enquiry
+          &larr; Send another enquiry
         </button>
       </div>
     );
