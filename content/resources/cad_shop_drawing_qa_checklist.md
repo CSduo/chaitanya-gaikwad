@@ -1,7 +1,7 @@
 # Fit-Out Shop Drawing Quality Assurance & Coordination Checklist (25-Point Standard)
 
 **Publisher**: XIYÀTO CAD & Technical Production Desk (https://xiyato.uk/services/cad/interior-fit-out-shop-drawings)  
-**Standard**: BS 1192 / AIA CAD Layer Standards & Commercial Fit-Out Coordination  
+**Standard**: BS EN ISO 19650 conventions / AIA CAD Layer Guidelines & Commercial Fit-Out Coordination  
 **Application**: Interior Architecture, Joinery Fabrication, Luxury Hospitality, Retail Fit-Out  
 
 ---

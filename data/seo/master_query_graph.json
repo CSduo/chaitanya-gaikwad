@@ -19,7 +19,8 @@
     "recommendedDestination": "/services/cad/interior-fit-out-shop-drawings",
     "action": "IMPROVE",
     "cannibalisationRisk": "Low",
-    "gscTrackingState": "MONITORED"
+    "gscTrackingState": "MONITORED",
+    "queryEvidenceStatus": "LIVE SERP-VALIDATED QUERY"
   },
   {
     "id": "Q-CAD-002",
@@ -41,7 +42,8 @@
     "recommendedDestination": "/services/cad-technical-production",
     "action": "IMPROVE",
     "cannibalisationRisk": "Low",
-    "gscTrackingState": "MONITORED"
+    "gscTrackingState": "MONITORED",
+    "queryEvidenceStatus": "LIVE SERP-VALIDATED QUERY"
   },
   {
     "id": "Q-CAD-003",
@@ -63,7 +65,8 @@
     "recommendedDestination": "/services/cad/interior-fit-out-shop-drawings",
     "action": "MERGE",
     "cannibalisationRisk": "Medium",
-    "gscTrackingState": "PENDING GOOGLEBOT CRAWL"
+    "gscTrackingState": "PENDING GOOGLEBOT CRAWL",
+    "queryEvidenceStatus": "LIVE SERP-VALIDATED QUERY"
   },
   {
     "id": "Q-CAD-004",
@@ -85,7 +88,8 @@
     "recommendedDestination": "/work/bahrain-luxury-interior-cad-package",
     "action": "GUIDE",
     "cannibalisationRisk": "Low",
-    "gscTrackingState": "PENDING GOOGLEBOT CRAWL"
+    "gscTrackingState": "PENDING GOOGLEBOT CRAWL",
+    "queryEvidenceStatus": "KEYWORD TOOL MEASURED QUERY"
   },
   {
     "id": "Q-CAD-005",
@@ -107,7 +111,8 @@
     "recommendedDestination": "/services/cad-technical-production",
     "action": "IMPROVE",
     "cannibalisationRisk": "Medium",
-    "gscTrackingState": "MONITORED"
+    "gscTrackingState": "MONITORED",
+    "queryEvidenceStatus": "KEYWORD TOOL MEASURED QUERY"
   },
   {
     "id": "Q-CAD-006",
@@ -129,7 +134,8 @@
     "recommendedDestination": "/services/cad/interior-fit-out-shop-drawings",
     "action": "MERGE",
     "cannibalisationRisk": "Low",
-    "gscTrackingState": "PENDING GOOGLEBOT CRAWL"
+    "gscTrackingState": "PENDING GOOGLEBOT CRAWL",
+    "queryEvidenceStatus": "KEYWORD TOOL MEASURED QUERY"
   },
   {
     "id": "Q-CAD-007",
@@ -151,7 +157,8 @@
     "recommendedDestination": "/services/cad-technical-production",
     "action": "IMPROVE",
     "cannibalisationRisk": "Low",
-    "gscTrackingState": "PENDING GOOGLEBOT CRAWL"
+    "gscTrackingState": "PENDING GOOGLEBOT CRAWL",
+    "queryEvidenceStatus": "KEYWORD TOOL MEASURED QUERY"
   },
   {
     "id": "Q-3D-001",
@@ -173,7 +180,8 @@
     "recommendedDestination": "/services/visualisation/photorealistic-furniture-rendering",
     "action": "IMPROVE",
     "cannibalisationRisk": "Low",
-    "gscTrackingState": "MONITORED"
+    "gscTrackingState": "MONITORED",
+    "queryEvidenceStatus": "LIVE SERP-VALIDATED QUERY"
   },
   {
     "id": "Q-3D-002",
@@ -195,7 +203,8 @@
     "recommendedDestination": "/services/visualisation-image-production",
     "action": "IMPROVE",
     "cannibalisationRisk": "Low",
-    "gscTrackingState": "MONITORED"
+    "gscTrackingState": "MONITORED",
+    "queryEvidenceStatus": "KEYWORD TOOL MEASURED QUERY"
   },
   {
     "id": "Q-3D-003",
@@ -217,7 +226,8 @@
     "recommendedDestination": "/work/sultanah-moon-chair-cinematic-campaign",
     "action": "IMPROVE",
     "cannibalisationRisk": "Medium",
-    "gscTrackingState": "MONITORED"
+    "gscTrackingState": "MONITORED",
+    "queryEvidenceStatus": "KEYWORD TOOL MEASURED QUERY"
   },
   {
     "id": "Q-3D-004",
@@ -239,7 +249,8 @@
     "recommendedDestination": "/services/visualisation/photorealistic-furniture-rendering",
     "action": "MERGE",
     "cannibalisationRisk": "Low",
-    "gscTrackingState": "PENDING GOOGLEBOT CRAWL"
+    "gscTrackingState": "PENDING GOOGLEBOT CRAWL",
+    "queryEvidenceStatus": "KEYWORD TOOL MEASURED QUERY"
   },
   {
     "id": "Q-3D-005",
@@ -261,7 +272,8 @@
     "recommendedDestination": "/services/visualisation/photorealistic-furniture-rendering",
     "action": "GUIDE",
     "cannibalisationRisk": "Low",
-    "gscTrackingState": "PENDING GOOGLEBOT CRAWL"
+    "gscTrackingState": "PENDING GOOGLEBOT CRAWL",
+    "queryEvidenceStatus": "KEYWORD TOOL MEASURED QUERY"
   },
   {
     "id": "Q-B2B-001",
@@ -283,7 +295,8 @@
     "recommendedDestination": "/services/growth/middle-east-market-intelligence",
     "action": "IMPROVE",
     "cannibalisationRisk": "Low",
-    "gscTrackingState": "MONITORED"
+    "gscTrackingState": "MONITORED",
+    "queryEvidenceStatus": "LIVE SERP-VALIDATED QUERY"
   },
   {
     "id": "Q-B2B-002",
@@ -305,7 +318,8 @@
     "recommendedDestination": "/services/growth/middle-east-market-intelligence",
     "action": "MERGE",
     "cannibalisationRisk": "Medium",
-    "gscTrackingState": "PENDING GOOGLEBOT CRAWL"
+    "gscTrackingState": "PENDING GOOGLEBOT CRAWL",
+    "queryEvidenceStatus": "KEYWORD TOOL MEASURED QUERY"
   },
   {
     "id": "Q-B2B-003",
@@ -327,7 +341,8 @@
     "recommendedDestination": "/services/growth/middle-east-market-intelligence",
     "action": "GUIDE",
     "cannibalisationRisk": "Low",
-    "gscTrackingState": "PENDING GOOGLEBOT CRAWL"
+    "gscTrackingState": "PENDING GOOGLEBOT CRAWL",
+    "queryEvidenceStatus": "KEYWORD TOOL MEASURED QUERY"
   },
   {
     "id": "Q-B2B-004",
@@ -349,7 +364,8 @@
     "recommendedDestination": "/services/growth-marketing-b2b",
     "action": "IMPROVE",
     "cannibalisationRisk": "Medium",
-    "gscTrackingState": "MONITORED"
+    "gscTrackingState": "MONITORED",
+    "queryEvidenceStatus": "KEYWORD TOOL MEASURED QUERY"
   },
   {
     "id": "Q-WEB-001",
@@ -371,7 +387,8 @@
     "recommendedDestination": "/services/website-design-development",
     "action": "IMPROVE",
     "cannibalisationRisk": "Low",
-    "gscTrackingState": "MONITORED"
+    "gscTrackingState": "MONITORED",
+    "queryEvidenceStatus": "KEYWORD TOOL MEASURED QUERY"
   },
   {
     "id": "Q-WEB-002",
@@ -393,7 +410,8 @@
     "recommendedDestination": "/services/website-design-development",
     "action": "IMPROVE",
     "cannibalisationRisk": "Low",
-    "gscTrackingState": "PENDING GOOGLEBOT CRAWL"
+    "gscTrackingState": "PENDING GOOGLEBOT CRAWL",
+    "queryEvidenceStatus": "KEYWORD TOOL MEASURED QUERY"
   },
   {
     "id": "Q-WEB-003",
@@ -415,7 +433,8 @@
     "recommendedDestination": "/services/website-design-development",
     "action": "MERGE",
     "cannibalisationRisk": "Medium",
-    "gscTrackingState": "PENDING GOOGLEBOT CRAWL"
+    "gscTrackingState": "PENDING GOOGLEBOT CRAWL",
+    "queryEvidenceStatus": "KEYWORD TOOL MEASURED QUERY"
   },
   {
     "id": "Q-VID-001",
@@ -437,7 +456,8 @@
     "recommendedDestination": "/services/video-ai-film-editing",
     "action": "IMPROVE",
     "cannibalisationRisk": "Low",
-    "gscTrackingState": "MONITORED"
+    "gscTrackingState": "MONITORED",
+    "queryEvidenceStatus": "KEYWORD TOOL MEASURED QUERY"
   },
   {
     "id": "Q-VID-002",
@@ -459,7 +479,8 @@
     "recommendedDestination": "/services/video-ai-film-editing",
     "action": "IMPROVE",
     "cannibalisationRisk": "Medium",
-    "gscTrackingState": "PENDING GOOGLEBOT CRAWL"
+    "gscTrackingState": "PENDING GOOGLEBOT CRAWL",
+    "queryEvidenceStatus": "KEYWORD TOOL MEASURED QUERY"
   },
   {
     "id": "Q-AUT-001",
@@ -481,7 +502,8 @@
     "recommendedDestination": "/services/automation-workflow-systems",
     "action": "IMPROVE",
     "cannibalisationRisk": "Low",
-    "gscTrackingState": "MONITORED"
+    "gscTrackingState": "MONITORED",
+    "queryEvidenceStatus": "KEYWORD TOOL MEASURED QUERY"
   },
   {
     "id": "Q-AUT-002",
@@ -503,7 +525,8 @@
     "recommendedDestination": "/services/automation-workflow-systems",
     "action": "IMPROVE",
     "cannibalisationRisk": "Low",
-    "gscTrackingState": "MONITORED"
+    "gscTrackingState": "MONITORED",
+    "queryEvidenceStatus": "KEYWORD TOOL MEASURED QUERY"
   },
   {
     "id": "Q-CAD-008",
@@ -525,7 +548,8 @@
     "recommendedDestination": "/services/cad/interior-fit-out-shop-drawings",
     "action": "IMPROVE EXISTING PAGE (WAVE 1)",
     "cannibalisationRisk": "Low",
-    "gscTrackingState": "MONITORED"
+    "gscTrackingState": "MONITORED",
+    "queryEvidenceStatus": "REASONED QUERY HYPOTHESIS"
   },
   {
     "id": "Q-VIS-004",
@@ -547,6 +571,7 @@
     "recommendedDestination": "/services/visualisation/furniture-digital-twins",
     "action": "CREATE NEW PAGE (WAVE 1)",
     "cannibalisationRisk": "Low",
-    "gscTrackingState": "PLANNED FOR CRAWL"
+    "gscTrackingState": "PLANNED FOR CRAWL",
+    "queryEvidenceStatus": "REASONED QUERY HYPOTHESIS"
   }
 ]

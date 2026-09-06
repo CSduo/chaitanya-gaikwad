@@ -50,7 +50,7 @@ const CAPABILITY_GROUPS = [
     title: "CAD Layer Standards & Protocols",
     intro: "Every package is built in native DWG/DXF strictly adhering to professional drawing standards.",
     items: [
-      "Layer naming configured to ISO 13567, BS 1192 or your studio template",
+      "Layer naming configured to ISO 13567, AIA CAD Layer Guidelines, BS EN ISO 19650 conventions, or your studio template",
       "Standardised line weights, pen tables and monochrome CTB setup",
       "Full title block integration matching your office identity",
       "Clean model-space geometry with zero stray elements or nested blocks",
