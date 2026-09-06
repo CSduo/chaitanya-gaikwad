@@ -149,7 +149,7 @@ export function ProjectCTA({
 
           {/* Contact Trust Microcopy */}
           <p className="mt-6 text-xs text-paper/60 leading-relaxed">
-            Direct founder &amp; technical scoping. International project enquiries welcome across the US, UK, Europe, GCC &amp; globally. All briefs assessed within one working day.
+            Direct founder and technical scoping for international project enquiries.
           </p>
         </div>
 
