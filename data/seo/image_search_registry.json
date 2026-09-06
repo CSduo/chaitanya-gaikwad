@@ -1,0 +1,93 @@
+[
+  {
+    "id": "IMG-CAD-001",
+    "sourceFile": "/images/work/bahrain-cad-package/sheet-01-joinery-general-arrangement.webp",
+    "canonicalPage": "https://xiyato.uk/services/cad/interior-fit-out-shop-drawings",
+    "targetSearchQuery": "interior fit out shop drawings dwg example",
+    "semanticAlt": "General arrangement interior fit-out shop drawing sheet showing setting-out coordinates, wall finishes, and joinery location plan at 1:20 scale",
+    "width": 7629,
+    "height": 5389,
+    "format": "image/webp",
+    "schemaType": "ImageObject",
+    "crawlable": true,
+    "caption": "Bahrain Luxury Interior Project — Sheet 01 General Arrangement & Setting-Out Plan"
+  },
+  {
+    "id": "IMG-CAD-002",
+    "sourceFile": "/images/work/bahrain-cad-package/sheet-03-bespoke-millwork-elevations.webp",
+    "canonicalPage": "https://xiyato.uk/services/cad/interior-fit-out-shop-drawings",
+    "targetSearchQuery": "bespoke joinery shop drawing elevations dwg",
+    "semanticAlt": "1:20 and 1:5 scale joinery elevation detail drawing for bespoke residential veneer wardrobes with concealed hinge mortises and LED channel integration",
+    "width": 7629,
+    "height": 5389,
+    "format": "image/webp",
+    "schemaType": "ImageObject",
+    "crawlable": true,
+    "caption": "Bahrain Luxury Interior Project — Sheet 03 Bespoke Millwork Detail Sections"
+  },
+  {
+    "id": "IMG-CAD-003",
+    "sourceFile": "/images/work/bahrain-cad-package/sheet-05-reflected-ceiling-plan.webp",
+    "canonicalPage": "https://xiyato.uk/work/bahrain-luxury-interior-cad-package",
+    "targetSearchQuery": "reflected ceiling plan dwg coordination fit out",
+    "semanticAlt": "Coordinated reflected ceiling plan showing architectural lighting layout, AC slot diffusers, bulkheads, and sprinkler head coordination",
+    "width": 7629,
+    "height": 5389,
+    "format": "image/webp",
+    "schemaType": "ImageObject",
+    "crawlable": true,
+    "caption": "Bahrain Luxury Interior Project — Sheet 05 Coordinated Reflected Ceiling Plan (RCP)"
+  },
+  {
+    "id": "IMG-3D-001",
+    "sourceFile": "/images/work/sultanah-moon-chair/sultanah-moon-chair-hero-45.webp",
+    "canonicalPage": "https://xiyato.uk/services/visualisation/photorealistic-furniture-rendering",
+    "targetSearchQuery": "photorealistic 3d furniture rendering luxury lounge chair",
+    "semanticAlt": "High-resolution 4K photorealistic 3D rendering of the Sultanah Moon Chair upholstered in midnight navy micro-fiber velvet with champagne brass base",
+    "width": 3840,
+    "height": 2160,
+    "format": "image/webp",
+    "schemaType": "ImageObject",
+    "crawlable": true,
+    "caption": "Sultanah Moon Chair — 45-Degree Hero Studio Lighting Render"
+  },
+  {
+    "id": "IMG-3D-002",
+    "sourceFile": "/images/work/sultanah-moon-chair/sultanah-moon-chair-textile-macro.webp",
+    "canonicalPage": "https://xiyato.uk/services/visualisation/photorealistic-furniture-rendering",
+    "targetSearchQuery": "micro fiber velvet 3d shader cgi close up",
+    "semanticAlt": "Macro 3D material close-up render showing micro-facet sheen scattering, procedural stitch geometry, and fine velvet nap texture on curved furniture surface",
+    "width": 3840,
+    "height": 2160,
+    "format": "image/webp",
+    "schemaType": "ImageObject",
+    "crawlable": true,
+    "caption": "Sultanah Moon Chair — Macro Material & Seam Stitch Visualisation"
+  },
+  {
+    "id": "IMG-3D-003",
+    "sourceFile": "/images/work/interior-studies/master-bathroom-travertine-render.webp",
+    "canonicalPage": "https://xiyato.uk/services/visualisation-image-production",
+    "targetSearchQuery": "luxury master bathroom 3d architectural rendering travertine",
+    "semanticAlt": "Photorealistic 3D architectural interior visualisation of a luxury master bathroom featuring book-matched travertine stone surfaces and soft morning daylight",
+    "width": 3840,
+    "height": 2160,
+    "format": "image/webp",
+    "schemaType": "ImageObject",
+    "crawlable": true,
+    "caption": "Private Penthouse Study — Master Bathroom Travertine Architectural Visualisation"
+  },
+  {
+    "id": "VID-MOTION-001",
+    "sourceFile": "/images/work/sultanah-moon-chair/sultanah-poster-frame.webp",
+    "canonicalPage": "https://xiyato.uk/work/sultanah-moon-chair-cinematic-campaign",
+    "targetSearchQuery": "3d furniture product commercial animation 4k",
+    "semanticAlt": "Title poster frame for Sultanah Moon Chair 30-second 4K cinematic CGI product launch film",
+    "width": 3840,
+    "height": 2160,
+    "format": "image/webp",
+    "schemaType": "VideoObject",
+    "crawlable": true,
+    "caption": "Sultanah Moon Chair — 4K Commercial Product Film (DaVinci Resolve Master)"
+  }
+]
