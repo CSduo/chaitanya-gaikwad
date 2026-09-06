@@ -25,19 +25,49 @@ export const SITE = {
 
 const PROJECT_MESSAGE = "Hello XIYÀTO, I would like to discuss a project.";
 
+export const SERVICE_WHATSAPP_MESSAGES: Record<string, string> = {
+  "cad-technical-production":
+    "Hello XIYÀTO, I would like to discuss an outsourced CAD drafting package.",
+  "growth-marketing-b2b":
+    "Hello XIYÀTO, I would like to discuss B2B market research and lead generation.",
+  "visualisation-image-production":
+    "Hello XIYÀTO, I would like to discuss a 3D architectural or product visualisation project.",
+  "video-ai-film-editing":
+    "Hello XIYÀTO, I would like to discuss a cinematic video or product film production.",
+  "automation-workflow-systems":
+    "Hello XIYÀTO, I would like to discuss a business workflow automation system.",
+  "website-design-development":
+    "Hello XIYÀTO, I would like to discuss a custom website design and development project.",
+};
+
 /** The global "Start a project" action opens WhatsApp with a prefilled note. */
 export const WHATSAPP = {
   uk: {
     number: "+44 7882 746212",
+    tel: "tel:+447882746212",
     href: `https://wa.me/447882746212?text=${encodeURIComponent(PROJECT_MESSAGE)}`,
     plain: "https://wa.me/447882746212",
   },
   india: {
     number: "+91 70283 11226",
+    tel: "tel:+917028311226",
     href: `https://wa.me/917028311226?text=${encodeURIComponent(PROJECT_MESSAGE)}`,
     plain: "https://wa.me/917028311226",
   },
 } as const;
+
+/** Helper to generate service-specific or custom prefilled WhatsApp deep-links */
+export function getServiceWhatsAppHref(
+  serviceSlug?: string,
+  territory: "uk" | "india" = "uk",
+): string {
+  const baseNumber =
+    territory === "uk" ? "447882746212" : "917028311226";
+  const message =
+    (serviceSlug && SERVICE_WHATSAPP_MESSAGES[serviceSlug]) || PROJECT_MESSAGE;
+  return `https://wa.me/${baseNumber}?text=${encodeURIComponent(message)}`;
+}
+
 
 /* ------------------------------------------------------------------ */
 /* Contact channels                                                    */

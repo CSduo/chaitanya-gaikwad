@@ -15,6 +15,7 @@ import { ServiceProof } from "@/components/home/ServiceProof";
 import { SERVICES, getService } from "@/lib/services";
 import { pageMetadata, serviceSchema, breadcrumbSchema } from "@/lib/seo";
 import { SERVICE_SEO } from "@/lib/seo-copy";
+import { getServiceWhatsAppHref, WHATSAPP } from "@/lib/site";
 
 export function generateStaticParams() {
   return SERVICES.map((s) => ({ slug: s.slug }));
@@ -84,6 +85,35 @@ export default async function ServicePage({
               {service.name}
             </h1>
             <p className="mt-7 text-lg leading-relaxed text-ink-soft">{service.summary}</p>
+
+            {/* Direct Inbound Acquisition Action Bar */}
+            <div className="mt-8 flex flex-wrap items-center gap-3">
+              <a
+                href={getServiceWhatsAppHref(service.slug, "uk")}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex min-h-[46px] items-center gap-2 rounded-xs bg-ink px-6 text-xs font-semibold tracking-tight text-paper transition-colors hover:bg-accent"
+              >
+                <span>Direct WhatsApp (UK)</span>
+                <span aria-hidden="true">&#8599;</span>
+              </a>
+              <a
+                href={getServiceWhatsAppHref(service.slug, "india")}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex min-h-[46px] items-center gap-2 rounded-xs border border-rule px-5 text-xs font-medium tracking-tight text-ink transition-colors hover:border-ink hover:bg-surface"
+              >
+                <span>Direct WhatsApp (India)</span>
+                <span aria-hidden="true">&#8599;</span>
+              </a>
+              <a
+                href={`tel:${WHATSAPP.uk.number.replace(/\s+/g, "")}`}
+                className="inline-flex min-h-[46px] items-center gap-1.5 rounded-xs border border-rule px-4 text-xs font-mono text-ink-muted transition-colors hover:border-ink hover:text-ink"
+                title="Direct Telephone Line"
+              >
+                <span>Call: {WHATSAPP.uk.number}</span>
+              </a>
+            </div>
           </div>
         </Container>
       </section>
@@ -179,11 +209,16 @@ export default async function ServicePage({
 
 
 
-      {/* 11 — CTA */}
+      {/* 11 — CTA & Cross-Discipline Discovery */}
       <ProjectCTA
+        serviceSlug={service.slug}
         eyebrow={service.shortName}
-        title="Have something that needs producing?"
-        body="Send the brief and whatever material exists. We will confirm what is workable and propose a defined scope."
+        title={`Discuss a ${service.shortName} brief`}
+        body="Send the brief and whatever material exists. We will confirm what is workable, identify any missing information, and propose a defined scope."
+        services={SERVICES.filter((s) => s.slug !== service.slug).map((s) => ({
+          label: s.name,
+          href: `/services/${s.slug}`,
+        }))}
       />
     </>
   );

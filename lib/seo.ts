@@ -86,7 +86,7 @@ export function organizationSchema() {
         "@type": "ContactPoint",
         telephone: "+44 7882 746212",
         contactType: "customer service",
-        areaServed: ["GB", "EU"],
+        areaServed: ["GB", "US", "EU", "AE", "SA", "QA", "CA", "AU", "SG"],
         availableLanguage: ["English"],
       },
       {
@@ -98,13 +98,83 @@ export function organizationSchema() {
       },
     ],
     areaServed: [
-      { "@type": "Country", name: "United Kingdom" },
-      { "@type": "Country", name: "India" },
-      { "@type": "Country", name: "Saudi Arabia" },
-      { "@type": "Country", name: "United Arab Emirates" },
+      { "@type": "Country", name: "United Kingdom", identifier: "GB" },
+      { "@type": "Country", name: "United States", identifier: "US" },
+      { "@type": "Country", name: "United Arab Emirates", identifier: "AE" },
+      { "@type": "Country", name: "Saudi Arabia", identifier: "SA" },
+      { "@type": "Country", name: "Qatar", identifier: "QA" },
+      { "@type": "Country", name: "Australia", identifier: "AU" },
+      { "@type": "Country", name: "Canada", identifier: "CA" },
+      { "@type": "Country", name: "Singapore", identifier: "SG" },
+      { "@type": "Country", name: "Germany", identifier: "DE" },
+      { "@type": "Country", name: "Netherlands", identifier: "NL" },
+      { "@type": "Country", name: "Switzerland", identifier: "CH" },
+      { "@type": "Country", name: "France", identifier: "FR" },
+      { "@type": "Country", name: "Ireland", identifier: "IE" },
+      { "@type": "Country", name: "India", identifier: "IN" },
       { "@type": "Place", name: "Europe" },
       { "@type": "Place", name: "Worldwide" },
     ],
+    hasOfferCatalog: {
+      "@type": "OfferCatalog",
+      name: "XIYÀTO Commercial Production & Growth Services",
+      itemListElement: [
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "CAD & Technical Production",
+            url: absoluteUrl("/services/cad-technical-production"),
+            description: "Outsourced CAD drafting for interior and fit-out teams: plans, elevations, RCPs and flooring setting-out, issued as editable DWG.",
+          },
+        },
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "Growth, Marketing & B2B Research",
+            url: absoluteUrl("/services/growth-marketing-b2b"),
+            description: "Research-led B2B lead generation and market research: verified buyer shortlists, decision-maker mapping, and outreach workflows.",
+          },
+        },
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "3D Visualisation & Image Production",
+            url: absoluteUrl("/services/visualisation-image-production"),
+            description: "Photorealistic 3D interior, architectural and furniture visualisation produced from approved plans, materials and references.",
+          },
+        },
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "Video, AI Film & Editing",
+            url: absoluteUrl("/services/video-ai-film-editing"),
+            description: "Cinematic short-form video production and editing for luxury furniture, interior design showrooms and architectural projects.",
+          },
+        },
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "Website Design & Development",
+            url: absoluteUrl("/services/website-design-development"),
+            description: "High-performance custom Next.js website design and development for design studios, architecture practices and export manufacturers.",
+          },
+        },
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "Automation & Workflow Systems",
+            url: absoluteUrl("/services/automation-workflow-systems"),
+            description: "Business process automation, CRM enquiry routing, WhatsApp lead capture and pipeline integrations built in existing tooling.",
+          },
+        },
+      ],
+    },
     logo: absoluteUrl("/brand/emblem-512.png"),
     image: absoluteUrl("/opengraph-image.png"),
     founder: {
@@ -115,12 +185,13 @@ export function organizationSchema() {
     },
     knowsAbout: [
       "CAD drafting and technical production",
-      "Interior technical documentation",
+      "Outsourced AutoCAD drafting services",
+      "Interior technical documentation and detailing",
       "B2B market research and lead intelligence",
-      "3D architectural visualisation",
-      "Photorealistic product rendering",
+      "3D architectural visualisation and rendering",
+      "Photorealistic furniture product rendering",
       "Cinematic video production and AI video editing",
-      "Marketing automation and CRM systems",
+      "Marketing automation and CRM routing systems",
       "Website design and Next.js development",
     ],
   };
@@ -169,16 +240,44 @@ export function serviceSchema(input: {
   name: string;
   description: string;
   path: string;
+  serviceType?: string;
 }) {
   return {
     "@context": "https://schema.org",
     "@type": "Service",
     name: input.name,
+    serviceType: input.serviceType ?? input.name,
     description: input.description,
     url: absoluteUrl(input.path),
     provider: { "@type": "Organization", name: SITE.name, url: SITE.url },
+    areaServed: [
+      { "@type": "Country", name: "United Kingdom" },
+      { "@type": "Country", name: "United States" },
+      { "@type": "Country", name: "United Arab Emirates" },
+      { "@type": "Country", name: "Saudi Arabia" },
+      { "@type": "Place", name: "Worldwide" },
+    ],
   };
 }
+
+export function videoObjectSchema(input: {
+  name: string;
+  description: string;
+  thumbnailUrl: string;
+  uploadDate: string;
+  contentUrl: string;
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "VideoObject",
+    name: input.name,
+    description: input.description,
+    thumbnailUrl: absoluteUrl(input.thumbnailUrl),
+    uploadDate: input.uploadDate,
+    contentUrl: absoluteUrl(input.contentUrl),
+  };
+}
+
 
 export function breadcrumbSchema(trail: { name: string; path: string }[]) {
   return {

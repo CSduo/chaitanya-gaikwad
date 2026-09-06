@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Container, Eyebrow } from "@/components/ui/primitives";
-import { SITE, WHATSAPP, PRIMARY_CTA, SECONDARY_CTA } from "@/lib/site";
+import { SITE, WHATSAPP, SECONDARY_CTA, getServiceWhatsAppHref } from "@/lib/site";
 
 /**
  * The single conversion component, reused across the site.
@@ -14,13 +14,18 @@ export function ProjectCTA({
   title = "Have a project your team needs capacity for?",
   body = "Tell us what you are working on.",
   services,
+  serviceSlug,
 }: {
   eyebrow?: string;
   title?: string;
   body?: string;
   /** Optional service links rendered beneath the CTA. */
   services?: { label: string; href: string }[];
+  serviceSlug?: string;
 }) {
+  const ukHref = getServiceWhatsAppHref(serviceSlug, "uk");
+  const indiaHref = getServiceWhatsAppHref(serviceSlug, "india");
+
   return (
     <section className="bg-ink py-20 text-paper sm:py-24 lg:py-28">
       <Container width="page">
@@ -33,12 +38,12 @@ export function ProjectCTA({
 
           <div className="mt-10 flex flex-wrap items-center gap-3">
             <a
-              href={PRIMARY_CTA.href}
+              href={ukHref}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex min-h-[48px] items-center justify-center gap-2.5 rounded-xs bg-paper px-7 text-sm font-medium tracking-tight text-ink transition-colors hover:bg-accent hover:text-paper"
             >
-              {PRIMARY_CTA.label}
+              Start on WhatsApp
               <span aria-hidden="true">&rarr;</span>
             </a>
             <Link
@@ -51,7 +56,7 @@ export function ProjectCTA({
 
           <div className="mt-10 grid grid-cols-1 gap-3 sm:grid-cols-2">
             <a
-              href={WHATSAPP.uk.href}
+              href={ukHref}
               target="_blank"
               rel="noopener noreferrer"
               className="group flex items-center justify-between rounded-lg border border-paper/20 bg-paper/10 p-3.5 shadow-xs backdrop-blur-xs transition-all hover:border-paper/60 hover:bg-paper/15 hover:shadow-sm"
@@ -77,7 +82,7 @@ export function ProjectCTA({
             </a>
 
             <a
-              href={WHATSAPP.india.href}
+              href={indiaHref}
               target="_blank"
               rel="noopener noreferrer"
               className="group flex items-center justify-between rounded-lg border border-paper/20 bg-paper/10 p-3.5 shadow-xs backdrop-blur-xs transition-all hover:border-paper/60 hover:bg-paper/15 hover:shadow-sm"

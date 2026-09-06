@@ -6,6 +6,7 @@ import { LegacyHashRedirect } from "@/components/site/LegacyHashRedirect";
 import { JsonLd } from "@/components/ui/primitives";
 import { organizationSchema, webSiteSchema } from "@/lib/seo";
 import { SITE } from "@/lib/site";
+import { TrackingScripts } from "@/components/analytics/TrackingScripts";
 import "./globals.css";
 
 const plexSans = IBM_Plex_Sans({
@@ -164,6 +165,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <JsonLd data={organizationSchema()} />
         <JsonLd data={webSiteSchema()} />
         <LegacyHashRedirect />
+        <TrackingScripts />
 
         <a
           href="#main"
