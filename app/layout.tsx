@@ -112,7 +112,7 @@ export const metadata: Metadata = {
   },
   manifest: "/site.webmanifest",
   verification: {
-    google: "googleb531fd48b43d4f1b",
+    google: ["IjQduuSOmYJmgmhyNk6YA2rpWUe2b5uaPPdpGb-fLFs", "googleb531fd48b43d4f1b"],
   },
   robots: {
     index: true,
