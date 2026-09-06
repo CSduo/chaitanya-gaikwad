@@ -32,9 +32,8 @@ XIYÀTO's search strategy does not pursue vanity page counts, low-intent informa
 ### 2.2. Freshness & Brand Footprint Audit
 - **Instagram Handle Update**: Deprecated `@xiyato22` purged across the entire repository and replaced with **`@xiyato.uk`** (`https://www.instagram.com/xiyato.uk/`) in UI footers and Schema.org metadata.
 - **SERP Cache Observation**: Google Search queries for `"xiyato.uk"` show that Googlebot has indexed the core multidisciplinary brand footprint, though cached snippets temporarily reflect older copy. Sitemaps submission and URL inspection requests will force snippet refresh.
-- **Sitemap Pipeline**: `https://xiyato.uk/sitemap.xml` (HTTP 200 OK, 28 clean static routes, truthful per-page Git commit timestamps).
+- **Sitemap Pipeline**: `https://xiyato.uk/sitemap.xml` (`[ACCOUNT-UI VERIFIED — SUCCESS]`). Submitted: Sep 6, 2026 | Last read: Sep 6, 2026 | Status: **Success** | Discovered pages: **28** | Errors: **0**.
 
----
 
 ## 3. Master Commercial Query Graph & Priority Scoring
 

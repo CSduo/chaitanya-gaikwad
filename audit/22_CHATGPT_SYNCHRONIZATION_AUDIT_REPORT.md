@@ -46,7 +46,7 @@ This audit report serves as the **complete, unredacted technical and operational
 ### 3.1. Verified Property State
 - **Property Type**: Domain Property (`sc-domain:xiyato.uk`). Covers all protocols (`http`, `https`), subdomains (`www`, root), and future paths.
 - **Dashboard Status**: Successfully verified. Displaying: *'Processing data, please check again in a day or so'*.
-- **Live Sitemap**: `https://xiyato.uk/sitemap.xml` (HTTP 200 OK). Contains 28 clean static routes with truthful per-page Git commit timestamps.
+- **Live Sitemap**: `https://xiyato.uk/sitemap.xml` (`[ACCOUNT-UI VERIFIED — SUCCESS]`). Submitted: Sep 6, 2026 | Last read: Sep 6, 2026 | Status: **Success** | Discovered pages: **28** | Errors: **0**.
 - **Crawl Directives**: `https://xiyato.uk/robots.txt` (HTTP 200 OK). Permits all standard crawlers (`Allow: /`, `Allow: /_next/static/`, `Allow: /_next/image/`), explicitly links to sitemap.
 
 ### 3.2. Specialist Landing Pages Verification
