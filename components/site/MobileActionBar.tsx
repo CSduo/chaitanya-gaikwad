@@ -36,7 +36,7 @@ export function MobileActionBar() {
       {/* Top region selector & trust signal */}
       <div className="mb-1.5 flex items-center justify-between px-1 text-[0.6875rem]">
         <span className="font-mono uppercase tracking-widest text-ink-muted">
-          Direct Founder Access
+          Contact
         </span>
         <div className="flex items-center gap-1 font-mono">
           <button

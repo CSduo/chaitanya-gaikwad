@@ -83,16 +83,10 @@ export type ContactChannel = {
 
 export const CONTACT_CHANNELS: ContactChannel[] = [
   {
-    id: "projects",
-    label: "Project enquiries",
-    purpose: "New briefs, scoping and production capacity.",
-    email: "contact@xiyato.uk",
-  },
-  {
     id: "general",
-    label: "General enquiries",
-    purpose: "Everything that is not a live project brief.",
-    email: "contact@xiyato.uk",
+    label: "Direct enquiries",
+    purpose: "New briefs, scoping and production capacity.",
+    email: "hello@xiyato.uk",
   },
   {
     id: "careers",

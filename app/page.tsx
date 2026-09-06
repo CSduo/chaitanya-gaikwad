@@ -90,45 +90,49 @@ export default function HomePage() {
               {HOME_COPY.standfirst}
             </p>
 
-            {/* Primary & Secondary Call to Actions */}
-            <div className="mt-8 flex flex-wrap items-center gap-3.5 sm:mt-10">
-              <a
-                href={PRIMARY_CTA.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex min-h-[50px] items-center justify-center gap-2 rounded-xs bg-white px-7 text-sm font-semibold tracking-tight text-black transition-all hover:bg-zinc-200 active:scale-[0.98] shadow-sm"
-              >
-                {PRIMARY_CTA.label}
-                <span aria-hidden="true" className="text-xs">
-                  &#8599;
-                </span>
-              </a>
-              <a
-                href={WHATSAPP.uk.tel}
-                className="inline-flex min-h-[50px] items-center justify-center gap-2 rounded-xs border border-zinc-700 bg-zinc-950/80 px-6 text-sm font-medium tracking-tight text-zinc-200 transition-colors hover:border-zinc-500 hover:bg-zinc-900 active:scale-[0.98]"
-                aria-label={`Call XIYÀTO UK directly at ${WHATSAPP.uk.number}`}
-              >
-                <svg
-                  viewBox="0 0 24 24"
-                  width="14"
-                  height="14"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  className="text-zinc-400"
+            {/* Primary & Secondary Call to Actions — Triangle / Pyramid Layout */}
+            <div className="mt-8 max-w-lg sm:max-w-xl sm:mt-10">
+              <div className="grid grid-cols-2 gap-3 sm:gap-3.5">
+                <a
+                  href={PRIMARY_CTA.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex min-h-[50px] w-full items-center justify-center gap-2 rounded-xs bg-white px-3 sm:px-6 text-xs sm:text-sm font-semibold tracking-tight text-black transition-all hover:bg-zinc-200 active:scale-[0.98] shadow-sm text-center"
                 >
-                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
-                </svg>
-                <span>Call UK: {WHATSAPP.uk.number}</span>
-              </a>
-              <a
-                href="#capabilities"
-                className="inline-flex min-h-[50px] items-center justify-center rounded-xs border border-zinc-800 bg-zinc-950/40 px-6 text-sm font-medium tracking-tight text-zinc-400 transition-colors hover:border-zinc-600 hover:text-zinc-200"
-              >
-                View our work &darr;
-              </a>
+                  <span>{PRIMARY_CTA.label}</span>
+                  <span aria-hidden="true" className="text-xs">
+                    &#8599;
+                  </span>
+                </a>
+                <a
+                  href="#capabilities"
+                  className="flex min-h-[50px] w-full items-center justify-center rounded-xs border border-zinc-800 bg-zinc-950/60 px-3 sm:px-6 text-xs sm:text-sm font-medium tracking-tight text-zinc-300 transition-colors hover:border-zinc-600 hover:text-white text-center"
+                >
+                  View our work &darr;
+                </a>
+              </div>
+              <div className="mt-3 sm:mt-3.5 flex justify-center">
+                <a
+                  href={WHATSAPP.uk.tel}
+                  className="inline-flex min-h-[48px] w-full sm:w-auto items-center justify-center gap-2 rounded-xs border border-zinc-700 bg-zinc-950/80 px-6 text-xs sm:text-sm font-medium tracking-tight text-zinc-200 transition-colors hover:border-zinc-500 hover:bg-zinc-900 active:scale-[0.98]"
+                  aria-label={`Call XIYÀTO UK directly at ${WHATSAPP.uk.number}`}
+                >
+                  <svg
+                    viewBox="0 0 24 24"
+                    width="14"
+                    height="14"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="text-zinc-400 shrink-0"
+                  >
+                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+                  </svg>
+                  <span>Call UK: {WHATSAPP.uk.number}</span>
+                </a>
+              </div>
             </div>
 
             {/* Geography & Direct Contact Cards with Paired Call + WhatsApp Actions */}

@@ -137,13 +137,13 @@ export function Footer() {
               <li>
                 <FooterLink href="/careers">Careers</FooterLink>
               </li>
-              {emailChannels.map((c) => (
-                <li key={c.id}>
+              {Array.from(new Set(emailChannels.map((c) => c.email).filter(Boolean))).map((email) => (
+                <li key={email}>
                   <a
-                    href={`mailto:${c.email}`}
+                    href={`mailto:${email}`}
                     className="inline-flex min-h-[30px] items-center py-0.5 text-xs sm:text-sm text-ink-soft transition-colors hover:text-accent"
                   >
-                    {c.email}
+                    {email}
                   </a>
                 </li>
               ))}

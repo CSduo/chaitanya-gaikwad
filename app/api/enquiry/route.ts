@@ -117,10 +117,10 @@ export async function POST(request: Request) {
 
   // 2. Notification Dispatch via Resend
   const apiKey = process.env.ENQUIRY_PROVIDER_API_KEY;
-  const from = process.env.ENQUIRY_FROM_EMAIL;
+  const from = process.env.ENQUIRY_FROM_EMAIL || "XIYATO <hello@xiyato.uk>";
   const to = isTalent
-    ? process.env.ENQUIRY_TO_EMAIL_CAREERS ?? process.env.ENQUIRY_TO_EMAIL
-    : process.env.ENQUIRY_TO_EMAIL;
+    ? process.env.ENQUIRY_TO_EMAIL_CAREERS ?? process.env.ENQUIRY_TO_EMAIL ?? "hello@xiyato.uk"
+    : process.env.ENQUIRY_TO_EMAIL ?? "hello@xiyato.uk";
 
   // If email provider is unconfigured, the lead is ALREADY safely stored in DB!
   if (!apiKey || !from || !to) {

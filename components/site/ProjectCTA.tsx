@@ -33,43 +33,47 @@ export function ProjectCTA({
           </h2>
           <p className="mt-6 text-lg text-paper/70">{body}</p>
 
-          {/* Primary Action Row */}
-          <div className="mt-10 flex flex-wrap items-center gap-3">
-            <a
-              href={ukHref}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex min-h-[48px] items-center justify-center gap-2.5 rounded-xs bg-paper px-7 text-sm font-medium tracking-tight text-ink transition-colors hover:bg-accent hover:text-paper"
-            >
-              Start on WhatsApp
-              <span aria-hidden="true">&rarr;</span>
-            </a>
-            <a
-              href={WHATSAPP.uk.tel}
-              className="inline-flex min-h-[48px] items-center justify-center gap-2 rounded-xs border border-paper/40 px-6 text-sm font-medium tracking-tight text-paper transition-colors hover:border-paper hover:bg-paper/10"
-              title="Call UK Line"
-            >
-              <svg
-                viewBox="0 0 24 24"
-                width="15"
-                height="15"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="text-paper/70"
+          {/* Primary Action Row — Triangle / Pyramid Layout */}
+          <div className="mt-10 max-w-md sm:max-w-lg">
+            <div className="grid grid-cols-2 gap-3 sm:gap-3.5">
+              <a
+                href={ukHref}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex min-h-[48px] w-full items-center justify-center gap-2 rounded-xs bg-paper px-3 sm:px-6 text-xs sm:text-sm font-medium tracking-tight text-ink transition-colors hover:bg-accent hover:text-paper text-center"
               >
-                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
-              </svg>
-              <span>Call: {WHATSAPP.uk.number}</span>
-            </a>
-            <Link
-              href={SECONDARY_CTA.href}
-              className="inline-flex min-h-[48px] items-center justify-center rounded-xs border border-paper/30 px-6 text-sm font-medium tracking-tight text-paper/80 transition-colors hover:border-paper hover:bg-paper/10 hover:text-paper"
-            >
-              {SECONDARY_CTA.label}
-            </Link>
+                <span>Start on WhatsApp</span>
+                <span aria-hidden="true">&rarr;</span>
+              </a>
+              <Link
+                href={SECONDARY_CTA.href}
+                className="flex min-h-[48px] w-full items-center justify-center rounded-xs border border-paper/30 px-3 sm:px-6 text-xs sm:text-sm font-medium tracking-tight text-paper/80 transition-colors hover:border-paper hover:bg-paper/10 hover:text-paper text-center"
+              >
+                {SECONDARY_CTA.label}
+              </Link>
+            </div>
+            <div className="mt-3 sm:mt-3.5 flex justify-center">
+              <a
+                href={WHATSAPP.uk.tel}
+                className="inline-flex min-h-[48px] w-full sm:w-auto items-center justify-center gap-2 rounded-xs border border-paper/40 px-6 text-xs sm:text-sm font-medium tracking-tight text-paper transition-colors hover:border-paper hover:bg-paper/10"
+                title="Call UK Line"
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  width="15"
+                  height="15"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="text-paper/70 shrink-0"
+                >
+                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+                </svg>
+                <span>Call: {WHATSAPP.uk.number}</span>
+              </a>
+            </div>
           </div>
 
           {/* Direct Region Cards with Paired Call + WhatsApp Actions */}
@@ -149,7 +153,7 @@ export function ProjectCTA({
 
           {/* Contact Trust Microcopy */}
           <p className="mt-6 text-xs text-paper/60 leading-relaxed">
-            Direct founder and technical scoping for international project enquiries.
+            Direct technical scoping for international project enquiries.
           </p>
         </div>
 
