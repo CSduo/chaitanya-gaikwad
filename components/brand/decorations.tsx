@@ -416,6 +416,90 @@ export function ArchitecturalHeroBackground({ className = "" }: { className?: st
           </text>
         </g>
 
+        {/* ── RIGHT BACKGROUND: ARCHITECTURAL INTERIOR CAD LOUNGE PLAN ── */}
+        <g stroke="white" opacity="0.4" strokeWidth="1">
+          {/* Room boundary */}
+          <rect x="920" y="290" width="540" height="300" strokeDasharray="10 5" strokeWidth="1.2" />
+          <text x="940" y="314" fontFamily="monospace" fontSize="9" fill="white" fillOpacity="0.9" letterSpacing="0.16em" fontWeight="bold" stroke="none">
+            SALON 01 · BESPOKE LIVING &amp; JOINERY LAYOUT
+          </text>
+
+          {/* Curved sofa plan */}
+          <rect x="970" y="340" width="260" height="75" rx="10" strokeWidth="1.4" />
+          <line x1="1050" y1="340" x2="1050" y2="415" strokeWidth="0.8" />
+          <line x1="1150" y1="340" x2="1150" y2="415" strokeWidth="0.8" />
+          <path d="M 978 360 Q 1100 355 1222 360" strokeDasharray="3 3" strokeWidth="0.8" />
+          <text x="1100" y="380" textAnchor="middle" fontFamily="monospace" fontSize="8" fill="white" fillOpacity="0.8" letterSpacing="0.1em" stroke="none">
+            CURVED MODULE · 2,600mm
+          </text>
+
+          {/* Travertine coffee table */}
+          <rect x="1020" y="445" width="140" height="50" rx="3" strokeWidth="1.2" />
+          <text x="1090" y="475" textAnchor="middle" fontFamily="monospace" fontSize="8" fill="white" fillOpacity="0.8" letterSpacing="0.1em" stroke="none">
+            TRAVERTINE PLINTH
+          </text>
+
+          {/* Accent lounge chairs */}
+          <rect x="1280" y="345" width="65" height="65" rx="12" strokeWidth="1.2" />
+          <circle cx="1312" cy="377" r="18" strokeDasharray="3 4" strokeWidth="0.7" />
+          <rect x="1280" y="435" width="65" height="65" rx="12" strokeWidth="1.2" />
+          <circle cx="1312" cy="467" r="18" strokeDasharray="3 4" strokeWidth="0.7" />
+
+          {/* Floor hatching lines */}
+          <line x1="920" y1="510" x2="1460" y2="510" strokeWidth="0.5" strokeDasharray="3 6" opacity="0.5" />
+          <line x1="920" y1="550" x2="1460" y2="550" strokeWidth="0.5" strokeDasharray="3 6" opacity="0.5" />
+        </g>
+
+        {/* ── RIGHT BACKGROUND: FLUTED TIMBER WALL JOINERY ELEVATION ── */}
+        <g stroke="white" opacity="0.38" strokeWidth="0.9">
+          <rect x="920" y="610" width="540" height="150" strokeWidth="1.2" />
+          <text x="940" y="602" fontFamily="monospace" fontSize="9" fill="white" fillOpacity="0.85" letterSpacing="0.14em" stroke="none" fontWeight="bold">
+            ELEVATION E-01 · ACOUSTIC TIMBER SLATS
+          </text>
+
+          {/* Fluted timber slats */}
+          {Array.from({ length: 22 }, (_, i) => 940 + i * 20).map((x, i) => (
+            <line
+              key={x}
+              x1={x}
+              y1="610"
+              x2={x}
+              y2={i > 14 ? 700 : 760}
+              strokeWidth={i % 3 === 0 ? "1" : "0.5"}
+              strokeDasharray={i % 5 === 0 ? "5 3" : "none"}
+            />
+          ))}
+
+          {/* Floating credenza unit */}
+          <rect x="1230" y="700" width="210" height="40" rx="2" strokeWidth="1.2" />
+          <line x1="1335" y1="700" x2="1335" y2="740" strokeWidth="0.7" />
+          <text x="1335" y="724" textAnchor="middle" fontFamily="monospace" fontSize="8" fill="white" fillOpacity="0.85" letterSpacing="0.12em" stroke="none">
+            C-01 FLOATING · 2100
+          </text>
+
+          {/* Shadow gap line */}
+          <line x1="920" y1="624" x2="1460" y2="624" strokeDasharray="3 3" strokeWidth="0.6" />
+        </g>
+
+        {/* ── RIGHT MARGIN ELEVATION DATUMS ── */}
+        <g stroke="white" opacity="0.5" strokeWidth="1" fontFamily="monospace" fontSize="9" letterSpacing="0.1em" fill="white">
+          <line x1="1480" y1="290" x2="1500" y2="290" />
+          <line x1="1500" y1="290" x2="1508" y2="282" />
+          <text x="1515" y="286" stroke="none">▽ +3.200</text>
+
+          <line x1="1480" y1="440" x2="1500" y2="440" />
+          <line x1="1500" y1="440" x2="1508" y2="432" />
+          <text x="1515" y="436" stroke="none">▽ +2.400</text>
+
+          <line x1="1480" y1="610" x2="1500" y2="610" />
+          <line x1="1500" y1="610" x2="1508" y2="602" />
+          <text x="1515" y="606" stroke="none">▽ +0.900</text>
+
+          <line x1="1480" y1="760" x2="1500" y2="760" />
+          <line x1="1500" y1="760" x2="1508" y2="752" />
+          <text x="1515" y="756" stroke="none">▽ ±0.000</text>
+        </g>
+
         {/* ── REGISTRATION TARGET CROSSHAIRS (Precision Technical Stamps) ── */}
         {[
           [80, 100], [480, 100], [800, 100],
