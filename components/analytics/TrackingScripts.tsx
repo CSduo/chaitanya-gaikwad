@@ -18,14 +18,39 @@ declare global {
  */
 export function TrackingScripts() {
   useEffect(() => {
-    // 1. Capture and preserve inbound UTM parameters and landing page in sessionStorage
+    // Sanitisation helper for URL parameters and referrers to prevent PII leakage and injection
+    const sanitizeParam = (val: string | null, maxLen = 100): string | null => {
+      if (!val) return null;
+      const trimmed = val.trim();
+      if (trimmed.length === 0 || trimmed.length > maxLen) return null;
+      // Reject email-like patterns
+      if (trimmed.includes("@")) return null;
+      // Reject phone number patterns (sequences of 7+ digits)
+      if (/\+?[0-9]{7,}/.test(trimmed)) return null;
+      // Whitelist safe characters: alphanumeric, dashes, underscores, dots
+      if (!/^[a-zA-Z0-9_.-]+$/.test(trimmed)) return null;
+      return trimmed;
+    };
+
+    const sanitizeReferrer = (ref: string | null): string => {
+      if (!ref) return "direct";
+      try {
+        const parsed = new URL(ref);
+        // Retain only origin and clean pathname, strip all query parameters and hash
+        return parsed.origin + parsed.pathname.slice(0, 80);
+      } catch {
+        return "external";
+      }
+    };
+
+    // 1. Capture and preserve sanitised inbound UTM parameters and landing page in sessionStorage
     try {
       if (typeof window !== "undefined" && window.sessionStorage) {
         if (!sessionStorage.getItem("xiyato_initial_landing")) {
-          sessionStorage.setItem("xiyato_initial_landing", window.location.pathname);
+          sessionStorage.setItem("xiyato_initial_landing", window.location.pathname.slice(0, 100));
         }
         if (!sessionStorage.getItem("xiyato_initial_referrer") && document.referrer) {
-          sessionStorage.setItem("xiyato_initial_referrer", document.referrer);
+          sessionStorage.setItem("xiyato_initial_referrer", sanitizeReferrer(document.referrer));
         }
 
         const urlParams = new URLSearchParams(window.location.search);
@@ -33,7 +58,7 @@ export function TrackingScripts() {
         const capturedUtm: Record<string, string> = {};
 
         utmKeys.forEach((key) => {
-          const val = urlParams.get(key);
+          const val = sanitizeParam(urlParams.get(key));
           if (val) capturedUtm[key] = val;
         });
 
@@ -51,13 +76,13 @@ export function TrackingScripts() {
         const utm = storedUtm ? JSON.parse(storedUtm) : {};
         return {
           landing_page: sessionStorage.getItem("xiyato_initial_landing") || window.location.pathname,
-          referrer: sessionStorage.getItem("xiyato_initial_referrer") || document.referrer || "direct",
+          referrer: sessionStorage.getItem("xiyato_initial_referrer") || sanitizeReferrer(document.referrer),
           ...utm,
         };
       } catch {
         return {
           landing_page: window.location.pathname,
-          referrer: document.referrer || "direct",
+          referrer: sanitizeReferrer(document.referrer),
         };
       }
     };
@@ -115,11 +140,10 @@ export function TrackingScripts() {
         });
       }
 
-      // C. Email Click Tracking
+      // C. Email Click Tracking — categorical only, zero recipient PII
       if (href.startsWith("mailto:")) {
-        const email = href.replace("mailto:", "").split("?")[0];
         dispatchEvent("inbound_email_click", {
-          email_address: email,
+          contact_channel: "email",
           page_path: window.location.pathname,
         });
       }
@@ -127,7 +151,7 @@ export function TrackingScripts() {
       // D. LinkedIn External Click Tracking
       if (href.includes("linkedin.com")) {
         dispatchEvent("linkedin_click", {
-          destination: href,
+          destination: "linkedin_profile",
           page_path: window.location.pathname,
         });
       }
@@ -140,7 +164,7 @@ export function TrackingScripts() {
         !href.includes("linkedin.com")
       ) {
         dispatchEvent("external_portfolio_click", {
-          destination: href,
+          destination: "external_showcase",
           page_path: window.location.pathname,
         });
       }
@@ -174,8 +198,10 @@ export function TrackingScripts() {
     const handleFormSubmit = (event: SubmitEvent) => {
       const form = event.target as HTMLFormElement;
       if (form) {
-        dispatchEvent("project_form_submit", {
+        // Dispatched as an initial inbound enquiry; downstream CRM qualifies the lead
+        dispatchEvent("inbound_enquiry", {
           form_id: form.id || "project_contact_form",
+          enquiry_stage: "new_enquiry",
           page_path: window.location.pathname,
         });
       }
