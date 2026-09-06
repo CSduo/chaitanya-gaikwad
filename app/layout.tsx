@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { IBM_Plex_Sans, IBM_Plex_Mono, Newsreader } from "next/font/google";
 import { Header } from "@/components/site/Header";
+import { MobileActionBar } from "@/components/site/MobileActionBar";
 import { Footer } from "@/components/site/Footer";
 import { LegacyHashRedirect } from "@/components/site/LegacyHashRedirect";
 import { JsonLd } from "@/components/ui/primitives";
@@ -176,11 +177,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
         <Header />
 
-        <main id="main" className="flex-1">
+        <main id="main" className="flex-1 pb-16 lg:pb-0">
           {children}
         </main>
 
         <Footer />
+        <MobileActionBar />
       </body>
     </html>
   );

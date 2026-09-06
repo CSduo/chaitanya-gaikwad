@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { PRIMARY_NAV, PRIMARY_CTA, SITE } from "@/lib/site";
+import { PRIMARY_NAV, PRIMARY_CTA, SITE, WHATSAPP } from "@/lib/site";
 import { MobileNav } from "./MobileNav";
 
 function Wordmark() {
@@ -180,8 +180,31 @@ export function Header() {
           </ul>
         </nav>
 
-        <div className="hidden lg:block">
-          {/* Opens WhatsApp with a prefilled note — the fastest route to a reply. */}
+        <div className="hidden lg:flex lg:items-center lg:gap-2">
+          {/* Direct desktop telephone call link — eliminates hunt for phone number */}
+          <a
+            href={WHATSAPP.uk.tel}
+            className="inline-flex min-h-[44px] items-center gap-1.5 px-3 font-mono text-xs text-ink-muted transition-colors hover:text-ink"
+            title="Direct Telephone Line (UK)"
+            aria-label={`Call XIYÀTO UK directly at ${WHATSAPP.uk.number}`}
+          >
+            <svg
+              viewBox="0 0 24 24"
+              width="13"
+              height="13"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="text-ink-muted"
+            >
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+            </svg>
+            <span>{WHATSAPP.uk.number}</span>
+          </a>
+
+          {/* Opens WhatsApp with a prefilled note */}
           <a
             href={PRIMARY_CTA.href}
             target="_blank"

@@ -4,10 +4,7 @@ import { SITE, WHATSAPP, SECONDARY_CTA, getServiceWhatsAppHref } from "@/lib/sit
 
 /**
  * The single conversion component, reused across the site.
- *
- * The primary action opens WhatsApp with a prefilled note — the fastest route
- * to a real conversation. The contact form remains the secondary route for
- * briefs that need detail, files or a written record.
+ * Provides direct WhatsApp, telephone (tel:), and detailed brief paths.
  */
 export function ProjectCTA({
   eyebrow = "Start a project",
@@ -36,6 +33,7 @@ export function ProjectCTA({
           </h2>
           <p className="mt-6 text-lg text-paper/70">{body}</p>
 
+          {/* Primary Action Row */}
           <div className="mt-10 flex flex-wrap items-center gap-3">
             <a
               href={ukHref}
@@ -46,67 +44,113 @@ export function ProjectCTA({
               Start on WhatsApp
               <span aria-hidden="true">&rarr;</span>
             </a>
+            <a
+              href={WHATSAPP.uk.tel}
+              className="inline-flex min-h-[48px] items-center justify-center gap-2 rounded-xs border border-paper/40 px-6 text-sm font-medium tracking-tight text-paper transition-colors hover:border-paper hover:bg-paper/10"
+              title="Call UK Line"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                width="15"
+                height="15"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="text-paper/70"
+              >
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+              </svg>
+              <span>Call: {WHATSAPP.uk.number}</span>
+            </a>
             <Link
               href={SECONDARY_CTA.href}
-              className="inline-flex min-h-[48px] items-center justify-center rounded-xs border border-paper/30 px-7 text-sm font-medium tracking-tight text-paper transition-colors hover:border-paper hover:bg-paper/10"
+              className="inline-flex min-h-[48px] items-center justify-center rounded-xs border border-paper/30 px-6 text-sm font-medium tracking-tight text-paper/80 transition-colors hover:border-paper hover:bg-paper/10 hover:text-paper"
             >
               {SECONDARY_CTA.label}
             </Link>
           </div>
 
+          {/* Direct Region Cards with Paired Call + WhatsApp Actions */}
           <div className="mt-10 grid grid-cols-1 gap-3 sm:grid-cols-2">
-            <a
-              href={ukHref}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group flex items-center justify-between rounded-lg border border-paper/20 bg-paper/10 p-3.5 shadow-xs backdrop-blur-xs transition-all hover:border-paper/60 hover:bg-paper/15 hover:shadow-sm"
-            >
-              <div className="flex items-center gap-3 min-w-0">
-                <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-paper/15 text-paper transition-transform group-hover:scale-105">
-                  <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
-                    <path d="M17.472 14.382c-.301-.15-1.78-.878-2.056-.978-.275-.1-.475-.15-.676.15-.2.3-.777.978-.953 1.178-.175.2-.351.225-.652.075-.301-.15-1.272-.469-2.423-1.496-.895-.798-1.5-1.784-1.675-2.085-.176-.301-.019-.464.132-.614.135-.136.301-.351.452-.526.15-.176.201-.301.301-.502.1-.2.05-.376-.025-.526-.075-.15-.677-1.633-.927-2.235-.244-.587-.492-.507-.677-.517-.175-.009-.376-.01-.577-.01-.2 0-.526.075-.802.376-.276.301-1.053 1.028-1.053 2.508 0 1.48 1.078 2.91 1.228 3.11.151.2 2.122 3.24 5.141 4.545.718.31 1.279.495 1.716.634.721.23 1.377.197 1.896.12.578-.087 1.78-.727 2.031-1.43.25-.702.25-1.303.175-1.429-.075-.125-.276-.201-.577-.351zm-5.447 7.423c-1.849 0-3.66-.497-5.239-1.44l-.376-.226-3.896 1.022 1.04-3.799-.248-.395c-1.036-1.649-1.583-3.565-1.581-5.529.004-5.755 4.686-10.436 10.446-10.436 2.788 0 5.41 1.086 7.378 3.057 1.968 1.972 3.05 4.596 3.048 7.387-.004 5.757-4.687 10.439-10.448 10.449zm0-22c-6.417 0-11.638 5.221-11.641 11.64-.002 2.05.534 4.053 1.554 5.821l-1.65 6.027 6.168-1.618c1.706.93 3.633 1.42 5.566 1.422h.005c6.416 0 11.638-5.222 11.641-11.641.002-3.11-1.207-6.033-3.407-8.235-2.202-2.203-5.127-3.416-8.236-3.416z" />
-                  </svg>
-                </div>
-                <div className="min-w-0">
-                  <span className="block font-mono text-[0.625rem] uppercase tracking-[0.12em] text-paper/60">
-                    United Kingdom
+            {/* UK Card */}
+            <div className="flex flex-col justify-between rounded-lg border border-paper/20 bg-paper/10 p-4 shadow-xs backdrop-blur-xs transition-all hover:border-paper/40">
+              <div className="flex items-center justify-between">
+                <div>
+                  <span className="block font-mono text-[0.625rem] uppercase tracking-[0.14em] text-paper/60">
+                    United Kingdom · Client Coordination
                   </span>
-                  <span className="block truncate text-sm font-semibold text-paper group-hover:text-white">
+                  <span className="mt-1 block text-base font-semibold font-mono text-paper">
                     {WHATSAPP.uk.number}
                   </span>
                 </div>
               </div>
-              <span className="text-xs text-paper/40 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-paper">
-                &#8599;
-              </span>
-            </a>
-
-            <a
-              href={indiaHref}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group flex items-center justify-between rounded-lg border border-paper/20 bg-paper/10 p-3.5 shadow-xs backdrop-blur-xs transition-all hover:border-paper/60 hover:bg-paper/15 hover:shadow-sm"
-            >
-              <div className="flex items-center gap-3 min-w-0">
-                <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-paper/15 text-paper transition-transform group-hover:scale-105">
-                  <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
-                    <path d="M17.472 14.382c-.301-.15-1.78-.878-2.056-.978-.275-.1-.475-.15-.676.15-.2.3-.777.978-.953 1.178-.175.2-.351.225-.652.075-.301-.15-1.272-.469-2.423-1.496-.895-.798-1.5-1.784-1.675-2.085-.176-.301-.019-.464.132-.614.135-.136.301-.351.452-.526.15-.176.201-.301.301-.502.1-.2.05-.376-.025-.526-.075-.15-.677-1.633-.927-2.235-.244-.587-.492-.507-.677-.517-.175-.009-.376-.01-.577-.01-.2 0-.526.075-.802.376-.276.301-1.053 1.028-1.053 2.508 0 1.48 1.078 2.91 1.228 3.11.151.2 2.122 3.24 5.141 4.545.718.31 1.279.495 1.716.634.721.23 1.377.197 1.896.12.578-.087 1.78-.727 2.031-1.43.25-.702.25-1.303.175-1.429-.075-.125-.276-.201-.577-.351zm-5.447 7.423c-1.849 0-3.66-.497-5.239-1.44l-.376-.226-3.896 1.022 1.04-3.799-.248-.395c-1.036-1.649-1.583-3.565-1.581-5.529.004-5.755 4.686-10.436 10.446-10.436 2.788 0 5.41 1.086 7.378 3.057 1.968 1.972 3.05 4.596 3.048 7.387-.004 5.757-4.687 10.439-10.448 10.449zm0-22c-6.417 0-11.638 5.221-11.641 11.64-.002 2.05.534 4.053 1.554 5.821l-1.65 6.027 6.168-1.618c1.706.93 3.633 1.42 5.566 1.422h.005c6.416 0 11.638-5.222 11.641-11.641.002-3.11-1.207-6.033-3.407-8.235-2.202-2.203-5.127-3.416-8.236-3.416z" />
+              <div className="mt-4 flex items-center gap-2">
+                <a
+                  href={WHATSAPP.uk.tel}
+                  className="inline-flex min-h-[40px] flex-1 items-center justify-center gap-1.5 rounded-xs border border-paper/30 bg-paper/5 text-xs font-medium text-paper transition-colors hover:border-paper hover:bg-paper/20"
+                  aria-label={`Call XIYÀTO UK at ${WHATSAPP.uk.number}`}
+                >
+                  <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-paper/70">
+                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
                   </svg>
-                </div>
-                <div className="min-w-0">
-                  <span className="block font-mono text-[0.625rem] uppercase tracking-[0.12em] text-paper/60">
-                    India
+                  <span>Call Line</span>
+                </a>
+                <a
+                  href={ukHref}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex min-h-[40px] flex-1 items-center justify-center gap-1.5 rounded-xs bg-paper px-3 text-xs font-semibold text-ink transition-colors hover:bg-accent hover:text-paper"
+                  aria-label="WhatsApp XIYÀTO UK"
+                >
+                  <span>WhatsApp</span>
+                  <span aria-hidden="true" className="text-xs">&#8599;</span>
+                </a>
+              </div>
+            </div>
+
+            {/* India Card */}
+            <div className="flex flex-col justify-between rounded-lg border border-paper/20 bg-paper/10 p-4 shadow-xs backdrop-blur-xs transition-all hover:border-paper/40">
+              <div className="flex items-center justify-between">
+                <div>
+                  <span className="block font-mono text-[0.625rem] uppercase tracking-[0.14em] text-paper/60">
+                    India · Technical Production Hub
                   </span>
-                  <span className="block truncate text-sm font-semibold text-paper group-hover:text-white">
+                  <span className="mt-1 block text-base font-semibold font-mono text-paper">
                     {WHATSAPP.india.number}
                   </span>
                 </div>
               </div>
-              <span className="text-xs text-paper/40 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-paper">
-                &#8599;
-              </span>
-            </a>
+              <div className="mt-4 flex items-center gap-2">
+                <a
+                  href={WHATSAPP.india.tel}
+                  className="inline-flex min-h-[40px] flex-1 items-center justify-center gap-1.5 rounded-xs border border-paper/30 bg-paper/5 text-xs font-medium text-paper transition-colors hover:border-paper hover:bg-paper/20"
+                  aria-label={`Call XIYÀTO India at ${WHATSAPP.india.number}`}
+                >
+                  <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-paper/70">
+                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+                  </svg>
+                  <span>Call Line</span>
+                </a>
+                <a
+                  href={indiaHref}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex min-h-[40px] flex-1 items-center justify-center gap-1.5 rounded-xs bg-paper px-3 text-xs font-semibold text-ink transition-colors hover:bg-accent hover:text-paper"
+                  aria-label="WhatsApp XIYÀTO India"
+                >
+                  <span>WhatsApp</span>
+                  <span aria-hidden="true" className="text-xs">&#8599;</span>
+                </a>
+              </div>
+            </div>
           </div>
+
+          {/* Contact Trust Microcopy */}
+          <p className="mt-6 text-xs text-paper/60 leading-relaxed">
+            Direct founder &amp; technical scoping. International project enquiries welcome across the US, UK, Europe, GCC &amp; globally. All briefs assessed within one working day.
+          </p>
         </div>
 
         {services && services.length > 0 ? (
@@ -126,7 +170,7 @@ export function ProjectCTA({
         ) : null}
 
         <p className="sr-only">
-          {SITE.name} works with clients across the United Kingdom and India.
+          {SITE.name} works with clients across the United Kingdom, India, and internationally.
         </p>
       </Container>
     </section>

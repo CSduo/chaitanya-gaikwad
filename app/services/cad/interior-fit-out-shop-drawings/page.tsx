@@ -131,31 +131,38 @@ export default function InteriorFitOutShopDrawingsPage() {
               Outsourced drawing documentation for fit-out contractors, joinery manufacturers, and interior design studios. We transform design concepts, survey markups, and visual renders into editable, coordinated DWG shop packages ready for site submittal and workshop fabrication.
             </p>
 
-            <div className="mt-8 flex flex-wrap items-center gap-3">
+            <div className="mt-8 flex flex-wrap items-center gap-2.5">
               <a
                 href={getServiceWhatsAppHref("cad-technical-production", "uk")}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex min-h-[46px] items-center gap-2 rounded-xs bg-ink px-6 text-xs font-semibold tracking-tight text-paper transition-colors hover:bg-accent"
+                aria-label="Discuss CAD drawing package with XIYÀTO"
               >
-                <span>Direct WhatsApp (UK)</span>
+                <span>Discuss a Drawing Package</span>
                 <span aria-hidden="true">&#8599;</span>
               </a>
               <a
-                href={getServiceWhatsAppHref("cad-technical-production", "india")}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex min-h-[46px] items-center gap-2 rounded-xs border border-rule px-5 text-xs font-medium tracking-tight text-ink transition-colors hover:border-ink hover:bg-surface"
+                href={WHATSAPP.uk.tel}
+                className="inline-flex min-h-[46px] items-center gap-1.5 rounded-xs border border-rule px-4 text-xs font-mono text-ink transition-colors hover:border-ink hover:bg-surface"
+                title="Direct Telephone Line (UK)"
+                aria-label={`Call XIYÀTO UK at ${WHATSAPP.uk.number}`}
               >
-                <span>Direct WhatsApp (India Hub)</span>
-                <span aria-hidden="true">&#8599;</span>
+                <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-ink-muted">
+                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+                </svg>
+                <span>Call UK: {WHATSAPP.uk.number}</span>
               </a>
               <a
-                href={`tel:${WHATSAPP.uk.number.replace(/\s+/g, "")}`}
-                className="inline-flex min-h-[46px] items-center gap-1.5 rounded-xs border border-rule px-4 text-xs font-mono text-ink-muted transition-colors hover:border-ink hover:text-ink"
-                title="Direct Telephone Line"
+                href={WHATSAPP.india.tel}
+                className="inline-flex min-h-[46px] items-center gap-1.5 rounded-xs border border-rule px-4 text-xs font-mono text-ink-muted transition-colors hover:border-ink hover:bg-surface"
+                title="Direct Technical Production Line (India Hub)"
+                aria-label={`Call XIYÀTO India at ${WHATSAPP.india.number}`}
               >
-                <span>Call: {WHATSAPP.uk.number}</span>
+                <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-ink-muted">
+                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+                </svg>
+                <span>Call India Hub: {WHATSAPP.india.number}</span>
               </a>
               <Link
                 href="/contact"

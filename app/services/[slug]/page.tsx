@@ -18,6 +18,16 @@ import { pageMetadata, serviceSchema, breadcrumbSchema } from "@/lib/seo";
 import { SERVICE_SEO } from "@/lib/seo-copy";
 import { getServiceWhatsAppHref, WHATSAPP } from "@/lib/site";
 
+
+const SERVICE_ACTION_LABELS: Record<string, string> = {
+  "cad-technical-production": "Discuss a Drawing Package",
+  "growth-marketing-b2b": "Discuss a Market Research Brief",
+  "visualisation-image-production": "Discuss a Rendering Project",
+  "video-ai-film-editing": "Discuss a Film / CGI Project",
+  "automation-workflow-systems": "Discuss Your Workflow",
+  "website-design-development": "Discuss a Website Project",
+};
+
 export function generateStaticParams() {
   return SERVICES.map((s) => ({ slug: s.slug }));
 }
@@ -88,32 +98,49 @@ export default async function ServicePage({
             <p className="mt-7 text-lg leading-relaxed text-ink-soft">{service.summary}</p>
 
             {/* Direct Inbound Acquisition Action Bar */}
-            <div className="mt-8 flex flex-wrap items-center gap-3">
+            <div className="mt-8 flex flex-wrap items-center gap-2.5">
               <a
                 href={getServiceWhatsAppHref(service.slug, "uk")}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex min-h-[46px] items-center gap-2 rounded-xs bg-ink px-6 text-xs font-semibold tracking-tight text-paper transition-colors hover:bg-accent"
+                aria-label={`WhatsApp XIYÀTO UK regarding ${service.name}`}
               >
-                <span>Direct WhatsApp (UK)</span>
+                <span>{SERVICE_ACTION_LABELS[service.slug] ?? "Start on WhatsApp"}</span>
                 <span aria-hidden="true">&#8599;</span>
               </a>
+
               <a
-                href={getServiceWhatsAppHref(service.slug, "india")}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex min-h-[46px] items-center gap-2 rounded-xs border border-rule px-5 text-xs font-medium tracking-tight text-ink transition-colors hover:border-ink hover:bg-surface"
+                href={WHATSAPP.uk.tel}
+                className="inline-flex min-h-[46px] items-center gap-1.5 rounded-xs border border-rule px-4 text-xs font-mono text-ink transition-colors hover:border-ink hover:bg-surface"
+                title="Direct Telephone Line (UK)"
+                aria-label={`Call XIYÀTO UK at ${WHATSAPP.uk.number}`}
               >
-                <span>Direct WhatsApp (India)</span>
-                <span aria-hidden="true">&#8599;</span>
+                <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-ink-muted">
+                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+                </svg>
+                <span>Call UK: {WHATSAPP.uk.number}</span>
               </a>
+
               <a
-                href={`tel:${WHATSAPP.uk.number.replace(/\s+/g, "")}`}
-                className="inline-flex min-h-[46px] items-center gap-1.5 rounded-xs border border-rule px-4 text-xs font-mono text-ink-muted transition-colors hover:border-ink hover:text-ink"
-                title="Direct Telephone Line"
+                href={WHATSAPP.india.tel}
+                className="inline-flex min-h-[46px] items-center gap-1.5 rounded-xs border border-rule px-4 text-xs font-mono text-ink-muted transition-colors hover:border-ink hover:bg-surface"
+                title="Direct Technical Production Line (India)"
+                aria-label={`Call XIYÀTO India at ${WHATSAPP.india.number}`}
               >
-                <span>Call: {WHATSAPP.uk.number}</span>
+                <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-ink-muted">
+                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+                </svg>
+                <span>Call India: {WHATSAPP.india.number}</span>
               </a>
+
+              <Link
+                href="/contact"
+                className="inline-flex min-h-[46px] items-center gap-1.5 rounded-xs border border-rule px-4 text-xs font-medium text-ink-muted transition-colors hover:border-ink hover:text-ink"
+              >
+                <span>Detailed brief</span>
+                <span aria-hidden="true">&rarr;</span>
+              </Link>
             </div>
           </div>
         </Container>

@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { PRIMARY_NAV, PRIMARY_CTA, SITE, DIRECT_CHANNELS, publishedChannels } from "@/lib/site";
+import { PRIMARY_NAV, PRIMARY_CTA, SITE, DIRECT_CHANNELS, publishedChannels, WHATSAPP } from "@/lib/site";
 
 const FOCUSABLE =
   'a[href], button:not([disabled]), input, [tabindex]:not([tabindex="-1"])';
@@ -207,17 +207,27 @@ export function MobileNav() {
                 })}
               </ul>
 
-              <a
-                href={PRIMARY_CTA.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-8 flex min-h-[52px] w-full items-center justify-center gap-2 rounded-xs bg-ink px-6 text-sm font-medium tracking-tight text-paper transition-colors hover:bg-accent"
-              >
-                {PRIMARY_CTA.label}
-                <span aria-hidden="true" className="text-xs">
-                  &#8599;
-                </span>
-              </a>
+              <div className="mt-8 grid grid-cols-2 gap-2">
+                <a
+                  href={WHATSAPP.uk.tel}
+                  className="flex min-h-[50px] w-full items-center justify-center gap-1.5 rounded-xs border border-rule-strong bg-surface px-3 text-xs font-semibold tracking-tight text-ink transition-colors active:bg-paper-deep"
+                  aria-label={`Call XIYÀTO UK at ${WHATSAPP.uk.number}`}
+                >
+                  <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-ink-muted">
+                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+                  </svg>
+                  <span>Call UK</span>
+                </a>
+                <a
+                  href={PRIMARY_CTA.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex min-h-[50px] w-full items-center justify-center gap-1.5 rounded-xs bg-ink px-3 text-xs font-semibold tracking-tight text-paper transition-colors hover:bg-accent"
+                >
+                  <span>WhatsApp</span>
+                  <span aria-hidden="true" className="text-xs">&#8599;</span>
+                </a>
+              </div>
 
               <Link
                 href="/contact"
