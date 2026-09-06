@@ -203,13 +203,13 @@ export default function MiddleEastMarketIntelligencePage() {
           <div className="mt-10 grid gap-6 sm:grid-cols-2">
             <div className="rounded-lg border border-rule bg-surface p-6">
               <span className="label text-[0.625rem]">UAE & GCC Fit-Out</span>
-              <h3 className="display mt-2 text-xl">GCC Luxury Interior Design & Fit-Out Decision Makers</h3>
+              <h3 className="display mt-2 text-xl">Middle East Luxury Interior Fit-Out Decision Makers</h3>
               <p className="mt-2 text-xs leading-relaxed text-ink-muted">
                 100+ verified corporate entities across Dubai, Abu Dhabi, Riyadh, and Doha covering high-end residential fit-out, hospitality operators, and interior architecture principals.
               </p>
               <div className="mt-6">
                 <Link
-                  href="/work/research/gcc-interior-design-decision-makers"
+                  href="/work/research/middle-east-interiors-fitout-whatsapp-expanded"
                   className="inline-flex min-h-[40px] items-center gap-1.5 text-xs font-semibold text-ink hover:text-accent"
                 >
                   <span>Explore Interactive Workbook</span>
@@ -218,14 +218,14 @@ export default function MiddleEastMarketIntelligencePage() {
               </div>
             </div>
             <div className="rounded-lg border border-rule bg-surface p-6">
-              <span className="label text-[0.625rem]">UAE Commercial Contracting</span>
-              <h3 className="display mt-2 text-xl">UAE Commercial Fit-Out Contractors Intelligence</h3>
+              <span className="label text-[0.625rem]">Middle East Procurement</span>
+              <h3 className="display mt-2 text-xl">Middle East Commercial Procurement & Electronics Leads</h3>
               <p className="mt-2 text-xs leading-relaxed text-ink-muted">
-                Verified general contractors, turnkey interior specialists, and joinery manufacturers handling commercial office, retail, and hotel developments across the Emirates.
+                Verified procurement directors, trade specialists, and commercial buyers handling high-ticket installations across the GCC.
               </p>
               <div className="mt-6">
                 <Link
-                  href="/work/research/uae-commercial-fitout-contractors"
+                  href="/work/research/electronics-middle-east-selected-leads"
                   className="inline-flex min-h-[40px] items-center gap-1.5 text-xs font-semibold text-ink hover:text-accent"
                 >
                   <span>Explore Interactive Workbook</span>

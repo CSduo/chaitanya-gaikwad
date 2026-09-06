@@ -220,7 +220,7 @@ export default function PhotorealisticFurnitureRenderingPage() {
             </div>
             <div className="mt-8 flex flex-wrap items-center gap-4">
               <Link
-                href="/work/sultanah-moon-chair"
+                href="/work/sultanah-moon-chair-cinematic-campaign"
                 className="inline-flex min-h-[44px] items-center gap-2 rounded-xs bg-ink px-5 text-xs font-semibold text-paper hover:bg-accent"
               >
                 <span>Inspect Sultanah Moon Chair Project</span>

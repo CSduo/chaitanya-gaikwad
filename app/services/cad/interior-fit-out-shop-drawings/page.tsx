@@ -220,7 +220,7 @@ export default function InteriorFitOutShopDrawingsPage() {
             </div>
             <div className="mt-8 flex flex-wrap items-center gap-4">
               <Link
-                href="/work/bahrain-luxury-residence"
+                href="/work/bahrain-luxury-interior-cad-package"
                 className="inline-flex min-h-[44px] items-center gap-2 rounded-xs bg-ink px-5 text-xs font-semibold text-paper hover:bg-accent"
               >
                 <span>Inspect Full 20-Sheet CAD Case Study</span>
