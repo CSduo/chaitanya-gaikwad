@@ -17,63 +17,48 @@ export function PrivacyContent() {
 
       <h2>What this website collects</h2>
       <p>
-        This website collects information in one place: the enquiry forms on the contact and
-        careers pages. Nothing is collected automatically as you browse.
+        We collect information through our project enquiry and talent forms, as well as operational telemetry necessary to evaluate inbound commercial enquiries:
       </p>
-      <p>When you submit a project enquiry, you may provide:</p>
+      <p><strong>When you submit a project enquiry, you may provide:</strong></p>
       <ul>
-        <li>Your name and email address, which are required so that we can reply</li>
-        <li>Your company, role, telephone number, country and sector, all optional</li>
-        <li>The service area and timeline you select</li>
-        <li>The project brief you write</li>
+        <li>Your name and business email address (required to respond)</li>
+        <li>Your company, role, telephone number, country, and sector (optional)</li>
+        <li>The service area and delivery timeframe you select</li>
+        <li>Your project brief and description</li>
+        <li>Optional project drawing packages, CAD files, or specification documents (PDF, DWG, DXF, ZIP, images up to 50MB)</li>
       </ul>
-      <p>When you submit to the talent network, you may provide:</p>
+      <p><strong>When you submit to the talent network, you may provide:</strong></p>
       <ul>
-        <li>Your name and email address</li>
-        <li>Your discipline and a link to your portfolio, both optional</li>
-        <li>A description of your work</li>
+        <li>Your name, email address, discipline, and portfolio link</li>
+        <li>A summary of your technical production experience</li>
       </ul>
+      <p><strong>Operational telemetry and attribution:</strong></p>
+      <p>
+        When you arrive via a marketing link or directory listing, campaign identifiers (such as <code>utm_source</code>, <code>utm_medium</code>, and <code>utm_campaign</code>) are read from the URL to identify which channel referred your visit. When you click direct communication links (WhatsApp, telephone, or email), our site logs a first-party event signal to measure channel performance.
+      </p>
 
       <h2>What we do with it</h2>
       <p>
-        Submissions are sent to XIYÀTO by email so that we can read and respond to them. We
-        use the information to reply to your enquiry, to scope work you have asked about, and
-        — for talent submissions — to contact you if a relevant engagement arises.
-      </p>
-      <p>
-        We do not sell your information, we do not share it for advertising, and we do not
-        add you to a marketing list. We do not send newsletters or bulk email.
+        Submissions and attachments are used solely to evaluate project feasibility, provide technical drafting or CGI quotations, and communicate with you about your request. We do not sell your information, we do not share it with advertising networks, and we do not use your details for unsolicited consumer marketing lists.
       </p>
 
       <h2>How it is transmitted and stored</h2>
       <p>
-        Form submissions are transmitted over an encrypted connection and delivered to us
-        through a third-party email delivery provider acting on our instructions. Once
-        delivered, submissions are held in our email account.
+        All communications are encrypted in transit using standard Transport Layer Security (HTTPS). Form submissions are processed through secure server-side pipelines and delivered directly to the studio's operational inboxes.
       </p>
       <p>
-        Project enquiries and talent submissions are routed separately. Candidate submissions
-        are not mixed into the project enquiry pipeline.
+        Project specification files uploaded through the contact form are retained solely for technical assessment during the scoping period and are permanently deleted after 30 days unless an active commercial engagement is commissioned under separate contract.
       </p>
 
-      <h2>How long it is kept</h2>
+      <h2>Browser storage and cookies</h2>
       <p>
-        Enquiries are kept for as long as needed to respond and, where an engagement follows,
-        for the duration of that engagement and our normal business records period
-        afterwards. Talent submissions are kept while they remain relevant. You can ask us to
-        delete your information at any time and we will do so unless we are required to keep
-        it.
-      </p>
-
-      <h2>Cookies and analytics</h2>
-      <p>
-        This website sets no cookies. It runs no analytics, no advertising pixels and no
-        third-party tracking scripts. Nothing is stored in your browser by this site.
+        This website does not set third-party advertising cookies or cross-site tracking pixels.
       </p>
       <p>
-        Web fonts are served from a third-party font provider, which will receive your IP
-        address as part of that request. Our hosting provider keeps standard server access
-        logs for security and operational purposes.
+        To preserve referral attribution while you navigate between pages during a single visit, incoming campaign parameters may be temporarily held in your browser&apos;s session memory (<code>sessionStorage</code>). This data contains no personal identifiers, is never shared with third-party data brokers, and is automatically erased by your browser as soon as the tab or window is closed.
+      </p>
+      <p>
+        Our hosting infrastructure (Vercel) logs standard server access requests (including IP address, user agent, and request path) for infrastructure security, DDoS mitigation, and operational monitoring.
       </p>
 
       <h2>Links to other sites</h2>

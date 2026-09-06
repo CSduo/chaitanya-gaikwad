@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useEffect } from "react";
 
@@ -6,37 +6,84 @@ declare global {
   interface Window {
     dataLayer?: Record<string, unknown>[];
     plausible?: (event: string, options?: { props?: Record<string, unknown> }) => void;
+    gtag?: (command: string, ...args: unknown[]) => void;
   }
 }
 
 /**
  * Universal Inbound Lead Attribution and Telemetry Component.
- * Passively observes commercial conversion interactions (WhatsApp clicks,
- * phone calls, mailto links) and logs structured telemetry for qualified lead attribution.
+ * Observes commercial conversion interactions (WhatsApp clicks,
+ * phone calls, email links, LinkedIn profile clicks, form milestones)
+ * and dispatches structured telemetry to dataLayer / gtag / plausible.
  */
 export function TrackingScripts() {
   useEffect(() => {
-    // 1. Capture and preserve inbound UTM parameters in sessionStorage
+    // 1. Capture and preserve inbound UTM parameters and landing page in sessionStorage
     try {
-      const urlParams = new URLSearchParams(window.location.search);
-      const utmKeys = ["utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content"];
-      const capturedUtm: Record<string, string> = {};
+      if (typeof window !== "undefined" && window.sessionStorage) {
+        if (!sessionStorage.getItem("xiyato_initial_landing")) {
+          sessionStorage.setItem("xiyato_initial_landing", window.location.pathname);
+        }
+        if (!sessionStorage.getItem("xiyato_initial_referrer") && document.referrer) {
+          sessionStorage.setItem("xiyato_initial_referrer", document.referrer);
+        }
 
-      utmKeys.forEach((key) => {
-        const val = urlParams.get(key);
-        if (val) capturedUtm[key] = val;
-      });
+        const urlParams = new URLSearchParams(window.location.search);
+        const utmKeys = ["utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content"];
+        const capturedUtm: Record<string, string> = {};
 
-      if (Object.keys(capturedUtm).length > 0) {
-        sessionStorage.setItem("xiyato_inbound_utm", JSON.stringify(capturedUtm));
+        utmKeys.forEach((key) => {
+          const val = urlParams.get(key);
+          if (val) capturedUtm[key] = val;
+        });
+
+        if (Object.keys(capturedUtm).length > 0) {
+          sessionStorage.setItem("xiyato_inbound_utm", JSON.stringify(capturedUtm));
+        }
       }
     } catch {
-      // Ignore storage restrictions
+      // Storage access restricted or disabled — fail gracefully
     }
+
+    const getAttributionContext = () => {
+      try {
+        const storedUtm = sessionStorage.getItem("xiyato_inbound_utm");
+        const utm = storedUtm ? JSON.parse(storedUtm) : {};
+        return {
+          landing_page: sessionStorage.getItem("xiyato_initial_landing") || window.location.pathname,
+          referrer: sessionStorage.getItem("xiyato_initial_referrer") || document.referrer || "direct",
+          ...utm,
+        };
+      } catch {
+        return {
+          landing_page: window.location.pathname,
+          referrer: document.referrer || "direct",
+        };
+      }
+    };
+
+    const dispatchEvent = (eventName: string, payload: Record<string, unknown>) => {
+      const fullPayload = {
+        event: eventName,
+        ...getAttributionContext(),
+        ...payload,
+        timestamp: new Date().toISOString(),
+      };
+
+      if (window.dataLayer) {
+        window.dataLayer.push(fullPayload);
+      }
+      if (typeof window.gtag === "function") {
+        window.gtag("event", eventName, fullPayload);
+      }
+      if (typeof window.plausible === "function") {
+        window.plausible(eventName, { props: fullPayload });
+      }
+    };
 
     // 2. Global event delegation for conversion links
     const handleGlobalClick = (event: MouseEvent) => {
-      const target = (event.target as HTMLElement)?.closest("a");
+      const target = (event.target as HTMLElement)?.closest("a, button");
       if (!target) return;
 
       const href = target.getAttribute("href") || "";
@@ -48,16 +95,11 @@ export function TrackingScripts() {
         const serviceMatch = href.match(/discuss%20an?%20([^.]+)/i);
         const serviceContext = serviceMatch ? decodeURIComponent(serviceMatch[1]) : "general";
 
-        const payload = {
-          event: "inbound_whatsapp_click",
+        dispatchEvent("inbound_whatsapp_click", {
           country_target: country,
           service_context: serviceContext,
           page_path: window.location.pathname,
-          timestamp: new Date().toISOString(),
-        };
-
-        if (window.dataLayer) window.dataLayer.push(payload);
-        if (window.plausible) window.plausible("WhatsApp Click", { props: payload });
+        });
       }
 
       // B. Telephone Click Tracking
@@ -66,36 +108,87 @@ export function TrackingScripts() {
         const isIndia = phoneNumber.includes("91");
         const territory = isIndia ? "india" : "uk";
 
-        const payload = {
-          event: "inbound_telephone_click",
+        dispatchEvent("inbound_telephone_click", {
           phone_number: phoneNumber,
           territory,
           page_path: window.location.pathname,
-          timestamp: new Date().toISOString(),
-        };
-
-        if (window.dataLayer) window.dataLayer.push(payload);
-        if (window.plausible) window.plausible("Telephone Click", { props: payload });
+        });
       }
 
       // C. Email Click Tracking
       if (href.startsWith("mailto:")) {
         const email = href.replace("mailto:", "").split("?")[0];
-        const payload = {
-          event: "inbound_email_click",
+        dispatchEvent("inbound_email_click", {
           email_address: email,
           page_path: window.location.pathname,
-          timestamp: new Date().toISOString(),
-        };
+        });
+      }
 
-        if (window.dataLayer) window.dataLayer.push(payload);
-        if (window.plausible) window.plausible("Email Click", { props: payload });
+      // D. LinkedIn External Click Tracking
+      if (href.includes("linkedin.com")) {
+        dispatchEvent("linkedin_click", {
+          destination: href,
+          page_path: window.location.pathname,
+        });
+      }
+
+      // E. External Portfolio / Client Link Tracking
+      if (
+        href.startsWith("http") &&
+        !href.includes("xiyato.uk") &&
+        !href.includes("wa.me") &&
+        !href.includes("linkedin.com")
+      ) {
+        dispatchEvent("external_portfolio_click", {
+          destination: href,
+          page_path: window.location.pathname,
+        });
+      }
+
+      // F. Service CTA Internal Clicks
+      if (
+        href === "/contact" ||
+        href.startsWith("/contact?") ||
+        target.getAttribute("data-track") === "service_cta"
+      ) {
+        dispatchEvent("service_cta_click", {
+          cta_label: target.textContent?.trim() || "contact_cta",
+          page_path: window.location.pathname,
+        });
+      }
+    };
+
+    // 3. Form interaction telemetry
+    const handleFormFocus = (event: FocusEvent) => {
+      const target = event.target as HTMLElement;
+      const form = target?.closest("form");
+      if (form && !form.getAttribute("data-started")) {
+        form.setAttribute("data-started", "true");
+        dispatchEvent("project_form_start", {
+          form_id: form.id || "project_contact_form",
+          page_path: window.location.pathname,
+        });
+      }
+    };
+
+    const handleFormSubmit = (event: SubmitEvent) => {
+      const form = event.target as HTMLFormElement;
+      if (form) {
+        dispatchEvent("project_form_submit", {
+          form_id: form.id || "project_contact_form",
+          page_path: window.location.pathname,
+        });
       }
     };
 
     document.addEventListener("click", handleGlobalClick, { passive: true });
+    document.addEventListener("focusin", handleFormFocus, { passive: true });
+    document.addEventListener("submit", handleFormSubmit, { passive: true });
+
     return () => {
       document.removeEventListener("click", handleGlobalClick);
+      document.removeEventListener("focusin", handleFormFocus);
+      document.removeEventListener("submit", handleFormSubmit);
     };
   }, []);
 

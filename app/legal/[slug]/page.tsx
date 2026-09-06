@@ -40,7 +40,7 @@ export async function generateMetadata({
 }
 
 /** Last substantive review of the published legal text. */
-const LAST_UPDATED = "11 August 2026";
+const LAST_UPDATED = "6 September 2026";
 
 export default async function LegalPage({
   params,
