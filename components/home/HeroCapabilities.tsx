@@ -307,7 +307,7 @@ export function HeroCapabilities() {
       onFocusCapture={() => setPaused(true)}
       onBlurCapture={() => setPaused(false)}
     >
-      <div className="relative aspect-[4/3] w-full overflow-hidden rounded-t-lg border border-slate-800 bg-[#0b101c] shadow-2xl sm:aspect-[16/10]">
+      <div className="relative aspect-[4/3] w-full overflow-hidden rounded-t-lg border border-zinc-800 bg-zinc-950 shadow-2xl sm:aspect-[16/10]">
         <div className={index === 0 ? "h-full w-full" : "hidden"}>
           <CadScene active={index === 0} />
         </div>
@@ -332,7 +332,7 @@ export function HeroCapabilities() {
       </div>
 
       {/* Always-visible controls across all six capabilities */}
-      <div className="grid grid-cols-3 gap-px border-x border-b border-slate-800 bg-slate-800/90 rounded-b-lg overflow-hidden lg:grid-cols-6">
+      <div className="grid grid-cols-3 gap-px border-x border-b border-zinc-800 bg-zinc-800/90 rounded-b-lg overflow-hidden lg:grid-cols-6">
         {CAPABILITIES.map((c, i) => {
           const on = i === index;
           return (
@@ -341,15 +341,15 @@ export function HeroCapabilities() {
               type="button"
               onClick={() => setIndex(i)}
               aria-current={on ? "true" : undefined}
-              className={`min-h-[56px] px-2.5 py-3 text-left transition-all ${
+              className={`min-h-[56px] px-2.5 py-3 text-left transition-all cursor-pointer ${
                 on
-                  ? "bg-slate-950 text-white ring-1 ring-sky-400/40"
-                  : "bg-[#0d1424] text-slate-300 hover:bg-[#131d33] hover:text-white"
+                  ? "bg-zinc-950 text-white ring-1 ring-white/20"
+                  : "bg-zinc-900/90 text-zinc-400 hover:bg-zinc-800 hover:text-white"
               }`}
             >
               <span
                 className={`block font-mono text-[0.5625rem] uppercase tracking-[0.12em] ${
-                  on ? "text-sky-400 font-semibold" : "text-slate-400"
+                  on ? "text-white font-semibold" : "text-zinc-500"
                 }`}
               >
                 {c.n} · {c.motif}
@@ -361,16 +361,16 @@ export function HeroCapabilities() {
       </div>
 
       <div className="mt-4 flex flex-wrap items-baseline justify-between gap-x-6 gap-y-2">
-        <p className="text-xs text-slate-400 font-mono" aria-live="polite">
+        <p className="text-xs text-zinc-400 font-mono" aria-live="polite">
           {current.note}
         </p>
         {/* Keeps the visitor on the homepage — jumps to the matching chapter. */}
         <button
           type="button"
           onClick={goToSection}
-          className="group inline-flex min-h-[44px] items-center gap-2 text-xs font-mono font-medium text-sky-400 transition-colors hover:text-sky-300"
+          className="group inline-flex min-h-[44px] items-center gap-2 text-xs font-mono font-medium text-zinc-300 transition-colors hover:text-white cursor-pointer"
         >
-          <span className="underline decoration-slate-700 underline-offset-4 group-hover:decoration-sky-400">
+          <span className="underline decoration-zinc-700 underline-offset-4 group-hover:decoration-white">
             See the work
           </span>
           <span aria-hidden="true" className="transition-transform group-hover:translate-y-0.5">

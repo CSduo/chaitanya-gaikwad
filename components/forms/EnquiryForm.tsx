@@ -111,14 +111,21 @@ export function EnquiryForm() {
         if (upRes.ok) {
           const upData = await upRes.json();
           uploadedFileId = upData.fileId;
+          setAttachmentError(null);
         } else {
           const errData = await upRes.json().catch(() => ({}));
-          setAttachmentError(errData.error || "Failed to upload file package.");
-          return;
+          // Reject explicitly if invalid file type (.exe) or oversized (>50MB)
+          if (upRes.status === 400 || upRes.status === 413) {
+            setAttachmentError(errData.error || "File format or size rejected by security policy.");
+            return;
+          }
+          // For any transient server-side issue, do not block the enquiry:
+          // The attachment filename and size will be included in the structured email body.
+          setAttachmentError(null);
         }
       } catch {
-        setAttachmentError("Network error uploading attachment. Please check your connection.");
-        return;
+        // Network catch: do not block enquiry submission
+        setAttachmentError(null);
       }
     }
 

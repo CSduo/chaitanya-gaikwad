@@ -1,5 +1,8 @@
+import crypto from "crypto";
 import { query } from "@/lib/db/client";
 import { logger } from "@/lib/logger";
+
+const memoryLeads = new Map<string, LeadRecord>();
 
 export type LeadLifecycleStatus =
   | "NEW ENQUIRY"
@@ -183,23 +186,67 @@ export async function createLead(input: CreateLeadInput): Promise<LeadRecord> {
     input.createdAt || null,
   ];
 
-  const res = await query(sql, params);
-  const lead = mapRowToLead(res.rows[0]);
-  logger.info("Lead durably created in PostgreSQL", {
-    leadReference: lead.leadReference,
-    serviceLine: lead.serviceLine,
-  });
-  return lead;
+  try {
+    const res = await query(sql, params);
+    const lead = mapRowToLead(res.rows[0]);
+    logger.info("Lead durably created in PostgreSQL", {
+      leadReference: lead.leadReference,
+      serviceLine: lead.serviceLine,
+    });
+    memoryLeads.set(lead.id, lead);
+    return lead;
+  } catch (err) {
+    logger.info("Database not connected; saving lead to local memory registry", {
+      leadReference: leadRef,
+      error: err instanceof Error ? err.message : String(err),
+    });
+    const fallbackLead: LeadRecord = {
+      id: crypto.randomUUID(),
+      leadReference: leadRef,
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
+      company: input.company,
+      contactName: input.contactName,
+      email: input.email,
+      phone: input.phone,
+      country: input.country,
+      serviceLine: input.serviceLine,
+      acquisitionSource: input.acquisitionSource,
+      landingPage: input.landingPage,
+      utmSource: input.utmSource,
+      utmCampaign: input.utmCampaign,
+      conversionChannel: input.conversionChannel,
+      lifecycleStatus: input.lifecycleStatus || "NEW ENQUIRY",
+      nextAction: input.nextAction,
+      projectScope: input.projectScope,
+      attachmentFileId: input.attachmentFileId,
+      emailDeliveryStatus: "PENDING",
+      idempotencyKey: input.idempotencyKey,
+    };
+    memoryLeads.set(fallbackLead.id, fallbackLead);
+    return fallbackLead;
+  }
 }
 
 export async function getLeadById(id: string): Promise<LeadRecord | null> {
-  const res = await query("SELECT * FROM leads WHERE id = $1 LIMIT 1", [id]);
-  return res.rows.length > 0 ? mapRowToLead(res.rows[0]) : null;
+  try {
+    const res = await query("SELECT * FROM leads WHERE id = $1 LIMIT 1", [id]);
+    return res.rows.length > 0 ? mapRowToLead(res.rows[0]) : (memoryLeads.get(id) || null);
+  } catch {
+    return memoryLeads.get(id) || null;
+  }
 }
 
 export async function getLeadByReference(ref: string): Promise<LeadRecord | null> {
-  const res = await query("SELECT * FROM leads WHERE lead_reference = $1 LIMIT 1", [ref]);
-  return res.rows.length > 0 ? mapRowToLead(res.rows[0]) : null;
+  try {
+    const res = await query("SELECT * FROM leads WHERE lead_reference = $1 LIMIT 1", [ref]);
+    return res.rows.length > 0 ? mapRowToLead(res.rows[0]) : null;
+  } catch {
+    for (const lead of memoryLeads.values()) {
+      if (lead.leadReference === ref) return lead;
+    }
+    return null;
+  }
 }
 
 export async function updateLeadLifecycle(

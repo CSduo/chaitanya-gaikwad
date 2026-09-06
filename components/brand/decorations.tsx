@@ -275,16 +275,22 @@ export function ServiceMotif({
 export function ArchitecturalHeroBackground({ className = "" }: { className?: string }) {
   return (
     <div
-      className={`pointer-events-none absolute inset-0 select-none overflow-hidden ${className}`}
+      className={`deco pointer-events-none absolute inset-0 select-none overflow-hidden ${className}`}
       aria-hidden="true"
     >
-      {/* 1. Fine White Technical Drafting Grid */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.04)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.04)_1px,transparent_1px)] bg-[size:2.5rem_2.5rem] [mask-image:radial-gradient(ellipse_95%_95%_at_50%_45%,#000_75%,transparent_100%)]" />
+      {/* 1. Fine Technical Drafting Grid (Crisp and visible against dark backdrop) */}
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.11)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.11)_1px,transparent_1px)] bg-[size:32px_32px]" />
 
-      {/* 2. Major Structural Grid Lines */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.07)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.07)_1px,transparent_1px)] bg-[size:10rem_10rem] [mask-image:radial-gradient(ellipse_90%_90%_at_50%_40%,#000_65%,transparent_100%)]" />
+      {/* 2. Major Structural Grid (160px modules with high-contrast lines) */}
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.22)_1.5px,transparent_1.5px),linear-gradient(to_bottom,rgba(255,255,255,0.22)_1.5px,transparent_1.5px)] bg-[size:160px_160px]" />
 
-      {/* 3. Interior Architecture Vector Schematics */}
+      {/* 3. Subtle ambient glow to lift the architectural blueprint linework */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(255,255,255,0.06)_0%,transparent_60%)]" />
+
+      {/* 4. Text legibility veil (softens lines directly under copy without dimming background) */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_22%_45%,rgba(0,0,0,0.55)_0%,transparent_70%)]" />
+
+      {/* 5. Complete Architectural Blueprint Linework System */}
       <svg
         viewBox="0 0 1600 900"
         preserveAspectRatio="xMidYMid slice"
@@ -292,171 +298,174 @@ export function ArchitecturalHeroBackground({ className = "" }: { className?: st
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
       >
-        {/* ── A. CONCENTRIC CALIBRATION ARCS (center-right) ── */}
-        <g stroke="white" opacity="0.18" strokeWidth="0.7">
-          <circle cx="1200" cy="250" r="80" strokeDasharray="3 3" />
-          <circle cx="1200" cy="250" r="170" strokeWidth="0.5" />
-          <circle cx="1200" cy="250" r="280" strokeDasharray="4 6" />
-          <circle cx="1200" cy="250" r="400" strokeWidth="0.35" />
-          {/* Cardinal axes */}
-          <line x1="1200" y1="0" x2="1200" y2="900" strokeDasharray="2 4" strokeWidth="0.5" />
-          <line x1="700" y1="250" x2="1600" y2="250" strokeDasharray="2 4" strokeWidth="0.5" />
+        {/* ── DRAWING SHEET BORDER & COORDINATE MARGIN (RIBA / AIA Format) ── */}
+        <g stroke="white" strokeWidth="1.5" opacity="0.45">
+          <rect x="24" y="24" width="1552" height="852" />
+          <rect x="30" y="30" width="1540" height="840" strokeWidth="0.75" strokeDasharray="6 6" />
         </g>
 
-        {/* ── B. DOWNLIGHT FIXTURE & 38° PHOTOMETRIC CONE ── */}
-        <g stroke="white" opacity="0.25" strokeWidth="0.7">
-          <circle cx="1200" cy="250" r="5" strokeWidth="1" />
-          <circle cx="1200" cy="250" r="2" fill="white" fillOpacity="0.9" stroke="none" />
-          <line x1="1200" y1="250" x2="1080" y2="430" strokeDasharray="2 3" strokeWidth="0.6" />
-          <line x1="1200" y1="250" x2="1320" y2="430" strokeDasharray="2 3" strokeWidth="0.6" />
-          <path d="M 1095 410 A 160 160 0 0 0 1305 410" strokeDasharray="3 3" strokeWidth="0.5" />
-          <text x="1215" y="243" fontFamily="monospace" fontSize="8" fill="white" fillOpacity="0.65" letterSpacing="0.1em" stroke="none">
-            ⊕ DL-01 · 38°
-          </text>
-        </g>
-
-        {/* ── C. MINIMALIST INTERIOR LOUNGE PLAN (center-right) ── */}
-        <g stroke="white" opacity="0.22" strokeWidth="0.8">
-          {/* Room boundary */}
-          <rect x="920" y="300" width="520" height="320" strokeDasharray="8 4" />
-          <text x="940" y="325" fontFamily="monospace" fontSize="9" fill="white" fillOpacity="0.8" letterSpacing="0.14em" fontWeight="bold" stroke="none">
-            SALON 01 · BESPOKE LIVING
-          </text>
-
-          {/* Curved sofa plan */}
-          <rect x="970" y="370" width="260" height="80" rx="10" strokeWidth="1" />
-          <line x1="1050" y1="370" x2="1050" y2="450" strokeWidth="0.5" />
-          <line x1="1150" y1="370" x2="1150" y2="450" strokeWidth="0.5" />
-          <path d="M 978 390 Q 1100 385 1222 390" strokeDasharray="2 2" strokeWidth="0.5" />
-          <text x="1100" y="415" textAnchor="middle" fontFamily="monospace" fontSize="7" fill="white" fillOpacity="0.55" letterSpacing="0.1em" stroke="none">
-            CURVED MODULE · 2600
-          </text>
-
-          {/* Coffee table */}
-          <rect x="1020" y="490" width="140" height="55" rx="3" strokeWidth="0.9" />
-          <text x="1090" y="522" textAnchor="middle" fontFamily="monospace" fontSize="7" fill="white" fillOpacity="0.5" letterSpacing="0.1em" stroke="none">
-            TRAVERTINE
-          </text>
-
-          {/* Accent chairs */}
-          <rect x="1290" y="375" width="70" height="70" rx="14" strokeWidth="0.9" />
-          <circle cx="1325" cy="410" r="20" strokeDasharray="2 3" strokeWidth="0.5" />
-          <rect x="1290" y="475" width="70" height="70" rx="14" strokeWidth="0.9" />
-          <circle cx="1325" cy="510" r="20" strokeDasharray="2 3" strokeWidth="0.5" />
-
-          {/* Floor hatching */}
-          <line x1="920" y1="420" x2="1440" y2="420" strokeWidth="0.25" strokeDasharray="2 5" opacity="0.4" />
-          <line x1="920" y1="500" x2="1440" y2="500" strokeWidth="0.25" strokeDasharray="2 5" opacity="0.4" />
-          <line x1="920" y1="560" x2="1440" y2="560" strokeWidth="0.25" strokeDasharray="2 5" opacity="0.4" />
-          <line x1="1060" y1="300" x2="1060" y2="620" strokeWidth="0.25" strokeDasharray="2 5" opacity="0.4" />
-          <line x1="1260" y1="300" x2="1260" y2="620" strokeWidth="0.25" strokeDasharray="2 5" opacity="0.4" />
-
-          {/* Sofa dimension line */}
-          <line x1="970" y1="345" x2="1230" y2="345" strokeWidth="0.6" />
-          <line x1="970" y1="339" x2="970" y2="351" strokeWidth="0.6" />
-          <line x1="1230" y1="339" x2="1230" y2="351" strokeWidth="0.6" />
-          <text x="1100" y="340" textAnchor="middle" fontFamily="monospace" fontSize="7" fill="white" fillOpacity="0.7" stroke="none">
-            2,600 mm
-          </text>
-        </g>
-
-        {/* ── D. WALL JOINERY ELEVATION (bottom-right) ── */}
-        <g stroke="white" opacity="0.2" strokeWidth="0.7">
-          <rect x="920" y="660" width="520" height="170" />
-          <text x="940" y="652" fontFamily="monospace" fontSize="8" fill="white" fillOpacity="0.7" letterSpacing="0.12em" stroke="none">
-            ELEVATION E-01 · ACOUSTIC SLAT DETAIL
-          </text>
-
-          {/* Fluted timber slats */}
-          {Array.from({ length: 20 }, (_, i) => 950 + i * 20).map((x, i) => (
-            <line
-              key={x}
-              x1={x}
-              y1="660"
-              x2={x}
-              y2={i > 12 ? 760 : 830}
-              strokeWidth={i % 3 === 0 ? "0.7" : "0.35"}
-              strokeDasharray={i % 5 === 0 ? "4 2" : "none"}
-            />
+        {/* Border Grid Reference Indices */}
+        <g fill="white" opacity="0.6" fontFamily="monospace" fontSize="9" textAnchor="middle">
+          {["A", "B", "C", "D", "E", "F", "G", "H"].map((letter, i) => (
+            <text key={letter} x={100 + i * 200} y="18">{letter}</text>
           ))}
-
-          {/* Floating credenza */}
-          <rect x="1230" y="760" width="190" height="45" rx="2" strokeWidth="0.9" />
-          <line x1="1325" y1="760" x2="1325" y2="805" strokeWidth="0.5" />
-          <text x="1325" y="787" textAnchor="middle" fontFamily="monospace" fontSize="7" fill="white" fillOpacity="0.6" letterSpacing="0.1em" stroke="none">
-            C-01 FLOATING · 1900
-          </text>
-
-          {/* Shadow gap line */}
-          <line x1="920" y1="675" x2="1440" y2="675" strokeDasharray="2 2" strokeWidth="0.4" />
+          {[1, 2, 3, 4, 5, 6].map((num, i) => (
+            <text key={num} x="16" y={100 + i * 140}>{num}</text>
+          ))}
         </g>
 
-        {/* ── E. ELEVATION DATUMS (right margin) ── */}
-        <g stroke="white" opacity="0.3" strokeWidth="0.7" fontFamily="monospace" fontSize="8" letterSpacing="0.08em" fill="white">
-          <line x1="1470" y1="300" x2="1490" y2="300" />
-          <line x1="1490" y1="300" x2="1498" y2="292" />
-          <text x="1505" y="296" stroke="none">▽ +3.200 CEILING</text>
-
-          <line x1="1470" y1="470" x2="1490" y2="470" />
-          <line x1="1490" y1="470" x2="1498" y2="462" />
-          <text x="1505" y="466" stroke="none">▽ +2.400 JOINERY</text>
-
-          <line x1="1470" y1="660" x2="1490" y2="660" />
-          <line x1="1490" y1="660" x2="1498" y2="652" />
-          <text x="1505" y="656" stroke="none">▽ +0.900 COUNTER</text>
-
-          <line x1="1470" y1="830" x2="1490" y2="830" />
-          <line x1="1490" y1="830" x2="1498" y2="822" />
-          <text x="1505" y="826" stroke="none">▽ +0.000 FFL</text>
-        </g>
-
-        {/* ── F. STRUCTURAL AXIS BUBBLES (top) ── */}
-        <g stroke="white" opacity="0.25" strokeWidth="0.6" fontFamily="monospace" fontSize="9" textAnchor="middle" fill="white">
-          {[160, 480, 800, 1120, 1440].map((cx, i) => (
+        {/* ── TOP STRUCTURAL AXIS BUBBLES & DIMENSION CHAIN (Clear of brand title) ── */}
+        <g stroke="white" opacity="0.6" strokeWidth="1" fontFamily="monospace" fontSize="10" textAnchor="middle" fill="white">
+          {[360, 580, 800, 1020, 1240, 1460].map((cx, i) => (
             <g key={cx}>
-              <circle cx={cx} cy="45" r="10" />
-              <text x={cx} y="49" stroke="none">{String.fromCharCode(65 + i)}</text>
+              <circle cx={cx} cy="36" r="11" strokeWidth="1.2" fill="rgba(0,0,0,0.8)" />
+              <text x={cx} y="40" stroke="none" fontWeight="bold">{String.fromCharCode(67 + i)}</text>
+              <line x1={cx} y1="47" x2={cx} y2="900" strokeDasharray="4 8" strokeWidth="0.5" opacity="0.25" />
             </g>
           ))}
-          {/* Span dimension */}
-          <line x1="160" y1="70" x2="1440" y2="70" strokeDasharray="3 3" />
-          <line x1="160" y1="63" x2="160" y2="77" />
-          <line x1="1440" y1="63" x2="1440" y2="77" />
-          <text x="800" y="65" stroke="none" fontSize="7.5" letterSpacing="0.16em">
-            ENVELOPE: 24,000mm
+          {/* Top Span Dimension String */}
+          <line x1="360" y1="56" x2="1460" y2="56" strokeWidth="0.8" />
+          {[360, 580, 800, 1020, 1240, 1460].map(x => (
+            <g key={x}>
+              <line x1={x - 4} y1="52" x2={x + 4} y2="60" strokeWidth="1.2" />
+            </g>
+          ))}
+          <text x="470" y="52" stroke="none" fontSize="8">4,800</text>
+          <text x="690" y="52" stroke="none" fontSize="8">4,800</text>
+          <text x="910" y="52" stroke="none" fontSize="8">4,800</text>
+          <text x="1130" y="52" stroke="none" fontSize="8">4,800</text>
+          <text x="1350" y="52" stroke="none" fontSize="8">4,800</text>
+        </g>
+
+        {/* ── LEFT MARGIN ELEVATION DATUMS ── */}
+        <g stroke="white" opacity="0.75" strokeWidth="1" fontFamily="monospace" fontSize="10" fill="white">
+          {/* Datum 1: Ceiling */}
+          <line x1="40" y1="140" x2="90" y2="140" strokeWidth="1.2" />
+          <polygon points="90,140 102,132 102,140" fill="white" stroke="none" />
+          <text x="110" y="136" stroke="none">▽ +3.400 CEILING DATUM</text>
+          <line x1="102" y1="140" x2="520" y2="140" strokeDasharray="3 4" strokeWidth="0.5" opacity="0.4" />
+
+          {/* Datum 2: High Level Joinery */}
+          <line x1="40" y1="280" x2="90" y2="280" strokeWidth="1.2" />
+          <polygon points="90,280 102,272 102,280" fill="white" stroke="none" />
+          <text x="110" y="276" stroke="none">▽ +2.400 DOOR HEAD &amp; JOINERY</text>
+          <line x1="102" y1="280" x2="520" y2="280" strokeDasharray="3 4" strokeWidth="0.5" opacity="0.4" />
+
+          {/* Datum 3: Worksurface / Counter */}
+          <line x1="40" y1="460" x2="90" y2="460" strokeWidth="1.2" />
+          <polygon points="90,460 102,452 102,460" fill="white" stroke="none" />
+          <text x="110" y="456" stroke="none">▽ +0.900 WORK SURFACE DATUM</text>
+          <line x1="102" y1="460" x2="520" y2="460" strokeDasharray="3 4" strokeWidth="0.5" opacity="0.4" />
+
+          {/* Datum 4: Finished Floor Level */}
+          <line x1="40" y1="620" x2="90" y2="620" strokeWidth="1.5" />
+          <polygon points="90,620 102,612 102,620" fill="white" stroke="none" />
+          <text x="110" y="616" stroke="none" fontWeight="bold">▽ ±0.000 FINISHED FLOOR LEVEL (FFL)</text>
+          <line x1="102" y1="620" x2="700" y2="620" strokeWidth="0.8" opacity="0.5" />
+
+          {/* Datum 5: Structural Slab */}
+          <line x1="40" y1="680" x2="90" y2="680" strokeWidth="1" />
+          <polygon points="90,680 102,672 102,680" fill="white" stroke="none" />
+          <text x="110" y="676" stroke="none" opacity="0.8">▽ -0.300 STRUCTURAL CONCRETE SLAB</text>
+          <line x1="102" y1="680" x2="520" y2="680" strokeDasharray="4 4" strokeWidth="0.5" opacity="0.3" />
+        </g>
+
+        {/* ── LEFT & CENTER: REAL ARCHITECTURAL FLOOR PLAN & SECTION SCHEMATICS ── */}
+        <g stroke="white" opacity="0.55" strokeWidth="1.2">
+          {/* Wall Section & Hatching (behind headline area) */}
+          <rect x="70" y="720" width="460" height="28" strokeWidth="1.4" />
+          <line x1="70" y1="734" x2="530" y2="734" strokeWidth="0.6" strokeDasharray="2 2" />
+          {Array.from({ length: 23 }, (_, i) => 80 + i * 20).map(x => (
+            <line key={x} x1={x} y1="720" x2={x + 10} y2="748" strokeWidth="0.75" />
+          ))}
+          <text x="80" y="712" fontFamily="monospace" fontSize="9" fill="white" stroke="none" letterSpacing="0.14em">
+            WALL DETAIL W-04 · 250mm ACOUSTIC CAVITY PARTITION
+          </text>
+
+          {/* Architectural Door Swing */}
+          <line x1="440" y1="620" x2="520" y2="620" strokeWidth="2" />
+          <line x1="440" y1="620" x2="440" y2="540" strokeWidth="1.5" />
+          <path d="M 520 620 A 80 80 0 0 0 440 540" strokeDasharray="4 4" strokeWidth="1" />
+          <text x="450" y="585" fontFamily="monospace" fontSize="8" fill="white" stroke="none">D-01 · 900</text>
+
+          {/* Window Fenestration Assembly */}
+          <rect x="560" y="614" width="160" height="12" strokeWidth="1.2" />
+          <line x1="560" y1="620" x2="720" y2="620" strokeWidth="0.8" />
+          <text x="640" y="605" textAnchor="middle" fontFamily="monospace" fontSize="8" fill="white" stroke="none">
+            W-03 DOUBLE GLAZED MULLION
           </text>
         </g>
 
-        {/* ── G. REGISTRATION CROSSHAIRS ── */}
+        {/* ── ARCHITECTURAL RADIAL CALIBRATION & ISOMETRIC GRIDS ── */}
+        <g stroke="white" opacity="0.45" strokeWidth="1">
+          {/* Concentric Geometry Rings */}
+          <circle cx="1180" cy="220" r="120" strokeDasharray="6 6" strokeWidth="0.8" />
+          <circle cx="1180" cy="220" r="240" strokeWidth="0.6" />
+          <circle cx="1180" cy="220" r="380" strokeDasharray="8 8" strokeWidth="0.5" />
+          <circle cx="1180" cy="220" r="8" strokeWidth="1.5" />
+          <circle cx="1180" cy="220" r="3" fill="white" stroke="none" />
+
+          {/* Radial Angle Rays */}
+          <line x1="900" y1="220" x2="1460" y2="220" strokeDasharray="4 4" strokeWidth="0.8" />
+          <line x1="1180" y1="0" x2="1180" y2="500" strokeDasharray="4 4" strokeWidth="0.8" />
+          <line x1="1010" y1="50" x2="1350" y2="390" strokeDasharray="3 5" strokeWidth="0.6" />
+          <line x1="1010" y1="390" x2="1350" y2="50" strokeDasharray="3 5" strokeWidth="0.6" />
+
+          <text x="1195" y="212" fontFamily="monospace" fontSize="9" fill="white" stroke="none" letterSpacing="0.14em">
+            GEOMETRIC ORIGIN · AXIS 04-D
+          </text>
+        </g>
+
+        {/* ── REGISTRATION TARGET CROSSHAIRS (Precision Technical Stamps) ── */}
         {[
-          [160, 220], [480, 160], [800, 280],
-          [280, 640], [620, 780], [920, 830], [1440, 830],
+          [80, 100], [480, 100], [800, 100],
+          [80, 480], [380, 480], [740, 480],
+          [80, 800], [540, 800], [920, 800], [1480, 800],
         ].map(([x, y], i) => (
-          <g key={i} stroke="white" strokeWidth="0.8" opacity="0.3">
-            <line x1={x - 8} y1={y} x2={x + 8} y2={y} />
-            <line x1={x} y1={y - 8} x2={x} y2={y + 8} />
-            <circle cx={x} cy={y} r="1.5" fill="white" fillOpacity="0.7" stroke="none" />
+          <g key={i} stroke="white" strokeWidth="1.2" opacity="0.6">
+            <line x1={x - 12} y1={y} x2={x + 12} y2={y} />
+            <line x1={x} y1={y - 12} x2={x} y2={y + 12} />
+            <circle cx={x} cy={y} r="5" strokeWidth="0.8" />
+            <circle cx={x} cy={y} r="1.5" fill="white" stroke="none" />
           </g>
         ))}
 
-        {/* ── H. ISOMETRIC PERSPECTIVE GUIDES (bottom-left) ── */}
-        <g stroke="white" strokeWidth="0.45" strokeDasharray="2 5" opacity="0.12">
-          <line x1="0" y1="600" x2="500" y2="250" />
-          <line x1="0" y1="750" x2="650" y2="250" />
-          <line x1="80" y1="900" x2="780" y2="250" />
-        </g>
+        {/* ── TECHNICAL TITLE BLOCK & NORTH ARROW (Bottom Left & Right) ── */}
+        <g stroke="white" opacity="0.75" strokeWidth="1" fontFamily="monospace" fontSize="9" letterSpacing="0.14em" fill="white">
+          {/* North Arrow on Bottom Left */}
+          <circle cx="80" cy="830" r="18" strokeWidth="1.2" />
+          <polygon points="80,816 73,838 80,833 87,838" fill="white" stroke="none" />
+          <text x="80" y="812" textAnchor="middle" stroke="none" fontWeight="bold" fontSize="10">N</text>
+          <text x="110" y="828" stroke="none" fontSize="8" letterSpacing="0.18em">GRID NORTH · 0.00°</text>
+          <text x="110" y="842" stroke="none" fontSize="8" fillOpacity="0.7">COORD: 51°30'26"N 0°07'39"W</text>
 
-        {/* ── I. NORTH ARROW & TITLE BLOCK ── */}
-        <g stroke="white" opacity="0.28" strokeWidth="0.6" fontFamily="monospace" fontSize="8" letterSpacing="0.14em" fill="white">
-          {/* North arrow */}
-          <circle cx="1180" cy="855" r="13" />
-          <polygon points="1180,843 1176,860 1180,856 1184,860" fill="white" fillOpacity="0.5" stroke="none" />
-          <text x="1180" y="839" textAnchor="middle" stroke="none" fontSize="7">N</text>
+          {/* Scale Bar on Bottom Left */}
+          <g transform="translate(320, 825)">
+            <rect x="0" y="0" width="160" height="8" strokeWidth="1" />
+            <rect x="0" y="0" width="40" height="8" fill="white" stroke="none" />
+            <rect x="80" y="0" width="40" height="8" fill="white" stroke="none" />
+            <text x="0" y="-4" stroke="none" fontSize="8">0m</text>
+            <text x="40" y="-4" stroke="none" fontSize="8">1m</text>
+            <text x="80" y="-4" stroke="none" fontSize="8">2m</text>
+            <text x="120" y="-4" stroke="none" fontSize="8">3m</text>
+            <text x="160" y="-4" stroke="none" fontSize="8">4m</text>
+            <text x="80" y="20" textAnchor="middle" stroke="none" fontSize="8">SCALE 1:50 @ A1</text>
+          </g>
 
-          {/* Title block */}
-          <rect x="1210" y="838" width="250" height="40" />
-          <text x="1225" y="853" stroke="none">XIYÀTO · INTERIOR ARCHITECTURE</text>
-          <text x="1225" y="868" stroke="none">DWG IA-01 · SCALE 1:20 · QA</text>
+          {/* Full Architectural RIBA Specification Title Block on Bottom Right */}
+          <g transform="translate(1180, 780)">
+            <rect x="0" y="0" width="370" height="74" strokeWidth="1.5" fill="rgba(0,0,0,0.75)" />
+            <line x1="0" y1="24" x2="370" y2="24" strokeWidth="1" />
+            <line x1="0" y1="48" x2="370" y2="48" strokeWidth="1" />
+            <line x1="220" y1="24" x2="220" y2="74" strokeWidth="1" />
+            
+            <text x="14" y="16" stroke="none" fontWeight="bold" fontSize="10">XIYÀTO · TECHNICAL ARCHITECTURE &amp; PRODUCTION</text>
+            <text x="14" y="38" stroke="none" fontSize="8" fillOpacity="0.9">PROJECT: INTERNATIONAL EXECUTIVE SPECIFICATION</text>
+            <text x="14" y="62" stroke="none" fontSize="8" fillOpacity="0.9">DISCIPLINE: CAD · BIM · JOINERY · 3D · SYSTEMS</text>
+            
+            <text x="230" y="38" stroke="none" fontSize="8">DWG NO: XI-A101</text>
+            <text x="230" y="62" stroke="none" fontSize="8">STATUS: STAGE 4 QA</text>
+          </g>
         </g>
       </svg>
     </div>
