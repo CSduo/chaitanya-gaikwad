@@ -78,7 +78,7 @@ export function organizationSchema() {
     url: SITE.url,
     description: SITE.defaultDescription,
     sameAs: [
-      "https://www.instagram.com/xiyato22",
+      "https://www.instagram.com/xiyato.uk/",
       "https://xiyato.uk",
     ],
     contactPoint: [

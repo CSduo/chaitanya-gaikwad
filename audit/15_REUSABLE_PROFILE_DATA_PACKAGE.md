@@ -166,7 +166,7 @@ Select these industry tags on directory profiles:
 ## 6. Official Social & Portfolio URLs
 
 - **Website**: `https://xiyato.uk/`
-- **Instagram**: `https://www.instagram.com/xiyato22`
+- **Instagram**: `https://www.instagram.com/xiyato.uk/`
 - **Case Study Hub**: `https://xiyato.uk/#capabilities`
 - **Contact Hub**: `https://xiyato.uk/contact`
 - **Founder Profile**: `https://xiyato.uk/company/people`

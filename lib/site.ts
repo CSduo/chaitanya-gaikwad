@@ -146,8 +146,8 @@ export const SOCIAL_CHANNELS: DirectChannel[] = [
   {
     id: "instagram",
     label: "Instagram",
-    value: "@xiyato22",
-    href: "https://www.instagram.com/xiyato22",
+    value: "@xiyato.uk",
+    href: "https://www.instagram.com/xiyato.uk/",
     secondary: false,
   },
 ];
