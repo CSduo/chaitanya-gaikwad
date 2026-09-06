@@ -26,6 +26,21 @@ export default function sitemap(): MetadataRoute.Sitemap {
     lastModified: lastContentUpdate,
   }));
 
+  const subServices: MetadataRoute.Sitemap = [
+    {
+      url: url("/services/cad/interior-fit-out-shop-drawings"),
+      lastModified: lastContentUpdate,
+    },
+    {
+      url: url("/services/growth/middle-east-market-intelligence"),
+      lastModified: lastContentUpdate,
+    },
+    {
+      url: url("/services/visualisation/photorealistic-furniture-rendering"),
+      lastModified: lastContentUpdate,
+    },
+  ];
+
   const work: MetadataRoute.Sitemap = allCaseStudies().map((c) => ({
     url: url(`/work/${c.slug}`),
     lastModified: lastContentUpdate,
@@ -42,5 +57,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     lastModified: lastContentUpdate,
   }));
 
-  return [...core, ...services, ...work, ...research, ...legal];
+  return [...core, ...services, ...subServices, ...work, ...research, ...legal];
 }
