@@ -1,0 +1,52 @@
+{
+  "version": "1.0.0",
+  "description": "XIYÀTO Inbound Lead Lifecycle & Commercial Truth Database",
+  "lifecycleStages": [
+    "NEW ENQUIRY",
+    "REVIEWED",
+    "QUALIFIED",
+    "UNQUALIFIED",
+    "PROPOSAL",
+    "NEGOTIATION",
+    "WON",
+    "LOST"
+  ],
+  "leads": [
+    {
+      "leadId": "XIY-2026-001",
+      "createdDate": "2026-08-15T11:30:00.000Z",
+      "company": "Private Client (Bahrain)",
+      "contactName": "Confidential Principal",
+      "country": "Bahrain",
+      "serviceLine": "cad-technical-production",
+      "acquisitionSource": "Direct Referral / Industry Contact",
+      "landingPage": "/services/cad-technical-production",
+      "utmSource": "direct",
+      "utmCampaign": "organic_referral",
+      "conversionChannel": "whatsapp",
+      "lifecycleStatus": "WON",
+      "nextAction": "Deliverable complete; retain for repeat drawing packages",
+      "estimatedValue": "£4,500",
+      "wonRevenue": "£4,500",
+      "projectScope": "Full interior fit-out CAD package, joinery details, and electrical layouts"
+    },
+    {
+      "leadId": "XIY-2026-002",
+      "createdDate": "2026-08-20T14:15:00.000Z",
+      "company": "Sultanah Luxury Living",
+      "contactName": "Creative Director",
+      "country": "United Kingdom",
+      "serviceLine": "visualisation-image-production",
+      "acquisitionSource": "Portfolio Showcase",
+      "landingPage": "/services/visualisation-image-production",
+      "utmSource": "behance",
+      "utmCampaign": "furniture_cgi",
+      "conversionChannel": "email",
+      "lifecycleStatus": "WON",
+      "nextAction": "Commercial film assets delivered; showcase on Behance & LinkedIn",
+      "estimatedValue": "£6,200",
+      "wonRevenue": "£6,200",
+      "projectScope": "Sultanah Moon Chair 4K cinematic animation and photorealistic studio rendering"
+    }
+  ]
+}

@@ -5,6 +5,7 @@ import {
   formatEnquiry,
   type EnquiryPayload,
 } from "@/lib/enquiry";
+import { saveLead } from "@/lib/crm/leads";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -78,6 +79,26 @@ export async function POST(request: Request) {
 
   const payload = body as EnquiryPayload;
   const isTalent = payload.kind === "talent";
+
+  // Record valid commercial project enquiries in the CRM lifecycle database
+  if (!isTalent) {
+    try {
+      saveLead({
+        contactName: payload.name,
+        company: payload.company || "Direct Client",
+        email: payload.email,
+        country: payload.country || "Not specified",
+        serviceLine: payload.service || "general",
+        acquisitionSource: "Website Inbound Form",
+        landingPage: "/contact",
+        conversionChannel: "form",
+        nextAction: "Review project brief within 1 business day and scope feasibility",
+        projectScope: payload.brief,
+      });
+    } catch (e) {
+      console.error("CRM lead save error:", e);
+    }
+  }
 
   const apiKey = process.env.ENQUIRY_PROVIDER_API_KEY;
   const from = process.env.ENQUIRY_FROM_EMAIL;

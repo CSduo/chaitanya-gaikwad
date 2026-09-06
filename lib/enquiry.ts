@@ -26,6 +26,7 @@ export type EnquiryPayload = {
   discipline?: string;
   attachmentName?: string;
   attachmentSize?: string;
+  fileId?: string;
   // Anti-spam honeypot — must stay empty.
   website?: string;
 };
@@ -113,6 +114,7 @@ export function formatEnquiry(payload: EnquiryPayload): string {
           ["Service", payload.service],
           ["Timeline", payload.timeline],
           ["Attachment", payload.attachmentName ? `${payload.attachmentName} (${payload.attachmentSize ?? "size unknown"})` : undefined],
+          ["File Vault ID", payload.fileId ? `${payload.fileId} (30-day retention window)` : undefined],
         ]
       : [
           ["Type", "Talent network"],

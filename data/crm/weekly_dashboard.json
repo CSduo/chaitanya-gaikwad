@@ -1,0 +1,76 @@
+{
+  "version": "1.0.0",
+  "title": "XIYÀTO Weekly Commercial Acquisition & Revenue Dashboard",
+  "reportingCadence": "Weekly (Monday 00:00 UTC)",
+  "currentWeek": "2026-W36 (1 Sep 2026 - 7 Sep 2026)",
+  "categories": {
+    "TRAFFIC": {
+      "organicSearchClicks": 0,
+      "searchImpressions": 0,
+      "googleAveragePosition": 0,
+      "linkedInPageVisits": 0,
+      "clutchProfileViews": 0,
+      "behanceProjectViews": 0,
+      "totalTrackedVisits": 0
+    },
+    "INBOUND_ENQUIRIES": {
+      "websiteFormSubmissions": 0,
+      "whatsAppInboundClicks": 0,
+      "telephoneInboundClicks": 0,
+      "directEmailInboundClicks": 0,
+      "linkedInServiceRequests": 0,
+      "totalEnquiries": 0
+    },
+    "QUALIFIED_LEADS": {
+      "reviewedEnquiries": 0,
+      "qualifiedCommercialLeads": 0,
+      "unqualifiedOrSpam": 0,
+      "qualificationRatePercent": 0,
+      "activeProposalsSent": 0,
+      "negotiatingContracts": 0
+    },
+    "COMMERCIAL_REVENUE": {
+      "closedWonProjects": 2,
+      "closedWonRevenueGBP": 10700,
+      "pipelineEstimatedValueGBP": 0,
+      "historicalWonRevenueGBP": 10700
+    }
+  },
+  "channelAttributionSummary": [
+    {
+      "channel": "Direct Referral & Industry Network",
+      "inquiries": 1,
+      "qualified": 1,
+      "won": 1,
+      "revenueGBP": 4500
+    },
+    {
+      "channel": "Portfolio Showcase (Behance / Film)",
+      "inquiries": 1,
+      "qualified": 1,
+      "won": 1,
+      "revenueGBP": 6200
+    },
+    {
+      "channel": "Organic Search (Specialist Pages)",
+      "inquiries": 0,
+      "qualified": 0,
+      "won": 0,
+      "revenueGBP": 0
+    },
+    {
+      "channel": "LinkedIn Company / Services",
+      "inquiries": 0,
+      "qualified": 0,
+      "won": 0,
+      "revenueGBP": 0
+    },
+    {
+      "channel": "Clutch / The Manifest",
+      "inquiries": 0,
+      "qualified": 0,
+      "won": 0,
+      "revenueGBP": 0
+    }
+  ]
+}

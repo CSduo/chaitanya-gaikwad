@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import {
   Container,
@@ -208,6 +209,82 @@ export default async function ServicePage({
       </Section>
 
 
+
+      {/* 10 — Specialist Production Landing Pages */}
+      {isCad ? (
+        <Section tone="surface" bordered>
+          <Container width="page">
+            <div className="border border-rule bg-paper p-8 lg:p-10">
+              <Eyebrow>Specialist Production Capability</Eyebrow>
+              <h3 className="display mt-4 text-2xl sm:text-3xl">
+                Interior Fit-Out & Joinery Shop Drawings
+              </h3>
+              <p className="mt-4 max-w-2xl text-base leading-relaxed text-ink-muted">
+                Dedicated overflow drafting support for interior fit-out contractors, joinery manufacturers, and commercial studios. Complete millwork elevations, reflected ceiling plans, MEP coordination, and fabrication details delivered to UK and international building standards.
+              </p>
+              <div className="mt-6">
+                <Link
+                  href="/services/cad/interior-fit-out-shop-drawings"
+                  className="inline-flex items-center gap-2 text-sm font-medium text-ink underline decoration-rule-strong underline-offset-4 hover:text-accent"
+                >
+                  <span>Explore Interior Fit-Out CAD Shop Drawings</span>
+                  <span aria-hidden="true">&rarr;</span>
+                </Link>
+              </div>
+            </div>
+          </Container>
+        </Section>
+      ) : null}
+
+      {service.slug === "growth-marketing-b2b" ? (
+        <Section tone="surface" bordered>
+          <Container width="page">
+            <div className="border border-rule bg-paper p-8 lg:p-10">
+              <Eyebrow>Regional Specialisation</Eyebrow>
+              <h3 className="display mt-4 text-2xl sm:text-3xl">
+                Middle East & GCC B2B Market Intelligence
+              </h3>
+              <p className="mt-4 max-w-2xl text-base leading-relaxed text-ink-muted">
+                Hand-verified commercial buyer discovery, procurement route mapping, and direct WhatsApp outreach intelligence across the UAE, Saudi Arabia, Qatar, and Bahrain.
+              </p>
+              <div className="mt-6">
+                <Link
+                  href="/services/growth/middle-east-market-intelligence"
+                  className="inline-flex items-center gap-2 text-sm font-medium text-ink underline decoration-rule-strong underline-offset-4 hover:text-accent"
+                >
+                  <span>Explore Middle East B2B Intelligence</span>
+                  <span aria-hidden="true">&rarr;</span>
+                </Link>
+              </div>
+            </div>
+          </Container>
+        </Section>
+      ) : null}
+
+      {service.slug === "visualisation-image-production" ? (
+        <Section tone="surface" bordered>
+          <Container width="page">
+            <div className="border border-rule bg-paper p-8 lg:p-10">
+              <Eyebrow>Commercial CGI Focus</Eyebrow>
+              <h3 className="display mt-4 text-2xl sm:text-3xl">
+                Photorealistic Furniture 3D Rendering & Visualisation
+              </h3>
+              <p className="mt-4 max-w-2xl text-base leading-relaxed text-ink-muted">
+                Hyper-realistic CGI lifestyle environments, material swatch simulations, and e-commerce hero sets for luxury furniture designers, bespoke joinery workshops, and high-end brands.
+              </p>
+              <div className="mt-6">
+                <Link
+                  href="/services/visualisation/photorealistic-furniture-rendering"
+                  className="inline-flex items-center gap-2 text-sm font-medium text-ink underline decoration-rule-strong underline-offset-4 hover:text-accent"
+                >
+                  <span>Explore Furniture 3D Rendering Services</span>
+                  <span aria-hidden="true">&rarr;</span>
+                </Link>
+              </div>
+            </div>
+          </Container>
+        </Section>
+      ) : null}
 
       {/* 11 — CTA & Cross-Discipline Discovery */}
       <ProjectCTA

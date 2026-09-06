@@ -41,6 +41,7 @@ export function EnquiryForm() {
   const [status, setStatus] = useState<Status>("idle");
   const [failure, setFailure] = useState<string | null>(null);
   const [attachment, setAttachment] = useState<{ name: string; size: string } | null>(null);
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [attachmentError, setAttachmentError] = useState<string | null>(null);
   const statusRef = useRef<HTMLDivElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -62,6 +63,7 @@ export function EnquiryForm() {
         ? `${(file.size / (1024 * 1024)).toFixed(1)} MB`
         : `${Math.round(file.size / 1024)} KB`;
 
+    setSelectedFile(file);
     setAttachment({
       name: file.name,
       size: formattedSize,
@@ -70,6 +72,7 @@ export function EnquiryForm() {
 
   function removeAttachment() {
     setAttachment(null);
+    setSelectedFile(null);
     setAttachmentError(null);
     if (fileInputRef.current) fileInputRef.current.value = "";
   }
@@ -84,12 +87,38 @@ export function EnquiryForm() {
   async function onSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
+    let uploadedFileId: string | undefined;
+
+    // If a drawing or specification file is attached, upload it first to the secure private vault
+    if (selectedFile) {
+      try {
+        const uploadForm = new FormData();
+        uploadForm.append("file", selectedFile);
+        const upRes = await fetch("/api/upload", {
+          method: "POST",
+          body: uploadForm,
+        });
+        if (upRes.ok) {
+          const upData = await upRes.json();
+          uploadedFileId = upData.fileId;
+        } else {
+          const errData = await upRes.json().catch(() => ({}));
+          setAttachmentError(errData.error || "Failed to upload file package.");
+          return;
+        }
+      } catch {
+        setAttachmentError("Network error uploading attachment. Please check your connection.");
+        return;
+      }
+    }
+
     const payload = {
       ...values,
       consent,
       kind: "project" as const,
       attachmentName: attachment?.name,
       attachmentSize: attachment?.size,
+      fileId: uploadedFileId,
     };
     const found = validateEnquiry(payload);
 
@@ -120,6 +149,7 @@ export function EnquiryForm() {
         setValues(EMPTY);
         setConsent(false);
         setAttachment(null);
+        setSelectedFile(null);
         statusRef.current?.focus();
         return;
       }

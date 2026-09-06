@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import {
   Container,
@@ -395,6 +396,39 @@ export default async function CaseStudyPage({
           </div>
         </Container>
       </Section>
+
+      {/* Specialist Production Service Connection */}
+      {study.slug === "bahrain-luxury-interior-cad-package" ? (
+        <Section tone="surface" bordered>
+          <Container width="page">
+            <div className="border border-rule bg-paper p-7 lg:p-8">
+              <Eyebrow>Production Service</Eyebrow>
+              <h3 className="display mt-3 text-xl sm:text-2xl">
+                Require a comparable fit-out drawing package?
+              </h3>
+              <p className="mt-3 max-w-2xl text-sm leading-relaxed text-ink-muted">
+                Explore our dedicated production line for <Link href="/services/cad/interior-fit-out-shop-drawings" className="text-ink underline decoration-rule-strong underline-offset-4 hover:text-accent">Interior Fit-Out & Joinery Shop Drawings</Link>, covering millwork details, setting-out plans, reflected ceiling plans, and MEP coordination.
+              </p>
+            </div>
+          </Container>
+        </Section>
+      ) : null}
+
+      {study.slug === "sultanah-moon-chair-cinematic-campaign" || study.slug === "interior-visualisation-studies" ? (
+        <Section tone="surface" bordered>
+          <Container width="page">
+            <div className="border border-rule bg-paper p-7 lg:p-8">
+              <Eyebrow>Production Service</Eyebrow>
+              <h3 className="display mt-3 text-xl sm:text-2xl">
+                Require bespoke furniture CGI or lifestyle rendering?
+              </h3>
+              <p className="mt-3 max-w-2xl text-sm leading-relaxed text-ink-muted">
+                Explore our commercial service line for <Link href="/services/visualisation/photorealistic-furniture-rendering" className="text-ink underline decoration-rule-strong underline-offset-4 hover:text-accent">Photorealistic Furniture 3D Rendering</Link>, producing e-commerce cutouts, material swatch simulations, and 4K luxury lifestyle scenes.
+              </p>
+            </div>
+          </Container>
+        </Section>
+      ) : null}
 
       {/* 15 — CTA */}
       <ProjectCTA
