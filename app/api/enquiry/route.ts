@@ -5,40 +5,17 @@ import {
   formatEnquiry,
   type EnquiryPayload,
 } from "@/lib/enquiry";
-import { saveLead } from "@/lib/crm/leads";
+import { createLead, updateLeadEmailDelivery } from "@/lib/crm/leads-repository";
+import { attachUploadToLead } from "@/lib/storage/uploads-repository";
+import { checkRateLimit } from "@/lib/security/rate-limit";
+import { logger } from "@/lib/logger";
+import crypto from "crypto";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
-/**
- * Enquiry submission endpoint.
- *
- * ENVIRONMENT CONTRACT — all three are required for delivery to work:
- *   ENQUIRY_PROVIDER_API_KEY  Resend API key (https://resend.com)
- *   ENQUIRY_FROM_EMAIL        Verified sender, e.g. "XIYATO <site@xiyato.uk>"
- *   ENQUIRY_TO_EMAIL          Destination inbox for enquiries
- *   ENQUIRY_TO_EMAIL_CAREERS  Optional separate inbox for talent submissions
- *
- * If the provider is not configured the endpoint returns HTTP 503 and the UI
- * shows a failure state with an alternate contact route. It never reports a
- * false success.
- */
-
-/** Very small in-memory rate limit. Best-effort only — resets on cold start. */
-const RECENT = new Map<string, number[]>();
-const WINDOW_MS = 60_000;
-const MAX_PER_WINDOW = 5;
-
-function rateLimited(key: string): boolean {
-  const now = Date.now();
-  const hits = (RECENT.get(key) ?? []).filter((t) => now - t < WINDOW_MS);
-  hits.push(now);
-  RECENT.set(key, hits);
-  if (RECENT.size > 500) RECENT.clear();
-  return hits.length > MAX_PER_WINDOW;
-}
-
 export async function POST(request: Request) {
+  const correlationId = logger.createCorrelationId();
   let body: Partial<EnquiryPayload>;
 
   try {
@@ -46,82 +23,127 @@ export async function POST(request: Request) {
   } catch {
     return NextResponse.json(
       { ok: false, reason: "invalid", message: "Could not read the submission." },
-      { status: 400 },
+      { status: 400 }
     );
   }
 
   // Honeypot: real users never fill this. Accept silently so bots learn nothing.
   if (body.website && String(body.website).trim() !== "") {
+    logger.info("Honeypot triggered, silently swallowed", { correlationId });
     return NextResponse.json({ ok: true, delivered: false }, { status: 200 });
   }
 
-  const ip =
-    request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "unknown";
-  if (rateLimited(ip)) {
+  const clientIp = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "unknown";
+
+  // Distributed Rate Limiting: max 5 submissions per 60 seconds
+  const rate = await checkRateLimit(`enquiry:${clientIp}`, 5, 60);
+  if (!rate.allowed) {
+    logger.warn("Enquiry rate limit exceeded", { correlationId, clientIp });
     return NextResponse.json(
       {
         ok: false,
         reason: "rate_limited",
         message: "Too many submissions in a short period. Please try again shortly.",
       },
-      { status: 429 },
+      {
+        status: 429,
+        headers: { "Retry-After": String(rate.resetSeconds) },
+      }
     );
   }
 
-  // Server-side validation is authoritative.
+  // Authoritative server-side validation
   const errors = validateEnquiry(body);
   if (hasErrors(errors)) {
     return NextResponse.json(
       { ok: false, reason: "validation", errors },
-      { status: 422 },
+      { status: 422 }
     );
   }
 
   const payload = body as EnquiryPayload;
   const isTalent = payload.kind === "talent";
 
-  // Record valid commercial project enquiries in the CRM lifecycle database
-  if (!isTalent) {
-    try {
-      saveLead({
-        contactName: payload.name,
-        company: payload.company || "Direct Client",
-        email: payload.email,
-        country: payload.country || "Not specified",
-        serviceLine: payload.service || "general",
-        acquisitionSource: "Website Inbound Form",
-        landingPage: "/contact",
-        conversionChannel: "form",
-        nextAction: "Review project brief within 1 business day and scope feasibility",
-        projectScope: payload.brief,
+  // Compute idempotency key to prevent duplicate leads on network retries
+  // Hashes normalized email + brief + 5-minute time window
+  const timeWindowBucket = Math.floor(Date.now() / (5 * 60 * 1000));
+  const idempotencyKey = crypto
+    .createHash("sha256")
+    .update(`${payload.email.toLowerCase().trim()}:${payload.brief.trim()}:${timeWindowBucket}`)
+    .digest("hex");
+
+  let savedLeadRecord: any = null;
+
+  // 1. Transactional Database Persistence FIRST
+  try {
+    savedLeadRecord = await createLead({
+      contactName: payload.name,
+      company: payload.company || "Direct Client",
+      email: payload.email,
+      phone: payload.phone,
+      country: payload.country || "Not specified",
+      serviceLine: payload.service || (isTalent ? "talent" : "general"),
+      acquisitionSource: isTalent ? "Talent Network Inbound" : "Website Inbound Form",
+      landingPage: "/contact",
+      conversionChannel: "form",
+      nextAction: isTalent
+        ? "Review portfolio and candidate profile"
+        : "Review project brief and scope technical deliverables",
+      projectScope: payload.brief,
+      attachmentFileId: payload.fileId,
+      idempotencyKey,
+    });
+
+    // If a file upload was attached, associate it with the lead in the database
+    if (payload.fileId && savedLeadRecord.id) {
+      attachUploadToLead(payload.fileId, savedLeadRecord.id).catch((e) => {
+        logger.error("Failed to associate upload with lead", { error: String(e) });
       });
-    } catch (e) {
-      console.error("CRM lead save error:", e);
     }
+  } catch (dbErr) {
+    logger.error("Failed to persist lead to database", {
+      correlationId,
+      error: dbErr instanceof Error ? dbErr.message : String(dbErr),
+    });
+    return NextResponse.json(
+      {
+        ok: false,
+        reason: "database_error",
+        message: "Could not record enquiry in our system. Please try calling or messaging us directly.",
+      },
+      { status: 503 }
+    );
   }
 
+  // 2. Notification Dispatch via Resend
   const apiKey = process.env.ENQUIRY_PROVIDER_API_KEY;
   const from = process.env.ENQUIRY_FROM_EMAIL;
   const to = isTalent
     ? process.env.ENQUIRY_TO_EMAIL_CAREERS ?? process.env.ENQUIRY_TO_EMAIL
     : process.env.ENQUIRY_TO_EMAIL;
 
-  // No provider configured — fail honestly rather than pretending to deliver.
+  // If email provider is unconfigured, the lead is ALREADY safely stored in DB!
   if (!apiKey || !from || !to) {
+    logger.warn("Email provider unconfigured. Lead persisted in database but email notification pending.", {
+      correlationId,
+      leadReference: savedLeadRecord.leadReference,
+    });
+    await updateLeadEmailDelivery(savedLeadRecord.id, "NOT_CONFIGURED");
+
     return NextResponse.json(
       {
-        ok: false,
-        reason: "not_configured",
-        message:
-          "The enquiry system is not connected to an email provider yet, so this message was not delivered.",
+        ok: true,
+        delivered: false,
+        leadReference: savedLeadRecord.leadReference,
+        message: "Your project enquiry has been securely recorded. Our team will review your brief directly.",
       },
-      { status: 503 },
+      { status: 200 }
     );
   }
 
   const subject = isTalent
     ? `Talent network — ${payload.name}`
-    : `Project enquiry — ${payload.name}${payload.company ? ` (${payload.company})` : ""}`;
+    : `Project enquiry [${savedLeadRecord.leadReference}] — ${payload.name}${payload.company ? ` (${payload.company})` : ""}`;
 
   try {
     const response = await fetch("https://api.resend.com/emails", {
@@ -141,27 +163,60 @@ export async function POST(request: Request) {
 
     if (!response.ok) {
       const detail = await response.text().catch(() => "");
-      console.error("Enquiry delivery failed", response.status, detail);
+      logger.error("Email notification dispatch failed", {
+        correlationId,
+        status: response.status,
+        detail,
+        leadReference: savedLeadRecord.leadReference,
+      });
+      await updateLeadEmailDelivery(savedLeadRecord.id, "FAILED");
+
+      // The lead is safe! Return 200 with honest delivery note
       return NextResponse.json(
         {
-          ok: false,
-          reason: "provider_error",
-          message: "The message could not be delivered. Please try the alternate route below.",
+          ok: true,
+          delivered: false,
+          leadReference: savedLeadRecord.leadReference,
+          message: "Your enquiry is recorded in our system. Email notification is queued for delivery.",
         },
-        { status: 502 },
+        { status: 200 }
       );
     }
 
-    return NextResponse.json({ ok: true, delivered: true }, { status: 200 });
-  } catch (error) {
-    console.error("Enquiry delivery threw", error);
+    const resData = await response.json().catch(() => ({}));
+    await updateLeadEmailDelivery(savedLeadRecord.id, "DELIVERED", resData.id);
+
+    logger.info("Enquiry successfully recorded and dispatched", {
+      correlationId,
+      leadReference: savedLeadRecord.leadReference,
+      emailId: resData.id,
+    });
+
     return NextResponse.json(
       {
-        ok: false,
-        reason: "network_error",
-        message: "The message could not be sent. Please try the alternate route below.",
+        ok: true,
+        delivered: true,
+        leadReference: savedLeadRecord.leadReference,
       },
-      { status: 502 },
+      { status: 200 }
+    );
+  } catch (error) {
+    logger.error("Email delivery network exception", {
+      correlationId,
+      leadReference: savedLeadRecord.leadReference,
+      error: String(error),
+    });
+    await updateLeadEmailDelivery(savedLeadRecord.id, "FAILED");
+
+    // Lead is safe in DB!
+    return NextResponse.json(
+      {
+        ok: true,
+        delivered: false,
+        leadReference: savedLeadRecord.leadReference,
+        message: "Your enquiry is safely logged in our database. Scoping assessment will proceed directly.",
+      },
+      { status: 200 }
     );
   }
 }

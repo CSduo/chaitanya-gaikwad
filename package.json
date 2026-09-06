@@ -9,17 +9,22 @@
     "start": "next start",
     "lint": "next lint",
     "typecheck": "tsc --noEmit",
-    "test": "node tests/e2e/test-runner.mjs",
-    "test:e2e": "node tests/e2e/test-runner.mjs"
+    "test": "node tests/e2e/test-runner.mjs && node tests/backend-production.test.mjs && npx tsx scripts/test-file-upload-security.ts",
+    "test:e2e": "node tests/e2e/test-runner.mjs",
+    "test:backend": "node tests/backend-production.test.mjs && npx tsx scripts/test-file-upload-security.ts"
   },
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.1127.0",
+    "@aws-sdk/s3-request-presigner": "^3.1127.0",
     "next": "16.3.0",
+    "pg": "^8.23.0",
     "react": "19.2.8",
     "react-dom": "19.2.8"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.0.0",
     "@types/node": "^22.10.0",
+    "@types/pg": "^8.23.1",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
     "eslint": "^9.18.0",
