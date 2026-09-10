@@ -114,6 +114,9 @@ export const metadata: Metadata = {
   manifest: "/site.webmanifest",
   verification: {
     google: ["IjQduuSOmYJmgmhyNk6YA2rpWUe2b5uaPPdpGb-fLFs", "googleb531fd48b43d4f1b"],
+    other: {
+      "msvalidate.01": "c746da95e0c54178a9cb57f7229b19d4",
+    },
   },
   robots: {
     index: true,
@@ -126,6 +129,18 @@ export const metadata: Metadata = {
       "max-image-preview": "large",
       "max-snippet": -1,
     },
+    ...({
+      bingBot: {
+        index: true,
+        follow: true,
+        "max-video-preview": -1,
+        "max-image-preview": "large",
+        "max-snippet": -1,
+      },
+    } as any),
+  },
+  other: {
+    "msvalidate.01": "c746da95e0c54178a9cb57f7229b19d4",
   },
   openGraph: {
     type: "website",

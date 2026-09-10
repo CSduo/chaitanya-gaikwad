@@ -25,3 +25,7 @@ next-env.d.ts
 *.log
 coverage/
 storage/uploads/private/
+
+# agent swarm scratch
+.agents/teamwork_preview_*
+.agents/sentinel_1/handoff.md

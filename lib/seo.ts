@@ -76,6 +76,7 @@ export function organizationSchema() {
     legalName: SITE.name,
     alternateName: [SITE.nameAscii, "Xiyato", "Xiyato Studio", "Xiyato UK", "Xiyato India"],
     url: SITE.url,
+    email: "hello@xiyato.uk",
     description: SITE.defaultDescription,
     sameAs: [
       "https://www.instagram.com/xiyato.uk/",
@@ -85,6 +86,7 @@ export function organizationSchema() {
       {
         "@type": "ContactPoint",
         telephone: "+44 7882 746212",
+        email: "hello@xiyato.uk",
         contactType: "customer service",
         areaServed: ["GB", "US", "AE", "SA", "QA"],
         availableLanguage: ["English"],
@@ -92,6 +94,7 @@ export function organizationSchema() {
       {
         "@type": "ContactPoint",
         telephone: "+91 70283 11226",
+        email: "hello@xiyato.uk",
         contactType: "technical support",
         areaServed: ["IN", "AE", "SA", "Worldwide"],
         availableLanguage: ["English", "Hindi", "Marathi"],
@@ -240,6 +243,10 @@ export function serviceSchema(input: {
     description: input.description,
     url: absoluteUrl(input.path),
     provider: { "@type": "Organization", name: SITE.name, url: SITE.url },
+    audience: {
+      "@type": "Audience",
+      audienceType: "Architectural practices, interior studios, developers, luxury brands",
+    },
     areaServed: [
       { "@type": "Country", name: "United Kingdom" },
       { "@type": "Country", name: "United States" },

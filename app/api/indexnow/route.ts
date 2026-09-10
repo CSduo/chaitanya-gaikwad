@@ -6,7 +6,7 @@ import crypto from "crypto";
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
-const CANONICAL_HOSTS = ["xiyato.uk", "www.xiyato.uk"];
+const CANONICAL_HOSTS = ["xiyato.uk"];
 const MAX_URLS_PER_SUBMISSION = 20;
 
 /**
@@ -18,7 +18,7 @@ export async function POST(request: Request) {
   const correlationId = logger.createCorrelationId();
   const authHeader = request.headers.get("authorization") || "";
   const indexnowSecret = process.env.INDEXNOW_SECRET || process.env.CRON_SECRET;
-  const apiKey = process.env.INDEXNOW_KEY;
+  const apiKey = process.env.INDEXNOW_KEY || "c746da95e0c54178a9cb57f7229b19d4";
 
   // 1. FAIL CLOSED: Require secret configuration
   if (!indexnowSecret || indexnowSecret.trim().length === 0) {
@@ -105,10 +105,22 @@ export async function POST(request: Request) {
 
     const res = await fetch("https://api.indexnow.org/indexnow", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: { "Content-Type": "application/json; charset=utf-8" },
       body: JSON.stringify(payload),
       signal: controller.signal,
     }).finally(() => clearTimeout(timeout));
+
+    if (!res.ok) {
+      logger.warn("Upstream IndexNow submission failed", {
+        correlationId,
+        status: res.status,
+      });
+      const errorStatus = res.status >= 400 && res.status < 600 ? res.status : 502;
+      return NextResponse.json(
+        { ok: false, status: res.status, error: "Upstream IndexNow submission failed" },
+        { status: errorStatus }
+      );
+    }
 
     logger.info("IndexNow submitted successfully", {
       correlationId,
@@ -117,7 +129,7 @@ export async function POST(request: Request) {
     });
 
     return NextResponse.json({
-      ok: res.ok || res.status === 200 || res.status === 202,
+      ok: true,
       status: res.status,
       submittedUrls: validatedUrls.length,
     });
