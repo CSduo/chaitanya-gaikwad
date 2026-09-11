@@ -92,13 +92,13 @@ export const CONTACT_CHANNELS: ContactChannel[] = [
     id: "careers",
     label: "Careers",
     purpose: "Applications, specialists and the talent network.",
-    email: null,
+    email: "hello@xiyato.uk",
   },
   {
     id: "founder",
     label: "Founder",
     purpose: "Direct line for partnership and commercial discussion.",
-    email: null,
+    email: "hello@xiyato.uk",
   },
 ];
 

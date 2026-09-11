@@ -9,9 +9,10 @@
     "start": "next start",
     "lint": "next lint",
     "typecheck": "tsc --noEmit",
-    "test": "node tests/e2e/test-runner.mjs && node tests/backend-production.test.mjs && npx tsx scripts/test-file-upload-security.ts && node tests/bing-search-infrastructure.test.mjs",
+    "test": "node tests/e2e/test-runner.mjs && node tests/backend-production.test.mjs && npx tsx scripts/test-file-upload-security.ts && node tests/bing-search-infrastructure.test.mjs && npx tsx tests/career-and-enquiry-flows.test.mjs",
     "test:e2e": "node tests/e2e/test-runner.mjs",
     "test:backend": "node tests/backend-production.test.mjs && npx tsx scripts/test-file-upload-security.ts",
+    "test:career": "npx tsx tests/career-and-enquiry-flows.test.mjs",
     "test:bing": "node tests/bing-search-infrastructure.test.mjs",
     "submit:indexnow": "tsx scripts/submit-indexnow.ts"
   },

@@ -408,12 +408,12 @@ export function AutomationSection({ service }: { service: Service }) {
             We partner with your team to design campaigns, build prospect pipelines, and secure new accounts.
           </p>
         </div>
-        <a
-          href="/contact"
+        <Link
+          href="/contact?service=automation-workflow-systems"
           className="inline-flex min-h-[38px] items-center rounded-xs bg-white px-4 text-xs font-semibold text-black transition-colors hover:bg-zinc-200"
         >
           Discuss a campaign &rarr;
-        </a>
+        </Link>
       </div>
     </Chapter>
   );

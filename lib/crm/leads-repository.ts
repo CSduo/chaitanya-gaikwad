@@ -110,15 +110,26 @@ export async function createLead(input: CreateLeadInput): Promise<LeadRecord> {
 
   // If idempotency key provided, check for existing lead first
   if (input.idempotencyKey) {
-    const existing = await query(
-      "SELECT * FROM leads WHERE idempotency_key = $1 LIMIT 1",
-      [input.idempotencyKey]
-    );
-    if (existing.rows.length > 0) {
-      logger.info("Idempotent enquiry match returned", {
-        leadReference: existing.rows[0].lead_reference,
-      });
-      return mapRowToLead(existing.rows[0]);
+    try {
+      const existing = await query(
+        "SELECT * FROM leads WHERE idempotency_key = $1 LIMIT 1",
+        [input.idempotencyKey]
+      );
+      if (existing.rows.length > 0) {
+        logger.info("Idempotent enquiry match returned", {
+          leadReference: existing.rows[0].lead_reference,
+        });
+        return mapRowToLead(existing.rows[0]);
+      }
+    } catch {
+      for (const lead of memoryLeads.values()) {
+        if (lead.idempotencyKey === input.idempotencyKey) {
+          logger.info("Idempotent enquiry memory match returned", {
+            leadReference: lead.leadReference,
+          });
+          return lead;
+        }
+      }
     }
   }
 
@@ -267,10 +278,18 @@ export async function updateLeadEmailDelivery(
   status: EmailDeliveryStatus,
   providerId?: string
 ): Promise<void> {
-  await query(
-    "UPDATE leads SET email_delivery_status = $1, email_provider_id = $2, updated_at = NOW() WHERE id = $3",
-    [status, providerId || null, id]
-  );
+  try {
+    await query(
+      "UPDATE leads SET email_delivery_status = $1, email_provider_id = $2, updated_at = NOW() WHERE id = $3",
+      [status, providerId || null, id]
+    );
+  } catch {
+    const mem = memoryLeads.get(id);
+    if (mem) {
+      mem.emailDeliveryStatus = status;
+      if (providerId) mem.emailProviderId = providerId;
+    }
+  }
 }
 
 export async function listLeads(options: LeadFilterOptions = {}): Promise<{ leads: LeadRecord[]; total: number }> {

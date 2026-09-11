@@ -46,7 +46,7 @@ export function ProjectCTA({
                 <span aria-hidden="true">&rarr;</span>
               </a>
               <Link
-                href={SECONDARY_CTA.href}
+                href={serviceSlug ? `/contact?service=${encodeURIComponent(serviceSlug)}` : SECONDARY_CTA.href}
                 className="flex min-h-[48px] w-full items-center justify-center rounded-xs border border-paper/30 px-3 sm:px-6 text-xs sm:text-sm font-medium tracking-tight text-paper/80 transition-colors hover:border-paper hover:bg-paper/10 hover:text-paper text-center"
               >
                 {SECONDARY_CTA.label}

@@ -1,7 +1,8 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { Suspense, useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import {
   TextField,
   TextArea,
@@ -42,8 +43,17 @@ const EMPTY = {
   website: "",
 };
 
-export function EnquiryForm() {
+function EnquiryFormInner() {
+  const searchParams = useSearchParams();
+  const serviceParam = searchParams.get("service");
+
   const [values, setValues] = useState(EMPTY);
+
+  useEffect(() => {
+    if (serviceParam && SERVICE_OPTIONS.some((s) => s.value === serviceParam)) {
+      setValues((v) => (v.service === serviceParam ? v : { ...v, service: serviceParam }));
+    }
+  }, [serviceParam]);
   const [consent, setConsent] = useState(false);
   const [errors, setErrors] = useState<FieldErrors>({});
   const [status, setStatus] = useState<Status>("idle");
@@ -582,5 +592,13 @@ export function EnquiryForm() {
         <p className="text-xs text-ink-muted">Fields marked * are required.</p>
       </div>
     </form>
+  );
+}
+
+export function EnquiryForm() {
+  return (
+    <Suspense fallback={<div className="min-h-[400px] animate-pulse rounded-lg bg-surface/50" />}>
+      <EnquiryFormInner />
+    </Suspense>
   );
 }
