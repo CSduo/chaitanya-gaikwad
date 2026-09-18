@@ -69,6 +69,17 @@ const nextConfig: NextConfig = {
       { source: "/services/video-ai-film-editing", destination: "/services/ai-video-production", permanent: true },
       { source: "/services/automation-workflow-systems", destination: "/services/b2b-lead-generation", permanent: true },
       { source: "/services/visual-content", destination: "/services/visualisation-image-production", permanent: true },
+
+      // ---- Legacy work category and project redirects (resolves 404s) ----
+      { source: "/work/growth-b2b", destination: "/services/b2b-lead-generation", permanent: true },
+      { source: "/work/automation", destination: "/services/b2b-lead-generation", permanent: true },
+      { source: "/work/video", destination: "/services/ai-video-production", permanent: true },
+      { source: "/work/visualisation", destination: "/services/visualisation-image-production", permanent: true },
+      { source: "/work/websites", destination: "/services/website-design-development", permanent: true },
+      { source: "/work/research", destination: "/services/market-intelligence-research", permanent: true },
+      { source: "/work/saudi-market-entry-lead-intelligence", destination: "/services/market-intelligence-research", permanent: true },
+      { source: "/work/hotel-linen-export-market-programme", destination: "/services/b2b-lead-generation", permanent: true },
+      { source: "/work/automotive-showroom-target-mapping", destination: "/work/research/automotive-showroom-lead-intelligence", permanent: true },
     ];
   },
 };
