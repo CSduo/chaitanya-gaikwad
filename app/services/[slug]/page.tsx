@@ -20,12 +20,16 @@ import { getServiceWhatsAppHref, WHATSAPP } from "@/lib/site";
 
 
 const SERVICE_ACTION_LABELS: Record<string, string> = {
+  "b2b-lead-generation": "Get a Qualified Lead Plan",
+  "market-intelligence-research": "Discuss a Research Brief",
+  "ai-video-production": "Get an AI Video Concept",
   "cad-technical-production": "Discuss a Drawing Package",
-  "growth-marketing-b2b": "Discuss a Market Research Brief",
   "visualisation-image-production": "Discuss a Rendering Project",
-  "video-ai-film-editing": "Discuss a Film / CGI Project",
-  "automation-workflow-systems": "Discuss Your Workflow",
   "website-design-development": "Discuss a Website Project",
+  // Legacy aliases
+  "growth-marketing-b2b": "Get a Qualified Lead Plan",
+  "video-ai-film-editing": "Get an AI Video Concept",
+  "automation-workflow-systems": "Discuss Your Workflow",
 };
 
 export function generateStaticParams() {
@@ -235,8 +239,6 @@ export default async function ServicePage({
         </Container>
       </Section>
 
-
-
       {/* 10 — Specialist Production Landing Pages */}
       {isCad ? (
         <Section tone="surface" bordered>
@@ -263,13 +265,45 @@ export default async function ServicePage({
         </Section>
       ) : null}
 
-      {service.slug === "growth-marketing-b2b" ? (
+      {service.slug === "b2b-lead-generation" ? (
+        <Section tone="surface" bordered>
+          <Container width="page">
+            <div className="border border-rule bg-paper p-8 lg:p-10">
+              <Eyebrow>Outbound Pipeline Engine</Eyebrow>
+              <h3 className="display mt-4 text-2xl sm:text-3xl">
+                Research-Backed B2B Lead Generation &amp; Account Acquisition
+              </h3>
+              <p className="mt-4 max-w-2xl text-base leading-relaxed text-ink-muted">
+                Every outbound campaign is built on proprietary commercial intelligence. We discover, verify, and engage target decision-makers across the UK, GCC, and international trade corridors to secure qualified commercial meetings for your sales team.
+              </p>
+              <div className="mt-6 flex flex-wrap gap-4">
+                <Link
+                  href="/services/market-intelligence-research"
+                  className="inline-flex items-center gap-2 text-sm font-medium text-ink underline decoration-rule-strong underline-offset-4 hover:text-accent"
+                >
+                  <span>Explore Market Intelligence Services</span>
+                  <span aria-hidden="true">&rarr;</span>
+                </Link>
+                <Link
+                  href="/services/growth/middle-east-market-intelligence"
+                  className="inline-flex items-center gap-2 text-sm font-medium text-ink-muted underline decoration-rule-strong underline-offset-4 hover:text-ink"
+                >
+                  <span>Middle East Buyer Intelligence</span>
+                  <span aria-hidden="true">&rarr;</span>
+                </Link>
+              </div>
+            </div>
+          </Container>
+        </Section>
+      ) : null}
+
+      {service.slug === "market-intelligence-research" || service.slug === "growth-marketing-b2b" ? (
         <Section tone="surface" bordered>
           <Container width="page">
             <div className="border border-rule bg-paper p-8 lg:p-10">
               <Eyebrow>Regional Specialisation</Eyebrow>
               <h3 className="display mt-4 text-2xl sm:text-3xl">
-                Middle East & GCC B2B Market Intelligence
+                Middle East &amp; GCC B2B Market Intelligence
               </h3>
               <p className="mt-4 max-w-2xl text-base leading-relaxed text-ink-muted">
                 Hand-verified commercial buyer discovery, procurement route mapping, and direct WhatsApp outreach intelligence across the UAE, Saudi Arabia, Qatar, and Bahrain.
@@ -294,7 +328,7 @@ export default async function ServicePage({
             <div className="border border-rule bg-paper p-8 lg:p-10">
               <Eyebrow>Commercial CGI Focus</Eyebrow>
               <h3 className="display mt-4 text-2xl sm:text-3xl">
-                Photorealistic Furniture 3D Rendering & Visualisation
+                Photorealistic Furniture 3D Rendering &amp; Visualisation
               </h3>
               <p className="mt-4 max-w-2xl text-base leading-relaxed text-ink-muted">
                 Hyper-realistic CGI lifestyle environments, material swatch simulations, and e-commerce hero sets for luxury furniture designers, bespoke joinery workshops, and high-end brands.
@@ -305,6 +339,31 @@ export default async function ServicePage({
                   className="inline-flex items-center gap-2 text-sm font-medium text-ink underline decoration-rule-strong underline-offset-4 hover:text-accent"
                 >
                   <span>Explore Furniture 3D Rendering Services</span>
+                  <span aria-hidden="true">&rarr;</span>
+                </Link>
+              </div>
+            </div>
+          </Container>
+        </Section>
+      ) : null}
+
+      {service.slug === "ai-video-production" || service.slug === "video-ai-film-editing" ? (
+        <Section tone="surface" bordered>
+          <Container width="page">
+            <div className="border border-rule bg-paper p-8 lg:p-10">
+              <Eyebrow>Commercial Video Production</Eyebrow>
+              <h3 className="display mt-4 text-2xl sm:text-3xl">
+                Cinematic AI Video &amp; Product Storytelling
+              </h3>
+              <p className="mt-4 max-w-2xl text-base leading-relaxed text-ink-muted">
+                Commercial video campaigns combining live-action cinematography, CGI environments, and AI video workflows. From factory-to-showroom luxury furniture stories to architectural walkthroughs and product launches.
+              </p>
+              <div className="mt-6">
+                <Link
+                  href="/work/sultanah-moon-chair-cinematic-campaign"
+                  className="inline-flex items-center gap-2 text-sm font-medium text-ink underline decoration-rule-strong underline-offset-4 hover:text-accent"
+                >
+                  <span>View the Moon Chair Cinematic Campaign Case Study</span>
                   <span aria-hidden="true">&rarr;</span>
                 </Link>
               </div>

@@ -28,16 +28,24 @@ const PROJECT_MESSAGE = "Hello XIYÀTO, I would like to discuss a project.";
 export const SERVICE_WHATSAPP_MESSAGES: Record<string, string> = {
   "cad-technical-production":
     "Hello XIYÀTO, I would like to discuss an outsourced CAD drafting package.",
-  "growth-marketing-b2b":
-    "Hello XIYÀTO, I would like to discuss B2B market research and lead generation.",
+  "b2b-lead-generation":
+    "Hello XIYÀTO, I would like to discuss targeted B2B lead generation.",
+  "market-intelligence-research":
+    "Hello XIYÀTO, I would like to discuss commercial market intelligence and research.",
   "visualisation-image-production":
-    "Hello XIYÀTO, I would like to discuss a 3D architectural or product visualisation project.",
-  "video-ai-film-editing":
-    "Hello XIYÀTO, I would like to discuss a cinematic video or product film production.",
-  "automation-workflow-systems":
-    "Hello XIYÀTO, I would like to discuss a business workflow automation system.",
+    "Hello XIYÀTO, I would like to discuss a 3D architectural or product rendering project.",
+  "ai-video-production":
+    "Hello XIYÀTO, I would like to discuss an AI video production campaign.",
   "website-design-development":
     "Hello XIYÀTO, I would like to discuss a custom website design and development project.",
+
+  // Legacy route fallbacks
+  "growth-marketing-b2b":
+    "Hello XIYÀTO, I would like to discuss targeted B2B lead generation.",
+  "video-ai-film-editing":
+    "Hello XIYÀTO, I would like to discuss an AI video production campaign.",
+  "automation-workflow-systems":
+    "Hello XIYÀTO, I would like to discuss targeted B2B lead generation and outreach systems.",
 };
 
 /** The global "Start a project" action opens WhatsApp with a prefilled note. */
@@ -160,12 +168,12 @@ export const PRIMARY_NAV: NavItem[] = [
     href: "/services",
     children: [
       { label: "Services Overview", href: "/services" },
-      { label: "CAD & Technical Production", href: "/services/cad-technical-production" },
-      { label: "Growth, Marketing & B2B", href: "/services/growth-marketing-b2b" },
-      { label: "3D Visualisation & Image Production", href: "/services/visualisation-image-production" },
-      { label: "Video, AI Film & Editing", href: "/services/video-ai-film-editing" },
+      { label: "CAD Drafting & Technical Production", href: "/services/cad-technical-production" },
+      { label: "B2B Lead Generation Services", href: "/services/b2b-lead-generation" },
+      { label: "Market Intelligence & Research", href: "/services/market-intelligence-research" },
+      { label: "3D Rendering & Visualisation", href: "/services/visualisation-image-production" },
+      { label: "AI Video Production Services", href: "/services/ai-video-production" },
       { label: "Website Design & Development", href: "/services/website-design-development" },
-      { label: "Automation & Marketing Systems", href: "/services/automation-workflow-systems" },
     ],
   },
   {

@@ -8,10 +8,10 @@ import {
 import { ServicesCarousel } from "@/components/home/ServicesCarousel";
 import {
   CadSection,
-  GrowthSection,
+  B2BLeadGenSection,
+  MarketIntelligenceSection,
   VisualisationSection,
   VideoSection,
-  AutomationSection,
   WebsiteSection,
 } from "@/components/home/ServiceSections";
 import { LocationsPanel } from "@/components/home/LocationsPanel";
@@ -52,10 +52,10 @@ const ENGAGEMENTS = [
 export default function HomePage() {
   const locations = publishedLocations();
   const cad = getService("cad-technical-production")!;
-  const growth = getService("growth-marketing-b2b")!;
+  const b2bLeadGen = getService("b2b-lead-generation")!;
+  const marketIntel = getService("market-intelligence-research")!;
   const visualisation = getService("visualisation-image-production")!;
-  const video = getService("video-ai-film-editing")!;
-  const automation = getService("automation-workflow-systems")!;
+  const video = getService("ai-video-production")!;
   const web = getService("website-design-development")!;
 
   return (
@@ -236,16 +236,16 @@ export default function HomePage() {
       </Container>
 
       <CadSection service={cad} />
-      <SectionDivider index={2} label="Growth" className="py-1" />
-      <GrowthSection service={growth} />
-      <SectionDivider index={3} label="Visualise" className="py-1" />
+      <SectionDivider index={2} label="Acquire" className="py-1" />
+      <B2BLeadGenSection service={b2bLeadGen} />
+      <SectionDivider index={3} label="Research" className="py-1" />
+      <MarketIntelligenceSection service={marketIntel} />
+      <SectionDivider index={4} label="Visualise" className="py-1" />
       <VisualisationSection service={visualisation} />
-      <SectionDivider index={4} label="Film" className="py-1" />
+      <SectionDivider index={5} label="Film" className="py-1" />
       <VideoSection service={video} />
-      <SectionDivider index={5} label="Build" className="py-1" />
+      <SectionDivider index={6} label="Build" className="py-1" />
       <WebsiteSection service={web} />
-      <SectionDivider index={6} label="Automate" className="py-1" />
-      <AutomationSection service={automation} />
 
       {/* ============================================================
           03 — ENGAGEMENT MODEL

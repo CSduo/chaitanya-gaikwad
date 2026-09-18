@@ -178,10 +178,70 @@ export function CadSection({ service }: { service: Service }) {
 }
 
 /* ------------------------------------------------------------------ */
-/* 02 — GROWTH, MARKETING & B2B (Compact Expandable Intelligence)      */
+/* 02 — B2B LEAD GENERATION (Outbound Acquisition & Pipeline Engine)   */
 /* ------------------------------------------------------------------ */
 
-export function GrowthSection({ service }: { service: Service }) {
+const OUTBOUND_PILLARS = [
+  {
+    num: "01",
+    title: "Client Acquisition & Outbound",
+    desc: "Targeted outreach, verified direct-dial and email discovery, and bespoke multi-touch campaigns to generate qualified client meetings.",
+  },
+  {
+    num: "02",
+    title: "Inbound & WhatsApp Ingestion",
+    desc: "Automated WhatsApp and direct brief response flows to capture, qualify, and route high-value commercial enquiries instantly.",
+  },
+  {
+    num: "03",
+    title: "Pipeline & CRM Synchronization",
+    desc: "Seamless prospect handoff, meeting scheduling, and CRM tracking (HubSpot, Salesforce, Pipedrive) built to empower your sales team.",
+  },
+];
+
+export function B2BLeadGenSection({ service }: { service: Service }) {
+  return (
+    <Chapter service={service} tone="cyber">
+      <div className="grid gap-3 sm:grid-cols-3">
+        {OUTBOUND_PILLARS.map((p) => (
+          <div
+            key={p.num}
+            className="rounded-lg border border-zinc-800/90 bg-[#0c121e] p-5 shadow-2xs"
+          >
+            <span className="font-mono text-[0.625rem] font-semibold uppercase tracking-[0.14em] text-zinc-400">
+              {p.num} · Acquisition
+            </span>
+            <h4 className="mt-2 text-sm font-semibold text-slate-100">{p.title}</h4>
+            <p className="mt-2 text-xs leading-relaxed text-slate-400">{p.desc}</p>
+          </div>
+        ))}
+      </div>
+
+      <div className="mt-6 flex flex-wrap items-center justify-between gap-4 rounded-lg border border-zinc-800/80 bg-[#0f1726] p-4 sm:p-5">
+        <div>
+          <p className="text-sm font-semibold text-slate-100">
+            Looking to scale qualified outbound pipeline?
+          </p>
+          <p className="mt-0.5 text-xs text-slate-400">
+            We partner with your team to design campaigns, build prospect pipelines, and secure new commercial accounts.
+          </p>
+        </div>
+        <Link
+          href="/contact?service=b2b-lead-generation"
+          className="inline-flex min-h-[38px] items-center rounded-xs bg-white px-4 text-xs font-semibold text-black transition-colors hover:bg-zinc-200"
+        >
+          Discuss a campaign &rarr;
+        </Link>
+      </div>
+    </Chapter>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/* 03 — MARKET INTELLIGENCE & RESEARCH (Interactive Data Dossiers)     */
+/* ------------------------------------------------------------------ */
+
+export function MarketIntelligenceSection({ service }: { service: Service }) {
   return (
     <Chapter service={service} tone="surface">
       {/* Compact Interactive Lead Intelligence Panel */}
@@ -189,7 +249,7 @@ export function GrowthSection({ service }: { service: Service }) {
 
       <div className="mt-6 flex flex-wrap items-center justify-between gap-3 border-t border-rule/70 pt-4">
         <Link
-          href="/services/growth-marketing-b2b#research"
+          href="/services/market-intelligence-research#research"
           className="group inline-flex items-center gap-2 text-xs font-mono font-medium text-ink transition-colors hover:text-accent"
         >
           <span>Explore research methodologies</span>
@@ -202,6 +262,9 @@ export function GrowthSection({ service }: { service: Service }) {
     </Chapter>
   );
 }
+
+// Backward-compatible alias for legacy imports
+export const GrowthSection = MarketIntelligenceSection;
 
 /* ------------------------------------------------------------------ */
 /* 03 — 3D VISUALISATION & IMAGE PRODUCTION (Titanium Gallery)         */
@@ -294,7 +357,7 @@ export function VideoSection({ service }: { service: Service }) {
       </div>
 
       <Link
-        href="/services/video-ai-film-editing#films"
+        href="/services/ai-video-production#films"
         className="group mt-8 inline-flex min-h-[44px] items-center gap-2 text-sm font-medium text-paper transition-colors hover:text-white"
       >
         <span className="underline decoration-paper/40 underline-offset-4">

@@ -17,76 +17,99 @@ export type RouteSeo = {
 
 export const SERVICE_SEO: Record<string, RouteSeo> = {
   "cad-technical-production": {
-    metaTitle: "CAD Drafting & Technical Production Services — XIYÀTO",
-    metaDescription: "Outsourced CAD drafting for interior and fit-out teams. Send marked-up PDFs, site dimensions or a sketch; receive a coordinated, editable DWG set you can issue.",
-    searchIntent: "Can I outsource our interior drawing packages to someone who will return editable AutoCAD files our own team can revise and issue?",
-    primaryKeywords: ["CAD drafting services","outsourced CAD drafting","interior CAD drafting","AutoCAD drafting services","architectural drafting support","CAD outsourcing UK"],
-    secondaryKeywords: ["interior technical drawings","RCP drafting services","floor plan drafting","reflected ceiling plan drawings","joinery detail drawings","editable DWG drawing packages","fit-out drawing packages","CAD drafting for interior designers"],
+    metaTitle: "CAD Drafting Services for Architecture & Interiors | XIYÀTO",
+    metaDescription: "Outsourced CAD drafting for architects, interior designers & fit-out contractors. Send marked-up PDFs or site sketches; receive coordinated, editable DWG sets.",
+    searchIntent: "Can I hire an outsourced CAD drafting partner to turn our sketches and marked-up PDFs into coordinated, editable AutoCAD DWG drawing sets our team can issue?",
+    primaryKeywords: ["CAD drafting services", "outsourced CAD drafting", "interior CAD drafting", "AutoCAD drafting services", "architectural drafting services", "CAD drafting company"],
+    secondaryKeywords: ["interior technical drawings", "joinery shop drawings", "reflected ceiling plans", "millwork drafting services", "floor plan drafting", "editable DWG drawings", "PDF to CAD conversion", "fit-out drawing packages"],
   },
-  "growth-marketing-b2b": {
-    metaTitle: "B2B Lead Generation & Market Research — XIYÀTO",
-    metaDescription: "Research-led B2B lead generation and market research: target companies identified and scored, contact routes mapped, outreach structured for your team.",
-    searchIntent: "Who can research a new market for me, identify the companies actually worth approaching, work out how to reach the right people, and hand it over in a form my commercial team can work from?",
-    primaryKeywords: ["B2B lead generation","B2B research services","market research support","prospect research","lead list building","B2B outreach support"],
-    secondaryKeywords: ["business development research","contact verification","market entry research","decision-maker mapping","competitor and supplier research","trade fair and exhibition research","B2B lead qualification","CRM-ready prospect data"],
+  "b2b-lead-generation": {
+    metaTitle: "B2B Lead Generation Services | XIYÀTO",
+    metaDescription: "B2B lead generation built around verified buyers. Targeted prospect list building, ICP research, and decision-maker contact routes for outbound sales.",
+    searchIntent: "Who can build a verified B2B prospect list with direct decision-maker contact details for our commercial sales team?",
+    primaryKeywords: ["B2B lead generation services", "B2B lead generation agency", "outbound lead generation services", "B2B prospecting services", "prospect research services", "lead list building services"],
+    secondaryKeywords: ["decision maker research", "ICP research services", "verified B2B leads", "target account research", "sales qualified lead generation", "commercial lead research", "B2B contact research", "account based prospecting"],
   },
-  "video-ai-film-editing": {
-    metaTitle: "Video Production, Film & Editing — XIYÀTO",
-    metaDescription: "Short-form cinematic film for furniture, interior and property brands: product films, showroom reels and interior walkthroughs, cut for every placement.",
-    searchIntent: "Who can produce and edit a cinematic short-form film for my product, showroom or interior project and deliver it in the reel, feed and website formats I actually need?",
-    primaryKeywords: ["cinematic video production","video editing services","short-form video production","product video production","interior design reels","cinematic brand videos"],
-    secondaryKeywords: ["cinematic brand videos","architectural video content","showroom walkthrough video","furniture product film production","hospitality venue video production","real estate development video","video content for interior designers"],
+  "market-intelligence-research": {
+    metaTitle: "Market Intelligence & Commercial Research | XIYÀTO",
+    metaDescription: "Commercial market intelligence and B2B market research for new markets, buyers, and opportunities. Competitor analysis, territory mapping & distributor discovery.",
+    searchIntent: "Who can research a new commercial market, map competitor landscapes, identify distributors and buyers, and give our leadership actionable commercial intelligence?",
+    primaryKeywords: ["market intelligence services", "B2B market intelligence", "market research services", "commercial market research", "market entry research", "competitor research services"],
+    secondaryKeywords: ["buyer research services", "distributor identification services", "industry intelligence services", "trade intelligence services", "Middle East market intelligence", "territory research services", "competitor landscape analysis", "wholesale market mapping"],
   },
   "visualisation-image-production": {
-    metaTitle: "Interior & Product 3D Visualisation Services — XIYÀTO",
-    metaDescription: "3D visualisation for interiors, architecture, furniture and products. Produced from your plans, materials and references, and specified for each placement.",
-    searchIntent: "Who can turn my plans, materials and product references into interior, architectural and product images good enough to put in front of a client?",
-    primaryKeywords: ["3D visualisation services","interior visualisation","architectural visualisation","interior rendering services","product visualisation","furniture visualisation"],
-    secondaryKeywords: ["3D interior rendering","showroom and retail visualisation","material and finish studies","furniture and product imagery","hospitality interior visualisation","dimensioned 3D layout studies","concept imagery for client presentations","campaign and hero image production"],
+    metaTitle: "3D Rendering & Architectural Visualization Services | XIYÀTO",
+    metaDescription: "Photorealistic 3D rendering and architectural visualization for interiors, developments, furniture and luxury products. Client-ready CGI specified per placement.",
+    searchIntent: "Who can turn my architectural plans, interior layouts, or furniture specifications into photorealistic 3D rendering and CGI for client presentations and marketing?",
+    primaryKeywords: ["3D rendering services", "architectural visualization services", "3D visualisation services", "interior rendering services", "photorealistic 3D rendering", "product visualization services"],
+    secondaryKeywords: ["furniture rendering services", "property CGI services", "interior design rendering", "luxury interior rendering", "exterior visualization services", "architectural CGI studio", "3D architectural rendering", "commercial interior rendering"],
   },
-  "automation-workflow-systems": {
-    metaTitle: "Business Workflow Automation Systems — XIYÀTO",
-    metaDescription: "Workflow design and business process automation built inside your existing tools: enquiry routing, lead management, outreach, reporting and internal tooling.",
-    searchIntent: "Who can map how my business actually runs and automate the repetitive parts of it, from lead management and outreach to reporting, inside the tools we already use?",
-    primaryKeywords: ["business workflow automation","business process automation","AI workflow automation","custom workflow systems","outreach automation","lead generation automation"],
-    secondaryKeywords: ["lead management workflow","automated follow-up systems","research workflow automation","content workflow automation","data organisation and consolidation","automated reporting systems","lightweight internal tools","enquiry management automation"],
+  "ai-video-production": {
+    metaTitle: "AI Video Production Services | XIYÀTO",
+    metaDescription: "AI video production for brands, products, showrooms and campaigns. Cinematic short-form film, generative AI sequences and multi-format commercial cutdowns.",
+    searchIntent: "Who can produce and edit cinematic commercial AI video for our brand, product launch, showroom, or architectural campaign across social and web formats?",
+    primaryKeywords: ["AI video production services", "AI video production agency", "commercial video production", "generative AI video production", "AI product video production", "cinematic video production"],
+    secondaryKeywords: ["AI video editing services", "brand film production", "showroom walkthrough video", "AI commercial video production", "social media video production", "short form video production", "AI campaign video production", "product launch video"],
   },
   "website-design-development": {
-    metaTitle: "Website Design & Development Services — XIYÀTO",
-    metaDescription: "Website design and development for businesses, portfolios and brands: responsive build, content architecture, integrations, deployment and code handover.",
-    searchIntent: "Who can design and build a proper responsive website for my business or portfolio, launch it properly, and hand over something I actually own?",
-    primaryKeywords: ["website design and development","business website development","portfolio website design","responsive website design","brand website development","website development services"],
-    secondaryKeywords: ["design studio website","front-end website development","mobile-optimised website design","website content architecture","website redesign and migration","portfolio website for interior designers","website deployment and handover","website development for manufacturers"],
+    metaTitle: "Website Design & Development for Architecture & B2B | XIYÀTO",
+    metaDescription: "Custom Next.js website design and development for architecture practices, interior designers, and B2B brands. High performance, accessible, and code handover.",
+    searchIntent: "Who can design and build a bespoke, responsive Next.js portfolio or business website for our architecture studio, interior practice, or B2B brand?",
+    primaryKeywords: ["website design and development services", "B2B website design", "custom website development", "website design for architects", "portfolio website design", "responsive website development"],
+    secondaryKeywords: ["architecture firm website design", "interior design website development", "technical SEO website development", "Next.js website development", "high converting website development", "website development company", "design studio website", "performance optimized website"],
+  },
+
+  // Backward compatibility mappings for legacy routes and components
+  "growth-marketing-b2b": {
+    metaTitle: "B2B Lead Generation Services | XIYÀTO",
+    metaDescription: "B2B lead generation built around verified buyers. Targeted prospect list building, ICP research, and decision-maker contact routes for outbound sales.",
+    searchIntent: "Who can build a verified B2B prospect list with direct decision-maker contact details for our commercial sales team?",
+    primaryKeywords: ["B2B lead generation services", "B2B lead generation agency", "outbound lead generation services"],
+    secondaryKeywords: ["decision maker research", "ICP research services", "verified B2B leads"],
+  },
+  "video-ai-film-editing": {
+    metaTitle: "AI Video Production Services | XIYÀTO",
+    metaDescription: "AI video production for brands, products, showrooms and campaigns. Cinematic short-form film, generative AI sequences and multi-format commercial cutdowns.",
+    searchIntent: "Who can produce and edit cinematic commercial AI video for our brand, product launch, showroom, or architectural campaign across social and web formats?",
+    primaryKeywords: ["AI video production services", "AI video production agency", "commercial video production"],
+    secondaryKeywords: ["AI video editing services", "brand film production", "showroom walkthrough video"],
+  },
+  "automation-workflow-systems": {
+    metaTitle: "B2B Lead Generation & Pipeline Systems | XIYÀTO",
+    metaDescription: "B2B lead generation built around verified buyers. Targeted prospect list building, ICP research, and decision-maker contact routes for outbound sales.",
+    searchIntent: "Who can map how my business actually runs and automate the repetitive parts of it, from lead management and outreach to reporting?",
+    primaryKeywords: ["B2B lead generation services", "custom workflow systems", "outreach automation"],
+    secondaryKeywords: ["lead management workflow", "automated follow-up systems", "CRM-ready prospect data"],
   },
 };
 
 export const ROUTE_SEO = {
   home: {
     metaTitle: "XIYÀTO — Technical, Creative & Growth Services | UK & India",
-    metaDescription: "CAD and technical production, B2B growth, 3D visualisation, film, automation and websites for design practices, brands and manufacturers. UK and India.",
+    metaDescription: "CAD drafting, B2B lead generation, market intelligence, 3D visualization, AI video production, and custom websites for design practices, brands, and manufacturers.",
   },
   work: {
-    metaTitle: "Work — XIYÀTO",
-    metaDescription: "Interior drawing packages, B2B research workbooks, visualisation, short-form film and website builds, published with the inputs and method alongside each output.",
+    metaTitle: "Work & Production Evidence — XIYÀTO",
+    metaDescription: "Interior drawing packages, B2B research workbooks, photorealistic 3D visualization, cinematic video, and website builds published with full technical provenance.",
   },
   services: {
-    metaTitle: "Services — XIYÀTO",
-    metaDescription: "Six service areas under one partner: technical drafting, B2B research, visualisation, film, workflow automation and web development. Commission one or several.",
+    metaTitle: "Commercial Production & Growth Services — XIYÀTO",
+    metaDescription: "Six commercial service pillars: CAD drafting, B2B lead generation, market intelligence, 3D rendering, AI video production, and custom website development.",
   },
   company: {
     metaTitle: "One Partner Across Six Disciplines — XIYÀTO",
-    metaDescription: "One partner for CAD and technical production, B2B growth, visualisation, film, automation and websites. Founder-led, working across the UK and India.",
+    metaDescription: "One partner for CAD technical drafting, B2B growth, 3D rendering, AI video, and custom web development. Founder-led, operating across the UK and India.",
   },
   people: {
     metaTitle: "Founder, Chaitanya Gaikwad — XIYÀTO",
-    metaDescription: "Chaitanya Gaikwad founded XIYÀTO and leads production across all six disciplines. Scoping, quality checks and client contact sit with him on every engagement.",
+    metaDescription: "Chaitanya Gaikwad founded XIYÀTO and leads production across all six commercial disciplines. Scoping, quality checks and client contact sit with him directly.",
   },
   careers: {
-    metaTitle: "Careers — XIYÀTO",
-    metaDescription: "XIYÀTO engages independent specialists across drafting, research, visualisation, film, automation and web work. No open vacancies; the network stays open.",
+    metaTitle: "Careers & Talent Network — XIYÀTO",
+    metaDescription: "XIYÀTO engages independent specialists across drafting, research, visualisation, film, and web work. Open talent network applications reviewed weekly.",
   },
   contact: {
-    metaTitle: "Contact — XIYÀTO",
-    metaDescription: "Send a brief and whatever material exists. XIYÀTO will confirm what is workable, what is still needed, and propose a scope. UK and India.",
+    metaTitle: "Contact XIYÀTO — Commission Production or Growth",
+    metaDescription: "Send a brief and whatever material exists. XIYÀTO will confirm what is workable, what is still needed, and propose a defined commercial scope.",
   },
 } as const;

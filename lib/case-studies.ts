@@ -247,7 +247,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     sector: "Luxury furniture and interiors",
     location: "Remote delivery",
     category: "video",
-    services: ["video-ai-film-editing"],
+    services: ["ai-video-production", "video-ai-film-editing"],
     dateRange: "2025",
     engagementType: "ongoing-support",
     scope: [
@@ -302,7 +302,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     sector: "Interior, hospitality and commercial design",
     location: "Remote delivery",
     category: "visualisation",
-    services: ["visualisation-image-production", "video-ai-film-editing"],
+    services: ["visualisation-image-production", "ai-video-production", "video-ai-film-editing"],
     dateRange: "2026",
     engagementType: "ongoing-support",
     scope: [

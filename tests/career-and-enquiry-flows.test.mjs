@@ -94,7 +94,7 @@ test('Compiles structured talent email body with all candidate fields', () => {
     .join('\n');
 
   assert.ok(subject.includes('Alex Vance'));
-  assert.ok(subject.includes('3D Visualisation'));
+  assert.ok(subject.includes('3D Rendering & Visualisation'));
   assert.ok(emailBody.includes('Name: Alex Vance'));
   assert.ok(emailBody.includes('Email: alex@visuals.io'));
   assert.ok(emailBody.includes('Portfolio / Work Link: https://visuals.io/portfolio'));
@@ -144,11 +144,14 @@ console.log('\n--- 4. Service Linkage & Cross-Pillar Quotation Pre-Selection ---
 test('All service slugs in SERVICE_OPTIONS are valid', () => {
   assert.ok(SERVICE_OPTIONS.length >= 6);
   assert.ok(SERVICE_OPTIONS.some((s) => s.value === 'cad-technical-production'));
-  assert.ok(SERVICE_OPTIONS.some((s) => s.value === 'growth-marketing-b2b'));
+  assert.ok(SERVICE_OPTIONS.some((s) => s.value === 'b2b-lead-generation'));
+  assert.ok(SERVICE_OPTIONS.some((s) => s.value === 'market-intelligence-research'));
   assert.ok(SERVICE_OPTIONS.some((s) => s.value === 'visualisation-image-production'));
-  assert.ok(SERVICE_OPTIONS.some((s) => s.value === 'video-ai-film-editing'));
-  assert.ok(SERVICE_OPTIONS.some((s) => s.value === 'automation-workflow-systems'));
+  assert.ok(SERVICE_OPTIONS.some((s) => s.value === 'ai-video-production'));
   assert.ok(SERVICE_OPTIONS.some((s) => s.value === 'website-design-development'));
+  // Legacy aliases supported for inbound link preservation
+  assert.ok(SERVICE_OPTIONS.some((s) => s.value === 'growth-marketing-b2b'));
+  assert.ok(SERVICE_OPTIONS.some((s) => s.value === 'video-ai-film-editing'));
 });
 
 console.log('\n================================================================');

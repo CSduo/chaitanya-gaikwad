@@ -37,11 +37,18 @@ const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
 export const SERVICE_OPTIONS = [
   ...SERVICES.map((s) => ({ value: s.slug, label: s.name })),
+  // Legacy aliases for backwards-compatibility with existing inbound links & tests
+  { value: "growth-marketing-b2b", label: "B2B Lead Generation & Growth (Legacy)" },
+  { value: "video-ai-film-editing", label: "AI Video Production (Legacy)" },
+  { value: "automation-workflow-systems", label: "Automation & Workflow Systems (Legacy)" },
   { value: "multiple", label: "More than one / not sure yet" },
 ];
 
 export const DISCIPLINE_OPTIONS = [
   ...SERVICES.map((s) => ({ value: s.slug, label: s.shortName })),
+  { value: "growth-marketing-b2b", label: "Growth & B2B" },
+  { value: "video-ai-film-editing", label: "Video & Film" },
+  { value: "automation-workflow-systems", label: "Automation" },
   { value: "other", label: "Other" },
 ];
 

@@ -122,7 +122,9 @@ test('Sitemap contains core commercial target routes from search intelligence gr
   assert.ok(urls.includes('https://xiyato.uk/services/cad-technical-production'), 'Missing CAD production URL');
   assert.ok(urls.includes('https://xiyato.uk/services/cad/interior-fit-out-shop-drawings'), 'Missing CAD fitout subservice URL');
   assert.ok(urls.includes('https://xiyato.uk/services/visualisation-image-production'), 'Missing 3D visualisation URL');
-  assert.ok(urls.includes('https://xiyato.uk/services/growth-marketing-b2b'), 'Missing growth URL');
+  assert.ok(urls.includes('https://xiyato.uk/services/b2b-lead-generation'), 'Missing B2B lead gen URL');
+  assert.ok(urls.includes('https://xiyato.uk/services/market-intelligence-research'), 'Missing market intelligence URL');
+  assert.ok(urls.includes('https://xiyato.uk/services/ai-video-production'), 'Missing AI video URL');
   assert.ok(urls.includes('https://xiyato.uk/contact'), 'Missing contact URL');
   assert.ok(urls.includes('https://xiyato.uk/legal/privacy'), 'Missing privacy URL');
   assert.ok(urls.includes('https://xiyato.uk/legal/terms'), 'Missing terms URL');

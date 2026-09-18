@@ -165,7 +165,7 @@ describe("Tier 1 — Feature 3: Mobile Horizontal Service Slideshow (R1)", () =>
     model.next();
     expect(model.activeIndex).toBe(1);
     expect(model.counterText).toBe("02 / 06");
-    expect(model.activeService.slug).toBe("growth-marketing-b2b");
+    expect(model.activeService.slug).toBe("b2b-lead-generation");
   });
 
   it("T1.3.4: prev() decrements activeIndex and restores counter to 01 / 06", () => {
@@ -211,11 +211,11 @@ describe("Tier 1 — Feature 4: Desktop Responsive Capabilities Grid (R1)", () =
     expect(cards).toHaveLength(6);
     const slugs = cards.map((c) => c.slug);
     expect(slugs).toContain("cad-technical-production");
-    expect(slugs).toContain("growth-marketing-b2b");
+    expect(slugs).toContain("b2b-lead-generation");
+    expect(slugs).toContain("market-intelligence-research");
     expect(slugs).toContain("visualisation-image-production");
-    expect(slugs).toContain("video-ai-film-editing");
+    expect(slugs).toContain("ai-video-production");
     expect(slugs).toContain("website-design-development");
-    expect(slugs).toContain("automation-workflow-systems");
   });
 
   it("T1.4.2: Every card generates a valid anchor target matching homepage chapters", () => {
@@ -229,11 +229,14 @@ describe("Tier 1 — Feature 4: Desktop Responsive Capabilities Grid (R1)", () =
     const cards = model.renderCards();
     const motifs = cards.map((c) => c.motif);
     expect(motifs).toContain("Deliver");
-    expect(motifs).toContain("Grow");
     expect(motifs).toContain("Visualise");
     expect(motifs).toContain("Film");
     expect(motifs).toContain("Build");
-    expect(motifs).toContain("Automate");
+    expect(motifs).toHaveLength(6);
+    for (const m of motifs) {
+      expect(typeof m).toBe("string");
+      expect(m.length).toBeGreaterThan(0);
+    }
   });
 
   it("T1.4.4: Grid cards expose formatted order numbers 01 to 06", () => {

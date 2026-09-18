@@ -19,10 +19,13 @@ export type DisciplineSlug =
 
 export type ServiceSlug =
   | "cad-technical-production"
-  | "growth-marketing-b2b"
+  | "b2b-lead-generation"
+  | "market-intelligence-research"
   | "visualisation-image-production"
-  | "video-ai-film-editing"
+  | "ai-video-production"
   | "website-design-development"
+  | "growth-marketing-b2b"
+  | "video-ai-film-editing"
   | "automation-workflow-systems";
 
 export interface DisciplineThemeClasses {
@@ -334,10 +337,13 @@ export const DISCIPLINE_THEMES: Record<DisciplineSlug, DisciplineThemeTokens> = 
 
 export const DISCIPLINE_THEMES_BY_SERVICE: Record<ServiceSlug, DisciplineThemeTokens> = {
   "cad-technical-production": DISCIPLINE_THEMES.cad,
-  "growth-marketing-b2b": DISCIPLINE_THEMES.growth,
+  "b2b-lead-generation": DISCIPLINE_THEMES.growth,
+  "market-intelligence-research": DISCIPLINE_THEMES.growth,
   "visualisation-image-production": DISCIPLINE_THEMES.visualisation,
-  "video-ai-film-editing": DISCIPLINE_THEMES.video,
+  "ai-video-production": DISCIPLINE_THEMES.video,
   "website-design-development": DISCIPLINE_THEMES.website,
+  "growth-marketing-b2b": DISCIPLINE_THEMES.growth,
+  "video-ai-film-editing": DISCIPLINE_THEMES.video,
   "automation-workflow-systems": DISCIPLINE_THEMES.automation,
 };
 
@@ -346,9 +352,15 @@ export const DISCIPLINE_THEMES_BY_SERVICE: Record<ServiceSlug, DisciplineThemeTo
  */
 export function normalizeDisciplineSlug(slug: string): DisciplineSlug {
   if (slug === "cad" || slug === "cad-technical-production") return "cad";
-  if (slug === "growth" || slug === "growth-marketing-b2b") return "growth";
+  if (
+    slug === "growth" ||
+    slug === "growth-marketing-b2b" ||
+    slug === "b2b-lead-generation" ||
+    slug === "market-intelligence-research"
+  )
+    return "growth";
   if (slug === "visualisation" || slug === "visualisation-image-production" || slug === "3d-visualisation") return "visualisation";
-  if (slug === "video" || slug === "video-ai-film-editing" || slug === "film") return "video";
+  if (slug === "video" || slug === "video-ai-film-editing" || slug === "ai-video-production" || slug === "film") return "video";
   if (slug === "website" || slug === "website-design-development" || slug === "web") return "website";
   if (slug === "automation" || slug === "automation-workflow-systems") return "automation";
   return "cad";

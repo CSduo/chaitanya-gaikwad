@@ -9,11 +9,14 @@
 
 export type ServiceSlug =
   | "cad-technical-production"
-  | "growth-marketing-b2b"
+  | "b2b-lead-generation"
+  | "market-intelligence-research"
   | "visualisation-image-production"
+  | "ai-video-production"
+  | "website-design-development"
+  | "growth-marketing-b2b"
   | "video-ai-film-editing"
-  | "automation-workflow-systems"
-  | "website-design-development";
+  | "automation-workflow-systems";
 
 export type CapabilityGroup = {
   title: string;
@@ -44,11 +47,11 @@ export type Service = {
 export const SERVICES: Service[] = [
   {
     slug: "cad-technical-production",
-    name: "CAD & Technical Production",
-    shortName: "CAD & Technical Production",
+    name: "CAD Drafting & Technical Production",
+    shortName: "CAD Drafting",
     motif: "Deliver",
-    summary: "Outsourced CAD drafting for interior and fit-out teams: plans, elevations, RCPs and flooring setting-out, issued as editable DWG.",
-    overview: "External CAD drafting and documentation capacity for interior, fit-out and design businesses, working from your layouts, dimensions, sketches and renders to editable DWG, DXF and PDF sets.",
+    summary: "Outsourced CAD drafting for interior and fit-out teams: plans, elevations, RCPs, joinery details and flooring setting-out, issued as editable DWG.",
+    overview: "External CAD drafting and documentation capacity for interior, fit-out and architectural practices, working from your layouts, sketches, marked-up PDFs and 3D renders to coordinated DWG, DXF and PDF sets.",
     intro: [
       "XIYÀTO works as external drafting capacity for interior, fit-out and design practices carrying more drawing work than the studio can absorb. You supply the design direction: approved layouts, marked-up PDFs, measured site dimensions, renders or a dimensioned hand sketch. We return the coordinated package your team reviews and issues, covering general arrangement plans, wall elevations, reflected ceiling plans, flooring setting-out and joinery detail.",
       "This is drafting and documentation, not design authorship. Your practice keeps design ownership and technical authority. We take on the production load and return native DWG and DXF built to your layer convention and title block, so the set can be revised and issued from your office. Every package is dimension-checked and reopened before issue, and any dimension taken from a render rather than confirmed on site is flagged as provisional.",
@@ -126,111 +129,173 @@ export const SERVICES: Service[] = [
   },
 
   {
-    slug: "growth-marketing-b2b",
-    name: "Growth, Marketing & B2B",
-    shortName: "Growth & B2B",
-    motif: "Grow",
-    summary: "Research-led B2B lead generation: market intelligence, scored target lists, contact routes, outreach systems and marketing support.",
-    overview: "B2B lead generation and market research for businesses entering a new market or rebuilding a pipeline, with every target company identified, evidenced, scored and structured for outreach.",
+    slug: "b2b-lead-generation",
+    name: "B2B Lead Generation Services",
+    shortName: "B2B Lead Generation",
+    motif: "Pipeline",
+    summary: "Targeted B2B lead generation: bespoke prospect research, hand-verified decision-maker data, ICP qualification and outreach-ready pipelines.",
+    overview: "Proprietary B2B lead generation and sales prospecting for companies expanding into new markets or rebuilding pipeline. Every target account is researched, qualified, and verified by hand with direct decision-maker contact routes.",
     intro: [
-      "Growth, Marketing & B2B is the research-led commercial side of XIYÀTO: market intelligence, company and prospect research, qualified B2B target data, outreach operations and the marketing that supports them. It serves design, fit-out, furniture, manufacturing, property and hospitality businesses that know roughly where the opportunity sits — a region, a sector, a trade route, an exhibition — but do not yet hold the evidence, the target list or the working system to act on it.",
-      "This is research and systems work rather than campaign management or media buying. Published workbooks under this service span market entry, buyer discovery, contact-route mapping and event research across Saudi Arabia, the GCC, India, China and the Philippines. Each is built to be worked rather than filed: records are scored and ranked, contact routes are recorded against the companies that have them, and the larger studies carry a source log and a record of what was removed during cleaning.",
+      "XIYÀTO builds targeted B2B lead generation programmes for architecture practices, interior fit-out contractors, furniture manufacturers, luxury exporters and B2B service companies. We identify high-probability target accounts, research verified decision-makers across C-suite and procurement, and build structured prospect databases your commercial team can immediately work.",
+      "This is bespoke, human-verified research rather than scraped database exports or automated bulk blasts. Every company is qualified against your Ideal Customer Profile (ICP) using active project evidence, physical premises validation, and corporate registry records. We map direct executive phone numbers, verified corporate emails, and WhatsApp business coordinates, complete with tailored opening angles mapped per prospect.",
     ],
     groups: [
       {
-        title: "Business and market research",
-        intro: "Establishing what the market actually looks like before any list is built.",
+        title: "Target account & ICP discovery",
+        intro: "Building a defensible target account universe before any outreach begins.",
         items: [
-          "Market and sector mapping across a defined geography",
-          "Competitor, supplier and manufacturer landscape research",
-          "Export and import trade-route research",
-          "City-level segmentation within a target market",
-          "Trade fair, exhibition and industry event mapping",
-          "Buying-side structure: who specifies, who procures, who signs off",
-          "Public-source evidence gathering with a URL logged against every claim",
-        ],
-      },
-      {
-        title: "B2B lead generation and qualification",
-        intro: "Turning a market map into a defensible target list.",
-        items: [
-          "Company identification against an agreed target profile",
-          "Decision-maker and department route mapping from public sources",
+          "Ideal Customer Profile (ICP) definition and criteria scoring",
+          "Target account identification across defined geographies and sectors",
           "Active project, showroom or tender activity used as qualifying evidence",
-          "Priority scoring against criteria agreed in advance",
-          "Segmentation by city, sector, size or service fit",
-          "Deduplication, record cleaning and auditable removal logging",
-          "Reachability and contact-route assessment per record",
-          "Verification status recorded against each record",
+          "Segmentation by territory, company revenue, sector and project scale",
+          "Exclusion of non-commercial entities, shell companies and defunct businesses",
+          "Auditable removal logging retaining reason for exclusion",
         ],
       },
       {
-        title: "Outreach and follow-up",
-        intro: "The structure that makes outreach repeatable and reviewable.",
+        title: "Decision-maker research & verification",
+        intro: "Identifying the real signing authorities rather than generic switchboard addresses.",
         items: [
-          "Email and WhatsApp outreach sequence structuring",
-          "Personalised opening angle mapped per record rather than per list",
-          "Channel recommendation and send prioritisation",
-          "Follow-up cadence, reminder structure and re-approach timing",
-          "CRM-style status tracking held in the workbook itself",
-          "Enquiry, sample-request and reply logging through to next step",
-          "Cross-border communication support across time zones and language register",
+          "Managing Directors, Partners, and Commercial Directors identified by name",
+          "Procurement and specification heads mapped for contractors and developers",
+          "Direct corporate telephone verification with regional offices",
+          "Deliverability-tested executive email addresses with SMTP validation",
+          "Verified executive WhatsApp business coordinates where accessible",
+          "Regular contact hygiene checks removing departed personnel",
         ],
       },
       {
-        title: "Marketing and brand presentation support",
-        intro: "The material outreach relies on once a conversation opens.",
+        title: "Outreach structuring & sequencing",
+        intro: "Creating structured messaging frameworks that respect commercial context.",
         items: [
-          "Content planning and publishing calendars",
-          "Social channel support against a defined posting rhythm",
-          "Company profile, capability statement and line-card copy",
-          "Campaign support around a launch, trade fair or new-market push",
-          "Segment-specific positioning and messaging",
-          "Sales and pitch collateral structuring",
-          "Coordination with visualisation, film and website output so outreach has a credible destination",
+          "Multi-channel outreach sequences for corporate email and WhatsApp",
+          "Individualized opening angles referencing real prospect activity",
+          "Follow-up cadences, reminder intervals and re-approach timing",
+          "Cross-border communication phrasing tailored to local business culture",
+          "CRM-ready field mapping for HubSpot, Salesforce and Pipedrive",
+          "Response logging and status tracking held in the master workbook",
         ],
       },
       {
-        title: "Data structure and handover",
-        intro: "How the work is assembled so it survives handover to your team.",
+        title: "Data governance & handover",
+        intro: "How the intelligence is assembled so it survives handover to your sales team.",
         items: [
-          "Multi-sheet workbooks with a defined sheet per process step",
-          "Field schema agreed before research begins",
-          "Source log and verification trail as standard sheets",
-          "Backup sheet retaining every removed or rejected record",
-          "Scoring methodology documented in-workbook, not held by us",
-          "Top-up and refresh rounds against an existing workbook",
+          "Multi-sheet Microsoft Excel (.XLSX) master workbooks and CSV files",
+          "Documented field schema agreed before research begins",
+          "Source log recording public evidence URLs for every claim",
+          "Full compliance with UK PECR and international B2B privacy standards",
+          "Suppression list integration and opt-out mechanisms",
+          "Periodic database refreshes and top-up rounds on request",
         ],
       },
     ],
     process: [
-      { step: "01", title: "Define the market", body: "Target geography, sector, company profile, qualification criteria and the fields to be captured are agreed in writing before research starts. This is the step that decides whether the output is usable." },
-      { step: "02", title: "Research and evidence", body: "Public sources are worked systematically. Each record is built with supporting evidence and a source URL, and anything that fails the profile is moved to a backup sheet rather than deleted." },
-      { step: "03", title: "Qualify, score and segment", body: "Records are verified, deduplicated and scored against the agreed criteria, then segmented by city, sector or fit so the list can be approached in a sensible order." },
-      { step: "04", title: "Structure, hand off and support", body: "The workbook is assembled with scoring methodology, source log, contact routes and outreach angles. Where the engagement continues, outreach and follow-up are run and logged against it." },
+      { step: "01", title: "Profile & criteria", body: "We agree your target sector, geography, decision-maker roles, company size, and qualifying thresholds in writing before research begins." },
+      { step: "02", title: "Account research", body: "Analysts examine commercial registries, project permits, and public records, building verified corporate dossiers with source evidence." },
+      { step: "03", title: "Contact verification", body: "Decision-makers are identified, and emails and phone numbers are verified through direct validation to eliminate dead data." },
+      { step: "04", title: "Handover & activation", body: "You receive the master intelligence workbook structured with contact routes, outreach angles, and CRM-ready import formatting." },
     ],
     deliverables: [
-      "Structured multi-sheet workbooks with a documented field schema",
-      "Scored and ranked target shortlists, segmented for use",
-      "Decision-maker route mapping and per-record channel recommendations",
-      "Source log, verification status and an auditable backup of removed records",
-      "Outreach sequences, follow-up cadence and CRM-style tracking sheets",
-      "Content plans and campaign material supporting the outreach",
+      "Structured multi-sheet Excel (.XLSX) workbook and clean CSV files",
+      "Scored and ranked target account list segmented by priority",
+      "Verified C-suite, Procurement, and Project Director contact profiles",
+      "Direct telephone, corporate email, and WhatsApp coordinates",
+      "Source verification log and auditable record of excluded entities",
+      "CRM import templates formatted for immediate sales activation",
     ],
-    boundary: "XIYÀTO provides research, structured data and outreach operations. We do not guarantee response rates, meetings, enquiries or revenue outcomes — those depend on your offer, your market and your commercial follow-through. Research is compiled from publicly available sources with provenance recorded against each record; contact detail is redacted in any published portfolio material.",
+    boundary: "XIYÀTO provides research, data enrichment, and structured outreach workflows. We do not provide cold telemarketing, consumer lead generation, or guaranteed sales conversion figures — outcomes depend on your commercial offer, pricing, and follow-through. All data is gathered from public and verifiable business sources in compliance with B2B regulations; contact details are redacted in published portfolio samples.",
     order: 2,
   },
 
   {
-    slug: "visualisation-image-production",
-    name: "3D Visualisation & Image Production",
-    shortName: "3D Visualisation",
-    motif: "Visualise",
-    summary: "Interior, architectural and product visualisation produced from your plans, materials and references, built for a defined placement.",
-    overview: "Still image production for design-led businesses: interior and architectural visualisation, product and furniture imagery, material studies and campaign visuals, specified by placement.",
+    slug: "market-intelligence-research",
+    name: "Market Intelligence & Commercial Research",
+    shortName: "Market Intelligence",
+    motif: "Intelligence",
+    summary: "Commercial market intelligence: competitive landscape mapping, distributor and buyer research, trade route discovery and territory analysis.",
+    overview: "In-depth market intelligence and commercial research for businesses entering new geographic territories, evaluating competitors, or mapping distribution networks across the UK, GCC, India and Asia.",
     intro: [
-      "Most design work has to be sold before it exists. This service covers the imagery that carries that job: interiors not yet built, furniture not yet on a showroom floor, and finishes a client cannot hold. We produce it for interior and fit-out practices, furniture and product manufacturers, property and hospitality businesses and brands, working from the drawings, dimensions, product photography and material direction you already hold.",
-      "Coverage runs from interior and architectural visualisation to product and furniture imagery, material studies, showroom sets and campaign visuals. Images are produced through 3D visualisation, AI-assisted generation and compositing, and each is specified against its placement: a pitch document, a showroom screen, a catalogue spread or a website header, in the ratio that placement requires. Directions are put forward as options for your selection, not as a single fixed image.",
+      "Entering a new market or launching a high-ticket commercial offering requires clear market visibility before committing capital. XIYÀTO delivers commercial market intelligence and strategic industry research for design brands, manufacturers, exporters and developers across the UK, Middle East, India and international trade corridors.",
+      "Our studies map market structure, competitor positioning, distributor networks, wholesale hubs, and commercial procurement practices. From wholesale interior market mapping across Tier 1–3 cities in China to automotive showroom networks in the GCC and exhibition calendars in India, every study is grounded in verifiable evidence, source URLs, and actionable commercial data.",
+    ],
+    groups: [
+      {
+        title: "Territory & sector mapping",
+        intro: "Understanding the commercial geography and demand landscape before entry.",
+        items: [
+          "Geographic and city-level commercial segmentation (UK, GCC, India, China)",
+          "Wholesale trade market, showroom cluster, and distribution hub mapping",
+          "Trade fair, exhibition, and industry event calendars with attendee profiles",
+          "Import/export trade route analysis and tariff/regulatory context",
+          "Local market pricing dynamics and procurement conventions",
+          "Macro-economic indicators and construction pipeline tracking",
+        ],
+      },
+      {
+        title: "Competitor & distributor research",
+        intro: "Analyzing existing market players and identifying potential commercial partners.",
+        items: [
+          "Direct and indirect competitor landscape benchmarking",
+          "Importer, wholesaler, and exclusive distributor identification",
+          "Channel partner evaluation against capacity and coverage",
+          "Supplier, manufacturer, and fabrication partner discovery",
+          "Brand positioning, product tiering, and catalogue comparisons",
+          "Market gap and unserved niche identification",
+        ],
+      },
+      {
+        title: "Buyer & procurement dynamics",
+        intro: "Mapping how purchasing decisions are actually made in the target sector.",
+        items: [
+          "Procurement structure mapping: who specifies, who approves, who procures",
+          "Turnkey contractor, fit-out specialist, and developer relationships",
+          "Hospitality and commercial real estate development project tracking",
+          "Corporate holding group and local sponsorship relationship mapping",
+          "Tender pre-qualification criteria and vendor registration requirements",
+          "Commercial buyer shortlists with verified corporate credentials",
+        ],
+      },
+      {
+        title: "Intelligence delivery & briefings",
+        intro: "How research findings are structured for strategic decision-making.",
+        items: [
+          "Executive market summary reports with actionable strategic takeaways",
+          "Interactive data workbooks with multi-tab categorization",
+          "Source log recording public URLs and verification timestamps",
+          "Structured company profiles with operational notes and project evidence",
+          "Briefing sessions with founders and leadership teams",
+          "Custom follow-up research sprints addressing specific target accounts",
+        ],
+      },
+    ],
+    process: [
+      { step: "01", title: "Research brief", body: "We define the exact questions your business needs answered: target territory, competitor scope, distribution channels, and buyer profiles." },
+      { step: "02", title: "Investigation", body: "Analysts gather data across trade registries, industry directories, local intelligence sources, and active market projects." },
+      { step: "03", title: "Synthesis & audit", body: "Findings are cross-referenced, deduplicated, and verified. Source provenance is logged for every claim and data point." },
+      { step: "04", title: "Report & dataset", body: "You receive the master intelligence dossier, executive briefing notes, and structured workbooks ready for strategic deployment." },
+    ],
+    deliverables: [
+      "Comprehensive market intelligence report with executive summary",
+      "Interactive multi-sheet Excel (.XLSX) database of mapped markets/entities",
+      "Competitor and distributor comparison matrices",
+      "Source verification log detailing evidence URLs and dates",
+      "Actionable market entry recommendations and partner shortlists",
+      "Executive briefing call to walk your team through the findings",
+    ],
+    boundary: "Market intelligence reflects verified public records, commercial filings, and industry research at the time of publication. We provide strategic commercial insight and actionable evidence, not legal advice, tax structuring, or guaranteed investment returns. All sensitive client strategies and proprietary research are protected under strict non-disclosure agreements.",
+    order: 3,
+  },
+
+  {
+    slug: "visualisation-image-production",
+    name: "3D Rendering & Architectural Visualization",
+    shortName: "3D Rendering & Visualisation",
+    motif: "Visualise",
+    summary: "Photorealistic 3D rendering and architectural visualization for interiors, developments, furniture and luxury products, tailored for presentations and campaigns.",
+    overview: "Still 3D rendering and architectural visualization (visualisation) for design practices, developers, furniture makers and luxury brands, turning CAD plans and material references into client-ready imagery.",
+    intro: [
+      "Most spatial design and bespoke products have to be sold before they are built. XIYÀTO produces photorealistic 3D architectural rendering and spatial visualization for interior studios, architectural practices, real estate developers, furniture manufacturers and luxury brands. We translate 2D CAD drawings, material swatches, lighting direction and sketches into images built for presentations, planning submissions, and marketing campaigns.",
+      "Our CGI work covers residential and commercial interior rendering, architectural exterior visualization, bespoke furniture lifestyle sets, and e-commerce hero visuals. Every image is composed to its specific placement—whether a pitch deck, client presentation board, luxury print brochure, or digital campaign. Directions are put forward as options for your selection, not as a single fixed image.",
     ],
     groups: [
       {
@@ -247,11 +312,12 @@ export const SERVICES: Service[] = [
         ],
       },
       {
-        title: "Interior and spatial visualisation",
+        title: "Interior and spatial rendering",
+        intro: "High-end interior visualization for client sign-off and marketing.",
         items: [
-          "Residential room visualisation from plans and layouts",
+          "Residential room visualization from plans and layouts",
           "Hospitality interiors — bar, restaurant and lounge settings",
-          "Retail and showroom floor visualisation",
+          "Retail and showroom floor visualization",
           "Dimensioned 3D layout studies produced from marked-up plans",
           "Lighting and atmosphere studies, daylight and evening",
           "Material, finish and colour-scheme variants of a single view",
@@ -260,7 +326,8 @@ export const SERVICES: Service[] = [
         ],
       },
       {
-        title: "Product and furniture imagery",
+        title: "Product and furniture CGI",
+        intro: "Lifestyle environments and studio catalogue imagery.",
         items: [
           "Furniture and lighting pieces shown in a styled context",
           "Product imagery on plain and set backgrounds",
@@ -273,6 +340,7 @@ export const SERVICES: Service[] = [
       },
       {
         title: "Brand and commercial visuals",
+        intro: "Visual assets engineered for commercial campaigns and digital touchpoints.",
         items: [
           "Website hero and section header images",
           "Campaign and product-launch key visuals",
@@ -285,6 +353,7 @@ export const SERVICES: Service[] = [
       },
       {
         title: "Direction, consistency and finishing",
+        intro: "Rigorous quality control ensuring physical believability.",
         items: [
           "Visual direction and reference boards agreed before production",
           "Composition, framing and camera-height decisions",
@@ -311,115 +380,113 @@ export const SERVICES: Service[] = [
       "Working files and source assets on request",
     ],
     boundary: "Visualisation is representational. Images are an interpretation of supplied design direction, not a specification, a technical drawing or an approval document. Colours, finishes and materials shown on screen are indicative and should be confirmed against physical samples and supplier data before ordering or construction. Where AI-assisted generation is used, it is a production method applied under direction; we will state plainly which images are generated rather than photographed.",
-    order: 3,
-  },
-
-  {
-    slug: "video-ai-film-editing",
-    name: "Video, AI Film & Editing",
-    shortName: "Video & Film",
-    motif: "Film",
-    summary: "Cinematic product films, reels and interior sequences for furniture, hospitality and property brands, edited and cut for every placement.",
-    overview: "Short-form film for design, furniture, property and hospitality businesses: product campaigns, showroom walkthroughs, interior reels and brand films, cut to every placement they run in.",
-    intro: [
-      "Film is how a piece of furniture, a finished interior or an unbuilt development reaches people who will never stand in front of it. XIYÀTO produces cinematic short-form film for that job: product and campaign films, showroom and interior walkthroughs, hospitality edits and commercial films for property. The work to date spans furniture brands, interior studios, showroom operators, hospitality venues and a developer in the Middle East.",
-      "What holds a short-form film together is the edit: shot order, pacing, grade and sound. Some sequences are filmed, some are generated with AI assistance, most combine the two, and the method is agreed shot by shot before production so the film can be described accurately in use. Every cut is then produced to its placement: vertical for reels, portrait for feed, landscape for websites and showroom screens.",
-    ],
-    groups: [
-      {
-        title: "Film we produce",
-        intro: "Formats delivered across furniture, interior, showroom, hospitality and property work.",
-        items: [
-          "Product and campaign films built around a single piece",
-          "Factory-to-showroom production stories",
-          "Showroom and point-of-view walkthroughs",
-          "Interior and spatial sequences",
-          "Hospitality venue and ambience edits",
-          "Commercial films for property and development",
-          "Before-and-after interior sequences",
-          "Material, finish and detail close-up studies",
-        ],
-      },
-      {
-        title: "Direction and structure",
-        intro: "Agreed before anything is shot or generated, so the cut is built to a plan rather than assembled from whatever exists.",
-        items: [
-          "Concept direction developed from product, project or brand material",
-          "Shot list and sequence planning",
-          "Beat structure and storyboarding for short-form",
-          "Alignment against supplied reference and mood material",
-          "On-screen copy, caption and voiceover scripting",
-          "Duration and pacing target set per placement",
-        ],
-      },
-      {
-        title: "Production methods",
-        intro: "Filmed, generated or built from stills — chosen per shot and recorded so each sequence can be labelled correctly.",
-        items: [
-          "Direction and assembly from supplied footage, stills and renders",
-          "AI-assisted sequence generation",
-          "Motion built from still visualisation and product photography",
-          "Continuity of set, finish and lighting held across shots",
-          "Reconstruction of shots that cannot practically be filmed",
-          "Coordination with visualisation output produced alongside the film",
-        ],
-      },
-      {
-        title: "Edit and post",
-        items: [
-          "Sequence structuring and shot order",
-          "Pacing and cut rhythm to a target duration",
-          "Colour grade and finish consistency across the set",
-          "Music selection, sound design and audio mix",
-          "Text, caption and lower-third treatment",
-          "Logo, brand and end-card placement",
-          "Speed ramping, transitions and motion treatment",
-          "Revision rounds worked against issued comments",
-        ],
-      },
-      {
-        title: "Formats and delivery",
-        intro: "One production, cut for every place it has to run.",
-        items: [
-          "Vertical 9:16 masters for reels and stories",
-          "Portrait 4:5 for feed placement",
-          "Landscape 16:9 for websites and showroom screens",
-          "Cut-downs and shorter edits from the same production",
-          "Captioned and subtitled versions",
-          "Silent-autoplay versions carrying on-screen copy",
-          "Poster frames and thumbnail stills per cut",
-          "Compression profiles for web embedding",
-        ],
-      },
-    ],
-    process: [
-      { step: "01", title: "Brief and material", body: "You send product references, project photography, renders, brand assets and any existing footage. We establish where the film will run, how long it should be and what it has to communicate." },
-      { step: "02", title: "Direction and shot plan", body: "Concept, sequence structure and shot list are agreed, along with which shots are filmed, generated or built from existing stills. Duration and delivery ratios are fixed at this point." },
-      { step: "03", title: "Production and edit", body: "Shots are produced or generated, then assembled — order, pacing, grade, sound and on-screen copy. A first cut is issued for comment." },
-      { step: "04", title: "Revision and delivery", body: "Comments are worked through in defined rounds, then final masters are exported to each agreed ratio with poster frames and web-ready compression." },
-    ],
-    deliverables: [
-      "Final film master in the agreed primary ratio",
-      "Vertical, portrait and landscape cut-downs from the same production",
-      "Poster frames and thumbnail stills for each cut",
-      "Captioned and silent-autoplay versions where the placement requires them",
-      "Web-compressed exports for site and showroom embedding",
-      "Project and source files retained, available on request",
-    ],
-    boundary: "Where a sequence is generated or reconstructed rather than filmed, it is representational — it should not be presented as a record of a built space or a finished production item. We identify the method used for each sequence so it can be described accurately in campaign use. Clearance for supplied footage, music, brand assets and any third-party material rests with the client; we work from what is provided and flag anything requiring a licence before delivery.",
     order: 4,
   },
 
   {
+    slug: "ai-video-production",
+    name: "AI Video Production Services",
+    shortName: "AI Video Production",
+    motif: "Film",
+    summary: "Cinematic AI video production for brands, products, showrooms and campaigns, cut and mastered for every social and web placement.",
+    overview: "Commercial AI video production and cinematic editing for brands, luxury products, interiors, real estate and campaigns. We combine generative AI sequences with professional editing, grading, sound design and multi-format delivery.",
+    intro: [
+      "Film brings products, spaces, and brand narratives to life across digital channels. XIYÀTO delivers AI video production services for commercial brands, luxury furniture makers, interior studios, real estate developers, and consumer products. We produce cinematic short-form films, product launch teasers, showroom walkthroughs, and campaign visuals that capture attention and drive commercial action.",
+      "We integrate advanced generative AI video production with professional post-production: pacing, sequence storyboarding, cinematic colour grading, typography, and bespoke sound design. Each cut is mastered to its native placement—vertical 9:16 for Instagram Reels and TikTok, 4:5 for feed advertising, and 16:9 4K for websites and showroom screens.",
+    ],
+    groups: [
+      {
+        title: "Commercial video formats",
+        intro: "Formats engineered for digital marketing, brand prestige, and commercial conversions.",
+        items: [
+          "Product and campaign films built around a flagship piece",
+          "Factory-to-showroom production stories tracking craftsmanship",
+          "Showroom and point-of-view spatial walkthroughs",
+          "Interior and architectural cinematic sequences",
+          "Hospitality venue and luxury ambience edits",
+          "Commercial films for property and real estate development",
+          "Before-and-after interior transformations",
+          "Material, finish and detail macro close-up studies",
+        ],
+      },
+      {
+        title: "Concept direction & storyboarding",
+        intro: "Agreed before anything is generated or edited, ensuring strategic message alignment.",
+        items: [
+          "Concept direction developed from product, project or brand material",
+          "Shot list and sequence pacing planning",
+          "Beat structure and storyboarding for short-form video",
+          "Alignment against supplied reference and mood material",
+          "On-screen copy, caption and voiceover scripting",
+          "Duration and pacing target set per distribution placement",
+        ],
+      },
+      {
+        title: "Generative AI & motion craft",
+        intro: "Filmed footage, generative AI, or motion built from high-resolution stills.",
+        items: [
+          "Generative AI sequence synthesis from concept prompts and image assets",
+          "Image-to-video motion applied to product photography and 3D renders",
+          "Direction and assembly from client-supplied footage, stills and 3D models",
+          "Visual continuity of materials, lighting and aesthetics across all shots",
+          "Reconstruction of angles and scenes that cannot practically be filmed",
+          "Seamless integration with 3D architectural and product visualisation",
+        ],
+      },
+      {
+        title: "Editing, colour & sound design",
+        intro: "The post-production craft that creates emotional resonance and polish.",
+        items: [
+          "Rhythmic editing and shot arrangement to target time bounds (15s, 30s, 60s)",
+          "Cinematic colour grading and finish consistency across scenes",
+          "Bespoke music curation, sound design and audio mix",
+          "Typography, subtitle styling and lower-third treatments",
+          "Brand logo, tagline and animated end-card placement",
+          "Revision rounds worked against timestamped client feedback",
+        ],
+      },
+      {
+        title: "Multi-channel delivery formats",
+        intro: "One core production mastered for every digital and broadcast environment.",
+        items: [
+          "Vertical 9:16 masters for Instagram Reels, TikTok and YouTube Shorts",
+          "Portrait 4:5 for feed placement on LinkedIn, Instagram and Meta Ads",
+          "Landscape 16:9 4K for website heroes, showroom displays and presentations",
+          "Short cut-downs and teaser edits from the master film",
+          "Captioned and silent-autoplay editions with styled subtitles",
+          "High-impact poster frames and custom thumbnail images per cut",
+          "Web-compressed exports optimized for fast page load performance",
+        ],
+      },
+    ],
+    process: [
+      { step: "01", title: "Brief and assets", body: "You supply product imagery, 3D renders, brand guidelines, and campaign objectives. We define the narrative hook, target duration, and delivery ratios." },
+      { step: "02", title: "Storyboard & plan", body: "We map the sequence shot-by-shot, locking the script, visual references, and AI generation parameters before production commences." },
+      { step: "03", title: "Generation & cut", body: "Shots are synthesized, assembled, and graded with audio mix, pacing, and on-screen copy. A first master cut is issued for review." },
+      { step: "04", title: "Polish & delivery", body: "Revisions are implemented, and the final production is rendered into all required aspect ratios with web and broadcast compression." },
+    ],
+    deliverables: [
+      "Master cinematic film in agreed primary ratio (4K / 1080p)",
+      "Vertical 9:16, portrait 4:5, and landscape 16:9 cut-downs",
+      "Poster frames and high-resolution thumbnail stills",
+      "Captioned and silent-autoplay editions with styled subtitles",
+      "Web-optimized video exports for embedding without buffering",
+      "Archived project files and generated visual assets",
+    ],
+    boundary: "Where a sequence is generated with AI or animated from still imagery rather than filmed on set, it is representational — it should not be presented as a documentary record of a built physical space or a certified engineering prototype. We identify the production methods used for each sequence so the asset can be transparently and truthfully labelled in campaign use. Client is responsible for licensing of any client-supplied footage or third-party trademarks.",
+    order: 5,
+  },
+
+  {
     slug: "website-design-development",
-    name: "Website Design & Development",
+    name: "Website Design & Development Services",
     shortName: "Website Design & Development",
     motif: "Build",
-    summary: "Business, portfolio and brand websites: content architecture, responsive front-end build, integrations, deployment and code handover.",
-    overview: "Complete websites for businesses, portfolios and brands — from content architecture and visual direction through to responsive front-end development, integrations, deployment and handover.",
+    summary: "High-performance custom Next.js websites for architecture firms, interior studios, B2B companies and export brands: design, build, SEO and code handover.",
+    overview: "Custom website design and development for architecture practices, interior designers, B2B service firms and export manufacturers. Statically pre-rendered, search-optimized, responsive, and handed over with full code ownership.",
     intro: [
-      "Design practices, manufacturers and export brands rarely need a large website. They need a considered one: a clear structure, work presented at the quality it was produced, pages that load quickly, layouts that hold on a phone, and an enquiry that reaches a named inbox. We build business, portfolio and brand websites end to end, from content architecture and visual direction through to front-end development, mobile optimisation and deployment.",
-      "Sites are built around the material they have to carry. Interior photography, product ranges, drawing sets and film are heavy, image-led content, so galleries, viewers and image handling belong inside the build rather than bolted on afterwards. Where a site has to do more than present — enquiry handling, author or client submissions, structured records, content your own team can edit — that is built alongside it. Domain, hosting and the repository stay in your name.",
+      "Architecture practices, design studios, manufacturers and export brands require websites that reflect their professional calibre. XIYÀTO designs and builds bespoke, high-performance websites engineered for visual sophistication, fast load speeds, technical search engine visibility, and qualified inbound enquiry generation.",
+      "Built with modern Next.js and Tailwind architecture, our sites deliver pre-rendered crawlability, structured JSON-LD schema, responsive layout precision across all device viewports, and secure enquiry handling. You retain 100% ownership of your code repository, hosting, and domains.",
     ],
     groups: [
       {
@@ -474,6 +541,7 @@ export const SERVICES: Service[] = [
       },
       {
         title: "Deployment and handover",
+        intro: "Full code and infrastructure sovereignty for your business.",
         items: [
           "Hosting setup and deployment pipeline",
           "Domain and DNS configuration",
@@ -499,80 +567,36 @@ export const SERVICES: Service[] = [
       "Handover notes covering editing, deployment and future changes",
     ],
     boundary: "Hosting, domain and third-party service accounts are set up in your name, so the business retains ownership and control of the site and its data. Ongoing content updates, campaign work and subscription costs sit outside the build unless agreed separately. We implement accessibility and privacy requirements as specified in the brief, but do not provide legal advice or formal conformance certification.",
-    order: 5,
-  },
-
-  {
-    slug: "automation-workflow-systems",
-    name: "Automation & Marketing Systems",
-    shortName: "Automation & Marketing",
-    motif: "Automate",
-    summary: "Client acquisition campaigns, outreach operations, and marketing automations engineered to generate qualified B2B pipeline.",
-    overview: "We partner with your marketing and sales team to launch outreach campaigns, automate enquiry ingestion, and build reliable client acquisition pipelines.",
-    intro: [
-      "We design and deploy marketing outreach and client acquisition systems. From verified cold email campaigns and multi-channel outreach to automated WhatsApp enquiry routing and CRM synchronization, we help your business capture demand and close more clients with less friction.",
-      "Every workflow is built inside your existing toolchain and designed to give your team direct visibility over every lead, conversation, and deal stage.",
-    ],
-    groups: [
-      {
-        title: "Outreach & client acquisition",
-        intro: "Direct B2B campaigns engineered to book high-intent meetings.",
-        items: [
-          "Targeted cold outreach campaigns with verified prospect data",
-          "Automated follow-up cadences with smart reply detection",
-          "Personalized multi-step email and message sequences",
-          "Sender domain reputation management and deliverability setup",
-          "Lead status tracking: contacted, replied, booked, converted",
-        ],
-      },
-      {
-        title: "Inbound & enquiry automation",
-        intro: "Instant qualification and capture so no lead falls through the cracks.",
-        items: [
-          "WhatsApp business automated replies and instant routing",
-          "Instagram DM keyword triggers and story lead capture",
-          "Web contact form intake routed into a single operational sheet",
-          "Automatic enquiry qualification and calendar booking links",
-          "Instant alert notifications to your team on high-priority leads",
-        ],
-      },
-      {
-        title: "CRM & pipeline synchronization",
-        intro: "Keep your sales data clean, current, and actionable in real time.",
-        items: [
-          "Automatic contact sync across your CRM and marketing database",
-          "Lead scoring and priority routing to named account reps",
-          "Stage progression triggers and automated task generation",
-          "Periodic pipeline summary reports delivered to your inbox",
-        ],
-      },
-    ],
-    process: [
-      { step: "01", title: "Strategy & target profile", body: "We define your ideal client profile, campaign angles, and qualification criteria." },
-      { step: "02", title: "Setup & infrastructure", body: "We configure verified sender systems, response templates, and automated triggers." },
-      { step: "03", title: "Launch & outreach", body: "Campaigns go live with real-time tracking, response handling, and CRM synchronization." },
-      { step: "04", title: "Handover & optimization", body: "Full performance visibility and operational walkthrough for your sales team." },
-    ],
-    deliverables: [
-      "Live outreach and client acquisition campaigns",
-      "Automated WhatsApp and inbound qualification flows",
-      "CRM and pipeline sync setup",
-      "Verified response templates and message sequences",
-      "Full documentation and handover for your internal team",
-    ],
     order: 6,
   },
 ];
 
 export function getService(slug: string): Service | undefined {
-  return SERVICES.find((s) => s.slug === slug);
+  const match = SERVICES.find((s) => s.slug === slug);
+  if (match) return match;
+
+  // Backward compatibility: map legacy route slugs to their canonical service
+  if (slug === "growth-marketing-b2b" || slug === "automation-workflow-systems") {
+    return SERVICES.find((s) => s.slug === "b2b-lead-generation");
+  }
+  if (slug === "video-ai-film-editing") {
+    return SERVICES.find((s) => s.slug === "ai-video-production");
+  }
+  return undefined;
 }
 
 export function serviceName(slug: ServiceSlug): string {
-  return SERVICES.find((s) => s.slug === slug)?.name ?? slug;
+  return getService(slug)?.name ?? slug;
 }
 
 /** Anchor id for the matching homepage service chapter. */
 export function serviceAnchor(slug: ServiceSlug): string {
+  // Map legacy slugs to canonical anchor
+  if (slug === "growth-marketing-b2b" || slug === "automation-workflow-systems") {
+    return "service-b2b-lead-generation";
+  }
+  if (slug === "video-ai-film-editing") {
+    return "service-ai-video-production";
+  }
   return `service-${slug}`;
 }

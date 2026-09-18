@@ -85,13 +85,16 @@ export function Footer() {
                 <FooterLink href="/services/cad-technical-production">CAD Drawing Sets</FooterLink>
               </li>
               <li>
-                <FooterLink href="/services/growth-marketing-b2b">B2B Intelligence</FooterLink>
+                <FooterLink href="/services/b2b-lead-generation">B2B Lead Generation</FooterLink>
+              </li>
+              <li>
+                <FooterLink href="/services/market-intelligence-research">Market Intelligence</FooterLink>
               </li>
               <li>
                 <FooterLink href="/services/visualisation-image-production">3D Visualisations</FooterLink>
               </li>
               <li>
-                <FooterLink href="/services/video-ai-film-editing">Video &amp; Film</FooterLink>
+                <FooterLink href="/services/ai-video-production">AI Video Production</FooterLink>
               </li>
               <li>
                 <FooterLink href="/services/website-design-development">Websites</FooterLink>

@@ -15,10 +15,12 @@ import { CadInspectionModal } from "@/components/work/CadInspectionModal";
  */
 export function ServiceProof({ slug }: { slug: ServiceSlug }) {
   if (slug === "cad-technical-production") return <CadProof />;
-  if (slug === "growth-marketing-b2b") return <GrowthProof />;
+  if (slug === "b2b-lead-generation") return <LeadGenProof />;
+  if (slug === "market-intelligence-research" || slug === "growth-marketing-b2b") return <GrowthProof />;
   if (slug === "visualisation-image-production") return <VisualisationProof />;
-  if (slug === "video-ai-film-editing") return <VideoProof />;
+  if (slug === "ai-video-production" || slug === "video-ai-film-editing") return <VideoProof />;
   if (slug === "website-design-development") return <WebsiteProof />;
+  if (slug === "automation-workflow-systems") return <LeadGenProof />;
   return null;
 }
 
@@ -160,6 +162,56 @@ function CadProof() {
         isOpen={activeModalIndex !== null}
         onClose={() => setActiveModalIndex(null)}
       />
+    </div>
+  );
+}
+
+function LeadGenProof() {
+  return (
+    <div id="outbound-pipeline" className="scroll-mt-16 space-y-10">
+      {/* 3 Outbound Pipeline Pillars */}
+      <div className="grid gap-px border border-rule bg-rule sm:grid-cols-3">
+        <div className="bg-surface p-6">
+          <p className="font-mono text-[0.625rem] uppercase tracking-[0.14em] text-accent font-semibold">
+            01 · ICP &amp; Decision-Maker Discovery
+          </p>
+          <h4 className="display mt-2.5 text-base text-ink">Hand-Verified Targeting</h4>
+          <p className="mt-2 text-xs leading-relaxed text-ink-muted">
+            Commercial decision-makers mapped across the UK, GCC, and international trade corridors. Bypassing generic inboxes to engage verified directors, partners, and procurement heads.
+          </p>
+        </div>
+
+        <div className="bg-surface p-6">
+          <p className="font-mono text-[0.625rem] uppercase tracking-[0.14em] text-accent font-semibold">
+            02 · Outreach Execution
+          </p>
+          <h4 className="display mt-2.5 text-base text-ink">Bespoke Multi-Touch Sequences</h4>
+          <p className="mt-2 text-xs leading-relaxed text-ink-muted">
+            Consultative, highly relevant messaging tailored to your target sector. Email sequences with rigorous deliverability controls, LinkedIn direct touchpoints, and commercial qualification.
+          </p>
+        </div>
+
+        <div className="bg-surface p-6">
+          <p className="font-mono text-[0.625rem] uppercase tracking-[0.14em] text-accent font-semibold">
+            03 · Pipeline Handoff
+          </p>
+          <h4 className="display mt-2.5 text-base text-ink">Sales-Ready Opportunities</h4>
+          <p className="mt-2 text-xs leading-relaxed text-ink-muted">
+            Prospects vetted against budget, project scope, and purchasing authority before being scheduled into your calendar and synced directly into your CRM.
+          </p>
+        </div>
+      </div>
+
+      {/* Intelligence Backing Notice & Dossiers */}
+      <div>
+        <div className="mb-4">
+          <h4 className="display text-xl text-ink">Research-Backed Lead Sourcing</h4>
+          <p className="mt-1 text-xs text-ink-muted">
+            Every outbound campaign is powered by proprietary market research and verified commercial databases. Explore our active procurement workbooks:
+          </p>
+        </div>
+        <GrowthProof />
+      </div>
     </div>
   );
 }

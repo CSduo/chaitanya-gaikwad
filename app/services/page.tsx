@@ -4,6 +4,7 @@ import {
   Section,
   SectionHeading,
   Eyebrow,
+  Breadcrumbs,
   ProcessList,
   CapabilityList,
   TextLink,
@@ -54,7 +55,26 @@ export default function ServicesPage() {
         ])}
       />
 
-
+      {/* 01 — Services Hub Header */}
+      <section className="border-b border-rule">
+        <Container width="page" className="pb-14 pt-10 sm:pb-16">
+          <Breadcrumbs
+            trail={[
+              { name: "Home", path: "/" },
+              { name: "Services", path: "/services" },
+            ]}
+          />
+          <div className="max-w-3xl">
+            <Eyebrow>Specialist Production &amp; Pipeline Services</Eyebrow>
+            <h1 className="display mt-6 text-4xl sm:text-5xl lg:text-[3.5rem]">
+              Commercial Services
+            </h1>
+            <p className="mt-6 text-lg leading-relaxed text-ink-soft">
+              Six dedicated service areas spanning technical drafting, architectural rendering, commercial AI video, market intelligence, and inbound client acquisition. Commissioned independently or deployed as an integrated growth engine.
+            </p>
+          </div>
+        </Container>
+      </section>
 
       {/* 02–04 — One overview block per service */}
       {SERVICES.map((service, index) => (

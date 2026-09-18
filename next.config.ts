@@ -51,10 +51,10 @@ const nextConfig: NextConfig = {
 
       // ---- Legacy path redirects (see REDIRECT_MAP_FINAL.md) ----
       { source: "/cad-automation", destination: "/services/cad-technical-production", permanent: true },
-      { source: "/projects/videos", destination: "/services/video-ai-film-editing", permanent: true },
+      { source: "/projects/videos", destination: "/services/ai-video-production", permanent: true },
       { source: "/projects/visualisations", destination: "/services/visualisation-image-production", permanent: true },
-      { source: "/projects/b2b-research", destination: "/services/growth-marketing-b2b", permanent: true },
-      { source: "/projects/b2b-research/:slug", destination: "/services/growth-marketing-b2b", permanent: true },
+      { source: "/projects/b2b-research", destination: "/services/market-intelligence-research", permanent: true },
+      { source: "/projects/b2b-research/:slug", destination: "/services/market-intelligence-research", permanent: true },
       { source: "/projects/websites", destination: "/services/website-design-development", permanent: true },
       { source: "/projects", destination: "/#capabilities", permanent: true },
       { source: "/startup", destination: "/#capabilities", permanent: true },
@@ -63,10 +63,11 @@ const nextConfig: NextConfig = {
       { source: "/company/about", destination: "/company", permanent: true },
       { source: "/legal", destination: "/legal/privacy", permanent: true },
 
-      // ---- Service taxonomy expanded from three areas to six ----
-      { source: "/services/growth-operations", destination: "/services/growth-marketing-b2b", permanent: true },
-      // "Visual content" split into visualisation and video; visualisation was
-      // the larger body of work, so it takes the legacy slug.
+      // ---- Service taxonomy canonicalisation & redirects ----
+      { source: "/services/growth-operations", destination: "/services/b2b-lead-generation", permanent: true },
+      { source: "/services/growth-marketing-b2b", destination: "/services/b2b-lead-generation", permanent: true },
+      { source: "/services/video-ai-film-editing", destination: "/services/ai-video-production", permanent: true },
+      { source: "/services/automation-workflow-systems", destination: "/services/b2b-lead-generation", permanent: true },
       { source: "/services/visual-content", destination: "/services/visualisation-image-production", permanent: true },
     ];
   },

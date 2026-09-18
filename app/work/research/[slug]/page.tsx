@@ -85,7 +85,7 @@ export default async function ResearchPage({
         data={breadcrumbSchema([
           { name: "Home", path: "/" },
           { name: "Services", path: "/services" },
-          { name: "Growth & B2B", path: "/services/growth-marketing-b2b" },
+          { name: "Market Intelligence", path: "/services/market-intelligence-research" },
           { name: workbook.title, path: `/work/research/${workbook.slug}` },
         ])}
       />
@@ -97,7 +97,7 @@ export default async function ResearchPage({
             trail={[
               { name: "Home", path: "/" },
               { name: "Services", path: "/services" },
-              { name: "Growth & B2B", path: "/services/growth-marketing-b2b" },
+              { name: "Market Intelligence", path: "/services/market-intelligence-research" },
               { name: workbook.title, path: `/work/research/${workbook.slug}` },
             ]}
           />
@@ -113,7 +113,7 @@ export default async function ResearchPage({
             {/* Direct Inbound Action Bar */}
             <div className="mt-8 flex flex-wrap items-center gap-3">
               <a
-                href={getServiceWhatsAppHref("growth-marketing-b2b", "uk")}
+                href={getServiceWhatsAppHref("market-intelligence-research", "uk")}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex min-h-[46px] items-center gap-2 rounded-xs bg-ink px-6 text-xs font-semibold tracking-tight text-paper transition-colors hover:bg-accent"
@@ -122,7 +122,7 @@ export default async function ResearchPage({
                 <span aria-hidden="true">&#8599;</span>
               </a>
               <a
-                href={getServiceWhatsAppHref("growth-marketing-b2b", "india")}
+                href={getServiceWhatsAppHref("market-intelligence-research", "india")}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex min-h-[46px] items-center gap-2 rounded-xs border border-rule px-5 text-xs font-medium tracking-tight text-ink transition-colors hover:border-ink hover:bg-surface"
@@ -249,6 +249,44 @@ export default async function ResearchPage({
         </Container>
       </Section>
 
+      {/* Commercial Conversion Bridge — Pillar 8 */}
+      <Section tone="paper" bordered>
+        <Container width="page">
+          <div className="rounded-lg border border-accent/30 bg-accent-wash/30 p-8 sm:p-10">
+            <Eyebrow>Commercial Application</Eyebrow>
+            <h3 className="display mt-3 text-2xl sm:text-3xl text-ink">
+              Need this level of research for your own market or sales pipeline?
+            </h3>
+            <p className="mt-4 max-w-3xl text-base leading-relaxed text-ink-soft">
+              This dossier represents our standard research methodology for commercial procurement and buyer mapping. We deploy these exact intelligence frameworks to power high-performing outbound lead generation campaigns and strategic territory expansions.
+            </p>
+            <div className="mt-8 flex flex-wrap items-center gap-4">
+              <Link
+                href="/services/b2b-lead-generation"
+                className="inline-flex min-h-[46px] items-center gap-2 rounded-xs bg-ink px-6 text-xs font-semibold tracking-tight text-paper transition-colors hover:bg-accent"
+              >
+                <span>B2B Lead Generation Services</span>
+                <span aria-hidden="true">&rarr;</span>
+              </Link>
+              <Link
+                href="/services/market-intelligence-research"
+                className="inline-flex min-h-[46px] items-center gap-2 rounded-xs border border-rule bg-paper px-5 text-xs font-medium tracking-tight text-ink transition-colors hover:border-ink hover:bg-surface"
+              >
+                <span>Market Intelligence Capabilities</span>
+                <span aria-hidden="true">&rarr;</span>
+              </Link>
+              <Link
+                href="/services/growth/middle-east-market-intelligence"
+                className="inline-flex min-h-[46px] items-center gap-2 text-xs font-medium text-ink underline decoration-rule-strong underline-offset-4 hover:text-accent"
+              >
+                <span>Middle East &amp; GCC Focus</span>
+                <span aria-hidden="true">&rarr;</span>
+              </Link>
+            </div>
+          </div>
+        </Container>
+      </Section>
+
       {/* 05 — Other Workbooks */}
       {others.length > 0 ? (
         <section className="border-t border-rule py-16">
@@ -277,14 +315,14 @@ export default async function ResearchPage({
       ) : null}
 
       <ProjectCTA
-        serviceSlug="growth-marketing-b2b"
-        eyebrow="Growth & B2B Intelligence"
+        serviceSlug="market-intelligence-research"
+        eyebrow="Market Intelligence & Research"
         title="Need verified commercial intelligence for your market?"
         body="Tell us your target geography, sector, and ideal client criteria. We will review feasible market sizes and provide a fixed-price research proposal."
         services={[
-          { label: "B2B Growth & Research Pillar", href: "/services/growth-marketing-b2b" },
+          { label: "B2B Lead Generation", href: "/services/b2b-lead-generation" },
+          { label: "Market Intelligence & Research", href: "/services/market-intelligence-research" },
           { label: "Middle East Market Intelligence", href: "/services/growth/middle-east-market-intelligence" },
-          { label: "Automation & Marketing Systems", href: "/services/automation-workflow-systems" },
         ]}
       />
     </>
