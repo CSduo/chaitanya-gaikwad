@@ -86,7 +86,7 @@ export const SERVICE_SEO: Record<string, RouteSeo> = {
 export const ROUTE_SEO = {
   home: {
     metaTitle: "XIYÀTO — 3D Renders, AI Video, Websites & Growth",
-    metaDescription: "3D renders from $10, AI reels from $25 and websites from $250. Creative production, CAD, marketing, B2B lead research and automation for your next launch.",
+    metaDescription: "XIYÀTO creates 3D renders, AI films, websites and CAD drawings, with B2B lead research, marketing and workflow automation for studios, brands and businesses.",
   },
   work: {
     metaTitle: "Work & Production Evidence — XIYÀTO",

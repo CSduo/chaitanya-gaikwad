@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Container } from "@/components/ui/primitives";
 import { ImageGrid, VideoGallery, type LightboxItem } from "@/components/media/viewers";
 import { allVideos, allWebsites } from "@/lib/portfolio";
@@ -40,7 +41,7 @@ function ChapterHeader({
   const price = getServicePricing(service.slug)[0];
 
   return (
-    <div className="lg:col-span-4">
+    <div className="min-w-0 lg:col-span-4">
       <p
         className={`font-mono text-[0.6875rem] uppercase tracking-[0.18em] ${
           isDark ? "text-paper/45" : "text-ink-faint"
@@ -91,11 +92,11 @@ function Chapter({
   const getSectionClasses = () => {
     switch (tone) {
       case "slate":
-        return "bg-[#0b1120] text-slate-100 border-t border-slate-800/80";
+        return "bg-[#111111] text-zinc-100 border-t border-zinc-800";
       case "terminal":
-        return "bg-[#11141a] text-slate-100 border-t border-zinc-800";
+        return "bg-[#141414] text-zinc-100 border-t border-zinc-800";
       case "cyber":
-        return "bg-[#090e17] text-slate-100 border-t border-zinc-800";
+        return "bg-[#111111] text-zinc-100 border-t border-zinc-800";
       case "dark":
         return "bg-[#070708] text-paper border-t border-rule/20";
       case "surface":
@@ -114,7 +115,7 @@ function Chapter({
       {service.slug === "b2b-lead-generation" ? <span id="service-growth-marketing-b2b" className="block scroll-mt-24" aria-hidden="true" /> : null}
       {service.slug === "ai-video-production" ? <span id="service-video-ai-film-editing" className="block scroll-mt-24" aria-hidden="true" /> : null}
       <Container width="page">
-        <div className="grid gap-5 sm:gap-6 lg:grid-cols-12 lg:gap-9">
+        <div className="grid min-w-0 gap-5 sm:gap-6 lg:grid-cols-12 lg:gap-10">
           <ChapterHeader service={service} tone={tone} chapterLabel={chapterLabel} />
           <div className="min-w-0 lg:col-span-8">{children}</div>
         </div>
@@ -288,39 +289,39 @@ export function VideoSection({ service }: { service: Service }) {
 /* ------------------------------------------------------------------ */
 
 export function WebsiteSection({ service }: { service: Service }) {
-  const sites = allWebsites();
+  const sites = allWebsites().filter((site): site is typeof site & { liveUrl: string } => Boolean(site.liveUrl));
+  const featured = sites.find((site) => site.slug === "anvikshiki-journal");
+  const otherSites = sites.filter((site) => site.slug !== featured?.slug);
+
   return (
     <Chapter service={service} tone="light">
-      <div className="grid gap-2 sm:grid-cols-3">
-        {sites.map((s) => (
-          <div
-            key={s.slug}
-            className="group relative flex items-center justify-between gap-4 rounded-lg border border-rule bg-paper p-4 transition-colors hover:border-ink/50 sm:flex-col sm:items-start"
-          >
-            <div>
-              <p className="font-mono text-[0.5625rem] text-ink-faint">{s.year} · Live website</p>
-              <h4 className="display mt-1 text-lg text-ink font-normal">{s.title}</h4>
-              <p className="mt-1.5 line-clamp-2 text-xs leading-relaxed text-ink-muted">
-                {s.description}
-              </p>
+      <div className="min-w-0 overflow-hidden rounded-sm border border-rule bg-paper-deep p-2 sm:p-3">
+        {featured ? (
+          <a href={featured.liveUrl} target="_blank" rel="noopener noreferrer" className="group relative grid min-h-[210px] min-w-0 overflow-hidden bg-[#151515] sm:min-h-[270px]" aria-label="Visit Anvikshiki Journal">
+            <div className="absolute inset-y-0 right-0 w-[65%] overflow-hidden border-l border-white/20">
+              <Image src="/media/web/anvikshiki-desktop.webp" alt="Anvikshiki Journal homepage and publication platform" fill sizes="(min-width: 1024px) 460px, 65vw" className="object-cover object-top transition-transform duration-700 motion-safe:group-hover:scale-[1.025]" />
             </div>
-
-            <div className="shrink-0">
-              {s.liveUrl ? (
-                <a
-                  href={s.liveUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={`Visit ${s.title}`}
-                  className="flex min-h-[44px] items-center gap-1 font-mono text-xs font-semibold text-ink hover:text-accent"
-                >
-                  <span>Visit</span>
-                  <span>&#8599;</span>
-                </a>
-              ) : null}
+            <div className="absolute inset-0 bg-gradient-to-r from-[#151515] via-[#151515]/90 to-transparent" />
+            <div className="relative flex min-w-0 flex-col justify-between p-5 text-white sm:p-7">
+              <p className="font-mono text-[9px] uppercase tracking-[0.12em] text-zinc-400">Featured website / {featured.year}</p>
+              <div className="max-w-[65%]">
+                <h4 className="display text-2xl sm:text-3xl">Anvikshiki<br />Journal.</h4>
+                <p className="mt-2 max-w-48 text-xs leading-relaxed text-zinc-300">An academic publishing platform, from submissions to publication.</p>
+              </div>
+              <span className="mt-4 inline-flex items-center gap-4 text-xs">Explore the live website <span aria-hidden="true">↗</span></span>
             </div>
-          </div>
-        ))}
+          </a>
+        ) : null}
+        <div className="grid grid-cols-2 gap-2 pt-2">
+          {otherSites.map((site) => (
+            <a key={site.slug} href={site.liveUrl} target="_blank" rel="noopener noreferrer" className="group flex min-w-0 flex-col border border-rule bg-white p-3 transition-colors hover:border-ink/40 sm:p-4" aria-label={"Visit " + site.title}>
+              <p className="font-mono text-[9px] text-ink-muted">{site.year} / Live website</p>
+              <h4 className="display mt-2 text-lg sm:text-xl">{site.title}</h4>
+              <p className="mt-2 hidden text-xs leading-relaxed text-ink-muted sm:line-clamp-2">{site.description}</p>
+              <span className="mt-3 flex min-h-8 items-center justify-between gap-2 text-[11px] font-medium text-ink">View project <span aria-hidden="true">↗</span></span>
+            </a>
+          ))}
+        </div>
       </div>
     </Chapter>
   );
@@ -356,7 +357,7 @@ export function AutomationSection({ service }: { service: Service }) {
         {AUTOMATION_PILLARS.map((p) => (
           <div
             key={p.num}
-            className="rounded-lg border border-zinc-800/90 bg-[#0c121e] p-5 shadow-2xs"
+            className="rounded-lg border border-zinc-800/90 bg-[#171717] p-5 shadow-2xs"
           >
             <span className="font-mono text-[0.625rem] font-semibold uppercase tracking-[0.14em] text-zinc-400">
               {p.num} · Workflow
@@ -367,7 +368,7 @@ export function AutomationSection({ service }: { service: Service }) {
         ))}
       </div>
 
-      <div className="mt-6 flex flex-wrap items-center justify-between gap-4 rounded-lg border border-zinc-800/80 bg-[#0f1726] p-4 sm:p-5">
+      <div className="mt-6 flex flex-wrap items-center justify-between gap-4 rounded-lg border border-zinc-800/80 bg-[#171717] p-4 sm:p-5">
         <div>
           <p className="text-sm font-semibold text-slate-100">
             Turn a repeated task into a reliable workflow.

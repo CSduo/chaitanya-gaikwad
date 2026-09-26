@@ -10,8 +10,12 @@
   .creative-hero-art { animation: creative-reveal 750ms 100ms ease-out both; }
 }
 .creative-hero :focus-visible {
-  outline-color: #a7f3d0;
+  outline-color: #ffffff;
 }
+
+/* The preview columns can shrink without their internal tables widening a page. */
+.service-overview { padding-block: clamp(2.5rem, 5vw, 4.5rem); }
+.service-overview h2 { overflow-wrap: anywhere; }
 
 /* =========================================================================
    XIYATO DESIGN SYSTEM

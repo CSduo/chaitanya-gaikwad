@@ -6,8 +6,8 @@ export function StartingPrices() {
   return <section id="pricing" aria-labelledby="pricing-heading" className="scroll-mt-20 border-t border-rule bg-paper-deep py-8 sm:py-12">
     <Container width="page">
       <div className="flex flex-col justify-between gap-5 lg:flex-row lg:items-end">
-        <div className="max-w-xl"><p className="label">Clear starting points</p><h2 id="pricing-heading" className="display mt-4 text-4xl sm:text-5xl">Big ideas.<br />An easier first yes.</h2></div>
-        <p className="max-w-sm text-sm leading-relaxed text-ink-muted">Win attention with better visuals. Give your sales team a sharper shortlist. Free up time with connected workflows. Start with one useful deliverable.</p>
+        <div className="max-w-xl"><p className="label">Straightforward pricing</p><h2 id="pricing-heading" className="display mt-3 text-3xl sm:text-4xl">Start with what you need.</h2></div>
+        <p className="max-w-sm text-sm leading-relaxed text-ink-muted">A single image, a film, a website or a focused dataset. Every project starts with an agreed scope and a clear quote.</p>
       </div>
       <div className="mt-5 grid grid-cols-2 gap-2 lg:grid-cols-3">
         {PRICING_TIERS.map((price) => <article key={price.id} className="group flex flex-col border border-rule bg-white p-3 transition-[border-color,box-shadow] duration-300 hover:border-ink/30 hover:shadow-lg hover:shadow-black/5 sm:p-5">

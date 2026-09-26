@@ -21,25 +21,25 @@ export function CadDraftingRail() {
   return (
     <div className="w-full">
       {/* 01 — Stage Header with Technical Drawing Stamp */}
-      <div className="mb-4 flex flex-wrap items-center justify-between gap-2 border-b border-slate-700/60 pb-3">
+      <div className="mb-4 flex flex-wrap items-center justify-between gap-2 border-b border-zinc-700/60 pb-3">
         <div className="flex items-center gap-2">
-          <span className="inline-block h-2 w-2 rounded-full bg-sky-400 animate-pulse" />
-          <span className="font-mono text-xs font-semibold uppercase tracking-wider text-sky-400">
+          <span className="inline-block h-2 w-2 rounded-full bg-zinc-300" />
+          <span className="font-mono text-xs font-semibold uppercase tracking-wider text-zinc-200">
             {`Sheet 0${selectedIndex + 1} / 0${outputDrawings.length}`}
           </span>
-          <span className="hidden font-mono text-xs text-slate-400 sm:inline-block">
+          <span className="hidden font-mono text-xs text-zinc-400 sm:inline-block">
             — {current.title}
           </span>
         </div>
 
         <div className="flex items-center gap-3">
-          <span className="rounded-xs bg-slate-800 px-2 py-0.5 font-mono text-[0.625rem] text-slate-300 border border-slate-700">
-            Scale: 1:50 · QA Passed
+          <span className="rounded-xs bg-zinc-800 px-2 py-0.5 font-mono text-[0.625rem] text-zinc-300 border border-zinc-700">
+            Produced drawing
           </span>
           <button
             type="button"
             onClick={() => setLightboxOpen(true)}
-            className={`inline-flex items-center gap-1 font-mono text-xs text-sky-400 hover:text-sky-300 ${TACTILE_CLASSES.buttonSubtle}`}
+            className={`inline-flex items-center gap-1 font-mono text-xs text-zinc-200 hover:text-white ${TACTILE_CLASSES.buttonSubtle}`}
           >
             <span>Zoom</span>
             <span>↗</span>
@@ -50,34 +50,33 @@ export function CadDraftingRail() {
       {/* 02 — Main Interactive Drawing Stage */}
       <div
         onClick={() => setLightboxOpen(true)}
-        className="group relative aspect-[16/10] w-full cursor-zoom-in overflow-hidden rounded-md border border-slate-700/80 bg-[#0f172a] shadow-inner"
+        className="group relative aspect-[16/10] w-full cursor-zoom-in overflow-hidden rounded-md border border-zinc-700/80 bg-[#171717] shadow-inner"
       >
         <Image
           src={current.src}
           alt={current.alt}
           fill
-          priority
           sizes="(min-width: 1024px) 800px, 100vw"
           className="object-contain p-2 transition-transform duration-300 group-hover:scale-[1.02]"
         />
 
         {/* Overlay hover prompt */}
-        <div className="absolute inset-0 flex items-center justify-center bg-slate-950/0 transition-colors group-hover:bg-slate-950/20">
-          <span className="rounded-full bg-slate-900/90 px-3.5 py-1 font-mono text-xs text-slate-100 opacity-0 backdrop-blur-xs transition-opacity group-hover:opacity-100 border border-slate-700">
-            Click to Inspect Ultra-HD Sheet
+        <div className="absolute inset-0 flex items-center justify-center bg-zinc-950/0 transition-colors group-hover:bg-zinc-950/20">
+          <span className="rounded-full bg-zinc-900/90 px-3.5 py-1 font-mono text-xs text-zinc-100 opacity-0 backdrop-blur-xs transition-opacity group-hover:opacity-100 border border-zinc-700">
+            Inspect drawing
           </span>
         </div>
 
         {/* Bottom Technical Tag */}
-        <div className="absolute bottom-3 left-3 rounded-xs bg-slate-900/90 px-2.5 py-1 font-mono text-[0.625rem] text-slate-300 backdrop-blur-xs border border-slate-700/80">
+        <div className="absolute bottom-3 left-3 rounded-xs bg-zinc-900/90 px-2.5 py-1 font-mono text-[0.625rem] text-zinc-300 backdrop-blur-xs border border-zinc-700/80">
           {current.category} · {current.width} × {current.height} px
         </div>
       </div>
 
       {/* 03 — Horizontal Thumbnail Selector Rail */}
       <div className="mt-4">
-        <p className="mb-2 font-mono text-[0.5625rem] uppercase tracking-wider text-slate-400">
-          Select Sheet to Draft / Inspect (← Scroll horizontally →)
+        <p className="mb-2 font-mono text-[0.5625rem] uppercase tracking-wider text-zinc-400">
+          Drawing collection · scroll to select
         </p>
 
         <div className="flex gap-2.5 overflow-x-auto pb-2 pt-1 snap-x scrollbar-thin">
@@ -90,8 +89,8 @@ export function CadDraftingRail() {
                 onClick={() => handleSelect(idx)}
                 className={`group relative h-16 w-24 shrink-0 snap-center overflow-hidden rounded-xs border transition-all duration-150 ${
                   isSelected
-                    ? "border-sky-400 ring-2 ring-sky-400/30 bg-slate-800"
-                    : "border-slate-700/70 opacity-65 hover:opacity-100 bg-slate-900"
+                    ? "border-zinc-200 ring-2 ring-zinc-200/30 bg-zinc-800"
+                    : "border-zinc-700/70 opacity-65 hover:opacity-100 bg-zinc-900"
                 } ${TACTILE_CLASSES.thumbnail}`}
               >
                 <Image
@@ -101,7 +100,7 @@ export function CadDraftingRail() {
                   sizes="100px"
                   className="object-cover p-1"
                 />
-                <span className="absolute bottom-1 right-1 rounded-xs bg-slate-950/90 px-1 font-mono text-[0.5rem] text-slate-300">
+                <span className="absolute bottom-1 right-1 rounded-xs bg-zinc-950/90 px-1 font-mono text-[0.5rem] text-zinc-300">
                   0{idx + 1}
                 </span>
               </button>
@@ -111,16 +110,16 @@ export function CadDraftingRail() {
       </div>
 
       {/* 04 — Footer Link */}
-      <div className="mt-4 flex items-center justify-between border-t border-slate-800 pt-3">
+      <div className="mt-4 flex flex-wrap items-center justify-between gap-3 border-t border-zinc-800 pt-3">
         <Link
           href="/services/cad-technical-production#drawings"
-          className="group inline-flex items-center gap-2 text-xs font-medium text-sky-400 transition-colors hover:text-sky-300 font-mono"
+          className="group inline-flex items-center gap-2 text-xs font-medium text-zinc-200 transition-colors hover:text-white font-mono"
         >
           <span>View complete {CAD_DRAWINGS.length}-sheet package</span>
           <span aria-hidden="true">&rarr;</span>
         </Link>
 
-        <span className="font-mono text-[0.625rem] text-slate-500">
+        <span className="font-mono text-[0.625rem] text-zinc-500">
           Available in Native .DWG & Print .PDF
         </span>
       </div>
@@ -130,23 +129,23 @@ export function CadDraftingRail() {
         <div
           role="dialog"
           aria-modal="true"
-          className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/95 p-4 backdrop-blur-sm animate-in fade-in duration-150"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-zinc-950/95 p-4 backdrop-blur-sm animate-in fade-in duration-150"
           onClick={() => setLightboxOpen(false)}
         >
           <div
-            className="relative flex max-h-[95vh] max-w-6xl flex-col overflow-hidden rounded-md border border-slate-700 bg-slate-900"
+            className="relative flex max-h-[95vh] max-w-6xl flex-col overflow-hidden rounded-md border border-zinc-700 bg-zinc-900"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="flex items-center justify-between border-b border-slate-800 bg-slate-950 px-6 py-3">
+            <div className="flex items-center justify-between border-b border-zinc-800 bg-zinc-950 px-6 py-3">
               <div>
-                <span className="font-mono text-xs text-sky-400 font-semibold">
+                <span className="font-mono text-xs text-zinc-200 font-semibold">
                   Sheet 0{selectedIndex + 1} · {current.title}
                 </span>
               </div>
               <button
                 type="button"
                 onClick={() => setLightboxOpen(false)}
-                className="font-mono text-xs uppercase tracking-wider text-slate-300 hover:text-white"
+                className="font-mono text-xs uppercase tracking-wider text-zinc-300 hover:text-white"
               >
                 Close ✕
               </button>

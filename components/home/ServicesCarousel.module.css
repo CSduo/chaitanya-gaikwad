@@ -1,0 +1,28 @@
+.carousel { width: 100%; min-width: 0; margin-top: 24px; }
+.controls { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 16px; }
+.controlButton { display: inline-flex; min-height: 44px; min-width: 44px; align-items: center; justify-content: center; border: 1px solid var(--color-rule-strong); color: var(--color-ink); transition: background .2s, border-color .2s; }
+.controlButton:hover { background: var(--color-paper-deep); border-color: var(--color-ink); }
+.track { display: grid; gap: 14px; }
+.card { display: grid; grid-template-columns: minmax(0,.82fr) minmax(0,1.18fr); min-width: 0; overflow: hidden; border: 1px solid var(--color-rule); border-radius: 4px; background: white; box-shadow: 0 5px 18px #00000004; transition: border-color .25s, box-shadow .25s; }
+.card:hover, .card:focus-within { border-color: #b8b8b8; box-shadow: 0 10px 30px #0000000b; }
+.preview { min-width: 0; border-right: 1px solid var(--color-rule); background: #111; }
+.body { display: flex; flex: 1; min-width: 0; flex-direction: column; padding: 14px; }
+.number { font: 9px var(--font-mono); text-transform: uppercase; letter-spacing: .12em; color: var(--color-ink-muted); }
+.number span { color: var(--color-accent); }
+.title { margin-top: 7px; font: 400 19px/1.12 var(--font-serif); letter-spacing: -.02em; overflow-wrap: anywhere; }
+.summary { display: none; }
+.price { margin-top: 10px; font-size: 11px; color: var(--color-ink-soft); }
+.cta { display: flex; align-items: center; justify-content: space-between; gap: 10px; min-height: 44px; margin-top: auto; padding-top: 8px; border-top: 1px solid var(--color-rule); font-size: 10px; font-weight: 600; color: var(--color-ink); }
+.cta:hover { color: var(--color-accent); }
+.footnote { margin-top: 13px; font-size: 10px; color: var(--color-ink-muted); }
+@media (min-width: 768px) {
+  .track { grid-template-columns: repeat(3,minmax(0,1fr)); gap: 20px; }
+  .card { display: flex; flex-direction: column; }
+  .preview { height: 240px; border-right: 0; border-bottom: 1px solid var(--color-rule); }
+  .body { padding: 22px; }
+  .title { font-size: 25px; }
+  .summary { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; margin-top: 10px; font-size: 12px; line-height: 1.6; color: var(--color-ink-muted); }
+  .price { margin-top: 15px; font-size: 12px; }
+  .cta { min-height: 48px; font-size: 12px; }
+}
+@media (prefers-reduced-motion: reduce) { .card, .controlButton { transition: none; } }

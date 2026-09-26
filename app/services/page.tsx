@@ -51,7 +51,7 @@ const ENGAGEMENT_STEPS = [
 export default function ServicesPage() {
 
   return (
-    <>
+    <div className="min-w-0 max-w-full">
       <JsonLd
         data={breadcrumbSchema([
           { name: "Home", path: "/" },
@@ -60,8 +60,8 @@ export default function ServicesPage() {
       />
 
       {/* 01 — Services Hub Header */}
-      <section className="border-b border-rule">
-        <Container width="page" className="pb-14 pt-10 sm:pb-16">
+      <section className="border-b border-rule bg-paper-deep">
+        <Container width="page" className="pb-10 pt-8 sm:pb-14">
           <Breadcrumbs
             trail={[
               { name: "Home", path: "/" },
@@ -69,18 +69,17 @@ export default function ServicesPage() {
             ]}
           />
           <div className="max-w-3xl">
-            <Eyebrow>Creative impact. Commercial purpose.</Eyebrow>
-            <h1 className="display mt-6 text-4xl sm:text-5xl lg:text-[3.5rem]">
-              Stand out. Win the next opportunity.
+            <Eyebrow>XIYÀTO / Services</Eyebrow>
+            <h1 className="display mt-4 text-4xl sm:text-5xl lg:text-[3.5rem]">
+              Six services. One studio.
             </h1>
-            <p className="mt-6 text-lg leading-relaxed text-ink-soft">
-              Striking 3D renders, cinematic AI video and websites that make your next pitch count. Backed by precise CAD, targeted buyer research and connected workflows to keep business moving.
+            <p className="mt-5 max-w-2xl text-base leading-relaxed text-ink-soft">
+              3D visualisation, AI film, websites, CAD drafting, marketing and B2B research, and workflow automation. Specialist production for design studios, brands and growing businesses—commissioned individually or together.
             </p>
-            <p className="mt-6 inline-flex rounded-full border border-accent/30 bg-accent-wash px-4 py-2 text-sm font-medium text-accent">Agency-grade assets at indie-friendly rates.</p>
-            <nav aria-label="Service index" className="mt-8 flex flex-wrap gap-2">
+            <nav aria-label="Service index" className="mt-7 grid grid-cols-2 gap-x-5 sm:grid-cols-3">
               {SERVICES.map((service) => (
-                <Link key={service.slug} href={`#${service.slug}`} className="inline-flex min-h-11 items-center gap-2 rounded-md border border-rule px-3 text-xs text-ink-soft transition-colors hover:border-accent hover:text-accent">
-                  <span className="font-mono text-ink-faint">{String(service.order).padStart(2, "0")}</span>{service.shortName}
+                <Link key={service.slug} href={`#${service.slug}`} className="flex min-h-12 min-w-0 items-center gap-2 border-b border-rule py-2 text-xs text-ink-soft transition-colors hover:border-ink hover:text-ink">
+                  <span className="font-mono text-accent">{String(service.order).padStart(2, "0")}</span><span className="min-w-0">{service.shortName}</span>
                 </Link>
               ))}
             </nav>
@@ -97,10 +96,11 @@ export default function ServicesPage() {
             id={service.slug}
             tone={index % 2 === 0 ? "surface" : "paper"}
             bordered={index > 0}
+            className="service-overview scroll-mt-20"
           >
             <Container width="page">
-              <div className="grid gap-10 lg:grid-cols-12 lg:gap-16">
-                <div className="lg:col-span-5">
+              <div className="grid min-w-0 gap-7 lg:grid-cols-12 lg:gap-12">
+                <div className="min-w-0 lg:col-span-5">
                   <Eyebrow>{`0${service.order} — Service`}</Eyebrow>
                   <h2 className="display mt-5 text-3xl sm:text-4xl">{service.name}</h2>
                   <p className="mt-6 text-base leading-relaxed text-ink-soft">
@@ -108,7 +108,7 @@ export default function ServicesPage() {
                   </p>
                   <div className="mt-7 space-y-3">
                     {prices.length ? prices.map((price) => (
-                      <div key={price.id} className="rounded-xl border border-accent/20 bg-accent-wash p-5">
+                      <div key={price.id} className="border-l-2 border-ink bg-paper-deep p-4 sm:p-5">
                         {prices.length > 1 ? <p className="mb-2 text-xs font-semibold text-ink-muted">{price.name}</p> : null}
                         <p className="text-xl font-semibold tracking-tight text-ink">{price.label}</p>
                         <p className="mt-2 text-xs leading-relaxed text-ink-muted">{price.note}</p>
@@ -117,7 +117,7 @@ export default function ServicesPage() {
                         </a>
                       </div>
                     )) : (
-                      <div className="rounded-xl border border-rule bg-paper p-5">
+                      <div className="border-l-2 border-ink bg-paper-deep p-4 sm:p-5">
                         <p className="text-lg font-semibold text-ink">A precise quote for a precise brief.</p>
                         <p className="mt-2 text-xs leading-relaxed text-ink-muted">CAD packages are priced around the drawing count, detail level and source material.</p>
                         <a href={getServiceWhatsAppHref(service.slug)} target="_blank" rel="noopener noreferrer" className="mt-4 inline-flex min-h-11 items-center gap-3 rounded-md bg-ink px-4 text-xs font-semibold text-paper hover:bg-accent hover:text-white">Get a CAD Quote <span aria-hidden="true">↗</span></a>
@@ -132,13 +132,8 @@ export default function ServicesPage() {
                   </div>
                 </div>
 
-                <div className="lg:col-span-7">
-                  <div className="mb-8 overflow-hidden rounded-xl border border-rule shadow-lg"><ServicePreview slug={service.slug} /></div>
-                  <h3 className="label mb-2">Capabilities</h3>
-                  <CapabilityList
-                    items={service.groups.map((g) => g.title)}
-                    className="mb-8"
-                  />
+                <div className="min-w-0 lg:col-span-7">
+                  <div className="mb-6 w-full min-w-0 max-w-full overflow-hidden rounded-sm border border-rule bg-paper-deep p-2 shadow-[0_12px_36px_#00000008]"><ServicePreview slug={service.slug} /></div>
                   <h3 className="label mb-2">Deliverables</h3>
                   <CapabilityList items={service.deliverables} columns={2} />
                 </div>
@@ -188,9 +183,10 @@ export default function ServicesPage() {
 
       {/* 07 — CTA */}
       <ProjectCTA
+        compact
         title="Which of these do you need?"
         body="If you are not sure how the work should be scoped, send what you have. Establishing that is the first step of every engagement."
       />
-    </>
+    </div>
   );
 }

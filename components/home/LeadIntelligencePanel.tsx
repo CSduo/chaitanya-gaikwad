@@ -88,7 +88,7 @@ export function LeadIntelligencePanel() {
           <p className="font-mono text-[0.5625rem] uppercase tracking-wider text-ink-muted">
             Verified Markets
           </p>
-          <p className="display mt-0.5 text-xl font-medium text-amber-600 sm:text-2xl">
+          <p className="display mt-0.5 text-xl font-medium text-ink sm:text-2xl">
             8 Global
           </p>
         </div>
@@ -130,19 +130,19 @@ export function LeadIntelligencePanel() {
         {displayedWorkbooks.map((w) => (
           <div
             key={w.slug}
-            className="group relative flex min-w-0 flex-col justify-between rounded-md border border-rule bg-surface p-3 transition-colors duration-200 hover:border-amber-600/50 sm:p-4"
+            className="group relative flex min-w-0 flex-col justify-between rounded-md border border-rule bg-surface p-3 transition-colors duration-200 hover:border-ink/40 sm:p-4"
           >
             <div>
               <div className="flex flex-wrap items-center justify-between gap-1">
-                <span className="font-mono text-[0.5625rem] font-semibold text-amber-700">
+                <span className="font-mono text-[0.5625rem] font-semibold text-ink">
                   {w.region}
                 </span>
-                <span className="shrink-0 rounded-xs border border-amber-200/60 bg-amber-50 px-1.5 py-0.5 font-mono text-[0.5rem] text-amber-800">
+                <span className="shrink-0 rounded-xs border border-rule bg-paper-deep px-1.5 py-0.5 font-mono text-[0.5rem] text-accent">
                   {w.sheetCount} {w.sheetCount === 1 ? "Sheet" : "Sheets"}
                 </span>
               </div>
 
-              <h4 className="mt-2 line-clamp-2 text-xs font-semibold leading-snug text-ink transition-colors group-hover:text-amber-700 sm:text-sm">
+              <h4 className="mt-2 line-clamp-2 text-xs font-semibold leading-snug text-ink transition-colors group-hover:text-ink sm:text-sm">
                 {w.title}
               </h4>
 
@@ -157,7 +157,7 @@ export function LeadIntelligencePanel() {
                 type="button"
                 onClick={() => handleOpenPreview(w)}
                 aria-label={`Preview ${w.title}`}
-                className={`inline-flex min-h-[44px] items-center gap-1 text-[0.6875rem] font-medium text-amber-700 hover:text-amber-800 ${TACTILE_CLASSES.buttonSubtle}`}
+                className={`inline-flex min-h-[44px] items-center gap-1 text-[0.6875rem] font-medium text-ink hover:text-accent ${TACTILE_CLASSES.buttonSubtle}`}
               >
                 <span>Preview</span>
                 <span aria-hidden="true">↓</span>
@@ -190,7 +190,7 @@ export function LeadIntelligencePanel() {
             {/* Modal Header */}
             <div className="flex items-center justify-between border-b border-rule bg-paper-deep px-6 py-4">
               <div>
-                <span className="font-mono text-[0.625rem] uppercase tracking-widest text-amber-700 font-semibold">
+                <span className="font-mono text-[0.625rem] uppercase tracking-widest text-ink font-semibold">
                   {expandedWorkbook.region} · Verified Sample Data
                 </span>
                 <h3 className="display mt-1 text-lg font-medium text-ink">
@@ -230,7 +230,7 @@ export function LeadIntelligencePanel() {
                             key={cIdx}
                             className={`px-3 py-2.5 text-xs ${
                               cIdx === 0
-                                ? "font-mono font-semibold text-amber-700"
+                                ? "font-mono font-semibold text-ink"
                                 : cIdx === 1
                                 ? "font-medium text-ink"
                                 : "text-ink-muted"
