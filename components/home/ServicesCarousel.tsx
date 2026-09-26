@@ -1,159 +1,65 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import type { Service } from "@/lib/services";
-import { serviceAnchor } from "@/lib/services";
-import { getServicePricing, PRICING_NOTE } from "@/lib/pricing";
+import { getServicePricing } from "@/lib/pricing";
 import { getServiceWhatsAppHref } from "@/lib/site";
-import { TACTILE_CLASSES, triggerHaptic } from "@/lib/tactile";
 import { ServicePreview } from "./ServicePreview";
-import { useAutoAdvance, useReducedMotion } from "./hooks";
+import { useReducedMotion } from "./hooks";
+import { CAROUSEL_INTERVAL_MS, groupServices } from "@/lib/service-carousel";
 
 export function ServicesCarousel({ services }: { services: Service[] }) {
   const reduced = useReducedMotion();
-  const [isHovered, setIsHovered] = useState(false);
-  const [isFocused, setIsFocused] = useState(false);
-  const [isPaused, setIsPaused] = useState(false);
-  const [isMediaPlaying, setIsMediaPlaying] = useState(false);
-  const [startIndex, setStartIndex] = useAutoAdvance(services.length, 7000, {
-    paused: isPaused || isHovered || isFocused || isMediaPlaying,
-    enabled: !reduced,
-  });
+  const [page, setPage] = useState(0);
+  const [pauseOverride, setPauseOverride] = useState<boolean | null>(null);
+  const paused = pauseOverride ?? reduced;
+  const groups = groupServices(services);
+  const count = groups.length;
 
-  if (services.length === 0) return null;
+  useEffect(() => {
+    if (paused || count < 2) return;
+    let timer: ReturnType<typeof setInterval> | undefined;
+    const stop = () => { if (timer) clearInterval(timer); timer = undefined; };
+    const start = () => {
+      stop();
+      if (!document.hidden) timer = setInterval(() => setPage(value => (value + 1) % count), CAROUSEL_INTERVAL_MS);
+    };
+    start();
+    document.addEventListener("visibilitychange", start);
+    return () => { stop(); document.removeEventListener("visibilitychange", start); };
+  }, [paused, count, page]);
 
-  function navigate(index: number) {
-    setIsMediaPlaying(false);
-    setStartIndex((index + services.length) % services.length);
-    triggerHaptic("selection");
-  }
+  if (!count) return null;
+  const activePage = page % count;
+  const navigate = (offset: number) => setPage((activePage + offset + count) % count);
 
-  const visibleServices = Array.from(
-    { length: Math.min(3, services.length) },
-    (_, offset) => services[(startIndex + offset) % services.length],
-  );
-
-  return (
-    <div
-      className="mt-8 w-full"
-      role="region"
-      aria-roledescription="carousel"
-      aria-label="Studio services"
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-      onFocusCapture={() => setIsFocused(true)}
-      onPlayCapture={() => setIsMediaPlaying(true)}
-      onPauseCapture={() => setIsMediaPlaying(false)}
-      onEndedCapture={() => setIsMediaPlaying(false)}
-      onBlurCapture={(event) => {
-        if (!event.currentTarget.contains(event.relatedTarget)) setIsFocused(false);
-      }}
-    >
-      <div className="mb-5 flex flex-wrap items-center justify-between gap-3 border-b border-rule pb-4">
-        <p className="font-mono text-[0.625rem] uppercase tracking-[0.14em] text-ink-muted">
-          <span className="text-accent">{String(startIndex + 1).padStart(2, "0")}</span>
-          {` / ${String(services.length).padStart(2, "0")} · Your next competitive edge`}
-        </p>
-        <div className="flex items-center gap-2">
-          {!reduced ? (
-            <button
-              type="button"
-              onClick={() => setIsPaused((paused) => !paused)}
-              aria-label={isPaused ? "Resume automatic service rotation" : "Pause automatic service rotation"}
-              className="min-h-11 px-3 font-mono text-[0.625rem] text-ink-muted transition-colors hover:text-ink"
-            >
-              {isPaused ? "Resume rotation" : "Pause rotation"}
-            </button>
-          ) : null}
-          <button
-            type="button"
-            onClick={() => navigate(startIndex - 1)}
-            aria-label="Previous service"
-            className={`flex h-11 w-11 items-center justify-center rounded-md border border-rule bg-paper text-ink transition-colors hover:border-ink ${TACTILE_CLASSES.buttonSubtle}`}
-          >
-            &larr;
-          </button>
-          <button
-            type="button"
-            onClick={() => navigate(startIndex + 1)}
-            aria-label="Next service"
-            className={`flex h-11 w-11 items-center justify-center rounded-md border border-rule bg-paper text-ink transition-colors hover:border-ink ${TACTILE_CLASSES.buttonSubtle}`}
-          >
-            &rarr;
-          </button>
-        </div>
+  return <div className="mt-5 w-full" role="region" aria-roledescription="carousel" aria-label="Studio services">
+    <div className="mb-3 flex items-center justify-between gap-2 border-b border-rule pb-2">
+      <p className="font-mono text-[10px] text-ink-muted">{activePage * 3 + 1}–{Math.min((activePage + 1) * 3, services.length)} / {services.length} services</p>
+      <div className="flex items-center gap-1">
+        <button type="button" onClick={() => setPauseOverride(!paused)} aria-label={paused ? "Resume automatic service rotation" : "Pause automatic service rotation"} aria-pressed={paused} className="min-h-11 px-3 text-xs text-ink">{paused ? "Play" : "Pause"}</button>
+        <button type="button" onClick={() => navigate(-1)} aria-label="Previous service group" className="h-11 w-11 border border-rule text-ink">←</button>
+        <button type="button" onClick={() => navigate(1)} aria-label="Next service group" className="h-11 w-11 border border-rule text-ink">→</button>
       </div>
-
-      <div className="grid grid-cols-1 gap-5 md:grid-cols-3">
-        {visibleServices.map((service) => {
-          const pricing = getServicePricing(service.slug);
-          const primary = pricing[0];
-          return (
-            <article
-              key={service.slug}
-              className="group flex min-w-0 flex-col overflow-hidden rounded-xl border border-rule bg-surface shadow-sm transition-[border-color,box-shadow] duration-300 hover:border-accent/50 hover:shadow-[0_10px_40px_-20px_var(--accent)]"
-            >
-              <ServicePreview slug={service.slug} compact />
-              <div className="flex flex-1 flex-col p-5 sm:p-6">
-                <div className="flex items-center justify-between gap-3 font-mono text-[0.625rem] uppercase tracking-[0.12em]">
-                  <span className="text-accent">{String(service.order).padStart(2, "0")} · {service.shortName}</span>
-                  <a href={`#${serviceAnchor(service.slug)}`} className="shrink-0 py-2 text-ink-muted hover:text-accent" aria-label={`Jump to ${service.shortName} work on this page`}>
-                    Work &darr;
-                  </a>
-                </div>
-                <h3 className="mt-3 text-xl font-semibold leading-tight text-ink">
-                  <Link href={`/services/${service.slug}`} className="transition-colors hover:text-accent">{service.name}</Link>
-                </h3>
-                <p className="mb-5 mt-3 text-sm leading-relaxed text-ink-muted">{service.summary}</p>
-                <div className="mt-auto border-t border-rule pt-5">
-                  {primary ? (
-                    <p className="font-mono text-xs font-medium text-accent">{primary.label}</p>
-                  ) : (
-                    <p className="font-mono text-xs font-medium text-ink-soft">Scoped to your drawing package</p>
-                  )}
-                  <a
-                    href={primary?.href ?? getServiceWhatsAppHref(service.slug)}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="mt-4 flex min-h-11 items-center justify-between gap-3 rounded-md bg-ink px-4 py-3 text-xs font-semibold text-paper transition-colors hover:bg-accent hover:text-white"
-                  >
-                    <span>{primary?.cta ?? "Get a CAD Quote"}</span>
-                    <span aria-hidden="true">&nearr;</span>
-                  </a>
-                  {pricing.slice(1).map((tier) => (
-                    <div key={tier.id} className="mt-4 border-t border-rule pt-4">
-                      <p className="text-xs text-ink-muted">{tier.name}: {tier.label.toLowerCase()}</p>
-                      <a href={tier.href} target="_blank" rel="noopener noreferrer" className="mt-1 inline-flex min-h-11 items-center gap-2 text-xs font-medium text-accent hover:underline">
-                        {tier.cta}<span aria-hidden="true">&nearr;</span>
-                      </a>
-                    </div>
-                  ))}
-                  <Link href={`/services/${service.slug}`} className="mt-2 flex min-h-11 items-center justify-center text-xs text-ink-muted underline decoration-rule-strong underline-offset-4 hover:text-ink">
-                    Explore the service
-                  </Link>
-                </div>
-              </div>
-            </article>
-          );
-        })}
-      </div>
-
-      <div className="mt-5 flex justify-center gap-1">
-        {services.map((service, index) => (
-          <button
-            key={service.slug}
-            type="button"
-            onClick={() => navigate(index)}
-            aria-label={`Show ${service.name}`}
-            aria-current={index === startIndex ? "true" : undefined}
-            className="flex h-11 w-11 items-center justify-center"
-          >
-            <span className={`h-1.5 rounded-full transition-all duration-300 ${index === startIndex ? "w-7 bg-accent" : "w-2 bg-rule-strong"}`} />
-          </button>
-        ))}
-      </div>
-      <p className="mt-2 text-center text-[0.6875rem] leading-relaxed text-ink-muted">{PRICING_NOTE}</p>
     </div>
-  );
+    <div className="grid gap-3 md:grid-cols-3" aria-live={paused ? "polite" : "off"}>
+      {groups[activePage].map(service => {
+        const prices = getServicePricing(service.slug);
+        const price = prices[0];
+        return <article key={service.slug} className="service-carousel-card grid min-w-0 grid-cols-[42%_minmax(0,1fr)] overflow-hidden rounded-md border border-rule bg-white md:flex md:flex-col" onClickCapture={event => { if ((event.target as HTMLElement).closest("button,a,video")) setPauseOverride(true); }} onPlayCapture={() => setPauseOverride(true)}>
+          <div className="service-carousel-preview min-w-0"><ServicePreview slug={service.slug} compact /></div>
+          <div className="flex min-w-0 flex-1 flex-col p-3 md:p-4">
+            <p className="font-mono text-[9px] uppercase tracking-wider text-ink-muted">0{service.order} / {service.motif}</p>
+            <h3 className="mt-1 text-sm font-semibold leading-snug text-ink md:text-lg"><Link href={`/services/${service.slug}`}>{service.name}</Link></h3>
+            <p className="mt-2 hidden text-xs leading-relaxed text-ink-muted md:line-clamp-2">{service.summary}</p>
+            <p className="mb-2 mt-2 text-[11px] font-medium text-accent md:text-xs">{price?.label ?? "CAD packages · scoped quote"}</p>
+            {prices.slice(1).map(tier => <a key={tier.id} href={tier.href} target="_blank" rel="noopener noreferrer" className="mb-1 text-[10px] text-ink-muted underline underline-offset-2">{tier.name} from $ {tier.amount}</a>)}
+            <a href={price?.href ?? getServiceWhatsAppHref(service.slug)} target="_blank" rel="noopener noreferrer" className="mt-auto flex min-h-11 items-center justify-between gap-2 rounded-xs bg-ink px-2 py-2 text-[10px] font-semibold leading-snug text-white md:px-3 md:text-xs"><span>{price?.cta ?? "Get a CAD Quote"}</span><span aria-hidden="true">↗</span></a>
+          </div>
+        </article>;
+      })}
+    </div>
+    <p className="mt-2 text-center text-[10px] text-ink-muted">USD starting prices · Scope agreed before work begins.</p>
+  </div>;
 }

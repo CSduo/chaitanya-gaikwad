@@ -25,39 +25,32 @@ function RenderPreview({ compact }: { compact: boolean }) {
       <Image src={render.src} alt={render.alt} fill sizes={compact ? "(min-width: 1024px) 380px, 90vw" : "(min-width: 1024px) 800px, 95vw"} className={styles.cover} />
       <div className={styles.imageShade} />
       <div className={styles.imageTop}><span className={styles.glassTag}>Selected visual studies</span><span className={styles.crosshair} aria-hidden="true">+</span></div>
-      <div className={styles.imageBottom}><p>Spaces that sell<br /><em>the feeling.</em></p><div className={styles.imageSwitch} aria-label="Render selection">{RENDERS.map((item, index) => <button key={item.label} type="button" aria-pressed={selected === index} onClick={() => setSelected(index)}>{item.label}</button>)}</div></div>
+      <div className={styles.imageBottom}><p>Spaces that sell<br /><em>the feeling.</em></p></div>
     </div>
+    <div className={styles.imageSwitch} aria-label="Render selection">{RENDERS.map((item, index) => <button key={item.label} type="button" aria-pressed={selected === index} onClick={() => setSelected(index)}>{item.label}</button>)}</div>
   </div>;
 }
 
 function FilmPreview({ compact }: { compact: boolean }) {
-  const [playing, setPlaying] = useState(false);
   return <div className={`${styles.preview} ${styles.film} ${compact ? styles.compact : ""}`}>
-    <PreviewBar title="Moon Chair · campaign film" badge="Portfolio" />
+    <PreviewBar title="Bingxi · factory-to-showroom" badge="Film" />
     <div className={styles.filmWell}>
-      {playing ? <video controls autoPlay playsInline preload="none" className={styles.video} poster="/media/posters/sultanah-co-moon-chair-cinematic-campaign-poster.webp" aria-label="Moon Chair cinematic campaign film"><source src="/media/video/sultanah-co-moon-chair-cinematic-campaign.mp4" type="video/mp4" /></video> : <>
-        <Image src="/media/posters/sultanah-co-moon-chair-cinematic-campaign-poster.webp" alt="Moon Chair cinematic furniture campaign poster" fill sizes="(min-width: 1024px) 640px, 90vw" className={styles.filmPoster} />
-        <div className={styles.imageShade} />
-        <button type="button" className={styles.play} onClick={() => setPlaying(true)} aria-label="Play Moon Chair campaign film"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l11 7-11 7z" fill="currentColor" /></svg></button>
-        <div className={styles.filmCaption}><span>Product. Atmosphere. Motion.</span><strong>Make them stop scrolling.</strong></div>
-      </>}
+      <video controls playsInline preload="metadata" className={styles.video} poster="/media/posters/bingxi-factory-video-poster.webp" aria-label="Play Bingxi factory-to-showroom film">
+        <source src="/media/video/bingxi-factory-video.mp4" type="video/mp4" />
+        Your browser cannot play this film. <a href="/media/video/bingxi-factory-video.mp4">Open the video</a>.
+      </video>
     </div>
-    <div className={styles.filmStrip} aria-hidden="true"><span>STORY</span><i /><span>COLOUR</span><i /><span>MOTION</span></div>
   </div>;
 }
 
 function WebsitePreview({ compact }: { compact: boolean }) {
   const [mobile, setMobile] = useState(false);
   return <div className={`${styles.preview} ${styles.web} ${compact ? styles.compact : ""}`}>
-    <PreviewBar title="Responsive design studio" badge="Concept" />
-    <div className={styles.webCanvas}>
-      <div className={`${styles.browser} ${mobile ? styles.mobileBrowser : ""}`}>
-        <div className={styles.browserNav}><strong>STUDIO / LIVING</strong><span aria-hidden="true">MENU +</span></div>
-        <div className={styles.webHero}><div><span className={styles.webEyebrow}>Considered spaces.</span><h4>Designed<br />for living.</h4><span className={styles.webCta}>Explore the collection ↗</span></div><div className={styles.webPhoto}><Image src="/media/visual/vis-19.webp" alt="Green armchairs used in an illustrative interior studio website design" fill sizes="(min-width: 1024px) 300px, 45vw" className={styles.cover} /></div></div>
-        <div className={styles.browserFooter}><span>Form meets function.</span><span>01 — 03</span></div>
-      </div>
+    <PreviewBar title="Anvikshiki Journal" badge="Live project" />
+    <div className={styles.siteCapture} tabIndex={0} aria-label="Anvikshiki website screenshot; scroll to explore">
+      <Image src={mobile ? "/media/web/anvikshiki-mobile.webp" : "/media/web/anvikshiki-desktop.webp"} alt={mobile ? "Anvikshiki Journal mobile website presentation" : "Anvikshiki Journal homepage and recent submissions"} width={1600} height={mobile ? 1111 : 3428} sizes={compact ? "(min-width: 768px) 380px, 42vw" : "(min-width: 1024px) 700px, 90vw"} className={styles.siteScreenshot} />
     </div>
-    <div className={styles.toolbar}><span>Interactive interface concept</span><div className={styles.switcher} aria-label="Website preview size"><button type="button" aria-pressed={!mobile} onClick={() => setMobile(false)}>Desktop</button><button type="button" aria-pressed={mobile} onClick={() => setMobile(true)}>Mobile</button></div></div>
+    <div className={styles.switcher} aria-label="Website preview size"><button type="button" aria-pressed={!mobile} onClick={() => setMobile(false)}>Desktop</button><button type="button" aria-pressed={mobile} onClick={() => setMobile(true)}>Mobile</button></div>
   </div>;
 }
 

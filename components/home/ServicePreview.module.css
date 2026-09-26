@@ -1,4 +1,7 @@
 .preview { --preview-green: #b6f7cc; --preview-cyan: #9ce9eb; position: relative; width: 100%; overflow: hidden; border: 1px solid #30383b; border-radius: 8px; background: #101718; color: #f5f7f5; isolation: isolate; }
+.siteCapture { height: 300px; overflow-y: auto; background: white; }
+.siteScreenshot { display: block; width: 100%; height: auto; }
+.compact .siteCapture { height: 200px; }
 .fill { height: 100%; width: 100%; }
 .fill>.preview { height: 100%; display: flex; flex-direction: column; border-radius: 0; }
 .fill .blueprint,.fill .workflowCanvas,.fill .webCanvas,.fill .imageWell,.fill .filmWell { flex: 1; min-height: 0; }
@@ -176,4 +179,40 @@
 @media (prefers-reduced-motion: reduce) {
   .preview *, .preview *::before, .preview *::after { animation: none !important; transition: none !important; }
   .preview:hover .cover,.node:hover { transform: none; }
+}
+
+/* Controls sit below media and remain reachable on narrow Android screens. */
+.imageSwitch,.web>.switcher { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); max-width: none; width: 100%; gap: 0; padding: 4px; background: #111918; }
+.imageSwitch button,.web>.switcher button { min-width: 0; min-height: 40px; padding: 6px; font-size: 11px; }
+.web>.switcher { background: #ebecea; }
+.compact .imageSwitch { max-width: none; }
+.filmWell,.compact .filmWell { min-height: 0; aspect-ratio: 16/9; }
+.video { height: 100%; width: 100%; object-fit: contain; background: #000; }
+@media (max-width: 767px) {
+  .compact .bar { min-height: 28px; padding: 5px 7px; gap: 4px; }
+  .compact .dots,.compact .barBadge,.compact .imageTop,.compact .imageBottom,.compact .filmStrip { display: none; }
+  .compact .barTitle { font-size: 8px; }
+  .compact .imageWell { min-height: 0; aspect-ratio: 4/3; }
+  .compact .siteCapture { height: 115px; }
+  .compact .blueprint { min-height: 150px; aspect-ratio: auto; }
+  .compact .blueprintImage { padding: 8px; }
+  .compact .drawingNote,.compact .cadFooter { display: none; }
+  .compact .inspectionNote { inset: auto 5px 5px; padding: 4px; font-size: 8px; }
+  .compact .sheetHeadline { padding: 8px; }
+  .compact .sheetHeadline h4 { font-size: 15px; }
+  .compact .sheetHeadline .eyebrow,.compact .metric,.compact .exampleNote { display: none; }
+  .compact .sheetScroll,.compact .sheetTabs { margin-inline: 5px; }
+  .compact .sheet { min-width: 280px; font-size: 8px; }
+  .compact .sheet th,.compact .sheet td { padding: 6px; }
+  .compact .sheetTabs { flex-wrap: wrap; }
+  .compact .sheetTabs button { min-height: 32px; padding: 4px; font-size: 8px; }
+  .compact .workflowCanvas { padding: 8px; }
+  .compact .workflowHeading,.compact .workflowDetail,.compact .toolbar>span { display: none; }
+  .compact .nodes { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 4px; margin: 0; }
+  .compact .node { padding: 5px 2px; gap: 3px; }
+  .compact .nodeIcon { width: 22px; height: 22px; font-size: 14px; }
+  .compact .node strong { font-size: 8px; }
+  .compact .node>span:last-child { display: none; }
+  .compact .toolbar { min-height: 35px; padding: 2px 5px; justify-content: center; }
+  .compact .runDemo { min-height: 32px; font-size: 8px; }
 }

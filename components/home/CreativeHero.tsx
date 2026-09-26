@@ -20,11 +20,7 @@ export function CreativeHero() {
       <Container width="page" className="relative py-10 sm:py-14 lg:py-16">
         <div className="grid items-center gap-10 lg:grid-cols-[1fr_1.08fr] lg:gap-12">
           <div className="creative-hero-copy min-w-0">
-            <p className="flex items-center gap-3 font-mono text-[10px] uppercase tracking-[0.2em] text-zinc-300">
-              <span className="h-1.5 w-1.5 rounded-full bg-emerald-300" aria-hidden="true" />
-              Creative production. Commercial purpose.
-            </p>
-            <Link href="/services/visualisation-image-production" className="relative mt-5 block aspect-[16/9] overflow-hidden rounded-xs lg:hidden" aria-label="Explore the kitchen visualization collection">
+            <Link href="/services/visualisation-image-production" className="relative block aspect-[16/9] overflow-hidden rounded-xs lg:hidden" aria-label="Explore the kitchen visualization collection">
               <Image src={VISUALS[0].src} alt={VISUALS[0].alt} fill loading="eager" fetchPriority="high" sizes="(min-width: 1024px) 1px, 100vw" className="object-cover" />
               <span className="absolute bottom-3 left-3 bg-black/60 px-2 py-1 font-mono text-[9px] uppercase tracking-widest text-white">Kitchen study · Concept collection</span>
             </Link>

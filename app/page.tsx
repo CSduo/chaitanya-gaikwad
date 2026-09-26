@@ -1,15 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import {
-  Container,
-  Section,
-  SectionHeading,
-} from "@/components/ui/primitives";
+import { Container } from "@/components/ui/primitives";
 import { ServicesCarousel } from "@/components/home/ServicesCarousel";
 import {
   CadSection,
   B2BLeadGenSection,
-  MarketIntelligenceSection,
   VisualisationSection,
   VideoSection,
   WebsiteSection,
@@ -20,7 +15,6 @@ import { ProjectCTA } from "@/components/site/ProjectCTA";
 import { SERVICES, getService } from "@/lib/services";
 import { publishedLocations } from "@/lib/company";
 import { pageMetadata } from "@/lib/seo";
-import { HOME_COPY } from "@/lib/home-copy";
 import { ROUTE_SEO } from "@/lib/seo-copy";
 import { CreativeHero } from "@/components/home/CreativeHero";
 import { StartingPrices } from "@/components/home/StartingPrices";
@@ -36,17 +30,17 @@ const ENGAGEMENTS = [
   {
     n: "01",
     title: "Project",
-    body: "A defined scope with an agreed deliverable list, priced and delivered against it.",
+    body: "A clear scope, agreed deliverables and a fixed quote.",
   },
   {
     n: "02",
     title: "Ongoing Support",
-    body: "Recurring external capacity for a steady flow of drawing, research, visual or production work.",
+    body: "Reliable extra capacity for your team's regular production work.",
   },
   {
     n: "03",
-    title: "Advisory / Consulting",
-    body: "A defined research, systems or workflow engagement where the output is a recommendation rather than production.",
+    title: "Advisory",
+    body: "Focused research and recommendations for a specific decision.",
   },
 ];
 
@@ -54,7 +48,6 @@ export default function HomePage() {
   const locations = publishedLocations();
   const cad = getService("cad-technical-production")!;
   const b2bLeadGen = getService("b2b-lead-generation")!;
-  const marketIntel = getService("market-intelligence-research")!;
   const visualisation = getService("visualisation-image-production")!;
   const video = getService("ai-video-production")!;
   const web = getService("website-design-development")!;
@@ -64,13 +57,13 @@ export default function HomePage() {
     <>
       <CreativeHero />
 
-      <Container width="page" className="scroll-mt-16 pt-16 sm:pt-20" id="capabilities">
+      <Container width="page" className="scroll-mt-16 pt-8 sm:pt-12" id="capabilities">
         <div className="max-w-3xl">
-          <h2 className="display text-3xl sm:text-4xl lg:text-5xl leading-tight">
+          <h2 className="display text-2xl leading-tight sm:text-3xl lg:text-4xl">
             From the first impression to the next opportunity.
           </h2>
-          <p className="mt-4 text-base sm:text-lg text-ink-soft leading-relaxed">
-            {HOME_COPY.capabilitiesIntro}
+          <p className="mt-2 text-sm leading-relaxed text-ink-soft">
+            Six services, one studio. Explore our work and find the right starting point for your brief.
           </p>
         </div>
 
@@ -86,7 +79,6 @@ export default function HomePage() {
       <CadSection service={cad} />
       <SectionDivider index={5} label="Grow" className="py-1" />
       <B2BLeadGenSection service={b2bLeadGen} />
-      <MarketIntelligenceSection service={marketIntel} />
       <SectionDivider index={6} label="Automate" className="py-1" />
       <AutomationSection service={automation} />
       <StartingPrices />
@@ -94,23 +86,21 @@ export default function HomePage() {
       {/* ============================================================
           03 — ENGAGEMENT MODEL
          ============================================================ */}
-      <Section bordered>
+      <section className="border-t border-rule py-8 sm:py-12">
         <Container width="page">
-          <SectionHeading
-            eyebrow="Engagement model"
-            title="Built to plug into your existing team."
-          />
-          <ol className="mt-14 grid gap-px border border-rule bg-rule lg:grid-cols-3">
+          <p className="label">Ways to work together</p>
+          <h2 className="display mt-2 text-2xl sm:text-3xl">Built to plug into your team.</h2>
+          <ol className="mt-5 grid grid-cols-3 gap-px border border-rule bg-rule">
             {ENGAGEMENTS.map((e) => (
-              <li key={e.title} className="bg-paper p-7 lg:p-9">
-                <span className="label">{e.n}</span>
-                <h3 className="display mt-4 text-2xl">{e.title}</h3>
-                <p className="mt-4 text-sm leading-relaxed text-ink-muted">{e.body}</p>
+              <li key={e.title} className="bg-paper p-3 sm:p-5">
+                <span className="font-mono text-[0.625rem] text-ink-faint">{e.n}</span>
+                <h3 className="mt-1 text-sm font-medium sm:text-base">{e.title}</h3>
+                <p className="mt-2 text-[0.625rem] leading-relaxed text-ink-muted sm:text-xs">{e.body}</p>
               </li>
             ))}
           </ol>
         </Container>
-      </Section>
+      </section>
 
       {/* ============================================================
           05 — UK / INDIA PRESENCE
@@ -125,6 +115,7 @@ export default function HomePage() {
           06 — FINAL PROJECT CTA
          ============================================================ */}
       <ProjectCTA
+        compact
         services={SERVICES.map((s) => ({
           label: s.name,
           href: `/services/${s.slug}`,

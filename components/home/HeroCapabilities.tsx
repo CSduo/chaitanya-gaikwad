@@ -325,7 +325,7 @@ export function HeroCapabilities() {
           <p className="mt-1 text-[0.625rem] text-zinc-400">{price ? "USD · Final scope and price agreed before production" : "Send your drawing brief for a scoped estimate"}</p>
         </div>
         <a href={price?.href ?? getServiceWhatsAppHref(current.slug)} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center gap-3 rounded-md border border-white/20 bg-white px-4 text-xs font-semibold text-zinc-950 transition-colors hover:bg-amber-100">
-          {price?.cta ?? "Get a CAD Quote"}<span aria-hidden="true">&nearr;</span>
+          {price?.cta ?? "Get a CAD Quote"}<span aria-hidden="true">↗</span>
         </a>
       </div>
       <div className="mt-3 flex flex-wrap items-baseline justify-between gap-x-6 gap-y-2">

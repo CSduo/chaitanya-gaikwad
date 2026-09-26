@@ -67,8 +67,8 @@ export function LeadIntelligencePanel() {
   return (
     <div className="w-full">
       {/* 01 — Top Compact Metrics Bar */}
-      <div className="mb-6 grid grid-cols-3 gap-2 border border-rule bg-surface p-2 sm:p-3 rounded-lg">
-        <div className="px-3 py-2 text-center sm:text-left">
+      <div className="mb-3 grid grid-cols-3 gap-1 rounded-lg border border-rule bg-surface p-2">
+        <div className="px-1 py-1 text-center sm:text-left sm:px-3">
           <p className="font-mono text-[0.5625rem] uppercase tracking-wider text-ink-muted">
             Intelligence Sets
           </p>
@@ -76,7 +76,7 @@ export function LeadIntelligencePanel() {
             {WORKBOOKS.length}
           </p>
         </div>
-        <div className="border-x border-rule px-3 py-2 text-center sm:text-left">
+        <div className="border-x border-rule px-1 py-1 text-center sm:text-left sm:px-3">
           <p className="font-mono text-[0.5625rem] uppercase tracking-wider text-ink-muted">
             Structured Sheets
           </p>
@@ -84,7 +84,7 @@ export function LeadIntelligencePanel() {
             {totalSheets}
           </p>
         </div>
-        <div className="px-3 py-2 text-center sm:text-left">
+        <div className="px-1 py-1 text-center sm:text-left sm:px-3">
           <p className="font-mono text-[0.5625rem] uppercase tracking-wider text-ink-muted">
             Verified Markets
           </p>
@@ -95,11 +95,11 @@ export function LeadIntelligencePanel() {
       </div>
 
       {/* 02 — Region Selector Filter Pills */}
-      <div className="mb-4 flex flex-wrap items-center gap-1.5 border-b border-rule pb-3">
+      <div className="mb-3 flex items-center gap-1.5 overflow-x-auto border-b border-rule pb-2 [scrollbar-width:thin]">
         {[
-          { id: "all", label: "All Datasets (4)" },
+          { id: "all", label: "All datasets" },
           { id: "fabric", label: "India · Fabrics" },
-          { id: "automotive", label: "Middle East · Automotive" },
+          { id: "automotive", label: "GCC · Automotive" },
           { id: "philippines", label: "Philippines · VIP" },
           { id: "china", label: "China · Markets" },
         ].map((tab) => {
@@ -108,11 +108,12 @@ export function LeadIntelligencePanel() {
             <button
               key={tab.id}
               type="button"
+              aria-pressed={isSelected}
               onClick={() => {
                 setActiveTab(tab.id);
                 triggerHaptic("selection");
               }}
-              className={`rounded-xs px-3 py-1.5 font-mono text-[0.625rem] uppercase tracking-wider transition-all duration-150 ${
+              className={`min-h-[40px] shrink-0 rounded-xs px-2.5 py-1.5 font-mono text-[0.625rem] transition-all duration-150 ${
                 isSelected
                   ? "bg-ink text-paper font-semibold shadow-xs"
                   : "bg-paper-deep text-ink-muted hover:bg-paper hover:text-ink border border-rule"
@@ -125,47 +126,49 @@ export function LeadIntelligencePanel() {
       </div>
 
       {/* 03 — Compact Interactive Summary List */}
-      <div className="grid grid-cols-1 gap-2.5 sm:grid-cols-2">
+      <div className="grid grid-cols-2 gap-2">
         {displayedWorkbooks.map((w) => (
           <div
             key={w.slug}
-            className="group relative flex flex-col justify-between rounded-md border border-rule bg-surface p-4 transition-all duration-200 hover:border-amber-600/50 hover:shadow-xs"
+            className="group relative flex min-w-0 flex-col justify-between rounded-md border border-rule bg-surface p-3 transition-colors duration-200 hover:border-amber-600/50 sm:p-4"
           >
             <div>
-              <div className="flex items-center justify-between">
-                <span className="font-mono text-[0.625rem] uppercase tracking-[0.14em] text-amber-700 font-semibold">
+              <div className="flex flex-wrap items-center justify-between gap-1">
+                <span className="font-mono text-[0.5625rem] font-semibold text-amber-700">
                   {w.region}
                 </span>
-                <span className="rounded-xs bg-amber-50 px-2 py-0.5 font-mono text-[0.5625rem] text-amber-800 border border-amber-200/60">
+                <span className="shrink-0 rounded-xs border border-amber-200/60 bg-amber-50 px-1.5 py-0.5 font-mono text-[0.5rem] text-amber-800">
                   {w.sheetCount} {w.sheetCount === 1 ? "Sheet" : "Sheets"}
                 </span>
               </div>
 
-              <h4 className="mt-2 text-sm font-semibold text-ink leading-snug group-hover:text-amber-700 transition-colors">
+              <h4 className="mt-2 line-clamp-2 text-xs font-semibold leading-snug text-ink transition-colors group-hover:text-amber-700 sm:text-sm">
                 {w.title}
               </h4>
 
-              <p className="mt-1.5 text-xs text-ink-muted line-clamp-2 leading-relaxed">
+              <p className="mt-1.5 line-clamp-2 text-[0.6875rem] leading-relaxed text-ink-muted sm:text-xs">
                 {w.summary}
               </p>
             </div>
 
             {/* In-Place Preview Button */}
-            <div className="mt-4 flex items-center justify-between border-t border-rule/60 pt-2.5">
+            <div className="mt-2 flex flex-wrap items-center justify-between gap-1 border-t border-rule/60 pt-1">
               <button
                 type="button"
                 onClick={() => handleOpenPreview(w)}
-                className={`inline-flex items-center gap-1.5 text-xs font-medium text-amber-700 hover:text-amber-800 ${TACTILE_CLASSES.buttonSubtle}`}
+                aria-label={`Preview ${w.title}`}
+                className={`inline-flex min-h-[44px] items-center gap-1 text-[0.6875rem] font-medium text-amber-700 hover:text-amber-800 ${TACTILE_CLASSES.buttonSubtle}`}
               >
-                <span>Preview Data Sheet</span>
+                <span>Preview</span>
                 <span aria-hidden="true">↓</span>
               </button>
 
               <Link
                 href={`/work/research/${w.slug}`}
-                className="font-mono text-[0.625rem] text-ink-muted hover:text-ink transition-colors"
+                aria-label={`Read ${w.title}`}
+                className="inline-flex min-h-[44px] items-center font-mono text-[0.5625rem] text-ink-muted transition-colors hover:text-ink"
               >
-                Full Study &rarr;
+                Study &rarr;
               </Link>
             </div>
           </div>

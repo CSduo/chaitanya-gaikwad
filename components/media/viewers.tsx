@@ -272,7 +272,7 @@ export function VideoGallery({
           return (
             <li
               key={v.slug}
-              className={rail ? "w-[74vw] max-w-[280px] shrink-0 snap-start sm:w-auto sm:max-w-none" : undefined}
+              className={rail ? "w-[62vw] max-w-[240px] shrink-0 snap-start sm:w-auto sm:max-w-none" : undefined}
             >
               <button
                 type="button"
@@ -281,7 +281,7 @@ export function VideoGallery({
               >
                 <span
                   className={`media-frame media-well relative block overflow-hidden ${
-                    portrait ? "aspect-[9/16]" : "aspect-video"
+                    rail ? "aspect-[4/3]" : portrait ? "aspect-[9/16]" : "aspect-video"
                   }`}
                 >
                   <Image
@@ -311,7 +311,7 @@ export function VideoGallery({
                   <span className="display mt-2 block text-lg text-ink transition-colors group-hover:text-accent">
                     {v.title}
                   </span>
-                  <span className="mt-2 block text-sm leading-relaxed text-ink-muted">
+                  <span className={rail ? "mt-1 line-clamp-2 text-xs leading-relaxed text-ink-muted" : "mt-2 block text-sm leading-relaxed text-ink-muted"}>
                     {v.description}
                   </span>
                 </span>

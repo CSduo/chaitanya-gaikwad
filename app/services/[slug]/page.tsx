@@ -185,7 +185,7 @@ export default async function ServicePage({
                         <p className="mt-1 text-4xl font-semibold tracking-tight text-ink">${price.amount}<span className="ml-2 text-xs font-normal tracking-normal text-ink-muted">USD{price.unit ? ` / ${price.unit}` : ""}</span></p>
                         <p className="mb-7 mt-5 text-sm leading-relaxed text-ink-muted">{price.note}</p>
                         <a href={price.href} target="_blank" rel="noopener noreferrer" className="mt-auto flex min-h-12 items-center justify-between gap-3 rounded-md bg-ink px-5 py-3 text-xs font-semibold text-paper transition-colors hover:bg-accent hover:text-white">
-                          <span>{price.cta}</span><span aria-hidden="true">&nearr;</span>
+                          <span>{price.cta}</span><span aria-hidden="true">↗</span>
                         </a>
                       </article>
                     ))}

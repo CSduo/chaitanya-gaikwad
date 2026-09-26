@@ -1,3 +1,4 @@
+import { groupServices, CAROUSEL_INTERVAL_MS } from "../lib/service-carousel.ts";
 import { existsSync } from "node:fs";
 import { VISUALS, featuredVisuals } from "../lib/visuals.ts";
 import assert from "node:assert/strict";
@@ -122,4 +123,13 @@ test("visualization collection leads with kitchens and artwork while retaining t
   assert.ok(featuredVisuals(8).some((item) => item.group === "artwork"));
   assert.equal(new Set(VISUALS.map((item) => item.src)).size, VISUALS.length);
   for (const item of VISUALS) assert.ok(existsSync(new URL('../public' + item.src, import.meta.url)), item.src);
+});
+
+
+test("service carousel rotates two complete groups without skipping or repeating services", () => {
+  const groups = groupServices(SERVICES);
+  assert.deepEqual(groups.map(group => group.map(service => service.slug)), [primarySlugs.slice(0, 3), primarySlugs.slice(3)]);
+  assert.equal(CAROUSEL_INTERVAL_MS, 5000);
+  assert.deepEqual(groupServices([]), []);
+  assert.deepEqual(groupServices([1,2,3,4]), [[1,2,3],[4]]);
 });

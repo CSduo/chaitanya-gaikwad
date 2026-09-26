@@ -113,14 +113,14 @@ export default function ServicesPage() {
                         <p className="text-xl font-semibold tracking-tight text-ink">{price.label}</p>
                         <p className="mt-2 text-xs leading-relaxed text-ink-muted">{price.note}</p>
                         <a href={price.href} target="_blank" rel="noopener noreferrer" className="mt-4 inline-flex min-h-11 items-center gap-3 rounded-md bg-ink px-4 text-xs font-semibold text-paper transition-colors hover:bg-accent hover:text-white">
-                          {price.cta}<span aria-hidden="true">&nearr;</span>
+                          {price.cta}<span aria-hidden="true">↗</span>
                         </a>
                       </div>
                     )) : (
                       <div className="rounded-xl border border-rule bg-paper p-5">
                         <p className="text-lg font-semibold text-ink">A precise quote for a precise brief.</p>
                         <p className="mt-2 text-xs leading-relaxed text-ink-muted">CAD packages are priced around the drawing count, detail level and source material.</p>
-                        <a href={getServiceWhatsAppHref(service.slug)} target="_blank" rel="noopener noreferrer" className="mt-4 inline-flex min-h-11 items-center gap-3 rounded-md bg-ink px-4 text-xs font-semibold text-paper hover:bg-accent hover:text-white">Get a CAD Quote <span aria-hidden="true">&nearr;</span></a>
+                        <a href={getServiceWhatsAppHref(service.slug)} target="_blank" rel="noopener noreferrer" className="mt-4 inline-flex min-h-11 items-center gap-3 rounded-md bg-ink px-4 text-xs font-semibold text-paper hover:bg-accent hover:text-white">Get a CAD Quote <span aria-hidden="true">↗</span></a>
                       </div>
                     )}
                     {prices.length ? <p className="text-[0.6875rem] leading-relaxed text-ink-muted">{PRICING_NOTE}</p> : null}

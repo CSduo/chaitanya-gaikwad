@@ -12,6 +12,7 @@ export function ProjectCTA({
   body = "Tell us what you are working on.",
   services,
   serviceSlug,
+  compact = false,
 }: {
   eyebrow?: string;
   title?: string;
@@ -19,9 +20,12 @@ export function ProjectCTA({
   /** Optional service links rendered beneath the CTA. */
   services?: { label: string; href: string }[];
   serviceSlug?: string;
+  compact?: boolean;
 }) {
   const ukHref = getServiceWhatsAppHref(serviceSlug, "uk");
   const indiaHref = getServiceWhatsAppHref(serviceSlug, "india");
+
+  if (compact) return <section className="bg-ink py-8 text-paper sm:py-12"><Container width="page"><div className="grid items-center gap-5 sm:grid-cols-2"><div><Eyebrow className="text-paper/55">{eyebrow}</Eyebrow><h2 className="display mt-3 text-2xl sm:text-3xl">Your next project starts here.</h2><p className="mt-2 text-sm text-paper/70">Send a brief. Get a clear scope and quote.</p></div><div className="grid grid-cols-2 gap-2"><a href={ukHref} target="_blank" rel="noopener noreferrer" className="flex min-h-11 items-center justify-center bg-paper px-3 text-xs font-semibold text-ink">WhatsApp UK ↗</a><a href={indiaHref} target="_blank" rel="noopener noreferrer" className="flex min-h-11 items-center justify-center border border-paper/30 px-3 text-xs text-paper">WhatsApp India ↗</a><Link href="/contact" className="col-span-2 py-2 text-center text-xs text-paper/80 underline underline-offset-4">Send a detailed brief</Link></div></div></Container></section>;
 
   return (
     <section className="bg-ink py-20 text-paper sm:py-24 lg:py-28">
