@@ -13,7 +13,9 @@ import {
 } from "@/components/ui/primitives";
 import { ProjectCTA } from "@/components/site/ProjectCTA";
 import { ServiceProof } from "@/components/home/ServiceProof";
-import { SERVICES, getService } from "@/lib/services";
+import { ServicePreview } from "@/components/home/ServicePreview";
+import { ALL_SERVICES, SERVICES, getService } from "@/lib/services";
+import { getServicePricing, PRICING_NOTE } from "@/lib/pricing";
 import { pageMetadata, serviceSchema, breadcrumbSchema } from "@/lib/seo";
 import { SERVICE_SEO } from "@/lib/seo-copy";
 import { getServiceWhatsAppHref, WHATSAPP } from "@/lib/site";
@@ -33,7 +35,7 @@ const SERVICE_ACTION_LABELS: Record<string, string> = {
 };
 
 export function generateStaticParams() {
-  return SERVICES.map((s) => ({ slug: s.slug }));
+  return ALL_SERVICES.map((s) => ({ slug: s.slug }));
 }
 
 export const dynamicParams = false;
@@ -66,6 +68,8 @@ export default async function ServicePage({
   if (!service) notFound();
 
   const isCad = service.slug === "cad-technical-production";
+  const prices = getServicePricing(service.slug);
+  const primaryPrice = prices[0];
 
   return (
     <>
@@ -94,76 +98,119 @@ export default async function ServicePage({
               { name: service.shortName, path: `/services/${service.slug}` },
             ]}
           />
-          <div className="max-w-3xl">
-            <Eyebrow>{`Service 0${service.order}`}</Eyebrow>
-            <h1 className="display mt-6 text-4xl sm:text-5xl lg:text-[3.5rem]">
-              {service.name}
-            </h1>
-            <p className="mt-7 text-lg leading-relaxed text-ink-soft">{service.summary}</p>
+          <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-12">
+            <div className="min-w-0">
+              <Eyebrow>{service.slug === "market-intelligence-research" ? "Specialist research" : `Service ${String(service.order).padStart(2, "0")}`}</Eyebrow>
+              <h1 className="display mt-6 text-4xl sm:text-5xl lg:text-[3.5rem]">
+                {service.name}
+              </h1>
+              <p className="mt-7 text-lg leading-relaxed text-ink-soft">{service.summary}</p>
+              <div className="mt-6 flex flex-wrap gap-2">
+                {prices.length ? prices.map((price) => (
+                  <a key={price.id} href="#pricing" className="inline-flex min-h-11 items-center rounded-full border border-accent/30 bg-accent-wash px-4 py-2 text-sm font-semibold text-accent hover:border-accent">
+                    {prices.length > 1 ? `${price.name} · ` : ""}{price.label}
+                  </a>
+                )) : <span className="rounded-full border border-rule bg-surface px-4 py-2 text-sm text-ink-soft">A tailored quote for your brief</span>}
+              </div>
+              {primaryPrice ? <p className="mt-3 text-[0.6875rem] leading-relaxed text-ink-muted">USD · Final scope and price agreed before work begins.</p> : null}
 
-            {/* Direct Inbound Acquisition Action Bar */}
-            <div className="mt-8 flex flex-wrap items-center gap-2.5">
-              <a
-                href={getServiceWhatsAppHref(service.slug, "uk")}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex min-h-[46px] items-center gap-2 rounded-xs bg-ink px-6 text-xs font-semibold tracking-tight text-paper transition-colors hover:bg-accent"
-                aria-label={`WhatsApp XIYÀTO UK regarding ${service.name}`}
-              >
-                <span>{SERVICE_ACTION_LABELS[service.slug] ?? "Start on WhatsApp"}</span>
-                <span aria-hidden="true">&#8599;</span>
-              </a>
+              {/* Direct Inbound Acquisition Action Bar */}
+              <div className="mt-8 flex flex-wrap items-center gap-2.5">
+                <a
+                  href={primaryPrice?.href ?? getServiceWhatsAppHref(service.slug, "uk")}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex min-h-[46px] items-center gap-2 rounded-xs bg-ink px-6 text-xs font-semibold tracking-tight text-paper transition-colors hover:bg-accent"
+                  aria-label={`${primaryPrice?.cta ?? SERVICE_ACTION_LABELS[service.slug] ?? "Start a project"} via WhatsApp`}
+                >
+                  <span>{primaryPrice?.cta ?? SERVICE_ACTION_LABELS[service.slug] ?? "Start on WhatsApp"}</span>
+                  <span aria-hidden="true">&#8599;</span>
+                </a>
 
-              <a
-                href={WHATSAPP.uk.tel}
-                className="inline-flex min-h-[46px] items-center gap-1.5 rounded-xs border border-rule px-4 text-xs font-mono text-ink transition-colors hover:border-ink hover:bg-surface"
-                title="Direct Telephone Line (UK)"
-                aria-label={`Call XIYÀTO UK at ${WHATSAPP.uk.number}`}
-              >
-                <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-ink-muted">
-                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
-                </svg>
-                <span>Call UK: {WHATSAPP.uk.number}</span>
-              </a>
+                <a
+                  href={WHATSAPP.uk.tel}
+                  className="inline-flex min-h-[46px] items-center gap-1.5 rounded-xs border border-rule px-4 text-xs font-mono text-ink transition-colors hover:border-ink hover:bg-surface"
+                  title="Direct Telephone Line (UK)"
+                  aria-label={`Call XIYÀTO UK at ${WHATSAPP.uk.number}`}
+                >
+                  <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-ink-muted">
+                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+                  </svg>
+                  <span>Call UK: {WHATSAPP.uk.number}</span>
+                </a>
 
-              <a
-                href={WHATSAPP.india.tel}
-                className="inline-flex min-h-[46px] items-center gap-1.5 rounded-xs border border-rule px-4 text-xs font-mono text-ink-muted transition-colors hover:border-ink hover:bg-surface"
-                title="Direct Technical Production Line (India)"
-                aria-label={`Call XIYÀTO India at ${WHATSAPP.india.number}`}
-              >
-                <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-ink-muted">
-                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
-                </svg>
-                <span>Call India: {WHATSAPP.india.number}</span>
-              </a>
+                <a
+                  href={WHATSAPP.india.tel}
+                  className="inline-flex min-h-[46px] items-center gap-1.5 rounded-xs border border-rule px-4 text-xs font-mono text-ink-muted transition-colors hover:border-ink hover:bg-surface"
+                  title="Direct Technical Production Line (India)"
+                  aria-label={`Call XIYÀTO India at ${WHATSAPP.india.number}`}
+                >
+                  <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-ink-muted">
+                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+                  </svg>
+                  <span>Call India: {WHATSAPP.india.number}</span>
+                </a>
 
-              <Link
-                href="/contact"
-                className="inline-flex min-h-[46px] items-center gap-1.5 rounded-xs border border-rule px-4 text-xs font-medium text-ink-muted transition-colors hover:border-ink hover:text-ink"
-              >
-                <span>Detailed brief</span>
-                <span aria-hidden="true">&rarr;</span>
-              </Link>
-            </div>
-          </div>
-        </Container>
-      </section>
-
-      {/* 02 — Service overview */}
-      <Section tone="surface">
-        <Container width="page">
-          <div className="grid gap-10 lg:grid-cols-12 lg:gap-16">
-            <div className="lg:col-span-4">
-              <Eyebrow>Overview</Eyebrow>
-            </div>
-            <div className="lg:col-span-8">
-              <div className="prose-body max-w-2xl">
-                {service.intro.map((p) => (
-                  <p key={p.slice(0, 40)}>{p}</p>
-                ))}
+                <Link
+                  href="/contact"
+                  className="inline-flex min-h-[46px] items-center gap-1.5 rounded-xs border border-rule px-4 text-xs font-medium text-ink-muted transition-colors hover:border-ink hover:text-ink"
+                >
+                  <span>Detailed brief</span>
+                  <span aria-hidden="true">&rarr;</span>
+                </Link>
               </div>
             </div>
+            <div className="min-w-0 overflow-hidden rounded-xl border border-rule shadow-xl">
+              <ServicePreview slug={service.slug} />
+            </div>
+            </div>
+          </Container>
+        </section>
+
+        {prices.length ? (
+          <Section id="pricing" tone="deep" bordered>
+            <Container width="page">
+              <div className="grid gap-8 lg:grid-cols-12 lg:gap-14">
+                <div className="lg:col-span-4">
+                  <Eyebrow>Clear starting prices</Eyebrow>
+                  <h2 className="display mt-5 text-3xl sm:text-4xl">Start small.<br />Make it count.</h2>
+                  <p className="mt-5 text-sm leading-relaxed text-ink-muted">Choose a starting point and send your brief. We confirm the deliverables, timeline and final price with you before production.</p>
+                </div>
+                <div className="lg:col-span-8">
+                  <div className={`grid gap-4 ${prices.length > 1 ? "sm:grid-cols-2" : ""}`}>
+                    {prices.map((price) => (
+                      <article key={price.id} className="flex flex-col rounded-xl border border-accent/25 bg-surface p-6 shadow-sm sm:p-8">
+                        <h3 className="text-sm font-semibold text-ink">{price.name}</h3>
+                        <p className="mt-5 font-mono text-[0.625rem] uppercase tracking-[0.14em] text-ink-muted">Starting at</p>
+                        <p className="mt-1 text-4xl font-semibold tracking-tight text-ink">${price.amount}<span className="ml-2 text-xs font-normal tracking-normal text-ink-muted">USD{price.unit ? ` / ${price.unit}` : ""}</span></p>
+                        <p className="mb-7 mt-5 text-sm leading-relaxed text-ink-muted">{price.note}</p>
+                        <a href={price.href} target="_blank" rel="noopener noreferrer" className="mt-auto flex min-h-12 items-center justify-between gap-3 rounded-md bg-ink px-5 py-3 text-xs font-semibold text-paper transition-colors hover:bg-accent hover:text-white">
+                          <span>{price.cta}</span><span aria-hidden="true">&nearr;</span>
+                        </a>
+                      </article>
+                    ))}
+                  </div>
+                  <p className="mt-4 text-[0.6875rem] leading-relaxed text-ink-muted">{PRICING_NOTE}</p>
+                </div>
+              </div>
+            </Container>
+          </Section>
+        ) : null}
+
+        {/* 02 — Service overview */}
+        <Section tone="surface">
+          <Container width="page">
+            <div className="grid gap-10 lg:grid-cols-12 lg:gap-16">
+              <div className="lg:col-span-4">
+                <Eyebrow>Overview</Eyebrow>
+              </div>
+              <div className="lg:col-span-8">
+                <div className="prose-body max-w-2xl">
+                  {service.intro.map((p) => (
+                    <p key={p.slice(0, 40)}>{p}</p>
+                  ))}
+                </div>
+              </div>
           </div>
         </Container>
       </Section>
@@ -173,7 +220,7 @@ export default async function ServicePage({
         <Container width="wide">
           <SectionHeading
             eyebrow="The work"
-            title="Produced under this service."
+            title="Explore the work."
             intro={
               isCad
                 ? "Drawings from a delivered interior package, shown alongside the client material they were produced from."

@@ -20,7 +20,7 @@ export function ServiceProof({ slug }: { slug: ServiceSlug }) {
   if (slug === "visualisation-image-production") return <VisualisationProof />;
   if (slug === "ai-video-production" || slug === "video-ai-film-editing") return <VideoProof />;
   if (slug === "website-design-development") return <WebsiteProof />;
-  if (slug === "automation-workflow-systems") return <LeadGenProof />;
+  if (slug === "automation-workflow-systems") return <AutomationProof />;
   return null;
 }
 
@@ -103,7 +103,7 @@ function CadProof() {
 
 
               {/* Hover zoom hint */}
-              <div className="absolute inset-0 flex items-center justify-center bg-ink/30 opacity-0 transition-opacity group-hover:opacity-100">
+              <div className="absolute inset-0 flex items-center justify-center bg-ink/30 opacity-0 transition-opacity group-hover:opacity-100 group-focus-within:opacity-100">
                 <span className="flex items-center gap-1.5 rounded-full bg-ink/90 px-3 py-1.5 text-xs font-medium text-paper shadow-lg backdrop-blur-sm">
                   <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2">
                     <circle cx="11" cy="11" r="8" />
@@ -240,6 +240,38 @@ function GrowthProof() {
   );
 }
 
+function AutomationProof() {
+  const stages = [
+    { title: "Capture the input", body: "Bring an enquiry, spreadsheet update or approved event into a clear starting point. Keep source information attached to the record." },
+    { title: "Apply your rules", body: "Check required fields, identify the right owner and send unusual cases to a person for review." },
+    { title: "Complete the handoff", body: "Create the next record, notification or reminder. Test the normal path and failure cases before the workflow goes live." },
+  ];
+
+  return (
+    <div id="outbound-pipeline" className="scroll-mt-16 space-y-9">
+      <div id="workflow" className="scroll-mt-16">
+        <p className="label">Illustrative enquiry workflow</p>
+        <h3 className="display mt-3 text-3xl text-ink">One less thing to chase.</h3>
+        <p className="mt-4 max-w-2xl text-sm leading-relaxed text-ink-muted">A useful automation connects the work you already do. We define the trigger, the decision and the next action with your team, then build the checks that keep the process understandable.</p>
+        <ol className="mt-6 grid gap-4 sm:grid-cols-3">
+          {stages.map((stage, index) => (
+            <li key={stage.title} className="rounded-lg border border-rule bg-paper-deep p-6">
+              <p className="font-mono text-xs text-accent">0{index + 1}</p>
+              <h4 className="mt-3 text-base font-medium text-ink">{stage.title}</h4>
+              <p className="mt-2 text-xs leading-relaxed text-ink-muted">{stage.body}</p>
+            </li>
+          ))}
+        </ol>
+      </div>
+      <div id="research" className="scroll-mt-16 rounded-lg border border-rule p-6">
+        <h3 className="display text-2xl text-ink">Start with a well-structured input.</h3>
+        <p className="mb-3 mt-3 max-w-2xl text-sm leading-relaxed text-ink-muted">The workflow above illustrates a possible enquiry process. Your tools, permissions and review rules define the actual build. If you also need target-market data, our research service can help prepare the inputs.</p>
+        <Link href="/services/market-intelligence-research#research" className="inline-flex min-h-[44px] items-center text-sm underline decoration-rule-strong underline-offset-4 hover:text-accent">Explore market research →</Link>
+      </div>
+    </div>
+  );
+}
+
 function VisualisationProof() {
   const groups = activeVisualGroups();
   const [group, setGroup] = useState<VisualGroup | null>(null);
@@ -251,6 +283,8 @@ function VisualisationProof() {
     height: v.height,
     title: v.title,
   }));
+  const conceptItems = items.filter((_, index) => pool[index].collection === "studio-concepts");
+  const portfolioItems = items.filter((_, index) => pool[index].collection !== "studio-concepts");
 
   return (
     <div id="gallery" className="scroll-mt-16">
@@ -294,7 +328,27 @@ function VisualisationProof() {
         Showing {pool.length} of {VISUALS.length} images
       </p>
 
-      <ImageGrid items={items} columns={4} aspect="4/3" />
+      {conceptItems.length > 0 ? (
+        <section aria-label="Studio concept studies" className="mb-12">
+          <div className="mb-5 flex flex-wrap items-end justify-between gap-3 border-b border-rule pb-4">
+            <div>
+              <p className="label">Ideas, materials & atmosphere</p>
+              <h3 className="display mt-2 text-3xl text-ink">Studio concept studies</h3>
+            </div>
+            <p className="max-w-sm text-xs leading-relaxed text-ink-muted">AI-generated visual explorations of kitchens, interiors and artwork. Concept studies, not completed client commissions.</p>
+          </div>
+          <ImageGrid items={conceptItems} columns={3} aspect="4/3" />
+        </section>
+      ) : null}
+      {portfolioItems.length > 0 ? (
+        <section aria-label="Production portfolio">
+          <div className="mb-5 border-b border-rule pb-4">
+            <p className="label">From the archive</p>
+            <h3 className="display mt-2 text-3xl text-ink">Production portfolio</h3>
+          </div>
+          <ImageGrid items={portfolioItems} columns={3} aspect="4/3" />
+        </section>
+      ) : null}
     </div>
   );
 }

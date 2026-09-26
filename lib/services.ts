@@ -1,7 +1,7 @@
 /**
  * Service definitions — six primary service areas.
  *
- * Restored and expanded from the nine services the previous site described.
+ * Six primary disciplines plus a preserved specialist research service.
  * Content is grounded in the legacy copy and the real project evidence in this
  * repository. No client, metric or outcome is invented; where a service has no
  * published case-study evidence, its `boundary` says so plainly.
@@ -44,251 +44,10 @@ export type Service = {
   order: number;
 };
 
-export const SERVICES: Service[] = [
-  {
-    slug: "cad-technical-production",
-    name: "CAD Drafting & Technical Production",
-    shortName: "CAD Drafting",
-    motif: "Deliver",
-    summary: "Outsourced CAD drafting for interior and fit-out teams: plans, elevations, RCPs, joinery details and flooring setting-out, issued as editable DWG.",
-    overview: "External CAD drafting and documentation capacity for interior, fit-out and architectural practices, working from your layouts, sketches, marked-up PDFs and 3D renders to coordinated DWG, DXF and PDF sets.",
-    intro: [
-      "XIYÀTO works as external drafting capacity for interior, fit-out and design practices carrying more drawing work than the studio can absorb. You supply the design direction: approved layouts, marked-up PDFs, measured site dimensions, renders or a dimensioned hand sketch. We return the coordinated package your team reviews and issues, covering general arrangement plans, wall elevations, reflected ceiling plans, flooring setting-out and joinery detail.",
-      "This is drafting and documentation, not design authorship. Your practice keeps design ownership and technical authority. We take on the production load and return native DWG and DXF built to your layer convention and title block, so the set can be revised and issued from your office. Every package is dimension-checked and reopened before issue, and any dimension taken from a render rather than confirmed on site is flagged as provisional.",
-    ],
-    groups: [
-      {
-        title: "Inputs we work from",
-        intro: "A package can begin from partial information. What matters is that the design intent is settled and the fixed dimensions are identifiable.",
-        items: [
-          "Marked-up PDFs and previously issued drawings",
-          "Measured site dimensions and survey notes",
-          "Dimensioned hand sketches with annotated constraints",
-          "Approved layouts and space plans",
-          "3D renders and visual references",
-          "Material and finish direction",
-          "Written revision instructions across a set",
-        ],
-      },
-      {
-        title: "Drawing production",
-        intro: "Drawing types produced across residential, hospitality and commercial interior work.",
-        items: [
-          "General arrangement and layout plans",
-          "Interior wall elevations, taken wall by wall",
-          "Reflected ceiling plans with lighting arrangement",
-          "Flooring setting-out, including patterned layouts such as herringbone",
-          "Feature wall elevations and panelling detail",
-          "Joinery and construction details",
-          "Sanitary, fixture, door and window coordination",
-          "Complete multi-sheet packages covering several spaces at once",
-        ],
-      },
-      {
-        title: "File standards and coordination",
-        intro: "The package is built to be opened and continued by your team, not delivered as a closed output.",
-        items: [
-          "Layer structure and naming set to your office convention",
-          "Consistent annotation, dimensioning and text styles",
-          "Title block and sheet setup to your template",
-          "Drawing list and sheet numbering issued with the set",
-          "Scale and setting-out held consistent across sheets",
-          "Native DWG and DXF that reopens in your own environment",
-          "Revision rounds produced against written comments",
-        ],
-      },
-      {
-        title: "Checks before issue",
-        intro: "Every package is checked before it leaves the studio, and anything estimated is recorded as such.",
-        items: [
-          "Dimensional agreement between plan and elevation",
-          "Room geometry, orientation and alignment",
-          "Door, window and fixture relationships across the set",
-          "Layer structure, naming and organisation",
-          "Native editable geometry — no traced raster or proxy content",
-          "Reopen check performed on the delivered DWG",
-          "Provisional dimensions flagged for your review",
-        ],
-      },
-    ],
-    process: [
-      { step: "01", title: "Brief and inputs", body: "You send whatever material exists. We review it and separate what is confirmed, what is assumed from visual reference and what is still missing, before any drafting starts." },
-      { step: "02", title: "Scope confirmation", body: "Fixed dimensions, design rules, the drawing list, layer convention and output formats are agreed in writing, so the finished package is measured against a defined scope rather than an impression." },
-      { step: "03", title: "Drafting and coordination", body: "Drawings are produced as native geometry with structured layers and consistent annotation, then cross-checked so plan, elevation and ceiling agree with one another." },
-      { step: "04", title: "QA and handover", body: "The set is dimension-checked, reopened from the delivered files and issued as editable DWG and DXF alongside presentation-ready PDFs, with revision notes attached." },
-    ],
-    deliverables: [
-      "Editable DWG drawing files with structured layers",
-      "DXF exchange files",
-      "Presentation-ready PDF sheet set",
-      "Raster previews for quick review and sign-off",
-      "Drawing list, revision notes and a record of any provisional dimensions",
-    ],
-    boundary: "XIYÀTO provides drafting, documentation and production capacity working from design direction supplied by the client. We do not provide architectural or engineering certification, statutory or planning approval, building-code compliance sign-off, or architect-of-record responsibility, and we do not act as the designer of record. Drawings are issued for the practice's own review; any dimension derived from visual reference rather than confirmed measurement is flagged as provisional and should be verified, along with the wider set, by the project's qualified designer or technical consultant before construction.",
-    order: 1,
-  },
-
-  {
-    slug: "b2b-lead-generation",
-    name: "B2B Lead Generation Services",
-    shortName: "B2B Lead Generation",
-    motif: "Pipeline",
-    summary: "Targeted B2B lead generation: bespoke prospect research, hand-verified decision-maker data, ICP qualification and outreach-ready pipelines.",
-    overview: "Proprietary B2B lead generation and sales prospecting for companies expanding into new markets or rebuilding pipeline. Every target account is researched, qualified, and verified by hand with direct decision-maker contact routes.",
-    intro: [
-      "XIYÀTO builds targeted B2B lead generation programmes for architecture practices, interior fit-out contractors, furniture manufacturers, luxury exporters and B2B service companies. We identify high-probability target accounts, research verified decision-makers across C-suite and procurement, and build structured prospect databases your commercial team can immediately work.",
-      "This is bespoke, human-verified research rather than scraped database exports or automated bulk blasts. Every company is qualified against your Ideal Customer Profile (ICP) using active project evidence, physical premises validation, and corporate registry records. We map direct executive phone numbers, verified corporate emails, and WhatsApp business coordinates, complete with tailored opening angles mapped per prospect.",
-    ],
-    groups: [
-      {
-        title: "Target account & ICP discovery",
-        intro: "Building a defensible target account universe before any outreach begins.",
-        items: [
-          "Ideal Customer Profile (ICP) definition and criteria scoring",
-          "Target account identification across defined geographies and sectors",
-          "Active project, showroom or tender activity used as qualifying evidence",
-          "Segmentation by territory, company revenue, sector and project scale",
-          "Exclusion of non-commercial entities, shell companies and defunct businesses",
-          "Auditable removal logging retaining reason for exclusion",
-        ],
-      },
-      {
-        title: "Decision-maker research & verification",
-        intro: "Identifying the real signing authorities rather than generic switchboard addresses.",
-        items: [
-          "Managing Directors, Partners, and Commercial Directors identified by name",
-          "Procurement and specification heads mapped for contractors and developers",
-          "Direct corporate telephone verification with regional offices",
-          "Deliverability-tested executive email addresses with SMTP validation",
-          "Verified executive WhatsApp business coordinates where accessible",
-          "Regular contact hygiene checks removing departed personnel",
-        ],
-      },
-      {
-        title: "Outreach structuring & sequencing",
-        intro: "Creating structured messaging frameworks that respect commercial context.",
-        items: [
-          "Multi-channel outreach sequences for corporate email and WhatsApp",
-          "Individualized opening angles referencing real prospect activity",
-          "Follow-up cadences, reminder intervals and re-approach timing",
-          "Cross-border communication phrasing tailored to local business culture",
-          "CRM-ready field mapping for HubSpot, Salesforce and Pipedrive",
-          "Response logging and status tracking held in the master workbook",
-        ],
-      },
-      {
-        title: "Data governance & handover",
-        intro: "How the intelligence is assembled so it survives handover to your sales team.",
-        items: [
-          "Multi-sheet Microsoft Excel (.XLSX) master workbooks and CSV files",
-          "Documented field schema agreed before research begins",
-          "Source log recording public evidence URLs for every claim",
-          "Full compliance with UK PECR and international B2B privacy standards",
-          "Suppression list integration and opt-out mechanisms",
-          "Periodic database refreshes and top-up rounds on request",
-        ],
-      },
-    ],
-    process: [
-      { step: "01", title: "Profile & criteria", body: "We agree your target sector, geography, decision-maker roles, company size, and qualifying thresholds in writing before research begins." },
-      { step: "02", title: "Account research", body: "Analysts examine commercial registries, project permits, and public records, building verified corporate dossiers with source evidence." },
-      { step: "03", title: "Contact verification", body: "Decision-makers are identified, and emails and phone numbers are verified through direct validation to eliminate dead data." },
-      { step: "04", title: "Handover & activation", body: "You receive the master intelligence workbook structured with contact routes, outreach angles, and CRM-ready import formatting." },
-    ],
-    deliverables: [
-      "Structured multi-sheet Excel (.XLSX) workbook and clean CSV files",
-      "Scored and ranked target account list segmented by priority",
-      "Verified C-suite, Procurement, and Project Director contact profiles",
-      "Direct telephone, corporate email, and WhatsApp coordinates",
-      "Source verification log and auditable record of excluded entities",
-      "CRM import templates formatted for immediate sales activation",
-    ],
-    boundary: "XIYÀTO provides research, data enrichment, and structured outreach workflows. We do not provide cold telemarketing, consumer lead generation, or guaranteed sales conversion figures — outcomes depend on your commercial offer, pricing, and follow-through. All data is gathered from public and verifiable business sources in compliance with B2B regulations; contact details are redacted in published portfolio samples.",
-    order: 2,
-  },
-
-  {
-    slug: "market-intelligence-research",
-    name: "Market Intelligence & Commercial Research",
-    shortName: "Market Intelligence",
-    motif: "Intelligence",
-    summary: "Commercial market intelligence: competitive landscape mapping, distributor and buyer research, trade route discovery and territory analysis.",
-    overview: "In-depth market intelligence and commercial research for businesses entering new geographic territories, evaluating competitors, or mapping distribution networks across the UK, GCC, India and Asia.",
-    intro: [
-      "Entering a new market or launching a high-ticket commercial offering requires clear market visibility before committing capital. XIYÀTO delivers commercial market intelligence and strategic industry research for design brands, manufacturers, exporters and developers across the UK, Middle East, India and international trade corridors.",
-      "Our studies map market structure, competitor positioning, distributor networks, wholesale hubs, and commercial procurement practices. From wholesale interior market mapping across Tier 1–3 cities in China to automotive showroom networks in the GCC and exhibition calendars in India, every study is grounded in verifiable evidence, source URLs, and actionable commercial data.",
-    ],
-    groups: [
-      {
-        title: "Territory & sector mapping",
-        intro: "Understanding the commercial geography and demand landscape before entry.",
-        items: [
-          "Geographic and city-level commercial segmentation (UK, GCC, India, China)",
-          "Wholesale trade market, showroom cluster, and distribution hub mapping",
-          "Trade fair, exhibition, and industry event calendars with attendee profiles",
-          "Import/export trade route analysis and tariff/regulatory context",
-          "Local market pricing dynamics and procurement conventions",
-          "Macro-economic indicators and construction pipeline tracking",
-        ],
-      },
-      {
-        title: "Competitor & distributor research",
-        intro: "Analyzing existing market players and identifying potential commercial partners.",
-        items: [
-          "Direct and indirect competitor landscape benchmarking",
-          "Importer, wholesaler, and exclusive distributor identification",
-          "Channel partner evaluation against capacity and coverage",
-          "Supplier, manufacturer, and fabrication partner discovery",
-          "Brand positioning, product tiering, and catalogue comparisons",
-          "Market gap and unserved niche identification",
-        ],
-      },
-      {
-        title: "Buyer & procurement dynamics",
-        intro: "Mapping how purchasing decisions are actually made in the target sector.",
-        items: [
-          "Procurement structure mapping: who specifies, who approves, who procures",
-          "Turnkey contractor, fit-out specialist, and developer relationships",
-          "Hospitality and commercial real estate development project tracking",
-          "Corporate holding group and local sponsorship relationship mapping",
-          "Tender pre-qualification criteria and vendor registration requirements",
-          "Commercial buyer shortlists with verified corporate credentials",
-        ],
-      },
-      {
-        title: "Intelligence delivery & briefings",
-        intro: "How research findings are structured for strategic decision-making.",
-        items: [
-          "Executive market summary reports with actionable strategic takeaways",
-          "Interactive data workbooks with multi-tab categorization",
-          "Source log recording public URLs and verification timestamps",
-          "Structured company profiles with operational notes and project evidence",
-          "Briefing sessions with founders and leadership teams",
-          "Custom follow-up research sprints addressing specific target accounts",
-        ],
-      },
-    ],
-    process: [
-      { step: "01", title: "Research brief", body: "We define the exact questions your business needs answered: target territory, competitor scope, distribution channels, and buyer profiles." },
-      { step: "02", title: "Investigation", body: "Analysts gather data across trade registries, industry directories, local intelligence sources, and active market projects." },
-      { step: "03", title: "Synthesis & audit", body: "Findings are cross-referenced, deduplicated, and verified. Source provenance is logged for every claim and data point." },
-      { step: "04", title: "Report & dataset", body: "You receive the master intelligence dossier, executive briefing notes, and structured workbooks ready for strategic deployment." },
-    ],
-    deliverables: [
-      "Comprehensive market intelligence report with executive summary",
-      "Interactive multi-sheet Excel (.XLSX) database of mapped markets/entities",
-      "Competitor and distributor comparison matrices",
-      "Source verification log detailing evidence URLs and dates",
-      "Actionable market entry recommendations and partner shortlists",
-      "Executive briefing call to walk your team through the findings",
-    ],
-    boundary: "Market intelligence reflects verified public records, commercial filings, and industry research at the time of publication. We provide strategic commercial insight and actionable evidence, not legal advice, tax structuring, or guaranteed investment returns. All sensitive client strategies and proprietary research are protected under strict non-disclosure agreements.",
-    order: 3,
-  },
-
+export const ALL_SERVICES: Service[] = [
   {
     slug: "visualisation-image-production",
-    name: "3D Rendering & Architectural Visualization",
+    name: "3D Renders & Architectural Visualization",
     shortName: "3D Rendering & Visualisation",
     motif: "Visualise",
     summary: "Photorealistic 3D rendering and architectural visualization for interiors, developments, furniture and luxury products, tailored for presentations and campaigns.",
@@ -380,12 +139,12 @@ export const SERVICES: Service[] = [
       "Working files and source assets on request",
     ],
     boundary: "Visualisation is representational. Images are an interpretation of supplied design direction, not a specification, a technical drawing or an approval document. Colours, finishes and materials shown on screen are indicative and should be confirmed against physical samples and supplier data before ordering or construction. Where AI-assisted generation is used, it is a production method applied under direction; we will state plainly which images are generated rather than photographed.",
-    order: 4,
+    order: 1,
   },
 
   {
     slug: "ai-video-production",
-    name: "AI Video Production Services",
+    name: "AI Video Generation & Production",
     shortName: "AI Video Production",
     motif: "Film",
     summary: "Cinematic AI video production for brands, products, showrooms and campaigns, cut and mastered for every social and web placement.",
@@ -474,12 +233,12 @@ export const SERVICES: Service[] = [
       "Archived project files and generated visual assets",
     ],
     boundary: "Where a sequence is generated with AI or animated from still imagery rather than filmed on set, it is representational — it should not be presented as a documentary record of a built physical space or a certified engineering prototype. We identify the production methods used for each sequence so the asset can be transparently and truthfully labelled in campaign use. Client is responsible for licensing of any client-supplied footage or third-party trademarks.",
-    order: 5,
+    order: 2,
   },
 
   {
     slug: "website-design-development",
-    name: "Website Design & Development Services",
+    name: "Website Design & Development",
     shortName: "Website Design & Development",
     motif: "Build",
     summary: "High-performance custom Next.js websites for architecture firms, interior studios, B2B companies and export brands: design, build, SEO and code handover.",
@@ -567,16 +326,335 @@ export const SERVICES: Service[] = [
       "Handover notes covering editing, deployment and future changes",
     ],
     boundary: "Hosting, domain and third-party service accounts are set up in your name, so the business retains ownership and control of the site and its data. Ongoing content updates, campaign work and subscription costs sit outside the build unless agreed separately. We implement accessibility and privacy requirements as specified in the brief, but do not provide legal advice or formal conformance certification.",
+    order: 3,
+  },
+
+  {
+    slug: "cad-technical-production",
+    name: "CAD Drafting & Technical Production",
+    shortName: "CAD Drafting",
+    motif: "Deliver",
+    summary: "Outsourced CAD drafting for interior and fit-out teams: plans, elevations, RCPs, joinery details and flooring setting-out, issued as editable DWG.",
+    overview: "External CAD drafting and documentation capacity for interior, fit-out and architectural practices, working from your layouts, sketches, marked-up PDFs and 3D renders to coordinated DWG, DXF and PDF sets.",
+    intro: [
+      "XIYÀTO works as external drafting capacity for interior, fit-out and design practices carrying more drawing work than the studio can absorb. You supply the design direction: approved layouts, marked-up PDFs, measured site dimensions, renders or a dimensioned hand sketch. We return the coordinated package your team reviews and issues, covering general arrangement plans, wall elevations, reflected ceiling plans, flooring setting-out and joinery detail.",
+      "This is drafting and documentation, not design authorship. Your practice keeps design ownership and technical authority. We take on the production load and return native DWG and DXF built to your layer convention and title block, so the set can be revised and issued from your office. Every package is dimension-checked and reopened before issue, and any dimension taken from a render rather than confirmed on site is flagged as provisional.",
+    ],
+    groups: [
+      {
+        title: "Inputs we work from",
+        intro: "A package can begin from partial information. What matters is that the design intent is settled and the fixed dimensions are identifiable.",
+        items: [
+          "Marked-up PDFs and previously issued drawings",
+          "Measured site dimensions and survey notes",
+          "Dimensioned hand sketches with annotated constraints",
+          "Approved layouts and space plans",
+          "3D renders and visual references",
+          "Material and finish direction",
+          "Written revision instructions across a set",
+        ],
+      },
+      {
+        title: "Drawing production",
+        intro: "Drawing types produced across residential, hospitality and commercial interior work.",
+        items: [
+          "General arrangement and layout plans",
+          "Interior wall elevations, taken wall by wall",
+          "Reflected ceiling plans with lighting arrangement",
+          "Flooring setting-out, including patterned layouts such as herringbone",
+          "Feature wall elevations and panelling detail",
+          "Joinery and construction details",
+          "Sanitary, fixture, door and window coordination",
+          "Complete multi-sheet packages covering several spaces at once",
+        ],
+      },
+      {
+        title: "File standards and coordination",
+        intro: "The package is built to be opened and continued by your team, not delivered as a closed output.",
+        items: [
+          "Layer structure and naming set to your office convention",
+          "Consistent annotation, dimensioning and text styles",
+          "Title block and sheet setup to your template",
+          "Drawing list and sheet numbering issued with the set",
+          "Scale and setting-out held consistent across sheets",
+          "Native DWG and DXF that reopens in your own environment",
+          "Revision rounds produced against written comments",
+        ],
+      },
+      {
+        title: "Checks before issue",
+        intro: "Every package is checked before it leaves the studio, and anything estimated is recorded as such.",
+        items: [
+          "Dimensional agreement between plan and elevation",
+          "Room geometry, orientation and alignment",
+          "Door, window and fixture relationships across the set",
+          "Layer structure, naming and organisation",
+          "Native editable geometry — no traced raster or proxy content",
+          "Reopen check performed on the delivered DWG",
+          "Provisional dimensions flagged for your review",
+        ],
+      },
+    ],
+    process: [
+      { step: "01", title: "Brief and inputs", body: "You send whatever material exists. We review it and separate what is confirmed, what is assumed from visual reference and what is still missing, before any drafting starts." },
+      { step: "02", title: "Scope confirmation", body: "Fixed dimensions, design rules, the drawing list, layer convention and output formats are agreed in writing, so the finished package is measured against a defined scope rather than an impression." },
+      { step: "03", title: "Drafting and coordination", body: "Drawings are produced as native geometry with structured layers and consistent annotation, then cross-checked so plan, elevation and ceiling agree with one another." },
+      { step: "04", title: "QA and handover", body: "The set is dimension-checked, reopened from the delivered files and issued as editable DWG and DXF alongside presentation-ready PDFs, with revision notes attached." },
+    ],
+    deliverables: [
+      "Editable DWG drawing files with structured layers",
+      "DXF exchange files",
+      "Presentation-ready PDF sheet set",
+      "Raster previews for quick review and sign-off",
+      "Drawing list, revision notes and a record of any provisional dimensions",
+    ],
+    boundary: "XIYÀTO provides drafting, documentation and production capacity working from design direction supplied by the client. We do not provide architectural or engineering certification, statutory or planning approval, building-code compliance sign-off, or architect-of-record responsibility, and we do not act as the designer of record. Drawings are issued for the practice's own review; any dimension derived from visual reference rather than confirmed measurement is flagged as provisional and should be verified, along with the wider set, by the project's qualified designer or technical consultant before construction.",
+    order: 4,
+  },
+
+  {
+    slug: "b2b-lead-generation",
+    name: "Marketing & B2B Lead Generation",
+    shortName: "Marketing & B2B Leads",
+    motif: "Pipeline",
+    summary: "Targeted prospect research, buyer dossiers, Excel lead files and marketing support that give your team a clearer route to the next opportunity.",
+    overview: "Proprietary B2B lead generation and sales prospecting for companies expanding into new markets or rebuilding pipeline. Every target account is researched, qualified, and verified by hand with direct decision-maker contact routes.",
+    intro: [
+      "XIYÀTO builds targeted B2B lead generation programmes for architecture practices, interior fit-out contractors, furniture manufacturers, luxury exporters and B2B service companies. We identify high-probability target accounts, research verified decision-makers across C-suite and procurement, and build structured prospect databases your commercial team can immediately work.",
+      "This is bespoke, human-verified research rather than scraped database exports or automated bulk blasts. Every company is qualified against your Ideal Customer Profile (ICP) using active project evidence, physical premises validation, and corporate registry records. We map direct executive phone numbers, verified corporate emails, and WhatsApp business coordinates, complete with tailored opening angles mapped per prospect.",
+    ],
+    groups: [
+      {
+        title: "Marketing and campaign support",
+        intro: "A focused starting point for turning your offer into a clear commercial conversation.",
+        items: [
+          "Campaign planning for a defined audience and offer",
+          "Outreach messaging and follow-up copy",
+          "Product and service launch content coordination",
+          "Campaign trackers and handover notes for your team",
+        ],
+      },
+      {
+        title: "Target account & ICP discovery",
+        intro: "Building a defensible target account universe before any outreach begins.",
+        items: [
+          "Ideal Customer Profile (ICP) definition and criteria scoring",
+          "Target account identification across defined geographies and sectors",
+          "Active project, showroom or tender activity used as qualifying evidence",
+          "Segmentation by territory, company revenue, sector and project scale",
+          "Exclusion of non-commercial entities, shell companies and defunct businesses",
+          "Auditable removal logging retaining reason for exclusion",
+        ],
+      },
+      {
+        title: "Decision-maker research & verification",
+        intro: "Identifying the real signing authorities rather than generic switchboard addresses.",
+        items: [
+          "Managing Directors, Partners, and Commercial Directors identified by name",
+          "Procurement and specification heads mapped for contractors and developers",
+          "Direct corporate telephone verification with regional offices",
+          "Deliverability-tested executive email addresses with SMTP validation",
+          "Verified executive WhatsApp business coordinates where accessible",
+          "Regular contact hygiene checks removing departed personnel",
+        ],
+      },
+      {
+        title: "Outreach structuring & sequencing",
+        intro: "Creating structured messaging frameworks that respect commercial context.",
+        items: [
+          "Multi-channel outreach sequences for corporate email and WhatsApp",
+          "Individualized opening angles referencing real prospect activity",
+          "Follow-up cadences, reminder intervals and re-approach timing",
+          "Cross-border communication phrasing tailored to local business culture",
+          "CRM-ready field mapping for HubSpot, Salesforce and Pipedrive",
+          "Response logging and status tracking held in the master workbook",
+        ],
+      },
+      {
+        title: "Data governance & handover",
+        intro: "How the intelligence is assembled so it survives handover to your sales team.",
+        items: [
+          "Multi-sheet Microsoft Excel (.XLSX) master workbooks and CSV files",
+          "Documented field schema agreed before research begins",
+          "Source log recording public evidence URLs for every claim",
+          "Full compliance with UK PECR and international B2B privacy standards",
+          "Suppression list integration and opt-out mechanisms",
+          "Periodic database refreshes and top-up rounds on request",
+        ],
+      },
+    ],
+    process: [
+      { step: "01", title: "Profile & criteria", body: "We agree your target sector, geography, decision-maker roles, company size, and qualifying thresholds in writing before research begins." },
+      { step: "02", title: "Account research", body: "Analysts examine commercial registries, project permits, and public records, building verified corporate dossiers with source evidence." },
+      { step: "03", title: "Contact verification", body: "Decision-makers are identified, and emails and phone numbers are verified through direct validation to eliminate dead data." },
+      { step: "04", title: "Handover & activation", body: "You receive the master intelligence workbook structured with contact routes, outreach angles, and CRM-ready import formatting." },
+    ],
+    deliverables: [
+      "Structured multi-sheet Excel (.XLSX) workbook and clean CSV files",
+      "Scored and ranked target account list segmented by priority",
+      "Verified C-suite, Procurement, and Project Director contact profiles",
+      "Direct telephone, corporate email, and WhatsApp coordinates",
+      "Source verification log and auditable record of excluded entities",
+      "CRM import templates formatted for immediate sales activation",
+    ],
+    boundary: "XIYÀTO provides research, data enrichment, and structured outreach workflows. We do not provide cold telemarketing, consumer lead generation, or guaranteed sales conversion figures — outcomes depend on your commercial offer, pricing, and follow-through. All data is gathered from public and verifiable business sources in compliance with B2B regulations; contact details are redacted in published portfolio samples.",
+    order: 5,
+  },
+
+  {
+    slug: "automation-workflow-systems",
+    name: "Automation & Workflow Systems",
+    shortName: "Automation & Workflows",
+    motif: "Automate",
+    summary: "Connect enquiry intake, lead routing, follow-up and reporting in practical workflows your team can run.",
+    overview: "Custom integrations and process automation for growing teams. Turn repeated admin into clear, connected steps, with review points, visible status and a documented handover.",
+    intro: [
+      "When your team moves the same information between forms, spreadsheets, inboxes and a CRM, the work slows down and context gets lost. XIYÀTO maps that process and builds a workflow around the tools you already use, from enquiry intake and lead assignment to follow-up reminders and reporting.",
+      "Start with one repeatable task or commission a wider campaign workflow. Inputs, triggers, approval steps and exception handling are agreed before the build, so your team knows what happens automatically and when a person needs to act.",
+    ],
+    groups: [
+      {
+        title: "Lead and campaign operations",
+        items: [
+          "Enquiry capture and routing to the right owner",
+          "CRM and spreadsheet field mapping",
+          "Follow-up reminders and campaign status tracking",
+          "Lead qualification rules and review queues",
+        ],
+      },
+      {
+        title: "Connected tools and repeatable processes",
+        items: [
+          "Form, inbox and spreadsheet integrations",
+          "Event triggers, webhooks and approved API connections",
+          "Data validation and duplicate handling",
+          "Scheduled reporting and status summaries",
+        ],
+      },
+      {
+        title: "Control, checks and handover",
+        items: [
+          "Human approval steps where the process needs review",
+          "Failure alerts and documented recovery steps",
+          "Test runs against agreed sample inputs",
+          "Workflow documentation and operating guidance",
+        ],
+      },
+    ],
+    process: [
+      { step: "01", title: "Map the process", body: "We trace the current steps, tools, owners and repeated work, then agree the first workflow and its success criteria." },
+      { step: "02", title: "Define the rules", body: "Triggers, data fields, permissions, review points and exception handling are documented before implementation." },
+      { step: "03", title: "Connect and test", body: "We build the integrations and check normal, incomplete and failed inputs using agreed test data before activation." },
+      { step: "04", title: "Hand over control", body: "Your team receives the workflow, operating notes and a walkthrough of monitoring, approvals and recovery." },
+    ],
+    deliverables: [
+      "Agreed workflow map with triggers and decision rules",
+      "Configured integrations for the scoped process",
+      "Test scenarios and a record of checks",
+      "Approval and exception-handling guidance",
+      "Operating documentation and handover walkthrough",
+    ],
+    boundary: "Scope depends on the access and integration support available in your chosen tools. Third-party subscriptions, usage charges and ongoing monitoring are agreed separately. Automated activity follows the permissions and approval rules set with your team; no sales or time-saving outcome is guaranteed.",
     order: 6,
+  },
+
+  {
+    slug: "market-intelligence-research",
+    name: "Market Intelligence & Commercial Research",
+    shortName: "Market Intelligence",
+    motif: "Intelligence",
+    summary: "Commercial market intelligence: competitive landscape mapping, distributor and buyer research, trade route discovery and territory analysis.",
+    overview: "In-depth market intelligence and commercial research for businesses entering new geographic territories, evaluating competitors, or mapping distribution networks across the UK, GCC, India and Asia.",
+    intro: [
+      "Entering a new market or launching a high-ticket commercial offering requires clear market visibility before committing capital. XIYÀTO delivers commercial market intelligence and strategic industry research for design brands, manufacturers, exporters and developers across the UK, Middle East, India and international trade corridors.",
+      "Our studies map market structure, competitor positioning, distributor networks, wholesale hubs, and commercial procurement practices. From wholesale interior market mapping across Tier 1–3 cities in China to automotive showroom networks in the GCC and exhibition calendars in India, every study is grounded in verifiable evidence, source URLs, and actionable commercial data.",
+    ],
+    groups: [
+      {
+        title: "Territory & sector mapping",
+        intro: "Understanding the commercial geography and demand landscape before entry.",
+        items: [
+          "Geographic and city-level commercial segmentation (UK, GCC, India, China)",
+          "Wholesale trade market, showroom cluster, and distribution hub mapping",
+          "Trade fair, exhibition, and industry event calendars with attendee profiles",
+          "Import/export trade route analysis and tariff/regulatory context",
+          "Local market pricing dynamics and procurement conventions",
+          "Macro-economic indicators and construction pipeline tracking",
+        ],
+      },
+      {
+        title: "Competitor & distributor research",
+        intro: "Analyzing existing market players and identifying potential commercial partners.",
+        items: [
+          "Direct and indirect competitor landscape benchmarking",
+          "Importer, wholesaler, and exclusive distributor identification",
+          "Channel partner evaluation against capacity and coverage",
+          "Supplier, manufacturer, and fabrication partner discovery",
+          "Brand positioning, product tiering, and catalogue comparisons",
+          "Market gap and unserved niche identification",
+        ],
+      },
+      {
+        title: "Buyer & procurement dynamics",
+        intro: "Mapping how purchasing decisions are actually made in the target sector.",
+        items: [
+          "Procurement structure mapping: who specifies, who approves, who procures",
+          "Turnkey contractor, fit-out specialist, and developer relationships",
+          "Hospitality and commercial real estate development project tracking",
+          "Corporate holding group and local sponsorship relationship mapping",
+          "Tender pre-qualification criteria and vendor registration requirements",
+          "Commercial buyer shortlists with verified corporate credentials",
+        ],
+      },
+      {
+        title: "Intelligence delivery & briefings",
+        intro: "How research findings are structured for strategic decision-making.",
+        items: [
+          "Executive market summary reports with actionable strategic takeaways",
+          "Interactive data workbooks with multi-tab categorization",
+          "Source log recording public URLs and verification timestamps",
+          "Structured company profiles with operational notes and project evidence",
+          "Briefing sessions with founders and leadership teams",
+          "Custom follow-up research sprints addressing specific target accounts",
+        ],
+      },
+    ],
+    process: [
+      { step: "01", title: "Research brief", body: "We define the exact questions your business needs answered: target territory, competitor scope, distribution channels, and buyer profiles." },
+      { step: "02", title: "Investigation", body: "Analysts gather data across trade registries, industry directories, local intelligence sources, and active market projects." },
+      { step: "03", title: "Synthesis & audit", body: "Findings are cross-referenced, deduplicated, and verified. Source provenance is logged for every claim and data point." },
+      { step: "04", title: "Report & dataset", body: "You receive the master intelligence dossier, executive briefing notes, and structured workbooks ready for strategic deployment." },
+    ],
+    deliverables: [
+      "Comprehensive market intelligence report with executive summary",
+      "Interactive multi-sheet Excel (.XLSX) database of mapped markets/entities",
+      "Competitor and distributor comparison matrices",
+      "Source verification log detailing evidence URLs and dates",
+      "Actionable market entry recommendations and partner shortlists",
+      "Executive briefing call to walk your team through the findings",
+    ],
+    boundary: "Market intelligence reflects verified public records, commercial filings, and industry research at the time of publication. We provide strategic commercial insight and actionable evidence, not legal advice, tax structuring, or guaranteed investment returns. All sensitive client strategies and proprietary research are protected under strict non-disclosure agreements.",
+    order: 7,
   },
 ];
 
+/** Primary navigation, chapters and service cards share this exact order. */
+export const SERVICES: Service[] = ALL_SERVICES.filter(
+  (service) => service.slug !== "market-intelligence-research",
+);
+
+/** Research keeps its canonical page and remains available within Marketing. */
+export const SECONDARY_SERVICES: Service[] = ALL_SERVICES.filter(
+  (service) => service.slug === "market-intelligence-research",
+);
+
+
 export function getService(slug: string): Service | undefined {
-  const match = SERVICES.find((s) => s.slug === slug);
+  const match = ALL_SERVICES.find((s) => s.slug === slug);
   if (match) return match;
 
   // Backward compatibility: map legacy route slugs to their canonical service
-  if (slug === "growth-marketing-b2b" || slug === "automation-workflow-systems") {
+  if (slug === "growth-marketing-b2b") {
     return SERVICES.find((s) => s.slug === "b2b-lead-generation");
   }
   if (slug === "video-ai-film-editing") {
@@ -592,7 +670,7 @@ export function serviceName(slug: ServiceSlug): string {
 /** Anchor id for the matching homepage service chapter. */
 export function serviceAnchor(slug: ServiceSlug): string {
   // Map legacy slugs to canonical anchor
-  if (slug === "growth-marketing-b2b" || slug === "automation-workflow-systems") {
+  if (slug === "growth-marketing-b2b") {
     return "service-b2b-lead-generation";
   }
   if (slug === "video-ai-film-editing") {

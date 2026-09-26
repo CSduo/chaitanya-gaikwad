@@ -1,276 +1,159 @@
 "use client";
 
-import { useState, useRef, useEffect, useCallback } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import type { Service } from "@/lib/services";
+import { serviceAnchor } from "@/lib/services";
+import { getServicePricing, PRICING_NOTE } from "@/lib/pricing";
+import { getServiceWhatsAppHref } from "@/lib/site";
 import { TACTILE_CLASSES, triggerHaptic } from "@/lib/tactile";
-
-const SERVICE_THEMES = [
-  {
-    slug: "cad-technical-production",
-    accent: "text-sky-600 dark:text-sky-400",
-    borderHover: "hover:border-sky-500/60 hover:shadow-sky-500/10",
-    bgTag: "bg-sky-50 text-sky-700 border-sky-200 dark:bg-sky-950/50 dark:text-sky-300 dark:border-sky-800",
-    motif: "01 · DELIVER",
-    descriptor: "Precision Drafting & Joinery",
-  },
-  {
-    slug: "b2b-lead-generation",
-    accent: "text-amber-600 dark:text-amber-400",
-    borderHover: "hover:border-amber-500/60 hover:shadow-amber-500/10",
-    bgTag: "bg-amber-50 text-amber-700 border-amber-200 dark:bg-amber-950/50 dark:text-amber-300 dark:border-amber-800",
-    motif: "02 · ACQUIRE",
-    descriptor: "Outbound Lead Gen & Pipeline",
-  },
-  {
-    slug: "market-intelligence-research",
-    accent: "text-emerald-600 dark:text-emerald-400",
-    borderHover: "hover:border-emerald-500/60 hover:shadow-emerald-500/10",
-    bgTag: "bg-emerald-50 text-emerald-700 border-emerald-200 dark:bg-emerald-950/50 dark:text-emerald-300 dark:border-emerald-800",
-    motif: "03 · RESEARCH",
-    descriptor: "Verified B2B Procurement Dossiers",
-  },
-  {
-    slug: "visualisation-image-production",
-    accent: "text-stone-700 dark:text-stone-300",
-    borderHover: "hover:border-stone-500/60 hover:shadow-stone-500/10",
-    bgTag: "bg-stone-100 text-stone-700 border-stone-200 dark:bg-stone-800/50 dark:text-stone-300 dark:border-stone-700",
-    motif: "04 · VISUALISE",
-    descriptor: "Photorealistic 3D Renders",
-  },
-  {
-    slug: "ai-video-production",
-    accent: "text-rose-600 dark:text-rose-400",
-    borderHover: "hover:border-rose-500/60 hover:shadow-rose-500/10",
-    bgTag: "bg-rose-50 text-rose-700 border-rose-200 dark:bg-rose-950/50 dark:text-rose-300 dark:border-rose-800",
-    motif: "05 · FILM",
-    descriptor: "Cinematic Campaigns & AI Video",
-  },
-  {
-    slug: "website-design-development",
-    accent: "text-blue-600 dark:text-blue-400",
-    borderHover: "hover:border-blue-500/60 hover:shadow-blue-500/10",
-    bgTag: "bg-blue-50 text-blue-700 border-blue-200 dark:bg-blue-950/50 dark:text-blue-300 dark:border-blue-800",
-    motif: "06 · BUILD",
-    descriptor: "Editorial Digital Platforms",
-  },
-  // Legacy alias fallbacks
-  {
-    slug: "growth-marketing-b2b",
-    accent: "text-amber-600 dark:text-amber-400",
-    borderHover: "hover:border-amber-500/60 hover:shadow-amber-500/10",
-    bgTag: "bg-amber-50 text-amber-700 border-amber-200 dark:bg-amber-950/50 dark:text-amber-300 dark:border-amber-800",
-    motif: "02 · ACQUIRE",
-    descriptor: "Outbound Lead Gen & Pipeline",
-  },
-  {
-    slug: "video-ai-film-editing",
-    accent: "text-rose-600 dark:text-rose-400",
-    borderHover: "hover:border-rose-500/60 hover:shadow-rose-500/10",
-    bgTag: "bg-rose-50 text-rose-700 border-rose-200 dark:bg-rose-950/50 dark:text-rose-300 dark:border-rose-800",
-    motif: "05 · FILM",
-    descriptor: "Cinematic Campaigns & AI Video",
-  },
-  {
-    slug: "automation-workflow-systems",
-    accent: "text-emerald-600 dark:text-emerald-400",
-    borderHover: "hover:border-emerald-500/60 hover:shadow-emerald-500/10",
-    bgTag: "bg-emerald-50 text-emerald-700 border-emerald-200 dark:bg-emerald-950/50 dark:text-emerald-300 dark:border-emerald-800",
-    motif: "06 · AUTOMATE",
-    descriptor: "CRM Sync & Lead Routing",
-  },
-];
+import { ServicePreview } from "./ServicePreview";
+import { useAutoAdvance, useReducedMotion } from "./hooks";
 
 export function ServicesCarousel({ services }: { services: Service[] }) {
-  const [startIndex, setStartIndex] = useState(0);
+  const reduced = useReducedMotion();
+  const [isHovered, setIsHovered] = useState(false);
+  const [isFocused, setIsFocused] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
-  const [progress, setProgress] = useState(0);
-  const trackRef = useRef<HTMLDivElement>(null);
+  const [isMediaPlaying, setIsMediaPlaying] = useState(false);
+  const [startIndex, setStartIndex] = useAutoAdvance(services.length, 7000, {
+    paused: isPaused || isHovered || isFocused || isMediaPlaying,
+    enabled: !reduced,
+  });
 
-  const AUTO_SCROLL_INTERVAL = 3800; // ms per advance
-  const PROGRESS_TICK = 50;
+  if (services.length === 0) return null;
 
-  const handleNext = useCallback(() => {
-    setStartIndex((prev) => (prev + 1) % services.length);
-    setProgress(0);
+  function navigate(index: number) {
+    setIsMediaPlaying(false);
+    setStartIndex((index + services.length) % services.length);
     triggerHaptic("selection");
-  }, [services.length]);
+  }
 
-  const handlePrev = useCallback(() => {
-    setStartIndex((prev) => (prev - 1 + services.length) % services.length);
-    setProgress(0);
-    triggerHaptic("selection");
-  }, [services.length]);
-
-  // Auto-scroll timer & progress bar
-  useEffect(() => {
-    if (isPaused) return;
-
-    const progressTimer = setInterval(() => {
-      setProgress((old) => {
-        if (old >= 100) {
-          handleNext();
-          return 0;
-        }
-        return old + (PROGRESS_TICK / AUTO_SCROLL_INTERVAL) * 100;
-      });
-    }, PROGRESS_TICK);
-
-    return () => clearInterval(progressTimer);
-  }, [isPaused, handleNext]);
-
-  // Generate 3 visible cards in loop order for seamless continuous viewing
-  const visibleServices = [
-    services[startIndex % services.length],
-    services[(startIndex + 1) % services.length],
-    services[(startIndex + 2) % services.length],
-  ];
+  const visibleServices = Array.from(
+    { length: Math.min(3, services.length) },
+    (_, offset) => services[(startIndex + offset) % services.length],
+  );
 
   return (
     <div
-      className="mt-8 w-full select-none"
-      onMouseEnter={() => setIsPaused(true)}
-      onMouseLeave={() => setIsPaused(false)}
-      onTouchStart={() => setIsPaused(true)}
-      onTouchEnd={() => setIsPaused(false)}
-      onFocusCapture={() => setIsPaused(true)}
-      onBlurCapture={() => setIsPaused(false)}
+      className="mt-8 w-full"
+      role="region"
+      aria-roledescription="carousel"
+      aria-label="Studio services"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      onFocusCapture={() => setIsFocused(true)}
+      onPlayCapture={() => setIsMediaPlaying(true)}
+      onPauseCapture={() => setIsMediaPlaying(false)}
+      onEndedCapture={() => setIsMediaPlaying(false)}
+      onBlurCapture={(event) => {
+        if (!event.currentTarget.contains(event.relatedTarget)) setIsFocused(false);
+      }}
     >
-      {/* 01 — Top Control & Live Status Bar */}
-      <div className="mb-4 flex flex-wrap items-center justify-between gap-3 border-b border-rule pb-3">
-        <div className="flex items-center gap-3">
-          <div className="flex items-center gap-1.5 font-mono text-xs">
-            <span className="font-semibold text-accent">
-              {`0${(startIndex % services.length) + 1}`}
-            </span>
-            <span className="text-ink-muted">―</span>
-            <span className="font-semibold text-ink">
-              {`0${((startIndex + 2) % services.length) + 1}`}
-            </span>
-            <span className="text-ink-faint">/ 06 visible</span>
-          </div>
-
-          <span className="hidden sm:inline-block rounded-xs bg-paper-deep px-2 py-0.5 font-mono text-[0.5625rem] text-ink-muted border border-rule">
-            {isPaused ? "⏸ Auto-scroll paused" : "▶ Auto-scrolling"}
-          </span>
-        </div>
-
-        {/* Previous / Next Controls & Progress Bar */}
+      <div className="mb-5 flex flex-wrap items-center justify-between gap-3 border-b border-rule pb-4">
+        <p className="font-mono text-[0.625rem] uppercase tracking-[0.14em] text-ink-muted">
+          <span className="text-accent">{String(startIndex + 1).padStart(2, "0")}</span>
+          {` / ${String(services.length).padStart(2, "0")} · Your next competitive edge`}
+        </p>
         <div className="flex items-center gap-2">
-          {/* Progress bar line */}
-          <div className="hidden h-1 w-24 overflow-hidden rounded-full bg-rule sm:block">
-            <div
-              className="h-full bg-accent transition-all duration-75 ease-linear"
-              style={{ width: `${progress}%` }}
-            />
-          </div>
-
+          {!reduced ? (
+            <button
+              type="button"
+              onClick={() => setIsPaused((paused) => !paused)}
+              aria-label={isPaused ? "Resume automatic service rotation" : "Pause automatic service rotation"}
+              className="min-h-11 px-3 font-mono text-[0.625rem] text-ink-muted transition-colors hover:text-ink"
+            >
+              {isPaused ? "Resume rotation" : "Pause rotation"}
+            </button>
+          ) : null}
           <button
             type="button"
-            onClick={handlePrev}
-            aria-label="Previous 3 services"
-            className={`flex h-8 w-8 items-center justify-center rounded-xs border border-rule bg-paper text-ink transition-colors hover:border-ink ${TACTILE_CLASSES.buttonSubtle}`}
+            onClick={() => navigate(startIndex - 1)}
+            aria-label="Previous service"
+            className={`flex h-11 w-11 items-center justify-center rounded-md border border-rule bg-paper text-ink transition-colors hover:border-ink ${TACTILE_CLASSES.buttonSubtle}`}
           >
             &larr;
           </button>
           <button
             type="button"
-            onClick={handleNext}
-            aria-label="Next 3 services"
-            className={`flex h-8 w-8 items-center justify-center rounded-xs border border-rule bg-paper text-ink transition-colors hover:border-ink ${TACTILE_CLASSES.buttonSubtle}`}
+            onClick={() => navigate(startIndex + 1)}
+            aria-label="Next service"
+            className={`flex h-11 w-11 items-center justify-center rounded-md border border-rule bg-paper text-ink transition-colors hover:border-ink ${TACTILE_CLASSES.buttonSubtle}`}
           >
             &rarr;
           </button>
         </div>
       </div>
 
-      {/* 02 — 3-Visible Auto-Scrolling Track (Unified across PC & Mobile) */}
-      <div
-        ref={trackRef}
-        className="grid grid-cols-1 gap-4 transition-all duration-300 md:grid-cols-3"
-      >
-        {visibleServices.map((s, idx) => {
-          const theme = SERVICE_THEMES.find((t) => t.slug === s.slug) || SERVICE_THEMES[0];
-          const isCenter = idx === 1;
-
+      <div className="grid grid-cols-1 gap-5 md:grid-cols-3">
+        {visibleServices.map((service) => {
+          const pricing = getServicePricing(service.slug);
+          const primary = pricing[0];
           return (
-            <div
-              key={s.slug + idx + startIndex}
-              className="w-full transition-all duration-300 animate-in fade-in zoom-in-95"
+            <article
+              key={service.slug}
+              className="group flex min-w-0 flex-col overflow-hidden rounded-xl border border-rule bg-surface shadow-sm transition-[border-color,box-shadow] duration-300 hover:border-accent/50 hover:shadow-[0_10px_40px_-20px_var(--accent)]"
             >
-              <div
-                className={`group relative flex h-full min-h-[260px] flex-col justify-between rounded-lg border bg-surface p-6 shadow-2xs transition-all duration-200 ${
-                  isCenter
-                    ? "border-rule-strong shadow-xs ring-1 ring-rule"
-                    : "border-rule"
-                } ${theme.borderHover} hover:shadow-md ${TACTILE_CLASSES.card}`}
-              >
-                <div>
-                  <div className="flex items-center justify-between">
-                    <span
-                      className={`inline-block rounded-xs border px-2 py-0.5 font-mono text-[0.625rem] font-semibold uppercase tracking-[0.14em] ${theme.bgTag}`}
-                    >
-                      {theme.motif}
-                    </span>
-                    <a
-                      href={`#service-${s.slug}`}
-                      className="text-xs text-ink-muted transition-transform group-hover:translate-y-0.5 group-hover:text-accent font-mono"
-                      title="Jump to section on page"
-                    >
-                      ↓ on page
-                    </a>
-                  </div>
-
-                  <h3 className="mt-3.5 text-lg font-semibold text-ink transition-colors group-hover:text-accent">
-                    <Link href={`/services/${s.slug}`} className="after:absolute after:inset-0">
-                      {s.name}
-                    </Link>
-                  </h3>
-
-                  <p className="mt-2 text-xs leading-relaxed text-ink-muted line-clamp-3">
-                    {s.summary}
-                  </p>
+              <ServicePreview slug={service.slug} compact />
+              <div className="flex flex-1 flex-col p-5 sm:p-6">
+                <div className="flex items-center justify-between gap-3 font-mono text-[0.625rem] uppercase tracking-[0.12em]">
+                  <span className="text-accent">{String(service.order).padStart(2, "0")} · {service.shortName}</span>
+                  <a href={`#${serviceAnchor(service.slug)}`} className="shrink-0 py-2 text-ink-muted hover:text-accent" aria-label={`Jump to ${service.shortName} work on this page`}>
+                    Work &darr;
+                  </a>
                 </div>
-
-                {/* Footer Action */}
-                <div className="mt-6 flex items-center justify-between border-t border-rule/70 pt-3 text-xs">
-                  <span className="font-mono text-[0.6875rem] font-medium text-ink-soft group-hover:text-ink">
-                    Explore {s.shortName}
-                  </span>
-                  <span
-                    aria-hidden="true"
-                    className="font-mono text-ink-faint transition-transform group-hover:translate-x-1 group-hover:text-accent"
+                <h3 className="mt-3 text-xl font-semibold leading-tight text-ink">
+                  <Link href={`/services/${service.slug}`} className="transition-colors hover:text-accent">{service.name}</Link>
+                </h3>
+                <p className="mb-5 mt-3 text-sm leading-relaxed text-ink-muted">{service.summary}</p>
+                <div className="mt-auto border-t border-rule pt-5">
+                  {primary ? (
+                    <p className="font-mono text-xs font-medium text-accent">{primary.label}</p>
+                  ) : (
+                    <p className="font-mono text-xs font-medium text-ink-soft">Scoped to your drawing package</p>
+                  )}
+                  <a
+                    href={primary?.href ?? getServiceWhatsAppHref(service.slug)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-4 flex min-h-11 items-center justify-between gap-3 rounded-md bg-ink px-4 py-3 text-xs font-semibold text-paper transition-colors hover:bg-accent hover:text-white"
                   >
-                    &rarr;
-                  </span>
+                    <span>{primary?.cta ?? "Get a CAD Quote"}</span>
+                    <span aria-hidden="true">&nearr;</span>
+                  </a>
+                  {pricing.slice(1).map((tier) => (
+                    <div key={tier.id} className="mt-4 border-t border-rule pt-4">
+                      <p className="text-xs text-ink-muted">{tier.name}: {tier.label.toLowerCase()}</p>
+                      <a href={tier.href} target="_blank" rel="noopener noreferrer" className="mt-1 inline-flex min-h-11 items-center gap-2 text-xs font-medium text-accent hover:underline">
+                        {tier.cta}<span aria-hidden="true">&nearr;</span>
+                      </a>
+                    </div>
+                  ))}
+                  <Link href={`/services/${service.slug}`} className="mt-2 flex min-h-11 items-center justify-center text-xs text-ink-muted underline decoration-rule-strong underline-offset-4 hover:text-ink">
+                    Explore the service
+                  </Link>
                 </div>
               </div>
-            </div>
+            </article>
           );
         })}
       </div>
 
-      {/* 03 — Bottom Slide Quick Selector Dots */}
-      <div className="mt-5 flex items-center justify-center gap-1.5">
-        {services.map((_, idx) => {
-          const isSelected = idx === startIndex % services.length;
-          return (
-            <button
-              key={idx}
-              type="button"
-              onClick={() => {
-                setStartIndex(idx);
-                setProgress(0);
-                triggerHaptic("selection");
-              }}
-              aria-label={`Jump to service ${idx + 1}`}
-              className={`h-1.5 rounded-full transition-all duration-300 ${
-                isSelected ? "w-7 bg-accent" : "w-2 bg-rule-strong hover:bg-ink-muted"
-              }`}
-            />
-          );
-        })}
+      <div className="mt-5 flex justify-center gap-1">
+        {services.map((service, index) => (
+          <button
+            key={service.slug}
+            type="button"
+            onClick={() => navigate(index)}
+            aria-label={`Show ${service.name}`}
+            aria-current={index === startIndex ? "true" : undefined}
+            className="flex h-11 w-11 items-center justify-center"
+          >
+            <span className={`h-1.5 rounded-full transition-all duration-300 ${index === startIndex ? "w-7 bg-accent" : "w-2 bg-rule-strong"}`} />
+          </button>
+        ))}
       </div>
+      <p className="mt-2 text-center text-[0.6875rem] leading-relaxed text-ink-muted">{PRICING_NOTE}</p>
     </div>
   );
 }

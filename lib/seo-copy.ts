@@ -25,7 +25,7 @@ export const SERVICE_SEO: Record<string, RouteSeo> = {
   },
   "b2b-lead-generation": {
     metaTitle: "B2B Lead Generation Services | XIYÀTO",
-    metaDescription: "B2B lead generation built around verified buyers. Targeted prospect list building, ICP research, and decision-maker contact routes for outbound sales.",
+    metaDescription: "Targeted B2B lead files from $20 and marketing support from $50. Buyer research, Excel datasets and outreach planning scoped for your commercial team.",
     searchIntent: "Who can build a verified B2B prospect list with direct decision-maker contact details for our commercial sales team?",
     primaryKeywords: ["B2B lead generation services", "B2B lead generation agency", "outbound lead generation services", "B2B prospecting services", "prospect research services", "lead list building services"],
     secondaryKeywords: ["decision maker research", "ICP research services", "verified B2B leads", "target account research", "sales qualified lead generation", "commercial lead research", "B2B contact research", "account based prospecting"],
@@ -39,21 +39,21 @@ export const SERVICE_SEO: Record<string, RouteSeo> = {
   },
   "visualisation-image-production": {
     metaTitle: "3D Rendering & Architectural Visualization Services | XIYÀTO",
-    metaDescription: "Photorealistic 3D rendering and architectural visualization for interiors, developments, furniture and luxury products. Client-ready CGI specified per placement.",
+    metaDescription: "3D renders from $10 per image. Architectural visualization for interiors, furniture and products, with clear scope and formats for your next presentation.",
     searchIntent: "Who can turn my architectural plans, interior layouts, or furniture specifications into photorealistic 3D rendering and CGI for client presentations and marketing?",
     primaryKeywords: ["3D rendering services", "architectural visualization services", "3D visualisation services", "interior rendering services", "photorealistic 3D rendering", "product visualization services"],
     secondaryKeywords: ["furniture rendering services", "property CGI services", "interior design rendering", "luxury interior rendering", "exterior visualization services", "architectural CGI studio", "3D architectural rendering", "commercial interior rendering"],
   },
   "ai-video-production": {
     metaTitle: "AI Video Production Services | XIYÀTO",
-    metaDescription: "AI video production for brands, products, showrooms and campaigns. Cinematic short-form film, generative AI sequences and multi-format commercial cutdowns.",
+    metaDescription: "AI video production from $25 per reel. Cinematic brand films, product motion and social cutdowns, with scope and delivery agreed for your campaign.",
     searchIntent: "Who can produce and edit cinematic commercial AI video for our brand, product launch, showroom, or architectural campaign across social and web formats?",
     primaryKeywords: ["AI video production services", "AI video production agency", "commercial video production", "generative AI video production", "AI product video production", "cinematic video production"],
     secondaryKeywords: ["AI video editing services", "brand film production", "showroom walkthrough video", "AI commercial video production", "social media video production", "short form video production", "AI campaign video production", "product launch video"],
   },
   "website-design-development": {
     metaTitle: "Website Design & Development for Architecture & B2B | XIYÀTO",
-    metaDescription: "Custom Next.js website design and development for architecture practices, interior designers, and B2B brands. High performance, accessible, and code handover.",
+    metaDescription: "Website design and development from $250 per project for design practices and B2B brands. Responsive builds, enquiry flows and source code handover.",
     searchIntent: "Who can design and build a bespoke, responsive Next.js portfolio or business website for our architecture studio, interior practice, or B2B brand?",
     primaryKeywords: ["website design and development services", "B2B website design", "custom website development", "website design for architects", "portfolio website design", "responsive website development"],
     secondaryKeywords: ["architecture firm website design", "interior design website development", "technical SEO website development", "Next.js website development", "high converting website development", "website development company", "design studio website", "performance optimized website"],
@@ -62,43 +62,43 @@ export const SERVICE_SEO: Record<string, RouteSeo> = {
   // Backward compatibility mappings for legacy routes and components
   "growth-marketing-b2b": {
     metaTitle: "B2B Lead Generation Services | XIYÀTO",
-    metaDescription: "B2B lead generation built around verified buyers. Targeted prospect list building, ICP research, and decision-maker contact routes for outbound sales.",
+    metaDescription: "Targeted B2B lead files from $20 and marketing support from $50. Buyer research, Excel datasets and outreach planning scoped for your commercial team.",
     searchIntent: "Who can build a verified B2B prospect list with direct decision-maker contact details for our commercial sales team?",
     primaryKeywords: ["B2B lead generation services", "B2B lead generation agency", "outbound lead generation services"],
     secondaryKeywords: ["decision maker research", "ICP research services", "verified B2B leads"],
   },
   "video-ai-film-editing": {
     metaTitle: "AI Video Production Services | XIYÀTO",
-    metaDescription: "AI video production for brands, products, showrooms and campaigns. Cinematic short-form film, generative AI sequences and multi-format commercial cutdowns.",
+    metaDescription: "AI video production from $25 per reel. Cinematic brand films, product motion and social cutdowns, with scope and delivery agreed for your campaign.",
     searchIntent: "Who can produce and edit cinematic commercial AI video for our brand, product launch, showroom, or architectural campaign across social and web formats?",
     primaryKeywords: ["AI video production services", "AI video production agency", "commercial video production"],
     secondaryKeywords: ["AI video editing services", "brand film production", "showroom walkthrough video"],
   },
   "automation-workflow-systems": {
-    metaTitle: "B2B Lead Generation & Pipeline Systems | XIYÀTO",
-    metaDescription: "B2B lead generation built around verified buyers. Targeted prospect list building, ICP research, and decision-maker contact routes for outbound sales.",
+    metaTitle: "Automation & Workflow Systems from $50 | XIYÀTO",
+    metaDescription: "Automation campaigns from $50. Connect forms, spreadsheets, CRM and reporting with custom workflow systems, review points and a documented handover.",
     searchIntent: "Who can map how my business actually runs and automate the repetitive parts of it, from lead management and outreach to reporting?",
-    primaryKeywords: ["B2B lead generation services", "custom workflow systems", "outreach automation"],
+    primaryKeywords: ["workflow automation services", "custom workflow systems", "business process automation"],
     secondaryKeywords: ["lead management workflow", "automated follow-up systems", "CRM-ready prospect data"],
   },
 };
 
 export const ROUTE_SEO = {
   home: {
-    metaTitle: "XIYÀTO — Technical, Creative & Growth Services | UK & India",
-    metaDescription: "CAD drafting, B2B lead generation, market intelligence, 3D visualization, AI video production, and custom websites for design practices, brands, and manufacturers.",
+    metaTitle: "XIYÀTO — 3D Renders, AI Video, Websites & Growth",
+    metaDescription: "3D renders from $10, AI reels from $25 and websites from $250. Creative production, CAD, marketing, B2B lead research and automation for your next launch.",
   },
   work: {
     metaTitle: "Work & Production Evidence — XIYÀTO",
-    metaDescription: "Interior drawing packages, B2B research workbooks, photorealistic 3D visualization, cinematic video, and website builds published with full technical provenance.",
+    metaDescription: "Explore 3D renders, cinematic video and website builds, then technical drawing packages, B2B research workbooks and connected workflow systems.",
   },
   services: {
     metaTitle: "Commercial Production & Growth Services — XIYÀTO",
-    metaDescription: "Six commercial service pillars: CAD drafting, B2B lead generation, market intelligence, 3D rendering, AI video production, and custom website development.",
+    metaDescription: "3D renders, AI video, websites, CAD drafting, marketing and B2B lead generation, and automation. Clear starting prices and a defined scope for every brief.",
   },
   company: {
     metaTitle: "One Partner Across Six Disciplines — XIYÀTO",
-    metaDescription: "One partner for CAD technical drafting, B2B growth, 3D rendering, AI video, and custom web development. Founder-led, operating across the UK and India.",
+    metaDescription: "One partner for 3D renders, AI video, websites, CAD drafting, marketing and B2B research, and automation. Founder-led, operating across the UK and India.",
   },
   people: {
     metaTitle: "Founder, Chaitanya Gaikwad — XIYÀTO",

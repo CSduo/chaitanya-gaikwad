@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 import { SITE } from "@/lib/site";
-import { SERVICES } from "@/lib/services";
+import { ALL_SERVICES } from "@/lib/services";
 import { allCaseStudies } from "@/lib/case-studies";
 import { allWorkbooks } from "@/lib/portfolio";
 import { publishedLegalPages } from "@/lib/company";
@@ -12,14 +12,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // modification dates rather than build timestamps. Pages that have not been
   // modified retain their genuine publication/update dates.
   const date20260906 = new Date("2026-09-06T00:00:00.000Z");
-  const date20260829 = new Date("2026-08-29T00:00:00.000Z");
+  const date20260926 = new Date("2026-09-26T00:00:00.000Z");
   const date20260815 = new Date("2026-08-15T00:00:00.000Z");
   const date20260812 = new Date("2026-08-12T00:00:00.000Z");
   const date20260811 = new Date("2026-08-11T00:00:00.000Z");
 
   const core: MetadataRoute.Sitemap = [
-    { url: url("/"), lastModified: date20260829 },
-    { url: url("/services"), lastModified: date20260812 },
+    { url: url("/"), lastModified: date20260926 },
+    { url: url("/services"), lastModified: date20260926 },
     { url: url("/company"), lastModified: date20260812 },
     { url: url("/company/people"), lastModified: date20260812 },
     { url: url("/company/locations"), lastModified: date20260812 },
@@ -27,9 +27,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: url("/contact"), lastModified: date20260906 },
   ];
 
-  const services: MetadataRoute.Sitemap = SERVICES.map((s) => ({
+  const services: MetadataRoute.Sitemap = ALL_SERVICES.map((s) => ({
     url: url(`/services/${s.slug}`),
-    lastModified: date20260812,
+    lastModified: date20260926,
   }));
 
   const subServices: MetadataRoute.Sitemap = [

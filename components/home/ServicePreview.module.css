@@ -1,0 +1,179 @@
+.preview { --preview-green: #b6f7cc; --preview-cyan: #9ce9eb; position: relative; width: 100%; overflow: hidden; border: 1px solid #30383b; border-radius: 8px; background: #101718; color: #f5f7f5; isolation: isolate; }
+.fill { height: 100%; width: 100%; }
+.fill>.preview { height: 100%; display: flex; flex-direction: column; border-radius: 0; }
+.fill .blueprint,.fill .workflowCanvas,.fill .webCanvas,.fill .imageWell,.fill .filmWell { flex: 1; min-height: 0; }
+.fill .sheetScroll { flex: 1; }
+.fill .sheet { height: 100%; }
+.fill .workflowCanvas { display: flex; flex-direction: column; justify-content: center; }
+.fill .workflowDetail { min-height: 0; }
+.preview button { cursor: pointer; }
+.preview button:focus-visible, .preview [tabindex]:focus-visible { outline: 2px solid var(--preview-cyan); outline-offset: -3px; }
+.bar { display: flex; align-items: center; gap: 12px; min-height: 44px; padding: 10px 17px; border-bottom: 1px solid #ffffff15; font: 10px var(--font-mono); color: #c6cecc; }
+.barTitle { flex: 1; }
+.barBadge { color: #b6d1c6; font-size: 9px; letter-spacing: .07em; white-space: nowrap; }
+.dots { display: flex; gap: 4px; }
+.dots i { height: 5px; width: 5px; border-radius: 50%; background: #64706c; }
+.eyebrow { font: 10px var(--font-mono); letter-spacing: .09em; text-transform: uppercase; color: #b1c6bc; }
+.cover { object-fit: cover; transition: transform .6s ease; }
+.preview:hover .cover { transform: scale(1.025); }
+.imageWell { position: relative; aspect-ratio: 16 / 10; min-height: 255px; }
+.imageShade { position: absolute; inset: 0; background: linear-gradient(180deg,#0003,transparent 30%,#0009); pointer-events: none; }
+.imageTop { position: absolute; inset: 20px 20px auto; display: flex; justify-content: space-between; align-items: center; }
+.glassTag { padding: 6px 10px; border: 1px solid #ffffff4a; background: #181a1640; backdrop-filter: blur(8px); font: 9px var(--font-mono); text-transform: uppercase; letter-spacing: .1em; }
+.crosshair { font: 26px var(--font-mono); }
+.imageBottom { position: absolute; inset: auto 24px 24px; display: flex; align-items: flex-end; justify-content: space-between; gap: 12px; }
+.imageBottom p { font: clamp(25px,3vw,42px)/1.02 var(--font-serif); text-shadow: 0 2px 15px #0007; }
+.imageBottom em { font-weight: 400; }
+.imageSwitch { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 4px; }
+.imageSwitch button { min-height: 40px; padding: 5px 10px; border: 1px solid #ffffff70; border-radius: 3px; background: #10101066; color: white; font-size: 10px; backdrop-filter: blur(6px); }
+.imageSwitch button[aria-pressed="true"] { background: #fff; color: #111; }
+.film { background: #0b0b0b; }
+.filmWell { aspect-ratio: 16 / 9; min-height: 240px; position: relative; }
+.filmPoster { object-fit: cover; object-position: center 48%; opacity: .85; }
+.play { position: absolute; width: 58px; height: 58px; border: 1px solid #ffffff90; border-radius: 50%; inset: 42% auto auto 50%; transform: translate(-50%,-50%); background: #ffffff1a; color: white; backdrop-filter: blur(8px); display: grid; place-items: center; transition: background .2s, scale .2s; }
+.play:hover { background: #ffffff40; scale: 1.07; }
+.play svg { width: 25px; }
+.video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; }
+.filmCaption { position: absolute; inset: auto 24px 23px; display: grid; gap: 7px; pointer-events: none; }
+.filmCaption span { font: 9px var(--font-mono); letter-spacing: .15em; text-transform: uppercase; }
+.filmCaption strong { font: 28px/1.1 var(--font-serif); }
+.filmStrip { display: flex; align-items: center; gap: 14px; padding: 14px 20px; font: 8px var(--font-mono); letter-spacing: .14em; color: #b6b6b6; }
+.filmStrip i { flex: 1; height: 2px; background: linear-gradient(90deg,#915d4f,#4a493e); }
+.web { background: #ebecea; color: #17241f; border-color: #d6dcd6; }
+.web .bar { background: #fff; color: #4a5b50; border-color: #d6dcd6; }
+.web .barBadge { color: #4a5b50; }
+.webCanvas { padding: 26px; display: flex; justify-content: center; min-height: 280px; }
+.browser { width: 100%; align-self: center; background: #fbfcf6; border: 1px solid #cad0c6; box-shadow: 0 10px 30px #243b2815; transition: width .4s ease; overflow: hidden; border-radius: 4px; }
+.browserNav { display: flex; justify-content: space-between; align-items: center; padding: 14px 20px; gap: 12px; font-size: 9px; letter-spacing: .07em; border-bottom: 1px solid #dde0d5; }
+.browserNav strong { font-size: 10px; }
+.webHero { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; padding: 23px 20px; }
+.webHero h4 { font: clamp(27px,3vw,45px)/.96 var(--font-serif); margin: 10px 0 18px; }
+.webEyebrow { font: 8px var(--font-mono); text-transform: uppercase; }
+.webCta { display: inline-block; color: white; background: #253c2d; padding: 8px 10px; font-size: 8px; }
+.webPhoto { position: relative; min-height: 165px; border-radius: 90px 90px 2px 2px; overflow: hidden; }
+.browserFooter { padding: 12px 20px; border-top: 1px solid #dde0d5; display: flex; justify-content: space-between; font-size: 8px; }
+.mobileBrowser { width: 190px; }
+.mobileBrowser .browserNav { padding: 11px; }
+.mobileBrowser .browserNav span { display: none; }
+.mobileBrowser .webHero { padding: 14px; gap: 12px; }
+.mobileBrowser .webHero h4 { font-size: 24px; }
+.mobileBrowser .webEyebrow { font-size: 6px; }
+.mobileBrowser .webPhoto { min-height: 120px; }
+.mobileBrowser .webCta { font-size: 6px; padding: 5px; }
+.mobileBrowser .browserFooter { font-size: 6px; padding: 10px; }
+.toolbar { min-height: 53px; display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 6px 18px; border-top: 1px solid #ffffff15; font: 9px var(--font-mono); color: #b6c9c2; }
+.web .toolbar { color: #546157; border-color: #d6dcd6; }
+.switcher { display: flex; gap: 2px; }
+.switcher button { min-height: 40px; padding: 5px 8px; border-radius: 3px; font-size: 9px; }
+.switcher button[aria-pressed="true"] { background: #253c2d; color: white; }
+.cad { background: #0e1c24; }
+.blueprint { position: relative; display: block; width: 100%; aspect-ratio: 16 / 8.5; min-height: 250px; overflow: hidden; background-color: #0e1c24; background-image: linear-gradient(#8bcfd210 1px,transparent 1px),linear-gradient(90deg,#8bcfd210 1px,transparent 1px); background-size: 22px 22px; color: var(--preview-cyan); text-align: left; }
+.blueprintImage { object-fit: contain; padding: 24px 25px 38px; filter: invert(1); mix-blend-mode: screen; opacity: .85; transition: transform .6s,opacity .3s; }
+.blueprintOverlay { position: absolute; inset: 0; height: 100%; width: 100%; opacity: 0; transition: opacity .3s; pointer-events: none; }
+.blueprint:is(:hover,:focus-visible) .blueprintOverlay,.blueprintActive .blueprintOverlay { opacity: 1; }
+.blueprint:is(:hover,:focus-visible) .blueprintImage,.blueprintActive .blueprintImage { transform: scale(1.05); opacity: .65; }
+.drawingNote { position: absolute; top: 14px; left: 17px; font: 8px var(--font-mono); letter-spacing: .08em; color: #c0d3d8; }
+.inspectionNote { position: absolute; right: 15px; bottom: 15px; padding: 8px 12px; border: 1px solid #9ce9eb60; border-radius: 3px; background: #13252d; color: #c8f4f1; font: 10px var(--font-mono); box-shadow: 0 0 25px #66d1c514; }
+.cadFooter { display: flex; justify-content: space-between; gap: 10px; padding: 14px 17px; border-top: 1px solid #ffffff15; color: #c4d3d8; font: 9px var(--font-mono); }
+.cadFooter i,.workflowStatus i { display: inline-block; width: 5px; height: 5px; margin-right: 5px; vertical-align: middle; border-radius: 50%; background: #b6f7cc; box-shadow: 0 0 10px #b6f7cc70; }
+.marketing { background: radial-gradient(ellipse at 100% 0,#304a3a 0,transparent 53%),#101e19; }
+.sheetHeadline { display: flex; gap: 15px; align-items: center; justify-content: space-between; padding: 23px 24px; }
+.sheetHeadline h4 { margin-top: 10px; font: clamp(24px,2.5vw,34px)/1.07 var(--font-serif); color: #edf5ee; }
+.metric { flex-shrink: 0; padding: 12px 15px; border: 1px solid #a7e7be50; background: #b6f7cc09; border-radius: 5px; box-shadow: 0 0 35px #b6f7cc0c; text-align: center; }
+.metric strong { display: block; font: 30px/1.1 var(--font-mono); color: #b6f7cc; }
+.metric span { display: block; margin-top: 4px; font: 8px var(--font-mono); color: #c3d8ca; }
+.sheetScroll { margin: 0 20px; overflow-x: auto; border: 1px solid #ffffff1f; border-radius: 4px 4px 0 0; }
+.sheet { width: 100%; min-width: 370px; border-collapse: collapse; text-align: left; font: 10px var(--font-mono); }
+.sheet th,.sheet td { padding: 12px 10px; border-right: 1px solid #ffffff10; border-bottom: 1px solid #ffffff10; white-space: nowrap; }
+.sheet thead { background: #c6f0d40d; color: #bbd4c4; }
+.sheet tbody { color: #d4e0d7; }
+.sheet tbody th { color: #8ba296; font-weight: 400; }
+.sheet tr:hover { background: #b6f7cc0a; }
+.cellBadge { display: inline-flex; background: #b6f7cc13; border: 1px solid #b6f7cc28; border-radius: 3px; padding: 3px 6px; color: #c4ebd1; font-size: 9px; }
+.sheetTabs { display: flex; gap: 1px; margin: 0 20px; border: 1px solid #ffffff1f; border-top: none; }
+.sheetTabs button { min-height: 40px; padding: 8px 12px; font: 9px var(--font-mono); color: #a3bdac; border-bottom: 2px solid transparent; }
+.sheetTabs button[aria-pressed="true"] { border-color: #b6f7cc; color: #d4f9df; background: #b6f7cc0c; }
+.exampleNote { margin: 0; padding: 13px 20px; font: 8px/1.5 var(--font-mono); color: #a6baae; }
+.automation { background: #111b1d; }
+.workflowCanvas { padding: 23px; background-image: radial-gradient(#95d1c91d 1px,transparent 1px); background-size: 16px 16px; }
+.workflowHeading { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.workflowStatus { white-space: nowrap; font: 9px var(--font-mono); color: #acccc0; }
+.nodes { position: relative; display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 17px; margin: 32px 0; }
+.nodes::before { content: ""; position: absolute; top: 34px; inset-inline: 8%; height: 1px; background: linear-gradient(90deg,#b6f7cc70,#9ce9eb50); }
+.node { position: relative; z-index: 1; display: grid; justify-items: center; align-content: start; gap: 7px; padding: 12px 4px; border: 1px solid #ffffff24; border-radius: 6px; background: #182629; color: #cddbd6; transition: border-color .3s,transform .3s,box-shadow .3s; }
+.node:hover { border-color: #b6f7cc70; transform: translateY(-3px); }
+.nodeIcon { display: grid; place-items: center; width: 34px; height: 34px; background: #b6f7cc0b; border: 1px solid #b6f7cc28; border-radius: 5px; color: #b6f7cc; font-size: 21px; }
+.node strong { font-size: 11px; font-weight: 500; }
+.node>span:last-child { font: 8px var(--font-mono); color: #a1b7ae; }
+.activeNode { border-color: #b6f7cc; box-shadow: 0 0 24px #b6f7cc15; background: #213b30; }
+.activeNode .nodeIcon { background: #b6f7cc; color: #173022; }
+.completeNode { border-color: #b6f7cc55; }
+.workflowDetail { display: flex; gap: 16px; min-height: 94px; padding: 17px; border: 1px solid #a0c6b729; border-radius: 5px; background: #152526; }
+.stepNumber { font: 30px/1 var(--font-serif); color: #b6f7cc; }
+.workflowDetail h4 { font-size: 13px; font-weight: 500; color: #e6f1ea; }
+.workflowDetail p { margin-top: 6px; font-size: 11px; line-height: 1.6; color: #b2c7be; }
+.runDemo { min-height: 40px; padding: 7px 12px; border: 1px solid #b6f7cc44; border-radius: 4px; color: #c9f1d5; background: #b6f7cc0a; white-space: nowrap; }
+.runDemo:hover { background: #b6f7cc1a; }
+.compact .imageWell { min-height: 240px; }
+.compact .imageBottom { inset: auto 17px 17px; }
+.compact .imageBottom p { font-size: 28px; }
+.compact .imageSwitch { max-width: 85px; }
+.compact .filmWell { min-height: 240px; }
+.compact .filmCaption { inset: auto 17px 18px; }
+.compact .filmCaption strong { font-size: 24px; }
+.compact .webCanvas { padding: 18px; min-height: 260px; }
+.compact .webHero { padding: 19px 13px; gap: 10px; }
+.compact .webHero h4 { font-size: 33px; }
+.compact .mobileBrowser .webHero h4 { font-size: 24px; }
+.compact .browserNav { padding: 12px; }
+.compact .webPhoto { min-height: 150px; }
+.compact .blueprint { min-height: 267px; }
+.compact .sheetHeadline { padding: 18px 17px; gap: 10px; }
+.compact .sheetHeadline h4 { font-size: 25px; }
+.compact .metric { padding: 9px; }
+.compact .metric strong { font-size: 25px; }
+.compact .metric span { max-width: 55px; font-size: 7px; line-height: 1.4; }
+.compact .eyebrow { font-size: 8px; }
+.compact .sheetScroll,.compact .sheetTabs { margin-inline: 15px; }
+.compact .sheet { min-width: 325px; font-size: 9px; }
+.compact .sheet th,.compact .sheet td { padding: 10px 8px; }
+.compact .workflowCanvas { padding: 18px 15px; }
+.compact .workflowHeading { align-items: flex-start; }
+.compact .workflowStatus { font-size: 8px; }
+.compact .nodes { gap: 8px; margin-block: 24px; }
+.compact .node strong { font-size: 10px; }
+.compact .workflowDetail { padding: 13px; min-height: 108px; }
+.compact .toolbar { padding-inline: 15px; font-size: 8px; }
+@media (max-width: 480px) {
+  .bar { padding-inline: 13px; gap: 8px; }
+  .barTitle { font-size: 9px; }
+  .barBadge { font-size: 8px; }
+  .imageBottom { inset: auto 17px 18px; }
+  .imageBottom p { font-size: 29px; }
+  .imageSwitch { max-width: 85px; }
+  .webCanvas { padding: 17px; }
+  .webHero { padding: 20px 13px; }
+  .webHero h4 { font-size: 32px; }
+  .sheetHeadline { padding: 20px 15px; }
+  .sheetHeadline h4 { font-size: 25px; }
+  .metric { padding: 10px; }
+  .metric span { max-width: 58px; line-height: 1.4; }
+  .sheetScroll,.sheetTabs { margin-inline: 14px; }
+  .workflowCanvas { padding: 20px 14px; }
+  .workflowHeading .eyebrow { max-width: 170px; font-size: 8px; }
+  .nodes { gap: 8px; }
+  .node strong { font-size: 10px; }
+  .workflowDetail { padding: 14px; gap: 11px; min-height: 122px; }
+  .toolbar { font-size: 8px; padding-inline: 14px; }
+  .cadFooter { font-size: 8px; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .preview { animation: preview-enter .55s ease both; }
+  .activeNode .nodeIcon { animation: node-arrive .45s ease both; }
+  @keyframes preview-enter { from { opacity: 0; transform: translateY(9px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes node-arrive { from { box-shadow: 0 0 0 0 #b6f7cc40; } to { box-shadow: 0 0 0 12px #b6f7cc00; } }
+}
+@media (prefers-reduced-motion: reduce) {
+  .preview *, .preview *::before, .preview *::after { animation: none !important; transition: none !important; }
+  .preview:hover .cover,.node:hover { transform: none; }
+}

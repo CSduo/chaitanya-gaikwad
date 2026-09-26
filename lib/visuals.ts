@@ -1,3 +1,5 @@
+import { NEW_VISUALS } from "./new-visuals";
+
 /**
  * Visual library — restored from the previous site's render and visualisation
  * archive, then reviewed image by image.
@@ -8,6 +10,7 @@
  */
 
 export type VisualGroup =
+  | "artwork"
   | "interiors"
   | "product-furniture"
   | "retail-showroom"
@@ -16,6 +19,7 @@ export type VisualGroup =
   | "hospitality";
 
 export const VISUAL_GROUP_LABELS: Record<VisualGroup, string> = {
+  "artwork": "Artwork & sculpture",
   "interiors": "Interiors",
   "product-furniture": "Product & furniture",
   "retail-showroom": "Retail & showroom",
@@ -33,9 +37,11 @@ export type VisualItem = {
   height: number;
   /** Editorial rating from the image review. Drives featured selection. */
   quality: "strong" | "standard";
+  collection?: "studio-concepts";
 };
 
 export const VISUALS: VisualItem[] = [
+  ...NEW_VISUALS,
   {
     src: "/media/visual/render-1.webp",
     title: "Compact bathroom with travertine walls",

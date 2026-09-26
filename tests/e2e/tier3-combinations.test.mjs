@@ -57,15 +57,15 @@ describe("Tier 3: Cross-Feature Combination Matrix", () => {
   it("T3.3: Responsive resize from mobile to desktop during active swipe preserves selected service", () => {
     globalViewport.set(390, 844);
     const carousel = new CapabilitiesCarouselModel(SERVICES);
-    carousel.goTo(4); // Video service
+    carousel.goTo(1); // Video service
     expect(carousel.activeService.slug).toBe("ai-video-production");
-    expect(carousel.counterText).toBe("05 / 06");
+    expect(carousel.counterText).toBe("02 / 06");
 
     // Resize to desktop 1440px
     globalViewport.set(1440, 900);
     expect(globalViewport.isDesktop()).toBe(true);
     expect(carousel.activeService.slug).toBe("ai-video-production");
-    expect(carousel.renderCards()[4].isActive).toBe(true);
+    expect(carousel.renderCards()[1].isActive).toBe(true);
   });
 
   it("T3.4: Drawer live search combined with region tab switching resets search query", () => {

@@ -35,6 +35,9 @@ describe("Tier 4: Real-World Application User Scenarios", () => {
     // 2. Swipes capabilities carousel to discover CAD service
     const carousel = new CapabilitiesCarouselModel(SERVICES);
     expect(carousel.counterText).toBe("01 / 06");
+    expect(carousel.activeService.slug).toBe("visualisation-image-production");
+    carousel.goTo(3);
+    expect(carousel.counterText).toBe("04 / 06");
     expect(carousel.activeService.slug).toBe("cad-technical-production");
 
     // 3. Follows anchor to CAD chapter with Technical Drafting Slate theme

@@ -2,7 +2,10 @@
 
 import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
-import { CadScene, DataScene } from "./scenes";
+import { ServicePreview } from "./ServicePreview";
+import { getServicePricing } from "@/lib/pricing";
+import { getServiceWhatsAppHref } from "@/lib/site";
+import { VISUALS } from "@/lib/visuals";
 import { useAutoAdvance, useReducedMotion } from "./hooks";
 
 /* ------------------------------------------------------------------ */
@@ -13,8 +16,8 @@ function VisualisationScene({ active }: { active: boolean }) {
   return (
     <div className="relative h-full w-full overflow-hidden bg-ink select-none">
       <Image
-        src="/media/visual/vis-24.webp"
-        alt="High-end luxury hospitality interior 3D visualisation"
+        src={VISUALS[0].src}
+        alt={VISUALS[0].alt}
         fill
         priority={active}
         sizes="(min-width: 1024px) 760px, 100vw"
@@ -26,7 +29,7 @@ function VisualisationScene({ active }: { active: boolean }) {
           3D Visualisation
         </span>
         <span className="hidden sm:inline-block bg-paper/90 border border-rule px-2 py-0.5 font-mono text-[0.5625rem] text-ink-muted">
-          Atmospheric Interior Study
+          Architectural concept study
         </span>
       </div>
 
@@ -37,7 +40,7 @@ function VisualisationScene({ active }: { active: boolean }) {
             Photorealistic 3D architectural &amp; interior renders produced for pitches, campaigns, and approvals.
           </p>
           <span className="shrink-0 font-mono text-[0.625rem] uppercase tracking-[0.12em] text-paper/70">
-            Ultra-HD 3D
+            Visual study
           </span>
         </div>
       </div>
@@ -150,56 +153,6 @@ function VideoScene({
   );
 }
 
-const AUTOMATION_SERVICES = [
-  { num: "01", title: "WhatsApp Automation", desc: "Instant reply flows & live CRM sync" },
-  { num: "02", title: "Instagram DM & Lead Gen", desc: "Keyword triggers, comments & story replies" },
-  { num: "03", title: "Email Outreach & Campaigns", desc: "Verified cold outreach & client nurturing" },
-  { num: "04", title: "CRM Sync & Lead Routing", desc: "Auto qualification & booking pipeline" },
-];
-
-function AutomationScene({ active }: { active: boolean }) {
-  const reduced = useReducedMotion();
-  const on = active || reduced;
-  return (
-    <div className="flex h-full w-full flex-col justify-between bg-paper-deep p-3.5 sm:p-6 select-none overflow-hidden">
-      <div className="flex items-center justify-between border-b border-rule pb-2 sm:pb-2.5">
-        <p className="label text-[0.625rem] sm:text-xs">Automation &amp; Marketing</p>
-        <span className="font-mono text-[0.5625rem] uppercase tracking-[0.12em] text-accent font-semibold">
-          Active Systems
-        </span>
-      </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-1.5 sm:gap-2 my-auto">
-        {AUTOMATION_SERVICES.map((step, i) => (
-          <div
-            key={step.title}
-            className="flex items-center gap-2.5 rounded-md border border-rule/70 bg-paper p-2 sm:p-2.5 shadow-2xs transition-all duration-300"
-            style={{
-              opacity: on ? 1 : 0.2,
-              transform: on ? "translateY(0)" : "translateY(4px)",
-              transitionDelay: reduced ? "0ms" : `${i * 80}ms`,
-            }}
-          >
-            <span className="flex h-5 w-5 sm:h-6 sm:w-6 shrink-0 items-center justify-center rounded bg-ink font-mono text-[0.5625rem] sm:text-[0.625rem] font-medium text-paper">
-              {step.num}
-            </span>
-            <div className="min-w-0">
-              <span className="block truncate text-[0.6875rem] sm:text-xs font-semibold text-ink leading-tight">
-                {step.title}
-              </span>
-              <span className="block truncate text-[0.625rem] sm:text-[0.6875rem] text-ink-muted leading-tight mt-0.5">
-                {step.desc}
-              </span>
-            </div>
-          </div>
-        ))}
-      </div>
-      <p className="border-t border-rule pt-1.5 sm:pt-2 font-mono text-[0.5625rem] sm:text-[0.625rem] leading-tight text-ink-faint">
-        Custom automations engineered to drive leads &amp; revenue 24/7.
-      </p>
-    </div>
-  );
-}
-
 function WebScene() {
   const websites = [
     {
@@ -273,20 +226,21 @@ function WebScene() {
 /* ------------------------------------------------------------------ */
 
 const CAPABILITIES = [
-  { n: "01", motif: "Deliver", label: "CAD & Technical", anchor: "service-cad-technical-production", note: "Precision technical drawing packages and full joinery details." },
-  { n: "02", motif: "Grow", label: "Growth & B2B", anchor: "service-growth-marketing-b2b", note: "Markets mapped, targets qualified, every claim verified." },
-  { n: "03", motif: "Visualise", label: "Visualisation", anchor: "service-visualisation-image-production", note: "Photorealistic 3D interior, exterior, and product renders." },
-  { n: "04", motif: "Film", label: "Video & AI Film", anchor: "service-video-ai-film-editing", note: "Cinematic commercial films and AI-powered video editing." },
-  { n: "05", motif: "Build", label: "Websites", anchor: "service-website-design-development", note: "High-performance digital platforms deployed on your domain." },
-  { n: "06", motif: "Automate", label: "Automation", anchor: "service-automation-workflow-systems", note: "Outreach campaigns and marketing pipelines that convert leads." },
+  { n: "01", motif: "Visualise", label: "3D Renders", slug: "visualisation-image-production", note: "Help your next pitch feel real with atmospheric interior and product renders." },
+  { n: "02", motif: "Film", label: "AI Video", slug: "ai-video-production", note: "Turn attention into interest with cinematic reels and product stories." },
+  { n: "03", motif: "Build", label: "Websites", slug: "website-design-development", note: "Give your best work a home that turns visitors into enquiries." },
+  { n: "04", motif: "Deliver", label: "CAD Drafting", slug: "cad-technical-production", note: "Move from approved idea to precise, coordinated production drawings." },
+  { n: "05", motif: "Grow", label: "Marketing & B2B", slug: "b2b-lead-generation", note: "Give your sales team researched buyers and a clearer path to the next conversation." },
+  { n: "06", motif: "Automate", label: "Automation", slug: "automation-workflow-systems", note: "Keep enquiries moving with connected workflows and fewer manual handoffs." },
 ];
-
 export function HeroCapabilities() {
   const reduced = useReducedMotion();
-  const [paused, setPaused] = useState(false);
+  const [hovered, setHovered] = useState(false);
+  const [focused, setFocused] = useState(false);
+  const [rotationPaused, setRotationPaused] = useState(false);
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
 
-  const isSlidePaused = paused || isVideoPlaying;
+  const isSlidePaused = hovered || focused || rotationPaused || isVideoPlaying;
 
   const [index, setIndex] = useAutoAdvance(CAPABILITIES.length, 6000, {
     paused: isSlidePaused,
@@ -294,40 +248,43 @@ export function HeroCapabilities() {
   });
 
   const current = CAPABILITIES[index];
+  const price = getServicePricing(current.slug)[0];
 
   function goToSection() {
-    const el = document.getElementById(current.anchor);
+    const el = document.getElementById(`service-${current.slug}`);
     if (el) el.scrollIntoView({ behavior: reduced ? "auto" : "smooth", block: "start" });
   }
 
   return (
     <div
-      onMouseEnter={() => setPaused(true)}
-      onMouseLeave={() => setPaused(false)}
-      onFocusCapture={() => setPaused(true)}
-      onBlurCapture={() => setPaused(false)}
+      role="region"
+      aria-roledescription="carousel"
+      aria-label="Featured studio capabilities"
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      onFocusCapture={() => setFocused(true)}
+      onBlurCapture={(event) => {
+        if (!event.currentTarget.contains(event.relatedTarget)) setFocused(false);
+      }}
     >
       <div className="relative aspect-[4/3] w-full overflow-hidden rounded-t-lg border border-zinc-800 bg-zinc-950 shadow-2xl sm:aspect-[16/10]">
         <div className={index === 0 ? "h-full w-full" : "hidden"}>
-          <CadScene active={index === 0} />
+          <VisualisationScene active={index === 0} />
         </div>
         <div className={index === 1 ? "h-full w-full" : "hidden"}>
-          <DataScene active={index === 1} />
+          <VideoScene active={index === 1} onPlayStateChange={setIsVideoPlaying} />
         </div>
         <div className={index === 2 ? "h-full w-full" : "hidden"}>
-          <VisualisationScene active={index === 2} />
-        </div>
-        <div className={index === 3 ? "h-full w-full" : "hidden"}>
-          <VideoScene
-            active={index === 3}
-            onPlayStateChange={(playing) => setIsVideoPlaying(playing)}
-          />
-        </div>
-        <div className={index === 4 ? "h-full w-full" : "hidden"}>
           <WebScene />
         </div>
+        <div className={index === 3 ? "h-full w-full" : "hidden"}>
+          <ServicePreview slug="cad-technical-production" fill />
+        </div>
+        <div className={index === 4 ? "h-full w-full" : "hidden"}>
+          <ServicePreview slug="b2b-lead-generation" fill />
+        </div>
         <div className={index === 5 ? "h-full w-full" : "hidden"}>
-          <AutomationScene active={index === 5} />
+          <ServicePreview slug="automation-workflow-systems" fill />
         </div>
       </div>
 
@@ -360,8 +317,19 @@ export function HeroCapabilities() {
         })}
       </div>
 
-      <div className="mt-4 flex flex-wrap items-baseline justify-between gap-x-6 gap-y-2">
-        <p className="text-xs text-zinc-400 font-mono" aria-live="polite">
+      <div className="mt-4 flex flex-wrap items-center justify-between gap-3 rounded-lg border border-white/10 bg-white/[0.03] px-4 py-3">
+        <div>
+          <p className="font-mono text-xs font-medium text-white">
+            {price?.label ?? "CAD packages · tailored quote"}
+          </p>
+          <p className="mt-1 text-[0.625rem] text-zinc-400">{price ? "USD · Final scope and price agreed before production" : "Send your drawing brief for a scoped estimate"}</p>
+        </div>
+        <a href={price?.href ?? getServiceWhatsAppHref(current.slug)} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center gap-3 rounded-md border border-white/20 bg-white px-4 text-xs font-semibold text-zinc-950 transition-colors hover:bg-amber-100">
+          {price?.cta ?? "Get a CAD Quote"}<span aria-hidden="true">&nearr;</span>
+        </a>
+      </div>
+      <div className="mt-3 flex flex-wrap items-baseline justify-between gap-x-6 gap-y-2">
+        <p className="text-xs text-zinc-400 font-mono" aria-live={isSlidePaused || reduced ? "polite" : "off"}>
           {current.note}
         </p>
         {/* Keeps the visitor on the homepage — jumps to the matching chapter. */}
@@ -377,6 +345,11 @@ export function HeroCapabilities() {
             &darr;
           </span>
         </button>
+        {!reduced ? (
+          <button type="button" onClick={() => setRotationPaused((value) => !value)} className="min-h-11 font-mono text-[0.625rem] text-zinc-400 hover:text-white">
+            {rotationPaused ? "Resume showcase" : "Pause showcase"}
+          </button>
+        ) : null}
       </div>
     </div>
   );

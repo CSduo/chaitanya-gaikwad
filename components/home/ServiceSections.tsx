@@ -7,8 +7,10 @@ import { ImageGrid, VideoGallery, type LightboxItem } from "@/components/media/v
 import { allVideos, allWebsites } from "@/lib/portfolio";
 import { VISUALS, featuredVisuals, activeVisualGroups, type VisualGroup } from "@/lib/visuals";
 import type { Service } from "@/lib/services";
+import { getServicePricing } from "@/lib/pricing";
 import { CadDraftingRail } from "./CadDraftingRail";
 import { LeadIntelligencePanel } from "./LeadIntelligencePanel";
+import { ServicePreview } from "./ServicePreview";
 
 /* ------------------------------------------------------------------ */
 /* Shared chapter shell with Bespoke Atmospheric Tones                 */
@@ -19,11 +21,14 @@ export type ChapterTone = "light" | "surface" | "slate" | "dark" | "terminal" | 
 function ChapterHeader({
   service,
   tone = "light",
+  chapterLabel,
 }: {
   service: Service;
   tone?: ChapterTone;
+  chapterLabel?: string;
 }) {
   const isDark = tone === "dark" || tone === "slate" || tone === "terminal" || tone === "cyber";
+  const prices = getServicePricing(service.slug);
 
   const getMotifColor = () => {
     switch (tone) {
@@ -57,7 +62,7 @@ function ChapterHeader({
           isDark ? "text-paper/45" : "text-ink-faint"
         }`}
       >
-        {`Service 0${service.order}`}
+        {chapterLabel ?? `Service 0${service.order}`}
       </p>
 
       <p className={`mt-2.5 font-mono text-[0.8125rem] uppercase tracking-[0.28em] font-semibold ${getMotifColor()}`}>
@@ -79,6 +84,21 @@ function ChapterHeader({
       >
         {service.summary}
       </p>
+
+      {prices.length > 0 ? (
+        <div className={`mt-6 space-y-4 border-y py-5 ${isDark ? "border-paper/15" : "border-rule"}`}>
+          {prices.map((price) => (
+            <div key={price.id}>
+              {prices.length > 1 ? <p className={`mb-1 text-xs ${isDark ? "text-paper/65" : "text-ink-muted"}`}>{price.name}</p> : null}
+              <p className={`font-mono text-sm font-medium ${isDark ? "text-paper" : "text-ink"}`}>{price.label} <span className={`text-[0.625rem] ${isDark ? "text-paper/60" : "text-ink-faint"}`}>USD</span></p>
+              <a href={price.href} target="_blank" rel="noopener noreferrer" className={`mt-2 inline-flex min-h-[44px] items-center gap-3 rounded-xs px-4 text-xs font-semibold transition-colors ${isDark ? "bg-paper text-ink hover:bg-paper/85" : "bg-ink text-paper hover:bg-accent"}`}>
+                {price.cta}<span aria-hidden="true">↗</span>
+              </a>
+            </div>
+          ))}
+          <p className={`text-[0.6875rem] leading-relaxed ${isDark ? "text-paper/60" : "text-ink-muted"}`}>Start with a brief on WhatsApp. We agree the scope before work begins.</p>
+        </div>
+      ) : null}
 
       <ul className="mt-6 flex flex-wrap gap-2">
         {service.groups.slice(0, 4).map((g) => (
@@ -115,10 +135,12 @@ function ChapterHeader({
 function Chapter({
   service,
   tone = "light",
+  chapterLabel,
   children,
 }: {
   service: Service;
   tone?: ChapterTone;
+  chapterLabel?: string;
   children: React.ReactNode;
 }) {
   const getSectionClasses = () => {
@@ -143,9 +165,12 @@ function Chapter({
       id={`service-${service.slug}`}
       className={`scroll-mt-16 py-12 sm:py-20 lg:py-24 ${getSectionClasses()}`}
     >
+      <span id={service.slug} className="block scroll-mt-24" aria-hidden="true" />
+      {service.slug === "b2b-lead-generation" ? <span id="service-growth-marketing-b2b" className="block scroll-mt-24" aria-hidden="true" /> : null}
+      {service.slug === "ai-video-production" ? <span id="service-video-ai-film-editing" className="block scroll-mt-24" aria-hidden="true" /> : null}
       <Container width="page">
         <div className="grid gap-8 sm:gap-10 lg:grid-cols-12 lg:gap-14">
-          <ChapterHeader service={service} tone={tone} />
+          <ChapterHeader service={service} tone={tone} chapterLabel={chapterLabel} />
           <div className="min-w-0 lg:col-span-8">{children}</div>
         </div>
       </Container>
@@ -154,7 +179,7 @@ function Chapter({
 }
 
 /* ------------------------------------------------------------------ */
-/* 01 — CAD & TECHNICAL PRODUCTION (Architectural Slate Blueprint)     */
+/* 04 — CAD & TECHNICAL PRODUCTION (Architectural Slate Blueprint)     */
 /* ------------------------------------------------------------------ */
 
 const CAD_STAGES = ["01 · Draft", "02 · QA Check", "03 · Revisions", "04 · Final Handoff"];
@@ -162,6 +187,7 @@ const CAD_STAGES = ["01 · Draft", "02 · QA Check", "03 · Revisions", "04 · F
 export function CadSection({ service }: { service: Service }) {
   return (
     <Chapter service={service} tone="slate">
+      <div className="mb-7"><ServicePreview slug={service.slug} /></div>
       {/* CAD Production Stages Bar in Refined Architectural Grey */}
       <ol className="mb-6 grid grid-cols-2 gap-px border border-zinc-800/80 bg-zinc-800/80 sm:grid-cols-4 rounded-xs overflow-hidden">
         {CAD_STAGES.map((s) => (
@@ -178,30 +204,31 @@ export function CadSection({ service }: { service: Service }) {
 }
 
 /* ------------------------------------------------------------------ */
-/* 02 — B2B LEAD GENERATION (Outbound Acquisition & Pipeline Engine)   */
+/* 05 — MARKETING & B2B LEAD GENERATION                               */
 /* ------------------------------------------------------------------ */
 
 const OUTBOUND_PILLARS = [
   {
     num: "01",
-    title: "Client Acquisition & Outbound",
-    desc: "Targeted outreach, verified direct-dial and email discovery, and bespoke multi-touch campaigns to generate qualified client meetings.",
+    title: "Find the right accounts",
+    desc: "Research your target market and organise relevant companies, decision-makers and buying signals into a usable Excel file.",
   },
   {
     num: "02",
-    title: "Inbound & WhatsApp Ingestion",
-    desc: "Automated WhatsApp and direct brief response flows to capture, qualify, and route high-value commercial enquiries instantly.",
+    title: "Make the first move",
+    desc: "Turn research into focused campaign ideas, useful opening messages and a clear reason for the prospect to respond.",
   },
   {
     num: "03",
-    title: "Pipeline & CRM Synchronization",
-    desc: "Seamless prospect handoff, meeting scheduling, and CRM tracking (HubSpot, Salesforce, Pipedrive) built to empower your sales team.",
+    title: "Build a usable pipeline",
+    desc: "Give your team structured records, source context and a clear next action so valuable research keeps moving toward a conversation.",
   },
 ];
 
 export function B2BLeadGenSection({ service }: { service: Service }) {
   return (
     <Chapter service={service} tone="cyber">
+      <div className="mb-6"><ServicePreview slug={service.slug} /></div>
       <div className="grid gap-3 sm:grid-cols-3">
         {OUTBOUND_PILLARS.map((p) => (
           <div
@@ -209,7 +236,7 @@ export function B2BLeadGenSection({ service }: { service: Service }) {
             className="rounded-lg border border-zinc-800/90 bg-[#0c121e] p-5 shadow-2xs"
           >
             <span className="font-mono text-[0.625rem] font-semibold uppercase tracking-[0.14em] text-zinc-400">
-              {p.num} · Acquisition
+              {p.num} · Commercial focus
             </span>
             <h4 className="mt-2 text-sm font-semibold text-slate-100">{p.title}</h4>
             <p className="mt-2 text-xs leading-relaxed text-slate-400">{p.desc}</p>
@@ -223,27 +250,27 @@ export function B2BLeadGenSection({ service }: { service: Service }) {
             Looking to scale qualified outbound pipeline?
           </p>
           <p className="mt-0.5 text-xs text-slate-400">
-            We partner with your team to design campaigns, build prospect pipelines, and secure new commercial accounts.
+            Start with a focused lead file, then add the campaign support your team needs.
           </p>
         </div>
-        <Link
-          href="/contact?service=b2b-lead-generation"
+        <a
+          href={getServicePricing(service.slug)[0]?.href ?? "/contact?service=b2b-lead-generation"}
           className="inline-flex min-h-[38px] items-center rounded-xs bg-white px-4 text-xs font-semibold text-black transition-colors hover:bg-zinc-200"
         >
-          Discuss a campaign &rarr;
-        </Link>
+          Plan your target market &rarr;
+        </a>
       </div>
     </Chapter>
   );
 }
 
 /* ------------------------------------------------------------------ */
-/* 03 — MARKET INTELLIGENCE & RESEARCH (Interactive Data Dossiers)     */
+/* Supporting research within Marketing & B2B Lead Generation        */
 /* ------------------------------------------------------------------ */
 
 export function MarketIntelligenceSection({ service }: { service: Service }) {
   return (
-    <Chapter service={service} tone="surface">
+    <Chapter service={service} tone="surface" chapterLabel="Inside service 05 · Research">
       {/* Compact Interactive Lead Intelligence Panel */}
       <LeadIntelligencePanel />
 
@@ -267,7 +294,7 @@ export function MarketIntelligenceSection({ service }: { service: Service }) {
 export const GrowthSection = MarketIntelligenceSection;
 
 /* ------------------------------------------------------------------ */
-/* 03 — 3D VISUALISATION & IMAGE PRODUCTION (Titanium Gallery)         */
+/* 01 — 3D VISUALISATION & IMAGE PRODUCTION (Titanium Gallery)         */
 /* ------------------------------------------------------------------ */
 
 export function VisualisationSection({ service }: { service: Service }) {
@@ -320,17 +347,21 @@ export function VisualisationSection({ service }: { service: Service }) {
       </div>
 
       <p className="meta mb-4" aria-live="polite">
-        Displaying {shown.length} high-resolution spatial visualisations (Click to zoom)
+        {shown.length} selected visual studies · select an image to explore
       </p>
 
-      <ImageGrid items={items} columns={4} aspect="4/3" />
+      <ImageGrid items={items} columns={2} aspect="4/3" />
+
+      <p className="mt-4 max-w-xl text-xs leading-relaxed text-ink-muted">
+        Studio concept studies include AI-generated kitchens, interiors and original artwork explorations. Browse the complete gallery for the concept collection and earlier production portfolio.
+      </p>
 
       <Link
         href="/services/visualisation-image-production#gallery"
         className="group mt-6 inline-flex min-h-[44px] items-center gap-2 text-sm font-medium text-ink transition-colors hover:text-accent"
       >
         <span className="underline decoration-rule-strong underline-offset-4">
-          View complete {VISUALS.length}-render portfolio archive
+          View all {VISUALS.length} visual studies &amp; portfolio images
         </span>
         <span aria-hidden="true">&rarr;</span>
       </Link>
@@ -339,7 +370,7 @@ export function VisualisationSection({ service }: { service: Service }) {
 }
 
 /* ------------------------------------------------------------------ */
-/* 04 — VIDEO, AI FILM & EDITING (Obsidian Black)                      */
+/* 02 — VIDEO, AI FILM & EDITING (Obsidian Black)                      */
 /* ------------------------------------------------------------------ */
 
 export function VideoSection({ service }: { service: Service }) {
@@ -370,13 +401,14 @@ export function VideoSection({ service }: { service: Service }) {
 }
 
 /* ------------------------------------------------------------------ */
-/* 05 — WEBSITE DESIGN & DEVELOPMENT (Precision Tech Clean)            */
+/* 03 — WEBSITE DESIGN & DEVELOPMENT (Precision Tech Clean)            */
 /* ------------------------------------------------------------------ */
 
 export function WebsiteSection({ service }: { service: Service }) {
   const sites = allWebsites();
   return (
     <Chapter service={service} tone="light">
+      <div className="mb-6"><ServicePreview slug={service.slug} /></div>
       <div className="grid gap-3 sm:grid-cols-2">
         {sites.map((s) => (
           <div
@@ -423,38 +455,39 @@ export function WebsiteSection({ service }: { service: Service }) {
 }
 
 /* ------------------------------------------------------------------ */
-/* 06 — AUTOMATION & MARKETING SYSTEMS (Refined Cybernetic Architecture) */
+/* 06 — AUTOMATION & WORKFLOW SYSTEMS                                */
 /* ------------------------------------------------------------------ */
 
-const MARKETING_PILLARS = [
+const AUTOMATION_PILLARS = [
   {
     num: "01",
-    title: "Client Acquisition & Outbound",
-    desc: "Targeted outreach, verified cold emailing, and bespoke marketing campaigns to generate qualified client meetings.",
+    title: "Connect your tools",
+    desc: "Bring forms, spreadsheets, inboxes and CRM records into a workflow shaped around the way your team works.",
   },
   {
     num: "02",
-    title: "Inbound & Social Ingestion",
-    desc: "Automated WhatsApp and social DM response flows to capture, qualify, and route high-value briefs instantly.",
+    title: "Keep people in control",
+    desc: "Use explicit rules, review points and useful notifications so the next action is clear and exceptions reach a person.",
   },
   {
     num: "03",
-    title: "Pipeline & CRM Synchronization",
-    desc: "Seamless lead handoff, automated follow-up cadences, and CRM tracking built to empower your sales team.",
+    title: "Make time for useful work",
+    desc: "Reduce repeated copying, missed handoffs and manual follow-up with a system your team can understand and maintain.",
   },
 ];
 
 export function AutomationSection({ service }: { service: Service }) {
   return (
     <Chapter service={service} tone="cyber">
+      <div className="mb-6"><ServicePreview slug={service.slug} /></div>
       <div className="grid gap-3 sm:grid-cols-3">
-        {MARKETING_PILLARS.map((p) => (
+        {AUTOMATION_PILLARS.map((p) => (
           <div
             key={p.num}
             className="rounded-lg border border-zinc-800/90 bg-[#0c121e] p-5 shadow-2xs"
           >
             <span className="font-mono text-[0.625rem] font-semibold uppercase tracking-[0.14em] text-zinc-400">
-              {p.num} · Acquisition
+              {p.num} · Workflow
             </span>
             <h4 className="mt-2 text-sm font-semibold text-slate-100">{p.title}</h4>
             <p className="mt-2 text-xs leading-relaxed text-slate-400">{p.desc}</p>
@@ -465,18 +498,18 @@ export function AutomationSection({ service }: { service: Service }) {
       <div className="mt-6 flex flex-wrap items-center justify-between gap-4 rounded-lg border border-zinc-800/80 bg-[#0f1726] p-4 sm:p-5">
         <div>
           <p className="text-sm font-semibold text-slate-100">
-            Looking to scale outreach and client acquisition?
+            Turn a repeated task into a reliable workflow.
           </p>
           <p className="mt-0.5 text-xs text-slate-400">
-            We partner with your team to design campaigns, build prospect pipelines, and secure new accounts.
+            Start with one handoff, one integration or one follow-up campaign. Build from what works.
           </p>
         </div>
-        <Link
-          href="/contact?service=automation-workflow-systems"
+        <a
+          href={getServicePricing(service.slug)[0]?.href ?? "/contact?service=automation-workflow-systems"}
           className="inline-flex min-h-[38px] items-center rounded-xs bg-white px-4 text-xs font-semibold text-black transition-colors hover:bg-zinc-200"
         >
-          Discuss a campaign &rarr;
-        </Link>
+          Scope your workflow &rarr;
+        </a>
       </div>
     </Chapter>
   );

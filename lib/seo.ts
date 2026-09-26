@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { SITE } from "./site";
+import { SERVICES } from "./services";
 
 type PageMetaInput = {
   title: string;
@@ -111,62 +112,15 @@ export function organizationSchema() {
     hasOfferCatalog: {
       "@type": "OfferCatalog",
       name: "XIYÀTO Commercial Production & Growth Services",
-      itemListElement: [
-        {
-          "@type": "Offer",
-          itemOffered: {
-            "@type": "Service",
-            name: "CAD & Technical Production",
-            url: absoluteUrl("/services/cad-technical-production"),
-            description: "Outsourced CAD drafting for interior and fit-out teams: plans, elevations, RCPs, joinery detailing, and flooring setting-out, issued as editable DWG.",
-          },
+      itemListElement: SERVICES.map((service) => ({
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: service.name,
+          url: absoluteUrl(`/services/${service.slug}`),
+          description: service.summary,
         },
-        {
-          "@type": "Offer",
-          itemOffered: {
-            "@type": "Service",
-            name: "B2B Lead Generation",
-            url: absoluteUrl("/services/b2b-lead-generation"),
-            description: "Targeted outbound B2B lead generation, hand-verified decision-maker discovery, multi-channel outreach, and qualified sales pipeline creation.",
-          },
-        },
-        {
-          "@type": "Offer",
-          itemOffered: {
-            "@type": "Service",
-            name: "Market Intelligence & Commercial Research",
-            url: absoluteUrl("/services/market-intelligence-research"),
-            description: "Commercial market intelligence: competitive landscape mapping, distributor and buyer research, trade route discovery, and territory analysis across the UK, GCC, and India.",
-          },
-        },
-        {
-          "@type": "Offer",
-          itemOffered: {
-            "@type": "Service",
-            name: "3D Visualisation & Architectural Rendering",
-            url: absoluteUrl("/services/visualisation-image-production"),
-            description: "Photorealistic 3D interior, architectural and furniture visualisation produced from approved plans, materials and references.",
-          },
-        },
-        {
-          "@type": "Offer",
-          itemOffered: {
-            "@type": "Service",
-            name: "AI Video Production Services",
-            url: absoluteUrl("/services/ai-video-production"),
-            description: "Commercial AI video production, cinematic showroom walkthroughs, product launch films, and brand campaigns for luxury design and commercial sectors.",
-          },
-        },
-        {
-          "@type": "Offer",
-          itemOffered: {
-            "@type": "Service",
-            name: "Website Design & Development",
-            url: absoluteUrl("/services/website-design-development"),
-            description: "High-performance custom Next.js website design and development for design studios, architecture practices and export manufacturers.",
-          },
-        },
-      ],
+      })),
     },
     logo: absoluteUrl("/brand/emblem-512.png"),
     image: absoluteUrl("/opengraph-image.png"),

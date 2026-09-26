@@ -90,8 +90,8 @@ export const WORK_COPY = {
 } as const;
 
 export const SERVICES_INDEX_COPY = {
-  h1: "Six disciplines, run as one operation.",
-  standfirst: "CAD and technical production, growth and B2B, 3D visualisation, video and film, automation and workflow systems, and website design and development. Each takes defined inputs and returns defined outputs: drawings your team can edit, data your team can work, imagery built for a stated placement, film cut to where it runs, systems your own people can operate and sites deployed on your own domain. Where a project needs several of them, they are scoped together rather than sequenced across separate suppliers.",
+  h1: "Big ideas. Clear starting prices.",
+  standfirst: "3D renders that earn attention. AI films that tell your story. Websites that make the next step easy. Add precise CAD, marketing and B2B lead research, and practical automation to keep the work moving. Commission one deliverable or bring several disciplines together around your next launch.",
 } as const;
 
 export const CAREERS_COPY = {

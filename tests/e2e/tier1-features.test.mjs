@@ -154,7 +154,7 @@ describe("Tier 1 — Feature 3: Mobile Horizontal Service Slideshow (R1)", () =>
   it("T1.3.1: Carousel initializes with 6 services and activeIndex 0", () => {
     expect(model.totalSlides).toBe(6);
     expect(model.activeIndex).toBe(0);
-    expect(model.activeService.slug).toBe("cad-technical-production");
+    expect(model.activeService.slug).toBe("visualisation-image-production");
   });
 
   it("T1.3.2: Counter formats fractional 01 / 06 on initial load", () => {
@@ -165,7 +165,7 @@ describe("Tier 1 — Feature 3: Mobile Horizontal Service Slideshow (R1)", () =>
     model.next();
     expect(model.activeIndex).toBe(1);
     expect(model.counterText).toBe("02 / 06");
-    expect(model.activeService.slug).toBe("b2b-lead-generation");
+    expect(model.activeService.slug).toBe("ai-video-production");
   });
 
   it("T1.3.4: prev() decrements activeIndex and restores counter to 01 / 06", () => {
@@ -187,8 +187,8 @@ describe("Tier 1 — Feature 3: Mobile Horizontal Service Slideshow (R1)", () =>
     const cards = model.renderCards();
     expect(cards).toHaveLength(6);
     expect(cards[0].orderNumber).toBe("01");
-    expect(cards[0].motif).toBe("Deliver");
-    expect(cards[0].anchorHref).toBe("#service-cad-technical-production");
+    expect(cards[0].motif).toBe("Visualise");
+    expect(cards[0].anchorHref).toBe("#service-visualisation-image-production");
     expect(cards[0].isActive).toBe(true);
     expect(cards[1].isActive).toBe(false);
   });
@@ -212,7 +212,7 @@ describe("Tier 1 — Feature 4: Desktop Responsive Capabilities Grid (R1)", () =
     const slugs = cards.map((c) => c.slug);
     expect(slugs).toContain("cad-technical-production");
     expect(slugs).toContain("b2b-lead-generation");
-    expect(slugs).toContain("market-intelligence-research");
+    expect(slugs).toContain("automation-workflow-systems");
     expect(slugs).toContain("visualisation-image-production");
     expect(slugs).toContain("ai-video-production");
     expect(slugs).toContain("website-design-development");

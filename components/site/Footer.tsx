@@ -81,24 +81,12 @@ export function Footer() {
               <li>
                 <FooterLink href="/#capabilities">Portfolio Overview</FooterLink>
               </li>
-              <li>
-                <FooterLink href="/services/cad-technical-production">CAD Drawing Sets</FooterLink>
-              </li>
-              <li>
-                <FooterLink href="/services/b2b-lead-generation">B2B Lead Generation</FooterLink>
-              </li>
-              <li>
-                <FooterLink href="/services/market-intelligence-research">Market Intelligence</FooterLink>
-              </li>
-              <li>
-                <FooterLink href="/services/visualisation-image-production">3D Visualisations</FooterLink>
-              </li>
-              <li>
-                <FooterLink href="/services/ai-video-production">AI Video Production</FooterLink>
-              </li>
-              <li>
-                <FooterLink href="/services/website-design-development">Websites</FooterLink>
-              </li>
+              {SERVICES.map((service) => (
+                <li key={service.slug}>
+                  <FooterLink href={`/#service-${service.slug}`}>{service.shortName}</FooterLink>
+                </li>
+              ))}
+              <li><FooterLink href="/services/market-intelligence-research">Research library</FooterLink></li>
             </ul>
           </div>
 

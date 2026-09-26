@@ -10,9 +10,9 @@ export const SITE = {
   nameAscii: "XIYATO",
   url: "https://xiyato.uk",
   descriptor:
-    "Technical, creative and growth services for architecture firms, design businesses and international brands.",
+    "Visual, creative and growth services for architecture firms, design businesses and international brands.",
   defaultDescription:
-    "CAD and technical production, B2B growth, 3D visualisation, film, automation and websites for design practices, brands and manufacturers. UK and India.",
+    "3D renders, AI video, websites, CAD drafting, marketing and B2B lead generation, and workflow automation for design practices and brands. UK and India.",
   locale: "en_GB",
   language: "en-GB",
   /** Owner-specified. Not derived from the current year. */
@@ -38,14 +38,14 @@ export const SERVICE_WHATSAPP_MESSAGES: Record<string, string> = {
     "Hello XIYÀTO, I would like to discuss an AI video production campaign.",
   "website-design-development":
     "Hello XIYÀTO, I would like to discuss a custom website design and development project.",
+  "automation-workflow-systems":
+    "Hello XIYÀTO, I would like to discuss a custom automation or workflow integration.",
 
   // Legacy route fallbacks
   "growth-marketing-b2b":
     "Hello XIYÀTO, I would like to discuss targeted B2B lead generation.",
   "video-ai-film-editing":
     "Hello XIYÀTO, I would like to discuss an AI video production campaign.",
-  "automation-workflow-systems":
-    "Hello XIYÀTO, I would like to discuss targeted B2B lead generation and outreach systems.",
 };
 
 /** The global "Start a project" action opens WhatsApp with a prefilled note. */
@@ -168,12 +168,13 @@ export const PRIMARY_NAV: NavItem[] = [
     href: "/services",
     children: [
       { label: "Services Overview", href: "/services" },
-      { label: "CAD Drafting & Technical Production", href: "/services/cad-technical-production" },
-      { label: "B2B Lead Generation Services", href: "/services/b2b-lead-generation" },
-      { label: "Market Intelligence & Research", href: "/services/market-intelligence-research" },
-      { label: "3D Rendering & Visualisation", href: "/services/visualisation-image-production" },
-      { label: "AI Video Production Services", href: "/services/ai-video-production" },
+      { label: "3D Renders & Architectural Visualization", href: "/services/visualisation-image-production" },
+      { label: "AI Video Generation & Production", href: "/services/ai-video-production" },
       { label: "Website Design & Development", href: "/services/website-design-development" },
+      { label: "CAD Drafting & Technical Production", href: "/services/cad-technical-production" },
+      { label: "Marketing & B2B Lead Generation", href: "/services/b2b-lead-generation" },
+      { label: "Automation & Workflow Systems", href: "/services/automation-workflow-systems" },
+      { label: "Specialist Market Intelligence & Research", href: "/services/market-intelligence-research" },
     ],
   },
   {

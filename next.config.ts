@@ -67,12 +67,11 @@ const nextConfig: NextConfig = {
       { source: "/services/growth-operations", destination: "/services/b2b-lead-generation", permanent: true },
       { source: "/services/growth-marketing-b2b", destination: "/services/b2b-lead-generation", permanent: true },
       { source: "/services/video-ai-film-editing", destination: "/services/ai-video-production", permanent: true },
-      { source: "/services/automation-workflow-systems", destination: "/services/b2b-lead-generation", permanent: true },
       { source: "/services/visual-content", destination: "/services/visualisation-image-production", permanent: true },
 
       // ---- Legacy work category and project redirects (resolves 404s) ----
       { source: "/work/growth-b2b", destination: "/services/b2b-lead-generation", permanent: true },
-      { source: "/work/automation", destination: "/services/b2b-lead-generation", permanent: true },
+      { source: "/work/automation", destination: "/services/automation-workflow-systems", permanent: true },
       { source: "/work/video", destination: "/services/ai-video-production", permanent: true },
       { source: "/work/visualisation", destination: "/services/visualisation-image-production", permanent: true },
       { source: "/work/websites", destination: "/services/website-design-development", permanent: true },

@@ -532,23 +532,24 @@ export class HomepageAssemblyModel {
     this.sections = [
       { id: "hero", name: "Hero Capabilities", theme: "titanium", role: "banner" },
       { id: "capabilities", name: "Capabilities Showcase", theme: "titanium", role: "region" },
-      { id: "service-cad-technical-production", name: "CAD & Technical Production", theme: "cad", role: "region" },
-      { id: "service-b2b-lead-generation", name: "B2B Lead Generation", theme: "growth", role: "region" },
-      { id: "service-market-intelligence-research", name: "Market Intelligence & Research", theme: "growth", role: "region" },
       { id: "service-visualisation-image-production", name: "3D Visualisation", theme: "visualisation", role: "region" },
       { id: "service-ai-video-production", name: "AI Video Production", theme: "video", role: "region" },
       { id: "service-website-design-development", name: "Website Design", theme: "website", role: "region" },
-      // Legacy aliases for backward compatibility
-      { id: "service-growth-marketing-b2b", name: "Growth, Marketing & B2B", theme: "growth", role: "region" },
-      { id: "service-video-ai-film-editing", name: "Video, AI Film & Editing", theme: "video", role: "region" },
-      { id: "service-automation-workflow-systems", name: "Automation & Marketing Systems", theme: "automation", role: "region" },
+      { id: "service-cad-technical-production", name: "CAD & Technical Production", theme: "cad", role: "region" },
+      { id: "service-b2b-lead-generation", name: "Marketing & B2B Lead Generation", theme: "growth", role: "region" },
+      { id: "service-automation-workflow-systems", name: "Automation & Workflow Systems", theme: "automation", role: "region" },
       { id: "locations", name: "Locations Panel", theme: "titanium", role: "region" },
       { id: "project-cta", name: "Project CTA", theme: "titanium", role: "contentinfo" },
     ];
   }
 
   getSection(id) {
-    return this.sections.find((s) => s.id === id) || null;
+    const legacyAnchors = {
+      "service-growth-marketing-b2b": "service-b2b-lead-generation",
+      "service-market-intelligence-research": "service-b2b-lead-generation",
+      "service-video-ai-film-editing": "service-ai-video-production",
+    };
+    return this.sections.find((s) => s.id === (legacyAnchors[id] || id)) || null;
   }
 
   verifyThemeMapping() {

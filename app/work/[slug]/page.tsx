@@ -24,7 +24,7 @@ import {
   ENGAGEMENT_LABELS,
   type SchemaTable,
 } from "@/lib/case-studies";
-import { SERVICES } from "@/lib/services";
+import { ALL_SERVICES } from "@/lib/services";
 import { pageMetadata, caseStudySchema, breadcrumbSchema } from "@/lib/seo";
 
 export function generateStaticParams() {
@@ -121,7 +121,7 @@ export default async function CaseStudyPage({
   const category = WORK_CATEGORIES.find((c) => c.slug === study.category);
   const client = clientLabel(study);
   const related = relatedCaseStudies(study, 2);
-  const relatedServices = SERVICES.filter((s) => study.services.includes(s.slug));
+  const relatedServices = ALL_SERVICES.filter((s) => study.services.includes(s.slug));
 
   /* Metadata cells — only those with real values. */
   const metaItems = [
