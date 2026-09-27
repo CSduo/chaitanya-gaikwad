@@ -67,7 +67,7 @@ for (const entry of entries) {
 
   // Check 2: Genuine lastModified Date
   const lastMod = new Date(entry.lastModified);
-  if (isNaN(lastMod.getTime())) {
+  if (entry.lastModified !== undefined && isNaN(lastMod.getTime())) {
     console.error(`✖ Invalid lastModified date in sitemap entry: ${entry.url}`);
     hasErrors = true;
   }

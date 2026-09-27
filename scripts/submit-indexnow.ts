@@ -1,5 +1,6 @@
 import sitemap from "../app/sitemap";
 import { SITE } from "../lib/site";
+import { pathToFileURL } from "node:url";
 
 const DEFAULT_KEY = "c746da95e0c54178a9cb57f7229b19d4";
 const MAX_URLS_PER_BATCH = 20;
@@ -67,6 +68,7 @@ export async function submitBatch(
   if (options.endpoint && options.secret) {
     try {
       const res = await fetch(options.endpoint, {
+        signal: AbortSignal.timeout(20_000),
         method: "POST",
         headers: {
           "Content-Type": "application/json; charset=utf-8",
@@ -110,6 +112,7 @@ export async function submitBatch(
 
   try {
     const res = await fetch("https://api.indexnow.org/indexnow", {
+      signal: AbortSignal.timeout(20_000),
       method: "POST",
       headers: {
         "Content-Type": "application/json; charset=utf-8",
@@ -199,7 +202,7 @@ export async function main() {
   }
 }
 
-if (import.meta.url === `file:///${process.argv[1].replace(/\\/g, "/")}`) {
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
   main().catch((err) => {
     console.error("IndexNow crawl automation fatal error:", err);
     process.exit(1);

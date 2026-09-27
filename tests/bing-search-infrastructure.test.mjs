@@ -108,9 +108,10 @@ test('Sitemap generates canonical URLs with genuine editorial timestamps', () =>
 
   for (const entry of entries) {
     assert.ok(entry.url.startsWith('https://xiyato.uk'), `URL must start with https://xiyato.uk: ${entry.url}`);
-    assert.ok(entry.lastModified instanceof Date, `lastModified must be Date: ${entry.url}`);
-    const year = entry.lastModified.getUTCFullYear();
-    assert.equal(year, 2026, `lastModified year must be 2026: ${entry.url}`);
+    if (entry.lastModified !== undefined) {
+      assert.ok(entry.lastModified instanceof Date, `lastModified must be Date: ${entry.url}`);
+      assert.ok(Number.isFinite(entry.lastModified.getTime()), `lastModified must be valid: ${entry.url}`);
+    }
   }
 });
 

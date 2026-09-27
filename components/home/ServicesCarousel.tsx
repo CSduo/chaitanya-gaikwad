@@ -1,11 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Link from "next/link";
 import type { Service } from "@/lib/services";
-import { getServicePricing } from "@/lib/pricing";
-import { getServiceWhatsAppHref } from "@/lib/site";
-import { ServicePreview } from "./ServicePreview";
+import { ServiceCard } from "./ServiceCard";
 import { useReducedMotion } from "./hooks";
 import { CAROUSEL_INTERVAL_MS, groupServices } from "@/lib/service-carousel";
 import styles from "./ServicesCarousel.module.css";
@@ -45,22 +42,7 @@ export function ServicesCarousel({ services }: { services: Service[] }) {
       </div>
     </div>
     <div className={styles.track} aria-live={paused ? "polite" : "off"}>
-      {groups[activePage].map(service => {
-        const prices = getServicePricing(service.slug);
-        const price = prices[0];
-        return <article key={service.slug} className={styles.card} onClickCapture={event => { if ((event.target as HTMLElement).closest("button,a,video")) setPauseOverride(true); }} onPlayCapture={() => setPauseOverride(true)}>
-          <div className={styles.preview}><ServicePreview slug={service.slug} compact fill /></div>
-          <div className={styles.body}>
-            <p className={styles.number}><span>0{service.order}</span> / {service.motif}</p>
-            <h3 className={styles.title}><Link href={`/services/${service.slug}`}>{service.name}</Link></h3>
-            <p className={styles.summary}>{service.summary}</p>
-            <p className={styles.price}>{price?.label ?? "CAD packages · scoped quote"}</p>
-            {prices.slice(1).map(tier => <a key={tier.id} href={tier.href} target="_blank" rel="noopener noreferrer" className="mt-1 text-[10px] text-ink-muted underline underline-offset-2">{tier.name} from ${tier.amount}</a>)}
-            <div className="mt-3" />
-            <a href={price?.href ?? getServiceWhatsAppHref(service.slug)} target="_blank" rel="noopener noreferrer" className={styles.cta}><span>{price?.cta ?? "Get a CAD Quote"}</span><span aria-hidden="true">↗</span></a>
-          </div>
-        </article>;
-      })}
+      {groups[activePage].map(service => <ServiceCard key={service.slug} service={service} onInteract={() => setPauseOverride(true)} />)}
     </div>
     <p className={styles.footnote}>USD starting prices · Scope agreed before work begins.</p>
   </div>;

@@ -4,63 +4,62 @@ import { ALL_SERVICES } from "@/lib/services";
 import { allCaseStudies } from "@/lib/case-studies";
 import { allWorkbooks } from "@/lib/portfolio";
 import { publishedLegalPages } from "@/lib/company";
+import { contentModified } from "@/lib/sitemap-dates";
+import { VISUALS } from "@/lib/visuals";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const url = (p: string) => `${SITE.url}${p}`;
 
-  // Per Google Search Central guidelines: <lastmod> must reflect genuine content
-  // modification dates rather than build timestamps. Pages that have not been
-  // modified retain their genuine publication/update dates.
-  const date20260906 = new Date("2026-09-06T00:00:00.000Z");
-  const date20260926 = new Date("2026-09-26T00:00:00.000Z");
-  const date20260815 = new Date("2026-08-15T00:00:00.000Z");
-  const date20260812 = new Date("2026-08-12T00:00:00.000Z");
-  const date20260811 = new Date("2026-08-11T00:00:00.000Z");
+  const modified = (...paths: string[]) => contentModified([
+    ...paths, "lib/seo.ts", "lib/seo-copy.ts", "lib/site.ts", "app/layout.tsx", "components/site",
+  ]);
+  const serviceDate = modified("app/services", "lib/services.ts", "lib/pricing.ts", "lib/visuals.ts", "lib/new-visuals.ts", "lib/portfolio.ts");
 
   const core: MetadataRoute.Sitemap = [
-    { url: url("/"), lastModified: date20260926 },
-    { url: url("/services"), lastModified: date20260926 },
-    { url: url("/company"), lastModified: date20260812 },
-    { url: url("/company/people"), lastModified: date20260812 },
-    { url: url("/company/locations"), lastModified: date20260812 },
-    { url: url("/careers"), lastModified: date20260812 },
-    { url: url("/contact"), lastModified: date20260906 },
+    { url: url("/"), lastModified: modified("app/page.tsx", "components/home", "lib/home-copy.ts", "lib/services.ts", "lib/pricing.ts", "lib/visuals.ts", "lib/new-visuals.ts", "lib/portfolio.ts") },
+    { url: url("/services"), lastModified: serviceDate },
+    { url: url("/company"), lastModified: modified("app/company/page.tsx", "lib/company.ts") },
+    { url: url("/company/people"), lastModified: modified("app/company/people", "lib/company.ts") },
+    { url: url("/company/locations"), lastModified: modified("app/company/locations", "lib/company.ts") },
+    { url: url("/careers"), lastModified: modified("app/careers", "components/forms", "lib/company.ts") },
+    { url: url("/contact"), lastModified: modified("app/contact", "components/forms", "lib/site.ts") },
   ];
 
   const services: MetadataRoute.Sitemap = ALL_SERVICES.map((s) => ({
     url: url(`/services/${s.slug}`),
-    lastModified: date20260926,
+    lastModified: serviceDate,
+    ...(s.slug === "visualisation-image-production" ? { images: VISUALS.map((visual) => url(visual.src)) } : {}),
   }));
 
   const subServices: MetadataRoute.Sitemap = [
     {
       url: url("/services/cad/interior-fit-out-shop-drawings"),
-      lastModified: date20260906,
+      lastModified: modified("app/services/cad/interior-fit-out-shop-drawings"),
     },
     {
       url: url("/services/growth/middle-east-market-intelligence"),
-      lastModified: date20260906,
+      lastModified: modified("app/services/growth/middle-east-market-intelligence"),
     },
     {
       url: url("/services/visualisation/photorealistic-furniture-rendering"),
-      lastModified: date20260906,
+      lastModified: modified("app/services/visualisation/photorealistic-furniture-rendering", "lib/visuals.ts", "lib/new-visuals.ts"),
     },
   ];
 
   const work: MetadataRoute.Sitemap = allCaseStudies().map((c) => ({
     url: url(`/work/${c.slug}`),
-    lastModified: date20260815,
+    lastModified: modified("app/work/[slug]", "lib/case-studies.ts"),
   }));
 
   const research: MetadataRoute.Sitemap = allWorkbooks().map((w) => ({
     url: url(`/work/research/${w.slug}`),
-    lastModified: date20260906,
+    lastModified: modified("app/work/research", "lib/portfolio.ts"),
   }));
 
   // Unpublished legal routes are excluded — they 404 rather than existing as shells.
   const legal: MetadataRoute.Sitemap = publishedLegalPages().map((p) => ({
     url: url(`/legal/${p.slug}`),
-    lastModified: p.slug === "privacy" ? date20260906 : date20260811,
+    lastModified: modified("app/legal", "lib/company.ts"),
   }));
 
   return [...core, ...services, ...subServices, ...work, ...research, ...legal];

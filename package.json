@@ -5,16 +5,20 @@
   "description": "XIYATO - technical production, growth operations and visual content studio",
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "next build && npm run seo:audit",
     "start": "next start",
     "lint": "next lint",
     "typecheck": "tsc --noEmit",
-    "test": "node tests/e2e/test-runner.mjs && node tests/backend-production.test.mjs && npx tsx scripts/test-file-upload-security.ts && node tests/bing-search-infrastructure.test.mjs && npx tsx tests/career-and-enquiry-flows.test.mjs && npx tsx tests/service-catalog-pricing.test.mjs",
+    "test": "node tests/e2e/test-runner.mjs && node tests/backend-production.test.mjs && npx tsx scripts/test-file-upload-security.ts && node tests/bing-search-infrastructure.test.mjs && npx tsx tests/career-and-enquiry-flows.test.mjs && npx tsx tests/service-catalog-pricing.test.mjs && npm run test:seo",
     "test:e2e": "node tests/e2e/test-runner.mjs",
     "test:backend": "node tests/backend-production.test.mjs && npx tsx scripts/test-file-upload-security.ts",
     "test:career": "npx tsx tests/career-and-enquiry-flows.test.mjs",
     "test:bing": "node tests/bing-search-infrastructure.test.mjs",
-    "submit:indexnow": "tsx scripts/submit-indexnow.ts"
+    "submit:indexnow": "tsx scripts/submit-indexnow.ts",
+    "test:seo": "tsx tests/seo-automation.test.mjs",
+    "seo:audit": "tsx scripts/seo-audit.ts",
+    "seo:audit:live": "tsx scripts/seo-audit.ts --live",
+    "submit:google": "tsx scripts/submit-google-sitemap.ts"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.1127.0",
