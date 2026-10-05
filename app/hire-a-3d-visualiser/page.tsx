@@ -64,7 +64,7 @@ const AUDIENCES = [
   },
   {
     title: "Studios and marketing teams at full stretch",
-    body: "Rendering capacity for a defined project, for regular production work, or at short notice when an internal team is already stretched.",
+    body: "Rendering capacity for a defined project or for regular production work, when an internal team is already stretched.",
   },
 ];
 
