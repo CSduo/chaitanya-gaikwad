@@ -171,13 +171,14 @@ export const PRIMARY_NAV: NavItem[] = [
     children: [
       { label: "Services Overview", href: "/services" },
       { label: "3D Renders & Architectural Visualization", href: "/services/visualisation-image-production" },
-      { label: "Hire a 3D Visualiser", href: HIRE_PATH },
       { label: "AI Video Generation & Production", href: "/services/ai-video-production" },
       { label: "Website Design & Development", href: "/services/website-design-development" },
       { label: "CAD Drafting & Technical Production", href: "/services/cad-technical-production" },
       { label: "Marketing & B2B Lead Generation", href: "/services/b2b-lead-generation" },
       { label: "Automation & Workflow Systems", href: "/services/automation-workflow-systems" },
       { label: "Specialist Market Intelligence & Research", href: "/services/market-intelligence-research" },
+      // After the commissioned six-service order, which the catalogue tests pin.
+      { label: "Hire a 3D Visualiser", href: HIRE_PATH },
     ],
   },
   {
