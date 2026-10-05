@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { SITE } from "./site";
-import { SERVICES } from "./services";
+import { ALL_SERVICES } from "./services";
+import { founder } from "./company";
 
 type PageMetaInput = {
   title: string;
@@ -79,28 +80,97 @@ export function pageMetadata({
 
 /* ------------------------------------------------------------------ */
 /* Structured data — only properties backed by verified facts.         */
+/*                                                                     */
+/* One entity graph: the Organization, WebSite and founder Person each */
+/* have a stable @id, and every other node (Service.provider,          */
+/* CreativeWork.creator, Person.worksFor, WebSite.publisher) points at */
+/* those ids instead of re-declaring an unlinked copy.                 */
+/* No address, telephone-derived LocalBusiness, rating or review is    */
+/* emitted: none is verified in this repository.                       */
 /* ------------------------------------------------------------------ */
 
-export function organizationSchema() {
+export const ORGANIZATION_ID = `${SITE.url}/#organization`;
+export const WEBSITE_ID = `${SITE.url}/#website`;
+/** The founder profile lives on /company/people. */
+export const FOUNDER_ID = `${SITE.url}/company/people#founder`;
+
+/**
+ * External profiles that verifiably belong to XIYÀTO. Only real third-party
+ * profiles belong here, never the site's own URL. Add LinkedIn, Behance,
+ * Contra or similar once the owner confirms the exact profile URLs.
+ */
+export const ORGANIZATION_SAME_AS: string[] = ["https://www.instagram.com/xiyato.uk/"];
+
+/** Founder's own external profiles. Empty until supplied by the owner. */
+export const FOUNDER_SAME_AS: string[] = [];
+
+/** One place for the countries the studio states it serves. */
+const SERVED_COUNTRIES = [
+  { name: "United Kingdom", code: "GB" },
+  { name: "United States", code: "US" },
+  { name: "United Arab Emirates", code: "AE" },
+  { name: "Saudi Arabia", code: "SA" },
+  { name: "Qatar", code: "QA" },
+  { name: "India", code: "IN" },
+] as const;
+
+type CountryCode = (typeof SERVED_COUNTRIES)[number]["code"];
+
+function countries(codes?: readonly CountryCode[]) {
+  return SERVED_COUNTRIES.filter((c) => !codes || codes.includes(c.code)).map((c) => ({
+    "@type": "Country",
+    name: c.name,
+    identifier: c.code,
+  }));
+}
+
+/** Compact reference to the Organization node, safe to embed anywhere. */
+export function organizationRef() {
+  return { "@type": "Organization", "@id": ORGANIZATION_ID, name: SITE.name, url: SITE.url };
+}
+
+/** Stable @id for a service page's Service node. */
+export function serviceId(path: string): string {
+  return `${absoluteUrl(path)}#service`;
+}
+
+function founderNode() {
+  const person = founder();
   return {
-    "@context": "https://schema.org",
+    "@type": "Person",
+    "@id": FOUNDER_ID,
+    name: person?.name ?? "Chaitanya Gaikwad",
+    // Same role string as the /company/people page renders.
+    jobTitle: person?.role ?? "Founder",
+    url: absoluteUrl("/company/people"),
+    ...(FOUNDER_SAME_AS.length ? { sameAs: FOUNDER_SAME_AS } : {}),
+  };
+}
+
+function organizationNode() {
+  return {
     "@type": "Organization",
+    "@id": ORGANIZATION_ID,
     name: SITE.name,
-    legalName: SITE.name,
-    alternateName: [SITE.nameAscii, "Xiyato", "Xiyato Studio", "Xiyato UK", "Xiyato India"],
+    alternateName: [SITE.nameAscii, "Xiyato"],
     url: SITE.url,
+    logo: {
+      "@type": "ImageObject",
+      url: absoluteUrl("/brand/emblem-512.png"),
+      width: 512,
+      height: 512,
+    },
+    image: absoluteUrl("/opengraph-image.png"),
     email: "hello@xiyato.uk",
     description: SITE.defaultDescription,
-    sameAs: [
-      "https://www.instagram.com/xiyato.uk/",
-      "https://xiyato.uk",
-    ],
+    sameAs: ORGANIZATION_SAME_AS,
     contactPoint: [
       {
         "@type": "ContactPoint",
         telephone: "+44 7882 746212",
         email: "hello@xiyato.uk",
-        contactType: "customer service",
+        // Both published numbers are WhatsApp lines for new project enquiries.
+        contactType: "sales",
         areaServed: ["GB", "US", "AE", "SA", "QA"],
         availableLanguage: ["English"],
       },
@@ -108,91 +178,92 @@ export function organizationSchema() {
         "@type": "ContactPoint",
         telephone: "+91 70283 11226",
         email: "hello@xiyato.uk",
-        contactType: "technical support",
-        areaServed: ["IN", "AE", "SA", "Worldwide"],
+        contactType: "sales",
+        areaServed: ["IN", "AE", "SA"],
         availableLanguage: ["English", "Hindi", "Marathi"],
       },
     ],
-    areaServed: [
-      { "@type": "Country", name: "United Kingdom", identifier: "GB" },
-      { "@type": "Country", name: "United States", identifier: "US" },
-      { "@type": "Country", name: "United Arab Emirates", identifier: "AE" },
-      { "@type": "Country", name: "Saudi Arabia", identifier: "SA" },
-      { "@type": "Country", name: "Qatar", identifier: "QA" },
-      { "@type": "Country", name: "India", identifier: "IN" },
-    ],
+    areaServed: countries(),
+    founder: founderNode(),
     hasOfferCatalog: {
       "@type": "OfferCatalog",
-      name: "XIYÀTO Commercial Production & Growth Services",
-      itemListElement: SERVICES.map((service) => ({
+      name: `${SITE.name} services`,
+      itemListElement: ALL_SERVICES.map((service) => ({
         "@type": "Offer",
         itemOffered: {
           "@type": "Service",
+          "@id": serviceId(`/services/${service.slug}`),
           name: service.name,
           url: absoluteUrl(`/services/${service.slug}`),
           description: service.summary,
         },
       })),
     },
-    logo: absoluteUrl("/brand/emblem-512.png"),
-    image: absoluteUrl("/opengraph-image.png"),
-    founder: {
-      "@type": "Person",
-      name: "Chaitanya Gaikwad",
-      jobTitle: "Founder & Creative Production Lead",
-      url: absoluteUrl("/company/people"),
-    },
     knowsAbout: [
-      "CAD drafting and technical production",
-      "Outsourced AutoCAD drafting services",
-      "Interior technical documentation and detailing",
-      "B2B lead generation services",
-      "Market intelligence and commercial research",
       "3D architectural visualisation and rendering",
-      "Photorealistic furniture product rendering",
-      "AI video production services and cinematic video editing",
-      "B2B sales pipeline development and CRM routing",
-      "Website design and Next.js web application development",
+      "Interior and product rendering",
+      "AI video production and editing",
+      "Website design and development",
+      "CAD drafting and interior technical documentation",
+      "B2B lead generation and market research",
+      "Workflow automation",
     ],
   };
 }
 
-/** Site-level identity, emitted once from the root layout. */
-export function webSiteSchema() {
+function webSiteNode() {
   return {
-    "@context": "https://schema.org",
     "@type": "WebSite",
+    "@id": WEBSITE_ID,
     name: SITE.name,
-    alternateName: [SITE.nameAscii, "Xiyato Studio"],
+    alternateName: [SITE.nameAscii, "Xiyato"],
     url: SITE.url,
     inLanguage: SITE.language,
-    publisher: {
-      "@type": "Organization",
-      name: SITE.name,
-      url: SITE.url,
-      logo: absoluteUrl("/brand/emblem-512.png"),
-    },
+    publisher: { "@id": ORGANIZATION_ID },
+  };
+}
+
+/** Organization node with its own @context (used in tests and standalone). */
+export function organizationSchema() {
+  return { "@context": "https://schema.org", ...organizationNode() };
+}
+
+/** WebSite node with its own @context. */
+export function webSiteSchema() {
+  return { "@context": "https://schema.org", ...webSiteNode() };
+}
+
+/** Site-level identity graph, emitted once from the root layout. */
+export function siteGraphSchema() {
+  return {
+    "@context": "https://schema.org",
+    "@graph": [organizationNode(), webSiteNode()],
   };
 }
 
 /**
- * Founder identity. Only name, role and affiliation are asserted — the
- * properties a public page actually evidences.
+ * Founder identity. Only name, role, image and affiliation are asserted — the
+ * properties the public page actually evidences. Shares FOUNDER_ID with the
+ * Organization's founder reference so both resolve to one entity.
  */
 export function personSchema(input: {
   name: string;
   role: string;
   path: string;
   image?: string;
+  sameAs?: string[];
 }) {
+  const sameAs = input.sameAs ?? FOUNDER_SAME_AS;
   return {
     "@context": "https://schema.org",
     "@type": "Person",
+    "@id": FOUNDER_ID,
     name: input.name,
     jobTitle: input.role,
     url: absoluteUrl(input.path),
     ...(input.image ? { image: absoluteUrl(input.image) } : {}),
-    worksFor: { "@type": "Organization", name: SITE.name, url: SITE.url },
+    ...(sameAs.length ? { sameAs } : {}),
+    worksFor: organizationRef(),
   };
 }
 
@@ -201,26 +272,23 @@ export function serviceSchema(input: {
   description: string;
   path: string;
   serviceType?: string;
+  /** Defaults to every country the studio states it serves. */
+  areaServed?: readonly CountryCode[];
 }) {
   return {
     "@context": "https://schema.org",
     "@type": "Service",
+    "@id": serviceId(input.path),
     name: input.name,
     serviceType: input.serviceType ?? input.name,
     description: input.description,
     url: absoluteUrl(input.path),
-    provider: { "@type": "Organization", name: SITE.name, url: SITE.url },
+    provider: organizationRef(),
     audience: {
       "@type": "Audience",
       audienceType: "Architectural practices, interior studios, developers, luxury brands",
     },
-    areaServed: [
-      { "@type": "Country", name: "United Kingdom" },
-      { "@type": "Country", name: "United States" },
-      { "@type": "Country", name: "United Arab Emirates" },
-      { "@type": "Country", name: "Saudi Arabia" },
-      { "@type": "Place", name: "Worldwide" },
-    ],
+    areaServed: countries(input.areaServed),
   };
 }
 
@@ -269,6 +337,6 @@ export function caseStudySchema(input: {
     description: input.description,
     url: absoluteUrl(input.path),
     ...(input.image ? { image: absoluteUrl(input.image) } : {}),
-    creator: { "@type": "Organization", name: SITE.name, url: SITE.url },
+    creator: organizationRef(),
   };
 }

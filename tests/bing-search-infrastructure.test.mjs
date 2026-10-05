@@ -24,7 +24,7 @@ const { default: robots } = await import('../app/robots');
 const { default: sitemap } = await import('../app/sitemap');
 const { POST: indexNowPost } = await import('../app/api/indexnow/route');
 const { NON_CANONICAL_PRODUCTION_HOSTS, default: nextConfig } = await import('../next.config');
-const { organizationSchema, serviceSchema } = await import('../lib/seo');
+const { organizationSchema, serviceSchema, siteGraphSchema, personSchema } = await import('../lib/seo');
 const { chunkUrls, discoverCanonicalUrls, submitBatch } = await import('../scripts/submit-indexnow');
 
 console.log('\n================================================================');
@@ -410,15 +410,21 @@ test('organizationSchema contains canonical email hello@xiyato.uk at root and in
   assert.ok(Array.isArray(schema.contactPoint), 'contactPoint must be array');
   assert.equal(schema.contactPoint.length, 2, 'Must have UK and India contact points');
 
+  // Both published numbers are WhatsApp lines for new project enquiries, so
+  // both are "sales" (the India line was previously mislabelled "technical support").
   const ukContact = schema.contactPoint.find((c) => c.telephone === '+44 7882 746212');
   assert.ok(ukContact, 'Missing UK contact point');
   assert.equal(ukContact.email, 'hello@xiyato.uk');
-  assert.equal(ukContact.contactType, 'customer service');
+  assert.equal(ukContact.contactType, 'sales');
 
   const inContact = schema.contactPoint.find((c) => c.telephone === '+91 70283 11226');
   assert.ok(inContact, 'Missing India contact point');
   assert.equal(inContact.email, 'hello@xiyato.uk');
-  assert.equal(inContact.contactType, 'technical support');
+  assert.equal(inContact.contactType, 'sales');
+
+  for (const point of schema.contactPoint) {
+    for (const code of point.areaServed) assert.match(code, /^[A-Z]{2}$/, `areaServed must be ISO 3166 codes, got ${code}`);
+  }
 });
 
 test('serviceSchema contains structured Audience specification for GEO retrievability', () => {
@@ -437,16 +443,44 @@ test('serviceSchema contains structured Audience specification for GEO retrievab
   );
 });
 
+test('Organization, WebSite, Person and Service form one linked entity graph', () => {
+  const graph = siteGraphSchema();
+  assert.equal(graph['@context'], 'https://schema.org');
+  const org = graph['@graph'].find((n) => n['@type'] === 'Organization');
+  const site = graph['@graph'].find((n) => n['@type'] === 'WebSite');
+  assert.equal(org['@id'], 'https://xiyato.uk/#organization');
+  assert.equal(org.name, 'XIYÀTO');
+  assert.deepEqual(org.alternateName, ['XIYATO', 'Xiyato']);
+  assert.equal(org.legalName, undefined, 'No legal entity name is verified');
+  assert.equal(site['@id'], 'https://xiyato.uk/#website');
+  assert.deepEqual(site.publisher, { '@id': 'https://xiyato.uk/#organization' });
+
+  const person = personSchema({ name: 'Chaitanya Gaikwad', role: 'Founder', path: '/company/people' });
+  assert.equal(person['@id'], org.founder['@id'], 'Founder reference and Person page must share one @id');
+  assert.equal(person.jobTitle, org.founder.jobTitle, 'Founder jobTitle must match the people page');
+  assert.equal(person.worksFor['@id'], org['@id']);
+
+  const service = serviceSchema({ name: 'X', description: 'Y', path: '/services/visualisation-image-production' });
+  assert.equal(service.provider['@id'], org['@id']);
+  assert.equal(service['@id'], 'https://xiyato.uk/services/visualisation-image-production#service');
+  const offered = org.hasOfferCatalog.itemListElement.map((o) => o.itemOffered['@id']);
+  assert.ok(offered.includes(service['@id']), 'Offer catalog must reference the service page node');
+  assert.ok(service.areaServed.every((a) => a['@type'] === 'Country'), 'areaServed must only list countries');
+});
+
 test('Schema.org entities strictly adhere to zero-fabrication standards', () => {
   const schema = organizationSchema();
   // No fake aggregate ratings
   assert.equal(schema.aggregateRating, undefined, 'Must not include fabricated aggregateRating');
   // No fake reviews
   assert.equal(schema.review, undefined, 'Must not include fabricated reviews');
+  // No unverified address
+  assert.equal(schema.address, undefined, 'Must not include an unverified address');
   // Verified founder only
   assert.equal(schema.founder?.name, 'Chaitanya Gaikwad');
-  // Only legitimate Instagram profile in sameAs
+  // sameAs lists real external profiles only, never the site itself
   assert.ok(schema.sameAs?.includes('https://www.instagram.com/xiyato.uk/'));
+  assert.ok(schema.sameAs.every((u) => !u.startsWith('https://xiyato.uk')), 'sameAs must not reference the site itself');
 });
 
 /* ------------------------------------------------------------------ */

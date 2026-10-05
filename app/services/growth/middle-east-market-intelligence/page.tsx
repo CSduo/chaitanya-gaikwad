@@ -101,6 +101,7 @@ export default function MiddleEastMarketIntelligencePage() {
           description:
             "Human-researched, telephone-verified B2B intelligence on architecture, fit-out, and commercial procurement decision-makers across UAE, Saudi Arabia, and Qatar.",
           path: "/services/growth/middle-east-market-intelligence",
+          areaServed: ["AE", "SA", "QA"],
         })}
       />
       <JsonLd

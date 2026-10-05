@@ -5,7 +5,7 @@ import { MobileActionBar } from "@/components/site/MobileActionBar";
 import { Footer } from "@/components/site/Footer";
 import { LegacyHashRedirect } from "@/components/site/LegacyHashRedirect";
 import { JsonLd } from "@/components/ui/primitives";
-import { organizationSchema, webSiteSchema } from "@/lib/seo";
+import { siteGraphSchema } from "@/lib/seo";
 import { SITE } from "@/lib/site";
 import { TrackingScripts } from "@/components/analytics/TrackingScripts";
 import "./globals.css";
@@ -120,8 +120,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       className={`${plexSans.variable} ${plexMono.variable} ${newsreader.variable}`}
     >
       <body className="flex min-h-screen flex-col">
-        <JsonLd data={organizationSchema()} />
-        <JsonLd data={webSiteSchema()} />
+        <JsonLd data={siteGraphSchema()} />
         <LegacyHashRedirect />
         <TrackingScripts />
 
