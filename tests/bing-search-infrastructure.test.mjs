@@ -23,7 +23,7 @@ if (!process.env.XIYATO_TSX_RUNNER && !process.execArgv.some((a) => a.includes('
 const { default: robots } = await import('../app/robots');
 const { default: sitemap } = await import('../app/sitemap');
 const { POST: indexNowPost } = await import('../app/api/indexnow/route');
-const { GET: keyRouteGet } = await import('../app/[key]/route');
+const { NON_CANONICAL_PRODUCTION_HOSTS, default: nextConfig } = await import('../next.config');
 const { organizationSchema, serviceSchema } = await import('../lib/seo');
 const { chunkUrls, discoverCanonicalUrls, submitBatch } = await import('../scripts/submit-indexnow');
 
@@ -167,59 +167,48 @@ test('app/layout.tsx contains msvalidate.01 and bingBot directives', () => {
 });
 
 /* ------------------------------------------------------------------ */
-/* 4. Dynamic Key Route Verification (Requirement 2)                  */
+/* 4. IndexNow key file & host canonicalisation                       */
 /* ------------------------------------------------------------------ */
-console.log('\n--- 4. Dynamic IndexNow Key Verification Route ---');
+// The former app/[key]/route.ts caught every unknown single-segment path and
+// answered with an unbranded plain-text 404. The key is served by the static
+// public/<key>.txt file instead, which is exactly the keyLocation that the CI
+// submitter and /api/indexnow announce.
+console.log('\n--- 4. IndexNow Key File & Host Canonicalisation ---');
 
-await testAsync('GET /[key] returns 200 text/plain with key for .txt request', async () => {
-  const req = new Request('https://xiyato.uk/c746da95e0c54178a9cb57f7229b19d4.txt');
-  const res = await keyRouteGet(req, {
-    params: Promise.resolve({ key: 'c746da95e0c54178a9cb57f7229b19d4.txt' }),
-  });
-  assert.equal(res.status, 200);
-  assert.ok(res.headers.get('content-type')?.includes('text/plain'));
-  const body = await res.text();
-  assert.equal(body, 'c746da95e0c54178a9cb57f7229b19d4');
+test('No root catch-all route intercepts unknown single-segment paths', () => {
+  assert.equal(fs.existsSync(path.join(REPO_ROOT, 'app', '[key]')), false, 'app/[key] must not exist');
 });
 
-await testAsync('GET /[key] returns 200 text/plain with key without extension', async () => {
-  const req = new Request('https://xiyato.uk/c746da95e0c54178a9cb57f7229b19d4');
-  const res = await keyRouteGet(req, {
-    params: Promise.resolve({ key: 'c746da95e0c54178a9cb57f7229b19d4' }),
-  });
-  assert.equal(res.status, 200);
-  const body = await res.text();
-  assert.equal(body, 'c746da95e0c54178a9cb57f7229b19d4');
+test('IndexNow keyLocation used by scripts resolves to a static public file', () => {
+  const script = fs.readFileSync(path.join(REPO_ROOT, 'scripts', 'submit-indexnow.ts'), 'utf-8');
+  const key = script.match(/DEFAULT_KEY = "([0-9a-f]{32})"/)?.[1];
+  assert.ok(key, 'submit-indexnow.ts must declare DEFAULT_KEY');
+  const keyFile = path.join(REPO_ROOT, 'public', `${key}.txt`);
+  assert.ok(fs.existsSync(keyFile), `public/${key}.txt must exist`);
+  assert.equal(fs.readFileSync(keyFile, 'utf-8').trim(), key);
 });
 
-await testAsync('GET /[key] honors INDEXNOW_KEY environment override', async () => {
-  const originalKey = process.env.INDEXNOW_KEY;
-  const customKey = 'a1b2c3d4e5f60718293a4b5c6d7e8f90';
-  process.env.INDEXNOW_KEY = customKey;
-
-  try {
-    const req = new Request(`https://xiyato.uk/${customKey}.txt`);
-    const res = await keyRouteGet(req, {
-      params: Promise.resolve({ key: `${customKey}.txt` }),
-    });
-    assert.equal(res.status, 200);
-    const body = await res.text();
-    assert.equal(body, customKey);
-  } finally {
-    if (originalKey !== undefined) {
-      process.env.INDEXNOW_KEY = originalKey;
-    } else {
-      delete process.env.INDEXNOW_KEY;
-    }
+await testAsync('Production aliases 308 to the apex domain (pages only, never /api or previews)', async () => {
+  const rules = await nextConfig.redirects();
+  for (const host of NON_CANONICAL_PRODUCTION_HOSTS) {
+    const rule = rules.find((r) => r.has?.some((h) => h.type === 'host' && new RegExp(`^${h.value}$`).test(host)));
+    assert.ok(rule, `Missing host redirect for ${host}`);
+    assert.equal(rule.permanent, true);
+    assert.equal(rule.destination, 'https://xiyato.uk/:path');
+    assert.ok(rule.source.includes('(?!api'), `${host} redirect must exclude /api`);
+  }
+  const hostRules = rules.filter((r) => r.has?.some((h) => h.type === 'host'));
+  for (const preview of ['chaitanya-gaikwad-git-main-xiyatosaanvi-2995s-projects.vercel.app', 'chaitanya-gaikwad-abc123def-xiyatosaanvi-2995s-projects.vercel.app', 'xiyato.uk']) {
+    assert.ok(!hostRules.some((r) => r.has.some((h) => new RegExp(`^${h.value}$`).test(preview))), `${preview} must not be redirected`);
   }
 });
 
-await testAsync('GET /[key] returns 404 for unrecognized key', async () => {
-  const req = new Request('https://xiyato.uk/unknown-key-12345.txt');
-  const res = await keyRouteGet(req, {
-    params: Promise.resolve({ key: 'unknown-key-12345.txt' }),
-  });
-  assert.equal(res.status, 404);
+await testAsync('Retired research workbook URL redirects instead of returning 404', async () => {
+  const rules = await nextConfig.redirects();
+  const rule = rules.find((r) => r.source === '/work/research/saudi-riyadh-jeddah-55-lead-intelligence');
+  assert.ok(rule, 'Missing redirect for the retired Saudi workbook');
+  assert.equal(rule.permanent, true);
+  assert.equal(rule.destination, '/services/growth/middle-east-market-intelligence');
 });
 
 /* ------------------------------------------------------------------ */

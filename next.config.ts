@@ -14,6 +14,28 @@ const securityHeaders = [
   },
 ];
 
+/**
+ * Production hosts that serve this deployment but must never compete with the
+ * canonical domain. Only stable production aliases belong here: preview and
+ * branch deployments (hosts containing "-git-" or a deployment hash) are left
+ * alone so reviewers can still open them.
+ *
+ * - www.xiyato.uk: custom-domain alias.
+ * - chaitanya-gaikwad.vercel.app: the Vercel project's public production alias
+ *   (served full 200 duplicates of every page before this rule).
+ * - chaitanya-gaikwad-xiyatosaanvi-2995s-projects.vercel.app: the team-scoped
+ *   production alias (currently behind Vercel authentication; redirected for
+ *   the day that protection is lifted).
+ */
+export const NON_CANONICAL_PRODUCTION_HOSTS = [
+  "www.xiyato.uk",
+  "chaitanya-gaikwad.vercel.app",
+  "chaitanya-gaikwad-xiyatosaanvi-2995s-projects.vercel.app",
+] as const;
+
+/** `has.value` is an anchored regular expression, so dots are escaped. */
+const hostPattern = (host: string) => host.replaceAll(".", "\\.");
+
 const nextConfig: NextConfig = {
   reactStrictMode: true,
 
@@ -33,18 +55,26 @@ const nextConfig: NextConfig = {
           { key: "Cache-Control", value: "public, max-age=31536000, immutable" },
         ],
       },
+      {
+        // Research data previews and redacted workbook downloads are supporting
+        // files for the research pages, not documents to rank on their own.
+        source: "/media/:folder(data|downloads)/:path*",
+        headers: [{ key: "X-Robots-Tag", value: "noindex" }],
+      },
     ];
   },
 
   async redirects() {
     return [
-      // ---- Host canonicalisation (www -> apex) ----
-      {
-        source: "/:path*",
-        has: [{ type: "host", value: "www.xiyato.uk" }],
-        destination: "https://xiyato.uk/:path*",
+      // ---- Host canonicalisation (www and production *.vercel.app -> apex) ----
+      // /api/* is excluded so platform callers that use a deployment alias
+      // (for example the scheduled cleanup cron) are never answered with a 308.
+      ...NON_CANONICAL_PRODUCTION_HOSTS.map((host) => ({
+        source: "/:path((?!api(?:/|$)).*)",
+        has: [{ type: "host" as const, value: hostPattern(host) }],
+        destination: "https://xiyato.uk/:path",
         permanent: true,
-      },
+      })),
 
       // ---- Work page redirection to Homepage Capabilities / Portfolio ----
       { source: "/work", destination: "/#capabilities", permanent: true },
@@ -79,6 +109,9 @@ const nextConfig: NextConfig = {
       { source: "/work/saudi-market-entry-lead-intelligence", destination: "/services/market-intelligence-research", permanent: true },
       { source: "/work/hotel-linen-export-market-programme", destination: "/services/b2b-lead-generation", permanent: true },
       { source: "/work/automotive-showroom-target-mapping", destination: "/work/research/automotive-showroom-lead-intelligence", permanent: true },
+
+      // ---- Retired research workbook (removed Aug 2026; returned 404 with no redirect) ----
+      { source: "/work/research/saudi-riyadh-jeddah-55-lead-intelligence", destination: "/services/growth/middle-east-market-intelligence", permanent: true },
     ];
   },
 };
