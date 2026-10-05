@@ -18,6 +18,9 @@ import { conceptVisuals, renderVisuals, featuredRenders } from "../lib/visuals.t
 import { PRIMARY_NAV } from "../lib/site.ts";
 import { CONTENT_SOURCES } from "../scripts/generate-content-dates.mjs";
 import { collectionPageSchema } from "../lib/seo.ts";
+import { ROUTE_SEO } from "../lib/seo-copy.ts";
+import { HOME_COPY } from "../lib/home-copy.ts";
+import { getCaseStudy } from "../lib/case-studies.ts";
 
 // Default exports of CommonJS-compiled TypeScript arrive wrapped when imported from .mjs.
 const unwrap = (mod) => (typeof mod.default === "object" && mod.default?.default !== undefined ? mod.default.default : mod.default);
@@ -121,4 +124,18 @@ test("AI concept studies are labelled in alt text and follow the render portfoli
   const concepts = source.indexOf("AI-assisted concept studies");
   assert.ok(renders > 0 && concepts > 0, "both gallery sections must be labelled");
   assert.ok(renders < concepts, "production renders must lead the gallery");
+});
+
+test("the homepage leads with 3D visualisation and film and links the 3D service, case study and furniture film", () => {
+  assert.match(ROUTE_SEO.home.metaTitle, /^3D Visualisation & Film/);
+  assert.match(ROUTE_SEO.home.metaDescription, /3D visualisation and film studio/);
+  assert.match(HOME_COPY.h1, /^3D visualisation and film/);
+  const page = readFileSync(new URL("../app/page.tsx", import.meta.url), "utf8");
+  for (const slug of ["interior-visualisation-studies", "sultanah-moon-chair-cinematic-campaign"]) {
+    assert.ok(getCaseStudy(slug), `${slug} no longer exists`);
+    assert.ok(page.includes(`getCaseStudy("${slug}")`), `homepage no longer links ${slug}`);
+  }
+  // Visualisation and film come before the supporting-capabilities carousel.
+  assert.ok(page.indexOf("<VisualisationSection") < page.indexOf("<VideoSection"));
+  assert.ok(page.indexOf("<VideoSection") < page.indexOf("<ServicesCarousel"));
 });

@@ -19,6 +19,9 @@ import { ROUTE_SEO } from "@/lib/seo-copy";
 import { CreativeHero } from "@/components/home/CreativeHero";
 import { StartingPrices } from "@/components/home/StartingPrices";
 import { SectionDivider } from "@/components/brand/Divider";
+import { HOME_COPY } from "@/lib/home-copy";
+import { getCaseStudy } from "@/lib/case-studies";
+import { specialismsForService } from "@/lib/specialisms";
 
 export const metadata: Metadata = pageMetadata({
   title: ROUTE_SEO.home.metaTitle,
@@ -53,22 +56,36 @@ export default function HomePage() {
   const web = getService("website-design-development")!;
   const automation = getService("automation-workflow-systems")!;
 
+  // Descriptive links from the visualisation block to its service page, the
+  // visualisation case study, the furniture campaign film and each 3D specialism.
+  const interiorStudy = getCaseStudy("interior-visualisation-studies");
+  const furnitureCampaign = getCaseStudy("sultanah-moon-chair-cinematic-campaign");
+  const visualisationLinks = [
+    { href: `/services/${visualisation.slug}`, label: "3D rendering and visualisation services" },
+    ...(interiorStudy ? [{ href: `/work/${interiorStudy.slug}`, label: "Interior visualisation case study" }] : []),
+    ...(furnitureCampaign ? [{ href: `/work/${furnitureCampaign.slug}`, label: "Moon Chair furniture campaign film" }] : []),
+    ...specialismsForService(visualisation.slug).map((s) => ({ href: s.path, label: s.name })),
+  ];
+
   return (
     <>
       <CreativeHero />
 
-      <Container width="page" className="scroll-mt-16 py-10 sm:py-14" id="capabilities">
+      {/* Core discipline first: 3D visualisation, then film. */}
+      <VisualisationSection service={visualisation} links={visualisationLinks} />
+      <SectionDivider index={2} label="Film" className="py-1" />
+      <VideoSection service={video} />
+
+      {/* Supporting capabilities: the full offering, after the core work. */}
+      <Container width="page" className="scroll-mt-16 border-t border-rule py-10 sm:py-14" id="capabilities">
         <div className="flex flex-wrap items-end justify-between gap-4">
-          <div><p className="label">The studio offering</p><h2 className="display mt-2 text-3xl sm:text-4xl">Six services.</h2></div>
-          <p className="max-w-sm text-sm leading-relaxed text-ink-muted">Commission one service or bring them together. Explore the work below.</p>
+          <div><p className="label">The studio offering</p><h2 className="display mt-2 text-3xl sm:text-4xl">{HOME_COPY.supportingTitle}</h2></div>
+          <p className="max-w-sm text-sm leading-relaxed text-ink-muted">{HOME_COPY.supportingIntro}</p>
         </div>
 
         <ServicesCarousel services={SERVICES} />
       </Container>
 
-      <VisualisationSection service={visualisation} />
-      <SectionDivider index={2} label="Film" className="py-1" />
-      <VideoSection service={video} />
       <SectionDivider index={3} label="Build" className="py-1" />
       <WebsiteSection service={web} />
       <SectionDivider index={4} label="Deliver" className="py-1" />

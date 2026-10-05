@@ -85,8 +85,9 @@ export const SERVICE_SEO: Record<string, RouteSeo> = {
 
 export const ROUTE_SEO = {
   home: {
-    metaTitle: "XIYÀTO — 3D Renders, AI Video, Websites & Growth",
-    metaDescription: "XIYÀTO creates 3D renders, AI films, websites and CAD drawings, with B2B lead research, marketing and workflow automation for studios, brands and businesses.",
+    // Leads with the core discipline; supporting services stay in the description's tail.
+    metaTitle: "3D Visualisation & Film for Interiors and Products | XIYÀTO",
+    metaDescription: "Founder-led 3D visualisation and film studio for interior designers, architects, developers and furniture brands, with CAD, web and research support.",
   },
   work: {
     metaTitle: "3D Visualisation, Film & CAD Portfolio",

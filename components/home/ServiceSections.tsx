@@ -6,7 +6,7 @@ import Image from "next/image";
 import { Container } from "@/components/ui/primitives";
 import { ImageGrid, VideoGallery, type LightboxItem } from "@/components/media/viewers";
 import { allVideos, allWebsites } from "@/lib/portfolio";
-import { VISUALS, featuredVisuals, activeVisualGroups, type VisualGroup } from "@/lib/visuals";
+import { VISUALS, featuredRenders, activeVisualGroups, isConceptVisual, type VisualGroup } from "@/lib/visuals";
 import type { Service } from "@/lib/services";
 import { getServicePricing } from "@/lib/pricing";
 import { CadDraftingRail } from "./CadDraftingRail";
@@ -184,11 +184,23 @@ export const GrowthSection = MarketIntelligenceSection;
 /* 01 — 3D VISUALISATION & IMAGE PRODUCTION (Titanium Gallery)         */
 /* ------------------------------------------------------------------ */
 
-export function VisualisationSection({ service }: { service: Service }) {
+export function VisualisationSection({
+  service,
+  links = [],
+}: {
+  service: Service;
+  /** Descriptive links to the service page, case studies and specialisms. */
+  links?: { href: string; label: string }[];
+}) {
   const groups = activeVisualGroups();
   const [group, setGroup] = useState<VisualGroup | null>(null);
-  const pool = group ? VISUALS.filter((v) => v.group === group) : VISUALS;
-  const shown = group ? pool.slice(0, 4) : featuredVisuals(4);
+  // "Featured" shows production renders; a group filter shows that whole group,
+  // production renders before AI concept studies.
+  const pool = group
+    ? VISUALS.filter((v) => v.group === group).sort((a, b) => Number(isConceptVisual(a)) - Number(isConceptVisual(b)))
+    : VISUALS;
+  const shown = group ? pool.slice(0, 4) : featuredRenders(4);
+  const showsConcepts = shown.some(isConceptVisual);
 
   const items: LightboxItem[] = shown.map((v) => ({
     src: v.src,
@@ -237,7 +249,9 @@ export function VisualisationSection({ service }: { service: Service }) {
       <ImageGrid items={items} columns={2} aspect="4/3" />
 
       <p className="mt-2 text-[0.6875rem] text-ink-muted">
-        AI-generated concept studies and production portfolio.
+        {showsConcepts
+          ? "Production renders and AI-generated concept studies, labelled in each image description."
+          : "Production renders from the studio archive."}
       </p>
 
       <Link
@@ -245,10 +259,26 @@ export function VisualisationSection({ service }: { service: Service }) {
         className="group mt-1 inline-flex min-h-[44px] items-center gap-2 text-xs font-medium text-ink transition-colors hover:text-accent"
       >
         <span className="underline decoration-rule-strong underline-offset-4">
-          View all {VISUALS.length} images
+          View the full 3D gallery
         </span>
         <span aria-hidden="true">&rarr;</span>
       </Link>
+
+      {links.length ? (
+        <ul className="mt-3 grid gap-x-6 border-t border-rule pt-3 sm:grid-cols-2">
+          {links.map((link) => (
+            <li key={link.href}>
+              <Link
+                href={link.href}
+                className="group inline-flex min-h-[44px] items-center gap-2 text-sm font-medium text-ink transition-colors hover:text-accent"
+              >
+                <span className="underline decoration-rule-strong underline-offset-4">{link.label}</span>
+                <span aria-hidden="true">&rarr;</span>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      ) : null}
     </Chapter>
   );
 }

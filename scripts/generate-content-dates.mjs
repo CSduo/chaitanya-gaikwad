@@ -44,6 +44,8 @@ export const CONTENT_SOURCES = {
     "lib/new-visuals.ts",
     "lib/portfolio.ts",
     "lib/service-carousel.ts",
+    "lib/case-studies.ts",
+    "lib/specialisms.ts",
     "lib/seo-copy.ts",
   ],
   "/services": [
