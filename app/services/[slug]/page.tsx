@@ -20,6 +20,8 @@ import { pageMetadata, serviceSchema, breadcrumbSchema } from "@/lib/seo";
 import { SERVICE_SEO } from "@/lib/seo-copy";
 import { getServiceWhatsAppHref, WHATSAPP } from "@/lib/site";
 import { specialismsForService } from "@/lib/specialisms";
+import { caseStudiesForService, WORK_HUB_PATH } from "@/lib/case-studies";
+import { RelatedWork } from "@/components/work/cards";
 import { SpecialismLinks } from "@/components/services/SpecialismLinks";
 
 
@@ -73,6 +75,7 @@ export default async function ServicePage({
   const prices = getServicePricing(service.slug);
   const primaryPrice = prices[0];
   const specialisms = specialismsForService(service.slug);
+  const caseStudies = caseStudiesForService(service.slug);
 
   return (
     <>
@@ -235,6 +238,23 @@ export default async function ServicePage({
           </div>
         </Container>
       </Section>
+
+      {/* Case studies that list this service (lib/case-studies.ts) */}
+      {caseStudies.length ? (
+        <Section id="case-studies" tone="surface" bordered>
+          <Container width="page">
+            <SectionHeading
+              eyebrow="Case studies"
+              title={caseStudies.length > 1 ? "Projects in detail." : "A project in detail."}
+              intro="What was supplied, what was produced and what was delivered."
+              action={{ label: "See all work", href: WORK_HUB_PATH }}
+            />
+            <div className="mt-10">
+              <RelatedWork studies={caseStudies} />
+            </div>
+          </Container>
+        </Section>
+      ) : null}
 
       {/* 03–07 — Capability groups (the variable band) */}
       <Section tone={isCad ? "surface" : "paper"} bordered>

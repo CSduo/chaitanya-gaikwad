@@ -8,12 +8,13 @@
  */
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import { readdirSync, statSync, existsSync } from "node:fs";
+import { readdirSync, statSync, existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { redirectSourcePattern } from "../scripts/seo-audit.ts";
 import { SPECIALISMS, specialismsForService, specialismBreadcrumbTrail, specialismsByParent } from "../lib/specialisms.ts";
 import { ALL_SERVICES } from "../lib/services.ts";
-import { allCaseStudies, hubCaseStudies, caseStudyBreadcrumbTrail, WORK_HUB_PATH } from "../lib/case-studies.ts";
+import { allCaseStudies, hubCaseStudies, caseStudyBreadcrumbTrail, caseStudiesForService, WORK_HUB_PATH } from "../lib/case-studies.ts";
+import { conceptVisuals, renderVisuals, featuredRenders } from "../lib/visuals.ts";
 import { PRIMARY_NAV } from "../lib/site.ts";
 import { CONTENT_SOURCES } from "../scripts/generate-content-dates.mjs";
 import { collectionPageSchema } from "../lib/seo.ts";
@@ -101,4 +102,23 @@ test("the hub lists every case study, visualisation first, and its ItemList matc
     assert.ok(study.shortName && study.shortName.length <= 40, `${study.slug}: needs a short descriptive label`);
     assert.equal(caseStudyBreadcrumbTrail(study)[1].path, "/work");
   }
+});
+
+test("the 3D service page links its case study and submits only production renders to image search", () => {
+  assert.ok(caseStudiesForService("visualisation-image-production").some((s) => s.slug === "interior-visualisation-studies"));
+  const entry = sitemap().find((e) => e.url === "https://xiyato.uk/services/visualisation-image-production");
+  const concepts = new Set(conceptVisuals().map((v) => `https://xiyato.uk${v.src}`));
+  assert.ok(concepts.size > 0);
+  assert.equal(entry.images.length, renderVisuals().length);
+  assert.deepEqual(entry.images.filter((src) => concepts.has(src)), []);
+  for (const v of featuredRenders(8)) assert.ok(!concepts.has(`https://xiyato.uk${v.src}`), `${v.src} is a concept, not a render`);
+});
+
+test("AI concept studies are labelled in alt text and follow the render portfolio in their own section", () => {
+  for (const v of conceptVisuals()) assert.match(v.alt, /AI-generated concept study/, v.src);
+  const source = readFileSync(new URL("../components/home/ServiceProof.tsx", import.meta.url), "utf8");
+  const renders = source.indexOf("3D render portfolio");
+  const concepts = source.indexOf("AI-assisted concept studies");
+  assert.ok(renders > 0 && concepts > 0, "both gallery sections must be labelled");
+  assert.ok(renders < concepts, "production renders must lead the gallery");
 });

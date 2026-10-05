@@ -4,7 +4,7 @@ import { ALL_SERVICES } from "@/lib/services";
 import { SPECIALISMS } from "@/lib/specialisms";
 import { allCaseStudies } from "@/lib/case-studies";
 import { publishedLegalPages } from "@/lib/company";
-import { VISUALS } from "@/lib/visuals";
+import { renderVisuals } from "@/lib/visuals";
 import contentDates from "@/data/content-dates.json";
 
 type ContentGroup = keyof typeof contentDates.groups;
@@ -39,7 +39,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const services: MetadataRoute.Sitemap = ALL_SERVICES.map((s) => ({
     url: url(`/services/${s.slug}`),
     lastModified: lastModified("/services/[slug]"),
-    ...(s.slug === "visualisation-image-production" ? { images: VISUALS.map((visual) => url(visual.src)) } : {}),
+    // Production renders only: AI-generated concept studies are shown on the page,
+    // labelled, but are not submitted to image search as the studio's 3D work.
+    ...(s.slug === "visualisation-image-production" ? { images: renderVisuals().map((visual) => url(visual.src)) } : {}),
   }));
 
   // Each specialism page is its own content group, keyed by its path.

@@ -5,7 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { ImageGrid, VideoGallery, type LightboxItem } from "@/components/media/viewers";
 import { CAD_DRAWINGS, CAD_PROJECTS, WORKBOOKS, allVideos, allWebsites } from "@/lib/portfolio";
-import { VISUALS, activeVisualGroups, type VisualGroup } from "@/lib/visuals";
+import { VISUALS, activeVisualGroups, isConceptVisual, type VisualGroup } from "@/lib/visuals";
 import type { ServiceSlug } from "@/lib/services";
 import { CadInspectionModal } from "@/components/work/CadInspectionModal";
 
@@ -283,8 +283,9 @@ function VisualisationProof() {
     height: v.height,
     title: v.title,
   }));
-  const conceptItems = items.filter((_, index) => pool[index].collection === "studio-concepts");
-  const portfolioItems = items.filter((_, index) => pool[index].collection !== "studio-concepts");
+  // Production renders lead; AI-generated concept studies follow in their own labelled section.
+  const conceptItems = items.filter((_, index) => isConceptVisual(pool[index]));
+  const portfolioItems = items.filter((_, index) => !isConceptVisual(pool[index]));
 
   return (
     <div id="gallery" className="scroll-mt-16">
@@ -328,25 +329,25 @@ function VisualisationProof() {
         Showing {pool.length} of {VISUALS.length} images
       </p>
 
-      {conceptItems.length > 0 ? (
-        <section aria-label="Studio concept studies" className="mb-12">
-          <div className="mb-5 flex flex-wrap items-end justify-between gap-3 border-b border-rule pb-4">
-            <div>
-              <p className="label">Ideas, materials & atmosphere</p>
-              <h3 className="display mt-2 text-3xl text-ink">Studio concept studies</h3>
-            </div>
-            <p className="max-w-sm text-xs leading-relaxed text-ink-muted">AI-generated visual explorations of kitchens, interiors and artwork. Concept studies, not completed client commissions.</p>
-          </div>
-          <ImageGrid items={conceptItems} columns={3} aspect="4/3" />
-        </section>
-      ) : null}
       {portfolioItems.length > 0 ? (
-        <section aria-label="Production portfolio">
+        <section aria-labelledby="gallery-renders" className="mb-12">
           <div className="mb-5 border-b border-rule pb-4">
             <p className="label">From the archive</p>
-            <h3 className="display mt-2 text-3xl text-ink">Production portfolio</h3>
+            <h3 id="gallery-renders" className="display mt-2 text-3xl text-ink">3D render portfolio</h3>
           </div>
           <ImageGrid items={portfolioItems} columns={3} aspect="4/3" />
+        </section>
+      ) : null}
+      {conceptItems.length > 0 ? (
+        <section aria-labelledby="gallery-concepts">
+          <div className="mb-5 flex flex-wrap items-end justify-between gap-3 border-b border-rule pb-4">
+            <div>
+              <p className="label">Ideas, materials & atmosphere · AI-assisted</p>
+              <h3 id="gallery-concepts" className="display mt-2 text-3xl text-ink">AI-assisted concept studies</h3>
+            </div>
+            <p className="max-w-sm text-xs leading-relaxed text-ink-muted">AI-generated visual explorations of kitchens, interiors and artwork. Concept studies, not completed client commissions, and kept apart from the 3D render portfolio above.</p>
+          </div>
+          <ImageGrid items={conceptItems} columns={3} aspect="4/3" />
         </section>
       ) : null}
     </div>
