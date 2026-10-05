@@ -27,6 +27,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const core: MetadataRoute.Sitemap = [
     { url: url("/"), lastModified: lastModified("/") },
+    { url: url("/work"), lastModified: lastModified("/work") },
     { url: url("/services"), lastModified: lastModified("/services") },
     { url: url("/company"), lastModified: lastModified("/company") },
     { url: url("/company/people"), lastModified: lastModified("/company/people") },

@@ -76,9 +76,6 @@ const nextConfig: NextConfig = {
         permanent: true,
       })),
 
-      // ---- Work page redirection to Homepage Capabilities / Portfolio ----
-      { source: "/work", destination: "/#capabilities", permanent: true },
-
       // ---- Legacy path redirects (see REDIRECT_MAP_FINAL.md) ----
       { source: "/cad-automation", destination: "/services/cad-technical-production", permanent: true },
       { source: "/projects/videos", destination: "/services/ai-video-production", permanent: true },
@@ -86,8 +83,9 @@ const nextConfig: NextConfig = {
       { source: "/projects/b2b-research", destination: "/services/market-intelligence-research", permanent: true },
       { source: "/projects/b2b-research/:slug", destination: "/services/market-intelligence-research", permanent: true },
       { source: "/projects/websites", destination: "/services/website-design-development", permanent: true },
-      { source: "/projects", destination: "/#capabilities", permanent: true },
-      { source: "/startup", destination: "/#capabilities", permanent: true },
+      // Legacy portfolio hubs now land on the /work portfolio hub.
+      { source: "/projects", destination: "/work", permanent: true },
+      { source: "/startup", destination: "/work", permanent: true },
       { source: "/about", destination: "/company", permanent: true },
       { source: "/company/about", destination: "/company", permanent: true },
       { source: "/legal", destination: "/legal/privacy", permanent: true },
@@ -108,7 +106,7 @@ const nextConfig: NextConfig = {
       { source: "/work/video", destination: "/services/ai-video-production", permanent: true },
       { source: "/work/visualisation", destination: "/services/visualisation-image-production", permanent: true },
       { source: "/work/websites", destination: "/services/website-design-development", permanent: true },
-      { source: "/work/research", destination: "/services/market-intelligence-research", permanent: true },
+      { source: "/work/research", destination: "/work", permanent: true },
       { source: "/work/saudi-market-entry-lead-intelligence", destination: "/services/market-intelligence-research", permanent: true },
       { source: "/work/hotel-linen-export-market-programme", destination: "/services/b2b-lead-generation", permanent: true },
       { source: "/work/automotive-showroom-target-mapping", destination: "/work/research/automotive-showroom-lead-intelligence", permanent: true },

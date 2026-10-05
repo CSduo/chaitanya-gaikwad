@@ -24,15 +24,15 @@ export default function NotFound() {
 
         <div className="mt-10 flex flex-wrap gap-3">
           <ButtonLink href="/">Return home</ButtonLink>
-          <ButtonLink href="/#capabilities" variant="secondary">
-            View portfolio &amp; capabilities
+          <ButtonLink href="/work" variant="secondary">
+            View the portfolio
           </ButtonLink>
         </div>
 
         <ul className="mt-14 border-t border-rule">
           {[
-            { href: "/#capabilities", label: "Work & Portfolio", note: "Published work and capabilities across all disciplines" },
-            { href: "/services", label: "Services", note: "Technical production, growth operations, visual content" },
+            { href: "/work", label: "Work & Portfolio", note: "Case studies and selected work, led by 3D visualisation and film" },
+            { href: "/services", label: "Services", note: "3D visualisation, film, websites, CAD drafting, research and automation" },
             { href: "/company", label: "Company", note: "How XIYÀTO operates" },
             { href: "/contact", label: "Contact", note: "Start a project enquiry" },
           ].map((item) => (

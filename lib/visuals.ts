@@ -433,6 +433,25 @@ export function featuredVisuals(limit = 8): VisualItem[] {
   return VISUALS.filter((v) => v.quality === "strong").slice(0, limit);
 }
 
+/** AI-generated concept studies (the "studio-concepts" collection). */
+export function isConceptVisual(visual: VisualItem): boolean {
+  return visual.collection === "studio-concepts";
+}
+
+/** Production renders from the archive: everything that is not an AI concept study. */
+export function renderVisuals(): VisualItem[] {
+  return VISUALS.filter((v) => !isConceptVisual(v));
+}
+
+export function conceptVisuals(): VisualItem[] {
+  return VISUALS.filter(isConceptVisual);
+}
+
+/** Strongest production renders, for galleries that should lead with real 3D work. */
+export function featuredRenders(limit = 8): VisualItem[] {
+  return renderVisuals().filter((v) => v.quality === "strong").slice(0, limit);
+}
+
 export function activeVisualGroups(): { group: VisualGroup; label: string; count: number }[] {
   return (Object.keys(VISUAL_GROUP_LABELS) as VisualGroup[])
     .map((g) => ({ group: g, label: VISUAL_GROUP_LABELS[g], count: visualsByGroup(g).length }))

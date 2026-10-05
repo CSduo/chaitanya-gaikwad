@@ -7,6 +7,7 @@ import {
   publishedChannels,
 } from "@/lib/site";
 import { SERVICES } from "@/lib/services";
+import { hubCaseStudies, WORK_HUB_PATH } from "@/lib/case-studies";
 import {
   publishedLegalPages,
   publishedLocations,
@@ -80,14 +81,15 @@ export function Footer() {
             <ColumnHeading>Work &amp; Portfolio</ColumnHeading>
             <ul className="space-y-0.5">
               <li>
-                <FooterLink href="/#capabilities">Portfolio Overview</FooterLink>
+                <FooterLink href={WORK_HUB_PATH}>Portfolio overview</FooterLink>
               </li>
-              {SERVICES.map((service) => (
-                <li key={service.slug}>
-                  <FooterLink href={`/#service-${service.slug}`}>{service.shortName}</FooterLink>
+              {hubCaseStudies().map((study) => (
+                <li key={study.slug}>
+                  <FooterLink href={`/work/${study.slug}`}>{study.shortName}</FooterLink>
                 </li>
               ))}
-              <li><FooterLink href="/services/market-intelligence-research">Research library</FooterLink></li>
+              <li><FooterLink href={`${WORK_HUB_PATH}#websites`}>Website builds</FooterLink></li>
+              <li><FooterLink href={`${WORK_HUB_PATH}#research`}>Research library</FooterLink></li>
             </ul>
           </div>
 

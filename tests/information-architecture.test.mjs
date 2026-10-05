@@ -13,6 +13,10 @@ import { join } from "node:path";
 import { redirectSourcePattern } from "../scripts/seo-audit.ts";
 import { SPECIALISMS, specialismsForService, specialismBreadcrumbTrail, specialismsByParent } from "../lib/specialisms.ts";
 import { ALL_SERVICES } from "../lib/services.ts";
+import { allCaseStudies, hubCaseStudies, caseStudyBreadcrumbTrail, WORK_HUB_PATH } from "../lib/case-studies.ts";
+import { PRIMARY_NAV } from "../lib/site.ts";
+import { CONTENT_SOURCES } from "../scripts/generate-content-dates.mjs";
+import { collectionPageSchema } from "../lib/seo.ts";
 
 // Default exports of CommonJS-compiled TypeScript arrive wrapped when imported from .mjs.
 const unwrap = (mod) => (typeof mod.default === "object" && mod.default?.default !== undefined ? mod.default.default : mod.default);
@@ -60,5 +64,41 @@ test("parent paths implied by specialism URLs redirect to the parent service ins
     assert.equal(rule.destination, `/services/${specialism.parent}`);
     assert.equal(rule.permanent, true);
     assert.ok(!redirects(rule.destination), `${impliedParent} -> ${rule.destination} is a chain`);
+  }
+});
+
+test("/work is a real, indexable hub: no redirect, in the sitemap with a content group, and in the header", () => {
+  assert.equal(WORK_HUB_PATH, "/work");
+  assert.ok(!redirects("/work"), "/work must not redirect");
+  assert.ok(existsSync(join(appDir, "work", "page.tsx")));
+  assert.ok(sitemapUrls.has("https://xiyato.uk/work"));
+  assert.ok(CONTENT_SOURCES["/work"]?.includes("app/work/page.tsx"));
+  assert.equal(PRIMARY_NAV.find((item) => item.label === "Work")?.href, "/work");
+});
+
+test("legacy portfolio hubs land on /work in one hop", () => {
+  for (const source of ["/projects", "/startup", "/work/research"]) {
+    const rule = pathRules.find((r) => r.source === source);
+    assert.equal(rule?.destination, "/work", source);
+    assert.equal(rule.permanent, true);
+  }
+});
+
+test("the hub lists every case study, visualisation first, and its ItemList matches what it shows", () => {
+  const hub = hubCaseStudies();
+  assert.deepEqual(hub.map((s) => s.slug).sort(), allCaseStudies().map((s) => s.slug).sort());
+  assert.equal(hub[0].category, "visualisation");
+  const schema = collectionPageSchema({
+    name: "n",
+    description: "d",
+    path: "/work",
+    items: hub.map((s) => ({ name: s.projectName, path: `/work/${s.slug}` })),
+  });
+  assert.equal(schema["@type"], "CollectionPage");
+  assert.equal(schema.mainEntity.numberOfItems, hub.length);
+  assert.deepEqual(schema.mainEntity.itemListElement.map((i) => i.url), hub.map((s) => `https://xiyato.uk/work/${s.slug}`));
+  for (const study of hub) {
+    assert.ok(study.shortName && study.shortName.length <= 40, `${study.slug}: needs a short descriptive label`);
+    assert.equal(caseStudyBreadcrumbTrail(study)[1].path, "/work");
   }
 });

@@ -162,7 +162,7 @@ export type NavChild = { label: string; href: string };
 export type NavItem = { label: string; href: string; children?: NavChild[] };
 
 export const PRIMARY_NAV: NavItem[] = [
-  { label: "Work", href: "/#capabilities" },
+  { label: "Work", href: "/work" },
   {
     label: "Services",
     href: "/services",

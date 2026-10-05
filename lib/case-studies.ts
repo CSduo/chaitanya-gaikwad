@@ -90,6 +90,8 @@ export type SchemaTable = {
 export type CaseStudy = {
   slug: string;
   projectName: string;
+  /** Short descriptive label for compact link lists (footer, hub index). */
+  shortName: string;
   client: string | null;
   clientAnonymised: boolean;
   /** Rendered in place of a client name when anonymised. */
@@ -126,6 +128,7 @@ export const CASE_STUDIES: CaseStudy[] = [
   {
     slug: "bahrain-luxury-interior-cad-package",
     projectName: "Bahrain Luxury Interior — Complete Drawing Package",
+    shortName: "Bahrain interior CAD drawing package",
     client: null,
     clientAnonymised: true,
     clientDescriptor: "Luxury interior design practice",
@@ -242,6 +245,7 @@ export const CASE_STUDIES: CaseStudy[] = [
   {
     slug: "sultanah-moon-chair-cinematic-campaign",
     projectName: "Moon Chair — Cinematic Product Campaign",
+    shortName: "Moon Chair furniture campaign film",
     client: "Sultanah & Co. Interiors",
     clientAnonymised: false,
     sector: "Luxury furniture and interiors",
@@ -296,6 +300,7 @@ export const CASE_STUDIES: CaseStudy[] = [
   {
     slug: "interior-visualisation-studies",
     projectName: "Interior Visualisation — Concept and Material Studies",
+    shortName: "Interior visualisation studies",
     client: null,
     clientAnonymised: true,
     clientDescriptor: "Internal studio programme and design-studio commissions",
@@ -436,15 +441,38 @@ export function caseStudyParentService(study: CaseStudy): Service | undefined {
 
 /**
  * Breadcrumb trail for a case study, shared by the visible breadcrumb and the
- * BreadcrumbList JSON-LD so the two can never disagree.
+ * BreadcrumbList JSON-LD so the two can never disagree:
+ * Home > Work > the study's service line > the study.
  */
 export function caseStudyBreadcrumbTrail(study: CaseStudy): { name: string; path: string }[] {
   const service = caseStudyParentService(study);
   return [
     { name: "Home", path: "/" },
+    { name: "Work", path: WORK_HUB_PATH },
     ...(service ? [{ name: service.shortName, path: `/services/${service.slug}` }] : []),
     { name: study.projectName, path: `/work/${study.slug}` },
   ];
+}
+
+/** The portfolio hub. */
+export const WORK_HUB_PATH = "/work";
+
+/**
+ * Discipline order on the /work hub and in compact work lists: visualisation
+ * and film lead, the supporting disciplines follow.
+ */
+export const WORK_HUB_ORDER: WorkCategory[] = [
+  "visualisation",
+  "video",
+  "technical-production",
+  "websites",
+  "growth-b2b",
+  "automation",
+];
+
+/** Case studies in hub order (discipline first, then each study's own order). */
+export function hubCaseStudies(): CaseStudy[] {
+  return WORK_HUB_ORDER.flatMap((category) => caseStudiesByCategory(category));
 }
 
 /** The display name for a client, honouring anonymisation. */

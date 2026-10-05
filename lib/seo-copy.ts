@@ -89,8 +89,8 @@ export const ROUTE_SEO = {
     metaDescription: "XIYÀTO creates 3D renders, AI films, websites and CAD drawings, with B2B lead research, marketing and workflow automation for studios, brands and businesses.",
   },
   work: {
-    metaTitle: "Work & Production Evidence — XIYÀTO",
-    metaDescription: "Explore 3D renders, cinematic video and website builds, then technical drawing packages, B2B research workbooks and connected workflow systems.",
+    metaTitle: "3D Visualisation, Film & CAD Portfolio",
+    metaDescription: "XIYÀTO portfolio: 3D interior and furniture visualisation, product films, CAD drawing packages and website builds, with case studies and selected work.",
   },
   services: {
     metaTitle: "Commercial Production & Growth Services — XIYÀTO",

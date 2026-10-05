@@ -85,7 +85,7 @@ test("media audit decodes image-optimiser URLs", () => {
   assert.deepEqual(mediaReferences(html).sort(), ["/media/video/a.mp4", "/media/visual/vis-3.webp"]);
 });
 
-test("case-study breadcrumbs follow the study's discipline and never link a redirect", async () => {
+test("case-study breadcrumbs run Home > Work > the study's discipline > study, and never link a redirect", async () => {
   const rules = (await nextConfig.redirects()).filter((r) => !r.has);
   const expected = {
     "bahrain-luxury-interior-cad-package": "/services/cad-technical-production",
@@ -95,8 +95,10 @@ test("case-study breadcrumbs follow the study's discipline and never link a redi
   for (const study of allCaseStudies()) {
     const trail = caseStudyBreadcrumbTrail(study);
     assert.equal(trail[0].path, "/");
+    // The /work hub level was inserted above the discipline once the hub existed.
+    assert.equal(trail[1].path, "/work");
     assert.equal(trail.at(-1).path, `/work/${study.slug}`);
-    if (expected[study.slug]) assert.equal(trail[1].path, expected[study.slug], study.slug);
+    if (expected[study.slug]) assert.equal(trail[2].path, expected[study.slug], study.slug);
     for (const item of trail) {
       assert.ok(!rules.some((r) => redirectSourcePattern(r.source).test(item.path)), `${study.slug}: breadcrumb ${item.path} redirects`);
     }

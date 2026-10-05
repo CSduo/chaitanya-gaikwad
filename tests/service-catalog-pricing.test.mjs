@@ -28,7 +28,8 @@ test("primary catalog and navigation preserve the commissioned six-service order
   assert.deepEqual(SERVICES.map((service) => service.order), [1, 2, 3, 4, 5, 6]);
   const serviceLinks = PRIMARY_NAV.find((item) => item.href === "/services").children;
   assert.deepEqual(serviceLinks.slice(1, 7).map((item) => item.href), primarySlugs.map((slug) => `/services/${slug}`));
-  assert.equal(PRIMARY_NAV[0].href, "/#capabilities");
+  // "Work" opens the /work portfolio hub (it pointed at a homepage fragment before the hub existed).
+  assert.equal(PRIMARY_NAV[0].href, "/work");
 });
 
 test("specialist research remains a canonical, discoverable service", () => {
@@ -72,10 +73,12 @@ test("automation is independent and legacy aliases still resolve", async () => {
     ["/services/video-ai-film-editing", "/services/ai-video-production"],
     ["/projects/b2b-research", "/services/market-intelligence-research"],
     ["/work/automation", "/services/automation-workflow-systems"],
-    ["/work", "/#capabilities"],
+    // Legacy portfolio hubs land on the /work hub, which replaced the /work -> /#capabilities redirect.
+    ["/projects", "/work"],
   ]) {
     assert.ok(redirects.some((rule) => rule.source === source && rule.destination === destination && rule.permanent));
   }
+  assert.ok(!redirects.some((rule) => rule.source === "/work"), "/work must serve the portfolio hub");
 });
 
 test("published starting prices and units match the commercial brief", () => {
