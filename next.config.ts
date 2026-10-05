@@ -99,6 +99,9 @@ const nextConfig: NextConfig = {
       { source: "/services/growth-marketing-b2b", destination: "/services/b2b-lead-generation", permanent: true },
       { source: "/services/video-ai-film-editing", destination: "/services/ai-video-production", permanent: true },
       { source: "/services/visual-content", destination: "/services/visualisation-image-production", permanent: true },
+      // /guides has no index page yet; its only guide stands in. Temporary (307), so a
+      // future /guides hub can replace it without browsers holding a cached 308.
+      { source: "/guides", destination: "/guides/freelancer-vs-3d-visualisation-studio", permanent: false },
 
       // ---- Legacy work category and project redirects (resolves 404s) ----
       { source: "/work/growth-b2b", destination: "/services/b2b-lead-generation", permanent: true },
