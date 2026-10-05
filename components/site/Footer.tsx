@@ -12,6 +12,7 @@ import {
   publishedLocations,
   COMPANY_REGISTRATION,
 } from "@/lib/company";
+import { ConsentSettingsButton } from "@/components/analytics/SiteAnalytics";
 
 function ColumnHeading({ children }: { children: React.ReactNode }) {
   return <h2 className="label mb-3 sm:mb-5 text-[0.6875rem]">{children}</h2>;
@@ -195,6 +196,10 @@ export function Footer() {
                   </Link>
                 </li>
               ))}
+              {/* Only rendered when GA4 is configured (it is the only cookie-setting tool). */}
+              <li className="empty:hidden">
+                <ConsentSettingsButton className="inline-flex min-h-[44px] lg:min-h-[32px] items-center text-xs text-ink-muted transition-colors hover:text-accent" />
+              </li>
             </ul>
           ) : null}
 

@@ -39,8 +39,11 @@ export async function generateMetadata({
   });
 }
 
-/** Last substantive review of the published legal text. */
-const LAST_UPDATED = "6 September 2026";
+/** Last substantive review of each published legal text. */
+const LAST_UPDATED: Record<string, string> = {
+  privacy: "5 October 2026",
+  terms: "6 September 2026",
+};
 
 export default async function LegalPage({
   params,
@@ -74,7 +77,7 @@ export default async function LegalPage({
 
         <Eyebrow>Legal</Eyebrow>
         <h1 className="display mt-5 text-3xl sm:text-4xl">{page.title}</h1>
-        <p className="meta mt-4">Last updated {LAST_UPDATED}</p>
+        {LAST_UPDATED[page.slug] ? <p className="meta mt-4">Last updated {LAST_UPDATED[page.slug]}</p> : null}
 
         <Rule className="my-10" />
 

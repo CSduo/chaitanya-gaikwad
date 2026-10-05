@@ -32,9 +32,9 @@ export function PrivacyContent() {
         <li>Your name, email address, discipline, and portfolio link</li>
         <li>A summary of your technical production experience</li>
       </ul>
-      <p><strong>Operational telemetry and attribution:</strong></p>
+      <p><strong>Visit statistics and attribution:</strong></p>
       <p>
-        When you arrive via a marketing link or directory listing, campaign identifiers (such as <code>utm_source</code>, <code>utm_medium</code>, and <code>utm_campaign</code>) are read from the URL to identify which channel referred your visit. When you click direct communication links (WhatsApp, telephone, or email), our site logs a first-party event signal to measure channel performance.
+        When you arrive via a marketing link or directory listing, campaign identifiers (such as <code>utm_source</code>, <code>utm_medium</code>, and <code>utm_campaign</code>) are read from the URL to identify which channel referred your visit. We also count visits and a small set of actions, such as clicking a WhatsApp, telephone or email link, opening the enquiry form or sending it, so we can see which pages and contact routes are useful. How this is measured is set out under <a href="#analytics">Analytics</a> below.
       </p>
 
       <h2>What we do with it</h2>
@@ -50,12 +50,53 @@ export function PrivacyContent() {
         Project specification files uploaded through the contact form are retained solely for technical assessment during the scoping period and are permanently deleted after 30 days unless an active commercial engagement is commissioned under separate contract.
       </p>
 
-      <h2>Browser storage and cookies</h2>
+      <h2 id="analytics">Analytics</h2>
       <p>
-        This website does not set third-party advertising cookies or cross-site tracking pixels.
+        <strong>Vercel Web Analytics and Speed Insights (always on, no cookies).</strong> Our host,
+        Vercel, provides aggregated visit statistics and page-speed measurements. They set no
+        cookies and store nothing in your browser. Vercel tells visitors apart within a single day
+        using a short-lived hash of the request rather than a stored identifier, and we only see
+        totals such as page views, referring sites, countries, device types and loading times. Page
+        addresses are reported without query parameters other than campaign (<code>utm_</code>)
+        identifiers. The actions listed above are counted here with the page they happened on and
+        one short detail, for example which WhatsApp line was used or which form was sent.
       </p>
       <p>
-        To preserve referral attribution while you navigate between pages during a single visit, incoming campaign parameters may be temporarily held in your browser&apos;s session memory (<code>sessionStorage</code>). This data contains no personal identifiers, is never shared with third-party data brokers, and is automatically erased by your browser as soon as the tab or window is closed.
+        <strong>Google Analytics 4 (only if you accept).</strong> We may use Google Analytics to
+        understand in more detail how visitors find and use the site. It is off by default: until
+        you choose &ldquo;Accept analytics&rdquo; in the cookie banner, no Google Analytics script is
+        loaded and no Google Analytics cookie is set. If you accept, Google Analytics sets the
+        cookies <code>_ga</code> and <code>_ga_&lt;ID&gt;</code> (which keep a random visitor and
+        session identifier for up to two years) and receives the pages you view, the actions listed
+        above, the page you first landed on, the referring site and any campaign identifiers. Google
+        processes this data on our behalf and may process it outside the United Kingdom. Advertising
+        features stay disabled: the advertising consent signals (<code>ad_storage</code>,{" "}
+        <code>ad_user_data</code>, <code>ad_personalization</code>) remain denied.
+      </p>
+      <p>
+        You can change your choice at any time with the &ldquo;Cookie settings&rdquo; link in the
+        footer. Declining after accepting stops Google Analytics and removes its cookies from this
+        site.
+      </p>
+      <p>
+        None of these tools receive the name, email address, telephone number or brief you type into
+        our forms.
+      </p>
+
+      <h2>Browser storage and cookies</h2>
+      <p>
+        This website does not set advertising cookies or cross-site tracking pixels. The only
+        cookies it can set are the Google Analytics cookies described above, and only after you
+        accept them.
+      </p>
+      <p>
+        Your cookie choice is remembered in your browser&apos;s local storage (under the name{" "}
+        <code>xiyato-analytics-consent</code>) so the banner does not reappear on every page. To
+        preserve referral attribution while you navigate between pages during a single visit,
+        incoming campaign parameters, the page you landed on and the referring site may be
+        temporarily held in your browser&apos;s session memory (<code>sessionStorage</code>). This
+        data contains no personal identifiers and is erased by your browser when the tab or window
+        is closed.
       </p>
       <p>
         Our hosting infrastructure (Vercel) logs standard server access requests (including IP address, user agent, and request path) for infrastructure security, DDoS mitigation, and operational monitoring.

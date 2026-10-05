@@ -238,7 +238,8 @@ export const LEGAL_PAGES: LegalPage[] = [
     title: "Cookie Policy",
     description:
       "How this website uses cookies and similar technologies, what each is used for, and how to control them in your browser.",
-    // This site sets no cookies and runs no analytics, so there is nothing to disclose.
+    // Cookieless Vercel analytics always; GA4 cookies only after consent. Both are
+    // disclosed in the privacy policy (#analytics), so no separate page yet.
     published: false,
   },
   {

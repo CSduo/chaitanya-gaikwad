@@ -8,6 +8,7 @@ import { JsonLd } from "@/components/ui/primitives";
 import { siteGraphSchema } from "@/lib/seo";
 import { SITE } from "@/lib/site";
 import { TrackingScripts } from "@/components/analytics/TrackingScripts";
+import { SiteAnalytics } from "@/components/analytics/SiteAnalytics";
 import "./globals.css";
 
 const plexSans = IBM_Plex_Sans({
@@ -138,6 +139,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
         <Footer />
         <MobileActionBar />
+        <SiteAnalytics />
       </body>
     </html>
   );

@@ -1,20 +1,15 @@
 "use client";
 
 import { useEffect } from "react";
-
-declare global {
-  interface Window {
-    dataLayer?: Record<string, unknown>[];
-    plausible?: (event: string, options?: { props?: Record<string, unknown> }) => void;
-    gtag?: (command: string, ...args: unknown[]) => void;
-  }
-}
+import { trackEvent, type AnalyticsEventName, type AnalyticsParams } from "@/lib/analytics";
 
 /**
  * Universal Inbound Lead Attribution and Telemetry Component.
  * Observes commercial conversion interactions (WhatsApp clicks,
  * phone calls, email links, LinkedIn profile clicks, form milestones)
- * and dispatches structured telemetry to dataLayer / gtag / plausible.
+ * and sends them through trackEvent(): Vercel Web Analytics custom events
+ * (cookieless) and, only after analytics consent, GA4 via gtag.
+ * See lib/analytics.ts and the privacy policy.
  */
 export function TrackingScripts() {
   useEffect(() => {
@@ -87,23 +82,17 @@ export function TrackingScripts() {
       }
     };
 
-    const dispatchEvent = (eventName: string, payload: Record<string, unknown>) => {
-      const fullPayload = {
-        event: eventName,
-        ...getAttributionContext(),
-        ...payload,
-        timestamp: new Date().toISOString(),
-      };
-
-      if (window.dataLayer) {
-        window.dataLayer.push(fullPayload);
-      }
-      if (typeof window.gtag === "function") {
-        window.gtag("event", eventName, fullPayload);
-      }
-      if (typeof window.plausible === "function") {
-        window.plausible(eventName, { props: fullPayload });
-      }
+    /*
+      GA4 receives the attribution context plus the event's own parameters.
+      Vercel receives only the page and one detail value: its custom-event
+      property allowance is small, so the most useful dimension is kept.
+    */
+    const dispatchEvent = (eventName: AnalyticsEventName, payload: AnalyticsParams, detail?: string) => {
+      trackEvent(
+        eventName,
+        { ...getAttributionContext(), ...payload },
+        { page: window.location.pathname.slice(0, 100), ...(detail ? { detail: detail.slice(0, 100) } : {}) },
+      );
     };
 
     // 2. Global event delegation for conversion links
@@ -124,20 +113,19 @@ export function TrackingScripts() {
           country_target: country,
           service_context: serviceContext,
           page_path: window.location.pathname,
-        });
+        }, `${country}: ${serviceContext}`);
       }
 
       // B. Telephone Click Tracking
       if (href.startsWith("tel:")) {
         const phoneNumber = href.replace("tel:", "");
-        const isIndia = phoneNumber.includes("91");
+        const isIndia = phoneNumber.startsWith("+91");
         const territory = isIndia ? "india" : "uk";
 
         dispatchEvent("inbound_telephone_click", {
-          phone_number: phoneNumber,
           territory,
           page_path: window.location.pathname,
-        });
+        }, territory);
       }
 
       // C. Email Click Tracking — categorical only, zero recipient PII
@@ -163,10 +151,17 @@ export function TrackingScripts() {
         !href.includes("wa.me") &&
         !href.includes("linkedin.com")
       ) {
+        let destinationHost = "external";
+        try {
+          destinationHost = new URL(href).hostname;
+        } catch {
+          // Keep the generic label for malformed URLs.
+        }
         dispatchEvent("external_portfolio_click", {
           destination: "external_showcase",
+          destination_host: destinationHost,
           page_path: window.location.pathname,
-        });
+        }, destinationHost);
       }
 
       // F. Service CTA Internal Clicks
@@ -175,10 +170,11 @@ export function TrackingScripts() {
         href.startsWith("/contact?") ||
         target.getAttribute("data-track") === "service_cta"
       ) {
+        const ctaLabel = (target.textContent?.trim() || "contact_cta").slice(0, 100);
         dispatchEvent("service_cta_click", {
-          cta_label: target.textContent?.trim() || "contact_cta",
+          cta_label: ctaLabel,
           page_path: window.location.pathname,
-        });
+        }, ctaLabel);
       }
     };
 
@@ -191,7 +187,7 @@ export function TrackingScripts() {
         dispatchEvent("project_form_start", {
           form_id: form.id || "project_contact_form",
           page_path: window.location.pathname,
-        });
+        }, form.id || "project_contact_form");
       }
     };
 
@@ -203,7 +199,7 @@ export function TrackingScripts() {
           form_id: form.id || "project_contact_form",
           enquiry_stage: "new_enquiry",
           page_path: window.location.pathname,
-        });
+        }, form.id || "project_contact_form");
       }
     };
 
