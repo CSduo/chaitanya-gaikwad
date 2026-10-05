@@ -5,6 +5,7 @@ import { SPECIALISMS } from "@/lib/specialisms";
 import { allCaseStudies } from "@/lib/case-studies";
 import { publishedLegalPages } from "@/lib/company";
 import { renderVisuals } from "@/lib/visuals";
+import { HIRE_PATH } from "@/lib/hire";
 import contentDates from "@/data/content-dates.json";
 
 type ContentGroup = keyof typeof contentDates.groups;
@@ -29,6 +30,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: url("/"), lastModified: lastModified("/") },
     { url: url("/work"), lastModified: lastModified("/work") },
     { url: url("/services"), lastModified: lastModified("/services") },
+    { url: url(HIRE_PATH), lastModified: lastModified(HIRE_PATH) },
     { url: url("/company"), lastModified: lastModified("/company") },
     { url: url("/company/people"), lastModified: lastModified("/company/people") },
     { url: url("/company/locations"), lastModified: lastModified("/company/locations") },

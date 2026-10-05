@@ -78,6 +78,8 @@ export const CONTENT_SOURCES = {
     "app/services/visualisation/photorealistic-furniture-rendering",
     "lib/specialisms.ts",
   ],
+  // Hire-intent and comparison pages (paths in lib/hire.ts).
+  "/hire-a-3d-visualiser": ["app/hire-a-3d-visualiser", "lib/hire.ts", "lib/pricing.ts"],
   "/work": [
     "app/work/page.tsx",
     "components/work",
