@@ -8,6 +8,10 @@ type PageMetaInput = {
   path: string;
   image?: string;
   type?: "website" | "article";
+  /**
+   * Keep the page live and its links crawlable, but out of the index
+   * (robots "noindex, follow"). Such routes must also stay out of the sitemap.
+   */
   noIndex?: boolean;
 };
 
@@ -32,6 +36,14 @@ export function pageMetadata({
 }: PageMetaInput): Metadata {
   const url = absoluteUrl(path);
   const ogImage = image ? absoluteUrl(image) : absoluteUrl("/opengraph-image.png");
+  /*
+    Only the shared 1200x630 card has known dimensions. Route-specific images
+    (for example a 7629x5389 CAD sheet) are emitted without width/height rather
+    than with dimensions that do not match the file.
+  */
+  const ogImages = image
+    ? [{ url: ogImage, alt: title }]
+    : [{ url: ogImage, width: 1200, height: 630, alt: title }];
 
   /*
     The root layout appends "— XIYÀTO" via the title template. A written title
@@ -45,7 +57,7 @@ export function pageMetadata({
     description,
     alternates: { canonical: url },
     robots: noIndex
-      ? { index: false, follow: false }
+      ? { index: false, follow: true }
       : { index: true, follow: true, "max-image-preview": "large" },
     openGraph: {
       type,
@@ -54,7 +66,7 @@ export function pageMetadata({
       title,
       description,
       locale: SITE.locale,
-      images: [{ url: ogImage, width: 1200, height: 630, alt: title }],
+      images: ogImages,
     },
     twitter: {
       card: "summary_large_image",

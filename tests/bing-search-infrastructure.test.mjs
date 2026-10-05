@@ -63,20 +63,21 @@ async function testAsync(name, fn) {
 /* ------------------------------------------------------------------ */
 console.log('--- 1. Robots Directives & Private Endpoint Protection ---');
 
-test('Robots configuration exports valid MetadataRoute.Robots object', () => {
+test('Robots configuration exports one sitemap line and no non-standard Host directive', () => {
   const config = robots();
   assert.ok(config);
   assert.ok(Array.isArray(config.rules) || typeof config.rules === 'object');
   assert.equal(config.sitemap, 'https://xiyato.uk/sitemap.xml');
-  assert.equal(config.host, 'https://xiyato.uk');
+  // Host is Yandex-only and non-standard; host canonicalisation is done with 308s.
+  assert.equal(config.host, undefined);
 });
 
-test('Robots rules explicitly target Bingbot alongside wildcard *', () => {
+test('Robots uses a single wildcard group (Bingbot and Googlebot follow *)', () => {
   const config = robots();
   const rules = Array.isArray(config.rules) ? config.rules : [config.rules];
+  assert.equal(rules.length, 1, 'Expected one rule group');
   const userAgents = rules.flatMap((r) => (Array.isArray(r.userAgent) ? r.userAgent : [r.userAgent]));
-  assert.ok(userAgents.includes('*'), 'Must include wildcard * user-agent');
-  assert.ok(userAgents.includes('Bingbot'), 'Must include explicit Bingbot user-agent');
+  assert.deepEqual(userAgents, ['*']);
 });
 
 test('Robots rules allow indexable assets and static Next.js paths', () => {
@@ -85,16 +86,17 @@ test('Robots rules allow indexable assets and static Next.js paths', () => {
   const allowList = rules.flatMap((r) => (Array.isArray(r.allow) ? r.allow : [r.allow]));
   assert.ok(allowList.includes('/'), 'Must allow root document crawling');
   assert.ok(allowList.includes('/_next/static/'), 'Must allow Next.js static asset crawling');
-  assert.ok(allowList.includes('/_next/image/'), 'Must allow Next.js image optimization crawling');
+  assert.ok(allowList.includes('/_next/image'), 'Must allow Next.js image optimization crawling (/_next/image?url=...)');
 });
 
-test('Robots rules strictly disallow /api/, /admin/, and /admin endpoints', () => {
+test('Robots rules strictly disallow /api/ and /admin endpoints', () => {
   const config = robots();
   const rules = Array.isArray(config.rules) ? config.rules : [config.rules];
   const disallowList = rules.flatMap((r) => (Array.isArray(r.disallow) ? r.disallow : [r.disallow]));
   assert.ok(disallowList.includes('/api/'), 'Must disallow all /api/ endpoints');
-  assert.ok(disallowList.includes('/admin/'), 'Must disallow /admin/ path');
-  assert.ok(disallowList.includes('/admin'), 'Must disallow /admin route');
+  // "/admin" is a prefix rule, so it also covers /admin/ and everything below it.
+  assert.ok(disallowList.includes('/admin'), 'Must disallow /admin and below');
+  assert.ok(!disallowList.includes('/'), 'Must never disallow the site root');
 });
 
 /* ------------------------------------------------------------------ */
@@ -158,11 +160,15 @@ test('public/c746da95e0c54178a9cb57f7229b19d4.txt exists and contains exact key'
   assert.equal(content, 'c746da95e0c54178a9cb57f7229b19d4');
 });
 
-test('app/layout.tsx contains msvalidate.01 and bingBot directives', () => {
+test('app/layout.tsx emits each verification token once, no meta keywords and no root canonical/hreflang', () => {
   const layoutPath = path.join(REPO_ROOT, 'app', 'layout.tsx');
   const content = fs.readFileSync(layoutPath, 'utf-8');
-  assert.ok(content.includes('"msvalidate.01": "c746da95e0c54178a9cb57f7229b19d4"'), 'layout.tsx missing msvalidate.01');
-  assert.ok(content.includes('bingBot'), 'layout.tsx missing explicit bingBot directive');
+  const msvalidate = content.match(/"msvalidate\.01": "c746da95e0c54178a9cb57f7229b19d4"/g) ?? [];
+  assert.equal(msvalidate.length, 1, 'msvalidate.01 must be declared exactly once');
+  assert.match(content, /google: "IjQduuSOmYJmgmhyNk6YA2rpWUe2b5uaPPdpGb-fLFs"/, 'Single Search Console meta token expected');
+  assert.ok(!content.includes('"googleb531fd48b43d4f1b"'), 'The HTML-file token must not be emitted as a meta tag');
+  assert.ok(!/\bkeywords:/.test(content), 'Meta keywords must not be declared');
+  assert.ok(!/\balternates:/.test(content), 'Root layout must not declare canonical/hreflang (it leaks onto 404s)');
   assert.ok(content.includes('"max-image-preview": "large"'), 'layout.tsx missing max-image-preview');
 });
 

@@ -39,58 +39,17 @@ export const metadata: Metadata = {
   },
   description: SITE.defaultDescription,
   applicationName: SITE.name,
-  keywords: [
-    "XIYÀTO",
-    "XIYATO",
-    "Xiyato",
-    "xiyato.uk",
-    "Chaitanya Gaikwad",
-    "Xiyato Studio",
-    "Xiyato UK",
-    "Xiyato India",
-    "CAD drafting services",
-    "AutoCAD outsourcing UK",
-    "interior design CAD packages",
-    "joinery detail drawings",
-    "reflected ceiling plans",
-    "architectural drafting",
-    "3D architectural visualisation",
-    "interior 3D rendering",
-    "luxury hospitality 3D visuals",
-    "photorealistic product rendering",
-    "cinematic video production",
-    "luxury furniture brand film",
-    "AI video editing",
-    "architectural video walkthrough",
-    "B2B lead generation",
-    "market research intelligence",
-    "Middle East lead discovery",
-    "Saudi Arabia buyers shortlist",
-    "India fabric import research",
-    "client acquisition campaigns",
-    "WhatsApp automation",
-    "CRM lead routing",
-    "cold email outreach systems",
-    "custom website design development",
-    "Next.js web agency",
-    "portfolio websites",
-    "high performance business websites",
-  ],
   authors: [{ name: "Chaitanya Gaikwad", url: "https://xiyato.uk/company/people" }],
   creator: "XIYÀTO",
   publisher: "XIYÀTO",
   category: "Business & Creative Production Services",
-  classification: "Technical Documentation, 3D Visualisation, Video Production, B2B Research, Automation & Web Development",
   formatDetection: { telephone: false, email: false, address: false },
-  alternates: {
-    canonical: SITE.url,
-    languages: {
-      "en-GB": SITE.url,
-      "en-IN": SITE.url,
-      "en-US": SITE.url,
-      "x-default": SITE.url,
-    },
-  },
+  /*
+    No canonical or hreflang here. Next.js merges metadata shallowly, so a root
+    canonical leaked onto pages without their own (notably the 404 page) while
+    every real route already sets a self-referencing canonical through
+    pageMetadata(). There are no translated pages, so no hreflang is declared.
+  */
   icons: {
     icon: [
       { url: "/favicon.ico", sizes: "any" },
@@ -113,38 +72,21 @@ export const metadata: Metadata = {
   },
   manifest: "/site.webmanifest",
   verification: {
-    google: ["IjQduuSOmYJmgmhyNk6YA2rpWUe2b5uaPPdpGb-fLFs", "googleb531fd48b43d4f1b"],
+    // Search Console meta token. The separate HTML-file token is served from
+    // public/googleb531fd48b43d4f1b.html and is not a meta value.
+    google: "IjQduuSOmYJmgmhyNk6YA2rpWUe2b5uaPPdpGb-fLFs",
     other: {
+      // Bing Webmaster Tools, emitted once (also in public/BingSiteAuth.xml).
       "msvalidate.01": "c746da95e0c54178a9cb57f7229b19d4",
     },
   },
   robots: {
     index: true,
     follow: true,
-    nocache: false,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-video-preview": -1,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-    },
-    ...({
-      bingBot: {
-        index: true,
-        follow: true,
-        "max-video-preview": -1,
-        "max-image-preview": "large",
-        "max-snippet": -1,
-      },
-    } as any),
-  },
-  other: {
-    "msvalidate.01": "c746da95e0c54178a9cb57f7229b19d4",
+    "max-image-preview": "large",
   },
   openGraph: {
     type: "website",
-    url: SITE.url,
     siteName: SITE.name,
     title: `${SITE.name} — ${SITE.descriptor}`,
     description: SITE.defaultDescription,
