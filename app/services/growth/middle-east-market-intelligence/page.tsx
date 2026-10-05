@@ -108,7 +108,7 @@ export default function MiddleEastMarketIntelligencePage() {
         data={breadcrumbSchema([
           { name: "Home", path: "/" },
           { name: "Services", path: "/services" },
-          { name: "Growth & B2B", path: "/services/growth-marketing-b2b" },
+          { name: "Marketing & B2B Lead Generation", path: "/services/b2b-lead-generation" },
           { name: "Middle East Market Intelligence", path: "/services/growth/middle-east-market-intelligence" },
         ])}
       />
@@ -119,7 +119,7 @@ export default function MiddleEastMarketIntelligencePage() {
             trail={[
               { name: "Home", path: "/" },
               { name: "Services", path: "/services" },
-              { name: "Growth & B2B", path: "/services/growth-marketing-b2b" },
+              { name: "Marketing & B2B Lead Generation", path: "/services/b2b-lead-generation" },
               { name: "Middle East Intelligence", path: "/services/growth/middle-east-market-intelligence" },
             ]}
           />
@@ -134,7 +134,7 @@ export default function MiddleEastMarketIntelligencePage() {
 
             <div className="mt-8 flex flex-wrap items-center gap-2.5">
               <a
-                href={getServiceWhatsAppHref("growth-marketing-b2b", "uk")}
+                href={getServiceWhatsAppHref("b2b-lead-generation", "uk")}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex min-h-[46px] items-center gap-2 rounded-xs bg-ink px-6 text-xs font-semibold tracking-tight text-paper transition-colors hover:bg-accent"
@@ -296,12 +296,12 @@ export default function MiddleEastMarketIntelligencePage() {
       </Section>
 
       <ProjectCTA
-        serviceSlug="growth-marketing-b2b"
+        serviceSlug="b2b-lead-generation"
         eyebrow="Middle East Expansion"
         title="Commission custom B2B intelligence for your Gulf market entry"
         body="Tell us your target geography, sector, and ideal client profile. We will assess feasible record volumes, define the verification scope, and provide a fixed quote."
         services={[
-          { label: "B2B Growth & Research Pillar", href: "/services/growth-marketing-b2b" },
+          { label: "Marketing & B2B Lead Generation", href: "/services/b2b-lead-generation" },
           { label: "Automation & Workflow Systems", href: "/services/automation-workflow-systems" },
           { label: "Website Design & Development", href: "/services/website-design-development" },
         ]}

@@ -9,13 +9,17 @@ import { useRouter } from "next/navigation";
  * Server-side redirects cannot see a URL fragment, so these have to be caught
  * in the browser. This replaces the fragment with the real path — it does not
  * reintroduce hash routing, and it runs once on mount.
+ *
+ * Destinations must be canonical URLs (never a path that next.config.ts
+ * redirects again) and mirror the server-side rules for the same legacy paths,
+ * e.g. /projects/b2b-research -> /services/market-intelligence-research.
  */
 const EXACT: Record<string, string> = {
   "#/cad-automation": "/services/cad-technical-production",
   "#cad-automation": "/services/cad-technical-production",
-  "#/projects/videos": "/services/video-ai-film-editing",
+  "#/projects/videos": "/services/ai-video-production",
   "#/projects/visualisations": "/services/visualisation-image-production",
-  "#/projects/b2b-research": "/services/growth-marketing-b2b",
+  "#/projects/b2b-research": "/services/market-intelligence-research",
   "#/projects/websites": "/services/website-design-development",
   "#/projects": "/#capabilities",
   "#/startup": "/#capabilities",
@@ -42,7 +46,7 @@ export function LegacyHashRedirect() {
 
     // Deep workbook links: #/projects/b2b-research/<slug>
     if (!destination && normalised.startsWith("#/projects/b2b-research/")) {
-      destination = "/services/growth-marketing-b2b";
+      destination = "/services/market-intelligence-research";
     }
 
     if (!destination) return;

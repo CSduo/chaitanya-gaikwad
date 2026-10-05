@@ -1,4 +1,4 @@
-import type { ServiceSlug } from "./services";
+import { getService, type Service, type ServiceSlug } from "./services";
 
 /**
  * Case-study system.
@@ -247,7 +247,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     sector: "Luxury furniture and interiors",
     location: "Remote delivery",
     category: "video",
-    services: ["ai-video-production", "video-ai-film-editing"],
+    services: ["ai-video-production"],
     dateRange: "2025",
     engagementType: "ongoing-support",
     scope: [
@@ -302,7 +302,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     sector: "Interior, hospitality and commercial design",
     location: "Remote delivery",
     category: "visualisation",
-    services: ["visualisation-image-production", "ai-video-production", "video-ai-film-editing"],
+    services: ["visualisation-image-production", "ai-video-production"],
     dateRange: "2026",
     engagementType: "ongoing-support",
     scope: [
@@ -340,12 +340,10 @@ export const CASE_STUDIES: CaseStudy[] = [
       { src: "/media/visual/vis-24.webp", alt: "Hospitality interior visualisation exploring atmosphere and lighting", width: 1440, height: 1919 },
       { src: "/media/visual/vis-28.webp", alt: "Interior material and finish study", width: 1386, height: 1440 },
       { src: "/media/visual/vis-31.webp", alt: "Interior concept visualisation with considered surface treatment", width: 1440, height: 1440 },
-      { src: "/media/visual/vis-32.webp", alt: "Spatial visualisation study exploring proportion and light", width: 1440, height: 1440 },
       { src: "/media/visual/vis-36.webp", alt: "Interior visualisation exploring vertical volume and finish", width: 1440, height: 1920 },
       { src: "/media/visual/vis-39.webp", alt: "Interior concept study with layered material palette", width: 1440, height: 1919 },
       { src: "/media/visual/vis-40.webp", alt: "Interior visualisation study of a residential space", width: 1438, height: 1920 },
       { src: "/media/visual/render-1.webp", alt: "Spatial interior render showing lighting and material texture", width: 999, height: 1230 },
-      { src: "/media/visual/render-2.webp", alt: "Interior spatial render exploring furniture detail", width: 991, height: 1236 },
       { src: "/media/visual/render-3.webp", alt: "Interior render study of a contemporary space", width: 975, height: 1226 },
       { src: "/media/visual/render-4.webp", alt: "Spatial concept render with material study", width: 988, height: 1232 },
       { src: "/media/visual/render-5.webp", alt: "Interior render exploring lighting design", width: 988, height: 1226 },
@@ -415,6 +413,38 @@ export function relatedCaseStudies(study: CaseStudy, limit = 2): CaseStudy[] {
   );
 
   return [...explicit, ...derived].slice(0, limit);
+}
+
+/** The service line each work category belongs to (canonical slugs only). */
+const CATEGORY_SERVICE: Record<WorkCategory, ServiceSlug> = {
+  "technical-production": "cad-technical-production",
+  "growth-b2b": "b2b-lead-generation",
+  visualisation: "visualisation-image-production",
+  video: "ai-video-production",
+  automation: "automation-workflow-systems",
+  websites: "website-design-development",
+};
+
+/**
+ * The canonical service a case study sits under: its category's service line,
+ * falling back to its first listed service. getService() resolves legacy slugs
+ * to the canonical service, so the result never points at a redirecting URL.
+ */
+export function caseStudyParentService(study: CaseStudy): Service | undefined {
+  return getService(CATEGORY_SERVICE[study.category]) ?? getService(study.services[0]);
+}
+
+/**
+ * Breadcrumb trail for a case study, shared by the visible breadcrumb and the
+ * BreadcrumbList JSON-LD so the two can never disagree.
+ */
+export function caseStudyBreadcrumbTrail(study: CaseStudy): { name: string; path: string }[] {
+  const service = caseStudyParentService(study);
+  return [
+    { name: "Home", path: "/" },
+    ...(service ? [{ name: service.shortName, path: `/services/${service.slug}` }] : []),
+    { name: study.projectName, path: `/work/${study.slug}` },
+  ];
 }
 
 /** The display name for a client, honouring anonymisation. */

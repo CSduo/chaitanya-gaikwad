@@ -20,6 +20,7 @@ import {
   getCaseStudy,
   relatedCaseStudies,
   clientLabel,
+  caseStudyBreadcrumbTrail,
   WORK_CATEGORIES,
   ENGAGEMENT_LABELS,
   type SchemaTable,
@@ -122,6 +123,7 @@ export default async function CaseStudyPage({
   const client = clientLabel(study);
   const related = relatedCaseStudies(study, 2);
   const relatedServices = ALL_SERVICES.filter((s) => study.services.includes(s.slug));
+  const trail = caseStudyBreadcrumbTrail(study);
 
   /* Metadata cells — only those with real values. */
   const metaItems = [
@@ -145,24 +147,12 @@ export default async function CaseStudyPage({
           image: study.seo.image,
         })}
       />
-      <JsonLd
-        data={breadcrumbSchema([
-          { name: "Home", path: "/" },
-          { name: "CAD & Technical", path: "/services/cad-technical-production" },
-          { name: study.projectName, path: `/work/${study.slug}` },
-        ])}
-      />
+      <JsonLd data={breadcrumbSchema(trail)} />
 
       {/* 01 — Project hero */}
       <section className="border-b border-rule">
         <Container width="page" className="pb-10 pt-10 sm:pb-12">
-          <Breadcrumbs
-            trail={[
-              { name: "Home", path: "/" },
-              { name: "CAD & Technical", path: "/services/cad-technical-production" },
-              { name: study.projectName, path: `/work/${study.slug}` },
-            ]}
-          />
+          <Breadcrumbs trail={trail} />
           <div className="max-w-3xl">
             {category ? <Eyebrow>{category.label}</Eyebrow> : null}
             <h1 className="display mt-6 text-3xl sm:text-4xl lg:text-5xl">{study.projectName}</h1>

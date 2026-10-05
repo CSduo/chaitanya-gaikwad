@@ -301,7 +301,7 @@ export default function PhotorealisticFurnitureRenderingPage() {
         body="Send your 3D CAD files, sketches, or photographs. We will review geometry requirements, outline material shaders, and provide a pilot rendering scope."
         services={[
           { label: "3D Visualisation Pillar", href: "/services/visualisation-image-production" },
-          { label: "Video, AI Film & Editing", href: "/services/video-ai-film-editing" },
+          { label: "AI Video Production", href: "/services/ai-video-production" },
           { label: "Website Design & Development", href: "/services/website-design-development" },
         ]}
       />
