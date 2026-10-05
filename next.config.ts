@@ -89,11 +89,14 @@ const nextConfig: NextConfig = {
       { source: "/projects", destination: "/#capabilities", permanent: true },
       { source: "/startup", destination: "/#capabilities", permanent: true },
       { source: "/about", destination: "/company", permanent: true },
-      { source: "/services/cad", destination: "/services/cad-technical-production", permanent: true },
       { source: "/company/about", destination: "/company", permanent: true },
       { source: "/legal", destination: "/legal/privacy", permanent: true },
 
       // ---- Service taxonomy canonicalisation & redirects ----
+      // Parent paths implied by the specialism URLs (/services/<parent>/<page>).
+      { source: "/services/visualisation", destination: "/services/visualisation-image-production", permanent: true },
+      { source: "/services/cad", destination: "/services/cad-technical-production", permanent: true },
+      { source: "/services/growth", destination: "/services/b2b-lead-generation", permanent: true },
       { source: "/services/growth-operations", destination: "/services/b2b-lead-generation", permanent: true },
       { source: "/services/growth-marketing-b2b", destination: "/services/b2b-lead-generation", permanent: true },
       { source: "/services/video-ai-film-editing", destination: "/services/ai-video-production", permanent: true },

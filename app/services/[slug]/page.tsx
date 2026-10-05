@@ -19,6 +19,8 @@ import { getServicePricing, PRICING_NOTE } from "@/lib/pricing";
 import { pageMetadata, serviceSchema, breadcrumbSchema } from "@/lib/seo";
 import { SERVICE_SEO } from "@/lib/seo-copy";
 import { getServiceWhatsAppHref, WHATSAPP } from "@/lib/site";
+import { specialismsForService } from "@/lib/specialisms";
+import { SpecialismLinks } from "@/components/services/SpecialismLinks";
 
 
 const SERVICE_ACTION_LABELS: Record<string, string> = {
@@ -70,6 +72,7 @@ export default async function ServicePage({
   const isCad = service.slug === "cad-technical-production";
   const prices = getServicePricing(service.slug);
   const primaryPrice = prices[0];
+  const specialisms = specialismsForService(service.slug);
 
   return (
     <>
@@ -286,27 +289,17 @@ export default async function ServicePage({
         </Container>
       </Section>
 
-      {/* 10 — Specialist Production Landing Pages */}
-      {isCad ? (
-        <Section tone="surface" bordered>
+      {/* 10 — Specialisms: focused pages within this service (lib/specialisms.ts) */}
+      {specialisms.length ? (
+        <Section id="specialisms" tone="surface" bordered>
           <Container width="page">
-            <div className="border border-rule bg-paper p-8 lg:p-10">
-              <Eyebrow>Specialist Production Capability</Eyebrow>
-              <h3 className="display mt-4 text-2xl sm:text-3xl">
-                Interior Fit-Out & Joinery Shop Drawings
-              </h3>
-              <p className="mt-4 max-w-2xl text-base leading-relaxed text-ink-muted">
-                Dedicated overflow drafting support for interior fit-out contractors, joinery manufacturers, and commercial studios. Complete millwork elevations, reflected ceiling plans, MEP coordination, and fabrication details delivered to UK and international building standards.
-              </p>
-              <div className="mt-6">
-                <Link
-                  href="/services/cad/interior-fit-out-shop-drawings"
-                  className="inline-flex items-center gap-2 text-sm font-medium text-ink underline decoration-rule-strong underline-offset-4 hover:text-accent"
-                >
-                  <span>Explore Interior Fit-Out CAD Shop Drawings</span>
-                  <span aria-hidden="true">&rarr;</span>
-                </Link>
-              </div>
+            <SectionHeading
+              eyebrow="Specialisms"
+              title="Focused services within this discipline."
+              intro={`Dedicated pages for specific briefs within ${service.shortName}.`}
+            />
+            <div className="mt-10">
+              <SpecialismLinks specialisms={specialisms} />
             </div>
           </Container>
         </Section>
@@ -329,13 +322,6 @@ export default async function ServicePage({
                   className="inline-flex items-center gap-2 text-sm font-medium text-ink underline decoration-rule-strong underline-offset-4 hover:text-accent"
                 >
                   <span>Explore Market Intelligence Services</span>
-                  <span aria-hidden="true">&rarr;</span>
-                </Link>
-                <Link
-                  href="/services/growth/middle-east-market-intelligence"
-                  className="inline-flex items-center gap-2 text-sm font-medium text-ink-muted underline decoration-rule-strong underline-offset-4 hover:text-ink"
-                >
-                  <span>Middle East Buyer Intelligence</span>
                   <span aria-hidden="true">&rarr;</span>
                 </Link>
               </div>
@@ -361,31 +347,6 @@ export default async function ServicePage({
                   className="inline-flex items-center gap-2 text-sm font-medium text-ink underline decoration-rule-strong underline-offset-4 hover:text-accent"
                 >
                   <span>Explore Middle East B2B Intelligence</span>
-                  <span aria-hidden="true">&rarr;</span>
-                </Link>
-              </div>
-            </div>
-          </Container>
-        </Section>
-      ) : null}
-
-      {service.slug === "visualisation-image-production" ? (
-        <Section tone="surface" bordered>
-          <Container width="page">
-            <div className="border border-rule bg-paper p-8 lg:p-10">
-              <Eyebrow>Commercial CGI Focus</Eyebrow>
-              <h3 className="display mt-4 text-2xl sm:text-3xl">
-                Photorealistic Furniture 3D Rendering &amp; Visualisation
-              </h3>
-              <p className="mt-4 max-w-2xl text-base leading-relaxed text-ink-muted">
-                Hyper-realistic CGI lifestyle environments, material swatch simulations, and e-commerce hero sets for luxury furniture designers, bespoke joinery workshops, and high-end brands.
-              </p>
-              <div className="mt-6">
-                <Link
-                  href="/services/visualisation/photorealistic-furniture-rendering"
-                  className="inline-flex items-center gap-2 text-sm font-medium text-ink underline decoration-rule-strong underline-offset-4 hover:text-accent"
-                >
-                  <span>Explore Furniture 3D Rendering Services</span>
                   <span aria-hidden="true">&rarr;</span>
                 </Link>
               </div>

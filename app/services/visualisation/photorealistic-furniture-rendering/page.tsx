@@ -13,6 +13,7 @@ import {
 import { ProjectCTA } from "@/components/site/ProjectCTA";
 import { pageMetadata, serviceSchema, breadcrumbSchema } from "@/lib/seo";
 import { getServiceWhatsAppHref, WHATSAPP } from "@/lib/site";
+import { getSpecialism, specialismBreadcrumbTrail } from "@/lib/specialisms";
 
 export const metadata: Metadata = pageMetadata({
   title: "Photorealistic Furniture 3D Rendering Studio | XIYÀTO",
@@ -20,6 +21,9 @@ export const metadata: Metadata = pageMetadata({
     "Ultra-photorealistic 3D furniture CGI, material shaders, and catalogue visualisation for luxury furniture brands, lighting designers, and joinery studios.",
   path: "/services/visualisation/photorealistic-furniture-rendering",
 });
+
+/** Services > parent service > this page, shared by the visible breadcrumb and its JSON-LD. */
+const TRAIL = specialismBreadcrumbTrail(getSpecialism("/services/visualisation/photorealistic-furniture-rendering")!);
 
 const VIS_CAPABILITIES = [
   {
@@ -104,24 +108,12 @@ export default function PhotorealisticFurnitureRenderingPage() {
         })}
       />
       <JsonLd
-        data={breadcrumbSchema([
-          { name: "Home", path: "/" },
-          { name: "Services", path: "/services" },
-          { name: "3D Visualisation", path: "/services/visualisation-image-production" },
-          { name: "Furniture 3D Rendering", path: "/services/visualisation/photorealistic-furniture-rendering" },
-        ])}
+        data={breadcrumbSchema(TRAIL)}
       />
 
       <section className="border-b border-rule">
         <Container width="page" className="pb-16 pt-10 sm:pb-20 lg:pb-24">
-          <Breadcrumbs
-            trail={[
-              { name: "Home", path: "/" },
-              { name: "Services", path: "/services" },
-              { name: "3D Visualisation", path: "/services/visualisation-image-production" },
-              { name: "Furniture 3D Rendering", path: "/services/visualisation/photorealistic-furniture-rendering" },
-            ]}
-          />
+          <Breadcrumbs trail={TRAIL} />
           <div className="max-w-3xl">
             <Eyebrow>Product Visualisation · CGI Studio · Furniture & Lighting</Eyebrow>
             <h1 className="display mt-6 text-4xl sm:text-5xl lg:text-[3.25rem] leading-[1.1]">

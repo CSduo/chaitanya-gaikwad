@@ -13,6 +13,7 @@ import {
 import { ProjectCTA } from "@/components/site/ProjectCTA";
 import { pageMetadata, serviceSchema, breadcrumbSchema } from "@/lib/seo";
 import { getServiceWhatsAppHref, WHATSAPP } from "@/lib/site";
+import { getSpecialism, specialismBreadcrumbTrail } from "@/lib/specialisms";
 
 export const metadata: Metadata = pageMetadata({
   title: "Interior Fit-Out Shop Drawings & Joinery CAD Services | XIYÀTO",
@@ -20,6 +21,9 @@ export const metadata: Metadata = pageMetadata({
     "Specialist outsourced interior fit-out shop drawings, joinery drafting, and architectural documentation for contractors and design practices. Editable DWG, DXF & PDF.",
   path: "/services/cad/interior-fit-out-shop-drawings",
 });
+
+/** Services > parent service > this page, shared by the visible breadcrumb and its JSON-LD. */
+const TRAIL = specialismBreadcrumbTrail(getSpecialism("/services/cad/interior-fit-out-shop-drawings")!);
 
 const CAPABILITY_GROUPS = [
   {
@@ -104,24 +108,12 @@ export default function InteriorFitOutShopDrawingsPage() {
         })}
       />
       <JsonLd
-        data={breadcrumbSchema([
-          { name: "Home", path: "/" },
-          { name: "Services", path: "/services" },
-          { name: "CAD & Technical Production", path: "/services/cad-technical-production" },
-          { name: "Interior Fit-Out Shop Drawings", path: "/services/cad/interior-fit-out-shop-drawings" },
-        ])}
+        data={breadcrumbSchema(TRAIL)}
       />
 
       <section className="border-b border-rule">
         <Container width="page" className="pb-16 pt-10 sm:pb-20 lg:pb-24">
-          <Breadcrumbs
-            trail={[
-              { name: "Home", path: "/" },
-              { name: "Services", path: "/services" },
-              { name: "CAD Production", path: "/services/cad-technical-production" },
-              { name: "Interior Shop Drawings", path: "/services/cad/interior-fit-out-shop-drawings" },
-            ]}
-          />
+          <Breadcrumbs trail={TRAIL} />
           <div className="max-w-3xl">
             <Eyebrow>Specialist CAD Service · Commercial & Residential Fit-Out</Eyebrow>
             <h1 className="display mt-6 text-4xl sm:text-5xl lg:text-[3.25rem] leading-[1.1]">

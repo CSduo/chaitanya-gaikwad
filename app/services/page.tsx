@@ -18,6 +18,8 @@ import { getServicePricing, PRICING_NOTE } from "@/lib/pricing";
 import { getServiceWhatsAppHref } from "@/lib/site";
 import { pageMetadata, breadcrumbSchema } from "@/lib/seo";
 import { ROUTE_SEO } from "@/lib/seo-copy";
+import { specialismsByParent } from "@/lib/specialisms";
+import { SpecialismLinks } from "@/components/services/SpecialismLinks";
 
 export const metadata: Metadata = pageMetadata({
   title: ROUTE_SEO.services.metaTitle,
@@ -142,6 +144,29 @@ export default function ServicesPage() {
           </Section>
         );
       })}
+
+      {/* Specialisms — focused pages within a service (lib/specialisms.ts) */}
+      <Section id="specialisms" tone="deep" bordered className="scroll-mt-20">
+        <Container width="page">
+          <SectionHeading
+            eyebrow="Specialisms"
+            title="Focused services for specific briefs."
+            intro="Dedicated pages for work that needs a particular specialism within a service."
+          />
+          <div className="mt-12 space-y-10">
+            {specialismsByParent().map(({ parent, specialisms }) => (
+              <div key={parent.slug}>
+                <h3 className="label mb-3">
+                  <Link href={`/services/${parent.slug}`} className="hover:text-accent">
+                    {parent.shortName}
+                  </Link>
+                </h3>
+                <SpecialismLinks specialisms={specialisms} />
+              </div>
+            ))}
+          </div>
+        </Container>
+      </Section>
 
       {/* 05 — How engagements work */}
       <Section bordered>

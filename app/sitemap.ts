@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { SITE } from "@/lib/site";
 import { ALL_SERVICES } from "@/lib/services";
+import { SPECIALISMS } from "@/lib/specialisms";
 import { allCaseStudies } from "@/lib/case-studies";
 import { publishedLegalPages } from "@/lib/company";
 import { VISUALS } from "@/lib/visuals";
@@ -40,11 +41,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...(s.slug === "visualisation-image-production" ? { images: VISUALS.map((visual) => url(visual.src)) } : {}),
   }));
 
-  const subServices: MetadataRoute.Sitemap = [
-    "/services/cad/interior-fit-out-shop-drawings",
-    "/services/growth/middle-east-market-intelligence",
-    "/services/visualisation/photorealistic-furniture-rendering",
-  ].map((path) => ({ url: url(path), lastModified: lastModified(path) }));
+  // Each specialism page is its own content group, keyed by its path.
+  const subServices: MetadataRoute.Sitemap = SPECIALISMS.map(({ path }) => ({
+    url: url(path),
+    lastModified: lastModified(path),
+  }));
 
   const work: MetadataRoute.Sitemap = allCaseStudies().map((c) => ({
     url: url(`/work/${c.slug}`),

@@ -13,6 +13,7 @@ import {
 import { ProjectCTA } from "@/components/site/ProjectCTA";
 import { pageMetadata, serviceSchema, breadcrumbSchema } from "@/lib/seo";
 import { getServiceWhatsAppHref, WHATSAPP } from "@/lib/site";
+import { getSpecialism, specialismBreadcrumbTrail } from "@/lib/specialisms";
 
 export const metadata: Metadata = pageMetadata({
   title: "Middle East B2B Market Research & Lead Intelligence | XIYÀTO",
@@ -20,6 +21,9 @@ export const metadata: Metadata = pageMetadata({
     "Human-researched, telephone-verified B2B intelligence on architecture, fit-out, and commercial procurement decision-makers across UAE, Saudi Arabia, and Qatar.",
   path: "/services/growth/middle-east-market-intelligence",
 });
+
+/** Services > parent service > this page, shared by the visible breadcrumb and its JSON-LD. */
+const TRAIL = specialismBreadcrumbTrail(getSpecialism("/services/growth/middle-east-market-intelligence")!);
 
 const RESEARCH_CAPABILITIES = [
   {
@@ -105,24 +109,12 @@ export default function MiddleEastMarketIntelligencePage() {
         })}
       />
       <JsonLd
-        data={breadcrumbSchema([
-          { name: "Home", path: "/" },
-          { name: "Services", path: "/services" },
-          { name: "Marketing & B2B Lead Generation", path: "/services/b2b-lead-generation" },
-          { name: "Middle East Market Intelligence", path: "/services/growth/middle-east-market-intelligence" },
-        ])}
+        data={breadcrumbSchema(TRAIL)}
       />
 
       <section className="border-b border-rule">
         <Container width="page" className="pb-16 pt-10 sm:pb-20 lg:pb-24">
-          <Breadcrumbs
-            trail={[
-              { name: "Home", path: "/" },
-              { name: "Services", path: "/services" },
-              { name: "Marketing & B2B Lead Generation", path: "/services/b2b-lead-generation" },
-              { name: "Middle East Intelligence", path: "/services/growth/middle-east-market-intelligence" },
-            ]}
-          />
+          <Breadcrumbs trail={TRAIL} />
           <div className="max-w-3xl">
             <Eyebrow>Market Intelligence · United Arab Emirates · Saudi Arabia · Qatar</Eyebrow>
             <h1 className="display mt-6 text-4xl sm:text-5xl lg:text-[3.25rem] leading-[1.1]">
