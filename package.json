@@ -15,7 +15,7 @@
     "test:career": "npx tsx tests/career-and-enquiry-flows.test.mjs",
     "test:bing": "node tests/bing-search-infrastructure.test.mjs",
     "submit:indexnow": "tsx scripts/submit-indexnow.ts",
-    "test:seo": "tsx tests/seo-automation.test.mjs && tsx tests/information-architecture.test.mjs",
+    "test:seo": "tsx tests/seo-automation.test.mjs && tsx tests/information-architecture.test.mjs && tsx tests/visualisation-content.test.mjs",
     "seo:audit": "tsx scripts/seo-audit.ts",
     "seo:audit:live": "tsx scripts/seo-audit.ts --live",
     "submit:google": "tsx scripts/submit-google-sitemap.ts",
