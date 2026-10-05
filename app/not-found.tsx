@@ -1,10 +1,14 @@
 import type { Metadata } from "next";
 import { Container, ButtonLink, Eyebrow, TextLink } from "@/components/ui/primitives";
 
+/*
+  Next.js adds <meta name="robots" content="noindex"> to the not-found page by
+  itself, so no robots value is set here (it produced a second, duplicate robots
+  meta). The root layout declares no canonical, so none is inherited either.
+*/
 export const metadata: Metadata = {
   title: "Page not found",
   description: "The page you requested could not be found.",
-  robots: { index: false, follow: true },
 };
 
 export default function NotFound() {

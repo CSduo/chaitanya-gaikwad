@@ -80,11 +80,10 @@ export const metadata: Metadata = {
       "msvalidate.01": "c746da95e0c54178a9cb57f7229b19d4",
     },
   },
-  robots: {
-    index: true,
-    follow: true,
-    "max-image-preview": "large",
-  },
+  /*
+    No root robots either: every route sets its own through pageMetadata(), and
+    a root value would sit beside the automatic noindex on the 404 page.
+  */
   openGraph: {
     type: "website",
     siteName: SITE.name,
