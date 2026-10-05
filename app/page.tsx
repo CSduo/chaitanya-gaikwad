@@ -66,6 +66,17 @@ export default function HomePage() {
     ...(furnitureCampaign ? [{ href: `/work/${furnitureCampaign.slug}`, label: "Moon Chair furniture campaign film" }] : []),
     ...specialismsForService(visualisation.slug).map((s) => ({ href: s.path, label: s.name })),
   ];
+  // Supporting chapters link their service page, case study and specialisms too.
+  const cadStudy = getCaseStudy("bahrain-luxury-interior-cad-package");
+  const cadLinks = [
+    { href: `/services/${cad.slug}`, label: "CAD drafting services" },
+    ...(cadStudy ? [{ href: `/work/${cadStudy.slug}`, label: "Bahrain interior CAD drawing package" }] : []),
+    ...specialismsForService(cad.slug).map((s) => ({ href: s.path, label: s.name })),
+  ];
+  const b2bLinks = [
+    { href: `/services/${b2bLeadGen.slug}`, label: "B2B lead generation services" },
+    ...specialismsForService(b2bLeadGen.slug).map((s) => ({ href: s.path, label: s.name })),
+  ];
 
   return (
     <>
@@ -89,9 +100,9 @@ export default function HomePage() {
       <SectionDivider index={3} label="Build" className="py-1" />
       <WebsiteSection service={web} />
       <SectionDivider index={4} label="Deliver" className="py-1" />
-      <CadSection service={cad} />
+      <CadSection service={cad} links={cadLinks} />
       <SectionDivider index={5} label="Grow" className="py-1" />
-      <B2BLeadGenSection service={b2bLeadGen} />
+      <B2BLeadGenSection service={b2bLeadGen} links={b2bLinks} />
       <SectionDivider index={6} label="Automate" className="py-1" />
       <AutomationSection service={automation} />
       <StartingPrices />

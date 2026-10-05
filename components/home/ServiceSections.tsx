@@ -124,14 +124,41 @@ function Chapter({
   );
 }
 
+export type ChapterLink = { href: string; label: string };
+
+/** Descriptive links from a chapter to its service page, case studies and specialisms. */
+function ChapterLinks({ links, dark = false }: { links: ChapterLink[]; dark?: boolean }) {
+  if (links.length === 0) return null;
+  return (
+    <ul className={`mt-3 grid gap-x-6 border-t pt-3 sm:grid-cols-2 ${dark ? "border-white/15" : "border-rule"}`}>
+      {links.map((link) => (
+        <li key={link.href}>
+          <Link
+            href={link.href}
+            className={`group inline-flex min-h-[44px] items-center gap-2 text-sm font-medium transition-colors ${
+              dark ? "text-zinc-100 hover:text-white" : "text-ink hover:text-accent"
+            }`}
+          >
+            <span className={`underline underline-offset-4 ${dark ? "decoration-white/40" : "decoration-rule-strong"}`}>
+              {link.label}
+            </span>
+            <span aria-hidden="true">&rarr;</span>
+          </Link>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
 /* ------------------------------------------------------------------ */
 /* 04 — CAD & TECHNICAL PRODUCTION (Architectural Slate Blueprint)     */
 /* ------------------------------------------------------------------ */
 
-export function CadSection({ service }: { service: Service }) {
+export function CadSection({ service, links = [] }: { service: Service; links?: ChapterLink[] }) {
   return (
     <Chapter service={service} tone="slate">
       <CadDraftingRail />
+      <ChapterLinks links={links} dark />
     </Chapter>
   );
 }
@@ -140,13 +167,14 @@ export function CadSection({ service }: { service: Service }) {
 /* 05 — MARKETING & B2B LEAD GENERATION                               */
 /* ------------------------------------------------------------------ */
 
-export function B2BLeadGenSection({ service }: { service: Service }) {
+export function B2BLeadGenSection({ service, links = [] }: { service: Service; links?: ChapterLink[] }) {
   return (
     <Chapter service={service} tone="surface">
       <div id="service-market-intelligence-research" className="scroll-mt-16">
         <span id="market-intelligence-research" className="block scroll-mt-16" aria-hidden="true" />
         <LeadIntelligencePanel />
       </div>
+      <ChapterLinks links={links} />
     </Chapter>
   );
 }
@@ -190,7 +218,7 @@ export function VisualisationSection({
 }: {
   service: Service;
   /** Descriptive links to the service page, case studies and specialisms. */
-  links?: { href: string; label: string }[];
+  links?: ChapterLink[];
 }) {
   const groups = activeVisualGroups();
   const [group, setGroup] = useState<VisualGroup | null>(null);
@@ -264,21 +292,7 @@ export function VisualisationSection({
         <span aria-hidden="true">&rarr;</span>
       </Link>
 
-      {links.length ? (
-        <ul className="mt-3 grid gap-x-6 border-t border-rule pt-3 sm:grid-cols-2">
-          {links.map((link) => (
-            <li key={link.href}>
-              <Link
-                href={link.href}
-                className="group inline-flex min-h-[44px] items-center gap-2 text-sm font-medium text-ink transition-colors hover:text-accent"
-              >
-                <span className="underline decoration-rule-strong underline-offset-4">{link.label}</span>
-                <span aria-hidden="true">&rarr;</span>
-              </Link>
-            </li>
-          ))}
-        </ul>
-      ) : null}
+      <ChapterLinks links={links} />
     </Chapter>
   );
 }

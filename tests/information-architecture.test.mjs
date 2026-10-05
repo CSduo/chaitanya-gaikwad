@@ -131,10 +131,13 @@ test("the homepage leads with 3D visualisation and film and links the 3D service
   assert.match(ROUTE_SEO.home.metaDescription, /3D visualisation and film studio/);
   assert.match(HOME_COPY.h1, /^3D visualisation and film/);
   const page = readFileSync(new URL("../app/page.tsx", import.meta.url), "utf8");
-  for (const slug of ["interior-visualisation-studies", "sultanah-moon-chair-cinematic-campaign"]) {
+  for (const slug of ["interior-visualisation-studies", "sultanah-moon-chair-cinematic-campaign", "bahrain-luxury-interior-cad-package"]) {
     assert.ok(getCaseStudy(slug), `${slug} no longer exists`);
     assert.ok(page.includes(`getCaseStudy("${slug}")`), `homepage no longer links ${slug}`);
   }
+  // Supporting chapters link their specialisms, so specialism pages are reachable from the homepage.
+  assert.match(page, /specialismsForService\(cad\.slug\)/);
+  assert.match(page, /specialismsForService\(b2bLeadGen\.slug\)/);
   // Visualisation and film come before the supporting-capabilities carousel.
   assert.ok(page.indexOf("<VisualisationSection") < page.indexOf("<VideoSection"));
   assert.ok(page.indexOf("<VideoSection") < page.indexOf("<ServicesCarousel"));
