@@ -20,6 +20,7 @@ import {
   type WorkCategory,
 } from "@/lib/case-studies";
 import { allVideos, allWebsites, allWorkbooks, CAD_PROJECTS } from "@/lib/portfolio";
+import { FilmPlayer, filmMeta } from "@/components/work/FilmPlayer";
 import { featuredRenders, renderVisuals } from "@/lib/visuals";
 import { specialismsForService } from "@/lib/specialisms";
 import { SITE } from "@/lib/site";
@@ -155,18 +156,17 @@ export default function WorkPage() {
           </div>
 
           <h3 className="label mb-4 mt-14">All films</h3>
-          <ul className="grid gap-px border border-rule bg-rule sm:grid-cols-2">
+          {/* Real <video> elements (preload="none") with VideoObject markup. */}
+          <ul className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
             {videos.map((v) => (
-              <li key={v.slug} className="bg-paper p-5 lg:p-6">
-                <p className="meta">{[v.client ?? v.clientDescriptor, v.year].filter(Boolean).join(" · ")}</p>
-                <h4 className="mt-2 text-base font-semibold tracking-tight text-ink">{v.title}</h4>
-                <p className="mt-2 text-sm leading-relaxed text-ink-muted">{v.description}</p>
+              <li key={v.slug}>
+                <FilmPlayer film={v} meta={filmMeta(v)} headingLevel="h4" />
               </li>
             ))}
           </ul>
           <SectionLinks
             links={[
-              { href: "/services/ai-video-production#films", label: "Watch the films" },
+              { href: "/services/ai-video-production#films", label: "Films on the video service page" },
               { href: "/services/ai-video-production", label: "AI video production services" },
             ]}
           />

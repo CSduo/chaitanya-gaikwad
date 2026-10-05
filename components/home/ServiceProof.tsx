@@ -3,7 +3,8 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { ImageGrid, VideoGallery, type LightboxItem } from "@/components/media/viewers";
+import { ImageGrid, type LightboxItem } from "@/components/media/viewers";
+import { FilmPlayer, filmMeta } from "@/components/work/FilmPlayer";
 import { CAD_DRAWINGS, CAD_PROJECTS, WORKBOOKS, allVideos, allWebsites } from "@/lib/portfolio";
 import { VISUALS, activeVisualGroups, isConceptVisual, type VisualGroup } from "@/lib/visuals";
 import type { ServiceSlug } from "@/lib/services";
@@ -354,11 +355,22 @@ function VisualisationProof() {
   );
 }
 
+/**
+ * Every portfolio film as a real <video> element with its VideoObject markup,
+ * so the films are indexable. preload="none": only posters load until played.
+ */
 function VideoProof() {
+  const films = allVideos();
   return (
     <div id="films" className="scroll-mt-16">
-      <p className="meta mb-6">{allVideos().length} films · select a poster to play</p>
-      <VideoGallery videos={allVideos()} columns={3} />
+      <p className="meta mb-6">{films.length} films · press play to watch</p>
+      <ul className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        {films.map((film) => (
+          <li key={film.slug}>
+            <FilmPlayer film={film} meta={filmMeta(film)} headingLevel="h3" />
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }

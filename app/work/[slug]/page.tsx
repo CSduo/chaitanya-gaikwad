@@ -15,6 +15,8 @@ import {
 import { ProjectCTA } from "@/components/site/ProjectCTA";
 import { RelatedWork, RelatedServices } from "@/components/work/cards";
 import { Gallery, LazyVideo } from "@/components/work/media";
+import { FilmPlayer } from "@/components/work/FilmPlayer";
+import { filmBySrc } from "@/lib/portfolio";
 import {
   CASE_STUDIES,
   getCaseStudy,
@@ -355,9 +357,16 @@ export default async function CaseStudyPage({
               <Container width="page">
                 <SectionHeading eyebrow="Film" title="Motion output." />
                 <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:max-w-3xl">
-                  {study.video.map((v) => (
-                    <LazyVideo key={v.src} item={v} />
-                  ))}
+                  {study.video.map((v) => {
+                    // Portfolio films render as real <video> elements with VideoObject
+                    // markup; anything not in the film library keeps the click-to-load player.
+                    const film = filmBySrc(v.src);
+                    return film ? (
+                      <FilmPlayer key={v.src} film={film} title={v.title} description={v.description} poster={v.poster} />
+                    ) : (
+                      <LazyVideo key={v.src} item={v} />
+                    );
+                  })}
                 </div>
               </Container>
             </Section>
