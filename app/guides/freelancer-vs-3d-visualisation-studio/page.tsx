@@ -234,7 +234,13 @@ export default function FreelancerVsStudioGuidePage() {
               These are tendencies, not rules. A well-organised freelancer can out-perform a disorganised studio, which
               is why the checklist below matters more than the label.
             </p>
-            <div className="mt-8 overflow-x-auto">
+            {/* Scrolls sideways on narrow screens; focusable so keyboard users can scroll it too. */}
+            <div
+              className="mt-8 overflow-x-auto focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+              tabIndex={0}
+              role="region"
+              aria-label="Freelancer and studio comparison table, scrolls horizontally on small screens"
+            >
               <table className="w-full min-w-[40rem] border-collapse text-left text-sm">
                 <caption className="sr-only">How a freelance 3D visualiser and a 3D visualisation studio typically compare</caption>
                 <thead>
