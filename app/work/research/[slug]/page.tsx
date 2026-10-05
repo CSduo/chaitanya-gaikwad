@@ -22,6 +22,12 @@ export function generateStaticParams() {
 
 export const dynamicParams = false;
 
+/** The workbook summary, plus a short label when it still fits in 155 characters. */
+function researchDescription(summary: string): string {
+  const label = " A redacted research sample.";
+  return summary.length + label.length <= 155 ? `${summary}${label}` : summary;
+}
+
 export async function generateMetadata({
   params,
 }: {
@@ -31,8 +37,9 @@ export async function generateMetadata({
   const w = getWorkbook(slug);
   if (!w) return {};
   return pageMetadata({
-    title: `${w.title} — B2B Research & Market Intelligence | XIYÀTO`,
-    description: `Verified B2B research database: ${w.summary} Methodology, qualification criteria, and interactive data viewer.`,
+    // "<workbook> | XIYÀTO": within 60 characters and the site's single separator.
+    title: w.title.replaceAll(" — ", ": "),
+    description: researchDescription(w.summary),
     path: `/work/research/${w.slug}`,
     type: "article",
     /*

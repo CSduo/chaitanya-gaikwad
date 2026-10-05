@@ -18,7 +18,7 @@ export type RouteSeo = {
 export const SERVICE_SEO: Record<string, RouteSeo> = {
   "cad-technical-production": {
     metaTitle: "CAD Drafting Services for Architecture & Interiors | XIYÀTO",
-    metaDescription: "Outsourced CAD drafting for architects, interior designers & fit-out contractors. Send marked-up PDFs or site sketches; receive coordinated, editable DWG sets.",
+    metaDescription: "Outsourced CAD drafting for architects, interior designers and fit-out contractors. Send marked-up PDFs or sketches; get coordinated, editable DWG sets.",
     searchIntent: "Can I hire an outsourced CAD drafting partner to turn our sketches and marked-up PDFs into coordinated, editable AutoCAD DWG drawing sets our team can issue?",
     primaryKeywords: ["CAD drafting services", "outsourced CAD drafting", "interior CAD drafting", "AutoCAD drafting services", "architectural drafting services", "CAD drafting company"],
     secondaryKeywords: ["interior technical drawings", "joinery shop drawings", "reflected ceiling plans", "millwork drafting services", "floor plan drafting", "editable DWG drawings", "PDF to CAD conversion", "fit-out drawing packages"],
@@ -32,7 +32,7 @@ export const SERVICE_SEO: Record<string, RouteSeo> = {
   },
   "market-intelligence-research": {
     metaTitle: "Market Intelligence & Commercial Research | XIYÀTO",
-    metaDescription: "Commercial market intelligence and B2B market research for new markets, buyers, and opportunities. Competitor analysis, territory mapping & distributor discovery.",
+    metaDescription: "Commercial market intelligence for new markets, buyers and opportunities: competitor analysis, territory mapping and distributor discovery.",
     searchIntent: "Who can research a new commercial market, map competitor landscapes, identify distributors and buyers, and give our leadership actionable commercial intelligence?",
     primaryKeywords: ["market intelligence services", "B2B market intelligence", "market research services", "commercial market research", "market entry research", "competitor research services"],
     secondaryKeywords: ["buyer research services", "distributor identification services", "industry intelligence services", "trade intelligence services", "Middle East market intelligence", "territory research services", "competitor landscape analysis", "wholesale market mapping"],
@@ -94,23 +94,23 @@ export const ROUTE_SEO = {
     metaDescription: "XIYÀTO portfolio: 3D interior and furniture visualisation, product films, CAD drawing packages and website builds, with case studies and selected work.",
   },
   services: {
-    metaTitle: "Commercial Production & Growth Services — XIYÀTO",
-    metaDescription: "3D renders, AI video, websites, CAD drafting, marketing and B2B lead generation, and automation. Clear starting prices and a defined scope for every brief.",
+    metaTitle: "3D Visualisation, Film, Web & CAD Services",
+    metaDescription: "3D visualisation and film first, with websites, CAD drafting, B2B research and automation. Clear starting prices and a defined scope for every brief.",
   },
   company: {
-    metaTitle: "One Partner Across Six Disciplines — XIYÀTO",
+    metaTitle: "One Partner Across Six Disciplines",
     metaDescription: "One partner for 3D renders, AI video, websites, CAD drafting, marketing and B2B research, and automation. Founder-led, operating across the UK and India.",
   },
   people: {
-    metaTitle: "Founder, Chaitanya Gaikwad — XIYÀTO",
-    metaDescription: "Chaitanya Gaikwad founded XIYÀTO and leads production across all six commercial disciplines. Scoping, quality checks and client contact sit with him directly.",
+    metaTitle: "Founder, Chaitanya Gaikwad",
+    metaDescription: "Chaitanya Gaikwad founded XIYÀTO and leads production in every discipline. Scoping, quality checks and client contact sit with him directly.",
   },
   careers: {
-    metaTitle: "Careers & Talent Network — XIYÀTO",
+    metaTitle: "Careers & Talent Network",
     metaDescription: "XIYÀTO engages independent specialists across drafting, research, visualisation, film, and web work. Open talent network applications reviewed weekly.",
   },
   contact: {
-    metaTitle: "Contact XIYÀTO — Commission Production or Growth",
+    metaTitle: "Contact & Project Enquiries",
     metaDescription: "Send a brief and whatever material exists. XIYÀTO will confirm what is workable, what is still needed, and propose a defined commercial scope.",
   },
 } as const;

@@ -10,9 +10,9 @@ export const SITE = {
   nameAscii: "XIYATO",
   url: "https://xiyato.uk",
   descriptor:
-    "Visual, creative and growth services for architecture firms, design businesses and international brands.",
+    "3D visualisation and film for interior designers, architects, developers and furniture brands, with CAD, web, research and automation support.",
   defaultDescription:
-    "3D renders, AI video, websites, CAD drafting, marketing and B2B lead generation, and workflow automation for design practices and brands. UK and India.",
+    "3D visualisation and film for interior designers, architects, developers and furniture brands, plus CAD drafting, websites, B2B research and automation.",
   locale: "en_GB",
   language: "en-GB",
   /** Owner-specified. Not derived from the current year. */

@@ -14,7 +14,8 @@ import { publishedChannels } from "@/lib/site";
 import { pageMetadata, breadcrumbSchema } from "@/lib/seo";
 
 export const metadata: Metadata = pageMetadata({
-  title: "Locations",
+  // Mirrors the page heading; no address is published until the owner verifies one.
+  title: "UK Client Coordination and India Production",
   description:
     "XIYÀTO maintains a UK-facing presence with production running from India, delivering internationally across Europe, the Middle East and Asia.",
   path: "/company/locations",

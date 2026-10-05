@@ -234,9 +234,9 @@ export const CASE_STUDIES: CaseStudy[] = [
     featured: true,
     order: 1,
     seo: {
-      title: "Bahrain Luxury Interior — Complete CAD Drawing Package",
+      title: "Bahrain Luxury Interior CAD Drawing Package",
       description:
-        "A multi-sheet interior drawing package produced for a luxury project in Bahrain: plans, elevations, reflected ceiling, flooring setting-out and joinery detail, issued as editable DWG, DXF and PDF.",
+        "Interior drawing package for a luxury project in Bahrain: plans, elevations, ceiling, flooring setting-out and joinery details, issued as DWG, DXF and PDF.",
       image: "/media/cad/mb-plan.png",
     },
   },
@@ -289,7 +289,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     featured: true,
     order: 2,
     seo: {
-      title: "Moon Chair — Cinematic Product Campaign",
+      title: "Moon Chair Cinematic Furniture Campaign Film",
       description:
         "A short-form cinematic product campaign for Sultanah & Co. Interiors, carrying a luxury furniture story from factory floor to showroom setting.",
       image: "/media/video/sultanah-co-moon-chair-cinematic-campaign-poster.webp",
@@ -368,7 +368,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     featured: false,
     order: 3,
     seo: {
-      title: "Interior Visualisation — Concept and Material Studies",
+      title: "Interior Visualisation and Material Studies",
       description:
         "An ongoing body of interior visualisation work: spatial concepts, material studies, lighting exploration and showroom previews for design-led businesses.",
       image: "/media/visual/vis-3.webp",

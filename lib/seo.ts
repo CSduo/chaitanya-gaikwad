@@ -47,7 +47,7 @@ export function pageMetadata({
     : [{ url: ogImage, width: 1200, height: 630, alt: title }];
 
   /*
-    The root layout appends "— XIYÀTO" via the title template. A written title
+    The root layout appends " | XIYÀTO" via the title template. A written title
     that already carries the brand would otherwise be branded twice and run
     past the ~60-character SERP limit, so it is emitted absolutely instead.
   */

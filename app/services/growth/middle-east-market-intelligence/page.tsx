@@ -18,7 +18,7 @@ import { getSpecialism, specialismBreadcrumbTrail } from "@/lib/specialisms";
 export const metadata: Metadata = pageMetadata({
   title: "Middle East B2B Market Research & Lead Intelligence | XIYÀTO",
   description:
-    "Human-researched, telephone-verified B2B intelligence on architecture, fit-out, and commercial procurement decision-makers across UAE, Saudi Arabia, and Qatar.",
+    "B2B research on architecture, fit-out and procurement decision-makers across the UAE, Saudi Arabia and Qatar, for firms entering the Middle East.",
   path: "/services/growth/middle-east-market-intelligence",
 });
 

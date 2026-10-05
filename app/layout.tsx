@@ -35,8 +35,9 @@ const newsreader = Newsreader({
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
   title: {
-    default: `${SITE.name} — ${SITE.descriptor}`,
-    template: `%s — ${SITE.name}`,
+    // One separator site-wide: "<page title> | XIYÀTO" (pageMetadata relies on it).
+    default: `${SITE.name} | 3D Visualisation & Film Studio`,
+    template: `%s | ${SITE.name}`,
   },
   description: SITE.defaultDescription,
   applicationName: SITE.name,
@@ -88,7 +89,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     siteName: SITE.name,
-    title: `${SITE.name} — ${SITE.descriptor}`,
+    title: `${SITE.name} | 3D Visualisation & Film Studio`,
     description: SITE.defaultDescription,
     locale: SITE.locale,
     images: [
@@ -102,7 +103,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: `${SITE.name} — ${SITE.descriptor}`,
+    title: `${SITE.name} | 3D Visualisation & Film Studio`,
     description: SITE.defaultDescription,
     images: [`${SITE.url}/opengraph-image.png`],
   },

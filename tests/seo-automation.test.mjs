@@ -4,7 +4,8 @@ import { generateKeyPairSync } from "node:crypto";
 import { inspectPage, sitemapUrls } from "../scripts/seo-audit.ts";
 import { submitGoogleSitemap } from "../scripts/submit-google-sitemap.ts";
 
-const html = '<html lang="en-GB"><head><title>Interior renders</title><meta name="description" content="Interior and furniture rendering services."><meta name="viewport" content="width=device-width"><meta name="robots" content="index,follow"><link rel="canonical" href="https://xiyato.uk/"></head><body><h1>Interior renders</h1><script type="application/ld+json">{"@type":"Organization"}</script></body></html>';
+// The fixture title carries the site's single separator and brand suffix, which the audit now requires.
+const html = '<html lang="en-GB"><head><title>Interior renders | XIYÀTO</title><meta name="description" content="Interior and furniture rendering services."><meta name="viewport" content="width=device-width"><meta name="robots" content="index,follow"><link rel="canonical" href="https://xiyato.uk/"></head><body><h1>Interior renders</h1><script type="application/ld+json">{"@type":"Organization"}</script></body></html>';
 
 test("audit catches crawl-blocking directives, incorrect canonicals and malformed structured data", () => {
   assert.deepEqual(inspectPage(html, "https://xiyato.uk/").errors, []);
@@ -12,6 +13,16 @@ test("audit catches crawl-blocking directives, incorrect canonicals and malforme
   assert.match(inspectPage(html, "https://xiyato.uk/", "googlebot: noindex").errors.join(), /noindex/);
   assert.match(inspectPage(html.replace('"index,follow"', '"none"'), "https://xiyato.uk/").errors.join(), /noindex/);
   assert.match(inspectPage(html.replace('{"@type":"Organization"}', "{broken}"), "https://xiyato.uk/").errors.join(), /JSON-LD/);
+});
+
+test("audit enforces title and description length and the single title separator", () => {
+  const withTitle = (t) => html.replace("<title>Interior renders | XIYÀTO</title>", `<title>${t}</title>`);
+  assert.deepEqual(inspectPage(withTitle("3D Visualisation &amp; Film for Interiors and Products | XIYÀTO"), "https://xiyato.uk/").errors, []);
+  assert.match(inspectPage(withTitle(`${"x".repeat(52)} | XIYÀTO`), "https://xiyato.uk/").errors.join(), /Title is 61 characters/);
+  assert.match(inspectPage(withTitle("Interior renders — XIYÀTO"), "https://xiyato.uk/").errors.join(), /single separator/);
+  assert.match(inspectPage(withTitle("Moon Chair — Campaign | XIYÀTO"), "https://xiyato.uk/").errors.join(), /single separator/);
+  const longDescription = html.replace("Interior and furniture rendering services.", "y".repeat(156));
+  assert.match(inspectPage(longDescription, "https://xiyato.uk/").errors.join(), /156 characters/);
 });
 
 test("image sitemap entries are not mistaken for page URLs", () => {

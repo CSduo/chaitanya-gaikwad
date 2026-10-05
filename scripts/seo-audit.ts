@@ -15,19 +15,39 @@ function builtHtmlFiles(dir = ".next/server/app"): string[] {
   });
 }
 
+/** SERP display limits the site writes to (characters, after entity decoding). */
+export const TITLE_MAX = 60;
+export const DESCRIPTION_MAX = 155;
+/** The one title separator: "<page title> | XIYÀTO". */
+export const TITLE_SUFFIX = ` | ${SITE.name}`;
+
+/** Decodes the entities React emits in <title> and attribute values. */
+export function decodeEntities(value: string): string {
+  return value
+    .replace(/&#x([0-9a-f]+);/gi, (_, hex) => String.fromCodePoint(parseInt(hex, 16)))
+    .replace(/&#(\d+);/g, (_, dec) => String.fromCodePoint(Number(dec)))
+    .replaceAll("&quot;", '"')
+    .replaceAll("&lt;", "<")
+    .replaceAll("&gt;", ">")
+    .replaceAll("&amp;", "&");
+}
+
 function attributes(tag: string): Record<string, string> {
   return Object.fromEntries([...tag.matchAll(/([\w:-]+)\s*=\s*["']([^"']*)["']/g)].map((m) => [m[1].toLowerCase(), m[2]]));
 }
 
 export function inspectPage(html: string, canonical: string, robotsHeader = "") {
   const errors: string[] = [];
-  const title = html.match(/<title[^>]*>([\s\S]*?)<\/title>/i)?.[1]?.trim() ?? "";
+  const title = decodeEntities(html.match(/<title[^>]*>([\s\S]*?)<\/title>/i)?.[1]?.trim() ?? "");
   const tags = [...html.matchAll(/<(?:meta|link)\b[^>]*>/gi)].map((m) => attributes(m[0]));
   const meta = (name: string) => tags.find((tag) => tag.name?.toLowerCase() === name)?.content ?? "";
-  const description = meta("description").trim();
+  const description = decodeEntities(meta("description").trim());
   const canonicalTags = tags.filter((tag) => tag.rel === "canonical");
   if (!title) errors.push("Missing page title");
   if (!description) errors.push("Missing meta description");
+  if (title.length > TITLE_MAX) errors.push(`Title is ${title.length} characters (max ${TITLE_MAX})`);
+  if (description.length > DESCRIPTION_MAX) errors.push(`Meta description is ${description.length} characters (max ${DESCRIPTION_MAX})`);
+  if (title && (!title.endsWith(TITLE_SUFFIX) || /\s[—–·-]\s/.test(title))) errors.push(`Title must use the single separator "<title>${TITLE_SUFFIX}"`);
   let canonicalMatches = false;
   try { canonicalMatches = canonicalTags.length === 1 && new URL(canonicalTags[0].href).href === new URL(canonical).href; } catch { /* Report malformed canonical below. */ }
   if (!canonicalMatches) errors.push("Missing, duplicate or incorrect canonical URL");
@@ -138,7 +158,7 @@ export async function audit(live = false) {
   }
   if (!live) errors.push(...(await auditBuiltHtml()));
   if (errors.length) throw new Error(`SEO audit failed:\n${errors.join("\n")}`);
-  console.log(`SEO audit passed: ${urls.length} ${live ? "production" : "built"} pages; canonical URLs, metadata, headings, indexability, structured-data syntax and sitemap lastmod checked${live ? "" : "; internal links, media files and noindex routes checked across all prerendered pages"}.`);
+  console.log(`SEO audit passed: ${urls.length} ${live ? "production" : "built"} pages; canonical URLs, metadata (incl. title/description length and separator), headings, indexability, structured-data syntax and sitemap lastmod checked${live ? "" : "; internal links, media files and noindex routes checked across all prerendered pages"}.`);
 }
 
 /**

@@ -16,9 +16,9 @@ import { getServiceWhatsAppHref, WHATSAPP } from "@/lib/site";
 import { getSpecialism, specialismBreadcrumbTrail } from "@/lib/specialisms";
 
 export const metadata: Metadata = pageMetadata({
-  title: "Interior Fit-Out Shop Drawings & Joinery CAD Services | XIYÀTO",
+  title: "Interior Fit-Out & Joinery Shop Drawings | XIYÀTO",
   description:
-    "Specialist outsourced interior fit-out shop drawings, joinery drafting, and architectural documentation for contractors and design practices. Editable DWG, DXF & PDF.",
+    "Outsourced interior fit-out and joinery shop drawings for contractors and design practices: millwork details, setting-out plans and RCPs in DWG and PDF.",
   path: "/services/cad/interior-fit-out-shop-drawings",
 });
 
