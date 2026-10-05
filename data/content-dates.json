@@ -144,7 +144,7 @@
       ]
     },
     "/contact": {
-      "lastModified": "2026-10-05T15:56:48.000Z",
+      "lastModified": "2026-10-05T15:58:31.000Z",
       "sources": [
         "app/contact",
         "components/forms/EnquiryForm.tsx",
