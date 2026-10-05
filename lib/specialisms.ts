@@ -23,6 +23,14 @@ export type Specialism = {
 
 export const SPECIALISMS: Specialism[] = [
   {
+    path: "/services/visualisation/interior-rendering",
+    name: "Interior rendering and 3D interior visualisation",
+    shortName: "Interior Rendering",
+    parent: "visualisation-image-production",
+    summary:
+      "Photorealistic renders of homes, hotel lounges, offices and showrooms from your plans and finishes, with cutaway layout studies and lighting and finish variants.",
+  },
+  {
     path: "/services/visualisation/photorealistic-furniture-rendering",
     name: "Photorealistic furniture 3D rendering",
     shortName: "Furniture 3D Rendering",

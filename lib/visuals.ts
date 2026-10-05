@@ -458,3 +458,18 @@ export function activeVisualGroups(): { group: VisualGroup; label: string; count
     .filter((g) => g.count > 0)
     .sort((a, b) => b.count - a.count);
 }
+
+/**
+ * Named production renders for a page's own selection, in the order given.
+ * Throws at build time if a file is renamed or withdrawn, or if an AI concept
+ * study is requested, so a page can never silently present a concept as a render.
+ */
+export function rendersByFile(files: string[]): VisualItem[] {
+  return files.map((file) => {
+    const src = `/media/visual/${file}`;
+    const visual = VISUALS.find((v) => v.src === src);
+    if (!visual) throw new Error(`No published visual ${src}`);
+    if (isConceptVisual(visual)) throw new Error(`${src} is an AI concept study, not a production render`);
+    return visual;
+  });
+}

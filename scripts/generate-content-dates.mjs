@@ -73,6 +73,7 @@ export const CONTENT_SOURCES = {
   // One group per specialism page (lib/specialisms.ts drives their breadcrumbs).
   "/services/cad/interior-fit-out-shop-drawings": ["app/services/cad/interior-fit-out-shop-drawings", "lib/specialisms.ts"],
   "/services/growth/middle-east-market-intelligence": ["app/services/growth/middle-east-market-intelligence", "lib/specialisms.ts"],
+  "/services/visualisation/interior-rendering": ["app/services/visualisation/interior-rendering", "lib/specialisms.ts"],
   "/services/visualisation/photorealistic-furniture-rendering": [
     "app/services/visualisation/photorealistic-furniture-rendering",
     "lib/specialisms.ts",
