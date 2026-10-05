@@ -2,7 +2,6 @@ import type { MetadataRoute } from "next";
 import { SITE } from "@/lib/site";
 import { ALL_SERVICES } from "@/lib/services";
 import { allCaseStudies } from "@/lib/case-studies";
-import { allWorkbooks } from "@/lib/portfolio";
 import { publishedLegalPages } from "@/lib/company";
 import { contentModified } from "@/lib/sitemap-dates";
 import { VISUALS } from "@/lib/visuals";
@@ -51,10 +50,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     lastModified: modified("app/work/[slug]", "lib/case-studies.ts"),
   }));
 
-  const research: MetadataRoute.Sitemap = allWorkbooks().map((w) => ({
-    url: url(`/work/research/${w.slug}`),
-    lastModified: modified("app/work/research", "lib/portfolio.ts"),
-  }));
+  // /work/research/* pages are noindex,follow and intentionally absent here.
 
   // Unpublished legal routes are excluded — they 404 rather than existing as shells.
   const legal: MetadataRoute.Sitemap = publishedLegalPages().map((p) => ({
@@ -62,5 +58,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     lastModified: modified("app/legal", "lib/company.ts"),
   }));
 
-  return [...core, ...services, ...subServices, ...work, ...research, ...legal];
+  return [...core, ...services, ...subServices, ...work, ...legal];
 }

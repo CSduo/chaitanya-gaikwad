@@ -43,6 +43,14 @@ const WORKBOOK_PREVIEWS: Record<string, { headers: string[]; rows: string[][] }>
   },
 };
 
+/*
+  The individual /work/research/* pages are deliberately not linked from here.
+  They are near-identical templates carrying third-party company data and are
+  kept live but noindexed; they stay reachable from the market-intelligence and
+  B2B service pages. The home page links the service instead.
+*/
+const RESEARCH_SERVICE_HREF = "/services/market-intelligence-research#research";
+
 export function LeadIntelligencePanel() {
   const [activeTab, setActiveTab] = useState<string>("all");
   const [expandedWorkbook, setExpandedWorkbook] = useState<Workbook | null>(null);
@@ -163,16 +171,22 @@ export function LeadIntelligencePanel() {
                 <span aria-hidden="true">↓</span>
               </button>
 
-              <Link
-                href={`/work/research/${w.slug}`}
-                aria-label={`Read ${w.title}`}
-                className="inline-flex min-h-[44px] items-center font-mono text-[0.5625rem] text-ink-muted transition-colors hover:text-ink"
-              >
-                Study &rarr;
-              </Link>
+              <span className="font-mono text-[0.5625rem] text-ink-faint">
+                {w.tags[0]}
+              </span>
             </div>
           </div>
         ))}
+      </div>
+
+      <div className="mt-3 flex justify-end">
+        <Link
+          href={RESEARCH_SERVICE_HREF}
+          className="inline-flex min-h-[44px] items-center gap-2 font-mono text-xs font-medium text-ink transition-colors hover:text-accent"
+        >
+          <span>Explore market intelligence &amp; research</span>
+          <span aria-hidden="true">&rarr;</span>
+        </Link>
       </div>
 
       {/* 04 — Expandable Interactive Drawer / Modal (Preview Sheet) */}
@@ -268,10 +282,10 @@ export function LeadIntelligencePanel() {
                   Close
                 </button>
                 <Link
-                  href={`/work/research/${expandedWorkbook.slug}`}
+                  href={RESEARCH_SERVICE_HREF}
                   className="rounded-xs bg-ink px-4 py-2 font-mono text-xs text-paper hover:bg-accent transition-colors"
                 >
-                  Open Complete Case Study &rarr;
+                  Explore market research &rarr;
                 </Link>
               </div>
             </div>

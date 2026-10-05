@@ -106,7 +106,8 @@ console.log('\n--- 2. Canonical Sitemap Coverage & Genuine Timestamps ---');
 
 test('Sitemap generates canonical URLs with genuine editorial timestamps', () => {
   const entries = sitemap();
-  assert.ok(entries.length >= 28, `Expected at least 28 canonical URLs, found ${entries.length}`);
+  // 22 since the seven noindexed /work/research/* pages left the sitemap (was 29).
+  assert.ok(entries.length >= 22, `Expected at least 22 canonical URLs, found ${entries.length}`);
 
   for (const entry of entries) {
     assert.ok(entry.url.startsWith('https://xiyato.uk'), `URL must start with https://xiyato.uk: ${entry.url}`);
@@ -131,6 +132,11 @@ test('Sitemap contains core commercial target routes from search intelligence gr
   assert.ok(urls.includes('https://xiyato.uk/contact'), 'Missing contact URL');
   assert.ok(urls.includes('https://xiyato.uk/legal/privacy'), 'Missing privacy URL');
   assert.ok(urls.includes('https://xiyato.uk/legal/terms'), 'Missing terms URL');
+});
+
+test('Sitemap excludes the noindexed /work/research/* workbook pages', () => {
+  const urls = sitemap().map((e) => e.url);
+  assert.deepEqual(urls.filter((u) => u.includes('/work/research/')), []);
 });
 
 test('Sitemap excludes unpublished legal draft routes to prevent soft 404s', () => {
@@ -499,7 +505,7 @@ test('chunkUrls partitions arbitrarily sized URL lists into batches of <= 20', (
 
 test('discoverCanonicalUrls extracts valid canonical routes', () => {
   const discovered = discoverCanonicalUrls();
-  assert.ok(discovered.length >= 28);
+  assert.ok(discovered.length >= 22);
   assert.ok(discovered.every((u) => u.startsWith('https://xiyato.uk')));
 });
 

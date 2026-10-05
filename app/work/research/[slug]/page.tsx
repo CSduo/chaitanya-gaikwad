@@ -35,6 +35,13 @@ export async function generateMetadata({
     description: `Verified B2B research database: ${w.summary} Methodology, qualification criteria, and interactive data viewer.`,
     path: `/work/research/${w.slug}`,
     type: "article",
+    /*
+      Kept live for prospects who are sent here and linked from the research
+      and B2B service pages, but out of the index: the seven pages share ~85%
+      of their template text, attract off-niche company-name queries and carry
+      third-party company data. Excluded from the sitemap for the same reason.
+    */
+    noIndex: true,
   });
 }
 
