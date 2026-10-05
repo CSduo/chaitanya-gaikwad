@@ -320,7 +320,6 @@ export const CAD_PROJECTS: {
     summary:
       "General arrangement plan plus four detailed wall elevations, produced from a client 3D render and measured site sketches.",
     pdfDownload: "/media/cad/downloads/master-bathroom-set.pdf",
-    dwgDownload: "/media/cad/downloads/master-bathroom-set.dwg",
   },
   {
     id: "cigar-lounge",
@@ -336,7 +335,6 @@ export const CAD_PROJECTS: {
     summary:
       "Full room layout, bespoke bed headboard millwork, wardrobe elevations, window vanity, and ceiling electrical coordination.",
     pdfDownload: "/media/cad/downloads/master-bedroom-set.pdf",
-    dwgDownload: "/media/cad/downloads/master-bedroom-set.dwg",
   },
   {
     id: "toilet-wash",
@@ -401,7 +399,6 @@ export const CAD_DRAWINGS: CadDrawing[] = [
     project: "master-bathroom",
     downloads: {
       pdf: "/media/cad/downloads/master-bathroom-set.pdf",
-      dwg: "/media/cad/downloads/master-bathroom-set.dwg",
     },
   },
   {
@@ -539,7 +536,6 @@ export const CAD_DRAWINGS: CadDrawing[] = [
     project: "master-bedroom",
     downloads: {
       pdf: "/media/cad/downloads/master-bedroom-set.pdf",
-      dwg: "/media/cad/downloads/master-bedroom-set.dwg",
     },
   },
   {
