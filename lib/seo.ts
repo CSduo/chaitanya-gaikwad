@@ -292,12 +292,18 @@ export function serviceSchema(input: {
   };
 }
 
+/**
+ * A film that is embedded on the page as a real <video> element with its MP4
+ * source in the HTML. Emit it only where the film is visibly playable.
+ */
 export function videoObjectSchema(input: {
   name: string;
   description: string;
   thumbnailUrl: string;
   uploadDate: string;
   contentUrl: string;
+  /** ISO 8601, e.g. "PT28S". */
+  duration?: string;
 }) {
   return {
     "@context": "https://schema.org",
@@ -307,6 +313,68 @@ export function videoObjectSchema(input: {
     thumbnailUrl: absoluteUrl(input.thumbnailUrl),
     uploadDate: input.uploadDate,
     contentUrl: absoluteUrl(input.contentUrl),
+    ...(input.duration ? { duration: input.duration } : {}),
+  };
+}
+
+/**
+ * A page whose subject is an existing entity (for example a Service defined
+ * on its own page), referenced by @id instead of being re-declared.
+ */
+export function webPageSchema(input: {
+  name: string;
+  description: string;
+  path: string;
+  /** @id of the entity the page is about. */
+  aboutId?: string;
+  image?: string;
+}) {
+  const url = absoluteUrl(input.path);
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "@id": `${url}#webpage`,
+    name: input.name,
+    description: input.description,
+    url,
+    inLanguage: SITE.language,
+    isPartOf: { "@id": WEBSITE_ID },
+    publisher: organizationRef(),
+    ...(input.aboutId ? { about: { "@id": input.aboutId } } : {}),
+    ...(input.image ? { primaryImageOfPage: { "@type": "ImageObject", url: absoluteUrl(input.image) } } : {}),
+  };
+}
+
+/**
+ * An editorial article written by the founder and published by the studio.
+ * Author and publisher point at the site graph's Person and Organization ids.
+ */
+export function articleSchema(input: {
+  headline: string;
+  description: string;
+  path: string;
+  /** YYYY-MM-DD, matching the date printed on the page. */
+  datePublished: string;
+  dateModified?: string;
+  image?: string;
+}) {
+  const url = absoluteUrl(input.path);
+  const author = founderNode();
+  return {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "@id": `${url}#article`,
+    headline: input.headline,
+    description: input.description,
+    url,
+    mainEntityOfPage: { "@type": "WebPage", "@id": url },
+    inLanguage: SITE.language,
+    datePublished: input.datePublished,
+    dateModified: input.dateModified ?? input.datePublished,
+    author: { "@type": "Person", "@id": FOUNDER_ID, name: author.name, url: author.url },
+    publisher: organizationRef(),
+    isPartOf: { "@id": WEBSITE_ID },
+    ...(input.image ? { image: absoluteUrl(input.image) } : {}),
   };
 }
 

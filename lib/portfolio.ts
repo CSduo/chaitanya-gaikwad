@@ -25,6 +25,15 @@ export type VideoProject = {
   poster: string;
   posterWidth: number;
   posterHeight: number;
+  /**
+   * First publication date for VideoObject.uploadDate: the commit that first
+   * added the MP4 to this site's repository (git log --diff-filter=A --follow).
+   * It is the earliest date the repository can evidence; if a film was
+   * published elsewhere earlier, replace it with that date.
+   */
+  uploadDate: string;
+  /** ISO 8601 duration, read from the MP4's mvhd header (rounded to the second). */
+  duration: string;
   featured: boolean;
   order: number;
 };
@@ -42,6 +51,8 @@ export const VIDEOS: VideoProject[] = [
     poster: "/media/posters/sultanah-co-moon-chair-cinematic-campaign-poster.webp",
     posterWidth: 1080,
     posterHeight: 1350,
+    uploadDate: "2026-07-16T11:52:36+05:30",
+    duration: "PT28S",
     featured: true,
     order: 1,
   },
@@ -57,6 +68,8 @@ export const VIDEOS: VideoProject[] = [
     poster: "/media/posters/kozena-luxury-furniture-campaign-poster.webp",
     posterWidth: 1080,
     posterHeight: 1920,
+    uploadDate: "2026-08-12T02:28:37+05:30",
+    duration: "PT21S",
     featured: true,
     order: 2,
   },
@@ -72,6 +85,8 @@ export const VIDEOS: VideoProject[] = [
     poster: "/media/posters/bingxi-factory-video-poster.webp",
     posterWidth: 832,
     posterHeight: 464,
+    uploadDate: "2026-08-12T02:28:37+05:30",
+    duration: "PT37S",
     featured: true,
     order: 3,
   },
@@ -88,6 +103,8 @@ export const VIDEOS: VideoProject[] = [
     poster: "/media/posters/the-bar-edit-cinematic-poster.webp",
     posterWidth: 1080,
     posterHeight: 1350,
+    uploadDate: "2026-08-12T02:28:37+05:30",
+    duration: "PT24S",
     featured: false,
     order: 4,
   },
@@ -104,6 +121,8 @@ export const VIDEOS: VideoProject[] = [
     poster: "/media/posters/premium-bar-red-restaurant-concept-poster.webp",
     posterWidth: 1080,
     posterHeight: 1920,
+    uploadDate: "2026-07-16T11:52:36+05:30",
+    duration: "PT24S",
     featured: false,
     order: 5,
   },
@@ -120,6 +139,8 @@ export const VIDEOS: VideoProject[] = [
     poster: "/media/posters/bahrain-client-commercial-ad-poster.webp",
     posterWidth: 1080,
     posterHeight: 1350,
+    uploadDate: "2026-08-12T02:28:37+05:30",
+    duration: "PT52S",
     featured: false,
     order: 6,
   },
@@ -136,6 +157,8 @@ export const VIDEOS: VideoProject[] = [
     poster: "/media/posters/room-transformation-interior-walkthrough-poster.webp",
     posterWidth: 1080,
     posterHeight: 1920,
+    uploadDate: "2026-07-16T11:52:36+05:30",
+    duration: "PT14S",
     featured: false,
     order: 7,
   },
@@ -152,6 +175,8 @@ export const VIDEOS: VideoProject[] = [
     poster: "/media/posters/great-design-holds-attention-walkthrough-poster.webp",
     posterWidth: 720,
     posterHeight: 1280,
+    uploadDate: "2026-08-12T02:28:37+05:30",
+    duration: "PT34S",
     featured: false,
     order: 8,
   },
@@ -773,6 +798,10 @@ export function featuredVideos(limit = 4) {
 }
 export function allVideos() {
   return [...VIDEOS].sort((a, b) => a.order - b.order);
+}
+/** The portfolio film behind a media path, so case studies reuse its publication data. */
+export function filmBySrc(src: string): VideoProject | undefined {
+  return VIDEOS.find((v) => v.src === src);
 }
 export function featuredWorkbooks(limit = 3) {
   return [...WORKBOOKS].sort((a, b) => a.order - b.order).filter((w) => w.featured).slice(0, limit);
