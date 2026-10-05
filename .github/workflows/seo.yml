@@ -27,6 +27,8 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
+      - name: Check sitemap lastmod dates match Git history
+        run: npm run content:dates:check
       - run: npm run test:seo
       - run: npm run build
 

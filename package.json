@@ -18,7 +18,9 @@
     "test:seo": "tsx tests/seo-automation.test.mjs",
     "seo:audit": "tsx scripts/seo-audit.ts",
     "seo:audit:live": "tsx scripts/seo-audit.ts --live",
-    "submit:google": "tsx scripts/submit-google-sitemap.ts"
+    "submit:google": "tsx scripts/submit-google-sitemap.ts",
+    "content:dates": "node scripts/generate-content-dates.mjs",
+    "content:dates:check": "node scripts/generate-content-dates.mjs --check"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.1127.0",

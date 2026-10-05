@@ -34,3 +34,84 @@ test("Google submission safely skips without credentials and uses the supported 
   await assert.rejects(submitGoogleSitemap(env, async () => new Response(null, { status: 403 })), /authentication failed/);
   await assert.rejects(submitGoogleSitemap({ ...env, GOOGLE_SEARCH_CONSOLE_PROPERTY: "sc-domain:other.example" }, fetchMock), /canonical/);
 });
+
+/* ------------------------------------------------------------------ */
+/* Discoverability regressions found in the 2026-10 audit              */
+/* ------------------------------------------------------------------ */
+
+import { readFileSync, readdirSync, statSync, existsSync } from "node:fs";
+import { join } from "node:path";
+import { sitemapUrlsMissingLastmod, linksToRedirects, mediaReferences, redirectSourcePattern } from "../scripts/seo-audit.ts";
+import { CONTENT_SOURCES } from "../scripts/generate-content-dates.mjs";
+// Default exports of CommonJS-compiled TypeScript arrive wrapped when imported from .mjs.
+const unwrap = (mod) => (typeof mod.default === "object" && mod.default?.default !== undefined ? mod.default.default : mod.default);
+const sitemap = unwrap(await import("../app/sitemap.ts"));
+const nextConfig = unwrap(await import("../next.config.ts"));
+import { allCaseStudies, caseStudyBreadcrumbTrail } from "../lib/case-studies.ts";
+
+const contentDates = JSON.parse(readFileSync(new URL("../data/content-dates.json", import.meta.url), "utf8"));
+
+test("sitemap audit flags <url> entries without <lastmod>", () => {
+  const xml = '<urlset><url><loc>https://xiyato.uk/</loc><lastmod>2026-10-05T00:00:00.000Z</lastmod></url><url><loc>https://xiyato.uk/contact</loc></url></urlset>';
+  assert.deepEqual(sitemapUrlsMissingLastmod(xml), ["https://xiyato.uk/contact"]);
+});
+
+test("every sitemap URL has a Git-derived lastmod that is not in the future", () => {
+  const now = Date.now();
+  for (const entry of sitemap()) {
+    assert.ok(entry.lastModified instanceof Date, `${entry.url} has no lastmod`);
+    assert.ok(entry.lastModified.getTime() <= now, `${entry.url} lastmod is in the future`);
+  }
+});
+
+test("data/content-dates.json covers every content group and every source exists", () => {
+  assert.deepEqual(Object.keys(contentDates.groups).sort(), Object.keys(CONTENT_SOURCES).sort());
+  for (const [group, sources] of Object.entries(CONTENT_SOURCES)) {
+    for (const source of sources) assert.ok(existsSync(new URL(`../${source}`, import.meta.url)), `${group}: missing source ${source}`);
+    assert.ok(Number.isFinite(Date.parse(contentDates.groups[group].lastModified)), `${group}: invalid date`);
+  }
+});
+
+test("redirect-link audit catches legacy slugs and ignores host-only rules", async () => {
+  const rules = await nextConfig.redirects();
+  const html = '<a href="/services/growth-marketing-b2b">x</a><a href="/services/b2b-lead-generation">y</a><a href="/projects/b2b-research/abc?x=1">z</a><a href="/#capabilities">w</a><a href="https://xiyato.uk/work">e</a>';
+  assert.deepEqual(linksToRedirects(html, rules), ["/services/growth-marketing-b2b", "/projects/b2b-research/abc?x=1"]);
+  assert.ok(redirectSourcePattern("/projects/b2b-research/:slug").test("/projects/b2b-research/a"));
+  assert.ok(!redirectSourcePattern("/projects").test("/projects-x"));
+});
+
+test("media audit decodes image-optimiser URLs", () => {
+  const html = '<img src="/_next/image?url=%2Fmedia%2Fvisual%2Fvis-3.webp&amp;w=640&amp;q=75"><video src="/media/video/a.mp4">';
+  assert.deepEqual(mediaReferences(html).sort(), ["/media/video/a.mp4", "/media/visual/vis-3.webp"]);
+});
+
+test("case-study breadcrumbs follow the study's discipline and never link a redirect", async () => {
+  const rules = (await nextConfig.redirects()).filter((r) => !r.has);
+  const expected = {
+    "bahrain-luxury-interior-cad-package": "/services/cad-technical-production",
+    "sultanah-moon-chair-cinematic-campaign": "/services/ai-video-production",
+    "interior-visualisation-studies": "/services/visualisation-image-production",
+  };
+  for (const study of allCaseStudies()) {
+    const trail = caseStudyBreadcrumbTrail(study);
+    assert.equal(trail[0].path, "/");
+    assert.equal(trail.at(-1).path, `/work/${study.slug}`);
+    if (expected[study.slug]) assert.equal(trail[1].path, expected[study.slug], study.slug);
+    for (const item of trail) {
+      assert.ok(!rules.some((r) => redirectSourcePattern(r.source).test(item.path)), `${study.slug}: breadcrumb ${item.path} redirects`);
+    }
+  }
+});
+
+test("no page copy claims Anvikshiki (or anything else) is peer-reviewed", () => {
+  const offenders = [];
+  const walk = (dir) => {
+    for (const entry of readdirSync(dir)) {
+      const full = join(dir, entry);
+      if (statSync(full).isDirectory()) walk(full);
+      else if (/\.(tsx?|mdx?)$/.test(entry) && /peer[- ]review/i.test(readFileSync(full, "utf8"))) offenders.push(full);
+    }
+  };
+  for (const dir of ["app", "components", "lib"]) walk(new URL(`../${dir}`, import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, "$1"));
+  assert.deepEqual(offenders, []);
+});

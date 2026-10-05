@@ -728,7 +728,7 @@ export const WEBSITES: WebsiteProject[] = [
     clientDescriptor: "Editorial journal platform",
     role: "Full-stack development and technical administration",
     // Describe only what the platform does. It is an editorial publication; no
-    // peer-review process, ISSN or editorial board is published, so none is claimed.
+    // formal review process, ISSN or editorial board is published, so none is claimed.
     description:
       "An editorial journal platform designed and built by XIYÀTO: article publishing, author profiles and submissions, subject indexing, and the database and deployment behind it.",
     scope: [

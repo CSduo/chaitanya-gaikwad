@@ -111,10 +111,10 @@ test('Sitemap generates canonical URLs with genuine editorial timestamps', () =>
 
   for (const entry of entries) {
     assert.ok(entry.url.startsWith('https://xiyato.uk'), `URL must start with https://xiyato.uk: ${entry.url}`);
-    if (entry.lastModified !== undefined) {
-      assert.ok(entry.lastModified instanceof Date, `lastModified must be Date: ${entry.url}`);
-      assert.ok(Number.isFinite(entry.lastModified.getTime()), `lastModified must be valid: ${entry.url}`);
-    }
+    // Every URL carries a Git-derived lastmod from data/content-dates.json
+    // (production previously emitted none because Vercel clones shallowly).
+    assert.ok(entry.lastModified instanceof Date, `lastModified must be a Date: ${entry.url}`);
+    assert.ok(Number.isFinite(entry.lastModified.getTime()), `lastModified must be valid: ${entry.url}`);
   }
 });
 
@@ -175,7 +175,7 @@ test('app/layout.tsx emits each verification token once, no meta keywords and no
   assert.ok(!content.includes('"googleb531fd48b43d4f1b"'), 'The HTML-file token must not be emitted as a meta tag');
   assert.ok(!/\bkeywords:/.test(content), 'Meta keywords must not be declared');
   assert.ok(!/\balternates:/.test(content), 'Root layout must not declare canonical/hreflang (it leaks onto 404s)');
-  assert.ok(content.includes('"max-image-preview": "large"'), 'layout.tsx missing max-image-preview');
+  assert.ok(!/\brobots:/.test(content), 'Root layout must not declare robots (routes set their own; 404 gets noindex from Next)');
 });
 
 /* ------------------------------------------------------------------ */

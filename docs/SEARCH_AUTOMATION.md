@@ -1,6 +1,6 @@
 # Search discovery and SEO checks
 
-Every `npm run build`, including Vercel production builds, automatically audits each sitemap page for a unique title and description, one primary heading, a matching canonical, indexability, document language, mobile viewport and valid JSON-LD syntax. A failed audit stops the build. This is a technical audit, not a ranking score or rich-result eligibility test.
+Every `npm run build`, including Vercel production builds, automatically audits each sitemap page for a unique title and description, one primary heading, a matching canonical, indexability, document language, mobile viewport, valid JSON-LD syntax and a sitemap `lastmod`. Across every prerendered page it also fails on internal links to URLs that `next.config.ts` redirects, references to `/media` files that do not exist, and noindexed routes (such as `/work/research/*`) that lost their noindex. A failed audit stops the build. This is a technical audit, not a ranking score or rich-result eligibility test.
 
 The **SEO health and search discovery** workflow adds checks for pull requests, successful deployments and a weekly schedule. Its installation source is `docs/workflows/seo.yml`; it must also exist at `.github/workflows/seo.yml` to run. The local Git token cannot publish workflow files without the `workflow` permission. If the active workflow is absent, an authorized repository administrator must install that file using an account with workflow write access. The build audit remains active independently of GitHub Actions.
 
@@ -22,7 +22,11 @@ The Google step exchanges a signed service-account assertion for a short-lived t
 
 ## Content updates and countries
 
-The sitemap automatically follows the existing service, case-study and workbook catalogs. Visualization images are included on their canonical gallery page. `lastmod` comes from the latest Git commit affecting the page's content/template sources. Complete Git history is required; hosting source archives and shallow checkouts omit `lastmod` rather than report a fabricated build date. Shared data files can update several related pages together.
+The sitemap automatically follows the existing service, sub-service and case-study catalogs. The `/work/research/*` workbook pages are live but `noindex, follow` and deliberately excluded. Visualization images are included on their canonical gallery page.
+
+`lastmod` comes from `data/content-dates.json`, which `npm run content:dates` (`scripts/generate-content-dates.mjs`) derives from complete Git history: each route group's date is the latest commit touching its main-content sources (page file plus the data it renders; site-wide header, footer and layout changes are excluded). The file is committed because Vercel builds from a shallow clone where Git dates cannot be trusted, which is why production previously emitted no `lastmod` at all. Nothing is ever dated with the build time. Shared data files can update several related pages together.
+
+Workflow after a content change: commit the change, then run `npm run content:dates` and commit `data/content-dates.json`. The build audit fails if any sitemap URL lacks `lastmod`; the CI step `npm run content:dates:check` warns when the file is older than Git history.
 
 Existing UK, India, UAE, Saudi Arabia and Qatar service information stays factual. The existing service pages and Middle East research page carry the relevant service and market content. No country doorway pages, invented offices, translated-page annotations without translated pages, or keyword stuffing are generated. Search Console analytics is currently unavailable until the interactive connector is reconnected; review actual query/country performance before expanding content for a new market. Reconnecting that connector does not configure the separate GitHub service-account secret.
 

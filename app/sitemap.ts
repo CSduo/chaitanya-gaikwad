@@ -3,51 +3,52 @@ import { SITE } from "@/lib/site";
 import { ALL_SERVICES } from "@/lib/services";
 import { allCaseStudies } from "@/lib/case-studies";
 import { publishedLegalPages } from "@/lib/company";
-import { contentModified } from "@/lib/sitemap-dates";
 import { VISUALS } from "@/lib/visuals";
+import contentDates from "@/data/content-dates.json";
+
+type ContentGroup = keyof typeof contentDates.groups;
+
+/**
+ * lastmod comes from data/content-dates.json, generated from complete Git
+ * history by scripts/generate-content-dates.mjs (Vercel builds from a shallow
+ * clone, where Git dates cannot be trusted). A route whose group is unknown
+ * gets no lastmod rather than a fabricated build timestamp.
+ */
+function lastModified(group: ContentGroup | string): Date | undefined {
+  const value = (contentDates.groups as Record<string, { lastModified: string } | undefined>)[group]?.lastModified;
+  if (!value) return undefined;
+  const date = new Date(value);
+  return Number.isFinite(date.getTime()) ? date : undefined;
+}
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const url = (p: string) => `${SITE.url}${p}`;
 
-  const modified = (...paths: string[]) => contentModified([
-    ...paths, "lib/seo.ts", "lib/seo-copy.ts", "lib/site.ts", "app/layout.tsx", "components/site",
-  ]);
-  const serviceDate = modified("app/services", "lib/services.ts", "lib/pricing.ts", "lib/visuals.ts", "lib/new-visuals.ts", "lib/portfolio.ts");
-
   const core: MetadataRoute.Sitemap = [
-    { url: url("/"), lastModified: modified("app/page.tsx", "components/home", "lib/home-copy.ts", "lib/services.ts", "lib/pricing.ts", "lib/visuals.ts", "lib/new-visuals.ts", "lib/portfolio.ts") },
-    { url: url("/services"), lastModified: serviceDate },
-    { url: url("/company"), lastModified: modified("app/company/page.tsx", "lib/company.ts") },
-    { url: url("/company/people"), lastModified: modified("app/company/people", "lib/company.ts") },
-    { url: url("/company/locations"), lastModified: modified("app/company/locations", "lib/company.ts") },
-    { url: url("/careers"), lastModified: modified("app/careers", "components/forms", "lib/company.ts") },
-    { url: url("/contact"), lastModified: modified("app/contact", "components/forms", "lib/site.ts") },
+    { url: url("/"), lastModified: lastModified("/") },
+    { url: url("/services"), lastModified: lastModified("/services") },
+    { url: url("/company"), lastModified: lastModified("/company") },
+    { url: url("/company/people"), lastModified: lastModified("/company/people") },
+    { url: url("/company/locations"), lastModified: lastModified("/company/locations") },
+    { url: url("/careers"), lastModified: lastModified("/careers") },
+    { url: url("/contact"), lastModified: lastModified("/contact") },
   ];
 
   const services: MetadataRoute.Sitemap = ALL_SERVICES.map((s) => ({
     url: url(`/services/${s.slug}`),
-    lastModified: serviceDate,
+    lastModified: lastModified("/services/[slug]"),
     ...(s.slug === "visualisation-image-production" ? { images: VISUALS.map((visual) => url(visual.src)) } : {}),
   }));
 
   const subServices: MetadataRoute.Sitemap = [
-    {
-      url: url("/services/cad/interior-fit-out-shop-drawings"),
-      lastModified: modified("app/services/cad/interior-fit-out-shop-drawings"),
-    },
-    {
-      url: url("/services/growth/middle-east-market-intelligence"),
-      lastModified: modified("app/services/growth/middle-east-market-intelligence"),
-    },
-    {
-      url: url("/services/visualisation/photorealistic-furniture-rendering"),
-      lastModified: modified("app/services/visualisation/photorealistic-furniture-rendering", "lib/visuals.ts", "lib/new-visuals.ts"),
-    },
-  ];
+    "/services/cad/interior-fit-out-shop-drawings",
+    "/services/growth/middle-east-market-intelligence",
+    "/services/visualisation/photorealistic-furniture-rendering",
+  ].map((path) => ({ url: url(path), lastModified: lastModified(path) }));
 
   const work: MetadataRoute.Sitemap = allCaseStudies().map((c) => ({
     url: url(`/work/${c.slug}`),
-    lastModified: modified("app/work/[slug]", "lib/case-studies.ts"),
+    lastModified: lastModified("/work/[slug]"),
   }));
 
   // /work/research/* pages are noindex,follow and intentionally absent here.
@@ -55,7 +56,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // Unpublished legal routes are excluded — they 404 rather than existing as shells.
   const legal: MetadataRoute.Sitemap = publishedLegalPages().map((p) => ({
     url: url(`/legal/${p.slug}`),
-    lastModified: modified("app/legal", "lib/company.ts"),
+    lastModified: lastModified("/legal/[slug]"),
   }));
 
   return [...core, ...services, ...subServices, ...work, ...legal];
