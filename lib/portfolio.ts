@@ -724,10 +724,13 @@ export const WEBSITES: WebsiteProject[] = [
   {
     slug: "anvikshiki-journal",
     title: "Anvikshiki Journal",
-    client: "Anvikshiki Journal",
+    client: null,
+    clientDescriptor: "Editorial journal platform",
     role: "Full-stack development and technical administration",
+    // Describe only what the platform does. It is an editorial publication; no
+    // peer-review process, ISSN or editorial board is published, so none is claimed.
     description:
-      "A responsive academic journal platform for publishing scholarly articles, indexing, peer-reviewed papers and author submissions.",
+      "An editorial journal platform designed and built by XIYÀTO: article publishing, author profiles and submissions, subject indexing, and the database and deployment behind it.",
     scope: [
       "Publication platform structure",
       "Author submission handling",

@@ -49,7 +49,7 @@ export const WORK_CATEGORIES: { slug: WorkCategory; label: string; blurb: string
   {
     slug: "websites",
     label: "Websites",
-    blurb: "Three responsive builds: an export brand site, an academic journal platform with author submissions, and this studio site.",
+    blurb: "Three responsive builds: an export brand site, an editorial journal platform with author submissions, and this studio site.",
   },
 ];
 

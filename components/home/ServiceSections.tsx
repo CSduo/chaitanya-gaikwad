@@ -306,7 +306,7 @@ export function WebsiteSection({ service }: { service: Service }) {
               <p className="font-mono text-[9px] uppercase tracking-[0.12em] text-zinc-400">Featured website / {featured.year}</p>
               <div className="max-w-[65%]">
                 <h4 className="display text-2xl sm:text-3xl">Anvikshiki<br />Journal.</h4>
-                <p className="mt-2 max-w-48 text-xs leading-relaxed text-zinc-300">An academic publishing platform, from submissions to publication.</p>
+                <p className="mt-2 max-w-48 text-xs leading-relaxed text-zinc-300">An editorial journal platform, from author submission to published article.</p>
               </div>
               <span className="mt-4 inline-flex items-center gap-4 text-xs">Explore the live website <span aria-hidden="true">↗</span></span>
             </div>

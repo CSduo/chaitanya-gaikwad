@@ -163,7 +163,7 @@ function WebScene() {
     },
     {
       name: "Anvikshiki Journal Platform",
-      tag: "Academic Publishing Engine",
+      tag: "Editorial Journal Platform",
       host: "anvikshikijournal.in",
       href: "https://anvikshikijournal.in",
     },
