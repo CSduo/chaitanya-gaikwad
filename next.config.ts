@@ -104,6 +104,7 @@ const nextConfig: NextConfig = {
       { source: "/guides", destination: "/guides/freelancer-vs-3d-visualisation-studio", permanent: false },
 
       // ---- Legacy work category and project redirects (resolves 404s) ----
+      { source: "/work/technical-production", destination: "/services/cad-technical-production", permanent: true },
       { source: "/work/growth-b2b", destination: "/services/b2b-lead-generation", permanent: true },
       { source: "/work/automation", destination: "/services/automation-workflow-systems", permanent: true },
       { source: "/work/video", destination: "/services/ai-video-production", permanent: true },

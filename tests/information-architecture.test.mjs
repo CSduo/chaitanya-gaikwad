@@ -13,7 +13,7 @@ import { join } from "node:path";
 import { redirectSourcePattern } from "../scripts/seo-audit.ts";
 import { SPECIALISMS, specialismsForService, specialismBreadcrumbTrail, specialismsByParent } from "../lib/specialisms.ts";
 import { ALL_SERVICES } from "../lib/services.ts";
-import { allCaseStudies, hubCaseStudies, caseStudyBreadcrumbTrail, caseStudiesForService, WORK_HUB_PATH } from "../lib/case-studies.ts";
+import { allCaseStudies, hubCaseStudies, caseStudyBreadcrumbTrail, caseStudiesForService, WORK_HUB_PATH, WORK_CATEGORIES } from "../lib/case-studies.ts";
 import { conceptVisuals, renderVisuals, featuredRenders } from "../lib/visuals.ts";
 import { PRIMARY_NAV } from "../lib/site.ts";
 import { CONTENT_SOURCES } from "../scripts/generate-content-dates.mjs";
@@ -78,6 +78,18 @@ test("/work is a real, indexable hub: no redirect, in the sitemap with a content
   assert.ok(sitemapUrls.has("https://xiyato.uk/work"));
   assert.ok(CONTENT_SOURCES["/work"]?.includes("app/work/page.tsx"));
   assert.equal(PRIMARY_NAV.find((item) => item.label === "Work")?.href, "/work");
+});
+
+test("every legacy /work/<category> URL redirects in one hop instead of 404ing", () => {
+  // Category slugs were once paths under /work; none is a case study, so each needs a rule.
+  const caseStudySlugs = new Set(allCaseStudies().map((c) => c.slug));
+  for (const { slug } of WORK_CATEGORIES) {
+    assert.ok(!caseStudySlugs.has(slug), `${slug} collides with a case study`);
+    const rule = pathRules.find((r) => r.source === `/work/${slug}`);
+    assert.ok(rule, `/work/${slug} has no redirect and would 404`);
+    assert.equal(rule.permanent, true);
+    assert.ok(!redirects(rule.destination), `/work/${slug} -> ${rule.destination} is a second hop`);
+  }
 });
 
 test("legacy portfolio hubs land on /work in one hop", () => {
