@@ -16,6 +16,7 @@ import { SERVICES, getService } from "@/lib/services";
 import { publishedLocations } from "@/lib/company";
 import { pageMetadata } from "@/lib/seo";
 import { ROUTE_SEO } from "@/lib/seo-copy";
+import { HIRE_PATH } from "@/lib/hire";
 import { CreativeHero } from "@/components/home/CreativeHero";
 import { StartingPrices } from "@/components/home/StartingPrices";
 import { SectionDivider } from "@/components/brand/Divider";
@@ -65,6 +66,7 @@ export default function HomePage() {
     ...(interiorStudy ? [{ href: `/work/${interiorStudy.slug}`, label: "Interior visualisation case study" }] : []),
     ...(furnitureCampaign ? [{ href: `/work/${furnitureCampaign.slug}`, label: "Moon Chair furniture campaign film" }] : []),
     ...specialismsForService(visualisation.slug).map((s) => ({ href: s.path, label: s.name })),
+    { href: HIRE_PATH, label: "Hire a 3D visualiser" },
   ];
   // Supporting chapters link their service page, case study and specialisms too.
   const cadStudy = getCaseStudy("bahrain-luxury-interior-cad-package");

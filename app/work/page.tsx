@@ -21,6 +21,7 @@ import {
 } from "@/lib/case-studies";
 import { allVideos, allWebsites, allWorkbooks, CAD_PROJECTS } from "@/lib/portfolio";
 import { FilmPlayer, filmMeta } from "@/components/work/FilmPlayer";
+import { HIRE_PATH } from "@/lib/hire";
 import { featuredRenders, renderVisuals } from "@/lib/visuals";
 import { specialismsForService } from "@/lib/specialisms";
 import { SITE } from "@/lib/site";
@@ -142,6 +143,7 @@ export default function WorkPage() {
               { href: "/services/visualisation-image-production#gallery", label: `See all ${renderCount} production renders` },
               { href: "/services/visualisation-image-production", label: "3D rendering and visualisation services" },
               ...vizSpecialisms.map((s) => ({ href: s.path, label: s.name })),
+              { href: HIRE_PATH, label: "Hire a 3D visualiser" },
             ]}
           />
         </Container>

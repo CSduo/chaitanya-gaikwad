@@ -23,6 +23,7 @@ import { specialismsForService } from "@/lib/specialisms";
 import { caseStudiesForService, WORK_HUB_PATH } from "@/lib/case-studies";
 import { RelatedWork } from "@/components/work/cards";
 import { SpecialismLinks } from "@/components/services/SpecialismLinks";
+import { HireLinks } from "@/components/services/HireLinks";
 
 
 const SERVICE_ACTION_LABELS: Record<string, string> = {
@@ -320,6 +321,22 @@ export default async function ServicePage({
             />
             <div className="mt-10">
               <SpecialismLinks specialisms={specialisms} />
+            </div>
+          </Container>
+        </Section>
+      ) : null}
+
+      {/* Hire-intent page and comparison guide, linked from the 3D service only */}
+      {service.slug === "visualisation-image-production" ? (
+        <Section id="hire" bordered>
+          <Container width="page">
+            <SectionHeading
+              eyebrow="Hiring for a project"
+              title="Looking to hire a 3D visualiser?"
+              intro="If you would otherwise hire a freelance 3D artist, these pages explain how a project with us runs and how to compare any freelancer or studio."
+            />
+            <div className="mt-10">
+              <HireLinks />
             </div>
           </Container>
         </Section>

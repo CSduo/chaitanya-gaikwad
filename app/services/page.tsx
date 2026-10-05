@@ -20,6 +20,7 @@ import { pageMetadata, breadcrumbSchema } from "@/lib/seo";
 import { ROUTE_SEO } from "@/lib/seo-copy";
 import { specialismsByParent } from "@/lib/specialisms";
 import { SpecialismLinks } from "@/components/services/SpecialismLinks";
+import { HireLinks } from "@/components/services/HireLinks";
 
 export const metadata: Metadata = pageMetadata({
   title: ROUTE_SEO.services.metaTitle,
@@ -164,6 +165,20 @@ export default function ServicesPage() {
                 <SpecialismLinks specialisms={specialisms} />
               </div>
             ))}
+          </div>
+        </Container>
+      </Section>
+
+      {/* Hire-intent page and freelancer-vs-studio guide for 3D visualisation */}
+      <Section id="hire" bordered className="scroll-mt-20">
+        <Container width="page">
+          <SectionHeading
+            eyebrow="Hiring 3D visualisation"
+            title="Hiring a 3D visualiser for one project?"
+            intro="How a rendering project runs from brief to final files, and how to choose between a freelancer and a studio."
+          />
+          <div className="mt-10">
+            <HireLinks />
           </div>
         </Container>
       </Section>

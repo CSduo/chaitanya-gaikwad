@@ -4,6 +4,8 @@
  * See IMPLEMENTATION_OPEN_FACTS.md for what the owner still needs to supply.
  */
 
+import { HIRE_PATH } from "./hire";
+
 export const SITE = {
   name: "XIYÀTO",
   /** Plain-ASCII form for metadata contexts where the accent may not survive. */
@@ -169,6 +171,7 @@ export const PRIMARY_NAV: NavItem[] = [
     children: [
       { label: "Services Overview", href: "/services" },
       { label: "3D Renders & Architectural Visualization", href: "/services/visualisation-image-production" },
+      { label: "Hire a 3D Visualiser", href: HIRE_PATH },
       { label: "AI Video Generation & Production", href: "/services/ai-video-production" },
       { label: "Website Design & Development", href: "/services/website-design-development" },
       { label: "CAD Drafting & Technical Production", href: "/services/cad-technical-production" },
