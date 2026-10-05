@@ -58,9 +58,24 @@ function useConsent(): ConsentStatus | null | "unknown" {
   return useSyncExternalStore(subscribe, readConsent, () => "unknown" as const);
 }
 
-/** Withdraws consent: tells gtag (if loaded) and clears GA cookies. */
+/**
+ * Keeps an already-loaded gtag.js in line with the current choice. Unmounting
+ * <GoogleAnalytics> does not unload gtag.js, and next/script will not re-run its
+ * init script on remount, so within one page session:
+ *  - after a withdrawal, Google's documented opt-out flag (window["ga-disable-<ID>"])
+ *    stops every hit, including the cookieless pings Consent Mode would still send;
+ *  - after a renewed grant, the flag is cleared and analytics_storage granted again.
+ * Also applies a choice made in another tab (the store listens for "storage").
+ */
+function syncGoogleAnalytics(status: ConsentStatus) {
+  if (!GA_MEASUREMENT_ID) return;
+  (window as unknown as Record<string, unknown>)[`ga-disable-${GA_MEASUREMENT_ID}`] = status === "denied";
+  window.gtag?.("consent", "update", { analytics_storage: status });
+}
+
+/** Withdraws consent: stops gtag (if loaded) and clears GA cookies. */
 function revokeGoogleAnalytics() {
-  window.gtag?.("consent", "update", { analytics_storage: "denied" });
+  syncGoogleAnalytics("denied");
   const host = window.location.hostname;
   const domains = ["", host, `.${host}`, `.${host.split(".").slice(-2).join(".")}`];
   for (const cookie of document.cookie.split(";")) {
@@ -168,6 +183,10 @@ export function SiteAnalytics() {
     window.addEventListener(CONSENT_OPEN_EVENT, open);
     return () => window.removeEventListener(CONSENT_OPEN_EVENT, open);
   }, []);
+
+  useEffect(() => {
+    if (consent === "granted" || consent === "denied") syncGoogleAnalytics(consent);
+  }, [consent]);
 
   const choose = useCallback((status: ConsentStatus) => {
     if (status === "denied") revokeGoogleAnalytics();

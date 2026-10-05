@@ -50,6 +50,17 @@ test("gtag loads only after consent, with Consent Mode v2 defaults denied", () =
   assert.match(source, /Decline/);
 });
 
+test("withdrawing consent stops an already-loaded gtag, and a renewed grant restores it", () => {
+  const source = read("components/analytics/SiteAnalytics.tsx");
+  // Google's opt-out flag stops every hit (Consent Mode alone still sends cookieless pings).
+  assert.match(source, /`ga-disable-\$\{GA_MEASUREMENT_ID\}`\] = status === "denied"/);
+  assert.match(source, /window\.gtag\?\.\("consent", "update", \{ analytics_storage: status \}\)/);
+  // Applied whenever the stored choice changes (this tab or another), not only on the banner.
+  assert.match(source, /if \(consent === "granted" \|\| consent === "denied"\) syncGoogleAnalytics\(consent\)/);
+  // Withdrawal still clears the _ga cookies.
+  assert.match(source, /function revokeGoogleAnalytics\(\) \{\s+syncGoogleAnalytics\("denied"\);[\s\S]*?Max-Age=0/);
+});
+
 test("conversion telemetry no longer pushes raw objects into dataLayer or a never-loaded Plausible", () => {
   const source = read("components/analytics/TrackingScripts.tsx");
   assert.doesNotMatch(source, /dataLayer\.push|plausible/);
