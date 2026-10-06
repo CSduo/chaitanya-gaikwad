@@ -31,7 +31,7 @@
       ]
     },
     "/services/[slug]": {
-      "lastModified": "2026-10-06T05:15:42.000Z",
+      "lastModified": "2026-10-06T05:18:31.000Z",
       "sources": [
         "app/services/[slug]",
         "components/home/ServicePreview.tsx",
@@ -75,7 +75,7 @@
       ]
     },
     "/hire-a-3d-visualiser": {
-      "lastModified": "2026-10-06T05:15:42.000Z",
+      "lastModified": "2026-10-06T05:18:31.000Z",
       "sources": [
         "app/hire-a-3d-visualiser",
         "lib/hire.ts",
@@ -83,7 +83,7 @@
       ]
     },
     "/hire-a-cad-drafter": {
-      "lastModified": "2026-10-06T05:15:42.000Z",
+      "lastModified": "2026-10-06T05:18:31.000Z",
       "sources": [
         "app/hire-a-cad-drafter",
         "lib/services.ts",
@@ -92,7 +92,7 @@
       ]
     },
     "/guides/freelancer-vs-3d-visualisation-studio": {
-      "lastModified": "2026-10-06T05:15:42.000Z",
+      "lastModified": "2026-10-06T05:18:31.000Z",
       "sources": [
         "app/guides/freelancer-vs-3d-visualisation-studio",
         "lib/hire.ts"
@@ -153,7 +153,7 @@
       ]
     },
     "/contact": {
-      "lastModified": "2026-10-06T05:15:42.000Z",
+      "lastModified": "2026-10-06T05:18:31.000Z",
       "sources": [
         "app/contact",
         "components/forms/EnquiryForm.tsx",
