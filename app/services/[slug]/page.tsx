@@ -24,6 +24,7 @@ import { caseStudiesForService, WORK_HUB_PATH } from "@/lib/case-studies";
 import { RelatedWork } from "@/components/work/cards";
 import { SpecialismLinks } from "@/components/services/SpecialismLinks";
 import { HireLinks } from "@/components/services/HireLinks";
+import { CAD_HIRE_PATH } from "@/lib/hire";
 import { CapabilityShowcase } from "@/components/services/CapabilityShowcase";
 import { serviceVisuals, serviceGraphic } from "@/lib/service-visuals";
 
@@ -323,6 +324,27 @@ export default async function ServicePage({
             />
             <div className="mt-10">
               <HireLinks />
+            </div>
+          </Container>
+        </Section>
+      ) : null}
+
+      {/* Hire-intent page for CAD drafting */}
+      {service.slug === "cad-technical-production" ? (
+        <Section id="hire" bordered>
+          <Container width="page">
+            <div className="flex flex-wrap items-center justify-between gap-6 rounded-sm border border-rule bg-paper-deep p-6 lg:p-8">
+              <div className="max-w-xl">
+                <p className="label">Hiring for one project?</p>
+                <h2 className="display mt-2 text-2xl sm:text-3xl">Looking for a freelance CAD drafter?</h2>
+                <p className="mt-3 text-sm leading-relaxed text-ink-muted">How a drafting brief runs, what to send and what comes back, on one page.</p>
+              </div>
+              <Link
+                href={CAD_HIRE_PATH}
+                className="inline-flex min-h-[48px] items-center gap-2 rounded-xs bg-ink px-5 text-sm font-semibold text-paper transition-colors hover:bg-accent"
+              >
+                Hire a CAD drafter <span aria-hidden="true">→</span>
+              </Link>
             </div>
           </Container>
         </Section>

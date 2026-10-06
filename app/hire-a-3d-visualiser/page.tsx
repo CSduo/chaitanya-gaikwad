@@ -23,9 +23,9 @@ import { getServicePricing, PRICING_NOTE } from "@/lib/pricing";
 import { founder } from "@/lib/company";
 import { HIRE_PATH, GUIDE_PATH } from "@/lib/hire";
 
-const TITLE = "Hire a 3D Visualiser, Founder-Led Like a Freelancer | XIYÀTO";
+const TITLE = "Freelance 3D Visualiser for Hire, Founder-Led | XIYÀTO";
 const DESCRIPTION =
-  "Hiring a freelance 3D visualiser? Deal directly with the founder, with a written scope, options to choose from and checked files on every brief.";
+  "Need a freelance 3D visualiser or 3D artist? Interior, furniture and product renders from $10, founder-led with checked files. Message us on WhatsApp.";
 const SERVICE_PATH = "/services/visualisation-image-production";
 const CONTACT_HREF = "/contact?service=visualisation-image-production";
 
@@ -253,7 +253,7 @@ export default function HireA3dVisualiserPage() {
           <div className="max-w-3xl">
             <Eyebrow>Hire a 3D visualiser · Freelance or studio</Eyebrow>
             <h1 className="display mt-6 text-4xl leading-[1.1] sm:text-5xl lg:text-[3.25rem]">
-              Hire a 3D visualiser — founder-led like a freelancer, run like a studio.
+              Freelance 3D visualiser for hire, founder-led and run like a studio.
             </h1>
             <p className="mt-7 text-lg leading-relaxed text-ink-soft">
               Looking for a freelance 3D visualiser or 3D artist to render an interior, a scheme or a product? At XIYÀTO you deal directly with the person who scopes, produces and checks your images, as you would with

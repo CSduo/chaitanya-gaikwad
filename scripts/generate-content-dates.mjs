@@ -80,6 +80,7 @@ export const CONTENT_SOURCES = {
   ],
   // Hire-intent and comparison pages (paths in lib/hire.ts).
   "/hire-a-3d-visualiser": ["app/hire-a-3d-visualiser", "lib/hire.ts", "lib/pricing.ts"],
+  "/hire-a-cad-drafter": ["app/hire-a-cad-drafter", "lib/services.ts", "lib/service-visuals.ts", "lib/portfolio.ts"],
   "/guides/freelancer-vs-3d-visualisation-studio": ["app/guides/freelancer-vs-3d-visualisation-studio", "lib/hire.ts"],
   "/work": [
     "app/work/page.tsx",

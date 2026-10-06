@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { IBM_Plex_Sans, IBM_Plex_Mono, Newsreader } from "next/font/google";
 import { Header } from "@/components/site/Header";
 import { MobileActionBar } from "@/components/site/MobileActionBar";
+import { DesktopWhatsAppButton } from "@/components/site/DesktopWhatsAppButton";
 import { Footer } from "@/components/site/Footer";
 import { LegacyHashRedirect } from "@/components/site/LegacyHashRedirect";
 import { JsonLd } from "@/components/ui/primitives";
@@ -140,6 +141,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
         <Footer />
         <MobileActionBar />
+        <DesktopWhatsAppButton />
         <SiteAnalytics />
       </body>
     </html>

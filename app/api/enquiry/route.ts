@@ -72,6 +72,8 @@ export async function POST(request: Request) {
     .update(`${payload.email.toLowerCase().trim()}:${payload.brief.trim()}:${timeWindowBucket}`)
     .digest("hex");
 
+  let persisted = true;
+
   let savedLeadRecord: any = null;
 
   // 1. Transactional Database Persistence FIRST
@@ -101,6 +103,7 @@ export async function POST(request: Request) {
       });
     }
   } catch (dbErr) {
+    persisted = false;
     logger.error("Failed to persist lead to database, utilizing in-memory fallback", {
       correlationId,
       error: dbErr instanceof Error ? dbErr.message : String(dbErr),
@@ -134,10 +137,11 @@ export async function POST(request: Request) {
       {
         ok: true,
         delivered: false,
-        leadReference: savedLeadRecord.leadReference,
-        message: isTalent
-          ? "Your candidate profile has been securely recorded. Founder scoping assessment will proceed directly."
-          : "Your project enquiry has been securely recorded. Our team will review your brief directly.",
+        stored: persisted,
+        leadReference: persisted ? savedLeadRecord.leadReference : undefined,
+        message: persisted
+          ? "Your brief has been recorded. Send it on WhatsApp or by email for the fastest reply."
+          : "Your brief is ready. Send it on WhatsApp or by email so it reaches the founder directly.",
       },
       { status: 200 }
     );

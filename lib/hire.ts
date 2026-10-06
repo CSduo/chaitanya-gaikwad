@@ -11,6 +11,8 @@
  */
 export const HIRE_PATH = "/hire-a-3d-visualiser";
 export const GUIDE_PATH = "/guides/freelancer-vs-3d-visualisation-studio";
+/** Hire intent for CAD drafting ("freelance CAD drafter"). */
+export const CAD_HIRE_PATH = "/hire-a-cad-drafter";
 
 /** Printed on the guide and used as Article.datePublished; change both together. */
 export const GUIDE_PUBLISHED = "2026-10-05";

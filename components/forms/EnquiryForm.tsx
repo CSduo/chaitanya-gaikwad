@@ -17,7 +17,7 @@ import {
   TIMELINE_OPTIONS,
   type FieldErrors,
 } from "@/lib/enquiry";
-import { DIRECT_CHANNELS } from "@/lib/site";
+import { DIRECT_CHANNELS, WHATSAPP } from "@/lib/site";
 
 type Status = "idle" | "submitting" | "success" | "error";
 
@@ -26,6 +26,9 @@ type SubmittedLeadData = {
   body: string;
   mailtoUrl: string;
   gmailUrl: string;
+  whatsappUrl: string;
+  /** True only when the server emailed the brief to the studio. */
+  delivered?: boolean;
   leadReference?: string;
 };
 
@@ -190,6 +193,18 @@ function EnquiryFormInner() {
     const toEmail = "hello@xiyato.uk";
     const mailtoUrl = `mailto:${toEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(emailBody)}`;
     const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${toEmail}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(emailBody)}`;
+    // WhatsApp handoff: the most reliable way for a brief to reach the founder.
+    const whatsappText = [
+      `Hello XIYÀTO, I would like to discuss: ${serviceName}.`,
+      `Name: ${payload.name}${payload.company ? ` (${payload.company})` : ""}`,
+      `Email: ${payload.email}`,
+      payload.timeline ? `Timeline: ${payload.timeline}` : null,
+      "",
+      payload.brief.length > 1200 ? `${payload.brief.slice(0, 1200)}…` : payload.brief,
+    ]
+      .filter((line) => line !== null)
+      .join(String.fromCharCode(10));
+    const whatsappUrl = `${WHATSAPP.uk.plain}?text=${encodeURIComponent(whatsappText)}`;
 
     setErrors({});
     setStatus("submitting");
@@ -209,6 +224,8 @@ function EnquiryFormInner() {
           body: emailBody,
           mailtoUrl,
           gmailUrl,
+          whatsappUrl,
+          delivered: data.delivered === true,
           leadReference: data.leadReference,
         });
         setStatus("success");
@@ -217,13 +234,6 @@ function EnquiryFormInner() {
         setAttachment(null);
         setSelectedFile(null);
         statusRef.current?.focus();
-
-        // Attempt automatic mailto trigger for immediate composition
-        try {
-          window.location.href = mailtoUrl;
-        } catch {
-          // Fallback safely to on-page buttons
-        }
         return;
       }
 
@@ -239,6 +249,8 @@ function EnquiryFormInner() {
         body: emailBody,
         mailtoUrl,
         gmailUrl,
+        whatsappUrl,
+        delivered: false,
         leadReference: data?.leadReference,
       });
       setStatus("success");
@@ -247,12 +259,6 @@ function EnquiryFormInner() {
       setAttachment(null);
       setSelectedFile(null);
       statusRef.current?.focus();
-
-      try {
-        window.location.href = mailtoUrl;
-      } catch {
-        // Fallback safely to on-page buttons
-      }
       return;
     } catch {
       // Network failure: ensure client can still send via their email client without loss
@@ -261,6 +267,8 @@ function EnquiryFormInner() {
         body: emailBody,
         mailtoUrl,
         gmailUrl,
+        whatsappUrl,
+        delivered: false,
       });
       setStatus("success");
       setValues(EMPTY);
@@ -268,12 +276,6 @@ function EnquiryFormInner() {
       setAttachment(null);
       setSelectedFile(null);
       statusRef.current?.focus();
-
-      try {
-        window.location.href = mailtoUrl;
-      } catch {
-        // Fallback safely to on-page buttons
-      }
       return;
     }
   }
@@ -292,11 +294,11 @@ function EnquiryFormInner() {
               <path d="M3.5 8.5l3 3 6-6" />
             </svg>
           </span>
-          <p className="label text-success text-xs uppercase tracking-wider font-mono">Enquiry structured &amp; recorded</p>
+          <p className="label text-success text-xs uppercase tracking-wider font-mono">{submittedData.delivered ? "Enquiry sent" : "Brief prepared"}</p>
         </div>
 
         <h3 className="display mt-3 text-2xl sm:text-3xl">
-          Your brief is prepared and ready to send.
+          {submittedData.delivered ? "Thank you. Your brief is with the studio." : "One last step: send your brief."}
         </h3>
 
         {submittedData.leadReference ? (
@@ -307,11 +309,24 @@ function EnquiryFormInner() {
         ) : null}
 
         <p className="mt-4 max-w-xl text-sm leading-relaxed text-ink-soft">
-          We have formatted your brief with all project specifications. Your email app or Gmail should have opened with this prefilled message. If not, click below to open and send directly:
+          {submittedData.delivered
+            ? "A copy is below. For the fastest reply, you can also send it on WhatsApp."
+            : "Tap WhatsApp to send it straight to the founder, or send it by email. Everything you entered is already filled in."}
         </p>
 
         {/* Action Buttons to Open Email */}
         <div className="mt-6 flex flex-wrap items-center gap-3">
+          <a
+            href={submittedData.whatsappUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex min-h-[50px] items-center justify-center gap-2 rounded-xs bg-[#1f7a4d] px-6 text-sm font-semibold tracking-tight text-white transition-colors hover:bg-[#17603c]"
+          >
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+              <path d="M12 2a10 10 0 0 0-8.66 15l-1.3 4.76 4.88-1.28A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.18-1.15l-.3-.18-2.9.76.78-2.83-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.14c-.25-.12-1.46-.72-1.69-.8-.23-.08-.39-.12-.56.12-.16.25-.64.8-.79.97-.14.16-.29.18-.54.06a6.7 6.7 0 0 1-3.32-2.9c-.25-.43.25-.4.71-1.33a.45.45 0 0 0-.02-.43c-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.41-.56-.42h-.48a.92.92 0 0 0-.66.31 2.78 2.78 0 0 0-.87 2.07 4.83 4.83 0 0 0 1 2.56 11.05 11.05 0 0 0 4.24 3.74c1.58.68 2.2.74 2.99.62.48-.07 1.46-.6 1.67-1.18.2-.58.2-1.08.14-1.18-.06-.1-.22-.16-.47-.28Z" />
+            </svg>
+            <span>Send on WhatsApp</span>
+          </a>
           <a
             href={submittedData.gmailUrl}
             target="_blank"

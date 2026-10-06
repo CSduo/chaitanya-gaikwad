@@ -8,7 +8,7 @@ import {
 } from "@/lib/site";
 import { SERVICES } from "@/lib/services";
 import { hubCaseStudies, WORK_HUB_PATH } from "@/lib/case-studies";
-import { HIRE_PATH, GUIDE_PATH } from "@/lib/hire";
+import { HIRE_PATH, GUIDE_PATH, CAD_HIRE_PATH } from "@/lib/hire";
 import {
   publishedLegalPages,
   publishedLocations,
@@ -106,6 +106,7 @@ export function Footer() {
                 </li>
               ))}
               <li><FooterLink href={HIRE_PATH}>Hire a 3D visualiser</FooterLink></li>
+              <li><FooterLink href={CAD_HIRE_PATH}>Hire a CAD drafter</FooterLink></li>
               <li><FooterLink href={GUIDE_PATH}>Freelancer or studio guide</FooterLink></li>
             </ul>
           </div>
