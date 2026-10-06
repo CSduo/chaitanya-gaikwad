@@ -14,6 +14,7 @@ import { ProjectCTA } from "@/components/site/ProjectCTA";
 import { pageMetadata, serviceSchema, breadcrumbSchema } from "@/lib/seo";
 import { getServiceWhatsAppHref, WHATSAPP } from "@/lib/site";
 import { getSpecialism, specialismBreadcrumbTrail } from "@/lib/specialisms";
+import { CapabilityShowcase } from "@/components/services/CapabilityShowcase";
 
 export const metadata: Metadata = pageMetadata({
   title: "Middle East B2B Market Research & Lead Intelligence | XIYÀTO",
@@ -240,23 +241,7 @@ export default function MiddleEastMarketIntelligencePage() {
       <Section tone="surface" bordered>
         <Container width="page">
           <SectionHeading eyebrow="Capabilities" title="What our market research covers." />
-          <div className="mt-14 space-y-14">
-            {RESEARCH_CAPABILITIES.map((group) => (
-              <div key={group.title} className="grid gap-8 lg:grid-cols-12 lg:gap-16">
-                <div className="lg:col-span-4">
-                  <h3 className="display text-2xl">{group.title}</h3>
-                  {group.intro ? (
-                    <p className="mt-4 text-sm leading-relaxed text-ink-muted">
-                      {group.intro}
-                    </p>
-                  ) : null}
-                </div>
-                <div className="lg:col-span-8">
-                  <CapabilityList items={group.items} columns={2} />
-                </div>
-              </div>
-            ))}
-          </div>
+          <CapabilityShowcase groups={RESEARCH_CAPABILITIES} visuals={[]} graphic={"data"} />
         </Container>
       </Section>
 

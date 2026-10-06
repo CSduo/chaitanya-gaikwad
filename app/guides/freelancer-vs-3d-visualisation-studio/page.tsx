@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
+import { serviceVisuals } from "@/lib/service-visuals";
 import { Container, Section, Eyebrow, Breadcrumbs, JsonLd, TextLink } from "@/components/ui/primitives";
 import { ProjectCTA } from "@/components/site/ProjectCTA";
 import { pageMetadata, articleSchema, breadcrumbSchema } from "@/lib/seo";
@@ -128,6 +130,19 @@ const RED_FLAGS: { title: string; body: string }[] = [
   { title: "Reluctance to put rights in writing", body: "Ownership and usage of the images should never be left to assumption, especially for marketing material." },
 ];
 
+/* Imagery from the 3D portfolio: concept studies lead, as on the 3D service page. */
+const GUIDE_VISUALS = serviceVisuals("visualisation-image-production");
+const pick = (n: number) => GUIDE_VISUALS[n % GUIDE_VISUALS.length];
+
+function GuideImage({ n, className = "", sizes = "(min-width: 1024px) 520px, 92vw" }: { n: number; className?: string; sizes?: string }) {
+  const v = pick(n);
+  return (
+    <figure className={`relative overflow-hidden rounded-sm bg-paper-deep ${className}`}>
+      <Image src={v.src} alt={v.alt} fill sizes={sizes} className="object-cover" />
+    </figure>
+  );
+}
+
 export default function FreelancerVsStudioGuidePage() {
   const person = founder();
   const authorName = person?.name ?? "Chaitanya Gaikwad";
@@ -150,7 +165,8 @@ export default function FreelancerVsStudioGuidePage() {
         <header className="border-b border-rule">
           <Container width="page" className="pb-12 pt-10 sm:pb-16">
             <Breadcrumbs trail={TRAIL} />
-            <div className="max-w-3xl">
+            <div className="grid items-start gap-10 lg:grid-cols-12 lg:gap-14">
+            <div className="max-w-3xl lg:col-span-7">
               <Eyebrow>Guide · Hiring 3D visualisation</Eyebrow>
               <h1 className="display mt-6 text-4xl leading-[1.1] sm:text-5xl lg:text-[3.25rem]">{HEADLINE}</h1>
               <p className="mt-7 text-lg leading-relaxed text-ink-soft">
@@ -170,6 +186,10 @@ export default function FreelancerVsStudioGuidePage() {
                 tried to answer it fairly, including the cases where a freelancer is the better hire.
               </p>
             </div>
+            <div className="lg:col-span-5 lg:pt-10">
+              <GuideImage n={0} className="aspect-[4/5] shadow-[0_30px_70px_-35px_rgba(0,0,0,0.5)]" />
+            </div>
+            </div>
           </Container>
         </header>
 
@@ -178,20 +198,34 @@ export default function FreelancerVsStudioGuidePage() {
           <Container width="page">
             <div className="max-w-3xl">
               <h2 className="display text-2xl sm:text-3xl">The short answer</h2>
-              <ul className="prose-body mt-6 list-disc space-y-3 pl-5 text-ink-soft">
-                <li>
-                  Hire a <strong>freelance 3D visualiser</strong> for a small, well-defined job, when their portfolio
-                  already shows your kind of project, or when you want one artist&apos;s style.
-                </li>
-                <li>
-                  Hire a <strong>3D visualisation studio</strong> when images must match across a large set, when the
-                  deadline cannot move, or when the project also needs film, drawings or other disciplines.
-                </li>
-                <li>
-                  Whichever you choose, insist on a written scope, a clear list of inputs, defined review stages and
-                  rights agreed in writing. Those protect you more than the size of the supplier.
-                </li>
-              </ul>
+            </div>
+            <div className="mt-8 grid gap-6 md:grid-cols-2">
+              <article className="overflow-hidden rounded-sm border border-rule bg-paper">
+                <GuideImage n={8} className="aspect-[16/10] rounded-none" sizes="(min-width: 768px) 560px, 92vw" />
+                <div className="p-6 lg:p-7">
+                  <p className="label">Choose a freelancer</p>
+                  <p className="mt-3 text-base leading-relaxed text-ink-soft">
+                    Hire a <strong>freelance 3D visualiser</strong> for a small, well-defined job, when their portfolio
+                    already shows your kind of project, or when you want one artist&apos;s style.
+                  </p>
+                </div>
+              </article>
+              <article className="overflow-hidden rounded-sm border border-rule bg-paper">
+                <GuideImage n={12} className="aspect-[16/10] rounded-none" sizes="(min-width: 768px) 560px, 92vw" />
+                <div className="p-6 lg:p-7">
+                  <p className="label">Choose a studio</p>
+                  <p className="mt-3 text-base leading-relaxed text-ink-soft">
+                    Hire a <strong>3D visualisation studio</strong> when images must match across a large set, when the
+                    deadline cannot move, or when the project also needs film, drawings or other disciplines.
+                  </p>
+                </div>
+              </article>
+            </div>
+            <div className="max-w-3xl">
+              <p className="mt-8 text-base leading-relaxed text-ink-soft">
+                Whichever you choose, insist on a written scope, a clear list of inputs, defined review stages and
+                rights agreed in writing. Those protect you more than the size of the supplier.
+              </p>
             </div>
           </Container>
         </Section>
@@ -225,6 +259,17 @@ export default function FreelancerVsStudioGuidePage() {
             </div>
           </Container>
         </Section>
+
+        {/* Image band */}
+        <section aria-label="Selected visualisation work" className="border-t border-rule bg-paper py-10 sm:py-14">
+          <Container width="wide">
+            <div className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
+              {[2, 9, 14, 15].map((n) => (
+                <GuideImage key={n} n={n} className="aspect-[4/5]" sizes="(min-width: 1024px) 300px, 46vw" />
+              ))}
+            </div>
+          </Container>
+        </section>
 
         {/* Comparison table */}
         <Section tone="surface" bordered>

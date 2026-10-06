@@ -206,7 +206,7 @@ export function Rule({ className = "" }: { className?: string }) {
   return <hr className={`border-0 border-t border-rule ${className}`} />;
 }
 
-/** Numbered technical list — used for process and workflow sequences. */
+/** Numbered steps with large numerals and a leading rule — process and workflow sequences. */
 export function ProcessList({
   steps,
   className = "",
@@ -215,11 +215,14 @@ export function ProcessList({
   className?: string;
 }) {
   return (
-    <ol className={`grid gap-px border border-rule bg-rule sm:grid-cols-2 ${className}`}>
+    <ol className={`grid gap-4 sm:grid-cols-2 ${className}`}>
       {steps.map((s) => (
-        <li key={s.step} className="bg-paper p-6 lg:p-8">
-          <span className="label block">{s.step}</span>
-          <h3 className="mt-4 text-base font-semibold tracking-tight text-ink">{s.title}</h3>
+        <li key={s.step} className="relative flex flex-col rounded-sm border border-rule bg-paper p-6 shadow-[0_1px_0_rgba(0,0,0,0.03)] lg:p-7">
+          <div className="flex items-center gap-4">
+            <span className="display text-[2.5rem] leading-none text-accent">{s.step}</span>
+            <span aria-hidden="true" className="h-px flex-1 bg-rule-strong" />
+          </div>
+          <h3 className="mt-5 text-base font-semibold tracking-tight text-ink">{s.title}</h3>
           <p className="mt-2 text-sm leading-relaxed text-ink-muted">{s.body}</p>
         </li>
       ))}
@@ -227,7 +230,7 @@ export function ProcessList({
   );
 }
 
-/** Compact list of capabilities with a technical leading rule. */
+/** Capabilities and deliverables as tiles with a check mark, not a plain bullet list. */
 export function CapabilityList({
   items,
   columns = 1,
@@ -238,17 +241,21 @@ export function CapabilityList({
   className?: string;
 }) {
   return (
-    <ul className={`${columns === 2 ? "sm:columns-2 sm:gap-x-10" : ""} ${className}`}>
+    <ul className={`grid gap-2 ${columns === 2 ? "sm:grid-cols-2 lg:grid-cols-3" : ""} ${className}`}>
       {items.map((item) => (
         <li
           key={item}
-          className="relative break-inside-avoid border-t border-rule py-3 pl-5 text-sm leading-relaxed text-ink-soft"
+          className="flex items-start gap-2.5 rounded-sm border border-rule bg-paper px-3.5 py-3 text-[0.8125rem] leading-snug text-ink-soft"
         >
           <span
             aria-hidden="true"
-            className="absolute left-0 top-[1.35rem] h-px w-2.5 bg-rule-strong"
-          />
-          {item}
+            className="mt-px inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-accent-wash text-accent"
+          >
+            <svg viewBox="0 0 16 16" className="h-3 w-3" fill="none" stroke="currentColor" strokeWidth="2.2">
+              <path d="M3.5 8.5l3 3 6-7" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </span>
+          <span className="min-w-0">{item}</span>
         </li>
       ))}
     </ul>

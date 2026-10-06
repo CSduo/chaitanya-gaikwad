@@ -24,6 +24,8 @@ import { caseStudiesForService, WORK_HUB_PATH } from "@/lib/case-studies";
 import { RelatedWork } from "@/components/work/cards";
 import { SpecialismLinks } from "@/components/services/SpecialismLinks";
 import { HireLinks } from "@/components/services/HireLinks";
+import { CapabilityShowcase } from "@/components/services/CapabilityShowcase";
+import { serviceVisuals, serviceGraphic } from "@/lib/service-visuals";
 
 
 const SERVICE_ACTION_LABELS: Record<string, string> = {
@@ -261,23 +263,7 @@ export default async function ServicePage({
       <Section tone={isCad ? "surface" : "paper"} bordered>
         <Container width="page">
           <SectionHeading eyebrow="Capabilities" title="What the service covers." />
-          <div className="mt-14 space-y-14">
-            {service.groups.map((group) => (
-              <div key={group.title} className="grid gap-8 lg:grid-cols-12 lg:gap-16">
-                <div className="lg:col-span-4">
-                  <h3 className="display text-2xl">{group.title}</h3>
-                  {group.intro ? (
-                    <p className="mt-4 text-sm leading-relaxed text-ink-muted">
-                      {group.intro}
-                    </p>
-                  ) : null}
-                </div>
-                <div className="lg:col-span-8">
-                  <CapabilityList items={group.items} columns={2} />
-                </div>
-              </div>
-            ))}
-          </div>
+          <CapabilityShowcase groups={service.groups} visuals={serviceVisuals(service.slug)} graphic={serviceGraphic(service.slug)} />
         </Container>
       </Section>
 

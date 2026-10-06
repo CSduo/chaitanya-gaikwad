@@ -66,14 +66,22 @@ function ChapterHeader({
         {CHAPTER_SUMMARIES[service.slug] ?? service.summary}
       </p>
 
-      {price ? (
-        <a href={price.href} target="_blank" rel="noopener noreferrer" className={`mt-3 inline-flex min-h-[44px] flex-wrap items-center gap-x-3 gap-y-1 rounded-xs border px-3 py-2 text-xs transition-colors ${isDark ? "border-paper/25 text-paper hover:bg-paper/10" : "border-rule-strong text-ink hover:border-accent hover:text-accent"}`}>
-          <span className="font-mono">{price.label} <span className="text-[0.5625rem] opacity-70">USD</span></span>
-          <span className="font-semibold">Start on WhatsApp <span aria-hidden="true">↗</span></span>
-        </a>
-      ) : (
-        <Link href={`/services/${service.slug}`} className={`mt-3 inline-flex min-h-[44px] items-center gap-2 text-xs font-medium ${isDark ? "text-paper" : "text-ink hover:text-accent"}`}>View service details <span aria-hidden="true">→</span></Link>
-      )}
+      <div className="mt-4 flex flex-wrap items-center gap-2.5">
+        <Link
+          href={`/services/${service.slug}`}
+          className={`inline-flex min-h-[44px] items-center gap-2 rounded-xs px-4 py-2.5 text-xs font-semibold transition-colors ${
+            isDark ? "bg-paper text-ink hover:bg-paper/85" : "bg-ink text-paper hover:bg-accent"
+          }`}
+        >
+          Explore {service.shortName} <span aria-hidden="true">→</span>
+        </Link>
+        {price ? (
+          <a href={price.href} target="_blank" rel="noopener noreferrer" className={`inline-flex min-h-[44px] flex-wrap items-center gap-x-3 gap-y-1 rounded-xs border px-3 py-2 text-xs transition-colors ${isDark ? "border-paper/25 text-paper hover:bg-paper/10" : "border-rule-strong text-ink hover:border-accent hover:text-accent"}`}>
+            <span className="font-mono">{price.label} <span className="text-[0.5625rem] opacity-70">USD</span></span>
+            <span className="font-semibold">Start on WhatsApp <span aria-hidden="true">↗</span></span>
+          </a>
+        ) : null}
+      </div>
     </div>
   );
 }

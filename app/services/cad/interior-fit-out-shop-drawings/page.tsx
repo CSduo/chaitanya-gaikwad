@@ -14,6 +14,8 @@ import { ProjectCTA } from "@/components/site/ProjectCTA";
 import { pageMetadata, serviceSchema, breadcrumbSchema } from "@/lib/seo";
 import { getServiceWhatsAppHref, WHATSAPP } from "@/lib/site";
 import { getSpecialism, specialismBreadcrumbTrail } from "@/lib/specialisms";
+import { CapabilityShowcase } from "@/components/services/CapabilityShowcase";
+import { cadImages } from "@/lib/service-visuals";
 
 export const metadata: Metadata = pageMetadata({
   title: "Interior Fit-Out & Joinery Shop Drawings | XIYÀTO",
@@ -239,23 +241,7 @@ export default function InteriorFitOutShopDrawingsPage() {
       <Section tone="surface" bordered>
         <Container width="page">
           <SectionHeading eyebrow="Capabilities" title="What our fit-out CAD packages include." />
-          <div className="mt-14 space-y-14">
-            {CAPABILITY_GROUPS.map((group) => (
-              <div key={group.title} className="grid gap-8 lg:grid-cols-12 lg:gap-16">
-                <div className="lg:col-span-4">
-                  <h3 className="display text-2xl">{group.title}</h3>
-                  {group.intro ? (
-                    <p className="mt-4 text-sm leading-relaxed text-ink-muted">
-                      {group.intro}
-                    </p>
-                  ) : null}
-                </div>
-                <div className="lg:col-span-8">
-                  <CapabilityList items={group.items} columns={2} />
-                </div>
-              </div>
-            ))}
-          </div>
+          <CapabilityShowcase groups={CAPABILITY_GROUPS} visuals={cadImages()} graphic={"grid"} />
         </Container>
       </Section>
 
