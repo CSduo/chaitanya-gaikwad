@@ -23,14 +23,14 @@ export function CreativeHero() {
         <div className="grid items-center gap-7 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] lg:gap-14">
           <div className="creative-hero-copy min-w-0">
             <p className="mb-5 flex items-center gap-3 font-mono text-[10px] uppercase tracking-[0.2em] text-zinc-300">
-              <span className="h-px w-7 shrink-0 bg-white/60" aria-hidden="true" /> XIYÀTO · {HOME_COPY.eyebrow}
+              <span className="h-px w-7 shrink-0 bg-white/60" aria-hidden="true" /> XIYÀTO · Independent multidisciplinary studio
             </p>
             <h1 id="hero-heading" className="display max-w-xl text-[clamp(2.35rem,5vw,4.25rem)] leading-[1.04]">{HOME_COPY.h1}</h1>
             <p className="mt-5 max-w-lg text-sm leading-relaxed text-zinc-300 sm:text-base">{HOME_COPY.standfirst}</p>
             <div className="mt-6 grid grid-cols-2 gap-2 sm:flex sm:flex-wrap sm:gap-3">
-              <Link href="/work" className="inline-flex min-h-12 items-center justify-center gap-3 bg-white px-4 text-xs font-semibold text-black transition-colors hover:bg-zinc-200 sm:px-6 sm:text-sm">
-                View the portfolio <span aria-hidden="true">→</span>
-              </Link>
+              <a href="#capabilities" className="inline-flex min-h-12 items-center justify-center gap-3 bg-white px-4 text-xs font-semibold text-black transition-colors hover:bg-zinc-200 sm:px-6 sm:text-sm">
+                Explore six services <span aria-hidden="true">↓</span>
+              </a>
               <a href={WHATSAPP.uk.href} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-12 items-center justify-center gap-3 border border-white/35 bg-black/30 px-4 text-xs text-white transition-colors hover:border-white hover:bg-white/10 sm:px-6 sm:text-sm">
                 Discuss your project <span aria-hidden="true">↗</span>
               </a>

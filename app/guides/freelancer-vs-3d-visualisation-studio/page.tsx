@@ -105,7 +105,7 @@ const COMPARISON: { factor: string; freelancer: string; studio: string }[] = [
 
 const CHECKLIST: { title: string; body: string }[] = [
   { title: "Relevant portfolio", body: "Look for your kind of project: interiors, exteriors, products or furniture, at the quality you need, not just images that look impressive." },
-  { title: "Proof of what is real", body: "Ask which portfolio images were client commissions, which were personal studies, and which were AI-generated or AI-assisted." },
+  { title: "Proof of what is real", body: "Ask which portfolio images were client commissions and which were personal or concept studies." },
   { title: "Who does the work", body: "Ask who will produce your images, who checks them before you see them, and who you will speak to day to day." },
   { title: "A written scope", body: "Number of views, ratios, resolution, file formats, revision rounds and the delivery date, agreed before production starts." },
   { title: "An inputs list", body: "A good visualiser tells you exactly what they need: plans, dimensions, finishes, references and where each image will be used." },
@@ -121,7 +121,7 @@ const CHECKLIST: { title: string; body: string }[] = [
 const RED_FLAGS: { title: string; body: string }[] = [
   { title: "A firm price before they have seen your inputs", body: "Without drawings and references, a fixed price is a guess, and the difference usually comes back later as extras." },
   { title: "\"Unlimited revisions\" instead of a scope", body: "Revisions work best against agreed direction. An unlimited offer often means the direction was never defined." },
-  { title: "A portfolio with no context", body: "No clients, sectors or dates, and no way to tell production work from stock, personal studies or AI-generated images." },
+  { title: "A portfolio with no context", body: "No clients, sectors or dates, and no way to tell commissioned work from stock images or personal studies." },
   { title: "No one can say who does the work", body: "If the person quoting cannot tell you who will produce and check your images, nobody may be accountable for them." },
   { title: "Nothing to review until the end", body: "If the first thing you will see is a finished render, every correction costs a full re-render." },
   { title: "Vague answers about files", body: "If formats, resolution, colour profile and working files are \"whatever you need\", agree them in writing before you start." },

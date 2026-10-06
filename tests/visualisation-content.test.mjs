@@ -58,7 +58,7 @@ test("/guides does not 404: it forwards to the guide until a guides index exists
   assert.equal(rule.permanent, false, "temporary, so a later /guides hub is not shadowed by a cached 308");
 });
 
-test("the hire page and guide are linked from the header, footer, /services, the 3D page, /work and the homepage", () => {
+test("the hire page and guide are linked from the header, footer, /services, the 3D page and /work", () => {
   const services = PRIMARY_NAV.find((item) => item.label === "Services");
   assert.ok(services?.children?.some((c) => c.href === HIRE_PATH), "header Services menu must link the hire page");
   const footer = source("components/site/Footer.tsx");
@@ -71,7 +71,6 @@ test("the hire page and guide are linked from the header, footer, /services, the
   const servicePage = source("app/services/[slug]/page.tsx");
   assert.match(servicePage, /service\.slug === "visualisation-image-production" \? \(\s*<Section id="hire"/);
   assert.match(source("app/work/page.tsx"), /href: HIRE_PATH/);
-  assert.match(source("app/page.tsx"), /href: HIRE_PATH/);
   // The pages link each other, the 3D service, /work and the contact form with the visualisation service preselected.
   const hire = source("app/hire-a-3d-visualiser/page.tsx");
   for (const needle of ["GUIDE_PATH", "/services/visualisation-image-production", "/work", "/contact?service=visualisation-image-production"]) {
@@ -109,10 +108,10 @@ test("the hire page is a WebPage about the existing 3D Service, not a second Ser
   }
 });
 
-test("new pages can only show production renders: rendersByFile refuses AI concepts and missing files", () => {
+test("new pages can only show production renders: rendersByFile refuses concept studies and missing files", () => {
   assert.equal(rendersByFile(["vis-41.webp"])[0].src, "/media/visual/vis-41.webp");
   const concept = conceptVisuals()[0].src.replace("/media/visual/", "");
-  assert.throws(() => rendersByFile([concept]), /AI concept study/);
+  assert.throws(() => rendersByFile([concept]), /concept study/);
   assert.throws(() => rendersByFile(["does-not-exist.webp"]), /No published visual/);
 });
 

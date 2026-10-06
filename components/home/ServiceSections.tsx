@@ -6,7 +6,7 @@ import Image from "next/image";
 import { Container } from "@/components/ui/primitives";
 import { ImageGrid, VideoGallery, type LightboxItem } from "@/components/media/viewers";
 import { allVideos, allWebsites } from "@/lib/portfolio";
-import { VISUALS, featuredRenders, activeVisualGroups, isConceptVisual, type VisualGroup } from "@/lib/visuals";
+import { VISUALS, featuredVisuals, activeVisualGroups, type VisualGroup } from "@/lib/visuals";
 import type { Service } from "@/lib/services";
 import { getServicePricing } from "@/lib/pricing";
 import { CadDraftingRail } from "./CadDraftingRail";
@@ -124,41 +124,14 @@ function Chapter({
   );
 }
 
-export type ChapterLink = { href: string; label: string };
-
-/** Descriptive links from a chapter to its service page, case studies and specialisms. */
-function ChapterLinks({ links, dark = false }: { links: ChapterLink[]; dark?: boolean }) {
-  if (links.length === 0) return null;
-  return (
-    <ul className={`mt-3 grid gap-x-6 border-t pt-3 sm:grid-cols-2 ${dark ? "border-white/15" : "border-rule"}`}>
-      {links.map((link) => (
-        <li key={link.href}>
-          <Link
-            href={link.href}
-            className={`group inline-flex min-h-[44px] items-center gap-2 text-sm font-medium transition-colors ${
-              dark ? "text-zinc-100 hover:text-white" : "text-ink hover:text-accent"
-            }`}
-          >
-            <span className={`underline underline-offset-4 ${dark ? "decoration-white/40" : "decoration-rule-strong"}`}>
-              {link.label}
-            </span>
-            <span aria-hidden="true">&rarr;</span>
-          </Link>
-        </li>
-      ))}
-    </ul>
-  );
-}
-
 /* ------------------------------------------------------------------ */
 /* 04 — CAD & TECHNICAL PRODUCTION (Architectural Slate Blueprint)     */
 /* ------------------------------------------------------------------ */
 
-export function CadSection({ service, links = [] }: { service: Service; links?: ChapterLink[] }) {
+export function CadSection({ service }: { service: Service }) {
   return (
     <Chapter service={service} tone="slate">
       <CadDraftingRail />
-      <ChapterLinks links={links} dark />
     </Chapter>
   );
 }
@@ -167,14 +140,13 @@ export function CadSection({ service, links = [] }: { service: Service; links?: 
 /* 05 — MARKETING & B2B LEAD GENERATION                               */
 /* ------------------------------------------------------------------ */
 
-export function B2BLeadGenSection({ service, links = [] }: { service: Service; links?: ChapterLink[] }) {
+export function B2BLeadGenSection({ service }: { service: Service }) {
   return (
     <Chapter service={service} tone="surface">
       <div id="service-market-intelligence-research" className="scroll-mt-16">
         <span id="market-intelligence-research" className="block scroll-mt-16" aria-hidden="true" />
         <LeadIntelligencePanel />
       </div>
-      <ChapterLinks links={links} />
     </Chapter>
   );
 }
@@ -212,23 +184,11 @@ export const GrowthSection = MarketIntelligenceSection;
 /* 01 — 3D VISUALISATION & IMAGE PRODUCTION (Titanium Gallery)         */
 /* ------------------------------------------------------------------ */
 
-export function VisualisationSection({
-  service,
-  links = [],
-}: {
-  service: Service;
-  /** Descriptive links to the service page, case studies and specialisms. */
-  links?: ChapterLink[];
-}) {
+export function VisualisationSection({ service }: { service: Service }) {
   const groups = activeVisualGroups();
   const [group, setGroup] = useState<VisualGroup | null>(null);
-  // "Featured" shows production renders; a group filter shows that whole group,
-  // production renders before AI concept studies.
-  const pool = group
-    ? VISUALS.filter((v) => v.group === group).sort((a, b) => Number(isConceptVisual(a)) - Number(isConceptVisual(b)))
-    : VISUALS;
-  const shown = group ? pool.slice(0, 4) : featuredRenders(4);
-  const showsConcepts = shown.some(isConceptVisual);
+  const pool = group ? VISUALS.filter((v) => v.group === group) : VISUALS;
+  const shown = group ? pool.slice(0, 4) : featuredVisuals(4);
 
   const items: LightboxItem[] = shown.map((v) => ({
     src: v.src,
@@ -277,9 +237,7 @@ export function VisualisationSection({
       <ImageGrid items={items} columns={2} aspect="4/3" />
 
       <p className="mt-2 text-[0.6875rem] text-ink-muted">
-        {showsConcepts
-          ? "Production renders and AI-generated concept studies, labelled in each image description."
-          : "Production renders from the studio archive."}
+        Concept studies and production portfolio.
       </p>
 
       <Link
@@ -287,12 +245,10 @@ export function VisualisationSection({
         className="group mt-1 inline-flex min-h-[44px] items-center gap-2 text-xs font-medium text-ink transition-colors hover:text-accent"
       >
         <span className="underline decoration-rule-strong underline-offset-4">
-          View the full 3D gallery
+          View all {VISUALS.length} images
         </span>
         <span aria-hidden="true">&rarr;</span>
       </Link>
-
-      <ChapterLinks links={links} />
     </Chapter>
   );
 }

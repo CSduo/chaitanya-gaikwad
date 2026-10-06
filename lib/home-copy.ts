@@ -5,7 +5,7 @@
 export const HOME_COPY = {
   eyebrow: "3D visualisation & film studio",
   h1: "3D visualisation and film for interiors, architecture and products.",
-  standfirst: "Photorealistic 3D renders and short films for interior designers, architects, developers and furniture brands. You deal directly with the founder, as you would with a freelancer, and every brief follows the same studio process: a defined scope, a clear quote and checked delivery.",
+  standfirst: "Photorealistic 3D renders and films for interior designers, architects and furniture brands, plus CAD drawings, websites, B2B research and workflow automation.",
   supportingTitle: "Visualisation and film, with the support around them.",
   supportingIntro: "CAD drafting, websites, B2B research and workflow automation, commissioned on their own or alongside a visualisation brief.",
   capabilitiesIntro: "Six specialist services, available individually or together. Explore the work, then choose what your business needs.",

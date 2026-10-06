@@ -172,10 +172,6 @@ const STANDARDS = [
     title: "Continuity",
     body: "Working files are retained, so a set can be extended later with another room, product or finish, held to the same direction as the original images.",
   },
-  {
-    title: "Honest labelling",
-    body: "Where AI-assisted generation is used, we say plainly which images are generated. The portfolio keeps AI concept studies apart from production renders.",
-  },
 ];
 
 const PROOF_RENDERS = rendersByFile(["vis-41.webp", "vis-21.webp", "render-1.webp", "vis-43.webp", "vis-19.webp", "vis-11.webp"]);
@@ -230,10 +226,6 @@ export default function HireA3dVisualiserPage() {
     {
       q: "Can you keep an unreleased project confidential?",
       a: "Yes. Confidentiality terms can be agreed before you share sensitive drawings or products. Please do not send confidential material through the enquiry form until they are in place. Work is only shown in the portfolio with permission, and unnamed clients are described by sector.",
-    },
-    {
-      q: "Do you use AI to make the images?",
-      a: "Where AI-assisted generation is used, it is a production method applied under direction, and we state plainly which images are generated. On this site, AI-generated concept studies are labelled and kept apart from the production renders.",
     },
     {
       q: "Do you work with clients outside the UK?",

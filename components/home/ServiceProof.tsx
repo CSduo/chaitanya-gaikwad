@@ -284,7 +284,7 @@ function VisualisationProof() {
     height: v.height,
     title: v.title,
   }));
-  // Production renders lead; AI-generated concept studies follow in their own labelled section.
+  // Concept studies lead; the 3D render portfolio follows.
   const conceptItems = items.filter((_, index) => isConceptVisual(pool[index]));
   const portfolioItems = items.filter((_, index) => !isConceptVisual(pool[index]));
 
@@ -330,25 +330,25 @@ function VisualisationProof() {
         Showing {pool.length} of {VISUALS.length} images
       </p>
 
-      {portfolioItems.length > 0 ? (
-        <section aria-labelledby="gallery-renders" className="mb-12">
-          <div className="mb-5 border-b border-rule pb-4">
-            <p className="label">From the archive</p>
-            <h3 id="gallery-renders" className="display mt-2 text-3xl text-ink">3D render portfolio</h3>
-          </div>
-          <ImageGrid items={portfolioItems} columns={3} aspect="4/3" />
-        </section>
-      ) : null}
       {conceptItems.length > 0 ? (
-        <section aria-labelledby="gallery-concepts">
+        <section aria-labelledby="gallery-concepts" className="mb-12">
           <div className="mb-5 flex flex-wrap items-end justify-between gap-3 border-b border-rule pb-4">
             <div>
-              <p className="label">Ideas, materials & atmosphere · AI-assisted</p>
-              <h3 id="gallery-concepts" className="display mt-2 text-3xl text-ink">AI-assisted concept studies</h3>
+              <p className="label">Ideas, materials & atmosphere</p>
+              <h3 id="gallery-concepts" className="display mt-2 text-3xl text-ink">Concept Studies</h3>
             </div>
-            <p className="max-w-sm text-xs leading-relaxed text-ink-muted">AI-generated visual explorations of kitchens, interiors and artwork. Concept studies, not completed client commissions, and kept apart from the 3D render portfolio above.</p>
+            <p className="max-w-sm text-xs leading-relaxed text-ink-muted">Visual explorations of kitchens, interiors, artwork and objects: light, material and mood studies by the studio.</p>
           </div>
           <ImageGrid items={conceptItems} columns={3} aspect="4/3" />
+        </section>
+      ) : null}
+      {portfolioItems.length > 0 ? (
+        <section aria-labelledby="gallery-renders">
+          <div className="mb-5 border-b border-rule pb-4">
+            <p className="label">From the archive</p>
+            <h3 id="gallery-renders" className="display mt-2 text-3xl text-ink">3D Render Portfolio</h3>
+          </div>
+          <ImageGrid items={portfolioItems} columns={3} aspect="4/3" />
         </section>
       ) : null}
     </div>

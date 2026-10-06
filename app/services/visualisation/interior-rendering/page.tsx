@@ -42,7 +42,7 @@ const INPUTS = getService("visualisation-image-production")!.groups.find((g) => 
 const gridItems = (visuals: VisualItem[]) =>
   visuals.map(({ src, alt, width, height, title }) => ({ src, alt, width, height, title }));
 
-/* Production renders only: rendersByFile() refuses AI concept studies. */
+/* Production renders only: rendersByFile() refuses concept studies. */
 const ROOM_GROUPS: { title: string; body: string; files: string[] }[] = [
   {
     title: "Living rooms and bedrooms",
@@ -199,7 +199,7 @@ export default function InteriorRenderingPage() {
           <SectionHeading
             eyebrow="Rooms and spaces"
             title="Interiors we render, with the work to show for it."
-            intro="Every image on this page is a production render from the studio's portfolio, not an AI-generated concept study."
+            intro="Every image on this page is a production render from the studio's portfolio."
           />
           <div className="mt-14 space-y-16">
             {ROOM_GROUPS.map((group) => (
@@ -320,8 +320,7 @@ export default function InteriorRenderingPage() {
                 <p className="text-sm leading-relaxed text-ink-soft">
                   An interior render is representational. It interprets the design direction you supply; it is not a
                   specification, a technical drawing or an approval document. Colours and finishes on screen are
-                  indicative and should be confirmed against physical samples and supplier data before ordering. Where
-                  AI-assisted generation is used in a project, we say plainly which images are generated.
+                  indicative and should be confirmed against physical samples and supplier data before ordering.
                 </p>
               </div>
             </div>

@@ -433,12 +433,12 @@ export function featuredVisuals(limit = 8): VisualItem[] {
   return VISUALS.filter((v) => v.quality === "strong").slice(0, limit);
 }
 
-/** AI-generated concept studies (the "studio-concepts" collection). */
+/** Concept studies (the "studio-concepts" collection). */
 export function isConceptVisual(visual: VisualItem): boolean {
   return visual.collection === "studio-concepts";
 }
 
-/** Production renders from the archive: everything that is not an AI concept study. */
+/** Production renders from the archive: everything that is not a concept study. */
 export function renderVisuals(): VisualItem[] {
   return VISUALS.filter((v) => !isConceptVisual(v));
 }
@@ -461,7 +461,7 @@ export function activeVisualGroups(): { group: VisualGroup; label: string; count
 
 /**
  * Named production renders for a page's own selection, in the order given.
- * Throws at build time if a file is renamed or withdrawn, or if an AI concept
+ * Throws at build time if a file is renamed or withdrawn, or if a concept
  * study is requested, so a page can never silently present a concept as a render.
  */
 export function rendersByFile(files: string[]): VisualItem[] {
@@ -469,7 +469,7 @@ export function rendersByFile(files: string[]): VisualItem[] {
     const src = `/media/visual/${file}`;
     const visual = VISUALS.find((v) => v.src === src);
     if (!visual) throw new Error(`No published visual ${src}`);
-    if (isConceptVisual(visual)) throw new Error(`${src} is an AI concept study, not a production render`);
+    if (isConceptVisual(visual)) throw new Error(`${src} is a concept study, not a production render`);
     return visual;
   });
 }

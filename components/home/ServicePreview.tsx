@@ -3,12 +3,11 @@
 import { useState } from "react";
 import Image from "next/image";
 import type { ServiceSlug } from "@/lib/services";
-import { VISUALS, isConceptVisual } from "@/lib/visuals";
+import { VISUALS } from "@/lib/visuals";
 import styles from "./ServicePreview.module.css";
 
 type PreviewProps = { slug: ServiceSlug; compact?: boolean; fill?: boolean };
 
-/* An AI concept study shown here is tagged as one visibly, not only in its alt text: the site states that generated images are labelled plainly. */
 const RENDERS = [
   { ...VISUALS[0], label: "Interiors" },
   { ...(VISUALS.find((visual) => visual.group === "artwork") ?? VISUALS[1]), label: "Artwork" },
@@ -25,7 +24,7 @@ function RenderPreview({ compact }: { compact: boolean }) {
     <div className={styles.imageWell}>
       <Image src={render.src} alt={render.alt} fill sizes={compact ? "(min-width: 1024px) 380px, 90vw" : "(min-width: 1024px) 800px, 95vw"} className={styles.cover} />
       <div className={styles.imageShade} />
-      <div className={styles.imageTop}><span className={styles.glassTag}>{isConceptVisual(render) ? "AI concept study" : "Selected visual studies"}</span><span className={styles.crosshair} aria-hidden="true">+</span></div>
+      <div className={styles.imageTop}><span className={styles.glassTag}>Selected visual studies</span><span className={styles.crosshair} aria-hidden="true">+</span></div>
       <div className={styles.imageBottom}><p>Spaces that sell<br /><em>the feeling.</em></p></div>
     </div>
     <div className={styles.imageSwitch} aria-label="Render selection">{RENDERS.map((item, index) => <button key={item.label} type="button" aria-pressed={selected === index} onClick={() => setSelected(index)}>{item.label}</button>)}</div>

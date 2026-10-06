@@ -135,8 +135,7 @@ export default function WorkPage() {
             aspect="4/3"
           />
           <p className="mt-3 text-xs leading-relaxed text-ink-muted">
-            The 3D rendering page also shows AI-assisted concept studies, labelled separately from these production
-            renders.
+            The 3D rendering page opens with the studio's concept studies, followed by the full render portfolio.
           </p>
           <SectionLinks
             links={[

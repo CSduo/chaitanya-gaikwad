@@ -14,7 +14,7 @@ import { redirectSourcePattern } from "../scripts/seo-audit.ts";
 import { SPECIALISMS, specialismsForService, specialismBreadcrumbTrail, specialismsByParent } from "../lib/specialisms.ts";
 import { ALL_SERVICES } from "../lib/services.ts";
 import { allCaseStudies, hubCaseStudies, caseStudyBreadcrumbTrail, caseStudiesForService, WORK_HUB_PATH, WORK_CATEGORIES } from "../lib/case-studies.ts";
-import { conceptVisuals, renderVisuals, featuredRenders } from "../lib/visuals.ts";
+import { conceptVisuals, renderVisuals } from "../lib/visuals.ts";
 import { PRIMARY_NAV } from "../lib/site.ts";
 import { CONTENT_SOURCES } from "../scripts/generate-content-dates.mjs";
 import { collectionPageSchema } from "../lib/seo.ts";
@@ -119,38 +119,27 @@ test("the hub lists every case study, visualisation first, and its ItemList matc
   }
 });
 
-test("the 3D service page links its case study and submits only production renders to image search", () => {
+test("the 3D service page links its case study and submits every gallery image to image search", () => {
   assert.ok(caseStudiesForService("visualisation-image-production").some((s) => s.slug === "interior-visualisation-studies"));
   const entry = sitemap().find((e) => e.url === "https://xiyato.uk/services/visualisation-image-production");
-  const concepts = new Set(conceptVisuals().map((v) => `https://xiyato.uk${v.src}`));
-  assert.ok(concepts.size > 0);
-  assert.equal(entry.images.length, renderVisuals().length);
-  assert.deepEqual(entry.images.filter((src) => concepts.has(src)), []);
-  for (const v of featuredRenders(8)) assert.ok(!concepts.has(`https://xiyato.uk${v.src}`), `${v.src} is a concept, not a render`);
+  assert.equal(entry.images.length, conceptVisuals().length + renderVisuals().length);
 });
 
-test("AI concept studies are labelled in alt text and follow the render portfolio in their own section", () => {
-  for (const v of conceptVisuals()) assert.match(v.alt, /AI-generated concept study/, v.src);
+test("Concept Studies lead the 3D gallery, followed by the 3D Render Portfolio, with no AI wording", () => {
+  for (const v of conceptVisuals()) assert.doesNotMatch(v.alt, /\bAI\b|AI-generated|generated concept/, v.src);
   const source = readFileSync(new URL("../components/home/ServiceProof.tsx", import.meta.url), "utf8");
-  const renders = source.indexOf("3D render portfolio");
-  const concepts = source.indexOf("AI-assisted concept studies");
+  const concepts = source.indexOf(">Concept Studies<");
+  const renders = source.indexOf(">3D Render Portfolio<");
   assert.ok(renders > 0 && concepts > 0, "both gallery sections must be labelled");
-  assert.ok(renders < concepts, "production renders must lead the gallery");
+  assert.ok(concepts < renders, "concept studies must lead the gallery");
+  assert.doesNotMatch(source, /AI-assisted|AI-generated|AI concept/);
 });
 
-test("the homepage leads with 3D visualisation and film and links the 3D service, case study and furniture film", () => {
+test("the homepage keeps the six-services carousel first and the original visualisation chapter after it", () => {
   assert.match(ROUTE_SEO.home.metaTitle, /^3D Visualisation & Film/);
-  assert.match(ROUTE_SEO.home.metaDescription, /3D visualisation and film studio/);
   assert.match(HOME_COPY.h1, /^3D visualisation and film/);
   const page = readFileSync(new URL("../app/page.tsx", import.meta.url), "utf8");
-  for (const slug of ["interior-visualisation-studies", "sultanah-moon-chair-cinematic-campaign", "bahrain-luxury-interior-cad-package"]) {
-    assert.ok(getCaseStudy(slug), `${slug} no longer exists`);
-    assert.ok(page.includes(`getCaseStudy("${slug}")`), `homepage no longer links ${slug}`);
-  }
-  // Supporting chapters link their specialisms, so specialism pages are reachable from the homepage.
-  assert.match(page, /specialismsForService\(cad\.slug\)/);
-  assert.match(page, /specialismsForService\(b2bLeadGen\.slug\)/);
-  // Visualisation and film come before the supporting-capabilities carousel.
+  assert.ok(page.indexOf("<ServicesCarousel") < page.indexOf("<VisualisationSection"));
   assert.ok(page.indexOf("<VisualisationSection") < page.indexOf("<VideoSection"));
-  assert.ok(page.indexOf("<VideoSection") < page.indexOf("<ServicesCarousel"));
+  assert.doesNotMatch(page, /links=\{/, "homepage chapters carry no extra link lists");
 });
