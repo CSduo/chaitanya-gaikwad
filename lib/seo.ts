@@ -202,6 +202,10 @@ function organizationNode() {
     knowsAbout: [
       "3D architectural visualisation and rendering",
       "Interior and product rendering",
+      "Interior visualisation for designers and architects",
+      "Furniture and product CGI",
+      "Outsourced 3D rendering",
+      "Outsourced CAD drafting and shop drawings",
       "AI video production and editing",
       "Website design and development",
       "CAD drafting and interior technical documentation",
