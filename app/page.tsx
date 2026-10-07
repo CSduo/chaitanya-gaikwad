@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Container } from "@/components/ui/primitives";
-import { ServicesCarousel } from "@/components/home/ServicesCarousel";
 import {
   CadSection,
   B2BLeadGenSection,
@@ -57,15 +56,7 @@ export default function HomePage() {
     <>
       <CreativeHero />
 
-      <Container width="page" className="scroll-mt-16 py-10 sm:py-14" id="capabilities">
-        <div className="flex flex-wrap items-end justify-between gap-4">
-          <div><p className="label">The studio offering</p><h2 className="display mt-2 text-3xl sm:text-4xl">Six services.</h2></div>
-          <p className="max-w-sm text-sm leading-relaxed text-ink-muted">Commission one service or bring them together. Explore the work below.</p>
-        </div>
-
-        <ServicesCarousel services={SERVICES} />
-      </Container>
-
+      <span id="capabilities" className="block scroll-mt-16" aria-hidden="true" />
       <VisualisationSection service={visualisation} />
       <SectionDivider index={2} label="Film" className="py-1" />
       <VideoSection service={video} />

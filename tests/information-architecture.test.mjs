@@ -135,11 +135,11 @@ test("Concept Studies lead the 3D gallery, followed by the 3D Render Portfolio, 
   assert.doesNotMatch(source, /AI-assisted|AI-generated|AI concept/);
 });
 
-test("the homepage keeps the six-services carousel first and the original visualisation chapter after it", () => {
+test("the homepage leads with visual services directly and omits the redundant carousel", () => {
   assert.match(ROUTE_SEO.home.metaTitle, /^3D Visualisation & Film/);
   assert.match(HOME_COPY.h1, /^3D visualisation and film/);
   const page = readFileSync(new URL("../app/page.tsx", import.meta.url), "utf8");
-  assert.ok(page.indexOf("<ServicesCarousel") < page.indexOf("<VisualisationSection"));
+  assert.ok(page.indexOf("<ServicesCarousel") === -1, "ServicesCarousel should not be rendered on the homepage");
   assert.ok(page.indexOf("<VisualisationSection") < page.indexOf("<VideoSection"));
   assert.doesNotMatch(page, /links=\{/, "homepage chapters carry no extra link lists");
 });
