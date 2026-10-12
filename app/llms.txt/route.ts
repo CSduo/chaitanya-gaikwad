@@ -28,6 +28,8 @@ export function GET() {
     "",
     "> Founder-led 3D visualisation and film studio for interior designers, architects, developers and furniture and product brands. A UK-facing studio with a UK contact line, and production in India; work is delivered digitally to clients in the UK, Europe, the Middle East and elsewhere. XIYÀTO also provides CAD drafting, websites, B2B research and workflow automation.",
     "",
+    "Also written Xiyato or XIYATO: the same studio (the accent is part of the logo).",
+    "",
     "For businesses that would otherwise hire a freelance 3D visualiser, 3D artist or CAD drafter: clients deal directly with the founder, as with a freelancer, and every brief follows one studio process: a written scope, defined review rounds and checked final files.",
     "",
     "## Hiring",

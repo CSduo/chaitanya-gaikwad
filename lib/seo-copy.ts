@@ -85,9 +85,11 @@ export const SERVICE_SEO: Record<string, RouteSeo> = {
 
 export const ROUTE_SEO = {
   home: {
-    // Leads with the core discipline; supporting services stay in the description's tail.
-    metaTitle: "3D Visualisation & Film for Interiors and Products | XIYÀTO",
-    metaDescription: "Founder-led 3D visualisation and film studio for interior designers, architects, developers and furniture brands, with CAD, web and research support.",
+    // Leads with the core discipline and carries the plain spelling: people
+    // type "xiyato" without the accent, and Google corrected that to other
+    // words while the plain form barely appeared on the site.
+    metaTitle: "3D Visualisation & Film Studio (Xiyato), UK & India | XIYÀTO",
+    metaDescription: "Xiyato (XIYÀTO) is a founder-led 3D visualisation and film studio for interior designers, architects and furniture brands. UK-facing, production in India.",
   },
   work: {
     metaTitle: "3D Visualisation, Film & CAD Portfolio",

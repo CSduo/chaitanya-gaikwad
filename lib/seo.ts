@@ -152,7 +152,7 @@ function organizationNode() {
     "@type": "Organization",
     "@id": ORGANIZATION_ID,
     name: SITE.name,
-    alternateName: [SITE.nameAscii, "Xiyato"],
+    alternateName: [SITE.nameAscii, "Xiyato", "Xiyato Studio"],
     url: SITE.url,
     logo: {
       "@type": "ImageObject",
@@ -220,7 +220,7 @@ function webSiteNode() {
     "@type": "WebSite",
     "@id": WEBSITE_ID,
     name: SITE.name,
-    alternateName: [SITE.nameAscii, "Xiyato"],
+    alternateName: [SITE.nameAscii, "Xiyato", "Xiyato Studio"],
     url: SITE.url,
     inLanguage: SITE.language,
     publisher: { "@id": ORGANIZATION_ID },

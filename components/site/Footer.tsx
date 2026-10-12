@@ -51,7 +51,11 @@ export function Footer() {
                 height={38}
                 className="media-clean h-9 w-9 shrink-0 sm:h-11 sm:w-11"
               />
-              <p className="display text-xl sm:text-2xl tracking-[0.14em] text-ink">{SITE.name}</p>
+              <div>
+                <p className="display text-xl sm:text-2xl tracking-[0.14em] text-ink">{SITE.name}</p>
+                {/* The plain spelling people type into search, shown once on every page. */}
+                <p className="mt-0.5 font-mono text-[0.625rem] uppercase tracking-[0.18em] text-ink-muted">Xiyato · UK &amp; India</p>
+              </div>
             </div>
             <p className="mt-3 text-xs sm:text-sm leading-relaxed text-ink-muted">{SITE.descriptor}</p>
           </div>
