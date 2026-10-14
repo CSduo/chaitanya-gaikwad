@@ -4,7 +4,7 @@
  * See IMPLEMENTATION_OPEN_FACTS.md for what the owner still needs to supply.
  */
 
-import { HIRE_PATH } from "./hire";
+import { HIRE_PATH, CAD_HIRE_PATH } from "./hire";
 
 export const SITE = {
   name: "XIYÀTO",
@@ -179,6 +179,7 @@ export const PRIMARY_NAV: NavItem[] = [
       { label: "Specialist Market Intelligence & Research", href: "/services/market-intelligence-research" },
       // After the commissioned six-service order, which the catalogue tests pin.
       { label: "Hire a 3D Visualiser", href: HIRE_PATH },
+      { label: "Hire a CAD Drafter", href: CAD_HIRE_PATH },
     ],
   },
   {

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Container, Eyebrow } from "@/components/ui/primitives";
-import { SITE, WHATSAPP, SECONDARY_CTA, getServiceWhatsAppHref } from "@/lib/site";
+import { WHATSAPP, SECONDARY_CTA, getServiceWhatsAppHref } from "@/lib/site";
 
 /**
  * The single conversion component, reused across the site.
@@ -176,10 +176,6 @@ export function ProjectCTA({
             ))}
           </ul>
         ) : null}
-
-        <p className="sr-only">
-          {SITE.name} works with clients across the United Kingdom, India, and internationally.
-        </p>
       </Container>
     </section>
   );

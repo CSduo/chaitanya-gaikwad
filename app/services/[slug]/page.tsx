@@ -429,7 +429,7 @@ export default async function ServicePage({
       <ProjectCTA
         serviceSlug={service.slug}
         eyebrow={service.shortName}
-        title={`Discuss a ${service.shortName} brief`}
+        title={`Discuss ${/^[aeiou]/i.test(service.shortName) ? "an" : "a"} ${service.shortName} brief`}
         body="Send the brief and whatever material exists. We will confirm what is workable, identify any missing information, and propose a defined scope."
         services={SERVICES.filter((s) => s.slug !== service.slug).map((s) => ({
           label: s.name,

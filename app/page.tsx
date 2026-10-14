@@ -18,6 +18,7 @@ import { ROUTE_SEO } from "@/lib/seo-copy";
 import { CreativeHero } from "@/components/home/CreativeHero";
 import { StartingPrices } from "@/components/home/StartingPrices";
 import { SectionDivider } from "@/components/brand/Divider";
+import { HIRE_PATH, CAD_HIRE_PATH } from "@/lib/hire";
 
 export const metadata: Metadata = pageMetadata({
   title: ROUTE_SEO.home.metaTitle,
@@ -87,6 +88,12 @@ export default function HomePage() {
               </li>
             ))}
           </ol>
+          <p className="mt-4 text-xs leading-relaxed text-ink-muted">
+            Hiring for a single job?{" "}
+            <Link href={HIRE_PATH} className="text-ink underline underline-offset-4">Hire a freelance 3D visualiser</Link>{" "}
+            or{" "}
+            <Link href={CAD_HIRE_PATH} className="text-ink underline underline-offset-4">a freelance CAD drafter</Link>.
+          </p>
         </Container>
       </section>
 
@@ -109,17 +116,6 @@ export default function HomePage() {
           href: `/services/${s.slug}`,
         }))}
       />
-
-      {/* Crawlable index of every service page, independent of the anchors above. */}
-      <nav aria-label="Services" className="sr-only">
-        <ul>
-          {SERVICES.map((s) => (
-            <li key={s.slug}>
-              <Link href={`/services/${s.slug}`}>{s.name}</Link>
-            </li>
-          ))}
-        </ul>
-      </nav>
     </>
   );
 }
