@@ -14,10 +14,12 @@ import { publishedChannels } from "@/lib/site";
 import { pageMetadata, breadcrumbSchema } from "@/lib/seo";
 
 export const metadata: Metadata = pageMetadata({
-  // Mirrors the page heading; no address is published until the owner verifies one.
-  title: "UK Client Coordination and India Production",
+  // Carries the plain spelling with "India": Google corrected "xiyato india"
+  // to "xiaomi india" while no page paired the two. No address is published
+  // until the owner verifies one.
+  title: "Xiyato in India and the UK: Studio Locations",
   description:
-    "XIYÀTO maintains a UK-facing presence with production running from India, delivering internationally across Europe, the Middle East and Asia.",
+    "Xiyato (XIYÀTO) runs production in India with a UK-facing client presence, delivering 3D visualisation, film and CAD work to clients worldwide.",
   path: "/company/locations",
 });
 
@@ -51,8 +53,8 @@ export default function LocationsPage() {
               UK client coordination, India production.
             </h1>
             <p className="mt-7 text-lg leading-relaxed text-ink-soft">
-              XIYÀTO maintains a UK-facing commercial presence with production running from
-              India. In practice that gives clients a working overlap for review and a
+              XIYÀTO (Xiyato) maintains a UK-facing commercial presence with production running
+              from India. In practice that gives clients a working overlap for review and a
               turnaround that moves while their own office is closed.
             </p>
           </div>
