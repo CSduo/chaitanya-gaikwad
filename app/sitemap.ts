@@ -6,6 +6,7 @@ import { allCaseStudies } from "@/lib/case-studies";
 import { publishedLegalPages } from "@/lib/company";
 import { VISUALS } from "@/lib/visuals";
 import { HIRE_PATH, GUIDE_PATH, CAD_HIRE_PATH } from "@/lib/hire";
+import { VIDEOS, filmPath, filmSeconds } from "@/lib/portfolio";
 import contentDates from "@/data/content-dates.json";
 
 type ContentGroup = keyof typeof contentDates.groups;
@@ -58,6 +59,24 @@ export default function sitemap(): MetadataRoute.Sitemap {
     lastModified: lastModified("/work/[slug]"),
   }));
 
+  // One watch page per film, each with a video sitemap entry pointing at the
+  // MP4 and poster, so Google can index the films as videos.
+  const films: MetadataRoute.Sitemap = VIDEOS.map((film) => ({
+    url: url(filmPath(film.slug)),
+    lastModified: lastModified("/work/films/[slug]"),
+    videos: [
+      {
+        title: film.title,
+        description: film.description,
+        thumbnail_loc: url(film.poster),
+        content_loc: url(film.src),
+        duration: filmSeconds(film.duration),
+        publication_date: film.uploadDate,
+        family_friendly: "yes" as const,
+      },
+    ],
+  }));
+
   // /work/research/* pages are noindex,follow and intentionally absent here.
 
   // Unpublished legal routes are excluded — they 404 rather than existing as shells.
@@ -66,5 +85,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     lastModified: lastModified("/legal/[slug]"),
   }));
 
-  return [...core, ...services, ...subServices, ...work, ...legal];
+  return [...core, ...services, ...subServices, ...work, ...films, ...legal];
 }

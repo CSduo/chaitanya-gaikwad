@@ -53,7 +53,7 @@ export const ALL_SERVICES: Service[] = [
     summary: "Photorealistic 3D rendering and architectural visualization for interiors, developments, furniture and luxury products, tailored for presentations and campaigns.",
     overview: "Still 3D rendering and architectural visualization (visualisation) for design practices, developers, furniture makers and luxury brands, turning CAD plans and material references into client-ready imagery.",
     intro: [
-      "Most spatial design and bespoke products have to be sold before they are built. XIYÀTO produces photorealistic 3D architectural rendering and spatial visualization for interior studios, architectural practices, real estate developers, furniture manufacturers and luxury brands. We translate 2D CAD drawings, material swatches, lighting direction and sketches into images built for presentations, planning submissions, and marketing campaigns.",
+      "Most spatial design and bespoke products have to be sold before they are built. XIYÀTO is a 3D rendering and visualization agency producing photorealistic architectural rendering and spatial visualization for interior studios, architectural practices, real estate developers, furniture manufacturers and luxury brands. We translate 2D CAD drawings, material swatches, lighting direction and sketches into images built for presentations, planning submissions, and marketing campaigns.",
       "Our CGI work covers residential and commercial interior rendering, architectural exterior visualization, bespoke furniture lifestyle sets, and e-commerce hero visuals. Every image is composed to its specific placement—whether a pitch deck, client presentation board, luxury print brochure, or digital campaign. Directions are put forward as options for your selection, not as a single fixed image.",
     ],
     groups: [
@@ -150,7 +150,7 @@ export const ALL_SERVICES: Service[] = [
     summary: "Cinematic AI video production for brands, products, showrooms and campaigns, cut and mastered for every social and web placement.",
     overview: "Commercial AI video production and cinematic editing for brands, luxury products, interiors, real estate and campaigns. We combine generative AI sequences with professional editing, grading, sound design and multi-format delivery.",
     intro: [
-      "Film brings products, spaces, and brand narratives to life across digital channels. XIYÀTO delivers AI video production services for commercial brands, luxury furniture makers, interior studios, real estate developers, and consumer products. We produce cinematic short-form films, product launch teasers, showroom walkthroughs, and campaign visuals that capture attention and drive commercial action.",
+      "Film brings products, spaces, and brand narratives to life across digital channels. XIYÀTO is an AI video production agency for commercial brands, luxury furniture makers, interior studios, real estate developers and consumer products, working with clients in the UK, Europe, the Middle East, India and worldwide. We produce cinematic short-form films, product launch teasers, showroom walkthroughs, and campaign visuals that capture attention and drive commercial action.",
       "We integrate advanced generative AI video production with professional post-production: pacing, sequence storyboarding, cinematic colour grading, typography, and bespoke sound design. Each cut is mastered to its native placement—vertical 9:16 for Instagram Reels and TikTok, 4:5 for feed advertising, and 16:9 4K for websites and showroom screens.",
     ],
     groups: [
@@ -244,7 +244,7 @@ export const ALL_SERVICES: Service[] = [
     summary: "High-performance custom Next.js websites for architecture firms, interior studios, B2B companies and export brands: design, build, SEO and code handover.",
     overview: "Custom website design and development for architecture practices, interior designers, B2B service firms and export manufacturers. Statically pre-rendered, search-optimized, responsive, and handed over with full code ownership.",
     intro: [
-      "Architecture practices, design studios, manufacturers and export brands require websites that reflect their professional calibre. XIYÀTO designs and builds bespoke, high-performance websites engineered for visual sophistication, fast load speeds, technical search engine visibility, and qualified inbound enquiry generation.",
+      "Architecture practices, design studios, manufacturers and export brands require websites that reflect their professional calibre. XIYÀTO is a web design and development agency that designs and builds bespoke, high-performance websites engineered for visual sophistication, fast load speeds, technical search engine visibility, and qualified inbound enquiry generation.",
       "Built with modern Next.js and Tailwind architecture, our sites deliver pre-rendered crawlability, structured JSON-LD schema, responsive layout precision across all device viewports, and secure enquiry handling. You retain 100% ownership of your code repository, hosting, and domains.",
     ],
     groups: [
@@ -420,7 +420,7 @@ export const ALL_SERVICES: Service[] = [
     summary: "Targeted prospect research, buyer dossiers, Excel lead files and marketing support that give your team a clearer route to the next opportunity.",
     overview: "Proprietary B2B lead generation and sales prospecting for companies expanding into new markets or rebuilding pipeline. Every target account is researched, qualified, and verified by hand with direct decision-maker contact routes.",
     intro: [
-      "XIYÀTO builds targeted B2B lead generation programmes for architecture practices, interior fit-out contractors, furniture manufacturers, luxury exporters and B2B service companies. We identify high-probability target accounts, research verified decision-makers across C-suite and procurement, and build structured prospect databases your commercial team can immediately work.",
+      "XIYÀTO is a B2B marketing and lead generation agency building targeted programmes for architecture practices, interior fit-out contractors, furniture manufacturers, luxury exporters and B2B service companies. We identify high-probability target accounts, research verified decision-makers across C-suite and procurement, and build structured prospect databases your commercial team can immediately work.",
       "This is bespoke, human-verified research rather than scraped database exports or automated bulk blasts. Every company is qualified against your Ideal Customer Profile (ICP) using active project evidence, physical premises validation, and corporate registry records. We map direct executive phone numbers, verified corporate emails, and WhatsApp business coordinates, complete with tailored opening angles mapped per prospect.",
     ],
     groups: [
@@ -509,7 +509,7 @@ export const ALL_SERVICES: Service[] = [
     summary: "Connect enquiry intake, lead routing, follow-up and reporting in practical workflows your team can run.",
     overview: "Custom integrations and process automation for growing teams. Turn repeated admin into clear, connected steps, with review points, visible status and a documented handover.",
     intro: [
-      "When your team moves the same information between forms, spreadsheets, inboxes and a CRM, the work slows down and context gets lost. XIYÀTO maps that process and builds a workflow around the tools you already use, from enquiry intake and lead assignment to follow-up reminders and reporting.",
+      "When your team moves the same information between forms, spreadsheets, inboxes and a CRM, the work slows down and context gets lost. XIYÀTO, a workflow automation agency, maps that process and builds a workflow around the tools you already use, from enquiry intake and lead assignment to follow-up reminders and reporting.",
       "Start with one repeatable task or commission a wider campaign workflow. Inputs, triggers, approval steps and exception handling are agreed before the build, so your team knows what happens automatically and when a person needs to act.",
     ],
     groups: [

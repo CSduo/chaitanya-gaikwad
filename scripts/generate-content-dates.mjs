@@ -92,6 +92,7 @@ export const CONTENT_SOURCES = {
     "lib/seo-copy.ts",
   ],
   "/work/[slug]": ["app/work/[slug]", "components/work", "lib/case-studies.ts"],
+  "/work/films/[slug]": ["app/work/films", "components/work/FilmPlayer.tsx", "lib/portfolio.ts"],
   "/company": ["app/company/page.tsx", "components/company", "lib/company-copy.ts", "lib/company.ts", "lib/seo-copy.ts"],
   "/company/people": ["app/company/people", "lib/company.ts", "lib/seo-copy.ts"],
   "/company/locations": ["app/company/locations", "lib/company.ts"],

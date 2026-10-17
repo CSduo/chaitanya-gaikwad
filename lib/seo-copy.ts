@@ -24,8 +24,8 @@ export const SERVICE_SEO: Record<string, RouteSeo> = {
     secondaryKeywords: ["interior technical drawings", "joinery shop drawings", "reflected ceiling plans", "millwork drafting services", "floor plan drafting", "editable DWG drawings", "PDF to CAD conversion", "fit-out drawing packages"],
   },
   "b2b-lead-generation": {
-    metaTitle: "B2B Lead Generation Services | XIYÀTO",
-    metaDescription: "Targeted B2B lead files from $20 and marketing support from $50. Buyer research, Excel datasets and outreach planning scoped for your commercial team.",
+    metaTitle: "B2B Marketing & Lead Generation Agency | XIYÀTO",
+    metaDescription: "B2B marketing and lead generation agency: verified lead files from $20, marketing support from $50, plus buyer research and outreach planning.",
     searchIntent: "Who can build a verified B2B prospect list with direct decision-maker contact details for our commercial sales team?",
     primaryKeywords: ["B2B lead generation services", "B2B lead generation agency", "outbound lead generation services", "B2B prospecting services", "prospect research services", "lead list building services"],
     secondaryKeywords: ["decision maker research", "ICP research services", "verified B2B leads", "target account research", "sales qualified lead generation", "commercial lead research", "B2B contact research", "account based prospecting"],
@@ -38,22 +38,24 @@ export const SERVICE_SEO: Record<string, RouteSeo> = {
     secondaryKeywords: ["buyer research services", "distributor identification services", "industry intelligence services", "trade intelligence services", "Middle East market intelligence", "territory research services", "competitor landscape analysis", "wholesale market mapping"],
   },
   "visualisation-image-production": {
-    metaTitle: "3D Rendering & Architectural Visualization Services | XIYÀTO",
-    metaDescription: "3D renders from $10 per image. Architectural visualization for interiors, furniture and products, with clear scope and formats for your next presentation.",
+    metaTitle: "3D Rendering & Architectural Visualization Agency | XIYÀTO",
+    metaDescription: "3D rendering and visualization agency for interiors, architecture, furniture and products. Photoreal renders from $10 per image, for clients worldwide.",
     searchIntent: "Who can turn my architectural plans, interior layouts, or furniture specifications into photorealistic 3D rendering and CGI for client presentations and marketing?",
     primaryKeywords: ["3D rendering services", "architectural visualization services", "3D visualisation services", "interior rendering services", "photorealistic 3D rendering", "product visualization services"],
     secondaryKeywords: ["furniture rendering services", "property CGI services", "interior design rendering", "luxury interior rendering", "exterior visualization services", "architectural CGI studio", "3D architectural rendering", "commercial interior rendering"],
   },
   "ai-video-production": {
-    metaTitle: "AI Video Production Services | XIYÀTO",
-    metaDescription: "AI video production from $25 per reel. Cinematic brand films, product motion and social cutdowns, with scope and delivery agreed for your campaign.",
+    // "ai video production agency" is the site's top search impression; the
+    // page never said "agency" before.
+    metaTitle: "AI Video Production Agency for Brands & Products | XIYÀTO",
+    metaDescription: "AI video production agency for brands worldwide: cinematic product films, campaigns and social reels from $25 a reel. Founder-led. Message us on WhatsApp.",
     searchIntent: "Who can produce and edit cinematic commercial AI video for our brand, product launch, showroom, or architectural campaign across social and web formats?",
     primaryKeywords: ["AI video production services", "AI video production agency", "commercial video production", "generative AI video production", "AI product video production", "cinematic video production"],
     secondaryKeywords: ["AI video editing services", "brand film production", "showroom walkthrough video", "AI commercial video production", "social media video production", "short form video production", "AI campaign video production", "product launch video"],
   },
   "website-design-development": {
-    metaTitle: "Website Design & Development for Architecture & B2B | XIYÀTO",
-    metaDescription: "Website design and development from $250 per project for design practices and B2B brands. Responsive builds, enquiry flows and source code handover.",
+    metaTitle: "Web Design & Development Agency for Brands & B2B | XIYÀTO",
+    metaDescription: "Web design and development agency for design practices, brands and B2B companies worldwide. Bespoke, fast, search-ready websites from $250 a project.",
     searchIntent: "Who can design and build a bespoke, responsive Next.js portfolio or business website for our architecture studio, interior practice, or B2B brand?",
     primaryKeywords: ["website design and development services", "B2B website design", "custom website development", "website design for architects", "portfolio website design", "responsive website development"],
     secondaryKeywords: ["architecture firm website design", "interior design website development", "technical SEO website development", "Next.js website development", "high converting website development", "website development company", "design studio website", "performance optimized website"],
@@ -61,22 +63,24 @@ export const SERVICE_SEO: Record<string, RouteSeo> = {
 
   // Backward compatibility mappings for legacy routes and components
   "growth-marketing-b2b": {
-    metaTitle: "B2B Lead Generation Services | XIYÀTO",
-    metaDescription: "Targeted B2B lead files from $20 and marketing support from $50. Buyer research, Excel datasets and outreach planning scoped for your commercial team.",
+    metaTitle: "B2B Marketing & Lead Generation Agency | XIYÀTO",
+    metaDescription: "B2B marketing and lead generation agency: verified lead files from $20, marketing support from $50, plus buyer research and outreach planning.",
     searchIntent: "Who can build a verified B2B prospect list with direct decision-maker contact details for our commercial sales team?",
     primaryKeywords: ["B2B lead generation services", "B2B lead generation agency", "outbound lead generation services"],
     secondaryKeywords: ["decision maker research", "ICP research services", "verified B2B leads"],
   },
   "video-ai-film-editing": {
-    metaTitle: "AI Video Production Services | XIYÀTO",
-    metaDescription: "AI video production from $25 per reel. Cinematic brand films, product motion and social cutdowns, with scope and delivery agreed for your campaign.",
+    // "ai video production agency" is the site's top search impression; the
+    // page never said "agency" before.
+    metaTitle: "AI Video Production Agency for Brands & Products | XIYÀTO",
+    metaDescription: "AI video production agency for brands worldwide: cinematic product films, campaigns and social reels from $25 a reel. Founder-led. Message us on WhatsApp.",
     searchIntent: "Who can produce and edit cinematic commercial AI video for our brand, product launch, showroom, or architectural campaign across social and web formats?",
     primaryKeywords: ["AI video production services", "AI video production agency", "commercial video production"],
     secondaryKeywords: ["AI video editing services", "brand film production", "showroom walkthrough video"],
   },
   "automation-workflow-systems": {
-    metaTitle: "Automation & Workflow Systems from $50 | XIYÀTO",
-    metaDescription: "Automation campaigns from $50. Connect forms, spreadsheets, CRM and reporting with custom workflow systems, review points and a documented handover.",
+    metaTitle: "Workflow Automation Agency, Builds from $50 | XIYÀTO",
+    metaDescription: "Workflow automation agency: connect forms, spreadsheets, CRM and reporting in custom workflows with review points and a documented handover. From $50.",
     searchIntent: "Who can map how my business actually runs and automate the repetitive parts of it, from lead management and outreach to reporting?",
     primaryKeywords: ["workflow automation services", "custom workflow systems", "business process automation"],
     secondaryKeywords: ["lead management workflow", "automated follow-up systems", "CRM-ready prospect data"],

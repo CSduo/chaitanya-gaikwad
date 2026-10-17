@@ -207,9 +207,11 @@ function organizationNode() {
       "Outsourced 3D rendering",
       "Outsourced CAD drafting and shop drawings",
       "AI video production and editing",
+      "Brand film and commercial video production",
       "Website design and development",
       "CAD drafting and interior technical documentation",
-      "B2B lead generation and market research",
+      "B2B marketing and lead generation",
+      "Market research",
       "Workflow automation",
     ],
   };

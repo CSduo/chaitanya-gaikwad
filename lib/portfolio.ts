@@ -803,6 +803,33 @@ export function allVideos() {
 export function filmBySrc(src: string): VideoProject | undefined {
   return VIDEOS.find((v) => v.src === src);
 }
+
+/**
+ * Each film's own watch page. Google indexes a video only on a page whose main
+ * content is that video; everywhere else the film is shown with a link here.
+ */
+export function filmPath(slug: string): string {
+  return `/work/films/${slug}`;
+}
+
+export function getFilm(slug: string): VideoProject | undefined {
+  return VIDEOS.find((v) => v.slug === slug);
+}
+
+/** "PT1M5S" -> "1 min 5 s", "PT28S" -> "28 seconds". */
+export function filmLength(duration: string): string {
+  const m = /^PT(?:(\d+)M)?(\d+)S$/.exec(duration);
+  if (!m) return duration;
+  const minutes = Number(m[1] ?? 0);
+  const seconds = Number(m[2]);
+  return minutes ? `${minutes} min ${seconds} s` : `${seconds} seconds`;
+}
+
+/** Total length in whole seconds, for the video sitemap. */
+export function filmSeconds(duration: string): number | undefined {
+  const m = /^PT(?:(\d+)M)?(\d+)S$/.exec(duration);
+  return m ? Number(m[1] ?? 0) * 60 + Number(m[2]) : undefined;
+}
 export function featuredWorkbooks(limit = 3) {
   return [...WORKBOOKS].sort((a, b) => a.order - b.order).filter((w) => w.featured).slice(0, limit);
 }
