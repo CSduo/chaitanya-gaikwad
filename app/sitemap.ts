@@ -24,6 +24,20 @@ function lastModified(group: ContentGroup | string): Date | undefined {
   return Number.isFinite(date.getTime()) ? date : undefined;
 }
 
+/**
+ * Next.js writes video titles and descriptions into the sitemap XML verbatim,
+ * so text such as "Bar & Restaurant" produced invalid XML and Search Console
+ * could not parse the sitemap at all. Escape the text fields here.
+ */
+function xmlText(value: string): string {
+  return value
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&apos;");
+}
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const url = (p: string) => `${SITE.url}${p}`;
 
@@ -66,8 +80,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     lastModified: lastModified("/work/films/[slug]"),
     videos: [
       {
-        title: film.title,
-        description: film.description,
+        title: xmlText(film.title),
+        description: xmlText(film.description),
         thumbnail_loc: url(film.poster),
         content_loc: url(film.src),
         duration: filmSeconds(film.duration),

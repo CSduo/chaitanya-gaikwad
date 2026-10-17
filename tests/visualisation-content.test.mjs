@@ -143,3 +143,15 @@ test("films are real <video preload=\"none\"> elements whose VideoObject carries
   assert.match(source("app/work/page.tsx"), /<FilmPlayer film=\{v\}/);
   assert.match(source("app/work/[slug]/page.tsx"), /filmBySrc\(v\.src\)/);
 });
+
+test("video sitemap text fields are XML-escaped (Next.js writes them verbatim)", () => {
+  const raw = /&(?!amp;|lt;|gt;|quot;|apos;)|[<>]/;
+  const entries = sitemap().filter((entry) => entry.videos?.length);
+  assert.ok(entries.length >= VIDEOS.length, "every film has a watch page with a video entry");
+  for (const entry of entries) {
+    for (const video of entry.videos) {
+      assert.doesNotMatch(video.title, raw, `${entry.url} video title`);
+      assert.doesNotMatch(video.description, raw, `${entry.url} video description`);
+    }
+  }
+});
