@@ -42,7 +42,7 @@ export const SERVICE_SEO: Record<string, RouteSeo> = {
     metaDescription: "3D rendering and visualization agency for interiors, architecture, furniture and products. Photoreal renders from $10 per image, for clients worldwide.",
     searchIntent: "Who can turn my architectural plans, interior layouts, or furniture specifications into photorealistic 3D rendering and CGI for client presentations and marketing?",
     primaryKeywords: ["3D rendering services", "architectural visualization services", "3D visualisation services", "interior rendering services", "photorealistic 3D rendering", "product visualization services"],
-    secondaryKeywords: ["furniture rendering services", "property CGI services", "interior design rendering", "luxury interior rendering", "exterior visualization services", "architectural CGI studio", "3D architectural rendering", "commercial interior rendering"],
+    secondaryKeywords: ["furniture rendering services", "property CGI services", "interior design rendering", "luxury interior rendering", "exterior visualization services", "architectural CGI studio", "3D architectural rendering", "commercial interior rendering", "graphic design for brochures and presentations"],
   },
   "ai-video-production": {
     // "ai video production agency" is the site's top search impression; the
@@ -79,8 +79,8 @@ export const SERVICE_SEO: Record<string, RouteSeo> = {
     secondaryKeywords: ["AI video editing services", "brand film production", "showroom walkthrough video"],
   },
   "automation-workflow-systems": {
-    metaTitle: "Workflow Automation Agency, Builds from $50 | XIYÀTO",
-    metaDescription: "Workflow automation agency: connect forms, spreadsheets, CRM and reporting in custom workflows with review points and a documented handover. From $50.",
+    metaTitle: "AI & Workflow Automation Agency, from $50 | XIYÀTO",
+    metaDescription: "AI and workflow automation agency: connect forms, inboxes, CRM and reporting, with AI steps for summaries, triage and drafts, plus human review. From $50.",
     searchIntent: "Who can map how my business actually runs and automate the repetitive parts of it, from lead management and outreach to reporting?",
     primaryKeywords: ["workflow automation services", "custom workflow systems", "business process automation"],
     secondaryKeywords: ["lead management workflow", "automated follow-up systems", "CRM-ready prospect data"],

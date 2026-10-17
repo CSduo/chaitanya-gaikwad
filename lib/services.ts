@@ -98,9 +98,11 @@ export const ALL_SERVICES: Service[] = [
         ],
       },
       {
-        title: "Brand and commercial visuals",
-        intro: "Visual assets engineered for commercial campaigns and digital touchpoints.",
+        title: "Brand visuals and graphic design",
+        intro: "Visual assets and graphic design for commercial campaigns and digital touchpoints.",
         items: [
+          "Graphic design for brochures, catalogues, presentation boards and social posts",
+          "Layouts that combine renders with copy, typography and your brand assets",
           "Website hero and section header images",
           "Campaign and product-launch key visuals",
           "Still frames sized for social and channel formats",
@@ -509,7 +511,7 @@ export const ALL_SERVICES: Service[] = [
     summary: "Connect enquiry intake, lead routing, follow-up and reporting in practical workflows your team can run.",
     overview: "Custom integrations and process automation for growing teams. Turn repeated admin into clear, connected steps, with review points, visible status and a documented handover.",
     intro: [
-      "When your team moves the same information between forms, spreadsheets, inboxes and a CRM, the work slows down and context gets lost. XIYÀTO, a workflow automation agency, maps that process and builds a workflow around the tools you already use, from enquiry intake and lead assignment to follow-up reminders and reporting.",
+      "When your team moves the same information between forms, spreadsheets, inboxes and a CRM, the work slows down and context gets lost. XIYÀTO, an AI and workflow automation agency, maps that process and builds a workflow around the tools you already use, from enquiry intake and lead assignment to follow-up reminders and reporting.",
       "Start with one repeatable task or commission a wider campaign workflow. Inputs, triggers, approval steps and exception handling are agreed before the build, so your team knows what happens automatically and when a person needs to act.",
     ],
     groups: [
@@ -529,6 +531,7 @@ export const ALL_SERVICES: Service[] = [
           "Event triggers, webhooks and approved API connections",
           "Data validation and duplicate handling",
           "Scheduled reporting and status summaries",
+          "AI steps for enquiry summaries, lead triage and first-draft replies, with a person reviewing",
         ],
       },
       {

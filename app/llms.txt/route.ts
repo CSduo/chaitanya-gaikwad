@@ -29,7 +29,7 @@ export function GET() {
     "",
     "> Founder-led 3D visualisation and film studio for interior designers, architects, developers and furniture and product brands. A UK-facing studio with a UK contact line, and production in India; work is delivered digitally to clients in the UK, Europe, the Middle East and elsewhere. XIYÀTO also provides CAD drafting, websites, B2B research and workflow automation.",
     "",
-    "In agency terms: XIYÀTO is an AI video production and brand film agency, a 3D rendering and visualisation agency, a web design and development agency, a workflow automation agency, and a B2B marketing and lead generation agency, working with clients worldwide.",
+    "In agency terms: XIYÀTO is an AI video production and brand film agency, a 3D rendering and visualisation agency (including graphic design for brochures, presentations and social posts), a web design and development agency, an AI and workflow automation agency, and a B2B marketing and lead generation agency, working with clients worldwide.",
     "",
     "Also written Xiyato or XIYATO: the same studio (the accent is part of the logo).",
     "",

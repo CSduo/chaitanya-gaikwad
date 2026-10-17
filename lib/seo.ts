@@ -204,6 +204,7 @@ function organizationNode() {
       "Interior and product rendering",
       "Interior visualisation for designers and architects",
       "Furniture and product CGI",
+      "Graphic design for brand and marketing material",
       "Outsourced 3D rendering",
       "Outsourced CAD drafting and shop drawings",
       "AI video production and editing",
@@ -212,7 +213,7 @@ function organizationNode() {
       "CAD drafting and interior technical documentation",
       "B2B marketing and lead generation",
       "Market research",
-      "Workflow automation",
+      "AI and workflow automation",
     ],
   };
 }
